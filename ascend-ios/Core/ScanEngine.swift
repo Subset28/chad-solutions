@@ -27,8 +27,8 @@ class ScanEngine: NSObject, ObservableObject {
         webView = WKWebView(frame: .zero, configuration: configuration)
         webView?.navigationDelegate = self
         
-        // Load the web analysis engine
-        if let url = URL(string: "http://localhost:3000/analyze") {
+        // Load the web analysis engine - now pointing to the live GitHub Pages deployment
+        if let url = URL(string: "https://Subset28.github.io/chad-solutions/analyze") {
             webView?.load(URLRequest(url: url))
         }
     }
