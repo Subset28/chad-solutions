@@ -1,3 +1,15 @@
+declare global {
+    interface Window {
+        webkit?: {
+            messageHandlers: {
+                analysisComplete: {
+                    postMessage: (message: any) => void;
+                };
+            };
+        };
+    }
+}
+
 import FaceAnalyzer from '@/components/FaceAnalyzer';
 
 export default function AnalyzePage() {

@@ -85,15 +85,17 @@ class ScanEngine: NSObject, ObservableObject {
     
     /// Parse analysis results from web app
     private func parseResults(_ data: [String: Any]) {
-        // Extract PSL score
+        // Extract PSL data
         guard let psl = data["psl"] as? [String: Any],
               let score = psl["score"] as? Double,
-              let tierString = psl["tier"] as? String,
-              let tier = PSLTier(rawValue: tierString) else {
-            error = "Invalid analysis data format"
+              let rawTier = psl["tier"] as? String else {
+            error = "Invalid PSL data format"
             isLoading = false
             return
         }
+        
+        // Map the long tier string (with percentile) to our enum
+        let tier = mapTierString(rawTier)
         
         // Extract metrics
         guard let metricsDict = data["metrics"] as? [String: Double] else {
@@ -124,7 +126,7 @@ class ScanEngine: NSObject, ObservableObject {
         let result = AnalysisResult(
             overallPSL: score,
             tier: tier,
-            metrics: metrics,
+            metrics: metrics.sorted(by: { $0.importance.rawValue < $1.importance.rawValue }),
             potential: potential,
             recommendations: recommendations,
             imageUrl: data["imageUrl"] as? String
@@ -138,24 +140,61 @@ class ScanEngine: NSObject, ObservableObject {
     
     // MARK: - Helper Methods
     
+    private func mapTierString(_ raw: String) -> PSLTier {
+        if raw.contains("God") { return .gigachad }
+        if raw.contains("Gigachad") { return .gigachad }
+        if raw.contains("Chad") && !raw.contains("lite") { return .chad }
+        if raw.contains("Chadlite") { return .chadlite }
+        if raw.contains("HTN") || raw.contains("High-Tier Normie") { return .htn }
+        if raw.contains("MTN") || raw.contains("Mid-Tier Normie") || raw.contains("Upper-Mid") { return .mtn }
+        if raw.contains("LTN") || raw.contains("Low-Tier Normie") { return .ltn }
+        if raw.contains("Truecel") { return .truecel }
+        return .subhuman
+    }
+    
     private func formatMetricName(_ key: String) -> String {
+        // Handle specific abbreviations
+        if key == "ipdRatio" { return "IPD Ratio" }
+        if key == "fwfhRatio" { return "FWHR" }
+        
         // Convert camelCase to Title Case
-        key.replacingOccurrences(of: "([a-z])([A-Z])", with: "$1 $2", options: .regularExpression)
+        return key.replacingOccurrences(of: "([a-z])([A-Z])", with: "$1 $2", options: .regularExpression)
             .capitalized
     }
     
     private func rateMetric(_ key: String, value: Double) -> MetricRating {
-        // Simplified rating logic - should be expanded based on metric type
         switch key {
         case "canthalTilt":
-            if value > 5 { return .excellent }
-            else if value > 0 { return .good }
-            else if value > -3 { return .average }
-            else { return .poor }
+            if value >= 5 { return .excellent }
+            if value >= 0 { return .good }
+            if value >= -3 { return .average }
+            return .critical
+            
         case "fwfhRatio":
             if value >= 1.8 && value <= 2.0 { return .excellent }
-            else if value >= 1.7 && value <= 2.1 { return .good }
-            else { return .average }
+            if value >= 1.7 && value <= 2.2 { return .good }
+            return .poor
+            
+        case "midfaceRatio":
+            if value >= 0.95 && value <= 1.05 { return .excellent }
+            if value > 1.1 { return .critical }
+            return .average
+            
+        case "gonialAngle":
+            if value >= 115 && value <= 125 { return .excellent }
+            if value > 135 { return .poor }
+            return .good
+            
+        case "orbitalRimProtrusion", "maxillaryProtrusion", "browRidgeProtrusion":
+            if value > 0.04 { return .excellent }
+            if value > 0.02 { return .good }
+            return .poor
+            
+        case "facialAsymmetry":
+            if value < 0.02 { return .excellent }
+            if value < 0.05 { return .good }
+            return .critical
+            
         default:
             return .average
         }
@@ -163,90 +202,122 @@ class ScanEngine: NSObject, ObservableObject {
     
     private func getIdealRange(_ key: String) -> String {
         switch key {
-        case "canthalTilt": return "4-8°"
-        case "fwfhRatio": return "1.8-2.0"
-        case "gonialAngle": return "110-130°"
-        default: return "Varies"
+        case "canthalTilt": return "4° to 8° (Positive)"
+        case "fwfhRatio": return "1.85 to 2.0"
+        case "midfaceRatio": return "~1.0 (Compact)"
+        case "gonialAngle": return "110° to 130°"
+        case "chinToPhiltrumRatio": return "2.0 to 2.5"
+        case "orbitalRimProtrusion": return "> 0.05 (Forward)"
+        case "maxillaryProtrusion": return "Significant Forward Growth"
+        case "facialAsymmetry": return "< 2%"
+        default: return "Varies by Phenotype"
         }
     }
     
     private func getAssessment(_ key: String, value: Double) -> String {
-        // This should match the web app's getMetricExplanation logic
-        return "Assessment for \(key): \(value)"
-    }
-    
-    private func getImportance(_ key: String) -> MetricImportance {
+        let valStr = String(format: "%.2f", value)
         switch key {
-        case "canthalTilt", "fwfhRatio", "gonialAngle": return .critical
-        case "midfaceRatio", "eyeSeparationRatio": return .high
-        default: return .medium
+        case "canthalTilt":
+            return value > 0 ? "Positive tilt (\(valStr)°). High aesthetic appeal." : "Negative tilt (\(valStr)°). Tired/droopy appearance."
+        case "fwfhRatio":
+            return value >= 1.8 ? "High (\(valStr)). Indicates Dimorphism." : "Low (\(valStr)). Long-face syndrome."
+        case "orbitalRimProtrusion":
+            return value > 0.03 ? "Strong forward support. Deep-set eyes." : "Weak support. Potential for bug-eyes."
+        case "facialAsymmetry":
+            return value < 0.05 ? "Excellent symmetry (\(valStr))." : "Significant asymmetry detected (\(valStr))."
+        default:
+            return "Measurement: \(valStr)"
         }
     }
     
+    private func getImportance(_ key: String) -> MetricImportance {
+        let criticals = ["canthalTilt", "fwfhRatio", "orbitalRimProtrusion", "maxillaryProtrusion", "gonialAngle", "midfaceRatio"]
+        let highs = ["eyeSeparationRatio", "chinToPhiltrumRatio", "facialAsymmetry", "cheekboneProminence"]
+        
+        if criticals.contains(key) { return .critical }
+        if highs.contains(key) { return .high }
+        return .medium
+    }
+    
     private func createPotentialAnalysis(psl: Double, metrics: [MetricResult]) -> PotentialAnalysis {
-        // Calculate potential based on metric improvements
         let poorMetrics = metrics.filter { $0.rating == .poor || $0.rating == .critical }
-        let softmaxGain = Double(poorMetrics.filter { canSoftmax($0.name) }.count) * 0.3
-        let hardmaxGain = Double(poorMetrics.count) * 0.5
+        let softmaxable = poorMetrics.filter { canSoftmax($0.name) }
+        
+        // Realistic gains
+        let softmaxGain = Double(softmaxable.count) * 0.25
+        let hardmaxGain = Double(poorMetrics.count - softmaxable.count) * 0.4
+        
+        let targetCeiling = min(8.0, psl + softmaxGain + hardmaxGain)
         
         return PotentialAnalysis(
             currentPSL: psl,
             softmaxPotential: min(8.0, psl + softmaxGain),
-            hardmaxPotential: min(8.0, psl + hardmaxGain),
-            ceiling: min(8.0, psl + hardmaxGain + 0.5),
+            hardmaxPotential: targetCeiling,
+            ceiling: min(8.0, targetCeiling + 0.3), // Genetic peak
             limitingFactors: poorMetrics.map { $0.displayName },
-            strengths: metrics.filter { $0.rating == .excellent || $0.rating == .good }.map { $0.displayName }
+            strengths: metrics.filter { $0.rating == .excellent }.map { $0.displayName }
         )
     }
     
     private func canSoftmax(_ metricName: String) -> Bool {
-        // Metrics that can be improved without surgery
-        ["bodyFat", "skinQuality", "hairline", "facialHair"].contains(metricName)
+        let softmaxKeys = ["bodyFat", "skinQuality", "hairlineRecession", "facialHair", "eyebrowThickness"]
+        return softmaxKeys.contains(metricName)
     }
     
     private func generateRecommendations(metrics: [MetricResult], psl: Double) -> [Recommendation] {
-        var recommendations: [Recommendation] = []
+        var recs: [Recommendation] = []
         
-        // Add recommendations based on poor metrics
         for metric in metrics where metric.rating == .poor || metric.rating == .critical {
-            if let recs = getRecommendationsForMetric(metric) {
-                recommendations.append(contentsOf: recs)
+            if let items = getBrutalRecommendations(metric) {
+                recs.append(contentsOf: items)
             }
         }
         
-        // Sort by priority
-        return recommendations.sorted { $0.priority < $1.priority }
+        return recs.sorted { $0.priority < $1.priority }
     }
     
-    private func getRecommendationsForMetric(_ metric: MetricResult) -> [Recommendation]? {
+    private func getBrutalRecommendations(_ metric: MetricResult) -> [Recommendation]? {
         switch metric.name {
         case "canthalTilt":
             return [
                 Recommendation(
                     category: .hardmax,
                     priority: .high,
-                    title: "Canthal Tilt Surgery",
-                    subtitle: "Canthoplasty procedure",
-                    description: "Surgical procedure to adjust eye tilt for more attractive appearance",
+                    title: "Canthoplasty / Canthopexy",
+                    subtitle: "Correct Negative Tilt",
+                    description: "Surgically reposition the lateral canthus to achieve a hunter-eye look.",
                     difficulty: .surgery,
-                    timeToResults: "6-12 months",
+                    timeToResults: "6 Months",
                     estimatedPSLGain: 0.5,
-                    affectsMetrics: ["canthalTilt", "eyeArea"]
+                    affectsMetrics: ["Canthal Tilt", "Eye Support"]
                 )
             ]
-        case "gonialAngle":
+        case "maxillaryProtrusion", "infraorbitalRimPosition":
+            return [
+                Recommendation(
+                    category: .hardmax,
+                    priority: .critical,
+                    title: "LeFort I / Bimaxillary Osteotomy",
+                    subtitle: "Fix Midface Recession",
+                    description: "Advanced jaw surgery to move the maxilla forward for proper skeletal support.",
+                    difficulty: .surgery,
+                    timeToResults: "12-18 Months",
+                    estimatedPSLGain: 1.2,
+                    affectsMetrics: ["Maxillary Protrusion", "Midface Ratio"]
+                )
+            ]
+        case "hairlineRecession":
             return [
                 Recommendation(
                     category: .softmax,
-                    priority: .critical,
-                    title: "Mewing Protocol",
-                    subtitle: "Proper tongue posture",
-                    description: "Practice correct tongue posture 24/7 to improve jawline over time",
-                    difficulty: .easy,
-                    timeToResults: "6-12 months",
-                    estimatedPSLGain: 0.3,
-                    guideId: "mewing-guide",
-                    affectsMetrics: ["gonialAngle", "jawline"]
+                    priority: .high,
+                    title: "The Big 3 Protocol",
+                    subtitle: "Finasteride, Minoxidil, Microneedling",
+                    description: "Standard medical protocol for reversing androgenetic alopecia.",
+                    difficulty: .medium,
+                    timeToResults: "4-6 Months",
+                    estimatedPSLGain: 0.4,
+                    affectsMetrics: ["Hairline"]
                 )
             ]
         default:
