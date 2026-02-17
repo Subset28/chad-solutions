@@ -398,13 +398,20 @@ export default function FaceAnalyzer() {
 
                 const annotatedImage = drawLandmarksOnOriginal();
 
-                setAuditResult({
+                const resultData = {
                     metrics,
                     psl: pslData,
                     imageUrl: imageSrc
-                });
+                };
+
+                setAuditResult(resultData);
                 setAnalyzedImageWithLandmarks(annotatedImage);
                 setIsAnalyzing(false);
+
+                // iOS Bridge: Send results to WKWebView if running inside Ascend app
+                if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.analysisComplete) {
+                    window.webkit.messageHandlers.analysisComplete.postMessage(resultData);
+                }
             };
 
             // Normalize image to canvas to handle different formats/orientations
