@@ -1,0 +1,27 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+i.gyazo.com	TRUE	/	FALSE	1999999999	Gyazo_cfwoker	i
+i.gyazo.com	TRUE	/	FALSE	1999999999	SameSite	None
+.atlantablackstar.com	TRUE	/	FALSE	1999999999	__cf_bm	TnltzcQ3Iqdb9IuV6ZTWTawkhXe8r1jK8DAN2v86ETw-1771342860-1.0.1.1-DOqN5jFUvxVxTygRemW6jyej2nf0Cb5QF.vqINVBxhDmZ50AKCkkI5Dvwu88o5tsF0S_QLIUc7c7roTArOPJ02jYFRXTnXDXoNc87HTPdTg
+atlantablackstar.com	TRUE	/	FALSE	1999999999	SameSite	None
+visages.net	TRUE	/	FALSE	1999999999	PHPSESSID	39cb116c6c5d296506cfcab6c53d3f94
+visages.net	TRUE	/	FALSE	1999999999	samesite	lax
+en.wikipedia.org	TRUE	/	FALSE	1999999999	WMF-Last-Access	17-Feb-2026
+.wikipedia.org	TRUE	/	FALSE	1999999999	WMF-Last-Access-Global	17-Feb-2026
+.wikipedia.org	TRUE	/	FALSE	1999999999	GeoIP	US:VA:Ashburn:39.02:-77.54:v4
+en.wikipedia.org	TRUE	/	FALSE	1999999999	NetworkProbeLimit	0.001
+discordapp.com	TRUE	/	FALSE	1999999999	__cf_bm	3g.46Csx8r9Tlrax.l8O0C5yXU9ennA_4hAOHGH2SDc-1771342868.4839826-1.0.1.1-uNi97qAeBGEYWVYF_3u4cZHWY7EPqKHaEjuTYfC8CLBs47Q3JwVnwUfTulBF4l4s0PnStW9jEglOySrkv8KgGoueOMhOGI3eXFFfeHIU8vewa4DEcl.ZpsqdSCoUdo7V
+upload.wikimedia.org	TRUE	/	FALSE	1999999999	WMF-Uniq	z-AOW5XAdT4JhRidUEX1tgMKAAEBAFvd3rj6tEZsTWMp1cJpRk-gHjY-WQSdHRVD
+upload.wikimedia.org	TRUE	/	FALSE	1999999999	SameSite	None
+commons.wikimedia.org	TRUE	/	FALSE	1999999999	WMF-Last-Access	17-Feb-2026
+.wikimedia.org	TRUE	/	FALSE	1999999999	GeoIP	US:VA:Ashburn:39.02:-77.54:v4
+commons.wikimedia.org	TRUE	/	FALSE	1999999999	NetworkProbeLimit	0.001
+.wikipedia.org	TRUE	/	FALSE	1999999999	WMF-Uniq	dI97_sYFl0PoiZe0AYEc_gMKAAEBAFvd9CN2Oqqwdy_qhLb2l9RXRN6G1kotaNX7
+en.wikipedia.org	TRUE	/	FALSE	1999999999	SameSite	None
+commons.wikimedia.org	TRUE	/	FALSE	1999999999	WMF-Uniq	8o7SM2-w3kocbNP9U9JPGwMKAAEBAFvd30o0dY2Buf3mfj_iRtcwlcsTHA9Yb4oS
+commons.wikimedia.org	TRUE	/	FALSE	1999999999	SameSite	None
+ec.europa.eu	TRUE	/	FALSE	1999999999	statexp135_session	af4vcsek4dds4a3v46j91v1b1lajhjum
+.archive.fo	TRUE	/	FALSE	1999999999	qki	6414349129049088855
+incels.wiki	TRUE	/	FALSE	1999999999	mf_useformat	true
+incels.wiki	TRUE	/	FALSE	1999999999	thewiki_session	6qmdgknuc8jdo4bd2p0cjmap7rk3ia30
+

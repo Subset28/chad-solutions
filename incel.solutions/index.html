@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<!-- updated index.html v2024-05-20 -->
+
+<html>
+
+<!-- Mirrored from incel.solutions/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Feb 2026 15:14:20 GMT -->
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script src="incelsolutions/tf-core.js"></script><script src="incelsolutions/tf-converter.js"></script><script src="incelsolutions/tf-backend-cpu.js"></script><script src="incelsolutions/face-landmarks-detection.js"></script><script src="incelsolutions/bootstrap.bundle.min.js"></script>
+	<link href="incelsolutions/bootstrap.min.css" rel="stylesheet" />
+        <title>Incel Solutions</title>
+
+        <style>
+            html, body, body > div {
+                height: 100%;
+            }
+
+            .loading {
+                display: flex;
+                align-items: center;
+            }
+            .loading > div {
+                flex-grow: 1;
+            }
+            .loading > .spinner-border {
+                height: 8em !important;
+                width: 8em !important;
+                flex-grow: 0;
+            }
+            img {
+                height: auto;
+                width: 25% !important;
+            }
+
+            .perfect {
+                color: springgreen;
+            }
+            .deviation-0 {
+                color: darkkhaki;
+            }
+            .deviation-1 {
+                color: darkorange;
+            }
+            .deviation-2 {
+                color: darksalmon;
+            }
+            .deviation-3 {
+                color: coral;
+            }
+            .deviation-4 {
+                color: orangered;
+            }
+      /* 👉 Paste the following rules here 👇 */
+table {
+    table-layout: auto;
+    width: 100%;
+}
+
+th, td {
+    padding: 0.5rem;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+/* Column 1: checkbox (tightest fit) */
+th:first-child,
+td:first-child {
+    width: 1%;
+}
+
+/* Column 2: feature (expand just enough for longest label) */
+th:nth-child(2),
+td:nth-child(2) {
+    white-space: nowrap;
+}
+
+/* Column 3: rating (auto resize as needed) */
+th:nth-child(3),
+td:nth-child(3) {
+    white-space: nowrap;
+}
+
+/* Columns 4 & 5: measurement and ideal (fixed narrow width) */
+th:nth-child(4),
+td:nth-child(4),
+th:nth-child(5),
+td:nth-child(5) {
+    width: 120px;
+    text-align: center;
+}
+
+    .badge {
+        display: inline-block;
+        max-width: 100%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+</style>
+  
+    </head>
+    <body>
+        <div id="loading" class="loading" style="display: none;">
+            <div></div>
+            <div class="spinner-border">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div></div>
+        </div>
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md">
+                    <label for="image-file">
+                        Choose an image to analyze
+                    </label>
+                    <input type="file" id="image-file" class="form-control">
+                </div>
+                <div class="col-md">
+                    <label for="image-url">
+                        or paste an URL
+                    </label>
+                    <input type="text" id="image-url" class="form-control">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <br>
+                </div>
+            </div>
+
+<div class="container">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th style="width: 50px;">
+                    <input type="checkbox" id="select-all" class="form-check-input">
+                </th>
+                <th>Feature</th>
+                <th>Rating</th>
+                <th>Measurement</th>
+                <th>Ideal</th>
+            </tr>
+        </thead>
+        
+        <tfoot>
+  <tr>
+    <td>
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="grading-toggle" checked>
+      </div>
+    </td>
+    <td><strong>Total</strong></td>
+    <td id="total-score"></td>
+    <td id="total-breakdown"></td>
+    <td id="total-psl"></td>
+  </tr>
+</tfoot>
+        
+        
+        
+        <tbody>
+            <tr>
+                <td><input type="checkbox" id="toggle-midface-ratio" class="form-check-input" checked></td>
+                <td>Midface ratio</td>
+                <td id="assessment-midface-ratio"></td>
+                <td id="value-midface-ratio"></td>
+                <td id="ideal-midface-ratio"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="toggle-facial-width-to-height-ratio" class="form-check-input" checked></td>
+                <td>Facial width to height ratio</td>
+                <td id="assessment-facial-width-to-height-ratio"></td>
+                <td id="value-facial-width-to-height-ratio"></td>
+                <td id="ideal-facial-width-to-height-ratio"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="toggle-chin-to-philtrum-ratio" class="form-check-input" checked></td>
+                <td>Chin to philtrum ratio</td>
+                <td id="assessment-chin-to-philtrum-ratio"></td>
+                <td id="value-chin-to-philtrum-ratio"></td>
+                <td id="ideal-chin-to-philtrum-ratio"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="toggle-canthal-tilt" class="form-check-input" checked></td>
+                <td>Canthal tilt</td>
+                <td id="assessment-canthal-tilt"></td>
+                <td id="value-canthal-tilt"></td>
+                <td id="ideal-canthal-tilt"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="toggle-mouth-to-nose-ratio" class="form-check-input" checked></td>
+                <td>Mouth to nose ratio</td>
+                <td id="assessment-mouth-to-nose-ratio"></td>
+                <td id="value-mouth-to-nose-ratio"></td>
+                <td id="ideal-mouth-to-nose-ratio"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="toggle-bigonial-width" class="form-check-input" checked></td>
+                <td>Bigonial width</td>
+                <td id="assessment-bigonial-width"></td>
+                <td id="value-bigonial-width"></td>
+                <td id="ideal-bigonial-width"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="toggle-lip-ratio" class="form-check-input" checked></td>
+                <td>Lip ratio</td>
+                <td id="assessment-lip-ratio"></td>
+                <td id="value-lip-ratio"></td>
+                <td id="ideal-lip-ratio"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="toggle-eye-separation-ratio" class="form-check-input" checked></td>
+                <td>Eye separation ratio</td>
+                <td id="assessment-eye-separation-ratio"></td>
+                <td id="value-eye-separation-ratio"></td>
+                <td id="ideal-eye-separation-ratio"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="toggle-eye-to-mouth-angle" class="form-check-input" checked></td>
+                <td>Eye to mouth angle</td>
+                <td id="assessment-eye-to-mouth-angle"></td>
+                <td id="value-eye-to-mouth-angle"></td>
+                <td id="ideal-eye-to-mouth-angle"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="toggle-lower-third-height" class="form-check-input" checked></td>
+                <td>Lower third height</td>
+                <td id="assessment-lower-third-height"></td>
+                <td id="value-lower-third-height"></td>
+                <td id="ideal-lower-third-height"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="toggle-palpebral-fissure-length" class="form-check-input" checked></td>
+                <td>Palpebral fissure length</td>
+                <td id="assessment-palpebral-fissure-length"></td>
+                <td id="value-palpebral-fissure-length"></td>
+                <td id="ideal-palpebral-fissure-length"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="toggle-eye-color" class="form-check-input" checked></td>
+                <td>Eye color</td>
+                <td id="assessment-eye-color"></td>
+                <td id="value-eye-color">
+                    <canvas height="0" width="0"></canvas>
+                    <canvas height="0" width="0"></canvas>
+                </td>
+                <td id="ideal-eye-color"></td>
+            </tr>
+        </tbody>
+        
+
+
+    </table>
+</div>
+            
+            <!-- JavaScript for Select All -->
+            <script>
+                // Select All Checkbox
+                const selectAllCheckbox = document.getElementById('select-all');
+            
+                // Get all checkboxes in the table body
+                const checkboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+            
+                // Event Listener for Select All
+                selectAllCheckbox.addEventListener('change', function () {
+                    checkboxes.forEach(checkbox => {
+                        checkbox.checked = selectAllCheckbox.checked; // Toggle all checkboxes
+                    });
+                });
+            
+                // Update "Select All" if any checkbox is unchecked
+                checkboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', function () {
+                        selectAllCheckbox.checked = [...checkboxes].every(cb => cb.checked);
+                    });
+                });
+            </script>
+            
+                                                
+            <div id="introduction" class="row mt-3">
+                <div class="col text-center">
+                    <h3>$INCEL Technology</h3>
+                    <p>
+                        Introducing the latest advancement in incel technology: a full facial structure analysis completed in just a few seconds from a single picture. It's completely private and runs securely on your browser; no data is sent to our servers.
+                    </p>
+                    <p>
+                        This project has been funded by INCEL COIN, contract address <a href="https://dexscreener.com/solana/c1juapdfrwcufhzfbtltvaz7gvvwpgrbn1zyb4vwnrpn">GACL2mEL9BR4baJBbYWfNKa5mxBYXRdU4ZthedKcVkx1</a> and the <a href="https://open.spotify.com/show/0iv1GFQLGn2FNCd3UvGKuo">Vers and Lukas Podcast</a>
+                    </p>
+                    <p>There is no meme. I love you.</p>
+
+<p>If Vers or Lukas or og dev want me to take this down, just let me know. I just missed the site :)</p>
+<p>
+                        
+<div class="container d-flex justify-content-center my-4">
+  <table class="table table-bordered text-center" style="width: auto;">
+    <thead>
+      <tr>
+        <th>Dex Name</th>
+        <th>Link</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>El Dorito</td>
+        <td>
+          <a href="https://app.eldorito.club/swap?in=sol.sol&amp;out=sol.incel-gacl2mel9br4bajbbywfnka5mxbyxrdu4zthedkcvkx1" target="_blank">
+            Visit El Dorito
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>Jupiter</td>
+        <td>
+          <a href="https://jup.ag/swap/SOL-GACL2mEL9BR4baJBbYWfNKa5mxBYXRdU4ZthedKcVkx1" target="_blank">
+            Visit Jupiter
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  
+</p>
+
+<p><img class="img-thumbnail" src="incelsolutions/before.jpg" /> <span class="fs-4"> &rArr; </span> <img class="img-thumbnail" src="incelsolutions/after.jpg" /></p>
+</div>
+</div>
+
+<div class="row d-none mt-5" id="analyzing">
+<div class="col text-center">
+<div>
+<div class="loading">
+<div></div>
+
+<div class="spinner-border"></div>
+
+<div></div>
+</div>
+
+<div class="mt-3 fs-5">
+<div id="analyzing-status"></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="row" id="render">
+<div class="col"><canvas id="canvas"></canvas></div>
+</div>
+</div>
+<script src="incelsolutions/analysis.js"></script>
+<script src="incelsolutions/index93d9.js?v=2001"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cf63bd5de94c5ad',t:'MTc3MTM0MTI1OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='cdn-cgi/challenge-platform/h/g/scripts/jsd/60138c04e6b2/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+
+<!-- Mirrored from incel.solutions/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Feb 2026 15:14:23 GMT -->
+</html>

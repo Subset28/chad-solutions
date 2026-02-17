@@ -1,0 +1,6 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+.incel.solutions	TRUE	/	FALSE	1999999999	_cfuvid	X3bdQrezRImM9kOICOOqv7obSe0AAHHQdi8RQEd_Bqw-1771341263214-0.0.1.1-604800000
+.incel.solutions	TRUE	/	FALSE	1999999999	__cf_bm	c51Ps4UmDO7tLnUQQ9EeA8Lvv10e.GkKKsCG06TuLoY-1771341263-1.0.1.1-KJrOxaJPfBITdaAixt0apKF2foPQgLXxv0BTZ5MfV_OjXiQ7phXHXg8Kb9suM_MQ5mcE9tRF8hWdbdu9UqY_2XMvlwIq4TnV1VVzOcgmrng
+incel.solutions	TRUE	/	FALSE	1999999999	SameSite	None
+
