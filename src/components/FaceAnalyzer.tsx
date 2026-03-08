@@ -24,6 +24,8 @@ import {
     calculateCheekboneProminence,
     calculateHairlineRecession,
     calculatePSLScore,
+    calculateAggregatedMetrics,
+    extractEulerAngles,
     MetricScores
 } from '@/utils/geometry';
 
@@ -34,11 +36,13 @@ export default function FaceAnalyzer() {
     const fileInputRef = useRef<HTMLInputElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [faceLandmarker, setFaceLandmarker] = useState<FaceLandmarker | null>(null);
-    const [isAnalyzing, setIsAnalyzing] = useState(false);
-    const [auditResult, setAuditResult] = useState<{ metrics: MetricScores, psl: { score: number, breakdown: string[], tier: string }, imageUrl: string } | null>(null);
+    const [scans, setScans] = useState<{ metrics: MetricScores, psl: { score: number, breakdown: string[], tier: string }, imageUrl: string, profileType: 'front' | 'side' }[]>([]);
+    const [auditResult, setAuditResult] = useState<{ metrics: MetricScores, psl: { score: number, breakdown: string[], tier: string }, imageUrl: string, profileType: 'front' | 'side' | 'composite' } | null>(null);
     const [inputMode, setInputMode] = useState<InputMode>('webcam');
     const [uploadedImage, setUploadedImage] = useState<string | null>(null);
     const [analyzedImageWithLandmarks, setAnalyzedImageWithLandmarks] = useState<string | null>(null);
+    const [selectedMetric, setSelectedMetric] = useState<keyof MetricScores | null>(null);
+    const [isAnalyzing, setIsAnalyzing] = useState(false);
 
     useEffect(() => {
         // Suppress MediaPipe/TensorFlow Lite info messages
@@ -60,12 +64,13 @@ export default function FaceAnalyzer() {
             const landmarker = await FaceLandmarker.createFromOptions(vision, {
                 baseOptions: {
                     modelAssetPath: 'https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task',
-                    delegate: 'GPU'
+                    delegate: 'CPU'
                 },
                 runningMode: 'IMAGE',
                 numFaces: 1,
                 minFaceDetectionConfidence: 0.15,
-                minFacePresenceConfidence: 0.15
+                minFacePresenceConfidence: 0.15,
+                outputFacialTransformationMatrixes: true
             });
             setFaceLandmarker(landmarker);
         };
@@ -236,6 +241,15 @@ export default function FaceAnalyzer() {
             image.src = imageSrc;
 
             const processDetectionResults = (results: any, analyzedCanvas: HTMLCanvasElement) => {
+                const {
+                    extractEulerAngles, calculateCanthalTilt, calculateFwFhRatio, calculateMidfaceRatio, calculateEyeSeparationRatio,
+                    calculateGonialAngle, calculateChinToPhiltrumRatio, calculateMouthToNoseWidthRatio, calculateBigonialWidthRatio,
+                    calculateLowerThirdRatio, calculatePalpebralFissureLength, calculateEyeToMouthAngle, calculateLipRatio,
+                    calculateFacialAsymmetry, calculateIPDRatio, calculateFacialThirds, calculateForeheadHeightRatio,
+                    calculateNoseWidthRatio, calculateCheekboneProminence, calculateHairlineRecession, calculateAggregatedMetrics,
+                    calculatePSLScore, scaleLandmarks
+                } = require('../utils/geometry');
+
                 const landmarks = results.faceLandmarks[0];
 
                 // Validate landmark array has enough points (MediaPipe should have 478 landmarks)
@@ -246,18 +260,39 @@ export default function FaceAnalyzer() {
                 }
 
                 // Check face angle (frontal vs profile)
-                const leftCheek = landmarks[234];
-                const rightCheek = landmarks[454];
-                const noseTip = landmarks[1];
+                let profileType: 'front' | 'side' = 'front';
+                if (results.facialTransformationMatrixes && results.facialTransformationMatrixes.length > 0) {
+                    const matrix = results.facialTransformationMatrixes[0];
+                    const euler = extractEulerAngles(matrix);
 
-                const leftDist = Math.abs(leftCheek.x - noseTip.x);
-                const rightDist = Math.abs(rightCheek.x - noseTip.x);
-                const asymmetryRatio = Math.abs(leftDist - rightDist) / Math.max(leftDist, rightDist);
+                    // Absolute YAW dictates if head turns enough to be considered a side-profile.
+                    if (Math.abs(euler.yaw) > 40) {
+                        console.log(`True 3D Yaw detected: ${euler.yaw.toFixed(2)}° (SIDE profile mode activated)`);
+                        profileType = 'side';
+                    } else {
+                        console.log(`True 3D Yaw detected: ${euler.yaw.toFixed(2)}° (FRONT profile mode activated)`);
+                        profileType = 'front';
+                    }
 
-                if (asymmetryRatio > 0.15) {
-                    alert('⚠️ Warning: Face appears angled. Please face the camera directly for accurate analysis.');
-                    setIsAnalyzing(false);
-                    return;
+                    if (Math.abs(euler.pitch) > 25) {
+                        alert(`⚠️ High tilt detected (Pitch: ${euler.pitch.toFixed(1)}°). Measurements may be significantly warped. Keep your head leveled!`);
+                    }
+                } else {
+                    const leftCheek = landmarks[234];
+                    const rightCheek = landmarks[454];
+                    const noseTip = landmarks[1];
+
+                    const leftDist = Math.abs(leftCheek.x - noseTip.x);
+                    const rightDist = Math.abs(rightCheek.x - noseTip.x);
+                    const asymmetryRatio = Math.abs(leftDist - rightDist) / Math.max(leftDist, rightDist);
+
+                    if (asymmetryRatio > 0.15) {
+                        alert('⚠️ Warning: Face appears angled. Please face the camera directly for accurate analysis.');
+                        profileType = 'side';
+                    }
+                    else {
+                        profileType = 'front';
+                    }
                 }
 
                 // Check for glasses (detect abnormal z-depth around eyes)
@@ -278,7 +313,10 @@ export default function FaceAnalyzer() {
                     }
                 }
 
-                const facialThirdsData = calculateFacialThirds(landmarks);
+                // Scale landmarks to exact image aspect ratio dimensions for true metric ratios
+                const scaledLandmarks = scaleLandmarks(landmarks, analyzedCanvas.width, analyzedCanvas.height);
+
+                const facialThirdsData = calculateFacialThirds(scaledLandmarks);
 
                 // Import 3D bone structure metrics (dynamic import removed - will add to imports)
                 const {
@@ -290,31 +328,31 @@ export default function FaceAnalyzer() {
                 } = require('../utils/advanced-metrics');
 
                 const metrics: MetricScores = {
-                    canthalTilt: calculateCanthalTilt(landmarks),
-                    fwfhRatio: calculateFwFhRatio(landmarks),
-                    midfaceRatio: calculateMidfaceRatio(landmarks),
-                    eyeSeparationRatio: calculateEyeSeparationRatio(landmarks),
-                    gonialAngle: calculateGonialAngle(landmarks),
-                    chinToPhiltrumRatio: calculateChinToPhiltrumRatio(landmarks),
-                    mouthToNoseWidthRatio: calculateMouthToNoseWidthRatio(landmarks),
-                    bigonialWidthRatio: calculateBigonialWidthRatio(landmarks),
-                    lowerThirdRatio: calculateLowerThirdRatio(landmarks),
-                    palpebralFissureLength: calculatePalpebralFissureLength(landmarks),
-                    eyeToMouthAngle: calculateEyeToMouthAngle(landmarks),
-                    lipRatio: calculateLipRatio(landmarks),
-                    facialAsymmetry: calculateFacialAsymmetry(landmarks),
-                    ipdRatio: calculateIPDRatio(landmarks),
+                    canthalTilt: calculateCanthalTilt(scaledLandmarks),
+                    fwfhRatio: calculateFwFhRatio(scaledLandmarks),
+                    midfaceRatio: calculateMidfaceRatio(scaledLandmarks),
+                    eyeSeparationRatio: calculateEyeSeparationRatio(scaledLandmarks),
+                    gonialAngle: calculateGonialAngle(scaledLandmarks),
+                    chinToPhiltrumRatio: calculateChinToPhiltrumRatio(scaledLandmarks),
+                    mouthToNoseWidthRatio: calculateMouthToNoseWidthRatio(scaledLandmarks),
+                    bigonialWidthRatio: calculateBigonialWidthRatio(scaledLandmarks),
+                    lowerThirdRatio: calculateLowerThirdRatio(scaledLandmarks),
+                    palpebralFissureLength: calculatePalpebralFissureLength(scaledLandmarks),
+                    eyeToMouthAngle: calculateEyeToMouthAngle(scaledLandmarks),
+                    lipRatio: calculateLipRatio(scaledLandmarks),
+                    facialAsymmetry: calculateFacialAsymmetry(scaledLandmarks),
+                    ipdRatio: calculateIPDRatio(scaledLandmarks),
                     facialThirdsRatio: facialThirdsData.ratio,
-                    foreheadHeightRatio: calculateForeheadHeightRatio(landmarks),
-                    noseWidthRatio: calculateNoseWidthRatio(landmarks),
-                    cheekboneProminence: calculateCheekboneProminence(landmarks),
-                    hairlineRecession: calculateHairlineRecession(landmarks),
+                    foreheadHeightRatio: calculateForeheadHeightRatio(scaledLandmarks),
+                    noseWidthRatio: calculateNoseWidthRatio(scaledLandmarks),
+                    cheekboneProminence: calculateCheekboneProminence(scaledLandmarks),
+                    hairlineRecession: calculateHairlineRecession(scaledLandmarks),
                     // NEW: 3D bone structure metrics
-                    orbitalRimProtrusion: calculateOrbitalRimProtrusion(landmarks),
-                    maxillaryProtrusion: calculateMaxillaryProtrusion(landmarks),
-                    browRidgeProtrusion: calculateBrowRidgeProtrusion(landmarks),
-                    infraorbitalRimPosition: calculateInfraorbitalRimPosition(landmarks),
-                    chinProjection: calculateChinProjection(landmarks)
+                    orbitalRimProtrusion: calculateOrbitalRimProtrusion(scaledLandmarks),
+                    maxillaryProtrusion: calculateMaxillaryProtrusion(scaledLandmarks),
+                    browRidgeProtrusion: calculateBrowRidgeProtrusion(scaledLandmarks),
+                    infraorbitalRimPosition: calculateInfraorbitalRimPosition(scaledLandmarks),
+                    chinProjection: calculateChinProjection(scaledLandmarks)
                 };
 
                 const pslData = calculatePSLScore(metrics);
@@ -398,19 +436,41 @@ export default function FaceAnalyzer() {
 
                 const annotatedImage = drawLandmarksOnOriginal();
 
-                const resultData = {
-                    metrics,
+                const newScan = {
+                    metrics: metrics,
                     psl: pslData,
-                    imageUrl: imageSrc
+                    imageUrl: annotatedImage,
+                    profileType: profileType
                 };
 
-                setAuditResult(resultData);
+                setScans(prev => {
+                    const updated = [...prev, newScan];
+                    const compositeMetrics = calculateAggregatedMetrics(updated);
+
+                    if (compositeMetrics) {
+                        const hasFront = updated.some(s => s.profileType === 'front');
+                        const hasSide = updated.some(s => s.profileType === 'side');
+                        const combinedType = (hasFront && hasSide) ? 'composite' : profileType;
+
+                        const mergedScore = calculatePSLScore(compositeMetrics, combinedType);
+
+                        setAuditResult({
+                            metrics: compositeMetrics,
+                            psl: mergedScore,
+                            imageUrl: annotatedImage,
+                            profileType: combinedType
+                        });
+                    }
+
+                    return updated;
+                });
+
                 setAnalyzedImageWithLandmarks(annotatedImage);
                 setIsAnalyzing(false);
 
                 // iOS Bridge: Send results to WKWebView if running inside Ascend app
                 if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.analysisComplete) {
-                    window.webkit.messageHandlers.analysisComplete.postMessage(resultData);
+                    window.webkit.messageHandlers.analysisComplete.postMessage(newScan);
                 }
             };
 
@@ -562,20 +622,20 @@ export default function FaceAnalyzer() {
     const getRating = (metric: keyof MetricScores, value: number): { text: string, color: string } => {
         // Rating logic based on ideal ranges
         const ratings = {
-            canthalTilt: value > 4 ? { text: 'perfect', color: 'text-green-400' } : value > 2 ? { text: 'good', color: 'text-blue-400' } : value < -2 ? { text: 'negative canthal tilt', color: 'text-red-400' } : { text: 'neutral', color: 'text-yellow-400' },
-            fwfhRatio: value >= 2 ? { text: 'perfect', color: 'text-green-400' } : value >= 1.75 ? { text: 'good', color: 'text-blue-400' } : { text: 'narrow face', color: 'text-orange-400' },
-            midfaceRatio: value <= 1.0 ? { text: 'perfect compact midface', color: 'text-green-400' } : value <= 1.05 ? { text: 'good', color: 'text-blue-400' } : { text: 'significantly too long midface', color: 'text-red-400' },
-            gonialAngle: value >= 110 && value <= 130 ? { text: 'perfect', color: 'text-green-400' } : value <= 135 ? { text: 'good', color: 'text-blue-400' } : { text: 'steep/soft jawline', color: 'text-orange-400' },
-            chinToPhiltrumRatio: value >= 2.0 && value <= 2.25 ? { text: 'perfect', color: 'text-green-400' } : value < 1.5 ? { text: 'extremely short philtrum', color: 'text-red-400' } : value > 3 ? { text: 'long philtrum', color: 'text-orange-400' } : { text: 'acceptable', color: 'text-blue-400' },
+            canthalTilt: value >= 4 && value <= 6 ? { text: 'perfect', color: 'text-green-400' } : value > 2 ? { text: 'good', color: 'text-blue-400' } : value < 0 ? { text: 'negative canthal tilt', color: 'text-red-400' } : { text: 'neutral', color: 'text-yellow-400' },
+            fwfhRatio: value >= 1.8 ? { text: 'perfect', color: 'text-green-400' } : value >= 1.70 ? { text: 'good', color: 'text-blue-400' } : { text: 'narrow face', color: 'text-orange-400' },
+            midfaceRatio: value >= 0.9 && value <= 1.1 ? { text: 'perfect compact midface', color: 'text-green-400' } : value <= 1.15 ? { text: 'good', color: 'text-blue-400' } : { text: 'significantly too long midface', color: 'text-red-400' },
+            gonialAngle: value >= 115 && value <= 130 ? { text: 'perfect', color: 'text-green-400' } : value >= 105 && value <= 135 ? { text: 'good', color: 'text-blue-400' } : { text: 'steep/soft jawline', color: 'text-orange-400' },
+            chinToPhiltrumRatio: value >= 2.0 && value <= 2.25 ? { text: 'perfect', color: 'text-green-400' } : value < 1.8 ? { text: 'long philtrum / weak chin', color: 'text-red-400' } : value > 2.5 ? { text: 'short philtrum / long chin', color: 'text-orange-400' } : { text: 'acceptable', color: 'text-blue-400' },
             mouthToNoseWidthRatio: value >= 1.5 && value <= 1.62 ? { text: 'perfect', color: 'text-green-400' } : value >= 1.4 ? { text: 'good', color: 'text-blue-400' } : { text: 'narrow mouth', color: 'text-orange-400' },
-            bigonialWidthRatio: value >= 1.1 && value <= 1.15 ? { text: 'perfect', color: 'text-green-400' } : value > 1.2 ? { text: 'noticeably narrow jaw', color: 'text-orange-400' } : { text: 'acceptable', color: 'text-blue-400' },
-            lowerThirdRatio: value >= 1.25 ? { text: 'perfect', color: 'text-green-400' } : value >= 1.0 ? { text: 'good', color: 'text-blue-400' } : { text: 'weak lower third', color: 'text-orange-400' },
-            palpebralFissureLength: value > 3.5 ? { text: 'perfect hunter eyes', color: 'text-green-400' } : value > 3.0 ? { text: 'good', color: 'text-blue-400' } : { text: 'slightly too exposed eyes', color: 'text-yellow-400' },
-            eyeSeparationRatio: value >= 0.45 && value <= 0.49 ? { text: 'perfect', color: 'text-green-400' } : value < 0.45 ? { text: 'slightly too close together eyes', color: 'text-yellow-400' } : { text: 'wide-set eyes', color: 'text-yellow-400' },
-            eyeToMouthAngle: value >= 45 && value <= 49 ? { text: 'perfect', color: 'text-green-400' } : value < 45 ? { text: 'shallow', color: 'text-yellow-400' } : { text: 'steep', color: 'text-yellow-400' },
-            lipRatio: value >= 1.55 && value <= 1.65 ? { text: 'perfect', color: 'text-green-400' } : value < 1.3 || value > 2.5 ? { text: 'extremely uneven lips', color: 'text-red-400' } : { text: 'acceptable', color: 'text-blue-400' },
+            bigonialWidthRatio: value >= 1.3 && value <= 1.4 ? { text: 'perfect', color: 'text-green-400' } : value >= 1.2 ? { text: 'good', color: 'text-blue-400' } : value < 1.15 ? { text: 'narrow jaw', color: 'text-orange-400' } : { text: 'acceptable', color: 'text-blue-400' },
+            lowerThirdRatio: value >= 0.62 ? { text: 'perfect', color: 'text-green-400' } : value >= 0.58 ? { text: 'good', color: 'text-blue-400' } : { text: 'weak lower third', color: 'text-orange-400' },
+            palpebralFissureLength: value >= 3.0 && value <= 3.5 ? { text: 'perfect hunter eyes', color: 'text-green-400' } : value > 3.5 ? { text: 'good', color: 'text-blue-400' } : { text: 'slightly too exposed eyes', color: 'text-yellow-400' },
+            eyeSeparationRatio: value >= 0.45 && value <= 0.47 ? { text: 'perfect', color: 'text-green-400' } : value >= 0.42 && value <= 0.49 ? { text: 'good', color: 'text-blue-400' } : { text: 'suboptimal spacing', color: 'text-yellow-400' },
+            eyeToMouthAngle: value >= 47 && value <= 50 ? { text: 'perfect', color: 'text-green-400' } : value < 47 ? { text: 'shallow', color: 'text-yellow-400' } : { text: 'steep', color: 'text-yellow-400' },
+            lipRatio: value >= 1.60 && value <= 1.65 ? { text: 'perfect', color: 'text-green-400' } : value < 1.4 || value > 2.0 ? { text: 'extremely uneven lips', color: 'text-red-400' } : { text: 'acceptable', color: 'text-blue-400' },
             facialAsymmetry: value >= 95 ? { text: 'perfectly symmetric', color: 'text-green-400' } : value >= 90 ? { text: 'very symmetric', color: 'text-blue-400' } : value >= 80 ? { text: 'acceptable symmetry', color: 'text-yellow-400' } : { text: 'asymmetric', color: 'text-orange-400' },
-            ipdRatio: value >= 0.42 && value <= 0.47 ? { text: 'ideal eye spacing', color: 'text-green-400' } : value >= 0.40 && value <= 0.49 ? { text: 'good', color: 'text-blue-400' } : { text: 'suboptimal spacing', color: 'text-yellow-400' },
+            ipdRatio: value >= 0.45 && value <= 0.47 ? { text: 'ideal eye spacing', color: 'text-green-400' } : value >= 0.42 && value <= 0.49 ? { text: 'good', color: 'text-blue-400' } : { text: 'suboptimal spacing', color: 'text-yellow-400' },
             facialThirdsRatio: value >= 95 ? { text: 'perfect thirds', color: 'text-green-400' } : value >= 85 ? { text: 'good proportions', color: 'text-blue-400' } : value >= 75 ? { text: 'acceptable', color: 'text-yellow-400' } : { text: 'unbalanced thirds', color: 'text-orange-400' },
             foreheadHeightRatio: value >= 0.30 && value <= 0.35 ? { text: 'ideal forehead', color: 'text-green-400' } : value > 0.38 ? { text: 'fivehead (large)', color: 'text-orange-400' } : value < 0.28 ? { text: 'short forehead', color: 'text-yellow-400' } : { text: 'acceptable', color: 'text-blue-400' },
             noseWidthRatio: value >= 0.25 && value <= 0.30 ? { text: 'ideal nose width', color: 'text-green-400' } : value > 0.35 ? { text: 'wide nose', color: 'text-orange-400' } : value < 0.22 ? { text: 'narrow nose', color: 'text-yellow-400' } : { text: 'acceptable', color: 'text-blue-400' },
@@ -593,20 +653,20 @@ export default function FaceAnalyzer() {
 
     const getIdealRange = (metric: keyof MetricScores): string => {
         const ideals: Record<keyof MetricScores, string> = {
-            canthalTilt: 'more than 4°',
-            fwfhRatio: 'more than 2',
-            midfaceRatio: '1 to 1.05',
-            gonialAngle: '110° to 130°',
-            chinToPhiltrumRatio: '2 to 2.25',
+            canthalTilt: '4° to 6°',
+            fwfhRatio: 'more than 1.8',
+            midfaceRatio: '1.0 to 1.1',
+            gonialAngle: '115° to 130°',
+            chinToPhiltrumRatio: '2.0 to 2.25',
             mouthToNoseWidthRatio: '1.5 to 1.62',
-            bigonialWidthRatio: '1.1 to 1.15',
-            lowerThirdRatio: 'more than 1.25',
-            palpebralFissureLength: 'more than 3.5',
-            eyeSeparationRatio: '0.45 to 0.49',
-            eyeToMouthAngle: '45° to 49°',
-            lipRatio: '1.55 to 1.65',
+            bigonialWidthRatio: '1.35',
+            lowerThirdRatio: 'more than 0.62',
+            palpebralFissureLength: '3.0 to 3.5',
+            eyeSeparationRatio: '0.45 to 0.47',
+            eyeToMouthAngle: '47° to 50°',
+            lipRatio: '1.62',
             facialAsymmetry: '95-100 (symmetry score)',
-            ipdRatio: '0.42 to 0.47',
+            ipdRatio: '0.45 to 0.47',
             facialThirdsRatio: '95-100 (balance score)',
             foreheadHeightRatio: '0.30 to 0.35',
             noseWidthRatio: '0.25 to 0.30',
@@ -774,6 +834,45 @@ export default function FaceAnalyzer() {
                             <div className="text-white font-mono text-xl animate-pulse">Running Neural Scan...</div>
                         </div>
                     )}
+
+                    {/* Scans Gallery Strip */}
+                    {scans.length > 0 && (
+                        <div className="w-full bg-zinc-900/50 rounded-2xl p-4 border border-zinc-800">
+                            <div className="flex justify-between items-center mb-3">
+                                <h4 className="text-sm font-bold text-zinc-400">Analysis Gallery</h4>
+                                <span className="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded-full">{scans.length} Angle{scans.length !== 1 ? 's' : ''} Scanned</span>
+                            </div>
+                            <div className="flex gap-3 overflow-x-auto pb-2 snap-x">
+                                {scans.map((scan, i) => (
+                                    <div key={i} className="relative shrink-0 w-24 h-32 rounded-xl overflow-hidden border-2 border-zinc-700 snap-center group">
+                                        <img src={scan.imageUrl} alt={`Scan ${i + 1}`} className="w-full h-full object-cover" />
+                                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent p-2">
+                                            <div className="text-[10px] font-bold text-white uppercase text-center bg-black/50 rounded backdrop-blur-md inline-block px-1">
+                                                {scan.profileType}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+
+                                {/* Add New Angle Button */}
+                                <button
+                                    onClick={() => {
+                                        setAuditResult(null);
+                                        setAnalyzedImageWithLandmarks(null);
+                                        // Optional: Keep uploaded image if we want to extract another face, but usually clear it for a new photo
+                                        setUploadedImage(null);
+                                    }}
+                                    className="shrink-0 w-24 h-32 rounded-xl border-2 border-dashed border-zinc-700 flex flex-col items-center justify-center hover:bg-zinc-800 hover:border-zinc-500 transition-all snap-center group"
+                                >
+                                    <div className="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400 group-hover:text-white group-hover:bg-zinc-700 transition-colors mb-2">
+                                        +
+                                    </div>
+                                    <span className="text-[10px] font-bold text-zinc-500 group-hover:text-zinc-300">ADD ANGLE</span>
+                                </button>
+                            </div>
+                        </div>
+                    )}
+
                 </div>
 
                 {/* Audit Report */}
@@ -823,15 +922,47 @@ export default function FaceAnalyzer() {
                     ) : (
                         <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
                             {/* Header Score */}
-                            <div className="flex items-center justify-between border-b border-zinc-800 pb-8">
-                                <div>
-                                    <h2 className="text-4xl font-black text-white tracking-tight">PSL {auditResult.psl.score.toFixed(1)}</h2>
-                                    <p className="text-zinc-500 mt-1">{auditResult.psl.tier}</p>
+                            <div className="bg-zinc-900/50 rounded-3xl p-6 border border-zinc-800 animate-in fade-in slide-in-from-bottom-4 duration-700">
+                                <div className="flex justify-between items-start mb-6 border-b border-zinc-800 pb-4">
+                                    <h3 className="text-sm font-medium text-zinc-400 uppercase tracking-wider">
+                                        {auditResult.profileType === 'composite' ? 'COMBINED COMPOSITE SCORE' : 'OVERALL SCORE'}
+                                    </h3>
+                                    <div className="flex items-baseline gap-2 mt-1">
+                                        <span className={`text-5xl font-black tracking-tighter bg-gradient-to-r ${auditResult.psl.score >= 7.0 ? 'from-amber-300 via-yellow-500 to-amber-200' :
+                                            auditResult.psl.score >= 6.0 ? 'from-green-400 to-emerald-500' :
+                                                auditResult.psl.score >= 4.0 ? 'from-blue-400 to-indigo-500' :
+                                                    'from-gray-400 to-zinc-500'
+                                            } bg-clip-text text-transparent`}>
+                                            {auditResult.psl.score.toFixed(1)}<span className="text-3xl text-zinc-600 font-bold ml-1">/ 8.0</span>
+                                        </span>
+                                        <span className="text-xl font-bold text-zinc-500">PSL</span>
+                                    </div>
+                                    <div className="text-zinc-300 font-medium mt-1">{auditResult.psl.tier}</div>
                                 </div>
-                                <div className="text-6xl font-black bg-gradient-to-br from-emerald-400 to-blue-500 bg-clip-text text-transparent">
-                                    {auditResult.psl.score.toFixed(1)}
+                                <div className="flex flex-col items-end gap-2 text-right">
+                                    <button
+                                        onClick={() => {
+                                            setAuditResult(null);
+                                            setScans([]);
+                                            setAnalyzedImageWithLandmarks(null);
+                                            setUploadedImage(null);
+                                        }}
+                                        className="text-xs font-medium text-zinc-500 hover:text-red-400 transition-colors underline"
+                                    >
+                                        RESET ALL SCANS
+                                    </button>
                                 </div>
                             </div>
+
+                            {auditResult.profileType === 'composite' && (
+                                <div className="mb-6 p-3 bg-blue-900/20 border border-blue-500/30 rounded-xl flex items-start gap-3">
+                                    <div className="text-xl mt-0.5">🧠</div>
+                                    <div>
+                                        <h4 className="text-sm font-bold text-blue-400">Smart Aggregation Active</h4>
+                                        <p className="text-xs text-blue-200/70 mt-1">This score merges your distinct profile angles into a highly precise composite rating. Missing variables are averaged safely.</p>
+                                    </div>
+                                </div>
+                            )}
 
                             {/* Detailed Metrics Table */}
                             <div className="overflow-x-auto">
@@ -851,16 +982,32 @@ export default function FaceAnalyzer() {
                                             const idealRange = getIdealRange(metricKey);
                                             const explanation = getMetricExplanation(metricKey, value as number);
 
+                                            const sideOnlyMetrics = ['chinProjection', 'maxillaryProtrusion', 'orbitalRimProtrusion', 'browRidgeProtrusion', 'infraorbitalRimPosition'];
+                                            const frontOnlyMetrics = ['facialAsymmetry', 'ipdRatio', 'eyeSeparationRatio', 'canthalTilt', 'fwfhRatio', 'noseWidthRatio', 'mouthToNoseWidthRatio', 'bigonialWidthRatio', 'cheekboneProminence'];
+
+                                            const isSideMetric = sideOnlyMetrics.includes(metricKey);
+                                            const isFrontMetric = frontOnlyMetrics.includes(metricKey);
+
+                                            let isValidForProfile = true;
+                                            let profileWarning = '';
+                                            if (auditResult.profileType === 'front' && isSideMetric) {
+                                                isValidForProfile = false;
+                                                profileWarning = 'Requires Side Profile';
+                                            } else if (auditResult.profileType === 'side' && isFrontMetric) {
+                                                isValidForProfile = false;
+                                                profileWarning = 'Requires Frontal Profile';
+                                            }
+
                                             return (
-                                                <tr key={key} className="border-b border-zinc-800/50 hover:bg-zinc-800/30 transition-colors">
+                                                <tr key={key} className={`border-b border-zinc-800/50 hover:bg-zinc-800/30 transition-colors ${!isValidForProfile ? 'opacity-30' : ''}`}>
                                                     <td className="py-4 px-4 font-medium text-white capitalize">
                                                         {key.replace(/([A-Z])/g, ' $1').trim()}
                                                     </td>
-                                                    <td className={`py-4 px-4 font-semibold ${rating.color}`}>
-                                                        {rating.text}
+                                                    <td className={`py-4 px-4 font-semibold ${isValidForProfile ? rating.color : 'text-zinc-600'}`}>
+                                                        {isValidForProfile ? rating.text : profileWarning}
                                                     </td>
                                                     <td className="py-4 px-4 text-zinc-400 font-mono">
-                                                        {typeof value === 'number' ? value.toFixed(2) : value}
+                                                        {isValidForProfile ? (typeof value === 'number' ? value.toFixed(2) : value) : '—'}
                                                     </td>
                                                     <td className="py-4 px-4 text-zinc-500 text-sm">
                                                         {idealRange}

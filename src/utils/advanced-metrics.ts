@@ -162,3 +162,71 @@ export function evaluateChinProjection(value: number): string {
     if (value > -0.005) return "Weak chin";
     return "Recessed chin (FALIO)";
 }
+
+// === DOUBLE CHIN / SUBMENTAL FULLNESS ===
+export function calculateDoubleChinRisk(landmarks: NormalizedLandmark[]): number {
+    // The Menton (152) is the tip of the chin
+    // The points directly under it descending towards the neck are 175, 199, 200.
+    // 200 is deep under the jawline / submental area.
+    const chinTip = landmarks[152];
+    const submentalNeck = landmarks[200];
+
+    // Calculate the drop-off in Z depth between the chin and the neck 
+    // In MediaPipe, more negative Z means closer to the camera.
+    // So chinTip.z should be very negative, and submentalNeck.z should be closer to 0 (further away).
+    // Hence, submentalNeck.z - chinTip.z = positive robust distance.
+    // A smaller drop-off indicates fat padding / double chin.
+    return submentalNeck.z - chinTip.z;
+}
+
+// === POSTURE & EXPRESSION (Blendshapes) ===
+export function evaluateFacialTension(blendshapes: any[]): { tensionScore: number, dominantExpressions: string[] } {
+    if (!blendshapes || blendshapes.length === 0) return { tensionScore: 0, dominantExpressions: [] };
+
+    const categories = blendshapes[0].categories;
+    const tensionMetrics = ['browInnerUp', 'browDownLeft', 'browDownRight', 'jawOpen', 'mouthSmileLeft', 'mouthSmileRight', 'mouthStretch', 'mouthPressLeft', 'mouthPressRight', 'mouthDimpleLeft', 'mouthDimpleRight'];
+
+    let totalTension = 0;
+    let dominant: string[] = [];
+
+    categories.forEach((cat: any) => {
+        if (tensionMetrics.includes(cat.categoryName)) {
+            totalTension += cat.score;
+            if (cat.score > 0.3) {
+                dominant.push(cat.categoryName);
+            }
+        }
+    });
+
+    return {
+        tensionScore: totalTension,
+        dominantExpressions: dominant
+    };
+}
+
+// === ANGLE UNDERSTANDING (Euler) ===
+export function evaluateCameraAngle(pitch: number, yaw: number): { score: number, feedback: string } {
+    let angleDeduction = 0;
+    let feedback = "Good angle";
+
+    // Extreme up/down
+    if (pitch > 15) {
+        angleDeduction += 1.5;
+        feedback = "Looking down (Frauding Jawline)";
+    } else if (pitch < -15) {
+        angleDeduction += 1.5;
+        feedback = "Looking up (Frauding Hooded Eyes)";
+    } else if (Math.abs(pitch) > 7) {
+        angleDeduction += 0.5;
+        feedback = "Slight vertical tilt";
+    }
+
+    // Extreme sideways
+    if (Math.abs(yaw) > 20) {
+        angleDeduction += 1.0;
+        if (feedback === "Good angle") feedback = "Face severely turned";
+        else feedback += " | Face turned";
+    }
+
+    return { score: angleDeduction, feedback };
+}

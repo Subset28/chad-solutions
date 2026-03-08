@@ -1,11 +1,85 @@
 import { NormalizedLandmark } from "@mediapipe/tasks-vision";
 
-// Euclidian distance between two points (2D)
+// ==========================================
+// 3D Angle Calculation (Pitch, Yaw, Roll)
+// ==========================================
+
+export interface FaceAngles {
+    pitch: number; // up/down
+    yaw: number;   // left/right
+    roll: number;  // tilt side-to-side
+}
+
+/**
+ * Extracts Euler angles (Pitch, Yaw, Roll) in degrees from a 4x4 transformation matrix
+ * provided by MediaPipe's FaceLandmarker `facialTransformationMatrixes`.
+ * Matrix is Row-Major order.
+ */
+export function extractEulerAngles(matrix: any): FaceAngles {
+    // Array format is often flattened: [m00, m01, m02, m03, m10, m11, ...]
+    // Note: MediaPipe matrix format might slightly differ in translation columns,
+    // but the 3x3 rotation subset should be standard.
+    let m00, m01, m02, m10, m11, m12, m20, m21, m22;
+
+    // Check if it's a flattened 16-element array or 4x4 array of arrays
+    if (matrix.length === 16) {
+        // Flattened Float32Array
+        m00 = matrix[0]; m01 = matrix[1]; m02 = matrix[2];
+        m10 = matrix[4]; m11 = matrix[5]; m12 = matrix[6];
+        m20 = matrix[8]; m21 = matrix[9]; m22 = matrix[10];
+    } else {
+        // Assume MatrixData structure or 2D array
+        const getVal = (r: number, c: number) => matrix.data ? matrix.data[r * 4 + c] : matrix[r][c];
+        m00 = getVal(0, 0); m01 = getVal(0, 1); m02 = getVal(0, 2);
+        m10 = getVal(1, 0); m11 = getVal(1, 1); m12 = getVal(1, 2);
+        m20 = getVal(2, 0); m21 = getVal(2, 1); m22 = getVal(2, 2);
+    }
+
+    // Extracting Pitch, Yaw, Roll from 3x3 rotation matrix
+    // sy = Math.sqrt(m00 * m00 + m10 * m10)
+    const sy = Math.sqrt(m00 * m00 + m10 * m10);
+    const singular = sy < 1e-6; // If true, gimbal lock occurred
+
+    let x, y, z;
+    if (!singular) {
+        x = Math.atan2(m21, m22);     // Pitch (X-axis)
+        y = Math.atan2(-m20, sy);     // Yaw   (Y-axis)
+        z = Math.atan2(m10, m00);     // Roll  (Z-axis)
+    } else {
+        x = Math.atan2(-m12, m11);    // Pitch
+        y = Math.atan2(-m20, sy);     // Yaw
+        z = 0;                        // Roll
+    }
+
+    // Convert radians to degrees
+    const r2d = 180 / Math.PI;
+    return {
+        pitch: x * r2d,
+        yaw: y * r2d,
+        roll: z * r2d
+    };
+}
+
+// True 3D Euclidean distance between two points (Utilizing MediaPipe Z depth makes measurements completely invariant to pitch and yaw camera angles).
+// As long as `scaleLandmarks` scales Z symmetrically with X (by width), the 3D unit geometry remains isomorphic to the 2D bounding box!
 export function distance(p1: NormalizedLandmark, p2: NormalizedLandmark): number {
-    return Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
+    return Math.sqrt(
+        Math.pow(p2.x - p1.x, 2) +
+        Math.pow(p2.y - p1.y, 2) +
+        Math.pow((p2.z || 0) - (p1.z || 0), 2)
+    );
 }
 
 // Calculate angle in degrees between two points relative to horizontal
+export function scaleLandmarks(landmarks: NormalizedLandmark[], width: number, height: number): NormalizedLandmark[] {
+    return landmarks.map(lm => ({
+        x: lm.x * width,
+        y: lm.y * height,
+        z: lm.z * width, // Z is relative to X in MediaPipe's unscaled mesh
+        visibility: lm.visibility
+    }));
+}
+
 export function calculateAngle(p1: NormalizedLandmark, p2: NormalizedLandmark): number {
     const dy = p2.y - p1.y;
     const dx = p2.x - p1.x;
@@ -38,49 +112,74 @@ export function calculateThreePointAngle(p1: NormalizedLandmark, p2: NormalizedL
 
 // --- Analysis Functions ---
 
-// Canthal Tilt: Angle between inner and outer eye corners
 export function calculateCanthalTilt(landmarks: NormalizedLandmark[]): number {
     const leftInner = landmarks[362];
     const leftOuter = landmarks[263];
     const rightInner = landmarks[133];
     const rightOuter = landmarks[33];
 
-    const leftTilt = calculateAngle(leftInner, leftOuter);
-    const rightTilt = calculateAngle(rightInner, rightOuter);
+    // Find the roll of the face using the two inner eyes to level the face perfectly
+    // Viewer right (left eye) to viewer left (right eye)
+    const dxRoll = leftInner.x - rightInner.x;
+    const dyRoll = leftInner.y - rightInner.y;
+    const roll = Math.atan2(dyRoll, dxRoll); // rads
 
-    // Average the two eyes
+    // Rotate a point by -roll to flatten it against horizontal plane
+    const rotate = (p: NormalizedLandmark) => {
+        const x = p.x * Math.cos(-roll) - p.y * Math.sin(-roll);
+        const y = p.x * Math.sin(-roll) + p.y * Math.cos(-roll);
+        return { x, y };
+    };
+
+    const li = rotate(leftInner);
+    const lo = rotate(leftOuter);
+    const ri = rotate(rightInner);
+    const ro = rotate(rightOuter);
+
+    // Left eye (viewer right): inner to outer goes RIGHT. (positive dx). Negative dy means outer is higher.
+    const leftTilt = Math.atan2(-(lo.y - li.y), lo.x - li.x) * (180 / Math.PI);
+
+    // Right eye (viewer left): inner to outer goes LEFT. (positive dx when inverted).
+    const rightTilt = Math.atan2(-(ro.y - ri.y), ri.x - ro.x) * (180 / Math.PI);
+
     return (leftTilt + rightTilt) / 2;
 }
 
 export function calculateFwFhRatio(landmarks: NormalizedLandmark[]): number {
-    // LH: 234 (Right Zygoma) -> 454 (Left Zygoma)
+    // Bizygomatic Width
     const width = distance(landmarks[234], landmarks[454]);
-    // Height: 10 (Top) -> 152 (Chin)
-    const height = distance(landmarks[10], landmarks[152]);
+    // Upper facial height: middle part of the eyebrow to the upper lip (0).
+    const midBrow = midpoint(landmarks[105], landmarks[334]); // 105: right mid eyebrow, 334: left mid eyebrow
+    const height = distance(midBrow, landmarks[0]);
 
+    if (height === 0) return 0;
     return width / height;
 }
 
 export function calculateMidfaceRatio(landmarks: NormalizedLandmark[]): number {
-    // Compact Midface is often considered better.
-    // Ratio = Midface Height / Face Width
+    // Ideal Midface Ratio: 1.0-1.1
+    // Ratio = IPD / Height from Nasion (9) to Upper Lip (0)
 
-    const leftEyeCenter = landmarks[159];  // Left eye center
-    const rightEyeCenter = landmarks[386]; // Right eye center
-    const midEyeCenter = midpoint(leftEyeCenter, rightEyeCenter);
-    const upperLipBot = landmarks[13];
+    const rightEyeCenter = midpoint(landmarks[33], landmarks[133]);
+    const leftEyeCenter = midpoint(landmarks[263], landmarks[362]);
+    const ipd = distance(leftEyeCenter, rightEyeCenter);
 
-    const midfaceHeight = distance(midEyeCenter, upperLipBot);
-    const width = distance(landmarks[234], landmarks[454]);
+    const midfaceHeight = distance(landmarks[9], landmarks[0]);
 
-    return midfaceHeight / width;
+    if (midfaceHeight === 0) return 0;
+    return ipd / midfaceHeight;
 }
 
 export function calculateEyeSeparationRatio(landmarks: NormalizedLandmark[]): number {
-    // ES Ratio = Inner Distance / Outer Distance
-    const innerDist = distance(landmarks[133], landmarks[362]);
-    const outerDist = distance(landmarks[33], landmarks[263]);
-    return innerDist / outerDist;
+    // ESR = Interpupillary Distance / Bizygomatic Width
+    const rightEyeCenter = midpoint(landmarks[33], landmarks[133]);
+    const leftEyeCenter = midpoint(landmarks[263], landmarks[362]);
+    const ipd = distance(leftEyeCenter, rightEyeCenter);
+
+    const bizygomatic = distance(landmarks[234], landmarks[454]);
+    if (bizygomatic === 0) return 0;
+
+    return ipd / bizygomatic;
 }
 
 export function calculateGonialAngle(landmarks: NormalizedLandmark[]): number {
@@ -98,28 +197,26 @@ export function calculateGonialAngle(landmarks: NormalizedLandmark[]): number {
 // --- New Advanced Metrics ---
 
 export function calculateChinToPhiltrumRatio(landmarks: NormalizedLandmark[]): number {
-    // Chin Tip: 152, Lower Lip Bottom: 17, Upper Lip Top: 0, Nose Bottom: 2
-    // Dist(Chin, LowerLip) / Dist(UpperLip, Nose)
+    // Philtrum: Subnasale 164 to Upper Lip 0 (Top of Upper Lip)
+    const philtrum = distance(landmarks[164], landmarks[0]);
+    // Chin: Lower Lip 17 (Bottom of lower lip) to Menton 152
+    // Stomion to Menton is standard, let's use Stomion/mouth center (13) to Menton (152) and Subnasale (164) to Stomion (13)
+    const stomion = landmarks[13];
+    const upperThird = distance(landmarks[164], stomion);
+    const lowerTwoThirds = distance(stomion, landmarks[152]);
 
-    // Using landmarks from analysis.js logic approximation:
-    // Chin Tip: 152
-    // Lower Lip Outer: 17 (or 0 for center) - let's use midline: 17 is generally lower lip bottom.
-    // Upper Lip Outer: 13 (upper lip bottom/center) or 0 (upper lip top).
-    // Nose Bottom: 2
-
-    const chinToLip = distance(landmarks[152], landmarks[17]);
-    const philtrum = distance(landmarks[0], landmarks[2]);
-
-    return chinToLip / philtrum;
+    if (upperThird === 0) return 0;
+    return lowerTwoThirds / upperThird;
 }
 
 export function calculateMouthToNoseWidthRatio(landmarks: NormalizedLandmark[]): number {
     // Mouth Width: 61 (Left Corner) <-> 291 (Right Corner)
     const mouthWidth = distance(landmarks[61], landmarks[291]);
 
-    // Nose Width: 48 (Left Alar) <-> 278 (Right Alar) - approximations for nose wings
+    // Nose Width: 48 (Left Alar) <-> 278 (Right Alar)
     const noseWidth = distance(landmarks[48], landmarks[278]);
 
+    if (noseWidth === 0) return 0;
     return mouthWidth / noseWidth;
 }
 
@@ -135,14 +232,14 @@ export function calculateBigonialWidthRatio(landmarks: NormalizedLandmark[]): nu
 }
 
 export function calculateLowerThirdRatio(landmarks: NormalizedLandmark[]): number {
-    // Lower Third Height / Middle Third Height
-    // Lower Third: Subnasion (2) to Menton (152)
-    // Middle Third: Glabella (168) to Subnasion (2)
+    // Replaced with "Lower / Full Face Ratio" from the standard definitions
+    // lower/full face ratio: 0.62+
+    // Height between nasion (9) to bottom of chin (152) / Face height (hairline 10 to bottom of chin 152)
+    const lowerHeight = distance(landmarks[9], landmarks[152]);
+    const fullHeight = distance(landmarks[10], landmarks[152]);
 
-    const lowerHeight = distance(landmarks[2], landmarks[152]);
-    const middleHeight = distance(landmarks[168], landmarks[2]);
-
-    return lowerHeight / middleHeight;
+    if (fullHeight === 0) return 0;
+    return lowerHeight / fullHeight;
 }
 
 export function calculatePalpebralFissureLength(landmarks: NormalizedLandmark[]): number {
@@ -186,25 +283,25 @@ export function calculateLipRatio(landmarks: NormalizedLandmark[]): number {
 }
 
 export function calculateEyeToMouthAngle(landmarks: NormalizedLandmark[]): number {
-    // Angle from Eye Outer Corner to Mouth Outer Corner (Ramus/Lateral face vector)
-    // Left Side: 263 (Eye Outer) -> 291 (Mouth Corner)
-    // Right Side: 33 (Eye Outer) -> 61 (Mouth Corner)
+    // Eye-Mouth-Eye (EME) Angle: Vertex at stomion (mouth center), extending to pupils
+    // This defines overall facial harmony and masculinity. Standard ideal is 46°-50°.
 
-    const leftAngle = Math.abs(calculateAngle(landmarks[263], landmarks[291]));
-    const rightAngle = Math.abs(calculateAngle(landmarks[33], landmarks[61]));
+    const rightEyeCenter = midpoint(landmarks[33], landmarks[133]);
+    const leftEyeCenter = midpoint(landmarks[263], landmarks[362]);
+    const stomion = landmarks[13]; // Mouth Center / Stomion
 
-    // The angle returned by calculateAngle is relative to horizontal.
-    // Vertical is 90. If the face is vertical, the angle should be around 60-70?
-    // User example: 56 degrees. 
+    // calculateThreePointAngle uses points: p1 -> Vertex p2 -> p3
+    // We want angle between rightEyeCenter, stomion, leftEyeCenter
+    const emeAngle = calculateThreePointAngle(rightEyeCenter, stomion, leftEyeCenter);
 
-    return (leftAngle + rightAngle) / 2;
+    return emeAngle;
 }
 
 export function calculateFacialAsymmetry(landmarks: NormalizedLandmark[]): number {
-    // Calculate asymmetry by comparing left and right side distances
+    // Calculate asymmetry by comparing left and right side True 3D distances
     // Lower score = more asymmetric, Higher score = more symmetric
 
-    // Compare key bilateral landmarks
+    // Compare key bilateral landmarks (Inner eyes, Outer eyes, Mouth, Zygoma, Gonions)
     const pairs = [
         [33, 263],     // Eye outer corners
         [133, 362],    // Eye inner corners
@@ -213,12 +310,14 @@ export function calculateFacialAsymmetry(landmarks: NormalizedLandmark[]): numbe
         [58, 288],     // Jaw (gonions)
     ];
 
-    const centerX = landmarks[1].x; // Nose tip as center reference
+    const centerPointNose = landmarks[1]; // Nose tip as 3D center reference
     let asymmetryScore = 0;
 
-    pairs.forEach(([leftIdx, rightIdx]) => {
-        const leftDist = Math.abs(landmarks[leftIdx].x - centerX);
-        const rightDist = Math.abs(landmarks[rightIdx].x - centerX);
+    pairs.forEach(([rightIdx, leftIdx]) => {
+        // True 3D Euclidean distance completely ignores Yaw rotation issues
+        const rightDist = distance(landmarks[rightIdx], centerPointNose);
+        const leftDist = distance(landmarks[leftIdx], centerPointNose);
+
         const diff = Math.abs(leftDist - rightDist);
         const avg = (leftDist + rightDist) / 2;
         asymmetryScore += (diff / avg); // Normalized difference
@@ -231,8 +330,9 @@ export function calculateFacialAsymmetry(landmarks: NormalizedLandmark[]): numbe
 
 export function calculateIPDRatio(landmarks: NormalizedLandmark[]): number {
     // Interpupillary Distance normalized by face width
-    const leftEyeCenter = landmarks[159];  // Left eye center
-    const rightEyeCenter = landmarks[386]; // Right eye center
+    const rightEyeCenter = midpoint(landmarks[33], landmarks[133]);
+    const leftEyeCenter = midpoint(landmarks[263], landmarks[362]);
+
     const ipd = distance(leftEyeCenter, rightEyeCenter);
 
     const faceWidth = distance(landmarks[234], landmarks[454]);
@@ -247,7 +347,7 @@ export function calculateFacialThirds(landmarks: NormalizedLandmark[]): { upper:
 
     const hairline = landmarks[10];      // Top of face (approximation)
     const glabella = landmarks[168];     // Between eyebrows
-    const subnasion = landmarks[2];      // Nose base
+    const subnasion = landmarks[164];      // Nose base
     const menton = landmarks[152];       // Chin
 
     const upperThird = distance(hairline, glabella);
@@ -265,12 +365,12 @@ export function calculateFacialThirds(landmarks: NormalizedLandmark[]): { upper:
     ) / total;
 
     // Convert to 0-100 score (100 = perfect 1:1:1)
-    const ratio = Math.max(0, 100 - (deviation * 100));
+    const ratio = Math.max(0, 100 - (deviation * 200));
 
     return {
-        upper: upperThird / total,
-        middle: middleThird / total,
-        lower: lowerThird / total,
+        upper: total > 0 ? upperThird / total : 0,
+        middle: total > 0 ? middleThird / total : 0,
+        lower: total > 0 ? lowerThird / total : 0,
         ratio
     };
 }
@@ -299,10 +399,11 @@ export function calculateCheekboneProminence(landmarks: NormalizedLandmark[]): n
     // Measure lateral projection of cheekbones
     // Higher value = more prominent cheekbones
 
-    const leftCheekbone = landmarks[234];
-    const rightCheekbone = landmarks[454];
+    const leftCheekbone = landmarks[454];
+    const rightCheekbone = landmarks[234];
     const noseBridge = landmarks[168]; // Center reference
 
+    // Using strictly XY spatial positioning to avoid Z-noise relative width
     const leftProminence = Math.abs(leftCheekbone.x - noseBridge.x);
     const rightProminence = Math.abs(rightCheekbone.x - noseBridge.x);
 
@@ -311,6 +412,7 @@ export function calculateCheekboneProminence(landmarks: NormalizedLandmark[]): n
     // Normalize by face height for scale independence
     const faceHeight = distance(landmarks[10], landmarks[152]);
 
+    if (faceHeight === 0) return 0;
     return avgProminence / faceHeight;
 }
 
@@ -372,56 +474,93 @@ export interface MetricScores {
     chinProjection: number;            // Chin forward projection
 }
 
-export function calculatePSLScore(metrics: MetricScores): { score: number; breakdown: string[]; tier: string } {
-    let score = 2.5; // Base: BELOW AVERAGE (authentic blackpill - everyone must earn their score)
-    const breakdown: string[] = ["Base: 2.5 (LTN - you must earn your way up)"];
+export type ProfileType = 'front' | 'side';
 
-    // Canthal Tilt (Ideal: Positive, ~2-8 degrees)
-    if (metrics.canthalTilt > 4) {
+export interface ScanResult {
+    metrics: MetricScores;
+    profileType: ProfileType;
+}
+
+export function calculateAggregatedMetrics(scans: ScanResult[]): MetricScores | null {
+    if (!scans || scans.length === 0) return null;
+
+    // Use the base structure to zero everything out
+    const aggregated: any = {};
+    const counters: any = {};
+
+    // Initialize everything to zero
+    const templateMetrics = scans[0].metrics;
+    for (const key of Object.keys(templateMetrics)) {
+        aggregated[key] = 0;
+        counters[key] = 0;
+    }
+
+    const sideOnlyMetrics = ['chinProjection', 'maxillaryProtrusion', 'orbitalRimProtrusion', 'browRidgeProtrusion', 'infraorbitalRimPosition'];
+    const frontOnlyMetrics = ['facialAsymmetry', 'ipdRatio', 'eyeSeparationRatio', 'canthalTilt', 'fwfhRatio', 'noseWidthRatio', 'mouthToNoseWidthRatio', 'bigonialWidthRatio', 'cheekboneProminence'];
+
+    // Accumulate valid scans
+    for (const scan of scans) {
+        for (const [key, value] of Object.entries(scan.metrics)) {
+            let isValid = true;
+
+            // Validate context bounds based on profile type
+            if (scan.profileType === 'front' && sideOnlyMetrics.includes(key)) {
+                isValid = false;
+            } else if (scan.profileType === 'side' && frontOnlyMetrics.includes(key)) {
+                isValid = false;
+            }
+
+            if (isValid) {
+                aggregated[key] += value as number;
+                counters[key] += 1;
+            }
+        }
+    }
+
+    // Average them out
+    for (const key of Object.keys(aggregated)) {
+        if (counters[key] > 0) {
+            aggregated[key] = aggregated[key] / counters[key];
+        } else {
+            // No valid scans for this metric (e.g. we only scanned side profile faces, so Asymmetry == 0)
+            // Just drop in a neutral placeholder to satisfy typescript or the last scanned value
+            aggregated[key] = (templateMetrics as any)[key];
+        }
+    }
+
+    return aggregated as MetricScores;
+}
+
+export function calculatePSLScore(metrics: MetricScores, profileType: ProfileType | 'composite' = 'composite', availableProfiles: Set<ProfileType> = new Set(['front', 'side'])): { score: number; breakdown: string[]; tier: string } {
+    let score = 4.0; // Base: 4.0 (MTN / Average according to strict 8.0 scale)
+    const breakdown: string[] = ["Base: 4.0 (MTN - Average)"];
+
+    // ==========================================
+    // UNIVERSAL METRICS (Apply to both profiles)
+    // ==========================================
+
+    // Midface Ratio (Ideal: Compact, 1.0 - 1.1)
+    if (metrics.midfaceRatio >= 0.95 && metrics.midfaceRatio <= 1.1) {
         score += 0.8;
-        breakdown.push("Excellent Canthal Tilt (+0.8)");
-    } else if (metrics.canthalTilt > 2) {
-        score += 0.5;
-        breakdown.push("Positive Canthal Tilt (+0.5)");
-    } else if (metrics.canthalTilt < -2) {
-        score -= 0.6;
-        breakdown.push("Negative Canthal Tilt (-0.6)");
-    }
-
-    // FW/FH Ratio (Ideal: 1.8 - 2.0 for men)
-    if (metrics.fwfhRatio >= 1.85) {
-        score += 0.7;
-        breakdown.push("Ideal Facial Width (+0.7)");
-    } else if (metrics.fwfhRatio >= 1.75) {
+        breakdown.push("Perfect Compact Midface (+0.8)");
+    } else if (metrics.midfaceRatio >= 0.9 && metrics.midfaceRatio <= 1.15) {
         score += 0.4;
-        breakdown.push("Good Facial Structure (+0.4)");
-    } else if (metrics.fwfhRatio < 1.6) {
-        score -= 0.5;
-        breakdown.push("Narrow Face (-0.5)");
-    }
-
-    // Midface Ratio (Ideal: Compact, ~0.9 - 1.0)
-    if (metrics.midfaceRatio <= 0.95) {
-        score += 0.7;
-        breakdown.push("Exceptionally Compact Midface (+0.7)");
-    } else if (metrics.midfaceRatio <= 1.0) {
-        score += 0.4;
-        breakdown.push("Compact Midface (+0.4)");
-    } else if (metrics.midfaceRatio > 1.08) {
+        breakdown.push("Good Midface Ratio (+0.4)");
+    } else {
         score -= 0.6;
         breakdown.push("Long Midface (-0.6)");
     }
 
-    // Gonial Angle (Ideal: 110-130 degrees)
-    if (metrics.gonialAngle >= 115 && metrics.gonialAngle <= 125) {
+    // Gonial Angle (Ideal: 115-130 degrees)
+    if (metrics.gonialAngle >= 115 && metrics.gonialAngle <= 130) {
         score += 0.8;
         breakdown.push("Perfect Jawline Angle (+0.8)");
-    } else if (metrics.gonialAngle >= 110 && metrics.gonialAngle <= 135) {
-        score += 0.5;
-        breakdown.push("Good Jawline (+0.5)");
-    } else if (metrics.gonialAngle > 140) {
+    } else if (metrics.gonialAngle >= 105 && metrics.gonialAngle <= 135) {
+        score += 0.4;
+        breakdown.push("Good Jawline (+0.4)");
+    } else {
         score -= 0.6;
-        breakdown.push("Weak Jawline (-0.6)");
+        breakdown.push("Steep/Soft Jawline Angle (-0.6)");
     }
 
     // Chin to Philtrum (Ideal: ~2.0 - 2.5)
@@ -433,73 +572,28 @@ export function calculatePSLScore(metrics: MetricScores): { score: number; break
         breakdown.push("Unbalanced Lower Face (-0.3)");
     }
 
-    // Mouth to Nose Width (Ideal: > 1.4 for masculine look)
-    if (metrics.mouthToNoseWidthRatio >= 1.5) {
+    // Lower / Full Face Ratio (Ideal: > 0.62)
+    if (metrics.lowerThirdRatio >= 0.62) {
         score += 0.4;
-        breakdown.push("Ideal Mouth Width (+0.4)");
-    } else if (metrics.mouthToNoseWidthRatio < 1.3) {
-        score -= 0.3;
-        breakdown.push("Narrow Mouth (-0.3)");
-    }
-
-    // Lower Third Ratio (Ideal: ~1.0)
-    if (metrics.lowerThirdRatio >= 0.95 && metrics.lowerThirdRatio <= 1.05) {
-        score += 0.4;
-        breakdown.push("Perfect Facial Thirds (+0.4)");
-    } else if (metrics.lowerThirdRatio < 0.8) {
-        score -= 0.5;
-        breakdown.push("Weak Lower Third (-0.5)");
-    }
-
-    // Palpebral Fissure / Hunter Eyes (Ideal: > 3.0)
-    if (metrics.palpebralFissureLength > 3.5) {
-        score += 0.8;
-        breakdown.push("Elite Hunter Eyes (+0.8)");
-    } else if (metrics.palpebralFissureLength > 3.0) {
-        score += 0.5;
-        breakdown.push("Hunter Eyes (+0.5)");
-    } else if (metrics.palpebralFissureLength < 2.5) {
+        breakdown.push("Strong Lower Face Proportion (+0.4)");
+    } else if (metrics.lowerThirdRatio >= 0.58) {
+        score += 0.2;
+        breakdown.push("Good Lower Face (+0.2)");
+    } else {
         score -= 0.4;
-        breakdown.push("Prey Eyes (-0.4)");
+        breakdown.push("Weak Lower Face Volume (-0.4)");
     }
 
-    // Eye Separation (Ideal: 0.45-0.49)
-    if (metrics.eyeSeparationRatio >= 0.45 && metrics.eyeSeparationRatio <= 0.49) {
-        score += 0.3;
-        breakdown.push("Ideal Eye Spacing (+0.3)");
-    } else if (metrics.eyeSeparationRatio < 0.42 || metrics.eyeSeparationRatio > 0.52) {
-        score -= 0.3;
-        breakdown.push("Suboptimal Eye Spacing (-0.3)");
-    }
-
-    // Bigonial Width (Ideal: 1.1-1.15)
-    if (metrics.bigonialWidthRatio >= 1.1 && metrics.bigonialWidthRatio <= 1.15) {
-        score += 0.3;
-        breakdown.push("Ideal Jaw Width (+0.3)");
-    } else if (metrics.bigonialWidthRatio > 1.25) {
-        score -= 0.3;
-        breakdown.push("Narrow Jaw (-0.3)");
-    }
-
-    // Facial Asymmetry (Ideal: 95-100)
-    if (metrics.facialAsymmetry >= 95) {
+    // Palpebral Fissure / Hunter Eyes (Ideal: 3.0 - 3.5)
+    if (metrics.palpebralFissureLength >= 3.0) {
+        score += 0.8;
+        breakdown.push("Elite Horizontal Eye Length (+0.8)");
+    } else if (metrics.palpebralFissureLength > 2.7) {
         score += 0.5;
-        breakdown.push("Perfect Symmetry (+0.5)");
-    } else if (metrics.facialAsymmetry >= 90) {
-        score += 0.3;
-        breakdown.push("Very Symmetric (+0.3)");
-    } else if (metrics.facialAsymmetry < 80) {
-        score -= 0.5;
-        breakdown.push("Facial Asymmetry (-0.5)");
-    }
-
-    // IPD Ratio (Ideal: 0.42-0.47)
-    if (metrics.ipdRatio >= 0.42 && metrics.ipdRatio <= 0.47) {
-        score += 0.3;
-        breakdown.push("Ideal Eye Spacing (+0.3)");
-    } else if (metrics.ipdRatio < 0.40 || metrics.ipdRatio > 0.50) {
-        score -= 0.2;
-        breakdown.push("Suboptimal Eye Spacing (-0.2)");
+        breakdown.push("Good Horizontal Eye Length (+0.5)");
+    } else {
+        score -= 0.4;
+        breakdown.push("Short Eye Fissure (-0.4)");
     }
 
     // Facial Thirds Ratio (Ideal: 95-100)
@@ -520,24 +614,6 @@ export function calculatePSLScore(metrics: MetricScores): { score: number; break
         breakdown.push("Fivehead (-0.3)");
     }
 
-    // Nose Width Ratio (Ideal: 0.25-0.30)
-    if (metrics.noseWidthRatio >= 0.25 && metrics.noseWidthRatio <= 0.30) {
-        score += 0.3;
-        breakdown.push("Ideal Nose Width (+0.3)");
-    } else if (metrics.noseWidthRatio > 0.35) {
-        score -= 0.3;
-        breakdown.push("Wide Nose (-0.3)");
-    }
-
-    // Cheekbone Prominence (Ideal: 0.48-0.55)
-    if (metrics.cheekboneProminence >= 0.48 && metrics.cheekboneProminence <= 0.55) {
-        score += 0.4;
-        breakdown.push("Prominent Cheekbones (+0.4)");
-    } else if (metrics.cheekboneProminence < 0.45) {
-        score -= 0.2;
-        breakdown.push("Flat Cheekbones (-0.2)");
-    }
-
     // Hairline Recession (Ideal: 90-100)
     if (metrics.hairlineRecession >= 95) {
         score += 0.3;
@@ -553,35 +629,208 @@ export function calculatePSLScore(metrics: MetricScores): { score: number; break
         breakdown.push("Significant Hair Loss (-0.7)");
     }
 
-    // Cap score to 0-8 range
+    // ==========================================
+    // FRONT-ONLY METRICS
+    // ==========================================
+    if (profileType === 'front' || profileType === 'composite') {
+        // Canthal Tilt (Ideal: Positive, ~4-6 degrees)
+        if (metrics.canthalTilt >= 4 && metrics.canthalTilt <= 6) {
+            score += 0.8;
+            breakdown.push("Excellent Canthal Tilt (+0.8)");
+        } else if (metrics.canthalTilt > 2) {
+            score += 0.5;
+            breakdown.push("Positive Canthal Tilt (+0.5)");
+        } else if (metrics.canthalTilt < 0) {
+            score -= 0.6;
+            breakdown.push("Negative Canthal Tilt (-0.6)");
+        }
+
+        // FW/FH Ratio (Ideal: > 1.8 for masculine model look)
+        if (metrics.fwfhRatio >= 1.8) {
+            score += 0.8;
+            breakdown.push("Ideal Facial Width (+0.8)");
+        } else if (metrics.fwfhRatio >= 1.70) {
+            score += 0.4;
+            breakdown.push("Good Facial Structure (+0.4)");
+        } else if (metrics.fwfhRatio < 1.65) {
+            score -= 0.6;
+            breakdown.push("Narrow Face (-0.6)");
+        }
+
+        // Mouth to Nose Width (Ideal: > 1.4 for masculine look)
+        if (metrics.mouthToNoseWidthRatio >= 1.5) {
+            score += 0.4;
+            breakdown.push("Ideal Mouth Width (+0.4)");
+        } else if (metrics.mouthToNoseWidthRatio < 1.3) {
+            score -= 0.3;
+            breakdown.push("Narrow Mouth (-0.3)");
+        }
+
+        // Eye Separation / ESR (Ideal: 0.45-0.47)
+        if (metrics.eyeSeparationRatio >= 0.45 && metrics.eyeSeparationRatio <= 0.47) {
+            score += 0.3;
+            breakdown.push("Ideal Eye Spacing (+0.3)");
+        } else if (metrics.eyeSeparationRatio < 0.42 || metrics.eyeSeparationRatio > 0.50) {
+            score -= 0.3;
+            breakdown.push("Suboptimal Eye Spacing (-0.3)");
+        }
+
+        // Eye to Mouth Angle (Ideal: 47-50 degrees)
+        if (metrics.eyeToMouthAngle >= 47 && metrics.eyeToMouthAngle <= 50) {
+            score += 0.3;
+            breakdown.push("Ideal Eye-Mouth-Eye Angle (+0.3)");
+        } else if (metrics.eyeToMouthAngle < 45 || metrics.eyeToMouthAngle > 53) {
+            score -= 0.3;
+            breakdown.push("Suboptimal Eye-Mouth-Eye Angle (-0.3)");
+        }
+
+        // Bigonial Width (Ideal: 1.35)
+        if (metrics.bigonialWidthRatio >= 1.3 && metrics.bigonialWidthRatio <= 1.4) {
+            score += 0.4;
+            breakdown.push("Ideal Jaw Width (+0.4)");
+        } else if (metrics.bigonialWidthRatio < 1.15) {
+            score -= 0.3;
+            breakdown.push("Narrow Jaw (-0.3)");
+        }
+
+        // Facial Asymmetry (Ideal: 95-100)
+        if (metrics.facialAsymmetry >= 95) {
+            score += 0.5;
+            breakdown.push("Perfect Symmetry (+0.5)");
+        } else if (metrics.facialAsymmetry >= 90) {
+            score += 0.3;
+            breakdown.push("Very Symmetric (+0.3)");
+        } else if (metrics.facialAsymmetry < 80) {
+            score -= 0.5;
+            breakdown.push("Facial Asymmetry (-0.5)");
+        }
+
+        // IPD Ratio (Ideal: 0.45-0.47)
+        if (metrics.ipdRatio >= 0.45 && metrics.ipdRatio <= 0.47) {
+            score += 0.3;
+            breakdown.push("Ideal Interpupillary Distance (+0.3)");
+        } else if (metrics.ipdRatio < 0.40 || metrics.ipdRatio > 0.50) {
+            score -= 0.2;
+            breakdown.push("Suboptimal Interpupillary Distance (-0.2)");
+        }
+
+        // Nose Width Ratio (Ideal: 0.25-0.30)
+        if (metrics.noseWidthRatio >= 0.25 && metrics.noseWidthRatio <= 0.30) {
+            score += 0.3;
+            breakdown.push("Ideal Nose Width (+0.3)");
+        } else if (metrics.noseWidthRatio > 0.35) {
+            score -= 0.3;
+            breakdown.push("Wide Nose (-0.3)");
+        }
+
+        // Cheekbone Prominence (Ideal: 0.48-0.55)
+        if (metrics.cheekboneProminence >= 0.48 && metrics.cheekboneProminence <= 0.55) {
+            score += 0.4;
+            breakdown.push("Prominent Cheekbones (+0.4)");
+        } else if (metrics.cheekboneProminence < 0.45) {
+            score -= 0.2;
+            breakdown.push("Flat Cheekbones (-0.2)");
+        }
+    }
+
+    // ==========================================
+    // SIDE-ONLY METRICS (3D Depth)
+    // ==========================================
+    if (profileType === 'side' || profileType === 'composite') {
+        // Orbital Rim Protrusion (Deep set eyes vs Bug eyes)
+        if (metrics.orbitalRimProtrusion > 0.015) {
+            score += 0.8;
+            breakdown.push("Elite Orbital Depth / Hunter Eyes Frontal Support (+0.8)");
+        } else if (metrics.orbitalRimProtrusion > 0.005) {
+            score += 0.4;
+            breakdown.push("Good Orbital Depth (+0.4)");
+        } else if (metrics.orbitalRimProtrusion < -0.005) {
+            score -= 0.6;
+            breakdown.push("Deeply Recessed Orbital Vectors / Bulging Eyes (-0.6)");
+        }
+
+        // Maxillary Protrusion
+        if (metrics.maxillaryProtrusion > 0.02) {
+            score += 0.8;
+            breakdown.push("Excellent Forward Maxilla Base (+0.8)");
+        } else if (metrics.maxillaryProtrusion > 0.01) {
+            score += 0.4;
+            breakdown.push("Good Maxillary Development (+0.4)");
+        } else if (metrics.maxillaryProtrusion < -0.005) {
+            score -= 0.7;
+            breakdown.push("Retruded Maxilla / Flat Midface (-0.7)");
+        }
+
+        // Brow Ridge Protrusion
+        if (metrics.browRidgeProtrusion > 0.015) {
+            score += 0.8;
+            breakdown.push("Prominent & Masculine Brow Ridge (+0.8)");
+        } else if (metrics.browRidgeProtrusion > 0.005) {
+            score += 0.4;
+            breakdown.push("Good Brow Ridge (+0.4)");
+        } else if (metrics.browRidgeProtrusion < 0) {
+            score -= 0.4;
+            breakdown.push("Flat Brow / Lacking Dimorphism (-0.4)");
+        }
+
+        // Infraorbital Rim Position
+        if (metrics.infraorbitalRimPosition > 0.01) {
+            score += 0.8;
+            breakdown.push("Excellent Under-eye Support (+0.8)");
+        } else if (metrics.infraorbitalRimPosition > 0) {
+            score += 0.4;
+            breakdown.push("Good Under-eye Support (+0.4)");
+        } else if (metrics.infraorbitalRimPosition < -0.01) {
+            score -= 0.5;
+            breakdown.push("Recessed Infraorbital Rim / Prone to under-eye circles (-0.5)");
+        }
+
+        // Chin Projection
+        if (metrics.chinProjection > 0.025) {
+            score += 0.8;
+            breakdown.push("Elite Chin Projection & Jaw Base (+0.8)");
+        } else if (metrics.chinProjection > 0.01) {
+            score += 0.4;
+            breakdown.push("Good Chin Projection (+0.4)");
+        } else if (metrics.chinProjection < 0) {
+            score -= 0.6;
+            breakdown.push("Recessed Chin / Weak Genioplasty Target (-0.6)");
+        }
+    }
+
+    // Apply scalars to normalize to 0-8 range based on max potential points
+    const rawDiff = score - 4.0;
+    if (profileType === 'composite') {
+        const COMPOSITE_SCALAR = 3.1; // Extrapolates max raw deviation back to 8.0 max scale
+        score = 4.0 + (rawDiff / COMPOSITE_SCALAR);
+    } else {
+        const FRONT_SCALAR = 2.1; // Extrapolates front-only raw deviation back to 8.0 max scale
+        score = 4.0 + (rawDiff / FRONT_SCALAR);
+    }
+
+    // Cap score to authentic 0-8 scale
     score = Math.min(8.0, Math.max(0.0, score));
 
-    // Determine tier based on score (PSL Scale: 0-8, where 4 = average)
+    // Determine tier based on strict PSL Scale Distribution guide
     let tier = "";
-    if (score >= 7.5) {
-        tier = "PSL God (0.001%) - Peak Human Aesthetics";
+    if (score >= 7.99) {
+        tier = "8 PSL – Perfection (Theoretical)";
     } else if (score >= 7.0) {
-        tier = "PSL God-Tier (0.001%) - Elite Supermodel";
-    } else if (score >= 6.5) {
-        tier = "Gigachad (Top 0.1%)";
+        tier = "7 PSL – PSL God-Tier (Supermodels and Elite Actors)";
     } else if (score >= 6.0) {
-        tier = "True Chad (Top 0.1%) - Model-Tier";
-    } else if (score >= 5.5) {
-        tier = "Chadlite (Top 1-5%)";
+        tier = "6 PSL – Chad / Stacy";
     } else if (score >= 5.0) {
-        tier = "High-Tier Normie (HTN) - Top 5%";
-    } else if (score >= 4.5) {
-        tier = "Upper-Mid Normie";
+        tier = "5 PSL – Above Average (High-Tier Normie / Chadlite)";
     } else if (score >= 4.0) {
-        tier = "Mid-Tier Normie (MTN) - Average";
+        tier = "4 PSL – Average (Mid-Tier Normie)";
     } else if (score >= 3.0) {
-        tier = "Low-Tier Normie (LTN) - Below Avg";
+        tier = "3 PSL – Below Average (Low-Tier Normie)";
     } else if (score >= 2.0) {
-        tier = "Truecel Range (Bottom 10%)";
+        tier = "2 PSL – \"Truecel\" – Very Low Attractiveness";
     } else if (score >= 1.0) {
-        tier = "Extremely Low (Bottom 0.5%)";
+        tier = "1 PSL – Extremely Low Attractiveness";
     } else {
-        tier = "Severe Deformities (<0.01%)";
+        tier = "0 PSL – Severe Deformities (Subhuman)";
     }
 
     return {
