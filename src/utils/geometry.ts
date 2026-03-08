@@ -145,18 +145,28 @@ export function calculateCanthalTilt(landmarks: NormalizedLandmark[]): number {
     return (leftTilt + rightTilt) / 2;
 }
 
-export function calculateFwFhRatio(landmarks: NormalizedLandmark[]): number {
+export function calculateFwFhRatio(landmarks: NormalizedLandmark[], pitchStr: number = 0, yawStr: number = 0): number {
     // Bizygomatic Width
-    const width = distance(landmarks[234], landmarks[454]);
+    let width = distance(landmarks[234], landmarks[454]);
     // Upper facial height: middle part of the eyebrow to the upper lip (0).
     const midBrow = midpoint(landmarks[105], landmarks[334]); // 105: right mid eyebrow, 334: left mid eyebrow
-    const height = distance(midBrow, landmarks[0]);
+    let height = distance(midBrow, landmarks[0]);
+
+    // Euler Angle Maximum Mathematical Correction (Adapts to Anglemaxxing instead of punishing it!)
+    // Convert pitch/yaw to absolute radians for scalar distortion multiplier.
+    const pitchRad = Math.abs(pitchStr) * (Math.PI / 180);
+    const yawRad = Math.abs(yawStr) * (Math.PI / 180);
+
+    // If the lens is pitched artificially up or down, the vertical height shrinks via foreshortening. Fix it.
+    if (pitchRad > 0.05) { height = height / Math.cos(pitchRad); }
+    // If the lens is yawed heavily left or right, horizontal width shrinks. Fix it.
+    if (yawRad > 0.05) { width = width / Math.cos(yawRad); }
 
     if (height === 0) return 0;
     return width / height;
 }
 
-export function calculateMidfaceRatio(landmarks: NormalizedLandmark[]): number {
+export function calculateMidfaceRatio(landmarks: NormalizedLandmark[], pitchStr: number = 0): number {
     // Ideal Midface Ratio: 1.0-1.1
     // Ratio = IPD / Height from Nasion (9) to Upper Lip (0)
 
@@ -164,7 +174,11 @@ export function calculateMidfaceRatio(landmarks: NormalizedLandmark[]): number {
     const leftEyeCenter = midpoint(landmarks[263], landmarks[362]);
     const ipd = distance(leftEyeCenter, rightEyeCenter);
 
-    const midfaceHeight = distance(landmarks[9], landmarks[0]);
+    let midfaceHeight = distance(landmarks[9], landmarks[0]);
+
+    // Vertical length correction via Pitch Euler matrix interpolation
+    const pitchRad = Math.abs(pitchStr) * (Math.PI / 180);
+    if (pitchRad > 0.05) { midfaceHeight = midfaceHeight / Math.cos(pitchRad); }
 
     if (midfaceHeight === 0) return 0;
     return ipd / midfaceHeight;
@@ -231,12 +245,20 @@ export function calculateBigonialWidthRatio(landmarks: NormalizedLandmark[]): nu
     return bizygomatic / bigonialWidth;
 }
 
-export function calculateLowerThirdRatio(landmarks: NormalizedLandmark[]): number {
+export function calculateLowerThirdRatio(landmarks: NormalizedLandmark[], pitchStr: number = 0): number {
     // Replaced with "Lower / Full Face Ratio" from the standard definitions
     // lower/full face ratio: 0.62+
     // Height between nasion (9) to bottom of chin (152) / Face height (hairline 10 to bottom of chin 152)
-    const lowerHeight = distance(landmarks[9], landmarks[152]);
-    const fullHeight = distance(landmarks[10], landmarks[152]);
+    let lowerHeight = distance(landmarks[9], landmarks[152]);
+    let fullHeight = distance(landmarks[10], landmarks[152]);
+
+    // Pitch correction 
+    const pitchRad = Math.abs(pitchStr) * (Math.PI / 180);
+    if (pitchRad > 0.05) {
+        // Vertical geometry dynamically restores height shortened by tilts
+        lowerHeight = lowerHeight / Math.cos(pitchRad);
+        fullHeight = fullHeight / Math.cos(pitchRad);
+    }
 
     if (fullHeight === 0) return 0;
     return lowerHeight / fullHeight;
@@ -472,6 +494,12 @@ export interface MetricScores {
     browRidgeProtrusion: number;       // Brow ridge prominence
     infraorbitalRimPosition: number;   // Under-eye support
     chinProjection: number;            // Chin forward projection
+
+    // NEW: V2 Advanced Features
+    doubleChinRisk: number;
+    angleDeduction: number;
+    facialTension: number;
+    skinQuality: number;
 }
 
 export type ProfileType = 'front' | 'side';
@@ -496,7 +524,7 @@ export function calculateAggregatedMetrics(scans: ScanResult[]): MetricScores | 
     }
 
     const sideOnlyMetrics = ['chinProjection', 'maxillaryProtrusion', 'orbitalRimProtrusion', 'browRidgeProtrusion', 'infraorbitalRimPosition'];
-    const frontOnlyMetrics = ['facialAsymmetry', 'ipdRatio', 'eyeSeparationRatio', 'canthalTilt', 'fwfhRatio', 'noseWidthRatio', 'mouthToNoseWidthRatio', 'bigonialWidthRatio', 'cheekboneProminence'];
+    const frontOnlyMetrics = ['facialAsymmetry', 'ipdRatio', 'eyeSeparationRatio', 'canthalTilt', 'fwfhRatio', 'noseWidthRatio', 'mouthToNoseWidthRatio', 'bigonialWidthRatio', 'cheekboneProminence', 'skinQuality'];
 
     // Accumulate valid scans
     for (const scan of scans) {
@@ -571,6 +599,19 @@ export function calculatePSLScore(metrics: MetricScores, profileType: ProfileTyp
         score -= 0.3;
         breakdown.push("Unbalanced Lower Face (-0.3)");
     }
+
+    // Lip Ratio (Ideal 1.6x lower to upper)
+    if (metrics.lipRatio >= 1.5 && metrics.lipRatio <= 1.70) {
+        score += 0.4;
+        breakdown.push("Ideal Lip Ratio (+0.4)");
+    } else if (metrics.lipRatio >= 1.3 && metrics.lipRatio <= 1.9) {
+        score += 0.2;
+        breakdown.push("Good Lip Ratio (+0.2)");
+    } else {
+        score -= 0.1;
+        breakdown.push("Suboptimal Lip Harmony (-0.1)");
+    }
+
 
     // Lower / Full Face Ratio (Ideal: > 0.62)
     if (metrics.lowerThirdRatio >= 0.62) {
@@ -798,13 +839,46 @@ export function calculatePSLScore(metrics: MetricScores, profileType: ProfileTyp
         }
     }
 
+    // ==========================================
+    // V2 ADVANCED METRICS
+    // ==========================================
+
+    if (metrics.doubleChinRisk !== undefined) {
+        if (metrics.doubleChinRisk > 0.02) {
+            score += 0.4;
+            breakdown.push("Excellent Jawline Definition (+0.4)");
+        } else if (metrics.doubleChinRisk < 0.005) {
+            score -= 0.6;
+            breakdown.push("Submental Fullness / Double Chin (-0.6)");
+        }
+    }
+
+    if (metrics.skinQuality !== undefined) {
+        if (metrics.skinQuality >= 85) {
+            score += 0.3;
+            breakdown.push("Exceptional Clear/Glass Skin (+0.3)");
+        } else if (metrics.skinQuality < 50) {
+            score -= 0.5;
+            breakdown.push("Textured/Acne Skin (-0.5)");
+        }
+    }
+
+    if (metrics.facialTension !== undefined && metrics.facialTension > 1.2) {
+        score -= 0.3;
+        breakdown.push("High Facial Tension (Squinting/Smiling) (-0.3)");
+    }
+
+    if (metrics.angleDeduction > 0) {
+        breakdown.push(`High Distortion Adjusted (Math Fixed)`);
+    }
+
     // Apply scalars to normalize to 0-8 range based on max potential points
     const rawDiff = score - 4.0;
     if (profileType === 'composite') {
-        const COMPOSITE_SCALAR = 3.1; // Extrapolates max raw deviation back to 8.0 max scale
+        const COMPOSITE_SCALAR = 3.6; // Extrapolates max raw deviation back to 8.0 max scale
         score = 4.0 + (rawDiff / COMPOSITE_SCALAR);
     } else {
-        const FRONT_SCALAR = 2.1; // Extrapolates front-only raw deviation back to 8.0 max scale
+        const FRONT_SCALAR = 2.4; // Extrapolates front-only raw deviation back to 8.0 max scale
         score = 4.0 + (rawDiff / FRONT_SCALAR);
     }
 

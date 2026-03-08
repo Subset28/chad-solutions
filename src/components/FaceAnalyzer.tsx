@@ -70,7 +70,8 @@ export default function FaceAnalyzer() {
                 numFaces: 1,
                 minFaceDetectionConfidence: 0.15,
                 minFacePresenceConfidence: 0.15,
-                outputFacialTransformationMatrixes: true
+                outputFacialTransformationMatrixes: true,
+                outputFaceBlendshapes: true
             });
             setFaceLandmarker(landmarker);
         };
@@ -324,19 +325,38 @@ export default function FaceAnalyzer() {
                     calculateMaxillaryProtrusion,
                     calculateBrowRidgeProtrusion,
                     calculateInfraorbitalRimPosition,
-                    calculateChinProjection
+                    calculateChinProjection,
+                    calculateDoubleChinRisk,
+                    evaluateFacialTension,
+                    evaluateCameraAngle
                 } = require('../utils/advanced-metrics');
+
+                const { analyzeSkinQuality } = require('../utils/image-processing');
+
+                // Advanced V2 Evaluators
+                const tensionData = evaluateFacialTension(results.faceBlendshapes || []);
+                const skinQualityData = analyzeSkinQuality(image, landmarks);
+
+                let angleDeductionScore = 0;
+                let activePitch = 0;
+                let activeYaw = 0;
+                if (results.facialTransformationMatrixes && results.facialTransformationMatrixes.length > 0) {
+                    const euler = extractEulerAngles(results.facialTransformationMatrixes[0]);
+                    activePitch = euler.pitch;
+                    activeYaw = euler.yaw;
+                    angleDeductionScore = evaluateCameraAngle(euler.pitch, euler.yaw).score;
+                }
 
                 const metrics: MetricScores = {
                     canthalTilt: calculateCanthalTilt(scaledLandmarks),
-                    fwfhRatio: calculateFwFhRatio(scaledLandmarks),
-                    midfaceRatio: calculateMidfaceRatio(scaledLandmarks),
+                    fwfhRatio: calculateFwFhRatio(scaledLandmarks, activePitch, activeYaw),
+                    midfaceRatio: calculateMidfaceRatio(scaledLandmarks, activePitch),
                     eyeSeparationRatio: calculateEyeSeparationRatio(scaledLandmarks),
                     gonialAngle: calculateGonialAngle(scaledLandmarks),
                     chinToPhiltrumRatio: calculateChinToPhiltrumRatio(scaledLandmarks),
                     mouthToNoseWidthRatio: calculateMouthToNoseWidthRatio(scaledLandmarks),
                     bigonialWidthRatio: calculateBigonialWidthRatio(scaledLandmarks),
-                    lowerThirdRatio: calculateLowerThirdRatio(scaledLandmarks),
+                    lowerThirdRatio: calculateLowerThirdRatio(scaledLandmarks, activePitch),
                     palpebralFissureLength: calculatePalpebralFissureLength(scaledLandmarks),
                     eyeToMouthAngle: calculateEyeToMouthAngle(scaledLandmarks),
                     lipRatio: calculateLipRatio(scaledLandmarks),
@@ -352,7 +372,13 @@ export default function FaceAnalyzer() {
                     maxillaryProtrusion: calculateMaxillaryProtrusion(scaledLandmarks),
                     browRidgeProtrusion: calculateBrowRidgeProtrusion(scaledLandmarks),
                     infraorbitalRimPosition: calculateInfraorbitalRimPosition(scaledLandmarks),
-                    chinProjection: calculateChinProjection(scaledLandmarks)
+                    chinProjection: calculateChinProjection(scaledLandmarks),
+
+                    // V2 Advanced Traits
+                    doubleChinRisk: calculateDoubleChinRisk(scaledLandmarks),
+                    angleDeduction: angleDeductionScore,
+                    facialTension: tensionData.tensionScore,
+                    skinQuality: skinQualityData.clarityScore
                 };
 
                 const pslData = calculatePSLScore(metrics);
@@ -633,7 +659,7 @@ export default function FaceAnalyzer() {
             palpebralFissureLength: value >= 3.0 && value <= 3.5 ? { text: 'perfect hunter eyes', color: 'text-green-400' } : value > 3.5 ? { text: 'good', color: 'text-blue-400' } : { text: 'slightly too exposed eyes', color: 'text-yellow-400' },
             eyeSeparationRatio: value >= 0.45 && value <= 0.47 ? { text: 'perfect', color: 'text-green-400' } : value >= 0.42 && value <= 0.49 ? { text: 'good', color: 'text-blue-400' } : { text: 'suboptimal spacing', color: 'text-yellow-400' },
             eyeToMouthAngle: value >= 47 && value <= 50 ? { text: 'perfect', color: 'text-green-400' } : value < 47 ? { text: 'shallow', color: 'text-yellow-400' } : { text: 'steep', color: 'text-yellow-400' },
-            lipRatio: value >= 1.60 && value <= 1.65 ? { text: 'perfect', color: 'text-green-400' } : value < 1.4 || value > 2.0 ? { text: 'extremely uneven lips', color: 'text-red-400' } : { text: 'acceptable', color: 'text-blue-400' },
+            lipRatio: value >= 1.60 && value <= 1.65 ? { text: 'perfect', color: 'text-green-400' } : value >= 1.30 && value <= 1.90 ? { text: 'acceptable', color: 'text-blue-400' } : { text: 'suboptimal lip ratio', color: 'text-orange-400' },
             facialAsymmetry: value >= 95 ? { text: 'perfectly symmetric', color: 'text-green-400' } : value >= 90 ? { text: 'very symmetric', color: 'text-blue-400' } : value >= 80 ? { text: 'acceptable symmetry', color: 'text-yellow-400' } : { text: 'asymmetric', color: 'text-orange-400' },
             ipdRatio: value >= 0.45 && value <= 0.47 ? { text: 'ideal eye spacing', color: 'text-green-400' } : value >= 0.42 && value <= 0.49 ? { text: 'good', color: 'text-blue-400' } : { text: 'suboptimal spacing', color: 'text-yellow-400' },
             facialThirdsRatio: value >= 95 ? { text: 'perfect thirds', color: 'text-green-400' } : value >= 85 ? { text: 'good proportions', color: 'text-blue-400' } : value >= 75 ? { text: 'acceptable', color: 'text-yellow-400' } : { text: 'unbalanced thirds', color: 'text-orange-400' },
@@ -645,7 +671,11 @@ export default function FaceAnalyzer() {
             maxillaryProtrusion: value > 0.02 ? { text: 'forward maxilla (ideal)', color: 'text-green-400' } : value > 0.01 ? { text: 'good maxilla', color: 'text-blue-400' } : value > -0.005 ? { text: 'neutral', color: 'text-yellow-400' } : { text: 'retruded maxilla', color: 'text-red-400' },
             browRidgeProtrusion: value > 0.015 ? { text: 'prominent brow (masculine)', color: 'text-green-400' } : value > 0.005 ? { text: 'good brow ridge', color: 'text-blue-400' } : { text: 'flat brow', color: 'text-yellow-400' },
             infraorbitalRimPosition: value > 0.01 ? { text: 'forward infraorbital rim', color: 'text-green-400' } : value > -0.005 ? { text: 'neutral', color: 'text-blue-400' } : { text: 'retruded (dark circles)', color: 'text-orange-400' },
-            chinProjection: value > 0.025 ? { text: 'strong chin', color: 'text-green-400' } : value > 0.01 ? { text: 'good projection', color: 'text-blue-400' } : value > 0 ? { text: 'weak chin', color: 'text-yellow-400' } : { text: 'recessed chin', color: 'text-red-400' }
+            chinProjection: value > 0.025 ? { text: 'strong chin', color: 'text-green-400' } : value > 0.01 ? { text: 'good projection', color: 'text-blue-400' } : value > 0 ? { text: 'weak chin', color: 'text-yellow-400' } : { text: 'recessed chin', color: 'text-red-400' },
+            doubleChinRisk: value > 0.02 ? { text: 'sharp jawline', color: 'text-green-400' } : value > 0.008 ? { text: 'good definition', color: 'text-blue-400' } : value > 0 ? { text: 'soft jawline', color: 'text-yellow-400' } : { text: 'submental fullness', color: 'text-orange-400' },
+            angleDeduction: value === 0 ? { text: 'ideal camera setup', color: 'text-green-400' } : value <= 0.5 ? { text: 'minor tilt', color: 'text-yellow-400' } : { text: 'high distortion check', color: 'text-red-400' },
+            facialTension: value < 0.5 ? { text: 'relaxed / neutral', color: 'text-green-400' } : value < 1.2 ? { text: 'minor tension', color: 'text-yellow-400' } : { text: 'high tension detected', color: 'text-orange-400' },
+            skinQuality: value > 90 ? { text: 'glass skin', color: 'text-green-400' } : value > 75 ? { text: 'clear skin', color: 'text-blue-400' } : value > 50 ? { text: 'textured', color: 'text-yellow-400' } : { text: 'acne / heavy texture', color: 'text-red-400' }
         };
 
         return ratings[metric] || { text: 'unknown', color: 'text-gray-400' };
@@ -676,7 +706,11 @@ export default function FaceAnalyzer() {
             maxillaryProtrusion: '> 0.02 (forward)',
             browRidgeProtrusion: '> 0.015 (prominent)',
             infraorbitalRimPosition: '> 0.01 (forward)',
-            chinProjection: '> 0.025 (strong)'
+            chinProjection: '> 0.025 (strong)',
+            doubleChinRisk: '> 0.020 (sharp jaw)',
+            angleDeduction: '0 (neutral)',
+            facialTension: '< 0.5 (relaxed)',
+            skinQuality: '85-100 (clear)'
         };
         return ideals[metric];
     };
@@ -777,6 +811,30 @@ export default function FaceAnalyzer() {
 
             case 'hairlineRecession':
                 return `Your hairline fullness score is ${value.toFixed(1)}.`;
+
+            case 'doubleChinRisk':
+                return value > 0.02
+                    ? `Excellent submental definition (Depth: ${value.toFixed(3)}). High contrast between jawline and neck.`
+                    : value > 0.008
+                        ? `Good jawline definition under the chin.`
+                        : `Submental fullness detected. A deeper separation between chin and neck linearly correlates with stronger aesthetic harmony.`;
+
+            case 'angleDeduction':
+                return value === 0
+                    ? `Angle is neutral and standard. Measurements are highly reliable.`
+                    : `Angle distortion detected. You have received a ${value.toFixed(1)} deduction or warning due to suspected camera positioning.`;
+
+            case 'facialTension':
+                return value < 0.5
+                    ? `Facial posture is conventionally relaxed and authentic (Tension: ${value.toFixed(2)}).`
+                    : `Minor to severe tension detected within facial expression topologies (Tension: ${value.toFixed(2)}). Try resting your face completely.`;
+
+            case 'skinQuality':
+                return value > 90
+                    ? `Exceptional skin clarity score (${value.toFixed(1)}/100). Low sub-pixel variance correlates tightly with clear or 'glass' skin.`
+                    : value > 75
+                        ? `Good skin clarity (${value.toFixed(1)}/100) with only minor localized texture.`
+                        : `Higher pixel variance found (${value.toFixed(1)}/100), implying noticeable textured skin, acne masking, or heavily shadowed lighting.`;
 
             default:
                 return `Your measurement for ${metric} is ${value.toFixed(2)}.`;
@@ -982,8 +1040,8 @@ export default function FaceAnalyzer() {
                                             const idealRange = getIdealRange(metricKey);
                                             const explanation = getMetricExplanation(metricKey, value as number);
 
-                                            const sideOnlyMetrics = ['chinProjection', 'maxillaryProtrusion', 'orbitalRimProtrusion', 'browRidgeProtrusion', 'infraorbitalRimPosition'];
-                                            const frontOnlyMetrics = ['facialAsymmetry', 'ipdRatio', 'eyeSeparationRatio', 'canthalTilt', 'fwfhRatio', 'noseWidthRatio', 'mouthToNoseWidthRatio', 'bigonialWidthRatio', 'cheekboneProminence'];
+                                            const sideOnlyMetrics = ['chinProjection', 'maxillaryProtrusion', 'orbitalRimProtrusion', 'browRidgeProtrusion', 'infraorbitalRimPosition', 'doubleChinRisk'];
+                                            const frontOnlyMetrics = ['facialAsymmetry', 'ipdRatio', 'eyeSeparationRatio', 'canthalTilt', 'fwfhRatio', 'noseWidthRatio', 'mouthToNoseWidthRatio', 'bigonialWidthRatio', 'cheekboneProminence', 'skinQuality', 'facialTension'];
 
                                             const isSideMetric = sideOnlyMetrics.includes(metricKey);
                                             const isFrontMetric = frontOnlyMetrics.includes(metricKey);

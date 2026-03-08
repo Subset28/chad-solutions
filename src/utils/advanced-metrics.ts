@@ -210,19 +210,19 @@ export function evaluateCameraAngle(pitch: number, yaw: number): { score: number
     let feedback = "Good angle";
 
     // Extreme up/down
-    if (pitch > 15) {
-        angleDeduction += 1.5;
+    if (pitch > 22) {
+        angleDeduction += 1.0;
         feedback = "Looking down (Frauding Jawline)";
-    } else if (pitch < -15) {
-        angleDeduction += 1.5;
+    } else if (pitch < -22) {
+        angleDeduction += 1.0;
         feedback = "Looking up (Frauding Hooded Eyes)";
-    } else if (Math.abs(pitch) > 7) {
+    } else if (Math.abs(pitch) > 12) {
         angleDeduction += 0.5;
         feedback = "Slight vertical tilt";
     }
 
     // Extreme sideways
-    if (Math.abs(yaw) > 20) {
+    if (Math.abs(yaw) > 25) {
         angleDeduction += 1.0;
         if (feedback === "Good angle") feedback = "Face severely turned";
         else feedback += " | Face turned";

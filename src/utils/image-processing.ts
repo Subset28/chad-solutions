@@ -52,35 +52,56 @@ export function analyzeSkinQuality(
             for (let i = 0; i < data.length; i += 4) {
                 const intensity = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2];
                 intensities.push(intensity);
-                sum += intensity;
             }
 
-            const mean = sum / intensities.length;
+            // Sort intensities to find the median 
+            intensities.sort((a, b) => a - b);
+            const median = intensities[Math.floor(intensities.length / 2)];
+
+            // We want to discard intense outliers (like a pitch black glasses rim or dark hair strand) 
+            // that have dramatically different intensities than the median skin tone.
+            // Let's filter out any pixels that deviate more than 40 intensity points from the median.
+            const validSkinPixels = intensities.filter(val => Math.abs(val - median) < 40);
+
+            // If less than a quarter of the patch is valid, return 0 (bad patch)
+            if (validSkinPixels.length < intensities.length * 0.25) return 0;
+
+            // Now compute mean and variance on ONLY the clean skin pixels
+            let validSum = 0;
+            for (const val of validSkinPixels) validSum += val;
+            const mean = validSum / validSkinPixels.length;
 
             let varianceSum = 0;
-            for (let idx = 0; idx < intensities.length; idx++) {
-                varianceSum += Math.pow(intensities[idx] - mean, 2);
+            for (const val of validSkinPixels) {
+                varianceSum += Math.pow(val - mean, 2);
             }
 
-            return Math.sqrt(varianceSum / intensities.length);
+            return Math.sqrt(varianceSum / validSkinPixels.length);
         } catch (e) {
             return 0; // Canvas cross-origin taint or bounds issue
         }
     };
 
-    // Grab specific central sub-mesh patches: Left Cheek (50), Right Cheek (280), Forehead (9)
-    const padding = Math.floor(width * 0.05); // 5% of resolution square
+    // Lower Cheek Patches (Further away from glasses rims / under-eye shadows)
+    // 116 is mid-lower cheek left, 345 is mid-lower cheek right
+    // Also including 50 and 280 again since the multi-pass median outlier filter handles glasses dynamically!
+    // And 152 for chin!
+    const padding = Math.floor(width * 0.03);
 
-    const cheek1 = landmarks[50];
-    const cheek2 = landmarks[280];
-    const forehead = landmarks[9];
+    const cheek1 = landmarks[116];
+    const cheek2 = landmarks[345];
+    const cheek3 = landmarks[50];
+    const cheek4 = landmarks[280];
+    const chin = landmarks[152];
 
     const dev1 = computeSTDEV(cheek1.x * width, cheek1.y * height, padding);
     const dev2 = computeSTDEV(cheek2.x * width, cheek2.y * height, padding);
-    const dev3 = computeSTDEV(forehead.x * width, forehead.y * height, padding);
+    const dev3 = computeSTDEV(cheek3.x * width, cheek3.y * height, padding);
+    const dev4 = computeSTDEV(cheek4.x * width, cheek4.y * height, padding);
+    const dev5 = computeSTDEV(chin.x * width, chin.y * height, padding);
 
     // Filter out dead 0 readings (if out of bounds)
-    const devs = [dev1, dev2, dev3].filter(d => d > 0);
+    const devs = [dev1, dev2, dev3, dev4, dev5].filter(d => d > 0);
     const avgDev = devs.length > 0 ? devs.reduce((a, b) => a + b) / devs.length : 0;
 
     // Normalizing standard deviation
