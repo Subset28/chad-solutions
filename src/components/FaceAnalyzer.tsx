@@ -43,6 +43,7 @@ export default function FaceAnalyzer() {
     const [analyzedImageWithLandmarks, setAnalyzedImageWithLandmarks] = useState<string | null>(null);
     const [selectedMetric, setSelectedMetric] = useState<keyof MetricScores | null>(null);
     const [isAnalyzing, setIsAnalyzing] = useState(false);
+    const [urlInput, setUrlInput] = useState('');
 
     useEffect(() => {
         // Suppress MediaPipe/TensorFlow Lite info messages
@@ -645,6 +646,44 @@ export default function FaceAnalyzer() {
         }
     };
 
+    const handleUrlUpload = async () => {
+        const trimmedUrl = urlInput.trim();
+        if (!trimmedUrl || !faceLandmarker) return;
+
+        setIsAnalyzing(true);
+        try {
+            // Load image via a CORS proxy (allorigins) into a canvas to extract a data URL
+            const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(trimmedUrl)}`;
+            const img = new window.Image();
+            img.crossOrigin = 'anonymous';
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                const ctx = canvas.getContext('2d');
+                if (!ctx) { setIsAnalyzing(false); return; }
+                ctx.drawImage(img, 0, 0);
+                try {
+                    const dataUrl = canvas.toDataURL('image/jpeg', 0.95);
+                    setUploadedImage(dataUrl);
+                    setUrlInput('');
+                    analyzeImage(dataUrl);
+                } catch {
+                    setIsAnalyzing(false);
+                    alert('⚠️ Could not load image from that URL (CORS blocked). Try uploading the image directly instead.');
+                }
+            };
+            img.onerror = () => {
+                setIsAnalyzing(false);
+                alert('⚠️ Failed to load image from URL. Make sure the URL is a direct link to an image file (e.g. .jpg, .png).');
+            };
+            img.src = proxyUrl;
+        } catch {
+            setIsAnalyzing(false);
+            alert('⚠️ Failed to fetch image from URL.');
+        }
+    };
+
     const getRating = (metric: keyof MetricScores, value: number): { text: string, color: string } => {
         // Rating logic based on ideal ranges
         const ratings = {
@@ -973,6 +1012,33 @@ export default function FaceAnalyzer() {
                                     >
                                         {isAnalyzing ? 'Scanning...' : 'Choose Image'}
                                     </button>
+
+                                    {/* URL Upload */}
+                                    <div className="w-full max-w-xs">
+                                        <div className="flex items-center gap-2 my-2">
+                                            <div className="flex-1 h-px bg-zinc-700" />
+                                            <span className="text-xs text-zinc-500 font-medium">OR</span>
+                                            <div className="flex-1 h-px bg-zinc-700" />
+                                        </div>
+                                        <div className="flex gap-2">
+                                            <input
+                                                type="url"
+                                                placeholder="Paste image URL..."
+                                                value={urlInput}
+                                                onChange={(e) => setUrlInput(e.target.value)}
+                                                onKeyDown={(e) => e.key === 'Enter' && handleUrlUpload()}
+                                                disabled={!faceLandmarker || isAnalyzing}
+                                                className="flex-1 bg-zinc-800 border border-zinc-700 text-white text-sm rounded-xl px-3 py-2 placeholder-zinc-500 focus:outline-none focus:border-blue-500 disabled:opacity-50"
+                                            />
+                                            <button
+                                                onClick={handleUrlUpload}
+                                                disabled={!faceLandmarker || isAnalyzing || !urlInput.trim()}
+                                                className="px-3 py-2 bg-blue-600 hover:bg-blue-500 disabled:opacity-40 text-white rounded-xl text-sm font-bold transition-colors"
+                                            >
+                                                ↗
+                                            </button>
+                                        </div>
+                                    </div>
                                 </>
                             )}
                             {!faceLandmarker && <p className="text-xs text-yellow-500">Loading models...</p>}
