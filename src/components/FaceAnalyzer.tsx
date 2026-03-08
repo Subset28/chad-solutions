@@ -3,6 +3,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Webcam from 'react-webcam';
 import { FilesetResolver, FaceLandmarker } from '@mediapipe/tasks-vision';
+import { metricExplanations } from '@/utils/explanations';
+import { metricRecommendations } from '@/utils/recommendations';
 import {
     calculateCanthalTilt,
     calculateFwFhRatio,
@@ -42,6 +44,7 @@ export default function FaceAnalyzer() {
     const [uploadedImage, setUploadedImage] = useState<string | null>(null);
     const [analyzedImageWithLandmarks, setAnalyzedImageWithLandmarks] = useState<string | null>(null);
     const [selectedMetric, setSelectedMetric] = useState<keyof MetricScores | null>(null);
+    const [expandedMetric, setExpandedMetric] = useState<string | null>(null);
     const [isAnalyzing, setIsAnalyzing] = useState(false);
     const [urlInput, setUrlInput] = useState('');
 
@@ -1044,131 +1047,259 @@ export default function FaceAnalyzer() {
                             {!faceLandmarker && <p className="text-xs text-yellow-500">Loading models...</p>}
                         </div>
                     ) : (
-                        <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-                            {/* Header Score */}
-                            <div className="bg-zinc-900/50 rounded-3xl p-6 border border-zinc-800 animate-in fade-in slide-in-from-bottom-4 duration-700">
-                                <div className="flex justify-between items-start mb-6 border-b border-zinc-800 pb-4">
-                                    <h3 className="text-sm font-medium text-zinc-400 uppercase tracking-wider">
-                                        {auditResult.profileType === 'composite' ? 'COMBINED COMPOSITE SCORE' : 'OVERALL SCORE'}
-                                    </h3>
-                                    <div className="flex items-baseline gap-2 mt-1">
-                                        <span className={`text-5xl font-black tracking-tighter bg-gradient-to-r ${auditResult.psl.score >= 7.0 ? 'from-amber-300 via-yellow-500 to-amber-200' :
-                                            auditResult.psl.score >= 6.0 ? 'from-green-400 to-emerald-500' :
-                                                auditResult.psl.score >= 4.0 ? 'from-blue-400 to-indigo-500' :
-                                                    'from-gray-400 to-zinc-500'
-                                            } bg-clip-text text-transparent`}>
-                                            {auditResult.psl.score.toFixed(1)}<span className="text-3xl text-zinc-600 font-bold ml-1">/ 8.0</span>
-                                        </span>
-                                        <span className="text-xl font-bold text-zinc-500">PSL</span>
+                        <div className="space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-700">
+
+                            {/* Score Hero Card */}
+                            {(() => {
+                                const s = auditResult.psl.score;
+                                const gradient = s >= 7.0
+                                    ? 'from-amber-400 via-yellow-300 to-amber-500'
+                                    : s >= 6.0 ? 'from-emerald-400 to-green-500'
+                                        : s >= 5.0 ? 'from-sky-400 to-blue-500'
+                                            : s >= 4.0 ? 'from-blue-500 to-indigo-600'
+                                                : 'from-zinc-500 to-zinc-600';
+                                const barColor = s >= 7.0 ? '#F59E0B' : s >= 6.0 ? '#10B981' : s >= 5.0 ? '#38BDF8' : s >= 4.0 ? '#6366F1' : '#71717A';
+                                const pct = (s / 8) * 100;
+                                return (
+                                    <div className="relative rounded-3xl overflow-hidden border border-zinc-800 bg-gradient-to-br from-zinc-900 to-zinc-950 p-7">
+                                        <div className="absolute inset-0 opacity-5 bg-gradient-to-br from-white to-transparent pointer-events-none" />
+                                        <div className="flex items-start justify-between mb-5">
+                                            <div>
+                                                <p className="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-1">
+                                                    {auditResult.profileType === 'composite' ? '⚡ Composite Score' : '📸 Scan Score'}
+                                                </p>
+                                                <div className="flex items-baseline gap-2">
+                                                    <span className={`text-6xl font-black bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}>
+                                                        {s.toFixed(1)}
+                                                    </span>
+                                                    <span className="text-2xl font-bold text-zinc-600">/ 8.0 PSL</span>
+                                                </div>
+                                                <p className="text-sm font-medium text-zinc-300 mt-1">{auditResult.psl.tier}</p>
+                                            </div>
+                                            <button
+                                                onClick={() => { setAuditResult(null); setScans([]); setAnalyzedImageWithLandmarks(null); setUploadedImage(null); }}
+                                                className="text-xs font-semibold text-zinc-600 hover:text-red-400 transition-colors border border-zinc-700 hover:border-red-500/50 rounded-lg px-3 py-1.5"
+                                            >
+                                                Reset
+                                            </button>
+                                        </div>
+
+                                        {/* Score Bar */}
+                                        <div className="h-2.5 bg-zinc-800 rounded-full overflow-hidden">
+                                            <div
+                                                className="h-full rounded-full transition-all duration-1000"
+                                                style={{ width: `${pct}%`, background: barColor, boxShadow: `0 0 12px ${barColor}80` }}
+                                            />
+                                        </div>
+
+                                        {/* Tick marks */}
+                                        <div className="flex justify-between mt-1.5 px-0.5">
+                                            {[1, 2, 3, 4, 5, 6, 7, 8].map(n => (
+                                                <span key={n} className={`text-[10px] font-mono ${s >= n ? 'text-zinc-300' : 'text-zinc-700'}`}>{n}</span>
+                                            ))}
+                                        </div>
+
+                                        {/* Score breakdown pills */}
+                                        <div className="mt-4 flex flex-wrap gap-1.5">
+                                            {auditResult.psl.breakdown.map((item, i) => {
+                                                const isPos = item.includes('+');
+                                                const isNeg = item.includes('-') && !item.includes('Base');
+                                                return (
+                                                    <span key={i} className={`text-[11px] font-medium px-2 py-0.5 rounded-full border ${isPos ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
+                                                        : isNeg ? 'bg-red-500/10 border-red-500/30 text-red-400'
+                                                            : 'bg-zinc-800 border-zinc-700 text-zinc-400'
+                                                        }`}>{item}</span>
+                                                );
+                                            })}
+                                        </div>
                                     </div>
-                                    <div className="text-zinc-300 font-medium mt-1">{auditResult.psl.tier}</div>
-                                </div>
-                                <div className="flex flex-col items-end gap-2 text-right">
-                                    <button
-                                        onClick={() => {
-                                            setAuditResult(null);
-                                            setScans([]);
-                                            setAnalyzedImageWithLandmarks(null);
-                                            setUploadedImage(null);
-                                        }}
-                                        className="text-xs font-medium text-zinc-500 hover:text-red-400 transition-colors underline"
-                                    >
-                                        RESET ALL SCANS
-                                    </button>
-                                </div>
+                                );
+                            })()}
+
+                            {/* Metric Cards */}
+                            <div className="space-y-2">
+                                <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-widest px-1">Feature Analysis</h3>
+                                {Object.entries(auditResult.metrics).map(([key, value]) => {
+                                    const metricKey = key as keyof MetricScores;
+                                    const rating = getRating(metricKey, value);
+                                    const idealRange = getIdealRange(metricKey);
+                                    const label = key.replace(/([A-Z])/g, ' $1').trim();
+                                    const isExpanded = expandedMetric === key;
+                                    const explanation = metricExplanations[key];
+                                    const recs = metricRecommendations[key];
+
+                                    const sideOnlyMetrics = ['chinProjection', 'maxillaryProtrusion', 'orbitalRimProtrusion', 'browRidgeProtrusion', 'infraorbitalRimPosition', 'doubleChinRisk'];
+                                    const frontOnlyMetrics = ['facialAsymmetry', 'ipdRatio', 'eyeSeparationRatio', 'canthalTilt', 'fwfhRatio', 'noseWidthRatio', 'mouthToNoseWidthRatio', 'bigonialWidthRatio', 'cheekboneProminence', 'skinQuality', 'facialTension'];
+
+                                    const isSideMetric = sideOnlyMetrics.includes(key);
+                                    const isFrontMetric = frontOnlyMetrics.includes(key);
+                                    let isValidForProfile = true;
+                                    let profileNote = '';
+                                    if (auditResult.profileType === 'front' && isSideMetric) { isValidForProfile = false; profileNote = 'Side profile required'; }
+                                    else if (auditResult.profileType === 'side' && isFrontMetric) { isValidForProfile = false; profileNote = 'Front profile required'; }
+
+                                    const isGood = rating.color.includes('green');
+                                    const isOk = rating.color.includes('blue') || rating.color.includes('yellow');
+                                    const isBad = rating.color.includes('orange') || rating.color.includes('red');
+                                    const borderColor = !isValidForProfile ? 'border-zinc-800' : isGood ? 'border-emerald-500/40' : isBad ? 'border-red-500/40' : 'border-zinc-700';
+                                    const bgHover = !isValidForProfile ? '' : isGood ? 'hover:bg-emerald-950/20' : isBad ? 'hover:bg-red-950/20' : 'hover:bg-zinc-800/50';
+
+                                    return (
+                                        <div
+                                            key={key}
+                                            className={`rounded-2xl border ${borderColor} bg-zinc-900 transition-all duration-200 overflow-hidden ${!isValidForProfile ? 'opacity-30' : 'cursor-pointer ' + bgHover}`}
+                                            onClick={() => isValidForProfile && setExpandedMetric(isExpanded ? null : key)}
+                                        >
+                                            {/* Row */}
+                                            <div className="flex items-center gap-3 px-4 py-3.5">
+                                                {/* Status dot */}
+                                                <div className={`w-2 h-2 rounded-full flex-shrink-0 ${!isValidForProfile ? 'bg-zinc-700' : isGood ? 'bg-emerald-400' : isBad ? 'bg-red-400' : 'bg-yellow-400'}`} />
+                                                <div className="flex-1 min-w-0">
+                                                    <div className="flex items-baseline justify-between gap-2">
+                                                        <span className="text-sm font-semibold text-white capitalize truncate">{explanation?.title || label}</span>
+                                                        <span className={`text-xs font-bold flex-shrink-0 ${isValidForProfile ? rating.color : 'text-zinc-600'}`}>
+                                                            {isValidForProfile ? rating.text : profileNote}
+                                                        </span>
+                                                    </div>
+                                                    <div className="flex items-center justify-between mt-0.5">
+                                                        <span className="text-[11px] text-zinc-500">Ideal: {idealRange}</span>
+                                                        {isValidForProfile && (
+                                                            <span className="text-[11px] font-mono text-zinc-400">{typeof value === 'number' ? value.toFixed(2) : value}</span>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                                {isValidForProfile && (
+                                                    <svg className={`w-4 h-4 text-zinc-600 flex-shrink-0 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                                    </svg>
+                                                )}
+                                            </div>
+
+                                            {/* Expanded Panel */}
+                                            {isExpanded && isValidForProfile && (
+                                                <div className="border-t border-zinc-800 px-4 pb-5 pt-4 space-y-4 text-sm">
+                                                    {/* What it means */}
+                                                    {explanation && (
+                                                        <div>
+                                                            <p className="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-1.5">What this measures</p>
+                                                            <p className="text-zinc-300 leading-relaxed">{explanation.whatItIs}</p>
+                                                            <p className="text-zinc-400 leading-relaxed mt-2">{explanation.scientificContext}</p>
+                                                            {explanation.blackpillNote && (
+                                                                <p className="text-amber-400/80 text-xs leading-relaxed mt-2 italic">{explanation.blackpillNote}</p>
+                                                            )}
+                                                        </div>
+                                                    )}
+
+                                                    {/* Recommendations — only show for non-perfect metrics */}
+                                                    {recs && !isGood && (
+                                                        <div className="space-y-3 pt-1">
+                                                            <p className="text-xs font-bold text-zinc-500 uppercase tracking-wider">How to improve</p>
+
+                                                            {recs.surgical.length > 0 && (
+                                                                <div className="bg-red-950/20 border border-red-500/20 rounded-xl p-3">
+                                                                    <p className="text-xs font-bold text-red-400 mb-2">🔪 Surgical Options</p>
+                                                                    <ul className="space-y-1.5">
+                                                                        {recs.surgical.map((r, i) => (
+                                                                            <li key={i} className="text-xs text-zinc-300 leading-relaxed flex gap-2">
+                                                                                <span className="text-red-500/60 flex-shrink-0 mt-0.5">•</span>
+                                                                                {r}
+                                                                            </li>
+                                                                        ))}
+                                                                    </ul>
+                                                                </div>
+                                                            )}
+
+                                                            {recs.nonSurgical.length > 0 && (
+                                                                <div className="bg-blue-950/20 border border-blue-500/20 rounded-xl p-3">
+                                                                    <p className="text-xs font-bold text-blue-400 mb-2">💊 Non-Surgical Options</p>
+                                                                    <ul className="space-y-1.5">
+                                                                        {recs.nonSurgical.map((r, i) => (
+                                                                            <li key={i} className="text-xs text-zinc-300 leading-relaxed flex gap-2">
+                                                                                <span className="text-blue-500/60 flex-shrink-0 mt-0.5">•</span>
+                                                                                {r}
+                                                                            </li>
+                                                                        ))}
+                                                                    </ul>
+                                                                </div>
+                                                            )}
+
+                                                            {recs.lifestyle.length > 0 && (
+                                                                <div className="bg-emerald-950/20 border border-emerald-500/20 rounded-xl p-3">
+                                                                    <p className="text-xs font-bold text-emerald-400 mb-2">🌱 Lifestyle Changes</p>
+                                                                    <ul className="space-y-1.5">
+                                                                        {recs.lifestyle.map((r, i) => (
+                                                                            <li key={i} className="text-xs text-zinc-300 leading-relaxed flex gap-2">
+                                                                                <span className="text-emerald-500/60 flex-shrink-0 mt-0.5">•</span>
+                                                                                {r}
+                                                                            </li>
+                                                                        ))}
+                                                                    </ul>
+                                                                </div>
+                                                            )}
+
+                                                            <p className="text-[11px] text-zinc-500 italic leading-relaxed border-t border-zinc-800 pt-3">{recs.outlook}</p>
+                                                        </div>
+                                                    )}
+
+                                                    {isGood && (
+                                                        <div className="flex items-center gap-2 text-emerald-400/80 text-xs italic">
+                                                            <span>✓</span> This feature is within the ideal range. No intervention needed.
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            )}
+                                        </div>
+                                    );
+                                })}
                             </div>
 
-                            {auditResult.profileType === 'composite' && (
-                                <div className="mb-6 p-3 bg-blue-900/20 border border-blue-500/30 rounded-xl flex items-start gap-3">
-                                    <div className="text-xl mt-0.5">🧠</div>
-                                    <div>
-                                        <h4 className="text-sm font-bold text-blue-400">Smart Aggregation Active</h4>
-                                        <p className="text-xs text-blue-200/70 mt-1">This score merges your distinct profile angles into a highly precise composite rating. Missing variables are averaged safely.</p>
+                            {/* PSL Boost Roadmap */}
+                            {(() => {
+                                const flawed = Object.entries(auditResult.metrics).filter(([key, value]) => {
+                                    const metricKey = key as keyof MetricScores;
+                                    const rating = getRating(metricKey, value);
+                                    return rating.color.includes('orange') || rating.color.includes('red');
+                                });
+                                if (flawed.length === 0) return null;
+                                return (
+                                    <div className="rounded-2xl border border-amber-500/20 bg-amber-950/10 p-5">
+                                        <div className="flex items-center gap-2 mb-3">
+                                            <span className="text-lg">🚀</span>
+                                            <h3 className="text-sm font-bold text-amber-400">Your PSL Boost Roadmap</h3>
+                                        </div>
+                                        <p className="text-xs text-zinc-400 mb-4 leading-relaxed">
+                                            The following metrics are impacting your score the most. Click any item above to see specific steps you can take.
+                                        </p>
+                                        <div className="space-y-2">
+                                            {flawed.map(([key]) => {
+                                                const explanation = metricExplanations[key];
+                                                const rating = getRating(key as keyof MetricScores, auditResult.metrics[key as keyof MetricScores]);
+                                                const isBad = rating.color.includes('red');
+                                                return (
+                                                    <button
+                                                        key={key}
+                                                        onClick={() => setExpandedMetric(expandedMetric === key ? null : key)}
+                                                        className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-amber-500/30 hover:bg-amber-950/10 transition-all text-left"
+                                                    >
+                                                        <span className={`text-xs px-1.5 py-0.5 rounded-md font-bold ${isBad ? 'bg-red-500/20 text-red-400' : 'bg-yellow-500/20 text-yellow-400'}`}>
+                                                            {isBad ? 'FIX' : 'IMPROVE'}
+                                                        </span>
+                                                        <span className="text-sm text-zinc-200 font-medium">{explanation?.title || key.replace(/([A-Z])/g, ' $1').trim()}</span>
+                                                        <svg className="w-3.5 h-3.5 text-zinc-600 ml-auto flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                        </svg>
+                                                    </button>
+                                                );
+                                            })}
+                                        </div>
                                     </div>
-                                </div>
-                            )}
+                                );
+                            })()}
 
-                            {/* Detailed Metrics Table */}
-                            <div className="overflow-x-auto">
-                                <table className="w-full text-sm">
-                                    <thead>
-                                        <tr className="border-b border-zinc-800">
-                                            <th className="text-left py-3 px-2 text-zinc-500 font-semibold">Feature</th>
-                                            <th className="text-left py-3 px-2 text-zinc-500 font-semibold">Rating</th>
-                                            <th className="text-right py-3 px-2 text-zinc-500 font-semibold">Measurement</th>
-                                            <th className="text-right py-3 px-2 text-zinc-500 font-semibold">Ideal</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {Object.entries(auditResult.metrics).map(([key, value]) => {
-                                            const metricKey = key as keyof MetricScores;
-                                            const rating = getRating(metricKey, value);
-                                            const idealRange = getIdealRange(metricKey);
-                                            const explanation = getMetricExplanation(metricKey, value as number);
-
-                                            const sideOnlyMetrics = ['chinProjection', 'maxillaryProtrusion', 'orbitalRimProtrusion', 'browRidgeProtrusion', 'infraorbitalRimPosition', 'doubleChinRisk'];
-                                            const frontOnlyMetrics = ['facialAsymmetry', 'ipdRatio', 'eyeSeparationRatio', 'canthalTilt', 'fwfhRatio', 'noseWidthRatio', 'mouthToNoseWidthRatio', 'bigonialWidthRatio', 'cheekboneProminence', 'skinQuality', 'facialTension'];
-
-                                            const isSideMetric = sideOnlyMetrics.includes(metricKey);
-                                            const isFrontMetric = frontOnlyMetrics.includes(metricKey);
-
-                                            let isValidForProfile = true;
-                                            let profileWarning = '';
-                                            if (auditResult.profileType === 'front' && isSideMetric) {
-                                                isValidForProfile = false;
-                                                profileWarning = 'Requires Side Profile';
-                                            } else if (auditResult.profileType === 'side' && isFrontMetric) {
-                                                isValidForProfile = false;
-                                                profileWarning = 'Requires Frontal Profile';
-                                            }
-
-                                            return (
-                                                <tr key={key} className={`border-b border-zinc-800/50 hover:bg-zinc-800/30 transition-colors ${!isValidForProfile ? 'opacity-30' : ''}`}>
-                                                    <td className="py-4 px-4 font-medium text-white capitalize">
-                                                        {key.replace(/([A-Z])/g, ' $1').trim()}
-                                                    </td>
-                                                    <td className={`py-4 px-4 font-semibold ${isValidForProfile ? rating.color : 'text-zinc-600'}`}>
-                                                        {isValidForProfile ? rating.text : profileWarning}
-                                                    </td>
-                                                    <td className="py-4 px-4 text-zinc-400 font-mono">
-                                                        {isValidForProfile ? (typeof value === 'number' ? value.toFixed(2) : value) : '—'}
-                                                    </td>
-                                                    <td className="py-4 px-4 text-zinc-500 text-sm">
-                                                        {idealRange}
-                                                    </td>
-                                                </tr>
-                                            );
-                                        })}
-                                    </tbody>
-                                </table>
-
-                                {/* Explanations Section */}
-                                <div className="mt-8 space-y-4">
-                                    <h3 className="text-xl font-bold text-white mb-4">📊 Why These Metrics Matter</h3>
-                                    <div className="space-y-3">
-                                        {Object.entries(auditResult.metrics).map(([key, value]) => {
-                                            const metricKey = key as keyof MetricScores;
-                                            const explanation = getMetricExplanation(metricKey, value as number);
-
-                                            return (
-                                                <details key={key} className="bg-zinc-800/50 rounded-lg p-4 cursor-pointer hover:bg-zinc-800/70 transition-colors">
-                                                    <summary className="font-semibold text-white capitalize list-none flex items-center justify-between">
-                                                        <span>{key.replace(/([A-Z])/g, ' $1').trim()}</span>
-                                                        <span className="text-zinc-500 text-sm">▼</span>
-                                                    </summary>
-                                                    <p className="mt-3 text-sm text-zinc-400 leading-relaxed">
-                                                        {explanation}
-                                                    </p>
-                                                </details>
-                                            );
-                                        })}
-                                    </div>
-                                </div>
-                            </div>
-
+                            {/* New Scan */}
                             <button
-                                onClick={() => { setAuditResult(null); setIsAnalyzing(false); setUploadedImage(null); setAnalyzedImageWithLandmarks(null); }}
-                                className="w-full py-4 rounded-xl bg-zinc-800 text-white font-bold hover:bg-zinc-700 transition-colors"
+                                onClick={() => { setAuditResult(null); setIsAnalyzing(false); setUploadedImage(null); setAnalyzedImageWithLandmarks(null); setExpandedMetric(null); }}
+                                className="w-full py-4 rounded-2xl bg-zinc-800 hover:bg-zinc-700 text-white font-bold transition-colors border border-zinc-700 hover:border-zinc-500"
                             >
                                 New Scan
                             </button>
