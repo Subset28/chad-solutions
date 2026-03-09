@@ -46,6 +46,12 @@ export default function FaceAnalyzer() {
     const [selectedMetric, setSelectedMetric] = useState<keyof MetricScores | null>(null);
     const [expandedMetric, setExpandedMetric] = useState<string | null>(null);
     const [isAnalyzing, setIsAnalyzing] = useState(false);
+
+    const [appMode, setAppMode] = useState<'single' | 'compare'>('single');
+    const [compareSlot, setCompareSlot] = useState<'before' | 'after'>('before');
+    const [beforeScan, setBeforeScan] = useState<{ metrics: MetricScores, psl: { score: number, breakdown: string[], tier: string }, imageUrl: string, profileType: 'front' | 'side' | 'composite' } | null>(null);
+    const [afterScan, setAfterScan] = useState<{ metrics: MetricScores, psl: { score: number, breakdown: string[], tier: string }, imageUrl: string, profileType: 'front' | 'side' | 'composite' } | null>(null);
+
     const [urlInput, setUrlInput] = useState('');
     const [gender, setGender] = useState<'male' | 'female'>('male');
 
@@ -472,27 +478,35 @@ export default function FaceAnalyzer() {
                     profileType: profileType
                 };
 
-                setScans(prev => {
-                    const updated = [...prev, newScan];
-                    const compositeMetrics = calculateAggregatedMetrics(updated);
+                if (appMode === 'single') {
+                    setScans(prev => {
+                        const updated = [...prev, newScan];
+                        const compositeMetrics = calculateAggregatedMetrics(updated);
 
-                    if (compositeMetrics) {
-                        const hasFront = updated.some(s => s.profileType === 'front');
-                        const hasSide = updated.some(s => s.profileType === 'side');
-                        const combinedType = (hasFront && hasSide) ? 'composite' : profileType;
+                        if (compositeMetrics) {
+                            const hasFront = updated.some(s => s.profileType === 'front');
+                            const hasSide = updated.some(s => s.profileType === 'side');
+                            const combinedType = (hasFront && hasSide) ? 'composite' : profileType;
 
-                        const mergedScore = calculatePSLScore(compositeMetrics, combinedType);
+                            const mergedScore = calculatePSLScore(compositeMetrics, combinedType);
 
-                        setAuditResult({
-                            metrics: compositeMetrics,
-                            psl: mergedScore,
-                            imageUrl: annotatedImage,
-                            profileType: combinedType
-                        });
+                            setAuditResult({
+                                metrics: compositeMetrics,
+                                psl: mergedScore,
+                                imageUrl: annotatedImage,
+                                profileType: combinedType
+                            });
+                        }
+
+                        return updated;
+                    });
+                } else if (appMode === 'compare') {
+                    if (compareSlot === 'before') {
+                        setBeforeScan(newScan);
+                    } else {
+                        setAfterScan(newScan);
                     }
-
-                    return updated;
-                });
+                }
 
                 setAnalyzedImageWithLandmarks(annotatedImage);
                 setIsAnalyzing(false);
@@ -645,6 +659,26 @@ export default function FaceAnalyzer() {
                 analyzeImage(imageSrc);
             };
             reader.readAsDataURL(file);
+        }
+    };
+
+    const generateFinalReport = () => {
+        if (scans.length === 0) return;
+
+        const compositeMetrics = calculateAggregatedMetrics(scans);
+        if (compositeMetrics) {
+            const hasFront = scans.some(s => s.profileType === 'front');
+            const hasSide = scans.some(s => s.profileType === 'side');
+            const combinedType = (hasFront && hasSide) ? 'composite' : scans[scans.length - 1].profileType;
+
+            const mergedScore = calculatePSLScore(compositeMetrics, gender, combinedType);
+
+            setAuditResult({
+                metrics: compositeMetrics,
+                psl: mergedScore,
+                imageUrl: scans[scans.length - 1].imageUrl,
+                profileType: combinedType
+            });
         }
     };
 
@@ -1270,3 +1304,5 @@ export default function FaceAnalyzer() {
         </div>
     );
 }
+
+
