@@ -47,6 +47,7 @@ export default function FaceAnalyzer() {
     const [expandedMetric, setExpandedMetric] = useState<string | null>(null);
     const [isAnalyzing, setIsAnalyzing] = useState(false);
     const [urlInput, setUrlInput] = useState('');
+    const [gender, setGender] = useState<'male' | 'female'>('male');
 
     useEffect(() => {
         // Suppress MediaPipe/TensorFlow Lite info messages
@@ -384,9 +385,7 @@ export default function FaceAnalyzer() {
                     facialTension: tensionData.tensionScore,
                     skinQuality: skinQualityData.clarityScore
                 };
-
-                const pslData = calculatePSLScore(metrics);
-
+                const pslData = calculatePSLScore(metrics, gender);
                 // Draw landmarks on a canvas matching the ORIGINAL image
                 // This avoids any dimension mismatch between normalized canvas and original
                 const drawLandmarksOnOriginal = (): string => {
@@ -687,18 +686,52 @@ export default function FaceAnalyzer() {
         }
     };
 
-    const getRating = (metric: keyof MetricScores, value: number): { text: string, color: string } => {
-        // Rating logic based on ideal ranges
-        const ratings = {
-            canthalTilt: value >= 4 && value <= 6 ? { text: 'perfect', color: 'text-green-400' } : value > 2 ? { text: 'good', color: 'text-blue-400' } : value < 0 ? { text: 'negative canthal tilt', color: 'text-red-400' } : { text: 'neutral', color: 'text-yellow-400' },
-            fwfhRatio: value >= 1.8 ? { text: 'perfect', color: 'text-green-400' } : value >= 1.70 ? { text: 'good', color: 'text-blue-400' } : { text: 'narrow face', color: 'text-orange-400' },
+    const getRating = (metric: keyof MetricScores, value: number, gender: 'male' | 'female' = 'male'): { text: string, color: string } => {
+        if (gender === 'female') {
+            const fRatings: Record<string, { text: string, color: string }> = {
+                canthalTilt: value >= 5 && value <= 8 ? { text: 'perfect feline tilt', color: 'text-green-400' } : value > 2 ? { text: 'good', color: 'text-blue-400' } : value < 0 ? { text: 'negative tilt', color: 'text-red-400' } : { text: 'neutral', color: 'text-yellow-400' },
+                fwfhRatio: value >= 1.70 ? { text: 'perfect (heart/oval)', color: 'text-green-400' } : value >= 1.60 ? { text: 'good', color: 'text-blue-400' } : { text: 'narrow face', color: 'text-orange-400' },
+                midfaceRatio: value >= 0.9 && value <= 1.05 ? { text: 'perfect compact midface', color: 'text-green-400' } : value <= 1.15 ? { text: 'good', color: 'text-blue-400' } : { text: 'long midface', color: 'text-red-400' },
+                gonialAngle: value >= 120 && value <= 135 ? { text: 'perfect feminine angle', color: 'text-green-400' } : value >= 110 && value <= 140 ? { text: 'good', color: 'text-blue-400' } : { text: 'square/steep', color: 'text-orange-400' },
+                chinToPhiltrumRatio: value >= 2.0 && value <= 2.25 ? { text: 'perfect', color: 'text-green-400' } : value < 1.8 ? { text: 'long philtrum', color: 'text-red-400' } : value > 2.5 ? { text: 'short philtrum / long chin', color: 'text-orange-400' } : { text: 'acceptable', color: 'text-blue-400' },
+                mouthToNoseWidthRatio: value >= 1.45 && value <= 1.6 ? { text: 'perfect', color: 'text-green-400' } : value >= 1.35 ? { text: 'good', color: 'text-blue-400' } : { text: 'narrow mouth', color: 'text-orange-400' },
+                bigonialWidthRatio: value >= 1.15 && value <= 1.3 ? { text: 'perfect oval jaw', color: 'text-green-400' } : value >= 1.1 ? { text: 'good', color: 'text-blue-400' } : value > 1.35 ? { text: 'very wide jaw', color: 'text-orange-400' } : { text: 'narrow', color: 'text-orange-400' },
+                lowerThirdRatio: value >= 0.58 && value <= 0.65 ? { text: 'perfect balance', color: 'text-green-400' } : value >= 0.55 ? { text: 'good', color: 'text-blue-400' } : { text: 'suboptimal lower third', color: 'text-orange-400' },
+                palpebralFissureLength: value >= 2.8 && value <= 3.5 ? { text: 'perfect doe eyes', color: 'text-green-400' } : value > 3.5 ? { text: 'long fissures', color: 'text-blue-400' } : { text: 'round eyes', color: 'text-yellow-400' },
+                eyeSeparationRatio: value >= 0.45 && value <= 0.47 ? { text: 'perfect', color: 'text-green-400' } : value >= 0.42 && value <= 0.49 ? { text: 'good', color: 'text-blue-400' } : { text: 'suboptimal spacing', color: 'text-yellow-400' },
+                eyeToMouthAngle: value >= 47 && value <= 50 ? { text: 'perfect', color: 'text-green-400' } : value < 47 ? { text: 'shallow', color: 'text-yellow-400' } : { text: 'steep', color: 'text-yellow-400' },
+                lipRatio: value >= 1.60 && value <= 1.70 ? { text: 'perfect', color: 'text-green-400' } : value >= 1.40 && value <= 2.00 ? { text: 'acceptable', color: 'text-blue-400' } : { text: 'suboptimal lip ratio', color: 'text-orange-400' },
+                facialAsymmetry: value >= 95 ? { text: 'perfectly symmetric', color: 'text-green-400' } : value >= 90 ? { text: 'very symmetric', color: 'text-blue-400' } : value >= 80 ? { text: 'acceptable symmetry', color: 'text-yellow-400' } : { text: 'asymmetric', color: 'text-orange-400' },
+                ipdRatio: value >= 0.45 && value <= 0.47 ? { text: 'ideal eye spacing', color: 'text-green-400' } : value >= 0.42 && value <= 0.49 ? { text: 'good', color: 'text-blue-400' } : { text: 'suboptimal spacing', color: 'text-yellow-400' },
+                facialThirdsRatio: value >= 95 ? { text: 'perfect thirds', color: 'text-green-400' } : value >= 85 ? { text: 'good proportions', color: 'text-blue-400' } : value >= 75 ? { text: 'acceptable', color: 'text-yellow-400' } : { text: 'unbalanced thirds', color: 'text-orange-400' },
+                foreheadHeightRatio: value >= 0.30 && value <= 0.35 ? { text: 'ideal forehead', color: 'text-green-400' } : value > 0.38 ? { text: 'fivehead (large)', color: 'text-orange-400' } : value < 0.28 ? { text: 'short forehead', color: 'text-yellow-400' } : { text: 'acceptable', color: 'text-blue-400' },
+                noseWidthRatio: value >= 0.22 && value <= 0.28 ? { text: 'ideal narrow nose', color: 'text-green-400' } : value > 0.32 ? { text: 'wide nose', color: 'text-orange-400' } : value < 0.20 ? { text: 'very narrow', color: 'text-yellow-400' } : { text: 'acceptable', color: 'text-blue-400' },
+                cheekboneProminence: value >= 0.45 && value <= 0.52 ? { text: 'prominent cheekbones', color: 'text-green-400' } : value >= 0.42 ? { text: 'good projection', color: 'text-blue-400' } : { text: 'flat cheekbones', color: 'text-yellow-400' },
+                hairlineRecession: value >= 95 ? { text: 'full hairline', color: 'text-green-400' } : value >= 85 ? { text: 'good hairline', color: 'text-blue-400' } : value >= 70 ? { text: 'minor recession', color: 'text-yellow-400' } : value >= 50 ? { text: 'receding hairline', color: 'text-orange-400' } : { text: 'significant hair loss', color: 'text-red-400' },
+                orbitalRimProtrusion: value > 0.005 ? { text: 'good eye depth', color: 'text-green-400' } : value > -0.005 ? { text: 'neutral depth', color: 'text-yellow-400' } : { text: 'bulging eyes', color: 'text-red-400' },
+                maxillaryProtrusion: value > 0.02 ? { text: 'forward maxilla (ideal)', color: 'text-green-400' } : value > 0.01 ? { text: 'good maxilla', color: 'text-blue-400' } : value > -0.005 ? { text: 'neutral', color: 'text-yellow-400' } : { text: 'retruded maxilla', color: 'text-red-400' },
+                browRidgeProtrusion: value <= 0.010 ? { text: 'smooth feminine brow', color: 'text-green-400' } : value > 0.015 ? { text: 'masculine/prominent brow', color: 'text-orange-400' } : { text: 'neutral brow', color: 'text-blue-400' },
+                infraorbitalRimPosition: value > 0.01 ? { text: 'forward infraorbital rim', color: 'text-green-400' } : value > -0.005 ? { text: 'neutral', color: 'text-blue-400' } : { text: 'retruded (dark circles)', color: 'text-orange-400' },
+                chinProjection: value > 0.015 ? { text: 'strong feminine chin', color: 'text-green-400' } : value > 0.005 ? { text: 'good projection', color: 'text-blue-400' } : value > -0.005 ? { text: 'weak chin', color: 'text-yellow-400' } : { text: 'recessed chin', color: 'text-red-400' },
+                doubleChinRisk: value > 0.02 ? { text: 'sharp jawline', color: 'text-green-400' } : value > 0.008 ? { text: 'good definition', color: 'text-blue-400' } : value > 0 ? { text: 'soft jawline', color: 'text-yellow-400' } : { text: 'submental fullness', color: 'text-orange-400' },
+                angleDeduction: value === 0 ? { text: 'ideal camera setup', color: 'text-green-400' } : value <= 0.5 ? { text: 'minor tilt', color: 'text-yellow-400' } : { text: 'high distortion check', color: 'text-red-400' },
+                facialTension: value < 0.5 ? { text: 'relaxed / neutral', color: 'text-green-400' } : value < 1.2 ? { text: 'minor tension', color: 'text-yellow-400' } : { text: 'high tension detected', color: 'text-orange-400' },
+                skinQuality: value > 90 ? { text: 'glass skin', color: 'text-green-400' } : value > 75 ? { text: 'clear skin', color: 'text-blue-400' } : value > 50 ? { text: 'textured', color: 'text-yellow-400' } : { text: 'acne / heavy texture', color: 'text-red-400' }
+            };
+            return fRatings[metric] || { text: 'unknown', color: 'text-gray-400' };
+        }
+
+        // Male Ratings
+        const mRatings: Record<string, { text: string, color: string }> = {
+            canthalTilt: value >= 4 && value <= 6 ? { text: 'perfect hunter eyes', color: 'text-green-400' } : value > 2 ? { text: 'good', color: 'text-blue-400' } : value < 0 ? { text: 'negative canthal tilt', color: 'text-red-400' } : { text: 'neutral', color: 'text-yellow-400' },
+            fwfhRatio: value >= 1.8 ? { text: 'perfect broad face', color: 'text-green-400' } : value >= 1.70 ? { text: 'good', color: 'text-blue-400' } : { text: 'narrow face', color: 'text-orange-400' },
             midfaceRatio: value >= 0.9 && value <= 1.1 ? { text: 'perfect compact midface', color: 'text-green-400' } : value <= 1.15 ? { text: 'good', color: 'text-blue-400' } : { text: 'significantly too long midface', color: 'text-red-400' },
-            gonialAngle: value >= 115 && value <= 130 ? { text: 'perfect', color: 'text-green-400' } : value >= 105 && value <= 135 ? { text: 'good', color: 'text-blue-400' } : { text: 'steep/soft jawline', color: 'text-orange-400' },
+            gonialAngle: value >= 115 && value <= 130 ? { text: 'perfect masculine square', color: 'text-green-400' } : value >= 105 && value <= 135 ? { text: 'good', color: 'text-blue-400' } : { text: 'steep/soft jawline', color: 'text-orange-400' },
             chinToPhiltrumRatio: value >= 2.0 && value <= 2.25 ? { text: 'perfect', color: 'text-green-400' } : value < 1.8 ? { text: 'long philtrum / weak chin', color: 'text-red-400' } : value > 2.5 ? { text: 'short philtrum / long chin', color: 'text-orange-400' } : { text: 'acceptable', color: 'text-blue-400' },
             mouthToNoseWidthRatio: value >= 1.5 && value <= 1.62 ? { text: 'perfect', color: 'text-green-400' } : value >= 1.4 ? { text: 'good', color: 'text-blue-400' } : { text: 'narrow mouth', color: 'text-orange-400' },
-            bigonialWidthRatio: value >= 1.3 && value <= 1.4 ? { text: 'perfect', color: 'text-green-400' } : value >= 1.2 ? { text: 'good', color: 'text-blue-400' } : value < 1.15 ? { text: 'narrow jaw', color: 'text-orange-400' } : { text: 'acceptable', color: 'text-blue-400' },
-            lowerThirdRatio: value >= 0.62 ? { text: 'perfect', color: 'text-green-400' } : value >= 0.58 ? { text: 'good', color: 'text-blue-400' } : { text: 'weak lower third', color: 'text-orange-400' },
-            palpebralFissureLength: value >= 3.0 && value <= 3.5 ? { text: 'perfect hunter eyes', color: 'text-green-400' } : value > 3.5 ? { text: 'good', color: 'text-blue-400' } : { text: 'slightly too exposed eyes', color: 'text-yellow-400' },
+            bigonialWidthRatio: value >= 1.3 && value <= 1.4 ? { text: 'perfect wide jaw', color: 'text-green-400' } : value >= 1.2 ? { text: 'good', color: 'text-blue-400' } : value < 1.15 ? { text: 'narrow jaw', color: 'text-orange-400' } : { text: 'acceptable', color: 'text-blue-400' },
+            lowerThirdRatio: value >= 0.62 ? { text: 'perfect masculine lower third', color: 'text-green-400' } : value >= 0.58 ? { text: 'good', color: 'text-blue-400' } : { text: 'weak lower third', color: 'text-orange-400' },
+            palpebralFissureLength: value >= 3.0 && value <= 3.5 ? { text: 'perfect horizontal eyes', color: 'text-green-400' } : value > 3.5 ? { text: 'good', color: 'text-blue-400' } : { text: 'slightly too round eyes', color: 'text-yellow-400' },
             eyeSeparationRatio: value >= 0.45 && value <= 0.47 ? { text: 'perfect', color: 'text-green-400' } : value >= 0.42 && value <= 0.49 ? { text: 'good', color: 'text-blue-400' } : { text: 'suboptimal spacing', color: 'text-yellow-400' },
             eyeToMouthAngle: value >= 47 && value <= 50 ? { text: 'perfect', color: 'text-green-400' } : value < 47 ? { text: 'shallow', color: 'text-yellow-400' } : { text: 'steep', color: 'text-yellow-400' },
             lipRatio: value >= 1.60 && value <= 1.65 ? { text: 'perfect', color: 'text-green-400' } : value >= 1.30 && value <= 1.90 ? { text: 'acceptable', color: 'text-blue-400' } : { text: 'suboptimal lip ratio', color: 'text-orange-400' },
@@ -720,11 +753,45 @@ export default function FaceAnalyzer() {
             skinQuality: value > 90 ? { text: 'glass skin', color: 'text-green-400' } : value > 75 ? { text: 'clear skin', color: 'text-blue-400' } : value > 50 ? { text: 'textured', color: 'text-yellow-400' } : { text: 'acne / heavy texture', color: 'text-red-400' }
         };
 
-        return ratings[metric] || { text: 'unknown', color: 'text-gray-400' };
+        return mRatings[metric] || { text: 'unknown', color: 'text-gray-400' };
     };
 
-    const getIdealRange = (metric: keyof MetricScores): string => {
-        const ideals: Record<keyof MetricScores, string> = {
+    const getIdealRange = (metric: keyof MetricScores, gender: 'male' | 'female' = 'male'): string => {
+        if (gender === 'female') {
+            const fIdeals: Record<string, string> = {
+                canthalTilt: '5° to 8°',
+                fwfhRatio: '> 1.65',
+                midfaceRatio: '0.9 to 1.05',
+                gonialAngle: '120° to 135°',
+                chinToPhiltrumRatio: '2.0 to 2.25',
+                mouthToNoseWidthRatio: '1.45 to 1.6',
+                bigonialWidthRatio: '1.15 to 1.30',
+                lowerThirdRatio: '0.58 to 0.65',
+                palpebralFissureLength: '2.8 to 3.5',
+                eyeSeparationRatio: '0.45 to 0.47',
+                eyeToMouthAngle: '47° to 50°',
+                lipRatio: '1.62',
+                facialAsymmetry: '95-100 (symmetry score)',
+                ipdRatio: '0.45 to 0.47',
+                facialThirdsRatio: '95-100 (balance score)',
+                foreheadHeightRatio: '0.30 to 0.35',
+                noseWidthRatio: '0.22 to 0.28',
+                cheekboneProminence: '0.45 to 0.52',
+                hairlineRecession: '90-100 (fullness score)',
+                orbitalRimProtrusion: '> 0.005 (neutral to deep)',
+                maxillaryProtrusion: '> 0.02 (forward)',
+                browRidgeProtrusion: '< 0.010 (smooth brow)',
+                infraorbitalRimPosition: '> 0.01 (forward)',
+                chinProjection: '> 0.015 (strong)',
+                doubleChinRisk: '> 0.020 (sharp jaw)',
+                angleDeduction: '0 (neutral)',
+                facialTension: '< 0.5 (relaxed)',
+                skinQuality: '85-100 (clear)'
+            };
+            return fIdeals[metric] || '';
+        }
+
+        const mIdeals: Record<keyof MetricScores, string> = {
             canthalTilt: '4° to 6°',
             fwfhRatio: 'more than 1.8',
             midfaceRatio: '1.0 to 1.1',
@@ -754,133 +821,7 @@ export default function FaceAnalyzer() {
             facialTension: '< 0.5 (relaxed)',
             skinQuality: '85-100 (clear)'
         };
-        return ideals[metric];
-    };
-
-    const getMetricExplanation = (metric: keyof MetricScores, value: number): string => {
-        switch (metric) {
-            case 'canthalTilt':
-                return value > 2
-                    ? `Your canthal tilt is positive (${value.toFixed(1)}°), contributing to an attractive "hunter eye" aesthetic.`
-                    : value >= 0
-                        ? `Your canthal tilt is neutral (${value.toFixed(1)}°). slightly positive tilt is ideal, but neutral is acceptable.`
-                        : `Your canthal tilt is negative (${value.toFixed(1)}°), which can create a tired or droopy eye appearance.`;
-
-            case 'fwfhRatio':
-                return value >= 1.9
-                    ? `Your facial width-to-height ratio is ${value.toFixed(2)}, indicating a broad, dominant, and masculine facial structure.`
-                    : value >= 1.7
-                        ? `Your FW/FH ratio is ${value.toFixed(2)}, which is within the average to good range for men.`
-                        : `Your face is relatively narrow (${value.toFixed(2)}). A wider midface is typically associated with higher testosterone.`;
-
-            case 'midfaceRatio':
-                return value <= 1.0
-                    ? `You have a compact midface (ratio ${value.toFixed(2)}), a highly desirable trait for facial harmony.`
-                    : value <= 1.05
-                        ? `Your midface ratio is ${value.toFixed(2)}, which is balanced and proportional.`
-                        : `Your midface is vertically long (${value.toFixed(2)}). A shorter midface usually looks more youthful and harmonious.`;
-
-            case 'gonialAngle':
-                return value >= 110 && value <= 130
-                    ? `Your gonial angle is ${value.toFixed(1)}°, falling perfectly within the ideal masculine range (110-130°).`
-                    : value < 110
-                        ? `Your jaw angle is quite square (${value.toFixed(1)}°), which is generally a strong masculine trait.`
-                        : `Your jaw angle is steep (${value.toFixed(1)}°), which can indicate downward facial growth or mouth breathing habits.`;
-
-            case 'chinToPhiltrumRatio':
-                return value >= 2.0 && value <= 2.3
-                    ? `Your chin is ideally proportioned relative to your philtrum (ratio ${value.toFixed(2)}).`
-                    : value < 2.0
-                        ? `Your chin is relatively short (${value.toFixed(2)}) compared to your philtrum.`
-                        : `Your chin is quite prominent (${value.toFixed(2)}) relative to your philtrum.`;
-
-            case 'mouthToNoseWidthRatio':
-                return value >= 1.5
-                    ? `Your mouth is ${value.toFixed(2)}x wider than your nose, creating a strong, masculine lower face appeal.`
-                    : `Your mouth width is closer to your nose width (${value.toFixed(2)}). A wider palate/mouth is generally preferred.`;
-
-            case 'bigonialWidthRatio':
-                return value >= 1.1
-                    ? `Your jaw is wider than your cheekbones (ratio ${value.toFixed(2)}), creating an ideal masculine square face shape.`
-                    : `Your jaw is narrower than your cheekbones (${value.toFixed(2)}), creating a more oval or heart-shaped face.`;
-
-            case 'lowerThirdRatio':
-                return value >= 1.0
-                    ? `Your lower third is robust (${value.toFixed(2)}), indicating good jaw development.`
-                    : `Your lower third is relatively short (${value.toFixed(2)}), which might indicate a recessed chin or deep bite.`;
-
-            case 'palpebralFissureLength':
-                return value > 3.2
-                    ? `Your eyes are horizontally long (${value.toFixed(2)}), a key component of the "hunter eye" look.`
-                    : `Your eyes are relatively round or short (${value.toFixed(2)}). Longer eye fissures are typically more masculine.`;
-
-            case 'eyeSeparationRatio':
-                return value >= 0.45 && value <= 0.49
-                    ? `Your eye spacing is ideal (${value.toFixed(2)}), creating perfect facial harmony.`
-                    : value < 0.45
-                        ? `Your eyes are set relatively close together (${value.toFixed(2)}).`
-                        : `Your eyes are set wide apart (${value.toFixed(2)}).`;
-
-            case 'eyeToMouthAngle':
-                return `Your eye-to-mouth angle is ${value.toFixed(1)}°, determining the "compactness" of your central face.`;
-
-            case 'lipRatio':
-                return `Your lower lip is ${value.toFixed(2)}x thicker than your upper lip. Ideal range is typically around 1.6x.`;
-
-            case 'facialAsymmetry':
-                return value >= 95
-                    ? `Your face is extremely symmetrical (${value.toFixed(1)}%), a top-tier indicator of genetic health.`
-                    : value >= 90
-                        ? `You have good facial symmetry (${value.toFixed(1)}%).`
-                        : `You have noticeable facial asymmetry (${value.toFixed(1)}%). Chewing evenly and fixing posture can help.`;
-
-            case 'ipdRatio':
-                return value >= 0.42
-                    ? `Your IPD is wide (${value.toFixed(2)}), which is great for facial harmony.`
-                    : `Your IPD is narrow (${value.toFixed(2)}), making your face look longer.`;
-
-            case 'facialThirdsRatio':
-                return `Your facial thirds balance score is ${value.toFixed(1)}%. Higher is better/more balanced.`;
-
-            case 'foreheadHeightRatio':
-                return `Your forehead occupies ${(value * 100).toFixed(1)}% of your face height.`;
-
-            case 'noseWidthRatio':
-                return `Your nose width is ${(value * 100).toFixed(1)}% of your face width.`;
-
-            case 'cheekboneProminence':
-                return `Your cheekbone prominence score is ${value.toFixed(2)}.`;
-
-            case 'hairlineRecession':
-                return `Your hairline fullness score is ${value.toFixed(1)}.`;
-
-            case 'doubleChinRisk':
-                return value > 0.02
-                    ? `Excellent submental definition (Depth: ${value.toFixed(3)}). High contrast between jawline and neck.`
-                    : value > 0.008
-                        ? `Good jawline definition under the chin.`
-                        : `Submental fullness detected. A deeper separation between chin and neck linearly correlates with stronger aesthetic harmony.`;
-
-            case 'angleDeduction':
-                return value === 0
-                    ? `Angle is neutral and standard. Measurements are highly reliable.`
-                    : `Angle distortion detected. You have received a ${value.toFixed(1)} deduction or warning due to suspected camera positioning.`;
-
-            case 'facialTension':
-                return value < 0.5
-                    ? `Facial posture is conventionally relaxed and authentic (Tension: ${value.toFixed(2)}).`
-                    : `Minor to severe tension detected within facial expression topologies (Tension: ${value.toFixed(2)}). Try resting your face completely.`;
-
-            case 'skinQuality':
-                return value > 90
-                    ? `Exceptional skin clarity score (${value.toFixed(1)}/100). Low sub-pixel variance correlates tightly with clear or 'glass' skin.`
-                    : value > 75
-                        ? `Good skin clarity (${value.toFixed(1)}/100) with only minor localized texture.`
-                        : `Higher pixel variance found (${value.toFixed(1)}/100), implying noticeable textured skin, acne masking, or heavily shadowed lighting.`;
-
-            default:
-                return `Your measurement for ${metric} is ${value.toFixed(2)}.`;
-        }
+        return mIdeals[metric];
     };
 
     return (
@@ -888,20 +829,39 @@ export default function FaceAnalyzer() {
             {/* Hidden canvas for drawing */}
             <canvas ref={canvasRef} style={{ display: 'none' }} />
 
-            {/* Input Mode Toggle */}
-            <div className="flex gap-4 bg-zinc-900 p-2 rounded-full">
-                <button
-                    onClick={() => setInputMode('webcam')}
-                    className={`px-6 py-2 rounded-full font-medium transition-all ${inputMode === 'webcam' ? 'bg-white text-black' : 'text-zinc-400 hover:text-white'}`}
-                >
-                    📷 Webcam
-                </button>
-                <button
-                    onClick={() => setInputMode('upload')}
-                    className={`px-6 py-2 rounded-full font-medium transition-all ${inputMode === 'upload' ? 'bg-white text-black' : 'text-zinc-400 hover:text-white'}`}
-                >
-                    📁 Upload
-                </button>
+            {/* Controls Row */}
+            <div className="flex flex-wrap gap-4 justify-center items-center w-full">
+                {/* Input Mode Toggle */}
+                <div className="flex gap-2 bg-zinc-900 p-1.5 rounded-full border border-zinc-800 shadow-xl">
+                    <button
+                        onClick={() => setInputMode('webcam')}
+                        className={`px-5 py-2 rounded-full font-semibold transition-all text-sm ${inputMode === 'webcam' ? 'bg-white text-black' : 'text-zinc-400 hover:text-white'}`}
+                    >
+                        📷 Camera
+                    </button>
+                    <button
+                        onClick={() => setInputMode('upload')}
+                        className={`px-5 py-2 rounded-full font-semibold transition-all text-sm ${inputMode === 'upload' ? 'bg-white text-black' : 'text-zinc-400 hover:text-white'}`}
+                    >
+                        📁 File / URL
+                    </button>
+                </div>
+
+                {/* Gender Toggle */}
+                <div className="flex gap-2 bg-zinc-900 p-1.5 rounded-full border border-zinc-800 shadow-xl">
+                    <button
+                        onClick={() => setGender('male')}
+                        className={`px-5 py-2 rounded-full font-semibold transition-all text-sm ${gender === 'male' ? 'bg-blue-500 text-white shadow-[0_0_15px_rgba(59,130,246,0.5)]' : 'text-zinc-400 hover:text-white'}`}
+                    >
+                        ♂ Male Baseline
+                    </button>
+                    <button
+                        onClick={() => setGender('female')}
+                        className={`px-5 py-2 rounded-full font-semibold transition-all text-sm ${gender === 'female' ? 'bg-pink-500 text-white shadow-[0_0_15px_rgba(236,72,153,0.5)]' : 'text-zinc-400 hover:text-white'}`}
+                    >
+                        ♀ Female Baseline
+                    </button>
+                </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full items-start">
@@ -1121,8 +1081,8 @@ export default function FaceAnalyzer() {
                                 <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-widest px-1">Feature Analysis</h3>
                                 {Object.entries(auditResult.metrics).map(([key, value]) => {
                                     const metricKey = key as keyof MetricScores;
-                                    const rating = getRating(metricKey, value);
-                                    const idealRange = getIdealRange(metricKey);
+                                    const rating = getRating(metricKey, value, gender);
+                                    const idealRange = getIdealRange(metricKey, gender);
                                     const label = key.replace(/([A-Z])/g, ' $1').trim();
                                     const isExpanded = expandedMetric === key;
                                     const explanation = metricExplanations[key];
@@ -1257,7 +1217,7 @@ export default function FaceAnalyzer() {
                             {(() => {
                                 const flawed = Object.entries(auditResult.metrics).filter(([key, value]) => {
                                     const metricKey = key as keyof MetricScores;
-                                    const rating = getRating(metricKey, value);
+                                    const rating = getRating(metricKey, value, gender);
                                     return rating.color.includes('orange') || rating.color.includes('red');
                                 });
                                 if (flawed.length === 0) return null;
@@ -1273,7 +1233,7 @@ export default function FaceAnalyzer() {
                                         <div className="space-y-2">
                                             {flawed.map(([key]) => {
                                                 const explanation = metricExplanations[key];
-                                                const rating = getRating(key as keyof MetricScores, auditResult.metrics[key as keyof MetricScores]);
+                                                const rating = getRating(key as keyof MetricScores, auditResult.metrics[key as keyof MetricScores], gender);
                                                 const isBad = rating.color.includes('red');
                                                 return (
                                                     <button
