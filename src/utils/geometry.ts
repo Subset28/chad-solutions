@@ -246,10 +246,9 @@ export function calculateBigonialWidthRatio(landmarks: NormalizedLandmark[]): nu
 }
 
 export function calculateLowerThirdRatio(landmarks: NormalizedLandmark[], pitchStr: number = 0): number {
-    // Replaced with "Lower / Full Face Ratio" from the standard definitions
-    // lower/full face ratio: 0.62+
-    // Height between nasion (9) to bottom of chin (152) / Face height (hairline 10 to bottom of chin 152)
-    let lowerHeight = distance(landmarks[9], landmarks[152]);
+    // lower/full face ratio: 0.62-0.68
+    // Height between nasion (168) to bottom of chin (152) / Face height (hairline 10 to bottom of chin 152)
+    let lowerHeight = distance(landmarks[168], landmarks[152]);
     let fullHeight = distance(landmarks[10], landmarks[152]);
 
     // Pitch correction 
@@ -611,8 +610,11 @@ export function calculatePSLScore(
         score += 0.4;
         breakdown.push("Ideal Lower Face Proportions (+0.4)");
     } else if (metrics.chinToPhiltrumRatio < 1.5 || metrics.chinToPhiltrumRatio > 3.0) {
-        score -= 0.3;
-        breakdown.push("Unbalanced Lower Face (-0.3)");
+        score -= 0.8;
+        breakdown.push("Severely Unbalanced Chin-to-Philtrum (-0.8)");
+    } else if (metrics.chinToPhiltrumRatio < 1.8 || metrics.chinToPhiltrumRatio > 2.8) {
+        score -= 0.4;
+        breakdown.push("Unbalanced Lower Face (-0.4)");
     }
 
     // Lip Ratio
@@ -630,16 +632,19 @@ export function calculatePSLScore(
 
 
     // Lower / Full Face Ratio
-    const lowerFacePerf = isF ? 0.58 : 0.62;
-    if (metrics.lowerThirdRatio >= lowerFacePerf) {
+    const lowerFacePerf = isF ? [0.60, 0.65] : [0.62, 0.68];
+    if (metrics.lowerThirdRatio >= lowerFacePerf[0] && metrics.lowerThirdRatio <= lowerFacePerf[1]) {
         score += 0.4;
         breakdown.push("Strong Lower Face Proportion (+0.4)");
-    } else if (metrics.lowerThirdRatio >= lowerFacePerf - 0.04) {
+    } else if (metrics.lowerThirdRatio > lowerFacePerf[1]) {
+        score -= 0.6;
+        breakdown.push("Overly Long Lower Face (-0.6)");
+    } else if (metrics.lowerThirdRatio >= lowerFacePerf[0] - 0.04) {
         score += 0.2;
         breakdown.push("Good Lower Face (+0.2)");
     } else {
-        score -= 0.4;
-        breakdown.push("Weak Lower Face Volume (-0.4)");
+        score -= 0.8;
+        breakdown.push("Weak Lower Face Volume (-0.8)");
     }
 
     // Palpebral Fissure
@@ -657,13 +662,13 @@ export function calculatePSLScore(
 
     // Facial Thirds Ratio (Ideal: 95-100)
     // Men often have a stronger lower third causing an artificial "unbalance"
-    const thirdsGood = isF ? 75 : 70;
+    const thirdsGood = isF ? 80 : 75;
     if (metrics.facialThirdsRatio >= 95) {
         score += 0.4;
         breakdown.push("Perfect Facial Thirds (+0.4)");
     } else if (metrics.facialThirdsRatio < thirdsGood) {
-        score -= 0.3;
-        breakdown.push("Unbalanced Thirds (-0.3)");
+        score -= 0.6;
+        breakdown.push("Severely Unbalanced Thirds (-0.6)");
     }
 
     // Forehead Height Ratio (Ideal: 0.30-0.35)
@@ -716,6 +721,9 @@ export function calculatePSLScore(
         } else if (metrics.fwfhRatio >= fwfhPerf - 0.1) {
             score += 0.4;
             breakdown.push("Good Facial Structure (+0.4)");
+        } else if (metrics.fwfhRatio < fwfhPerf - 0.25) {
+            score -= 1.0;
+            breakdown.push("Severely Narrow Face (-1.0)");
         } else if (metrics.fwfhRatio < fwfhPerf - 0.15) {
             score -= 0.6;
             breakdown.push("Narrow Face (-0.6)");
@@ -764,15 +772,16 @@ export function calculatePSLScore(
         }
 
         // Facial Asymmetry (Ideal: 95-100)
-        if (metrics.facialAsymmetry >= 93) {
-            score += 0.5;
-            breakdown.push("Perfect Symmetry (+0.5)");
-        } else if (metrics.facialAsymmetry >= 85) {
-            score += 0.3;
-            breakdown.push("Very Symmetric (+0.3)");
-        } else if (metrics.facialAsymmetry < 80) {
-            score -= 0.5;
-            breakdown.push("Facial Asymmetry (-0.5)");
+        // Most people are somewhat symmetrical. Prevent massive free points.
+        if (metrics.facialAsymmetry >= 95) {
+            score += 0.2;
+            breakdown.push("Perfect Symmetry (+0.2)");
+        } else if (metrics.facialAsymmetry >= 90) {
+            score += 0.0;
+            breakdown.push("Average Symmetry (+0.0)");
+        } else if (metrics.facialAsymmetry < 85) {
+            score -= 1.0;
+            breakdown.push("Severe Facial Asymmetry (-1.0)");
         }
 
         // IPD Ratio (Ideal: 0.45-0.47)

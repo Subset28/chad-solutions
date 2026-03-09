@@ -48,35 +48,43 @@ export function analyzeSkinQuality(
             let sum = 0;
             const intensities = [];
 
-            // Convert to grayscale and collect intensities
+            // Convert to grayscale purely to find the median for outlier rejection (hair, eyes, glasses rim)
             for (let i = 0; i < data.length; i += 4) {
                 const intensity = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2];
                 intensities.push(intensity);
             }
 
             // Sort intensities to find the median 
-            intensities.sort((a, b) => a - b);
-            const median = intensities[Math.floor(intensities.length / 2)];
+            const sortedIntensities = [...intensities].sort((a, b) => a - b);
+            const median = sortedIntensities[Math.floor(sortedIntensities.length / 2)];
 
-            // We want to discard intense outliers (like a pitch black glasses rim or dark hair strand) 
-            // that have dramatically different intensities than the median skin tone.
-            // Let's filter out any pixels that deviate more than 40 intensity points from the median.
-            const validSkinPixels = intensities.filter(val => Math.abs(val - median) < 40);
-
-            // If less than a quarter of the patch is valid, return 0 (bad patch)
-            if (validSkinPixels.length < intensities.length * 0.25) return 0;
-
-            // Now compute mean and variance on ONLY the clean skin pixels
-            let validSum = 0;
-            for (const val of validSkinPixels) validSum += val;
-            const mean = validSum / validSkinPixels.length;
-
-            let varianceSum = 0;
-            for (const val of validSkinPixels) {
-                varianceSum += Math.pow(val - mean, 2);
+            // Collect valid RGB pixels (rejecting hair/shadows)
+            const validPixels = [];
+            for (let i = 0; i < data.length; i += 4) {
+                if (Math.abs(intensities[i / 4] - median) < 40) {
+                    validPixels.push([data[i], data[i + 1], data[i + 2]]);
+                }
             }
 
-            return Math.sqrt(varianceSum / validSkinPixels.length);
+            // If less than a quarter of the patch is valid, return 0 (bad patch)
+            if (validPixels.length < (data.length / 4) * 0.25) return 0;
+
+            // Compute mean RGB
+            let sumR = 0, sumG = 0, sumB = 0;
+            for (const p of validPixels) {
+                sumR += p[0]; sumG += p[1]; sumB += p[2];
+            }
+            const meanR = sumR / validPixels.length;
+            const meanG = sumG / validPixels.length;
+            const meanB = sumB / validPixels.length;
+
+            // Compute RGB Euclidean Variance
+            let varianceSum = 0;
+            for (const p of validPixels) {
+                varianceSum += Math.pow(p[0] - meanR, 2) + Math.pow(p[1] - meanG, 2) + Math.pow(p[2] - meanB, 2);
+            }
+
+            return Math.sqrt(varianceSum / validPixels.length);
         } catch (e) {
             return 0; // Canvas cross-origin taint or bounds issue
         }
@@ -104,19 +112,19 @@ export function analyzeSkinQuality(
     const devs = [dev1, dev2, dev3, dev4, dev5].filter(d => d > 0);
     const avgDev = devs.length > 0 ? devs.reduce((a, b) => a + b) / devs.length : 0;
 
-    // Normalizing standard deviation
-    // highly airbrushed / glass skin has local STDEV < 12
-    // very textured / acne skin has local STDEV > 35
-    const baseline = Math.min(35, avgDev); // Cap calculation at severe texture
+    // Normalizing Euclidean color deviation
+    // highly airbrushed / glass skin has local RGB Euclidean STDEV < 12
+    // very textured / acne skin has local RGB Euclidean STDEV > 40
+    const baseline = Math.min(45, avgDev); // Cap calculation at severe texture
 
     // Score out of 100
-    let score = 100 - (Math.max(0, baseline - 9) * 2.5);
+    let score = 100 - (Math.max(0, baseline - 10) * 3.0);
     score = Math.max(1, Math.min(100, score));
 
     let feedback = "Clear / Glass Skin";
-    if (avgDev > 25) feedback = "Heavy Texture / Acne";
-    else if (avgDev > 18) feedback = "Moderate Texture";
-    else if (avgDev > 12) feedback = "Slight Texture";
+    if (avgDev > 30) feedback = "Heavy Texture / Acne";
+    else if (avgDev > 22) feedback = "Moderate Texture";
+    else if (avgDev > 14) feedback = "Slight Texture";
 
     return { clarityScore: score, feedback, value: avgDev };
 }
