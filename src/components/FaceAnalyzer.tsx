@@ -263,7 +263,7 @@ export default function FaceAnalyzer() {
                         calculateLowerThirdRatio, calculatePalpebralFissureLength, calculateEyeToMouthAngle, calculateLipRatio,
                         calculateFacialAsymmetry, calculateIPDRatio, calculateFacialThirds, calculateForeheadHeightRatio,
                         calculateNoseWidthRatio, calculateCheekboneProminence, calculateHairlineRecession, calculateAggregatedMetrics,
-                        calculatePSLScore, scaleLandmarks
+                        calculatePSLScore, scaleLandmarks, distance
                     } = require('../utils/geometry');
 
                     const landmarks = results.faceLandmarks[0];
@@ -312,11 +312,20 @@ export default function FaceAnalyzer() {
                         }
                     }
 
+                    // Normalize Z-coordinate to a standard face width (invariant scale mapping for precise Z depths regardless of photo crop)
+                    // MediaPipe z is inherently proportional to the image width. We normalize it to a baseline where the face is ~50% of the image.
+                    const faceWidthFraction = distance(landmarks[234], landmarks[454]);
+                    const zNormFactor = faceWidthFraction > 0 ? (0.5 / faceWidthFraction) : 1;
+                    const zNormalizedLandmarks = landmarks.map((lm: any) => ({
+                        ...lm,
+                        z: lm.z * zNormFactor
+                    }));
+
                     // Check for glasses (detect abnormal z-depth around eyes)
-                    const leftEyeTop = landmarks[159];
-                    const leftEyeBottom = landmarks[145];
-                    const rightEyeTop = landmarks[386];
-                    const rightEyeBottom = landmarks[374];
+                    const leftEyeTop = zNormalizedLandmarks[159];
+                    const leftEyeBottom = zNormalizedLandmarks[145];
+                    const rightEyeTop = zNormalizedLandmarks[386];
+                    const rightEyeBottom = zNormalizedLandmarks[374];
 
                     const leftEyeDepth = Math.abs(leftEyeTop.z - leftEyeBottom.z);
                     const rightEyeDepth = Math.abs(rightEyeTop.z - rightEyeBottom.z);
@@ -394,15 +403,15 @@ export default function FaceAnalyzer() {
                         noseWidthRatio: noseWidthRatio,
                         cheekboneProminence: calculateCheekboneProminence(scaledLandmarks),
                         hairlineRecession: calculateHairlineRecession(scaledLandmarks),
-                        // NEW: 3D bone structure metrics
-                        orbitalRimProtrusion: calculateOrbitalRimProtrusion(scaledLandmarks),
-                        maxillaryProtrusion: calculateMaxillaryProtrusion(scaledLandmarks),
-                        browRidgeProtrusion: calculateBrowRidgeProtrusion(scaledLandmarks),
-                        infraorbitalRimPosition: calculateInfraorbitalRimPosition(scaledLandmarks),
-                        chinProjection: calculateChinProjection(scaledLandmarks),
+                        // NEW: 3D bone structure metrics with fully crop-invariant Z-depth bounds
+                        orbitalRimProtrusion: calculateOrbitalRimProtrusion(zNormalizedLandmarks),
+                        maxillaryProtrusion: calculateMaxillaryProtrusion(zNormalizedLandmarks),
+                        browRidgeProtrusion: calculateBrowRidgeProtrusion(zNormalizedLandmarks),
+                        infraorbitalRimPosition: calculateInfraorbitalRimPosition(zNormalizedLandmarks),
+                        chinProjection: calculateChinProjection(zNormalizedLandmarks),
 
                         // V2 Advanced Traits
-                        doubleChinRisk: calculateDoubleChinRisk(scaledLandmarks),
+                        doubleChinRisk: calculateDoubleChinRisk(zNormalizedLandmarks),
                         angleDeduction: angleDeductionScore,
                         facialTension: tensionData.tensionScore,
                         skinQuality: skinQualityData.clarityScore
