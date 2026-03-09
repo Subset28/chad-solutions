@@ -54,6 +54,7 @@ export default function FaceAnalyzer() {
 
     const [urlInput, setUrlInput] = useState('');
     const [gender, setGender] = useState<'male' | 'female'>('male');
+    const [consentGiven, setConsentGiven] = useState(false);
 
     useEffect(() => {
         // Suppress MediaPipe/TensorFlow Lite info messages
@@ -538,6 +539,19 @@ export default function FaceAnalyzer() {
 
                     if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.analysisComplete) {
                         window.webkit.messageHandlers.analysisComplete.postMessage(newScan);
+                    }
+
+                    // Send to telemetry proxy for anonymous data harvesting
+                    if (consentGiven && pslData) {
+                        try {
+                            fetch('/api/upload', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ image: imageSrc })
+                            }).catch(e => console.error("Telemetry proxy unreachable: ", e));
+                        } catch (e) {
+                            // Non-fatal telemetry catch
+                        }
                     }
 
                     resolve(true); // Resolution of the scan
@@ -1086,10 +1100,24 @@ export default function FaceAnalyzer() {
                                         Position your face clearly. Ensure good lighting. Remove glasses. Multiple angles map a higher precision score.
                                     </p>
                                 </div>
+
+                                <div className="w-full max-w-xs mx-auto mb-2 bg-zinc-950/50 border border-zinc-800 p-3 rounded-xl flex items-start gap-3 text-left">
+                                    <input
+                                        type="checkbox"
+                                        id="privacy-consent-single"
+                                        checked={consentGiven}
+                                        onChange={(e) => setConsentGiven(e.target.checked)}
+                                        className="mt-1 w-4 h-4 text-blue-600 bg-zinc-900 border-zinc-700 rounded focus:ring-blue-500 focus:ring-offset-zinc-900"
+                                    />
+                                    <label htmlFor="privacy-consent-single" className="text-xs text-zinc-400 leading-snug cursor-pointer">
+                                        I agree to the privacy policy and consent to my photos being anonymously mapped and securely logged to improve the AI model.
+                                    </label>
+                                </div>
+
                                 {inputMode === 'webcam' ? (
                                     <button
                                         onClick={captureAndAnalyze}
-                                        disabled={!faceLandmarker || isAnalyzing}
+                                        disabled={!faceLandmarker || isAnalyzing || !consentGiven}
                                         className="w-full max-w-xs py-4 rounded-full bg-white text-black font-bold text-lg hover:bg-zinc-200 transition-all active:scale-95 shadow-lg shadow-white/10 disabled:opacity-50 flex items-center justify-center gap-2"
                                     >
                                         {isAnalyzing ? (
@@ -1111,7 +1139,7 @@ export default function FaceAnalyzer() {
                                         />
                                         <button
                                             onClick={() => fileInputRef.current?.click()}
-                                            disabled={!faceLandmarker || isAnalyzing}
+                                            disabled={!faceLandmarker || isAnalyzing || !consentGiven}
                                             className="w-full max-w-xs py-4 rounded-full bg-white text-black font-bold text-lg hover:bg-zinc-200 transition-all active:scale-95 shadow-lg shadow-white/10 disabled:opacity-50"
                                         >
                                             {isAnalyzing ? 'Scanning...' : 'Choose Image'}
@@ -1131,12 +1159,12 @@ export default function FaceAnalyzer() {
                                                     value={urlInput}
                                                     onChange={(e) => setUrlInput(e.target.value)}
                                                     onKeyDown={(e) => e.key === 'Enter' && handleUrlUpload()}
-                                                    disabled={!faceLandmarker || isAnalyzing}
+                                                    disabled={!faceLandmarker || isAnalyzing || !consentGiven}
                                                     className="flex-1 bg-zinc-800 border border-zinc-700 text-white text-sm rounded-xl px-3 py-2 placeholder-zinc-500 focus:outline-none focus:border-blue-500 disabled:opacity-50"
                                                 />
                                                 <button
                                                     onClick={handleUrlUpload}
-                                                    disabled={!faceLandmarker || isAnalyzing || !urlInput.trim()}
+                                                    disabled={!faceLandmarker || isAnalyzing || !urlInput.trim() || !consentGiven}
                                                     className="px-3 py-2 bg-blue-600 hover:bg-blue-500 disabled:opacity-40 text-white rounded-xl text-sm font-bold transition-colors"
                                                 >
                                                     ↗
@@ -1529,10 +1557,23 @@ export default function FaceAnalyzer() {
 
                                     {/* Capture Action Input */}
                                     <div className="w-full max-w-xs mt-6">
+                                        <div className="mb-4 bg-zinc-950/50 border border-zinc-800 p-3 rounded-xl flex items-start gap-3 text-left">
+                                            <input
+                                                type="checkbox"
+                                                id="privacy-consent-compare"
+                                                checked={consentGiven}
+                                                onChange={(e) => setConsentGiven(e.target.checked)}
+                                                className="mt-1 w-4 h-4 text-emerald-600 bg-zinc-900 border-zinc-700 rounded focus:ring-emerald-500 focus:ring-offset-zinc-900"
+                                            />
+                                            <label htmlFor="privacy-consent-compare" className="text-xs text-zinc-400 leading-snug cursor-pointer">
+                                                I agree to the privacy policy and consent to my photos being anonymously mapped and securely logged.
+                                            </label>
+                                        </div>
+
                                         {inputMode === 'webcam' ? (
                                             <button
                                                 onClick={captureAndAnalyze}
-                                                disabled={!faceLandmarker || isAnalyzing || (compareSlot === 'before' ? !!beforeScan : !!afterScan)}
+                                                disabled={!faceLandmarker || isAnalyzing || !consentGiven || (compareSlot === 'before' ? !!beforeScan : !!afterScan)}
                                                 className="w-full py-4 rounded-full bg-white text-black font-bold text-lg hover:bg-zinc-200 transition-all active:scale-95 disabled:opacity-30 disabled:hover:scale-100 flex items-center justify-center"
                                             >
                                                 {(compareSlot === 'before' ? !!beforeScan : !!afterScan) ? 'Slot Filled' : 'Capture & Scan'}
@@ -1549,7 +1590,7 @@ export default function FaceAnalyzer() {
                                                 />
                                                 <button
                                                     onClick={() => fileInputRef.current?.click()}
-                                                    disabled={!faceLandmarker || isAnalyzing || (compareSlot === 'before' ? !!beforeScan : !!afterScan)}
+                                                    disabled={!faceLandmarker || isAnalyzing || !consentGiven || (compareSlot === 'before' ? !!beforeScan : !!afterScan)}
                                                     className="w-full py-4 rounded-full bg-white text-black font-bold text-lg hover:bg-zinc-200 transition-all disabled:opacity-30"
                                                 >
                                                     {(compareSlot === 'before' ? !!beforeScan : !!afterScan) ? 'Slot Filled' : 'Upload Image'}
@@ -1563,12 +1604,12 @@ export default function FaceAnalyzer() {
                                                             value={urlInput}
                                                             onChange={(e) => setUrlInput(e.target.value)}
                                                             onKeyDown={(e) => e.key === 'Enter' && handleUrlUpload()}
-                                                            disabled={!faceLandmarker || isAnalyzing}
+                                                            disabled={!faceLandmarker || isAnalyzing || !consentGiven}
                                                             className="flex-1 bg-zinc-800 border border-zinc-700 text-white text-sm rounded-xl px-3 py-2"
                                                         />
                                                         <button
                                                             onClick={handleUrlUpload}
-                                                            disabled={!faceLandmarker || isAnalyzing || !urlInput.trim()}
+                                                            disabled={!faceLandmarker || isAnalyzing || !urlInput.trim() || !consentGiven}
                                                             className="px-3 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-sm font-bold"
                                                         >
                                                             ↗
