@@ -603,7 +603,7 @@ export function calculatePSLScore(
     }
 
     // Chin to Philtrum 
-    const c2pPerf = isF ? [2.0, 2.25] : [2.0, 2.5];
+    const c2pPerf = isF ? [2.0, 2.25] : [2.0, 2.65];
     if (metrics.chinToPhiltrumRatio >= c2pPerf[0] && metrics.chinToPhiltrumRatio <= c2pPerf[1]) {
         score += 0.4;
         breakdown.push("Ideal Lower Face Proportions (+0.4)");
@@ -613,11 +613,11 @@ export function calculatePSLScore(
     }
 
     // Lip Ratio
-    const lipPerf = isF ? [1.15, 1.70] : [1.50, 1.70];
+    const lipPerf = isF ? [1.15, 1.70] : [1.20, 1.70];
     if (metrics.lipRatio >= lipPerf[0] && metrics.lipRatio <= lipPerf[1]) {
         score += 0.4;
         breakdown.push("Ideal Lip Ratio (+0.4)");
-    } else if (metrics.lipRatio >= 1.0 && metrics.lipRatio <= 2.0) {
+    } else if (metrics.lipRatio >= 1.0 && metrics.lipRatio <= 2.2) {
         score += 0.2;
         breakdown.push("Good Lip Ratio (+0.2)");
     } else {
