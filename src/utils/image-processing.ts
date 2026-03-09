@@ -117,22 +117,22 @@ export function analyzeSkinQuality(
     const avgDev = devs.length > 0 ? devs.reduce((a, b) => a + b) / devs.length : 0;
 
     // Normalizing Euclidean color deviation
-    // V2 thresholds: Shifted baseline to be more forgiving of makeup/lighting:
-    //   - Glass skin / airbrushed: RGB STDEV < 14  
-    //   - Normal healthy skin: 14-22
-    //   - Slight texture: 22-30
-    //   - Moderate texture: 30-40
-    //   - Heavy acne/texture: > 40
-    const baseline = Math.min(50, avgDev); // Cap calculation at severe texture
+    // V3 thresholds: Even more forgiving for professional makeup/contouring:
+    //   - Glass skin / airbrushed: RGB STDEV < 20  
+    //   - Normal healthy skin: 20-28
+    //   - Slight texture / heavy makeup: 28-38
+    //   - Moderate texture: 38-48
+    //   - Heavy acne/texture: > 48
+    const baseline = Math.min(55, avgDev); // Cap calculation at severe texture
 
-    // Score out of 100 — V2: reduced multiplier from 3.0 to 2.2, shifted offset from 10 to 14
-    let score = 100 - (Math.max(0, baseline - 14) * 2.2);
+    // Score out of 100 — V3: offset 20, multiplier 1.5 (professional photos w/ makeup = normal)
+    let score = 100 - (Math.max(0, baseline - 20) * 1.5);
     score = Math.max(1, Math.min(100, score));
 
     let feedback = "Clear / Glass Skin";
-    if (avgDev > 38) feedback = "Heavy Texture / Acne";
-    else if (avgDev > 28) feedback = "Moderate Texture";
-    else if (avgDev > 18) feedback = "Slight Texture";
+    if (avgDev > 45) feedback = "Heavy Texture / Acne";
+    else if (avgDev > 35) feedback = "Moderate Texture";
+    else if (avgDev > 24) feedback = "Slight Texture";
 
     return { clarityScore: score, feedback, value: avgDev };
 }

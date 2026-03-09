@@ -913,10 +913,10 @@ export function calculatePSLScore(
         if (metrics.skinQuality >= 85) {
             score += 0.2;
             breakdown.push("Exceptional Clear/Glass Skin (+0.2)");
-        } else if (metrics.skinQuality < 50) {
+        } else if (metrics.skinQuality < 35) {
             score -= 0.6;
             breakdown.push("Textured/Acne Skin (-0.6)");
-        } else if (metrics.skinQuality < 70) {
+        } else if (metrics.skinQuality < 60) {
             score -= 0.2;
             breakdown.push("Slight Skin Irregularities (-0.2)");
         }
