@@ -613,11 +613,11 @@ export function calculatePSLScore(
     }
 
     // Lip Ratio
-    const lipPerf = isF ? [1.60, 1.70] : [1.50, 1.70];
+    const lipPerf = isF ? [1.15, 1.70] : [1.50, 1.70];
     if (metrics.lipRatio >= lipPerf[0] && metrics.lipRatio <= lipPerf[1]) {
         score += 0.4;
         breakdown.push("Ideal Lip Ratio (+0.4)");
-    } else if (metrics.lipRatio >= 1.3 && metrics.lipRatio <= 2.0) {
+    } else if (metrics.lipRatio >= 1.0 && metrics.lipRatio <= 2.0) {
         score += 0.2;
         breakdown.push("Good Lip Ratio (+0.2)");
     } else {
@@ -690,7 +690,7 @@ export function calculatePSLScore(
     // ==========================================
     if (profileType === 'front' || profileType === 'composite') {
         // Canthal Tilt
-        const tiltPerf = isF ? [5, 8] : [4, 6];
+        const tiltPerf = isF ? [5, 9.5] : [4, 6];
         const tiltGood = isF ? 2 : 2;
         if (metrics.canthalTilt >= tiltPerf[0] && metrics.canthalTilt <= tiltPerf[1]) {
             score += 0.8;
@@ -755,10 +755,10 @@ export function calculatePSLScore(
         }
 
         // Facial Asymmetry (Ideal: 95-100)
-        if (metrics.facialAsymmetry >= 95) {
+        if (metrics.facialAsymmetry >= 93) {
             score += 0.5;
             breakdown.push("Perfect Symmetry (+0.5)");
-        } else if (metrics.facialAsymmetry >= 90) {
+        } else if (metrics.facialAsymmetry >= 85) {
             score += 0.3;
             breakdown.push("Very Symmetric (+0.3)");
         } else if (metrics.facialAsymmetry < 80) {
@@ -786,11 +786,11 @@ export function calculatePSLScore(
         }
 
         // Cheekbone Prominence
-        const cheekPerf = isF ? [0.45, 0.52] : [0.48, 0.55];
+        const cheekPerf = isF ? [0.38, 0.52] : [0.48, 0.55];
         if (metrics.cheekboneProminence >= cheekPerf[0] && metrics.cheekboneProminence <= cheekPerf[1]) {
             score += 0.4;
             breakdown.push("Prominent Cheekbones (+0.4)");
-        } else if (metrics.cheekboneProminence < cheekPerf[0] - 0.03) {
+        } else if (metrics.cheekboneProminence < cheekPerf[0] - 0.05) {
             score -= 0.2;
             breakdown.push("Flat Cheekbones (-0.2)");
         }
