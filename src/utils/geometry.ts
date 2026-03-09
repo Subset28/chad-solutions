@@ -822,6 +822,7 @@ export function calculatePSLScore(
     // ==========================================
     if (profileType === 'side' || profileType === 'composite') {
         // Orbital Rim Protrusion
+        // NOTE: Glasses heavily corrupt this measurement - reduce penalty weight
         const orbPerf = isF ? 0.005 : 0.015;
         if (metrics.orbitalRimProtrusion > orbPerf) {
             score += 0.5;
@@ -830,8 +831,8 @@ export function calculatePSLScore(
             score += 0.1;
             breakdown.push("Good Orbital Depth (+0.1)");
         } else if (metrics.orbitalRimProtrusion < -0.005) {
-            score -= 0.8;
-            breakdown.push("Deeply Recessed / Bulging Eyes (-0.8)");
+            score -= 0.5;
+            breakdown.push("Deeply Recessed / Bulging Eyes (-0.5)");
         }
 
         // Maxillary Protrusion
@@ -863,8 +864,8 @@ export function calculatePSLScore(
                 score += 0.1;
                 breakdown.push("Good Brow Ridge (+0.1)");
             } else if (metrics.browRidgeProtrusion < 0) {
-                score -= 0.6;
-                breakdown.push("Flat Brow / Lacking Dimorphism (-0.6)");
+                score -= 0.4;
+                breakdown.push("Flat Brow / Lacking Dimorphism (-0.4)");
             }
         }
 
@@ -903,8 +904,8 @@ export function calculatePSLScore(
             score += 0.2;
             breakdown.push("Excellent Jawline Definition (+0.2)");
         } else if (metrics.doubleChinRisk < 0.005) {
-            score -= 0.8;
-            breakdown.push("Submental Fullness / Double Chin (-0.8)");
+            score -= 0.5;
+            breakdown.push("Submental Fullness / Double Chin (-0.5)");
         }
     }
 
@@ -931,19 +932,23 @@ export function calculatePSLScore(
     }
 
     // Apply scalars to normalize to 0-8 range based on max potential points
-    // Given the severe reduction in unearned bonuses, absolute perfect scores require immense precision.
-    // The scalar simply buffers exactly how high mathematically impossible it is to hit perfect +0.4's everywhere.
+    // Positive scores use a tight divisor (hard to earn high scores).
+    // Negative scores use a moderate divisor (penalties bite but Z-depth noise doesn't nuke scores).
     let rawDiff = score - 4.0;
 
-    // Apply negative scaling: If an image has massive deformities, let the penalties sink their teeth in
-    // However we do not multiply the deductions. We only softly multiply positive score.
     if (rawDiff > 0) {
+        // Compress positive scores — earning above 4.0 requires genuine elite traits
         if (profileType === 'composite') {
-            const COMPOSITE_SCALAR = 2.0;
-            score = 4.0 + (rawDiff / COMPOSITE_SCALAR);
+            score = 4.0 + (rawDiff / 2.0);
         } else {
-            const FRONT_SCALAR = 1.3;
-            score = 4.0 + (rawDiff / FRONT_SCALAR);
+            score = 4.0 + (rawDiff / 1.3);
+        }
+    } else {
+        // Moderate negative compression — penalties still bite but noisy Z-depth doesn't obliterate
+        if (profileType === 'composite') {
+            score = 4.0 + (rawDiff / 1.8);
+        } else {
+            score = 4.0 + (rawDiff / 1.4);
         }
     }
 
