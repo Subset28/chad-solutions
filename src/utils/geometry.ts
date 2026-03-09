@@ -575,8 +575,8 @@ export function calculatePSLScore(
     // ==========================================
 
     // Midface Ratio (Ideal: Compact)
-    const midfacePerf = isF ? [0.80, 1.05] : [0.85, 1.05];
-    const midfaceGood = isF ? [0.75, 1.15] : [0.80, 1.10];
+    const midfacePerf = isF ? [0.80, 1.05] : [0.75, 1.05];
+    const midfaceGood = isF ? [0.75, 1.15] : [0.70, 1.10];
     if (metrics.midfaceRatio >= midfacePerf[0] && metrics.midfaceRatio <= midfacePerf[1]) {
         score += 0.8;
         breakdown.push("Perfect Compact Midface (+0.8)");
@@ -653,10 +653,12 @@ export function calculatePSLScore(
     }
 
     // Facial Thirds Ratio (Ideal: 95-100)
+    // Men often have a stronger lower third causing an artificial "unbalance"
+    const thirdsGood = isF ? 75 : 70;
     if (metrics.facialThirdsRatio >= 95) {
         score += 0.4;
         breakdown.push("Perfect Facial Thirds (+0.4)");
-    } else if (metrics.facialThirdsRatio < 75) {
+    } else if (metrics.facialThirdsRatio < thirdsGood) {
         score -= 0.3;
         breakdown.push("Unbalanced Thirds (-0.3)");
     }
@@ -717,11 +719,11 @@ export function calculatePSLScore(
         }
 
         // Mouth to Nose Width 
-        const mtnPerf = isF ? 1.45 : 1.5;
+        const mtnPerf = isF ? 1.45 : 1.30;
         if (metrics.mouthToNoseWidthRatio >= mtnPerf) {
             score += 0.4;
             breakdown.push("Ideal Mouth Width (+0.4)");
-        } else if (metrics.mouthToNoseWidthRatio < mtnPerf - 0.2) {
+        } else if (metrics.mouthToNoseWidthRatio < mtnPerf - 0.1) {
             score -= 0.3;
             breakdown.push("Narrow Mouth (-0.3)");
         }
@@ -736,10 +738,11 @@ export function calculatePSLScore(
         }
 
         // Eye to Mouth Angle (Ideal: 47-50 degrees)
-        if (metrics.eyeToMouthAngle >= 47 && metrics.eyeToMouthAngle <= 50) {
+        const emeMin = isF ? 47 : 46;
+        if (metrics.eyeToMouthAngle >= emeMin && metrics.eyeToMouthAngle <= 50) {
             score += 0.3;
             breakdown.push("Ideal Eye-Mouth-Eye Angle (+0.3)");
-        } else if (metrics.eyeToMouthAngle < 45 || metrics.eyeToMouthAngle > 53) {
+        } else if (metrics.eyeToMouthAngle < emeMin - 2 || metrics.eyeToMouthAngle > 53) {
             score -= 0.3;
             breakdown.push("Suboptimal Eye-Mouth-Eye Angle (-0.3)");
         }
@@ -779,7 +782,7 @@ export function calculatePSLScore(
         }
 
         // Nose Width Ratio
-        const nwPerf = isF ? [0.22, 0.28] : [0.25, 0.30];
+        const nwPerf = isF ? [0.22, 0.28] : [0.25, 0.32];
         if (metrics.noseWidthRatio >= nwPerf[0] && metrics.noseWidthRatio <= nwPerf[1]) {
             score += 0.3;
             breakdown.push("Ideal Nose Width (+0.3)");
@@ -789,7 +792,7 @@ export function calculatePSLScore(
         }
 
         // Cheekbone Prominence
-        const cheekPerf = isF ? [0.38, 0.52] : [0.48, 0.55];
+        const cheekPerf = isF ? [0.38, 0.52] : [0.35, 0.50];
         if (metrics.cheekboneProminence >= cheekPerf[0] && metrics.cheekboneProminence <= cheekPerf[1]) {
             score += 0.4;
             breakdown.push("Prominent Cheekbones (+0.4)");
