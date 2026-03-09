@@ -583,6 +583,9 @@ export function calculatePSLScore(
     } else if (metrics.midfaceRatio >= midfaceGood[0] && metrics.midfaceRatio <= midfaceGood[1]) {
         score += 0.4;
         breakdown.push("Good Midface Ratio (+0.4)");
+    } else if (metrics.midfaceRatio < midfaceGood[0]) {
+        score -= 0.6;
+        breakdown.push("Excessively Compact Midface (Severe Camera Distortion) (-0.6)");
     } else {
         score -= 0.6;
         breakdown.push("Long or Imbalanced Midface (-0.6)");

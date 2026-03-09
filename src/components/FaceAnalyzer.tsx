@@ -725,7 +725,7 @@ export default function FaceAnalyzer() {
             const fRatings: Record<string, { text: string, color: string }> = {
                 canthalTilt: value >= 5 && value <= 9.5 ? { text: 'perfect feline tilt', color: 'text-green-400' } : value > 2 ? { text: 'good', color: 'text-blue-400' } : value < 0 ? { text: 'negative tilt', color: 'text-red-400' } : { text: 'neutral', color: 'text-yellow-400' },
                 fwfhRatio: value >= 1.55 ? { text: 'perfect (heart/oval)', color: 'text-green-400' } : value >= 1.45 ? { text: 'good', color: 'text-blue-400' } : { text: 'narrow face', color: 'text-orange-400' },
-                midfaceRatio: value >= 0.80 && value <= 1.05 ? { text: 'perfect compact midface', color: 'text-green-400' } : value <= 1.15 ? { text: 'good', color: 'text-blue-400' } : { text: 'long midface', color: 'text-red-400' },
+                midfaceRatio: value >= 0.80 && value <= 1.05 ? { text: 'perfect compact midface', color: 'text-green-400' } : (value >= 0.75 && value <= 1.15) ? { text: 'good', color: 'text-blue-400' } : value < 0.75 ? { text: 'excessively compact', color: 'text-red-400' } : { text: 'long midface', color: 'text-red-400' },
                 gonialAngle: value >= 105 && value <= 130 ? { text: 'perfect feminine angle', color: 'text-green-400' } : value >= 100 && value <= 135 ? { text: 'good', color: 'text-blue-400' } : { text: 'square/steep', color: 'text-orange-400' },
                 chinToPhiltrumRatio: value >= 2.0 && value <= 2.25 ? { text: 'perfect', color: 'text-green-400' } : value < 1.8 ? { text: 'long philtrum', color: 'text-red-400' } : value > 2.5 ? { text: 'short philtrum / long chin', color: 'text-orange-400' } : { text: 'acceptable', color: 'text-blue-400' },
                 mouthToNoseWidthRatio: value >= 1.45 && value <= 1.6 ? { text: 'perfect', color: 'text-green-400' } : value >= 1.35 ? { text: 'good', color: 'text-blue-400' } : { text: 'narrow mouth', color: 'text-orange-400' },
@@ -759,7 +759,7 @@ export default function FaceAnalyzer() {
         const mRatings: Record<string, { text: string, color: string }> = {
             canthalTilt: value >= 4 && value <= 6 ? { text: 'perfect hunter eyes', color: 'text-green-400' } : value > 2 ? { text: 'good', color: 'text-blue-400' } : value < 0 ? { text: 'negative canthal tilt', color: 'text-red-400' } : { text: 'neutral', color: 'text-yellow-400' },
             fwfhRatio: value >= 1.65 ? { text: 'perfect broad face', color: 'text-green-400' } : value >= 1.55 ? { text: 'good', color: 'text-blue-400' } : { text: 'narrow face', color: 'text-orange-400' },
-            midfaceRatio: value >= 0.75 && value <= 1.05 ? { text: 'perfect compact midface', color: 'text-green-400' } : value <= 1.10 ? { text: 'good', color: 'text-blue-400' } : { text: 'significantly too long midface', color: 'text-red-400' },
+            midfaceRatio: value >= 0.75 && value <= 1.05 ? { text: 'perfect compact midface', color: 'text-green-400' } : (value >= 0.70 && value <= 1.10) ? { text: 'good', color: 'text-blue-400' } : value < 0.70 ? { text: 'excessively compact', color: 'text-red-400' } : { text: 'long midface', color: 'text-red-400' },
             gonialAngle: value >= 110 && value <= 125 ? { text: 'perfect masculine square', color: 'text-green-400' } : value >= 100 && value <= 130 ? { text: 'good', color: 'text-blue-400' } : { text: 'steep/soft jawline', color: 'text-orange-400' },
             chinToPhiltrumRatio: value >= 2.0 && value <= 2.25 ? { text: 'perfect', color: 'text-green-400' } : value < 1.8 ? { text: 'long philtrum / weak chin', color: 'text-red-400' } : value > 2.8 ? { text: 'short philtrum / long chin', color: 'text-orange-400' } : { text: 'acceptable', color: 'text-blue-400' },
             mouthToNoseWidthRatio: value >= 1.30 && value <= 1.62 ? { text: 'perfect', color: 'text-green-400' } : value >= 1.20 ? { text: 'good', color: 'text-blue-400' } : { text: 'narrow mouth', color: 'text-orange-400' },
@@ -865,6 +865,23 @@ export default function FaceAnalyzer() {
 
             {/* Controls Row */}
             <div className="flex flex-wrap gap-4 justify-center items-center w-full">
+                {/* App Mode Switcher */}
+                <div className="flex bg-zinc-900 p-1.5 rounded-full border border-zinc-800 shadow-xl relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 pointer-events-none" />
+                    <button
+                        onClick={() => { setAppMode('single'); setAuditResult(null); setScans([]); }}
+                        className={`px-6 py-2 rounded-full font-bold transition-all text-sm relative z-10 ${appMode === 'single' ? 'bg-white text-black shadow-md' : 'text-zinc-400 hover:text-white'}`}
+                    >
+                        Single Audit
+                    </button>
+                    <button
+                        onClick={() => { setAppMode('compare'); setAuditResult(null); setBeforeScan(null); setAfterScan(null); setScans([]); }}
+                        className={`px-6 py-2 rounded-full font-bold transition-all text-sm relative z-10 ${appMode === 'compare' ? 'bg-white text-black shadow-md' : 'text-zinc-400 hover:text-white'}`}
+                    >
+                        Before & After Mode
+                    </button>
+                </div>
+
                 {/* Input Mode Toggle */}
                 <div className="flex gap-2 bg-zinc-900 p-1.5 rounded-full border border-zinc-800 shadow-xl">
                     <button
@@ -898,421 +915,591 @@ export default function FaceAnalyzer() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full items-start">
-                {/* Camera Feed / Upload / Result Image */}
-                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-3xl border-2 border-zinc-800 bg-black shadow-2xl">
-                    {analyzedImageWithLandmarks ? (
-                        /* After analysis: show the annotated image with landmarks for ANY mode */
-                        <img src={analyzedImageWithLandmarks} alt="Analyzed with landmarks" className="h-full w-full object-contain" />
-                    ) : inputMode === 'webcam' ? (
-                        <Webcam
-                            ref={webcamRef}
-                            screenshotFormat="image/jpeg"
-                            className="h-full w-full object-cover transform scale-x-[-1]"
-                            videoConstraints={{ facingMode: "user" }}
-                        />
-                    ) : (
-                        <div className="h-full w-full flex items-center justify-center bg-zinc-950">
-                            {uploadedImage ? (
-                                <img src={uploadedImage} alt="Uploaded" className="h-full w-full object-contain" />
-                            ) : (
-                                <div className="text-center space-y-4">
-                                    <div className="text-6xl">📸</div>
-                                    <p className="text-zinc-400">No image uploaded</p>
+            {appMode === 'single' ? (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full items-start">
+                    {/* Camera Feed / Upload / Result Image */}
+                    <div className="relative aspect-[3/4] w-full overflow-hidden rounded-3xl border-2 border-zinc-800 bg-black shadow-2xl">
+                        {analyzedImageWithLandmarks ? (
+                            /* After analysis: show the annotated image with landmarks for ANY mode */
+                            <img src={analyzedImageWithLandmarks} alt="Analyzed with landmarks" className="h-full w-full object-contain" />
+                        ) : inputMode === 'webcam' ? (
+                            <Webcam
+                                ref={webcamRef}
+                                screenshotFormat="image/jpeg"
+                                className="h-full w-full object-cover transform scale-x-[-1]"
+                                videoConstraints={{ facingMode: "user" }}
+                            />
+                        ) : (
+                            <div className="h-full w-full flex items-center justify-center bg-zinc-950">
+                                {uploadedImage ? (
+                                    <img src={uploadedImage} alt="Uploaded" className="h-full w-full object-contain" />
+                                ) : (
+                                    <div className="text-center space-y-4">
+                                        <div className="text-6xl">📸</div>
+                                        <p className="text-zinc-400">No image uploaded</p>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                        {isAnalyzing && (
+                            <div className="absolute inset-0 bg-black/50 flex items-center justify-center backdrop-blur-sm">
+                                <div className="text-white font-mono text-xl animate-pulse">Running Neural Scan...</div>
+                            </div>
+                        )}
+
+                        {/* Scans Gallery Strip */}
+                        {scans.length > 0 && (
+                            <div className="absolute bottom-4 left-4 right-4 bg-zinc-900/90 rounded-2xl p-4 border border-zinc-700 backdrop-blur-md z-10 shadow-2xl">
+                                <div className="flex justify-between items-center mb-3">
+                                    <h4 className="text-sm font-bold text-zinc-200">Analysis Gallery</h4>
+                                    <span className="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded-full font-semibold">{scans.length} Angle{scans.length !== 1 ? 's' : ''}</span>
                                 </div>
-                            )}
-                        </div>
-                    )}
-                    {isAnalyzing && (
-                        <div className="absolute inset-0 bg-black/50 flex items-center justify-center backdrop-blur-sm">
-                            <div className="text-white font-mono text-xl animate-pulse">Running Neural Scan...</div>
-                        </div>
-                    )}
-
-                    {/* Scans Gallery Strip */}
-                    {scans.length > 0 && (
-                        <div className="w-full bg-zinc-900/50 rounded-2xl p-4 border border-zinc-800">
-                            <div className="flex justify-between items-center mb-3">
-                                <h4 className="text-sm font-bold text-zinc-400">Analysis Gallery</h4>
-                                <span className="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded-full">{scans.length} Angle{scans.length !== 1 ? 's' : ''} Scanned</span>
-                            </div>
-                            <div className="flex gap-3 overflow-x-auto pb-2 snap-x">
-                                {scans.map((scan, i) => (
-                                    <div key={i} className="relative shrink-0 w-24 h-32 rounded-xl overflow-hidden border-2 border-zinc-700 snap-center group">
-                                        <img src={scan.imageUrl} alt={`Scan ${i + 1}`} className="w-full h-full object-cover" />
-                                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent p-2">
-                                            <div className="text-[10px] font-bold text-white uppercase text-center bg-black/50 rounded backdrop-blur-md inline-block px-1">
-                                                {scan.profileType}
+                                <div className="flex gap-3 overflow-x-auto pb-2 snap-x">
+                                    {scans.map((scan, i) => (
+                                        <div key={i} className="relative shrink-0 w-20 h-28 rounded-xl overflow-hidden border-2 border-zinc-600 snap-center group">
+                                            <img src={scan.imageUrl} alt={`Scan ${i + 1}`} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
+                                            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent p-1.5 flex justify-center">
+                                                <div className="text-[9px] font-bold text-white uppercase text-center bg-black/60 rounded px-1.5 backdrop-blur-md">
+                                                    {scan.profileType}
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    ))}
 
-                                {/* Add New Angle Button */}
-                                <button
-                                    onClick={() => {
-                                        setAuditResult(null);
-                                        setAnalyzedImageWithLandmarks(null);
-                                        // Optional: Keep uploaded image if we want to extract another face, but usually clear it for a new photo
-                                        setUploadedImage(null);
-                                    }}
-                                    className="shrink-0 w-24 h-32 rounded-xl border-2 border-dashed border-zinc-700 flex flex-col items-center justify-center hover:bg-zinc-800 hover:border-zinc-500 transition-all snap-center group"
-                                >
-                                    <div className="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400 group-hover:text-white group-hover:bg-zinc-700 transition-colors mb-2">
-                                        +
-                                    </div>
-                                    <span className="text-[10px] font-bold text-zinc-500 group-hover:text-zinc-300">ADD ANGLE</span>
-                                </button>
-                            </div>
-                        </div>
-                    )}
-
-                </div>
-
-                {/* Audit Report */}
-                <div className="flex flex-col space-y-6">
-                    {!auditResult ? (
-                        <div className="flex flex-col items-center justify-center h-full min-h-[400px] bg-zinc-900/30 border border-zinc-800/50 rounded-3xl p-8 text-center space-y-6">
-                            <div className="w-16 h-16 rounded-full bg-blue-500/10 flex items-center justify-center">
-                                <svg className="w-8 h-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 className="text-3xl font-bold text-white mb-2">FaceAudit™ AI</h3>
-                                <p className="text-zinc-400 max-w-sm mx-auto">
-                                    Position your face clearly. Ensure good lighting. Remove glasses.
-                                </p>
-                            </div>
-                            {inputMode === 'webcam' ? (
-                                <button
-                                    onClick={captureAndAnalyze}
-                                    disabled={!faceLandmarker || isAnalyzing}
-                                    className="w-full max-w-xs py-4 rounded-full bg-white text-black font-bold text-lg hover:bg-zinc-200 transition-all active:scale-95 shadow-lg shadow-white/10 disabled:opacity-50"
-                                >
-                                    {isAnalyzing ? 'Scanning...' : 'Start Audit'}
-                                </button>
-                            ) : (
-                                <>
-                                    <input
-                                        ref={fileInputRef}
-                                        type="file"
-                                        accept="image/*"
-                                        onChange={handleFileUpload}
-                                        className="hidden"
-                                    />
+                                    {/* Add New Angle Button */}
                                     <button
-                                        onClick={() => fileInputRef.current?.click()}
-                                        disabled={!faceLandmarker || isAnalyzing}
-                                        className="w-full max-w-xs py-4 rounded-full bg-white text-black font-bold text-lg hover:bg-zinc-200 transition-all active:scale-95 shadow-lg shadow-white/10 disabled:opacity-50"
+                                        onClick={() => {
+                                            setAuditResult(null);
+                                            setAnalyzedImageWithLandmarks(null);
+                                            setUploadedImage(null);
+                                            setInputMode('webcam'); // Default back to camera to invite next scan implicitly
+                                        }}
+                                        className="shrink-0 w-20 h-28 rounded-xl border-2 border-dashed border-zinc-600 flex flex-col items-center justify-center hover:bg-zinc-700 hover:border-zinc-400 transition-all snap-center group bg-black/40"
                                     >
-                                        {isAnalyzing ? 'Scanning...' : 'Choose Image'}
+                                        <div className="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400 group-hover:text-white group-hover:bg-zinc-600 transition-colors mb-1.5">
+                                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                                            </svg>
+                                        </div>
+                                        <span className="text-[9px] font-bold text-zinc-400 group-hover:text-zinc-200">ADD</span>
                                     </button>
+                                </div>
+                            </div>
+                        )}
+                    </div>
 
-                                    {/* URL Upload */}
-                                    <div className="w-full max-w-xs">
-                                        <div className="flex items-center gap-2 my-2">
-                                            <div className="flex-1 h-px bg-zinc-700" />
-                                            <span className="text-xs text-zinc-500 font-medium">OR</span>
-                                            <div className="flex-1 h-px bg-zinc-700" />
-                                        </div>
-                                        <div className="flex gap-2">
-                                            <input
-                                                type="url"
-                                                placeholder="Paste image URL..."
-                                                value={urlInput}
-                                                onChange={(e) => setUrlInput(e.target.value)}
-                                                onKeyDown={(e) => e.key === 'Enter' && handleUrlUpload()}
-                                                disabled={!faceLandmarker || isAnalyzing}
-                                                className="flex-1 bg-zinc-800 border border-zinc-700 text-white text-sm rounded-xl px-3 py-2 placeholder-zinc-500 focus:outline-none focus:border-blue-500 disabled:opacity-50"
-                                            />
-                                            <button
-                                                onClick={handleUrlUpload}
-                                                disabled={!faceLandmarker || isAnalyzing || !urlInput.trim()}
-                                                className="px-3 py-2 bg-blue-600 hover:bg-blue-500 disabled:opacity-40 text-white rounded-xl text-sm font-bold transition-colors"
-                                            >
-                                                ↗
-                                            </button>
-                                        </div>
-                                    </div>
-                                </>
-                            )}
-                            {!faceLandmarker && <p className="text-xs text-yellow-500">Loading models...</p>}
-                        </div>
-                    ) : (
-                        <div className="space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-700">
-
-                            {/* Score Hero Card */}
-                            {(() => {
-                                const s = auditResult.psl.score;
-                                const gradient = s >= 7.0
-                                    ? 'from-amber-400 via-yellow-300 to-amber-500'
-                                    : s >= 6.0 ? 'from-emerald-400 to-green-500'
-                                        : s >= 5.0 ? 'from-sky-400 to-blue-500'
-                                            : s >= 4.0 ? 'from-blue-500 to-indigo-600'
-                                                : 'from-zinc-500 to-zinc-600';
-                                const barColor = s >= 7.0 ? '#F59E0B' : s >= 6.0 ? '#10B981' : s >= 5.0 ? '#38BDF8' : s >= 4.0 ? '#6366F1' : '#71717A';
-                                const pct = (s / 8) * 100;
-                                return (
-                                    <div className="relative rounded-3xl overflow-hidden border border-zinc-800 bg-gradient-to-br from-zinc-900 to-zinc-950 p-7">
-                                        <div className="absolute inset-0 opacity-5 bg-gradient-to-br from-white to-transparent pointer-events-none" />
-                                        <div className="flex items-start justify-between mb-5">
-                                            <div>
-                                                <p className="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-1">
-                                                    {auditResult.profileType === 'composite' ? '⚡ Composite Score' : '📸 Scan Score'}
-                                                </p>
-                                                <div className="flex items-baseline gap-2">
-                                                    <span className={`text-6xl font-black bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}>
-                                                        {s.toFixed(1)}
-                                                    </span>
-                                                    <span className="text-2xl font-bold text-zinc-600">/ 8.0 PSL</span>
-                                                </div>
-                                                <p className="text-sm font-medium text-zinc-300 mt-1">{auditResult.psl.tier}</p>
-                                            </div>
-                                            <button
-                                                onClick={() => { setAuditResult(null); setScans([]); setAnalyzedImageWithLandmarks(null); setUploadedImage(null); }}
-                                                className="text-xs font-semibold text-zinc-600 hover:text-red-400 transition-colors border border-zinc-700 hover:border-red-500/50 rounded-lg px-3 py-1.5"
-                                            >
-                                                Reset
-                                            </button>
-                                        </div>
-
-                                        {/* Score Bar */}
-                                        <div className="h-2.5 bg-zinc-800 rounded-full overflow-hidden">
-                                            <div
-                                                className="h-full rounded-full transition-all duration-1000"
-                                                style={{ width: `${pct}%`, background: barColor, boxShadow: `0 0 12px ${barColor}80` }}
-                                            />
-                                        </div>
-
-                                        {/* Tick marks */}
-                                        <div className="flex justify-between mt-1.5 px-0.5">
-                                            {[1, 2, 3, 4, 5, 6, 7, 8].map(n => (
-                                                <span key={n} className={`text-[10px] font-mono ${s >= n ? 'text-zinc-300' : 'text-zinc-700'}`}>{n}</span>
-                                            ))}
-                                        </div>
-
-                                        {/* Score breakdown pills */}
-                                        <div className="mt-4 flex flex-wrap gap-1.5">
-                                            {auditResult.psl.breakdown.map((item, i) => {
-                                                const isPos = item.includes('+');
-                                                const isNeg = item.includes('-') && !item.includes('Base');
-                                                return (
-                                                    <span key={i} className={`text-[11px] font-medium px-2 py-0.5 rounded-full border ${isPos ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
-                                                        : isNeg ? 'bg-red-500/10 border-red-500/30 text-red-400'
-                                                            : 'bg-zinc-800 border-zinc-700 text-zinc-400'
-                                                        }`}>{item}</span>
-                                                );
-                                            })}
-                                        </div>
-                                    </div>
-                                );
-                            })()}
-
-                            {/* Metric Cards */}
-                            <div className="space-y-2">
-                                <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-widest px-1">Feature Analysis</h3>
-                                {Object.entries(auditResult.metrics).map(([key, value]) => {
-                                    const metricKey = key as keyof MetricScores;
-                                    const rating = getRating(metricKey, value, gender);
-                                    const idealRange = getIdealRange(metricKey, gender);
-                                    const label = key.replace(/([A-Z])/g, ' $1').trim();
-                                    const isExpanded = expandedMetric === key;
-                                    const explanation = metricExplanations[key];
-                                    const recs = metricRecommendations[key];
-
-                                    const sideOnlyMetrics = ['chinProjection', 'maxillaryProtrusion', 'orbitalRimProtrusion', 'browRidgeProtrusion', 'infraorbitalRimPosition', 'doubleChinRisk'];
-                                    const frontOnlyMetrics = ['facialAsymmetry', 'ipdRatio', 'eyeSeparationRatio', 'canthalTilt', 'fwfhRatio', 'noseWidthRatio', 'mouthToNoseWidthRatio', 'bigonialWidthRatio', 'cheekboneProminence', 'skinQuality', 'facialTension'];
-
-                                    const isSideMetric = sideOnlyMetrics.includes(key);
-                                    const isFrontMetric = frontOnlyMetrics.includes(key);
-                                    let isValidForProfile = true;
-                                    let profileNote = '';
-                                    if (auditResult.profileType === 'front' && isSideMetric) { isValidForProfile = false; profileNote = 'Side profile required'; }
-                                    else if (auditResult.profileType === 'side' && isFrontMetric) { isValidForProfile = false; profileNote = 'Front profile required'; }
-
-                                    const isGood = rating.color.includes('green');
-                                    const isOk = rating.color.includes('blue') || rating.color.includes('yellow');
-                                    const isBad = rating.color.includes('orange') || rating.color.includes('red');
-                                    const borderColor = !isValidForProfile ? 'border-zinc-800' : isGood ? 'border-emerald-500/40' : isBad ? 'border-red-500/40' : 'border-zinc-700';
-                                    const bgHover = !isValidForProfile ? '' : isGood ? 'hover:bg-emerald-950/20' : isBad ? 'hover:bg-red-950/20' : 'hover:bg-zinc-800/50';
-
-                                    return (
-                                        <div
-                                            key={key}
-                                            className={`rounded-2xl border ${borderColor} bg-zinc-900 transition-all duration-200 overflow-hidden ${!isValidForProfile ? 'opacity-30' : 'cursor-pointer ' + bgHover}`}
-                                            onClick={() => isValidForProfile && setExpandedMetric(isExpanded ? null : key)}
+                    {/* Audit Report */}
+                    <div className="flex flex-col space-y-6">
+                        {!auditResult ? (
+                            <div className="flex flex-col items-center justify-center h-full min-h-[400px] bg-zinc-900/30 border border-zinc-800/50 rounded-3xl p-8 text-center space-y-6">
+                                <div className="w-16 h-16 rounded-full bg-blue-500/10 flex items-center justify-center">
+                                    <svg className="w-8 h-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 className="text-3xl font-bold text-white mb-2">FaceAudit™ AI</h3>
+                                    <p className="text-zinc-400 max-w-sm mx-auto">
+                                        Position your face clearly. Ensure good lighting. Remove glasses. Multiple angles map a higher precision score.
+                                    </p>
+                                </div>
+                                {inputMode === 'webcam' ? (
+                                    <button
+                                        onClick={captureAndAnalyze}
+                                        disabled={!faceLandmarker || isAnalyzing}
+                                        className="w-full max-w-xs py-4 rounded-full bg-white text-black font-bold text-lg hover:bg-zinc-200 transition-all active:scale-95 shadow-lg shadow-white/10 disabled:opacity-50 flex items-center justify-center gap-2"
+                                    >
+                                        {isAnalyzing ? (
+                                            <>
+                                                <svg className="w-5 h-5 animate-spin text-zinc-900" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+                                                Scanning...
+                                            </>
+                                        ) : 'Capture Scan'}
+                                    </button>
+                                ) : (
+                                    <>
+                                        <input
+                                            ref={fileInputRef}
+                                            type="file"
+                                            accept="image/*"
+                                            onChange={handleFileUpload}
+                                            className="hidden"
+                                        />
+                                        <button
+                                            onClick={() => fileInputRef.current?.click()}
+                                            disabled={!faceLandmarker || isAnalyzing}
+                                            className="w-full max-w-xs py-4 rounded-full bg-white text-black font-bold text-lg hover:bg-zinc-200 transition-all active:scale-95 shadow-lg shadow-white/10 disabled:opacity-50"
                                         >
-                                            {/* Row */}
-                                            <div className="flex items-center gap-3 px-4 py-3.5">
-                                                {/* Status dot */}
-                                                <div className={`w-2 h-2 rounded-full flex-shrink-0 ${!isValidForProfile ? 'bg-zinc-700' : isGood ? 'bg-emerald-400' : isBad ? 'bg-red-400' : 'bg-yellow-400'}`} />
-                                                <div className="flex-1 min-w-0">
-                                                    <div className="flex items-baseline justify-between gap-2">
-                                                        <span className="text-sm font-semibold text-white capitalize truncate">{explanation?.title || label}</span>
-                                                        <span className={`text-xs font-bold flex-shrink-0 ${isValidForProfile ? rating.color : 'text-zinc-600'}`}>
-                                                            {isValidForProfile ? rating.text : profileNote}
+                                            {isAnalyzing ? 'Scanning...' : 'Choose Image'}
+                                        </button>
+
+                                        {/* URL Upload */}
+                                        <div className="w-full max-w-xs">
+                                            <div className="flex items-center gap-2 my-2">
+                                                <div className="flex-1 h-px bg-zinc-700" />
+                                                <span className="text-xs text-zinc-500 font-medium">OR</span>
+                                                <div className="flex-1 h-px bg-zinc-700" />
+                                            </div>
+                                            <div className="flex gap-2">
+                                                <input
+                                                    type="url"
+                                                    placeholder="Paste image URL..."
+                                                    value={urlInput}
+                                                    onChange={(e) => setUrlInput(e.target.value)}
+                                                    onKeyDown={(e) => e.key === 'Enter' && handleUrlUpload()}
+                                                    disabled={!faceLandmarker || isAnalyzing}
+                                                    className="flex-1 bg-zinc-800 border border-zinc-700 text-white text-sm rounded-xl px-3 py-2 placeholder-zinc-500 focus:outline-none focus:border-blue-500 disabled:opacity-50"
+                                                />
+                                                <button
+                                                    onClick={handleUrlUpload}
+                                                    disabled={!faceLandmarker || isAnalyzing || !urlInput.trim()}
+                                                    className="px-3 py-2 bg-blue-600 hover:bg-blue-500 disabled:opacity-40 text-white rounded-xl text-sm font-bold transition-colors"
+                                                >
+                                                    ↗
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </>
+                                )}
+                                {!faceLandmarker && <p className="text-xs text-yellow-500 mt-4 animate-pulse">Initializing neural models. Please wait...</p>}
+                            </div>
+                        ) : (
+                            <div className="space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-700">
+
+                                {/* Score Hero Card */}
+                                {(() => {
+                                    const s = auditResult.psl.score;
+                                    const gradient = s >= 7.0
+                                        ? 'from-amber-400 via-yellow-300 to-amber-500'
+                                        : s >= 6.0 ? 'from-emerald-400 to-green-500'
+                                            : s >= 5.0 ? 'from-sky-400 to-blue-500'
+                                                : s >= 4.0 ? 'from-blue-500 to-indigo-600'
+                                                    : 'from-zinc-500 to-zinc-600';
+                                    const barColor = s >= 7.0 ? '#F59E0B' : s >= 6.0 ? '#10B981' : s >= 5.0 ? '#38BDF8' : s >= 4.0 ? '#6366F1' : '#71717A';
+                                    const pct = (s / 8) * 100;
+                                    return (
+                                        <div className="relative rounded-3xl overflow-hidden border border-zinc-800 bg-gradient-to-br from-zinc-900 to-zinc-950 p-7">
+                                            <div className="absolute inset-0 opacity-5 bg-gradient-to-br from-white to-transparent pointer-events-none" />
+                                            <div className="flex items-start justify-between mb-5">
+                                                <div>
+                                                    <p className="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-1">
+                                                        {auditResult.profileType === 'composite' ? '⚡ Composite Score' : '📸 Scan Score'}
+                                                    </p>
+                                                    <div className="flex items-baseline gap-2">
+                                                        <span className={`text-6xl font-black bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}>
+                                                            {s.toFixed(1)}
                                                         </span>
+                                                        <span className="text-2xl font-bold text-zinc-600">/ 8.0 PSL</span>
                                                     </div>
-                                                    <div className="flex items-center justify-between mt-0.5">
-                                                        <span className="text-[11px] text-zinc-500">Ideal: {idealRange}</span>
-                                                        {isValidForProfile && (
-                                                            <span className="text-[11px] font-mono text-zinc-400">{typeof value === 'number' ? value.toFixed(2) : value}</span>
-                                                        )}
-                                                    </div>
+                                                    <p className="text-sm font-medium text-zinc-300 mt-1">{auditResult.psl.tier}</p>
                                                 </div>
-                                                {isValidForProfile && (
-                                                    <svg className={`w-4 h-4 text-zinc-600 flex-shrink-0 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                                    </svg>
-                                                )}
+                                                <button
+                                                    onClick={() => { setAuditResult(null); setScans([]); setAnalyzedImageWithLandmarks(null); setUploadedImage(null); }}
+                                                    className="text-xs font-semibold text-zinc-600 hover:text-red-400 transition-colors border border-zinc-700 hover:border-red-500/50 rounded-lg px-3 py-1.5"
+                                                >
+                                                    Reset
+                                                </button>
                                             </div>
 
-                                            {/* Expanded Panel */}
-                                            {isExpanded && isValidForProfile && (
-                                                <div className="border-t border-zinc-800 px-4 pb-5 pt-4 space-y-4 text-sm">
-                                                    {/* What it means */}
-                                                    {explanation && (
-                                                        <div>
-                                                            <p className="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-1.5">What this measures</p>
-                                                            <p className="text-zinc-300 leading-relaxed">{explanation.whatItIs}</p>
-                                                            <p className="text-zinc-400 leading-relaxed mt-2">{explanation.scientificContext}</p>
-                                                            {explanation.blackpillNote && (
-                                                                <p className="text-amber-400/80 text-xs leading-relaxed mt-2 italic">{explanation.blackpillNote}</p>
-                                                            )}
-                                                        </div>
-                                                    )}
+                                            {/* Score Bar */}
+                                            <div className="h-2.5 bg-zinc-800 rounded-full overflow-hidden">
+                                                <div
+                                                    className="h-full rounded-full transition-all duration-1000"
+                                                    style={{ width: `${pct}%`, background: barColor, boxShadow: `0 0 12px ${barColor}80` }}
+                                                />
+                                            </div>
 
-                                                    {/* Recommendations — only show for non-perfect metrics */}
-                                                    {recs && !isGood && (
-                                                        <div className="space-y-3 pt-1">
-                                                            <p className="text-xs font-bold text-zinc-500 uppercase tracking-wider">How to improve</p>
+                                            {/* Tick marks */}
+                                            <div className="flex justify-between mt-1.5 px-0.5">
+                                                {[1, 2, 3, 4, 5, 6, 7, 8].map(n => (
+                                                    <span key={n} className={`text-[10px] font-mono ${s >= n ? 'text-zinc-300' : 'text-zinc-700'}`}>{n}</span>
+                                                ))}
+                                            </div>
 
-                                                            {recs.surgical.length > 0 && (
-                                                                <div className="bg-red-950/20 border border-red-500/20 rounded-xl p-3">
-                                                                    <p className="text-xs font-bold text-red-400 mb-2">🔪 Surgical Options</p>
-                                                                    <ul className="space-y-1.5">
-                                                                        {recs.surgical.map((r, i) => (
-                                                                            <li key={i} className="text-xs text-zinc-300 leading-relaxed flex gap-2">
-                                                                                <span className="text-red-500/60 flex-shrink-0 mt-0.5">•</span>
-                                                                                {r}
-                                                                            </li>
-                                                                        ))}
-                                                                    </ul>
-                                                                </div>
-                                                            )}
-
-                                                            {recs.nonSurgical.length > 0 && (
-                                                                <div className="bg-blue-950/20 border border-blue-500/20 rounded-xl p-3">
-                                                                    <p className="text-xs font-bold text-blue-400 mb-2">💊 Non-Surgical Options</p>
-                                                                    <ul className="space-y-1.5">
-                                                                        {recs.nonSurgical.map((r, i) => (
-                                                                            <li key={i} className="text-xs text-zinc-300 leading-relaxed flex gap-2">
-                                                                                <span className="text-blue-500/60 flex-shrink-0 mt-0.5">•</span>
-                                                                                {r}
-                                                                            </li>
-                                                                        ))}
-                                                                    </ul>
-                                                                </div>
-                                                            )}
-
-                                                            {recs.lifestyle.length > 0 && (
-                                                                <div className="bg-emerald-950/20 border border-emerald-500/20 rounded-xl p-3">
-                                                                    <p className="text-xs font-bold text-emerald-400 mb-2">🌱 Lifestyle Changes</p>
-                                                                    <ul className="space-y-1.5">
-                                                                        {recs.lifestyle.map((r, i) => (
-                                                                            <li key={i} className="text-xs text-zinc-300 leading-relaxed flex gap-2">
-                                                                                <span className="text-emerald-500/60 flex-shrink-0 mt-0.5">•</span>
-                                                                                {r}
-                                                                            </li>
-                                                                        ))}
-                                                                    </ul>
-                                                                </div>
-                                                            )}
-
-                                                            <p className="text-[11px] text-zinc-500 italic leading-relaxed border-t border-zinc-800 pt-3">{recs.outlook}</p>
-                                                        </div>
-                                                    )}
-
-                                                    {isGood && (
-                                                        <div className="flex items-center gap-2 text-emerald-400/80 text-xs italic">
-                                                            <span>✓</span> This feature is within the ideal range. No intervention needed.
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            )}
+                                            {/* Score breakdown pills */}
+                                            <div className="mt-4 flex flex-wrap gap-1.5">
+                                                {auditResult.psl.breakdown.map((item, i) => {
+                                                    const isPos = item.includes('+');
+                                                    const isNeg = item.includes('-') && !item.includes('Base');
+                                                    return (
+                                                        <span key={i} className={`text-[11px] font-medium px-2 py-0.5 rounded-full border ${isPos ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
+                                                            : isNeg ? 'bg-red-500/10 border-red-500/30 text-red-400'
+                                                                : 'bg-zinc-800 border-zinc-700 text-zinc-400'
+                                                            }`}>{item}</span>
+                                                    );
+                                                })}
+                                            </div>
                                         </div>
                                     );
-                                })}
+                                })()}
+
+                                {/* Metric Cards */}
+                                <div className="space-y-2">
+                                    <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-widest px-1">Feature Analysis</h3>
+                                    {Object.entries(auditResult.metrics).map(([key, value]) => {
+                                        const metricKey = key as keyof MetricScores;
+                                        const rating = getRating(metricKey, value, gender);
+                                        const idealRange = getIdealRange(metricKey, gender);
+                                        const label = key.replace(/([A-Z])/g, ' $1').trim();
+                                        const isExpanded = expandedMetric === key;
+                                        const explanation = metricExplanations[key];
+                                        const recs = metricRecommendations[key];
+
+                                        const sideOnlyMetrics = ['chinProjection', 'maxillaryProtrusion', 'orbitalRimProtrusion', 'browRidgeProtrusion', 'infraorbitalRimPosition', 'doubleChinRisk'];
+                                        const frontOnlyMetrics = ['facialAsymmetry', 'ipdRatio', 'eyeSeparationRatio', 'canthalTilt', 'fwfhRatio', 'noseWidthRatio', 'mouthToNoseWidthRatio', 'bigonialWidthRatio', 'cheekboneProminence', 'skinQuality', 'facialTension'];
+
+                                        const isSideMetric = sideOnlyMetrics.includes(key);
+                                        const isFrontMetric = frontOnlyMetrics.includes(key);
+                                        let isValidForProfile = true;
+                                        let profileNote = '';
+                                        if (auditResult.profileType === 'front' && isSideMetric) { isValidForProfile = false; profileNote = 'Side profile required'; }
+                                        else if (auditResult.profileType === 'side' && isFrontMetric) { isValidForProfile = false; profileNote = 'Front profile required'; }
+
+                                        const isGood = rating.color.includes('green');
+                                        const isOk = rating.color.includes('blue') || rating.color.includes('yellow');
+                                        const isBad = rating.color.includes('orange') || rating.color.includes('red');
+                                        const borderColor = !isValidForProfile ? 'border-zinc-800' : isGood ? 'border-emerald-500/40' : isBad ? 'border-red-500/40' : 'border-zinc-700';
+                                        const bgHover = !isValidForProfile ? '' : isGood ? 'hover:bg-emerald-950/20' : isBad ? 'hover:bg-red-950/20' : 'hover:bg-zinc-800/50';
+
+                                        return (
+                                            <div
+                                                key={key}
+                                                className={`rounded-2xl border ${borderColor} bg-zinc-900 transition-all duration-200 overflow-hidden ${!isValidForProfile ? 'opacity-30' : 'cursor-pointer ' + bgHover}`}
+                                                onClick={() => isValidForProfile && setExpandedMetric(isExpanded ? null : key)}
+                                            >
+                                                {/* Row */}
+                                                <div className="flex items-center gap-3 px-4 py-3.5">
+                                                    {/* Status dot */}
+                                                    <div className={`w-2 h-2 rounded-full flex-shrink-0 ${!isValidForProfile ? 'bg-zinc-700' : isGood ? 'bg-emerald-400' : isBad ? 'bg-red-400' : 'bg-yellow-400'}`} />
+                                                    <div className="flex-1 min-w-0">
+                                                        <div className="flex items-baseline justify-between gap-2">
+                                                            <span className="text-sm font-semibold text-white capitalize truncate">{explanation?.title || label}</span>
+                                                            <span className={`text-xs font-bold flex-shrink-0 ${isValidForProfile ? rating.color : 'text-zinc-600'}`}>
+                                                                {isValidForProfile ? rating.text : profileNote}
+                                                            </span>
+                                                        </div>
+                                                        <div className="flex items-center justify-between mt-0.5">
+                                                            <span className="text-[11px] text-zinc-500">Ideal: {idealRange}</span>
+                                                            {isValidForProfile && (
+                                                                <span className="text-[11px] font-mono text-zinc-400">{typeof value === 'number' ? value.toFixed(2) : value}</span>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                    {isValidForProfile && (
+                                                        <svg className={`w-4 h-4 text-zinc-600 flex-shrink-0 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                                        </svg>
+                                                    )}
+                                                </div>
+
+                                                {/* Expanded Panel */}
+                                                {isExpanded && isValidForProfile && (
+                                                    <div className="border-t border-zinc-800 px-4 pb-5 pt-4 space-y-4 text-sm">
+                                                        {/* What it means */}
+                                                        {explanation && (
+                                                            <div>
+                                                                <p className="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-1.5">What this measures</p>
+                                                                <p className="text-zinc-300 leading-relaxed">{explanation.whatItIs}</p>
+                                                                <p className="text-zinc-400 leading-relaxed mt-2">{explanation.scientificContext}</p>
+                                                                {explanation.blackpillNote && (
+                                                                    <p className="text-amber-400/80 text-xs leading-relaxed mt-2 italic">{explanation.blackpillNote}</p>
+                                                                )}
+                                                            </div>
+                                                        )}
+
+                                                        {/* Recommendations — only show for non-perfect metrics */}
+                                                        {recs && !isGood && (
+                                                            <div className="space-y-3 pt-1">
+                                                                <p className="text-xs font-bold text-zinc-500 uppercase tracking-wider">How to improve</p>
+
+                                                                {recs.surgical.length > 0 && (
+                                                                    <div className="bg-red-950/20 border border-red-500/20 rounded-xl p-3">
+                                                                        <p className="text-xs font-bold text-red-400 mb-2">🔪 Surgical Options</p>
+                                                                        <ul className="space-y-1.5">
+                                                                            {recs.surgical.map((r, i) => (
+                                                                                <li key={i} className="text-xs text-zinc-300 leading-relaxed flex gap-2">
+                                                                                    <span className="text-red-500/60 flex-shrink-0 mt-0.5">•</span>
+                                                                                    {r}
+                                                                                </li>
+                                                                            ))}
+                                                                        </ul>
+                                                                    </div>
+                                                                )}
+
+                                                                {recs.nonSurgical.length > 0 && (
+                                                                    <div className="bg-blue-950/20 border border-blue-500/20 rounded-xl p-3">
+                                                                        <p className="text-xs font-bold text-blue-400 mb-2">💊 Non-Surgical Options</p>
+                                                                        <ul className="space-y-1.5">
+                                                                            {recs.nonSurgical.map((r, i) => (
+                                                                                <li key={i} className="text-xs text-zinc-300 leading-relaxed flex gap-2">
+                                                                                    <span className="text-blue-500/60 flex-shrink-0 mt-0.5">•</span>
+                                                                                    {r}
+                                                                                </li>
+                                                                            ))}
+                                                                        </ul>
+                                                                    </div>
+                                                                )}
+
+                                                                {recs.lifestyle.length > 0 && (
+                                                                    <div className="bg-emerald-950/20 border border-emerald-500/20 rounded-xl p-3">
+                                                                        <p className="text-xs font-bold text-emerald-400 mb-2">🌱 Lifestyle Changes</p>
+                                                                        <ul className="space-y-1.5">
+                                                                            {recs.lifestyle.map((r, i) => (
+                                                                                <li key={i} className="text-xs text-zinc-300 leading-relaxed flex gap-2">
+                                                                                    <span className="text-emerald-500/60 flex-shrink-0 mt-0.5">•</span>
+                                                                                    {r}
+                                                                                </li>
+                                                                            ))}
+                                                                        </ul>
+                                                                    </div>
+                                                                )}
+
+                                                                <p className="text-[11px] text-zinc-500 italic leading-relaxed border-t border-zinc-800 pt-3">{recs.outlook}</p>
+                                                            </div>
+                                                        )}
+
+                                                        {isGood && (
+                                                            <div className="flex items-center gap-2 text-emerald-400/80 text-xs italic">
+                                                                <span>✓</span> This feature is within the ideal range. No intervention needed.
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                )}
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+
+                                {/* PSL Boost Roadmap */}
+                                {(() => {
+                                    const flawed = Object.entries(auditResult.metrics).filter(([key, value]) => {
+                                        const metricKey = key as keyof MetricScores;
+
+                                        const sideOnlyMetrics = ['chinProjection', 'maxillaryProtrusion', 'orbitalRimProtrusion', 'browRidgeProtrusion', 'infraorbitalRimPosition', 'doubleChinRisk'];
+                                        const frontOnlyMetrics = ['facialAsymmetry', 'ipdRatio', 'eyeSeparationRatio', 'canthalTilt', 'fwfhRatio', 'noseWidthRatio', 'mouthToNoseWidthRatio', 'bigonialWidthRatio', 'cheekboneProminence', 'skinQuality', 'facialTension'];
+
+                                        let isValidForProfile = true;
+                                        if (auditResult.profileType === 'front' && sideOnlyMetrics.includes(key)) { isValidForProfile = false; }
+                                        else if (auditResult.profileType === 'side' && frontOnlyMetrics.includes(key)) { isValidForProfile = false; }
+
+                                        if (!isValidForProfile) return false;
+
+                                        const rating = getRating(metricKey, value, gender);
+                                        return rating.color.includes('orange') || rating.color.includes('red');
+                                    });
+                                    if (flawed.length === 0) return null;
+                                    return (
+                                        <div className="rounded-2xl border border-amber-500/20 bg-amber-950/10 p-5">
+                                            <div className="flex items-center gap-2 mb-3">
+                                                <span className="text-lg">🚀</span>
+                                                <h3 className="text-sm font-bold text-amber-400">Your PSL Boost Roadmap</h3>
+                                            </div>
+                                            <p className="text-xs text-zinc-400 mb-4 leading-relaxed">
+                                                The following metrics are impacting your score the most. Click any item above to see specific steps you can take.
+                                            </p>
+                                            <div className="space-y-2">
+                                                {flawed.map(([key]) => {
+                                                    const explanation = metricExplanations[key];
+                                                    const rating = getRating(key as keyof MetricScores, auditResult.metrics[key as keyof MetricScores], gender);
+                                                    const isBad = rating.color.includes('red');
+                                                    return (
+                                                        <button
+                                                            key={key}
+                                                            onClick={() => setExpandedMetric(expandedMetric === key ? null : key)}
+                                                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-amber-500/30 hover:bg-amber-950/10 transition-all text-left"
+                                                        >
+                                                            <span className={`text-xs px-1.5 py-0.5 rounded-md font-bold ${isBad ? 'bg-red-500/20 text-red-400' : 'bg-yellow-500/20 text-yellow-400'}`}>
+                                                                {isBad ? 'FIX' : 'IMPROVE'}
+                                                            </span>
+                                                            <span className="text-sm text-zinc-200 font-medium">{explanation?.title || key.replace(/([A-Z])/g, ' $1').trim()}</span>
+                                                            <svg className="w-3.5 h-3.5 text-zinc-600 ml-auto flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                            </svg>
+                                                        </button>
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
+                                    );
+                                })()}
+
+                                {/* New Scan */}
+                                <button
+                                    onClick={() => { setAuditResult(null); setIsAnalyzing(false); setUploadedImage(null); setAnalyzedImageWithLandmarks(null); setExpandedMetric(null); }}
+                                    className="w-full py-4 rounded-2xl bg-zinc-800 hover:bg-zinc-700 text-white font-bold transition-colors border border-zinc-700 hover:border-zinc-500"
+                                >
+                                    New Scan
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            ) : (
+                /* Compare Mode Layout */
+                <div className="flex flex-col w-full gap-8">
+                    {beforeScan && afterScan ? (
+                        <div className="flex flex-col space-y-6">
+                            <div className="flex justify-between items-center bg-zinc-900 border border-zinc-800 p-4 rounded-2xl">
+                                <div>
+                                    <p className="text-sm font-bold text-zinc-400 uppercase tracking-widest">Score Change</p>
+                                    <div className="flex items-baseline gap-3 mt-1">
+                                        <span className="text-2xl font-bold bg-zinc-700 bg-clip-text text-transparent">{beforeScan.psl.score.toFixed(1)}</span>
+                                        <span className="text-zinc-500 font-bold">→</span>
+                                        <span className={`text-4xl font-black ${afterScan.psl.score > beforeScan.psl.score ? 'text-emerald-400' : afterScan.psl.score < beforeScan.psl.score ? 'text-red-400' : 'text-zinc-300'}`}>
+                                            {afterScan.psl.score.toFixed(1)}
+                                        </span>
+                                        {afterScan.psl.score !== beforeScan.psl.score && (
+                                            <span className={`text-sm font-bold px-2 py-1 rounded-full ${afterScan.psl.score > beforeScan.psl.score ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'}`}>
+                                                {afterScan.psl.score > beforeScan.psl.score ? '+' : ''}{(afterScan.psl.score - beforeScan.psl.score).toFixed(1)} PSL
+                                            </span>
+                                        )}
+                                    </div>
+                                </div>
+                                <button
+                                    onClick={() => { setBeforeScan(null); setAfterScan(null); setUploadedImage(null); }}
+                                    className="px-4 py-2 border border-zinc-700 hover:border-zinc-500 rounded-xl text-sm font-bold text-white transition-all shadow-sm bg-zinc-800"
+                                >
+                                    Reset Comparison
+                                </button>
                             </div>
 
-                            {/* PSL Boost Roadmap */}
-                            {(() => {
-                                const flawed = Object.entries(auditResult.metrics).filter(([key, value]) => {
-                                    const metricKey = key as keyof MetricScores;
-
-                                    const sideOnlyMetrics = ['chinProjection', 'maxillaryProtrusion', 'orbitalRimProtrusion', 'browRidgeProtrusion', 'infraorbitalRimPosition', 'doubleChinRisk'];
-                                    const frontOnlyMetrics = ['facialAsymmetry', 'ipdRatio', 'eyeSeparationRatio', 'canthalTilt', 'fwfhRatio', 'noseWidthRatio', 'mouthToNoseWidthRatio', 'bigonialWidthRatio', 'cheekboneProminence', 'skinQuality', 'facialTension'];
-
-                                    let isValidForProfile = true;
-                                    if (auditResult.profileType === 'front' && sideOnlyMetrics.includes(key)) { isValidForProfile = false; }
-                                    else if (auditResult.profileType === 'side' && frontOnlyMetrics.includes(key)) { isValidForProfile = false; }
-
-                                    if (!isValidForProfile) return false;
-
-                                    const rating = getRating(metricKey, value, gender);
-                                    return rating.color.includes('orange') || rating.color.includes('red');
-                                });
-                                if (flawed.length === 0) return null;
-                                return (
-                                    <div className="rounded-2xl border border-amber-500/20 bg-amber-950/10 p-5">
-                                        <div className="flex items-center gap-2 mb-3">
-                                            <span className="text-lg">🚀</span>
-                                            <h3 className="text-sm font-bold text-amber-400">Your PSL Boost Roadmap</h3>
-                                        </div>
-                                        <p className="text-xs text-zinc-400 mb-4 leading-relaxed">
-                                            The following metrics are impacting your score the most. Click any item above to see specific steps you can take.
-                                        </p>
-                                        <div className="space-y-2">
-                                            {flawed.map(([key]) => {
-                                                const explanation = metricExplanations[key];
-                                                const rating = getRating(key as keyof MetricScores, auditResult.metrics[key as keyof MetricScores], gender);
-                                                const isBad = rating.color.includes('red');
-                                                return (
-                                                    <button
-                                                        key={key}
-                                                        onClick={() => setExpandedMetric(expandedMetric === key ? null : key)}
-                                                        className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-amber-500/30 hover:bg-amber-950/10 transition-all text-left"
-                                                    >
-                                                        <span className={`text-xs px-1.5 py-0.5 rounded-md font-bold ${isBad ? 'bg-red-500/20 text-red-400' : 'bg-yellow-500/20 text-yellow-400'}`}>
-                                                            {isBad ? 'FIX' : 'IMPROVE'}
-                                                        </span>
-                                                        <span className="text-sm text-zinc-200 font-medium">{explanation?.title || key.replace(/([A-Z])/g, ' $1').trim()}</span>
-                                                        <svg className="w-3.5 h-3.5 text-zinc-600 ml-auto flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                        </svg>
-                                                    </button>
-                                                );
-                                            })}
-                                        </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                {/* Before Side */}
+                                <div className="space-y-4">
+                                    <h3 className="text-center text-lg font-bold text-zinc-400 uppercase tracking-wider">Before</h3>
+                                    <div className="relative aspect-[3/4] w-full overflow-hidden rounded-3xl border-2 border-zinc-800 bg-black shadow-xl">
+                                        <img src={beforeScan.imageUrl} alt="Before" className="h-full w-full object-cover" />
                                     </div>
-                                );
-                            })()}
+                                </div>
 
-                            {/* New Scan */}
-                            <button
-                                onClick={() => { setAuditResult(null); setIsAnalyzing(false); setUploadedImage(null); setAnalyzedImageWithLandmarks(null); setExpandedMetric(null); }}
-                                className="w-full py-4 rounded-2xl bg-zinc-800 hover:bg-zinc-700 text-white font-bold transition-colors border border-zinc-700 hover:border-zinc-500"
-                            >
-                                New Scan
-                            </button>
+                                {/* After Side */}
+                                <div className="space-y-4">
+                                    <h3 className="text-center text-lg font-bold text-emerald-400 uppercase tracking-wider">After</h3>
+                                    <div className="relative aspect-[3/4] w-full overflow-hidden rounded-3xl border-2 border-emerald-900/50 bg-black shadow-[0_0_30px_rgba(16,185,129,0.1)]">
+                                        <img src={afterScan.imageUrl} alt="After" className="h-full w-full object-cover" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full items-start">
+                            {/* Capture Input Panel */}
+                            <div className="relative aspect-[3/4] w-full overflow-hidden rounded-3xl border-2 border-zinc-800 bg-black shadow-2xl flex flex-col">
+                                {inputMode === 'webcam' ? (
+                                    <Webcam
+                                        ref={webcamRef}
+                                        screenshotFormat="image/jpeg"
+                                        className="h-full w-full object-cover transform scale-x-[-1]"
+                                        videoConstraints={{ facingMode: "user" }}
+                                    />
+                                ) : (
+                                    <div className="h-full w-full flex flex-col items-center justify-center bg-zinc-950 flex-1 relative">
+                                        {uploadedImage && !isAnalyzing ? (
+                                            <div className="absolute inset-0">
+                                                <img src={uploadedImage} alt="Uploaded preview" className="h-full w-full object-contain" />
+                                                <div className="absolute bottom-6 inset-x-0 flex justify-center z-10 px-4">
+                                                    <button
+                                                        onClick={() => setUploadedImage(null)}
+                                                        className="px-4 py-2 bg-black/80 hover:bg-red-500/80 text-white rounded-full text-xs font-bold border border-zinc-700 hover:border-red-500 backdrop-blur-md transition-all shadow-lg mx-auto"
+                                                    >
+                                                        Clear Upload
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            <div className="text-center space-y-4 p-8">
+                                                <div className="text-6xl">📸</div>
+                                                <p className="text-zinc-400 text-sm">Upload a Before or After photo to scan.</p>
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+                                {isAnalyzing && (
+                                    <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center backdrop-blur-sm z-20">
+                                        <svg className="w-8 h-8 animate-spin text-white mb-3" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+                                        <div className="text-white font-mono text-xl animate-pulse font-bold tracking-widest text-shadow-glow">ANALYZING...</div>
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Comparison Staging UI */}
+                            <div className="flex flex-col space-y-6">
+                                <div className="flex flex-col items-center justify-center h-full min-h-[500px] bg-zinc-900/30 border border-zinc-800/50 rounded-3xl p-8 text-center space-y-6">
+                                    <h3 className="text-2xl font-bold text-white mb-2">Compare Setup</h3>
+                                    <p className="text-zinc-400 text-sm max-w-sm">Capture or upload two images respectively using the toggle controls below.</p>
+
+                                    <div className="flex gap-2 w-full max-w-xs mt-4">
+                                        <button
+                                            onClick={() => setCompareSlot('before')}
+                                            className={`flex-1 py-3 rounded-xl font-bold transition-all border ${compareSlot === 'before' ? 'bg-zinc-800 text-white border-zinc-500' : 'bg-zinc-950 text-zinc-500 border-zinc-800 hover:bg-zinc-900'}`}
+                                        >
+                                            Before {beforeScan && '✓'}
+                                        </button>
+                                        <button
+                                            onClick={() => setCompareSlot('after')}
+                                            className={`flex-1 py-3 rounded-xl font-bold transition-all border ${compareSlot === 'after' ? 'bg-zinc-800 text-white border-zinc-500' : 'bg-zinc-950 text-zinc-500 border-zinc-800 hover:bg-zinc-900'}`}
+                                        >
+                                            After {afterScan && '✓'}
+                                        </button>
+                                    </div>
+
+                                    {/* Capture Action Input */}
+                                    <div className="w-full max-w-xs mt-6">
+                                        {inputMode === 'webcam' ? (
+                                            <button
+                                                onClick={captureAndAnalyze}
+                                                disabled={!faceLandmarker || isAnalyzing || (compareSlot === 'before' ? !!beforeScan : !!afterScan)}
+                                                className="w-full py-4 rounded-full bg-white text-black font-bold text-lg hover:bg-zinc-200 transition-all active:scale-95 disabled:opacity-30 disabled:hover:scale-100 flex items-center justify-center"
+                                            >
+                                                {(compareSlot === 'before' ? !!beforeScan : !!afterScan) ? 'Slot Filled' : 'Capture & Scan'}
+                                            </button>
+                                        ) : (
+                                            <div className="space-y-4">
+                                                <input
+                                                    ref={fileInputRef}
+                                                    type="file"
+                                                    accept="image/*"
+                                                    onChange={handleFileUpload}
+                                                    className="hidden"
+                                                />
+                                                <button
+                                                    onClick={() => fileInputRef.current?.click()}
+                                                    disabled={!faceLandmarker || isAnalyzing || (compareSlot === 'before' ? !!beforeScan : !!afterScan)}
+                                                    className="w-full py-4 rounded-full bg-white text-black font-bold text-lg hover:bg-zinc-200 transition-all disabled:opacity-30"
+                                                >
+                                                    {(compareSlot === 'before' ? !!beforeScan : !!afterScan) ? 'Slot Filled' : 'Upload Image'}
+                                                </button>
+
+                                                {!((compareSlot === 'before' ? !!beforeScan : !!afterScan)) && (
+                                                    <div className="flex gap-2 w-full">
+                                                        <input
+                                                            type="url"
+                                                            placeholder="Paste image URL..."
+                                                            value={urlInput}
+                                                            onChange={(e) => setUrlInput(e.target.value)}
+                                                            onKeyDown={(e) => e.key === 'Enter' && handleUrlUpload()}
+                                                            disabled={!faceLandmarker || isAnalyzing}
+                                                            className="flex-1 bg-zinc-800 border border-zinc-700 text-white text-sm rounded-xl px-3 py-2"
+                                                        />
+                                                        <button
+                                                            onClick={handleUrlUpload}
+                                                            disabled={!faceLandmarker || isAnalyzing || !urlInput.trim()}
+                                                            className="px-3 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-sm font-bold"
+                                                        >
+                                                            ↗
+                                                        </button>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     )}
                 </div>
-            </div>
+            )}
         </div>
     );
 }
-
-
