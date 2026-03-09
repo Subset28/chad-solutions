@@ -241,414 +241,427 @@ export default function FaceAnalyzer() {
         return canvas.toDataURL('image/jpeg');
     };
 
-    const analyzeImage = (imageSrc: string) => {
-        if (!faceLandmarker) return;
-
-        setIsAnalyzing(true);
-
-        try {
-            const image = new Image();
-            // Data URLs don't need crossOrigin, and setting it can sometimes cause issues
-            // image.crossOrigin = 'anonymous'; 
-            image.src = imageSrc;
-
-            const processDetectionResults = (results: any, analyzedCanvas: HTMLCanvasElement) => {
-                const {
-                    extractEulerAngles, calculateCanthalTilt, calculateFwFhRatio, calculateMidfaceRatio, calculateEyeSeparationRatio,
-                    calculateGonialAngle, calculateChinToPhiltrumRatio, calculateMouthToNoseWidthRatio, calculateBigonialWidthRatio,
-                    calculateLowerThirdRatio, calculatePalpebralFissureLength, calculateEyeToMouthAngle, calculateLipRatio,
-                    calculateFacialAsymmetry, calculateIPDRatio, calculateFacialThirds, calculateForeheadHeightRatio,
-                    calculateNoseWidthRatio, calculateCheekboneProminence, calculateHairlineRecession, calculateAggregatedMetrics,
-                    calculatePSLScore, scaleLandmarks
-                } = require('../utils/geometry');
-
-                const landmarks = results.faceLandmarks[0];
-
-                // Validate landmark array has enough points (MediaPipe should have 478 landmarks)
-                if (!landmarks || landmarks.length < 478) {
-                    alert('⚠️ Error: Face detection incomplete. Please try again with a clearer, well-lit image.');
-                    setIsAnalyzing(false);
-                    return;
-                }
-
-                // Check face angle (frontal vs profile)
-                let profileType: 'front' | 'side' = 'front';
-                if (results.facialTransformationMatrixes && results.facialTransformationMatrixes.length > 0) {
-                    const matrix = results.facialTransformationMatrixes[0];
-                    const euler = extractEulerAngles(matrix);
-
-                    // Absolute YAW dictates if head turns enough to be considered a side-profile.
-                    if (Math.abs(euler.yaw) > 40) {
-                        console.log(`True 3D Yaw detected: ${euler.yaw.toFixed(2)}° (SIDE profile mode activated)`);
-                        profileType = 'side';
-                    } else {
-                        console.log(`True 3D Yaw detected: ${euler.yaw.toFixed(2)}° (FRONT profile mode activated)`);
-                        profileType = 'front';
-                    }
-
-                    if (Math.abs(euler.pitch) > 25) {
-                        alert(`⚠️ High tilt detected (Pitch: ${euler.pitch.toFixed(1)}°). Measurements may be significantly warped. Keep your head leveled!`);
-                    }
-                } else {
-                    const leftCheek = landmarks[234];
-                    const rightCheek = landmarks[454];
-                    const noseTip = landmarks[1];
-
-                    const leftDist = Math.abs(leftCheek.x - noseTip.x);
-                    const rightDist = Math.abs(rightCheek.x - noseTip.x);
-                    const asymmetryRatio = Math.abs(leftDist - rightDist) / Math.max(leftDist, rightDist);
-
-                    if (asymmetryRatio > 0.15) {
-                        alert('⚠️ Warning: Face appears angled. Please face the camera directly for accurate analysis.');
-                        profileType = 'side';
-                    }
-                    else {
-                        profileType = 'front';
-                    }
-                }
-
-                // Check for glasses (detect abnormal z-depth around eyes)
-                const leftEyeTop = landmarks[159];
-                const leftEyeBottom = landmarks[145];
-                const rightEyeTop = landmarks[386];
-                const rightEyeBottom = landmarks[374];
-
-                const leftEyeDepth = Math.abs(leftEyeTop.z - leftEyeBottom.z);
-                const rightEyeDepth = Math.abs(rightEyeTop.z - rightEyeBottom.z);
-
-                // Increased threshold to reduce false positives (was 0.02, now 0.035)
-                if (leftEyeDepth > 0.035 || rightEyeDepth > 0.035) {
-                    const proceed = confirm('⚠️ Glasses detected! Glasses can affect measurement accuracy.\n\nFor best results, please remove glasses.\n\nProceed anyway?');
-                    if (!proceed) {
-                        setIsAnalyzing(false);
-                        return;
-                    }
-                }
-
-                // Scale landmarks to exact image aspect ratio dimensions for true metric ratios
-                const scaledLandmarks = scaleLandmarks(landmarks, analyzedCanvas.width, analyzedCanvas.height);
-
-                const facialThirdsData = calculateFacialThirds(scaledLandmarks);
-
-                const {
-                    calculateOrbitalRimProtrusion,
-                    calculateMaxillaryProtrusion,
-                    calculateBrowRidgeProtrusion,
-                    calculateInfraorbitalRimPosition,
-                    calculateChinProjection,
-                    calculateDoubleChinRisk,
-                    evaluateFacialTension,
-                    evaluateCameraAngle,
-                    evaluateLensDistortion
-                } = require('../utils/advanced-metrics');
-
-                const { analyzeSkinQuality } = require('../utils/image-processing');
-
-                // Advanced V2 Evaluators
-                const tensionData = evaluateFacialTension(results.faceBlendshapes || []);
-                const skinQualityData = analyzeSkinQuality(image, landmarks);
-
-                let angleDeductionScore = 0;
-                let activePitch = 0;
-                let activeYaw = 0;
-                if (results.facialTransformationMatrixes && results.facialTransformationMatrixes.length > 0) {
-                    const euler = extractEulerAngles(results.facialTransformationMatrixes[0]);
-                    activePitch = euler.pitch;
-                    activeYaw = euler.yaw;
-                    angleDeductionScore = evaluateCameraAngle(euler.pitch, euler.yaw).score;
-                }
-
-                // Pre-calculate critical metrics for distortion check
-                const midfaceRatio = calculateMidfaceRatio(scaledLandmarks, activePitch);
-                const noseWidthRatio = calculateNoseWidthRatio(scaledLandmarks);
-                const fwfhRatio = calculateFwFhRatio(scaledLandmarks, activePitch, activeYaw);
-
-                const distortionData = evaluateLensDistortion(landmarks, midfaceRatio, noseWidthRatio, fwfhRatio);
-                if (distortionData.isDistorted) {
-                    alert(`⚠️ ${distortionData.feedback}\n\nFisheye lens distortion dramatically warps bone structure (makes midface look compact but bloated, expands nose width, shrinks bizygomatic width).\n\nYour score has been mathematically penalized. Move the camera further away and zoom in!`);
-                    angleDeductionScore += (distortionData.severity === 'severe' ? 1.5 : 0.5);
-                }
-
-                const metrics: MetricScores = {
-                    canthalTilt: calculateCanthalTilt(scaledLandmarks),
-                    fwfhRatio: fwfhRatio,
-                    midfaceRatio: midfaceRatio,
-                    eyeSeparationRatio: calculateEyeSeparationRatio(scaledLandmarks),
-                    gonialAngle: calculateGonialAngle(scaledLandmarks),
-                    chinToPhiltrumRatio: calculateChinToPhiltrumRatio(scaledLandmarks),
-                    mouthToNoseWidthRatio: calculateMouthToNoseWidthRatio(scaledLandmarks),
-                    bigonialWidthRatio: calculateBigonialWidthRatio(scaledLandmarks),
-                    lowerThirdRatio: calculateLowerThirdRatio(scaledLandmarks, activePitch),
-                    palpebralFissureLength: calculatePalpebralFissureLength(scaledLandmarks),
-                    eyeToMouthAngle: calculateEyeToMouthAngle(scaledLandmarks),
-                    lipRatio: calculateLipRatio(scaledLandmarks),
-                    facialAsymmetry: calculateFacialAsymmetry(scaledLandmarks),
-                    ipdRatio: calculateIPDRatio(scaledLandmarks),
-                    facialThirdsRatio: facialThirdsData.ratio,
-                    foreheadHeightRatio: calculateForeheadHeightRatio(scaledLandmarks),
-                    noseWidthRatio: noseWidthRatio,
-                    cheekboneProminence: calculateCheekboneProminence(scaledLandmarks),
-                    hairlineRecession: calculateHairlineRecession(scaledLandmarks),
-                    // NEW: 3D bone structure metrics
-                    orbitalRimProtrusion: calculateOrbitalRimProtrusion(scaledLandmarks),
-                    maxillaryProtrusion: calculateMaxillaryProtrusion(scaledLandmarks),
-                    browRidgeProtrusion: calculateBrowRidgeProtrusion(scaledLandmarks),
-                    infraorbitalRimPosition: calculateInfraorbitalRimPosition(scaledLandmarks),
-                    chinProjection: calculateChinProjection(scaledLandmarks),
-
-                    // V2 Advanced Traits
-                    doubleChinRisk: calculateDoubleChinRisk(scaledLandmarks),
-                    angleDeduction: angleDeductionScore,
-                    facialTension: tensionData.tensionScore,
-                    skinQuality: skinQualityData.clarityScore
-                };
-                const pslData = calculatePSLScore(metrics, gender, profileType);
-                // Draw landmarks on a canvas matching the ORIGINAL image
-                // This avoids any dimension mismatch between normalized canvas and original
-                const drawLandmarksOnOriginal = (): string => {
-                    const canvas = document.createElement('canvas');
-                    canvas.width = analyzedCanvas.width;
-                    canvas.height = analyzedCanvas.height;
-                    const ctx = canvas.getContext('2d');
-                    if (!ctx) return '';
-
-                    // DEBUG: Log dimensions and key landmark positions
-                    console.log('=== LANDMARK ALIGNMENT DEBUG ===');
-                    console.log('Canvas:', canvas.width, 'x', canvas.height);
-                    console.log('Nose tip (1):', JSON.stringify({
-                        raw: { x: landmarks[1].x, y: landmarks[1].y },
-                        px: { x: Math.round(landmarks[1].x * canvas.width), y: Math.round(landmarks[1].y * canvas.height) }
-                    }));
-
-                    // Draw the analyzed canvas (normalized image) as background
-                    ctx.drawImage(analyzedCanvas, 0, 0);
-
-                    // Convert normalized landmark coords to pixel coords
-                    const toPixel = (idx: number) => ({
-                        x: landmarks[idx].x * canvas.width,
-                        y: landmarks[idx].y * canvas.height
-                    });
-
-                    const drawLine = (idx1: number, idx2: number, color: string, label: string) => {
-                        const p1 = toPixel(idx1);
-                        const p2 = toPixel(idx2);
-                        ctx.strokeStyle = color;
-                        ctx.lineWidth = 2;
-                        ctx.beginPath();
-                        ctx.moveTo(p1.x, p1.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.stroke();
-
-                        // Label at midpoint
-                        const mx = (p1.x + p2.x) / 2;
-                        const my = (p1.y + p2.y) / 2;
-                        ctx.fillStyle = color;
-                        ctx.font = `bold ${Math.max(10, Math.round(canvas.width / 60))}px Arial`;
-                        ctx.shadowColor = 'black';
-                        ctx.shadowBlur = 3;
-                        ctx.fillText(label, mx + 5, my - 5);
-                        ctx.shadowBlur = 0;
-                    };
-
-                    const drawDot = (idx: number, color: string, radius: number = 3) => {
-                        const p = toPixel(idx);
-                        ctx.fillStyle = color;
-                        ctx.beginPath();
-                        ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
-                        ctx.fill();
-                    };
-
-                    // === DRAW MEASUREMENT LINES ===
-                    drawLine(133, 33, '#00FF00', 'Canthal Tilt (R)');
-                    drawLine(362, 263, '#00FF00', 'Canthal Tilt (L)');
-                    drawLine(93, 323, '#FF6B00', 'Face Width');
-                    drawLine(10, 152, '#FF9500', 'Face Height');
-                    drawLine(132, 152, '#FF0000', 'Jaw (L)');
-                    drawLine(361, 152, '#FF0000', 'Jaw (R)');
-                    drawLine(132, 361, '#FFAA00', 'Jaw Width');
-                    drawLine(168, 2, '#FFFF00', 'Midface');
-                    drawLine(48, 278, '#FF00FF', 'Nose Width');
-                    drawLine(61, 291, '#9D00FF', 'Mouth Width');
-                    drawLine(10, 168, '#0080FF', 'Upper Third');
-                    drawLine(168, 2, '#0080FF', 'Middle Third');
-                    drawLine(2, 152, '#0080FF', 'Lower Third');
-                    drawLine(133, 362, '#00FFFF', 'IPD');
-
-                    // Draw key points
-                    [10, 152, 168, 2, 93, 323, 132, 361, 33, 263, 133, 362, 61, 291, 48, 278].forEach(i => drawDot(i, '#FFFFFF', 4));
-
-                    return canvas.toDataURL('image/jpeg', 0.92);
-                };
-
-                const annotatedImage = drawLandmarksOnOriginal();
-
-                const newScan = {
-                    metrics: metrics,
-                    psl: pslData,
-                    imageUrl: annotatedImage,
-                    profileType: profileType
-                };
-
-                if (appMode === 'single') {
-                    setScans(prev => {
-                        const updated = [...prev, newScan];
-                        const compositeMetrics = calculateAggregatedMetrics(updated);
-
-                        if (compositeMetrics) {
-                            const hasFront = updated.some(s => s.profileType === 'front');
-                            const hasSide = updated.some(s => s.profileType === 'side');
-                            const combinedType = (hasFront && hasSide) ? 'composite' : profileType;
-
-                            const mergedScore = calculatePSLScore(compositeMetrics, gender, combinedType);
-
-                            setAuditResult({
-                                metrics: compositeMetrics,
-                                psl: mergedScore,
-                                imageUrl: annotatedImage,
-                                profileType: combinedType
-                            });
-                        }
-
-                        return updated;
-                    });
-                } else if (appMode === 'compare') {
-                    if (compareSlot === 'before') {
-                        setBeforeScan(newScan);
-                    } else {
-                        setAfterScan(newScan);
-                    }
-                }
-
-                setAnalyzedImageWithLandmarks(annotatedImage);
-                setIsAnalyzing(false);
-
-                // iOS Bridge: Send results to WKWebView if running inside Ascend app
-                if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.analysisComplete) {
-                    window.webkit.messageHandlers.analysisComplete.postMessage(newScan);
-                }
-            };
-
-            // Normalize image to canvas to handle different formats/orientations
-            const normalizeImage = (img: HTMLImageElement): HTMLCanvasElement => {
-                const canvas = document.createElement('canvas');
-                canvas.width = img.naturalWidth;
-                canvas.height = img.naturalHeight;
-                const ctx = canvas.getContext('2d');
-
-                if (!ctx) {
-                    throw new Error('Failed to get canvas context');
-                }
-
-                // Draw image to canvas (this normalizes format and handles EXIF orientation)
-                ctx.drawImage(img, 0, 0);
-
-                return canvas;
-            };
-
-            const runDetection = async () => {
-                try {
-                    console.log('Image loaded, natural dimensions:', image.naturalWidth, 'x', image.naturalHeight);
-
-                    // Validate image dimensions
-                    if (image.naturalWidth === 0 || image.naturalHeight === 0) {
-                        console.error('Image has invalid dimensions');
-                        alert('⚠️ Failed to load image. Please try a different image.');
-                        setIsAnalyzing(false);
-                        return;
-                    }
-
-                    // Ensure image is fully decoded (for browsers that support it)
-                    if ('decode' in image) {
-                        try {
-                            await image.decode();
-                            console.log('Image decoded successfully');
-                        } catch (decodeError) {
-                            console.warn('Image decode failed, continuing anyway:', decodeError);
-                        }
-                    }
-
-                    // Normalize image to canvas to strip metadata and normalize pixel format
-                    let normalizedCanvas: HTMLCanvasElement;
-                    try {
-                        normalizedCanvas = normalizeImage(image);
-                        console.log('Image normalized to canvas, stripped metadata');
-                    } catch (normalizeError) {
-                        console.error('Failed to normalize image:', normalizeError);
-                        alert('⚠️ Failed to process image. Please try a different image.');
-                        setIsAnalyzing(false);
-                        return;
-                    }
-
-                    const detectWithRetry = async (attempt = 1): Promise<any> => {
-                        console.log(`Detection attempt ${attempt}...`);
-
-                        try {
-                            // Use normalized canvas to strip screenshot metadata and normalize pixel format
-                            const results = faceLandmarker.detect(normalizedCanvas);
-
-                            if (results.faceLandmarks && results.faceLandmarks.length > 0) {
-                                return results;
-                            }
-
-                            if (attempt < 3) {
-                                console.warn(`Attempt ${attempt} failed. Retrying in ${attempt * 500}ms...`);
-                                await new Promise(resolve => setTimeout(resolve, attempt * 500));
-                                return detectWithRetry(attempt + 1);
-                            }
-
-                            return results;
-                        } catch (detectError) {
-                            console.error(`Detection attempt ${attempt} threw error:`, detectError);
-
-                            if (attempt < 3) {
-                                console.warn(`Retrying after error in ${attempt * 500}ms...`);
-                                await new Promise(resolve => setTimeout(resolve, attempt * 500));
-                                return detectWithRetry(attempt + 1);
-                            }
-
-                            throw detectError;
-                        }
-                    };
-
-                    // Use requestAnimationFrame to ensure DOM is ready
-                    requestAnimationFrame(async () => {
-                        try {
-                            const results = await detectWithRetry();
-                            console.log('Final detection results:', results);
-
-                            if (!results.faceLandmarks || results.faceLandmarks.length === 0) {
-                                alert('⚠️ No face detected. Please ensure your face is clearly visible, well-lit, and facing the camera.');
-                                setIsAnalyzing(false);
-                                return;
-                            }
-                            processDetectionResults(results, normalizedCanvas);
-                        } catch (error) {
-                            console.error('All detection attempts failed:', error);
-                            alert('⚠️ Face detection failed. Please try a different image or refresh the page.');
-                            setIsAnalyzing(false);
-                        }
-                    });
-                } catch (error) {
-                    console.error('Detection error:', error);
-                    alert('⚠️ Analysis failed. Please refresh the page and try again.');
-                    setIsAnalyzing(false);
-                }
-            };
-
-            if (image.complete) {
-                runDetection();
-            } else {
-                image.onload = runDetection;
+    const analyzeImage = (imageSrc: string): Promise<boolean> => {
+        return new Promise((resolve) => {
+            if (!faceLandmarker) {
+                resolve(false);
+                return;
             }
 
-            image.onerror = () => {
-                alert('⚠️ Error loading image. Please try again.');
+            setIsAnalyzing(true);
+
+            try {
+                const image = new Image();
+                // Data URLs don't need crossOrigin, and setting it can sometimes cause issues
+                // image.crossOrigin = 'anonymous'; 
+                image.src = imageSrc;
+
+                const processDetectionResults = (results: any, analyzedCanvas: HTMLCanvasElement) => {
+                    const {
+                        extractEulerAngles, calculateCanthalTilt, calculateFwFhRatio, calculateMidfaceRatio, calculateEyeSeparationRatio,
+                        calculateGonialAngle, calculateChinToPhiltrumRatio, calculateMouthToNoseWidthRatio, calculateBigonialWidthRatio,
+                        calculateLowerThirdRatio, calculatePalpebralFissureLength, calculateEyeToMouthAngle, calculateLipRatio,
+                        calculateFacialAsymmetry, calculateIPDRatio, calculateFacialThirds, calculateForeheadHeightRatio,
+                        calculateNoseWidthRatio, calculateCheekboneProminence, calculateHairlineRecession, calculateAggregatedMetrics,
+                        calculatePSLScore, scaleLandmarks
+                    } = require('../utils/geometry');
+
+                    const landmarks = results.faceLandmarks[0];
+
+                    // Validate landmark array has enough points (MediaPipe should have 478 landmarks)
+                    if (!landmarks || landmarks.length < 478) {
+                        alert('⚠️ Error: Face detection incomplete. Please try again with a clearer, well-lit image.');
+                        setIsAnalyzing(false);
+                        resolve(false);
+                        return;
+                    }
+
+                    // Check face angle (frontal vs profile)
+                    let profileType: 'front' | 'side' = 'front';
+                    if (results.facialTransformationMatrixes && results.facialTransformationMatrixes.length > 0) {
+                        const matrix = results.facialTransformationMatrixes[0];
+                        const euler = extractEulerAngles(matrix);
+
+                        // Absolute YAW dictates if head turns enough to be considered a side-profile.
+                        if (Math.abs(euler.yaw) > 40) {
+                            console.log(`True 3D Yaw detected: ${euler.yaw.toFixed(2)}° (SIDE profile mode activated)`);
+                            profileType = 'side';
+                        } else {
+                            console.log(`True 3D Yaw detected: ${euler.yaw.toFixed(2)}° (FRONT profile mode activated)`);
+                            profileType = 'front';
+                        }
+
+                        if (Math.abs(euler.pitch) > 25) {
+                            alert(`⚠️ High tilt detected (Pitch: ${euler.pitch.toFixed(1)}°). Measurements may be significantly warped. Keep your head leveled!`);
+                        }
+                    } else {
+                        const leftCheek = landmarks[234];
+                        const rightCheek = landmarks[454];
+                        const noseTip = landmarks[1];
+
+                        const leftDist = Math.abs(leftCheek.x - noseTip.x);
+                        const rightDist = Math.abs(rightCheek.x - noseTip.x);
+                        const asymmetryRatio = Math.abs(leftDist - rightDist) / Math.max(leftDist, rightDist);
+
+                        if (asymmetryRatio > 0.15) {
+                            alert('⚠️ Warning: Face appears angled. Please face the camera directly for accurate analysis.');
+                            profileType = 'side';
+                        }
+                        else {
+                            profileType = 'front';
+                        }
+                    }
+
+                    // Check for glasses (detect abnormal z-depth around eyes)
+                    const leftEyeTop = landmarks[159];
+                    const leftEyeBottom = landmarks[145];
+                    const rightEyeTop = landmarks[386];
+                    const rightEyeBottom = landmarks[374];
+
+                    const leftEyeDepth = Math.abs(leftEyeTop.z - leftEyeBottom.z);
+                    const rightEyeDepth = Math.abs(rightEyeTop.z - rightEyeBottom.z);
+
+                    if (leftEyeDepth > 0.035 || rightEyeDepth > 0.035) {
+                        const proceed = confirm('⚠️ Glasses detected! Glasses can affect measurement accuracy.\n\nFor best results, please remove glasses.\n\nProceed anyway?');
+                        if (!proceed) {
+                            setIsAnalyzing(false);
+                            resolve(false);
+                            return;
+                        }
+                    }
+
+                    // Scale landmarks to exact image aspect ratio dimensions for true metric ratios
+                    const scaledLandmarks = scaleLandmarks(landmarks, analyzedCanvas.width, analyzedCanvas.height);
+
+                    const facialThirdsData = calculateFacialThirds(scaledLandmarks);
+
+                    const {
+                        calculateOrbitalRimProtrusion,
+                        calculateMaxillaryProtrusion,
+                        calculateBrowRidgeProtrusion,
+                        calculateInfraorbitalRimPosition,
+                        calculateChinProjection,
+                        calculateDoubleChinRisk,
+                        evaluateFacialTension,
+                        evaluateCameraAngle,
+                        evaluateLensDistortion
+                    } = require('../utils/advanced-metrics');
+
+                    const { analyzeSkinQuality } = require('../utils/image-processing');
+
+                    // Advanced V2 Evaluators
+                    const tensionData = evaluateFacialTension(results.faceBlendshapes || []);
+                    const skinQualityData = analyzeSkinQuality(image, landmarks);
+
+                    let angleDeductionScore = 0;
+                    let activePitch = 0;
+                    let activeYaw = 0;
+                    if (results.facialTransformationMatrixes && results.facialTransformationMatrixes.length > 0) {
+                        const euler = extractEulerAngles(results.facialTransformationMatrixes[0]);
+                        activePitch = euler.pitch;
+                        activeYaw = euler.yaw;
+                        angleDeductionScore = evaluateCameraAngle(euler.pitch, euler.yaw).score;
+                    }
+
+                    // Pre-calculate critical metrics for distortion check
+                    const midfaceRatio = calculateMidfaceRatio(scaledLandmarks, activePitch);
+                    const noseWidthRatio = calculateNoseWidthRatio(scaledLandmarks);
+                    const fwfhRatio = calculateFwFhRatio(scaledLandmarks, activePitch, activeYaw);
+
+                    const distortionData = evaluateLensDistortion(landmarks, midfaceRatio, noseWidthRatio, fwfhRatio);
+                    if (distortionData.isDistorted) {
+                        alert(`⚠️ ${distortionData.feedback}\n\nFisheye lens distortion dramatically warps bone structure (makes midface look compact but bloated, expands nose width, shrinks bizygomatic width).\n\nYour score has been mathematically penalized. Move the camera further away and zoom in!`);
+                        angleDeductionScore += (distortionData.severity === 'severe' ? 1.5 : 0.5);
+                    }
+
+                    const metrics: MetricScores = {
+                        canthalTilt: calculateCanthalTilt(scaledLandmarks),
+                        fwfhRatio: fwfhRatio,
+                        midfaceRatio: midfaceRatio,
+                        eyeSeparationRatio: calculateEyeSeparationRatio(scaledLandmarks),
+                        gonialAngle: calculateGonialAngle(scaledLandmarks),
+                        chinToPhiltrumRatio: calculateChinToPhiltrumRatio(scaledLandmarks),
+                        mouthToNoseWidthRatio: calculateMouthToNoseWidthRatio(scaledLandmarks),
+                        bigonialWidthRatio: calculateBigonialWidthRatio(scaledLandmarks),
+                        lowerThirdRatio: calculateLowerThirdRatio(scaledLandmarks, activePitch),
+                        palpebralFissureLength: calculatePalpebralFissureLength(scaledLandmarks),
+                        eyeToMouthAngle: calculateEyeToMouthAngle(scaledLandmarks),
+                        lipRatio: calculateLipRatio(scaledLandmarks),
+                        facialAsymmetry: calculateFacialAsymmetry(scaledLandmarks),
+                        ipdRatio: calculateIPDRatio(scaledLandmarks),
+                        facialThirdsRatio: facialThirdsData.ratio,
+                        foreheadHeightRatio: calculateForeheadHeightRatio(scaledLandmarks),
+                        noseWidthRatio: noseWidthRatio,
+                        cheekboneProminence: calculateCheekboneProminence(scaledLandmarks),
+                        hairlineRecession: calculateHairlineRecession(scaledLandmarks),
+                        // NEW: 3D bone structure metrics
+                        orbitalRimProtrusion: calculateOrbitalRimProtrusion(scaledLandmarks),
+                        maxillaryProtrusion: calculateMaxillaryProtrusion(scaledLandmarks),
+                        browRidgeProtrusion: calculateBrowRidgeProtrusion(scaledLandmarks),
+                        infraorbitalRimPosition: calculateInfraorbitalRimPosition(scaledLandmarks),
+                        chinProjection: calculateChinProjection(scaledLandmarks),
+
+                        // V2 Advanced Traits
+                        doubleChinRisk: calculateDoubleChinRisk(scaledLandmarks),
+                        angleDeduction: angleDeductionScore,
+                        facialTension: tensionData.tensionScore,
+                        skinQuality: skinQualityData.clarityScore
+                    };
+                    const pslData = calculatePSLScore(metrics, gender, profileType);
+                    // Draw landmarks on a canvas matching the ORIGINAL image
+                    // This avoids any dimension mismatch between normalized canvas and original
+                    const drawLandmarksOnOriginal = (): string => {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = analyzedCanvas.width;
+                        canvas.height = analyzedCanvas.height;
+                        const ctx = canvas.getContext('2d');
+                        if (!ctx) return '';
+
+                        // DEBUG: Log dimensions and key landmark positions
+                        console.log('=== LANDMARK ALIGNMENT DEBUG ===');
+                        console.log('Canvas:', canvas.width, 'x', canvas.height);
+                        console.log('Nose tip (1):', JSON.stringify({
+                            raw: { x: landmarks[1].x, y: landmarks[1].y },
+                            px: { x: Math.round(landmarks[1].x * canvas.width), y: Math.round(landmarks[1].y * canvas.height) }
+                        }));
+
+                        // Draw the analyzed canvas (normalized image) as background
+                        ctx.drawImage(analyzedCanvas, 0, 0);
+
+                        // Convert normalized landmark coords to pixel coords
+                        const toPixel = (idx: number) => ({
+                            x: landmarks[idx].x * canvas.width,
+                            y: landmarks[idx].y * canvas.height
+                        });
+
+                        const drawLine = (idx1: number, idx2: number, color: string, label: string) => {
+                            const p1 = toPixel(idx1);
+                            const p2 = toPixel(idx2);
+                            ctx.strokeStyle = color;
+                            ctx.lineWidth = 2;
+                            ctx.beginPath();
+                            ctx.moveTo(p1.x, p1.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.stroke();
+
+                            // Label at midpoint
+                            const mx = (p1.x + p2.x) / 2;
+                            const my = (p1.y + p2.y) / 2;
+                            ctx.fillStyle = color;
+                            ctx.font = `bold ${Math.max(10, Math.round(canvas.width / 60))}px Arial`;
+                            ctx.shadowColor = 'black';
+                            ctx.shadowBlur = 3;
+                            ctx.fillText(label, mx + 5, my - 5);
+                            ctx.shadowBlur = 0;
+                        };
+
+                        const drawDot = (idx: number, color: string, radius: number = 3) => {
+                            const p = toPixel(idx);
+                            ctx.fillStyle = color;
+                            ctx.beginPath();
+                            ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+                            ctx.fill();
+                        };
+
+                        // === DRAW MEASUREMENT LINES ===
+                        drawLine(133, 33, '#00FF00', 'Canthal Tilt (R)');
+                        drawLine(362, 263, '#00FF00', 'Canthal Tilt (L)');
+                        drawLine(93, 323, '#FF6B00', 'Face Width');
+                        drawLine(10, 152, '#FF9500', 'Face Height');
+                        drawLine(132, 152, '#FF0000', 'Jaw (L)');
+                        drawLine(361, 152, '#FF0000', 'Jaw (R)');
+                        drawLine(132, 361, '#FFAA00', 'Jaw Width');
+                        drawLine(168, 2, '#FFFF00', 'Midface');
+                        drawLine(48, 278, '#FF00FF', 'Nose Width');
+                        drawLine(61, 291, '#9D00FF', 'Mouth Width');
+                        drawLine(10, 168, '#0080FF', 'Upper Third');
+                        drawLine(168, 2, '#0080FF', 'Middle Third');
+                        drawLine(2, 152, '#0080FF', 'Lower Third');
+                        drawLine(133, 362, '#00FFFF', 'IPD');
+
+                        // Draw key points
+                        [10, 152, 168, 2, 93, 323, 132, 361, 33, 263, 133, 362, 61, 291, 48, 278].forEach(i => drawDot(i, '#FFFFFF', 4));
+
+                        return canvas.toDataURL('image/jpeg', 0.92);
+                    };
+
+                    const annotatedImage = drawLandmarksOnOriginal();
+
+                    const newScan = {
+                        metrics: metrics,
+                        psl: pslData,
+                        imageUrl: annotatedImage,
+                        profileType: profileType
+                    };
+
+                    if (appMode === 'single') {
+                        setScans(prev => {
+                            const updated = [...prev, newScan];
+                            const compositeMetrics = calculateAggregatedMetrics(updated);
+
+                            if (compositeMetrics) {
+                                const hasFront = updated.some(s => s.profileType === 'front');
+                                const hasSide = updated.some(s => s.profileType === 'side');
+                                const combinedType = (hasFront && hasSide) ? 'composite' : profileType;
+
+                                const mergedScore = calculatePSLScore(compositeMetrics, gender, combinedType);
+
+                                setAuditResult({
+                                    metrics: compositeMetrics,
+                                    psl: mergedScore,
+                                    imageUrl: annotatedImage,
+                                    profileType: combinedType
+                                });
+                            }
+
+                            return updated;
+                        });
+                    } else if (appMode === 'compare') {
+                        if (compareSlot === 'before') {
+                            setBeforeScan(newScan);
+                        } else {
+                            setAfterScan(newScan);
+                        }
+                    }
+
+                    setAnalyzedImageWithLandmarks(annotatedImage);
+                    setIsAnalyzing(false);
+
+                    if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.analysisComplete) {
+                        window.webkit.messageHandlers.analysisComplete.postMessage(newScan);
+                    }
+
+                    resolve(true); // Resolution of the scan
+                };
+
+                // Normalize image to canvas to handle different formats/orientations
+                const normalizeImage = (img: HTMLImageElement): HTMLCanvasElement => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.naturalWidth;
+                    canvas.height = img.naturalHeight;
+                    const ctx = canvas.getContext('2d');
+
+                    if (!ctx) {
+                        throw new Error('Failed to get canvas context');
+                    }
+
+                    // Draw image to canvas (this normalizes format and handles EXIF orientation)
+                    ctx.drawImage(img, 0, 0);
+
+                    return canvas;
+                };
+
+                const runDetection = async () => {
+                    try {
+                        console.log('Image loaded, natural dimensions:', image.naturalWidth, 'x', image.naturalHeight);
+
+                        // Validate image dimensions
+                        if (image.naturalWidth === 0 || image.naturalHeight === 0) {
+                            console.error('Image has invalid dimensions');
+                            alert('⚠️ Failed to load image. Please try a different image.');
+                            setIsAnalyzing(false);
+                            return;
+                        }
+
+                        // Ensure image is fully decoded (for browsers that support it)
+                        if ('decode' in image) {
+                            try {
+                                await image.decode();
+                                console.log('Image decoded successfully');
+                            } catch (decodeError) {
+                                console.warn('Image decode failed, continuing anyway:', decodeError);
+                            }
+                        }
+
+                        // Normalize image to canvas to strip metadata and normalize pixel format
+                        let normalizedCanvas: HTMLCanvasElement;
+                        try {
+                            normalizedCanvas = normalizeImage(image);
+                            console.log('Image normalized to canvas, stripped metadata');
+                        } catch (normalizeError) {
+                            console.error('Failed to normalize image:', normalizeError);
+                            alert('⚠️ Failed to process image. Please try a different image.');
+                            setIsAnalyzing(false);
+                            resolve(false);
+                            return;
+                        }
+
+                        const detectWithRetry = async (attempt = 1): Promise<any> => {
+                            console.log(`Detection attempt ${attempt}...`);
+
+                            try {
+                                // Use normalized canvas to strip screenshot metadata and normalize pixel format
+                                const results = faceLandmarker.detect(normalizedCanvas);
+
+                                if (results.faceLandmarks && results.faceLandmarks.length > 0) {
+                                    return results;
+                                }
+
+                                if (attempt < 3) {
+                                    console.warn(`Attempt ${attempt} failed. Retrying in ${attempt * 500}ms...`);
+                                    await new Promise(resolve => setTimeout(resolve, attempt * 500));
+                                    return detectWithRetry(attempt + 1);
+                                }
+
+                                return results;
+                            } catch (detectError) {
+                                console.error(`Detection attempt ${attempt} threw error:`, detectError);
+
+                                if (attempt < 3) {
+                                    console.warn(`Retrying after error in ${attempt * 500}ms...`);
+                                    await new Promise(resolve => setTimeout(resolve, attempt * 500));
+                                    return detectWithRetry(attempt + 1);
+                                }
+
+                                throw detectError;
+                            }
+                        };
+
+                        // Use requestAnimationFrame to ensure DOM is ready
+                        requestAnimationFrame(async () => {
+                            try {
+                                const results = await detectWithRetry();
+                                console.log('Final detection results:', results);
+
+                                if (!results.faceLandmarks || results.faceLandmarks.length === 0) {
+                                    alert('⚠️ No face detected. Please ensure your face is clearly visible, well-lit, and facing the camera.');
+                                    setIsAnalyzing(false);
+                                    resolve(false);
+                                    return;
+                                }
+                                processDetectionResults(results, normalizedCanvas);
+                            } catch (error) {
+                                console.error('All detection attempts failed:', error);
+                                alert('⚠️ Face detection failed. Please try a different image or refresh the page.');
+                                setIsAnalyzing(false);
+                                resolve(false);
+                            }
+                        });
+                    } catch (error) {
+                        console.error('Detection error:', error);
+                        alert('⚠️ Analysis failed. Please refresh the page and try again.');
+                        setIsAnalyzing(false);
+                        resolve(false);
+                    }
+                };
+
+                if (image.complete) {
+                    runDetection();
+                } else {
+                    image.onload = runDetection;
+                }
+
+                image.onerror = () => {
+                    alert('⚠️ Error loading image. Please try again.');
+                    setIsAnalyzing(false);
+                    resolve(false);
+                };
+            } catch (error) {
+                console.error('Image processing error:', error);
                 setIsAnalyzing(false);
-            };
-        } catch (error) {
-            console.error('Image processing error:', error);
-            setIsAnalyzing(false);
-        }
+                resolve(false);
+            }
+        }); // Close new Promise
     };
 
     const captureAndAnalyze = () => {
@@ -660,17 +673,66 @@ export default function FaceAnalyzer() {
         }
     };
 
-    const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file && faceLandmarker) {
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                const imageSrc = event.target?.result as string;
+    const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files;
+        if (!files || files.length === 0 || !faceLandmarker) return;
+
+        // Process files sequentially
+        const fileArray = Array.from(files);
+        for (let i = 0; i < fileArray.length; i++) {
+            const file = fileArray[i];
+
+            const imageSrc = await new Promise<string>((resolve) => {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    resolve(event.target?.result as string);
+                };
+                reader.readAsDataURL(file);
+            });
+
+            // Set uploaded image for previewing the last one
+            if (i === fileArray.length - 1) {
                 setUploadedImage(imageSrc);
-                analyzeImage(imageSrc);
-            };
-            reader.readAsDataURL(file);
+            }
+
+            const success = await analyzeImage(imageSrc);
+
+            // Wait a moment between scans to ensure state triggers render correctly
+            if (success && i < fileArray.length - 1) {
+                await new Promise(r => setTimeout(r, 600));
+            }
         }
+
+        // After processing identity checks inside the scans map, if length > 1 verify variance
+        // Wait another 50ms for state to settle
+        setTimeout(() => {
+            setScans(currentScans => {
+                if (currentScans.length > 1) {
+                    const baseScan = currentScans[0];
+                    let identityVarianceViolations = 0;
+                    for (let j = 1; j < currentScans.length; j++) {
+                        const targetScan = currentScans[j];
+                        // If same profile types exist, compare basic bone ratios
+                        if (baseScan.profileType === 'front' && targetScan.profileType === 'front') {
+                            const fwhrDiff = Math.abs(baseScan.metrics.fwfhRatio - targetScan.metrics.fwfhRatio) / baseScan.metrics.fwfhRatio;
+                            const ipdDiff = Math.abs(baseScan.metrics.ipdRatio - targetScan.metrics.ipdRatio) / baseScan.metrics.ipdRatio;
+                            // Difference greater than 15% in hard bone tissue is highly suspicious of being 2 different people
+                            if (fwhrDiff > 0.15 || ipdDiff > 0.15) {
+                                identityVarianceViolations++;
+                            }
+                        }
+                    }
+
+                    if (identityVarianceViolations > 0) {
+                        alert("⚠️ Multiple identities detected! The facial proportions (bone structure ratios) vary significantly between the uploaded photos. Are you sure these are all of the same person?");
+                    }
+                }
+                return currentScans;
+            });
+        }, 100);
+
+        // Reset input so they can upload same file again if desired
+        if (fileInputRef.current) fileInputRef.current.value = '';
     };
 
     const generateFinalReport = () => {
@@ -1034,6 +1096,7 @@ export default function FaceAnalyzer() {
                                             ref={fileInputRef}
                                             type="file"
                                             accept="image/*"
+                                            multiple
                                             onChange={handleFileUpload}
                                             className="hidden"
                                         />
@@ -1471,6 +1534,7 @@ export default function FaceAnalyzer() {
                                                     ref={fileInputRef}
                                                     type="file"
                                                     accept="image/*"
+                                                    multiple
                                                     onChange={handleFileUpload}
                                                     className="hidden"
                                                 />
