@@ -577,11 +577,11 @@ export function calculatePSLScore(
     const midfacePerf = isF ? [0.80, 1.05] : [0.75, 1.05];
     const midfaceGood = isF ? [0.75, 1.15] : [0.70, 1.10];
     if (metrics.midfaceRatio >= midfacePerf[0] && metrics.midfaceRatio <= midfacePerf[1]) {
-        score += 0.8;
-        breakdown.push("Perfect Compact Midface (+0.8)");
-    } else if (metrics.midfaceRatio >= midfaceGood[0] && metrics.midfaceRatio <= midfaceGood[1]) {
         score += 0.4;
-        breakdown.push("Good Midface Ratio (+0.4)");
+        breakdown.push("Perfect Compact Midface (+0.4)");
+    } else if (metrics.midfaceRatio >= midfaceGood[0] && metrics.midfaceRatio <= midfaceGood[1]) {
+        score += 0.1;
+        breakdown.push("Good Midface Ratio (+0.1)");
     } else if (metrics.midfaceRatio < midfaceGood[0]) {
         score -= 0.6;
         breakdown.push("Excessively Compact Midface (Severe Camera Distortion) (-0.6)");
@@ -594,11 +594,11 @@ export function calculatePSLScore(
     const gonialPerf = isF ? [105, 130] : [115, 130];
     const gonialGood = isF ? [100, 135] : [105, 135];
     if (metrics.gonialAngle >= gonialPerf[0] && metrics.gonialAngle <= gonialPerf[1]) {
-        score += 0.8;
-        breakdown.push("Perfect Jawline Angle (+0.8)");
-    } else if (metrics.gonialAngle >= gonialGood[0] && metrics.gonialAngle <= gonialGood[1]) {
         score += 0.4;
-        breakdown.push("Good Jawline (+0.4)");
+        breakdown.push("Perfect Jawline Angle (+0.4)");
+    } else if (metrics.gonialAngle >= gonialGood[0] && metrics.gonialAngle <= gonialGood[1]) {
+        score += 0.1;
+        breakdown.push("Good Jawline (+0.1)");
     } else {
         score -= 0.6;
         breakdown.push("Steep/Soft Jawline Angle (-0.6)");
@@ -607,8 +607,8 @@ export function calculatePSLScore(
     // Chin to Philtrum 
     const c2pPerf = isF ? [2.0, 2.25] : [2.0, 2.65];
     if (metrics.chinToPhiltrumRatio >= c2pPerf[0] && metrics.chinToPhiltrumRatio <= c2pPerf[1]) {
-        score += 0.4;
-        breakdown.push("Ideal Lower Face Proportions (+0.4)");
+        score += 0.2;
+        breakdown.push("Ideal Lower Face Proportions (+0.2)");
     } else if (metrics.chinToPhiltrumRatio < 1.5 || metrics.chinToPhiltrumRatio > 3.0) {
         score -= 0.8;
         breakdown.push("Severely Unbalanced Chin-to-Philtrum (-0.8)");
@@ -620,28 +620,28 @@ export function calculatePSLScore(
     // Lip Ratio
     const lipPerf = isF ? [1.15, 1.70] : [1.20, 1.70];
     if (metrics.lipRatio >= lipPerf[0] && metrics.lipRatio <= lipPerf[1]) {
-        score += 0.4;
-        breakdown.push("Ideal Lip Ratio (+0.4)");
+        score += 0.1;
+        breakdown.push("Ideal Lip Ratio (+0.1)");
     } else if (metrics.lipRatio >= 1.0 && metrics.lipRatio <= 2.2) {
-        score += 0.2;
-        breakdown.push("Good Lip Ratio (+0.2)");
+        score += 0.0;
+        breakdown.push("Average Lip Ratio (+0.0)");
     } else {
-        score -= 0.1;
-        breakdown.push("Suboptimal Lip Harmony (-0.1)");
+        score -= 0.3;
+        breakdown.push("Suboptimal Lip Harmony (-0.3)");
     }
 
 
     // Lower / Full Face Ratio
     const lowerFacePerf = isF ? [0.60, 0.65] : [0.62, 0.68];
     if (metrics.lowerThirdRatio >= lowerFacePerf[0] && metrics.lowerThirdRatio <= lowerFacePerf[1]) {
-        score += 0.4;
-        breakdown.push("Strong Lower Face Proportion (+0.4)");
+        score += 0.2;
+        breakdown.push("Strong Lower Face Proportion (+0.2)");
     } else if (metrics.lowerThirdRatio > lowerFacePerf[1]) {
         score -= 0.6;
         breakdown.push("Overly Long Lower Face (-0.6)");
     } else if (metrics.lowerThirdRatio >= lowerFacePerf[0] - 0.04) {
-        score += 0.2;
-        breakdown.push("Good Lower Face (+0.2)");
+        score += 0.0;
+        breakdown.push("Average Lower Face (+0.0)");
     } else {
         score -= 0.8;
         breakdown.push("Weak Lower Face Volume (-0.8)");
@@ -650,22 +650,22 @@ export function calculatePSLScore(
     // Palpebral Fissure
     const fissurePerf = isF ? 2.8 : 3.0;
     if (metrics.palpebralFissureLength >= fissurePerf) {
-        score += 0.8;
-        breakdown.push("Elite Horizontal Eye Length (+0.8)");
-    } else if (metrics.palpebralFissureLength > fissurePerf - 0.3) {
         score += 0.5;
-        breakdown.push("Good Horizontal Eye Length (+0.5)");
+        breakdown.push("Elite Horizontal Eye Length (+0.5)");
+    } else if (metrics.palpebralFissureLength > fissurePerf - 0.3) {
+        score += 0.1;
+        breakdown.push("Good Horizontal Eye Length (+0.1)");
     } else {
-        score -= 0.4;
-        breakdown.push("Short Eye Fissure (-0.4)");
+        score -= 0.5;
+        breakdown.push("Short Eye Fissure (-0.5)");
     }
 
     // Facial Thirds Ratio (Ideal: 95-100)
     // Men often have a stronger lower third causing an artificial "unbalance"
     const thirdsGood = isF ? 80 : 75;
     if (metrics.facialThirdsRatio >= 95) {
-        score += 0.4;
-        breakdown.push("Perfect Facial Thirds (+0.4)");
+        score += 0.2;
+        breakdown.push("Perfect Facial Thirds (+0.2)");
     } else if (metrics.facialThirdsRatio < thirdsGood) {
         score -= 0.6;
         breakdown.push("Severely Unbalanced Thirds (-0.6)");
@@ -673,26 +673,26 @@ export function calculatePSLScore(
 
     // Forehead Height Ratio (Ideal: 0.30-0.35)
     if (metrics.foreheadHeightRatio >= 0.30 && metrics.foreheadHeightRatio <= 0.35) {
-        score += 0.2;
-        breakdown.push("Ideal Forehead (+0.2)");
+        score += 0.1;
+        breakdown.push("Ideal Forehead (+0.1)");
     } else if (metrics.foreheadHeightRatio > 0.38) {
-        score -= 0.3;
-        breakdown.push("Fivehead (-0.3)");
+        score -= 0.4;
+        breakdown.push("Fivehead (-0.4)");
     }
 
     // Hairline Recession (Ideal: 90-100)
     if (metrics.hairlineRecession >= 95) {
-        score += 0.3;
-        breakdown.push("Full Hairline (+0.3)");
-    } else if (metrics.hairlineRecession >= 85) {
         score += 0.1;
-        breakdown.push("Good Hairline (+0.1)");
+        breakdown.push("Full Hairline (+0.1)");
+    } else if (metrics.hairlineRecession >= 85) {
+        score += 0.0;
+        breakdown.push("Average Hairline (+0.0)");
     } else if (metrics.hairlineRecession < 70) {
-        score -= 0.4;
-        breakdown.push("Receding Hairline (-0.4)");
+        score -= 0.6;
+        breakdown.push("Receding Hairline (-0.6)");
     } else if (metrics.hairlineRecession < 50) {
-        score -= 0.7;
-        breakdown.push("Significant Hair Loss (-0.7)");
+        score -= 1.0;
+        breakdown.push("Significant Hair Loss (-1.0)");
     }
 
     // ==========================================
@@ -703,27 +703,27 @@ export function calculatePSLScore(
         const tiltPerf = isF ? [5, 9.5] : [4, 6];
         const tiltGood = isF ? 2 : 2;
         if (metrics.canthalTilt >= tiltPerf[0] && metrics.canthalTilt <= tiltPerf[1]) {
-            score += 0.8;
-            breakdown.push("Excellent Canthal Tilt (+0.8)");
-        } else if (metrics.canthalTilt > tiltGood) {
             score += 0.5;
-            breakdown.push("Positive Canthal Tilt (+0.5)");
+            breakdown.push("Excellent Canthal Tilt (+0.5)");
+        } else if (metrics.canthalTilt > tiltGood) {
+            score += 0.2;
+            breakdown.push("Positive Canthal Tilt (+0.2)");
         } else if (metrics.canthalTilt < 0) {
-            score -= 0.6;
-            breakdown.push("Negative Canthal Tilt (-0.6)");
+            score -= 0.8;
+            breakdown.push("Negative Canthal Tilt (-0.8)");
         }
 
         // FW/FH Ratio
         const fwfhPerf = isF ? 1.55 : 1.65;
         if (metrics.fwfhRatio >= fwfhPerf) {
-            score += 0.8;
-            breakdown.push("Ideal Facial Width (+0.8)");
+            score += 0.5;
+            breakdown.push("Ideal Facial Width (+0.5)");
         } else if (metrics.fwfhRatio >= fwfhPerf - 0.1) {
-            score += 0.4;
-            breakdown.push("Good Facial Structure (+0.4)");
+            score += 0.1;
+            breakdown.push("Good Facial Structure (+0.1)");
         } else if (metrics.fwfhRatio < fwfhPerf - 0.25) {
-            score -= 1.0;
-            breakdown.push("Severely Narrow Face (-1.0)");
+            score -= 1.2;
+            breakdown.push("Severely Narrow Face (-1.2)");
         } else if (metrics.fwfhRatio < fwfhPerf - 0.15) {
             score -= 0.6;
             breakdown.push("Narrow Face (-0.6)");
@@ -732,85 +732,88 @@ export function calculatePSLScore(
         // Mouth to Nose Width 
         const mtnPerf = isF ? 1.45 : 1.30;
         if (metrics.mouthToNoseWidthRatio >= mtnPerf) {
-            score += 0.4;
-            breakdown.push("Ideal Mouth Width (+0.4)");
+            score += 0.1;
+            breakdown.push("Ideal Mouth Width (+0.1)");
         } else if (metrics.mouthToNoseWidthRatio < mtnPerf - 0.1) {
-            score -= 0.3;
-            breakdown.push("Narrow Mouth (-0.3)");
+            score -= 0.4;
+            breakdown.push("Narrow Mouth (-0.4)");
         }
 
         // Eye Separation / ESR (Ideal: 0.45-0.47)
         if (metrics.eyeSeparationRatio >= 0.45 && metrics.eyeSeparationRatio <= 0.47) {
-            score += 0.3;
-            breakdown.push("Ideal Eye Spacing (+0.3)");
+            score += 0.1;
+            breakdown.push("Ideal Eye Spacing (+0.1)");
         } else if (metrics.eyeSeparationRatio < 0.42 || metrics.eyeSeparationRatio > 0.50) {
-            score -= 0.3;
-            breakdown.push("Suboptimal Eye Spacing (-0.3)");
+            score -= 0.4;
+            breakdown.push("Suboptimal Eye Spacing (-0.4)");
         }
 
         // Eye to Mouth Angle (Ideal: 47-50 degrees)
         const emeMin = isF ? 47 : 46;
         if (metrics.eyeToMouthAngle >= emeMin && metrics.eyeToMouthAngle <= 50) {
-            score += 0.3;
-            breakdown.push("Ideal Eye-Mouth-Eye Angle (+0.3)");
+            score += 0.1;
+            breakdown.push("Ideal Eye-Mouth-Eye Angle (+0.1)");
         } else if (metrics.eyeToMouthAngle < emeMin - 2 || metrics.eyeToMouthAngle > 53) {
-            score -= 0.3;
-            breakdown.push("Suboptimal Eye-Mouth-Eye Angle (-0.3)");
+            score -= 0.4;
+            breakdown.push("Suboptimal Eye-Mouth-Eye Angle (-0.4)");
         }
 
         // Bigonial Width
         const bigonialPerf = isF ? [1.15, 1.30] : [1.05, 1.25];
         if (metrics.bigonialWidthRatio >= bigonialPerf[0] && metrics.bigonialWidthRatio <= bigonialPerf[1]) {
-            score += 0.4;
-            breakdown.push("Ideal Jaw Width (+0.4)");
-        } else if (metrics.bigonialWidthRatio <= bigonialPerf[1] + 0.1) {
             score += 0.2;
-            breakdown.push("Good Jaw Width (+0.2)");
+            breakdown.push("Ideal Jaw Width (+0.2)");
+        } else if (metrics.bigonialWidthRatio <= bigonialPerf[1] + 0.1) {
+            score += 0.0;
+            breakdown.push("Average Jaw Width (+0.0)");
         } else {
-            score -= 0.3;
-            breakdown.push("Narrow Jaw (-0.3)");
+            score -= 0.5;
+            breakdown.push("Narrow Jaw (-0.5)");
         }
 
         // Facial Asymmetry (Ideal: 95-100)
         // Most people are somewhat symmetrical. Prevent massive free points.
         if (metrics.facialAsymmetry >= 95) {
-            score += 0.2;
-            breakdown.push("Perfect Symmetry (+0.2)");
+            score += 0.0;
+            breakdown.push("Perfect Symmetry (+0.0)");
         } else if (metrics.facialAsymmetry >= 90) {
             score += 0.0;
             breakdown.push("Average Symmetry (+0.0)");
         } else if (metrics.facialAsymmetry < 85) {
             score -= 1.0;
             breakdown.push("Severe Facial Asymmetry (-1.0)");
+        } else if (metrics.facialAsymmetry < 90) {
+            score -= 0.4;
+            breakdown.push("Noticeable Asymmetry (-0.4)");
         }
 
         // IPD Ratio (Ideal: 0.45-0.47)
         if (metrics.ipdRatio >= 0.45 && metrics.ipdRatio <= 0.47) {
-            score += 0.3;
-            breakdown.push("Ideal Interpupillary Distance (+0.3)");
+            score += 0.1;
+            breakdown.push("Ideal Interpupillary Distance (+0.1)");
         } else if (metrics.ipdRatio < 0.40 || metrics.ipdRatio > 0.50) {
-            score -= 0.2;
-            breakdown.push("Suboptimal Interpupillary Distance (-0.2)");
+            score -= 0.3;
+            breakdown.push("Suboptimal Interpupillary Distance (-0.3)");
         }
 
         // Nose Width Ratio
         const nwPerf = isF ? [0.22, 0.28] : [0.25, 0.32];
         if (metrics.noseWidthRatio >= nwPerf[0] && metrics.noseWidthRatio <= nwPerf[1]) {
-            score += 0.3;
-            breakdown.push("Ideal Nose Width (+0.3)");
+            score += 0.1;
+            breakdown.push("Ideal Nose Width (+0.1)");
         } else if (metrics.noseWidthRatio > nwPerf[1] + 0.05) {
-            score -= 0.3;
-            breakdown.push("Wide Nose (-0.3)");
+            score -= 0.4;
+            breakdown.push("Wide Nose (-0.4)");
         }
 
         // Cheekbone Prominence
         const cheekPerf = isF ? [0.38, 0.52] : [0.35, 0.50];
         if (metrics.cheekboneProminence >= cheekPerf[0] && metrics.cheekboneProminence <= cheekPerf[1]) {
-            score += 0.4;
-            breakdown.push("Prominent Cheekbones (+0.4)");
+            score += 0.3;
+            breakdown.push("Prominent Cheekbones (+0.3)");
         } else if (metrics.cheekboneProminence < cheekPerf[0] - 0.05) {
-            score -= 0.2;
-            breakdown.push("Flat Cheekbones (-0.2)");
+            score -= 0.4;
+            breakdown.push("Flat Cheekbones (-0.4)");
         }
     }
 
@@ -821,73 +824,73 @@ export function calculatePSLScore(
         // Orbital Rim Protrusion
         const orbPerf = isF ? 0.005 : 0.015;
         if (metrics.orbitalRimProtrusion > orbPerf) {
-            score += 0.8;
-            breakdown.push("Elite Orbital Depth (+0.8)");
+            score += 0.5;
+            breakdown.push("Elite Orbital Depth (+0.5)");
         } else if (metrics.orbitalRimProtrusion > orbPerf - 0.01) {
-            score += 0.4;
-            breakdown.push("Good Orbital Depth (+0.4)");
+            score += 0.1;
+            breakdown.push("Good Orbital Depth (+0.1)");
         } else if (metrics.orbitalRimProtrusion < -0.005) {
-            score -= 0.6;
-            breakdown.push("Deeply Recessed / Bulging Eyes (-0.6)");
+            score -= 0.8;
+            breakdown.push("Deeply Recessed / Bulging Eyes (-0.8)");
         }
 
         // Maxillary Protrusion
         if (metrics.maxillaryProtrusion > 0.02) {
-            score += 0.8;
-            breakdown.push("Excellent Forward Maxilla Base (+0.8)");
+            score += 0.5;
+            breakdown.push("Excellent Forward Maxilla Base (+0.5)");
         } else if (metrics.maxillaryProtrusion > 0.01) {
-            score += 0.4;
-            breakdown.push("Good Maxillary Development (+0.4)");
+            score += 0.1;
+            breakdown.push("Good Maxillary Development (+0.1)");
         } else if (metrics.maxillaryProtrusion < -0.005) {
-            score -= 0.7;
-            breakdown.push("Retruded Maxilla / Flat Midface (-0.7)");
+            score -= 0.8;
+            breakdown.push("Retruded Maxilla / Flat Midface (-0.8)");
         }
 
         // Brow Ridge Protrusion (DIMORPHIC FLIP)
         if (isF) {
             if (metrics.browRidgeProtrusion < 0.01) {
-                score += 0.6;
-                breakdown.push("Smooth Feminine Brow (+0.6)");
+                score += 0.3;
+                breakdown.push("Smooth Feminine Brow (+0.3)");
             } else if (metrics.browRidgeProtrusion > 0.02) {
-                score -= 0.4;
-                breakdown.push("Masculine/Heavy Brow Ridge (-0.4)");
+                score -= 0.6;
+                breakdown.push("Masculine/Heavy Brow Ridge (-0.6)");
             }
         } else {
             if (metrics.browRidgeProtrusion > 0.015) {
-                score += 0.8;
-                breakdown.push("Prominent masculine Brow Ridge (+0.8)");
-            } else if (metrics.browRidgeProtrusion > 0.005) {
                 score += 0.4;
-                breakdown.push("Good Brow Ridge (+0.4)");
+                breakdown.push("Prominent masculine Brow Ridge (+0.4)");
+            } else if (metrics.browRidgeProtrusion > 0.005) {
+                score += 0.1;
+                breakdown.push("Good Brow Ridge (+0.1)");
             } else if (metrics.browRidgeProtrusion < 0) {
-                score -= 0.4;
-                breakdown.push("Flat Brow / Lacking Dimorphism (-0.4)");
+                score -= 0.6;
+                breakdown.push("Flat Brow / Lacking Dimorphism (-0.6)");
             }
         }
 
         // Infraorbital Rim Position
         if (metrics.infraorbitalRimPosition > 0.01) {
-            score += 0.8;
-            breakdown.push("Excellent Under-eye Support (+0.8)");
-        } else if (metrics.infraorbitalRimPosition > 0) {
             score += 0.4;
-            breakdown.push("Good Under-eye Support (+0.4)");
+            breakdown.push("Excellent Under-eye Support (+0.4)");
+        } else if (metrics.infraorbitalRimPosition > 0) {
+            score += 0.1;
+            breakdown.push("Good Under-eye Support (+0.1)");
         } else if (metrics.infraorbitalRimPosition < -0.01) {
-            score -= 0.5;
-            breakdown.push("Recessed Infraorbital Rim / Prone to under-eye circles (-0.5)");
+            score -= 0.7;
+            breakdown.push("Recessed Infraorbital Rim / Prone to under-eye circles (-0.7)");
         }
 
         // Chin Projection
         const chinProjPerf = isF ? 0.015 : 0.025;
         if (metrics.chinProjection > chinProjPerf) {
-            score += 0.8;
-            breakdown.push("Elite Chin Projection (+0.8)");
+            score += 0.5;
+            breakdown.push("Elite Chin Projection (+0.5)");
         } else if (metrics.chinProjection > chinProjPerf - 0.015) {
-            score += 0.4;
-            breakdown.push("Good Chin Projection (+0.4)");
+            score += 0.1;
+            breakdown.push("Average Chin Projection (+0.1)");
         } else if (metrics.chinProjection < 0) {
-            score -= 0.6;
-            breakdown.push("Recessed Chin / Weak Genioplasty Target (-0.6)");
+            score -= 0.8;
+            breakdown.push("Recessed Chin / Weak Genioplasty Target (-0.8)");
         }
     }
 
@@ -897,21 +900,24 @@ export function calculatePSLScore(
 
     if ((profileType === 'side' || profileType === 'composite') && metrics.doubleChinRisk !== undefined) {
         if (metrics.doubleChinRisk > 0.02) {
-            score += 0.4;
-            breakdown.push("Excellent Jawline Definition (+0.4)");
+            score += 0.2;
+            breakdown.push("Excellent Jawline Definition (+0.2)");
         } else if (metrics.doubleChinRisk < 0.005) {
-            score -= 0.6;
-            breakdown.push("Submental Fullness / Double Chin (-0.6)");
+            score -= 0.8;
+            breakdown.push("Submental Fullness / Double Chin (-0.8)");
         }
     }
 
     if (metrics.skinQuality !== undefined) {
         if (metrics.skinQuality >= 85) {
-            score += 0.3;
-            breakdown.push("Exceptional Clear/Glass Skin (+0.3)");
+            score += 0.2;
+            breakdown.push("Exceptional Clear/Glass Skin (+0.2)");
         } else if (metrics.skinQuality < 50) {
-            score -= 0.5;
-            breakdown.push("Textured/Acne Skin (-0.5)");
+            score -= 0.6;
+            breakdown.push("Textured/Acne Skin (-0.6)");
+        } else if (metrics.skinQuality < 70) {
+            score -= 0.2;
+            breakdown.push("Slight Skin Irregularities (-0.2)");
         }
     }
 
@@ -925,13 +931,20 @@ export function calculatePSLScore(
     }
 
     // Apply scalars to normalize to 0-8 range based on max potential points
-    const rawDiff = score - 4.0;
-    if (profileType === 'composite') {
-        const COMPOSITE_SCALAR = 3.6; // Extrapolates max raw deviation back to 8.0 max scale
-        score = 4.0 + (rawDiff / COMPOSITE_SCALAR);
-    } else {
-        const FRONT_SCALAR = 2.4; // Extrapolates front-only raw deviation back to 8.0 max scale
-        score = 4.0 + (rawDiff / FRONT_SCALAR);
+    // Given the severe reduction in unearned bonuses, absolute perfect scores require immense precision.
+    // The scalar simply buffers exactly how high mathematically impossible it is to hit perfect +0.4's everywhere.
+    let rawDiff = score - 4.0;
+
+    // Apply negative scaling: If an image has massive deformities, let the penalties sink their teeth in
+    // However we do not multiply the deductions. We only softly multiply positive score.
+    if (rawDiff > 0) {
+        if (profileType === 'composite') {
+            const COMPOSITE_SCALAR = 2.0;
+            score = 4.0 + (rawDiff / COMPOSITE_SCALAR);
+        } else {
+            const FRONT_SCALAR = 1.3;
+            score = 4.0 + (rawDiff / FRONT_SCALAR);
+        }
     }
 
     // Cap score to authentic 0-8 scale
