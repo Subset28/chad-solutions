@@ -330,7 +330,6 @@ export default function FaceAnalyzer() {
 
                 const facialThirdsData = calculateFacialThirds(scaledLandmarks);
 
-                // Import 3D bone structure metrics (dynamic import removed - will add to imports)
                 const {
                     calculateOrbitalRimProtrusion,
                     calculateMaxillaryProtrusion,
@@ -339,7 +338,8 @@ export default function FaceAnalyzer() {
                     calculateChinProjection,
                     calculateDoubleChinRisk,
                     evaluateFacialTension,
-                    evaluateCameraAngle
+                    evaluateCameraAngle,
+                    evaluateLensDistortion
                 } = require('../utils/advanced-metrics');
 
                 const { analyzeSkinQuality } = require('../utils/image-processing');
@@ -358,10 +358,21 @@ export default function FaceAnalyzer() {
                     angleDeductionScore = evaluateCameraAngle(euler.pitch, euler.yaw).score;
                 }
 
+                // Pre-calculate critical metrics for distortion check
+                const midfaceRatio = calculateMidfaceRatio(scaledLandmarks, activePitch);
+                const noseWidthRatio = calculateNoseWidthRatio(scaledLandmarks);
+                const fwfhRatio = calculateFwFhRatio(scaledLandmarks, activePitch, activeYaw);
+
+                const distortionData = evaluateLensDistortion(landmarks, midfaceRatio, noseWidthRatio, fwfhRatio);
+                if (distortionData.isDistorted) {
+                    alert(`⚠️ ${distortionData.feedback}\n\nFisheye lens distortion dramatically warps bone structure (makes midface look compact but bloated, expands nose width, shrinks bizygomatic width).\n\nYour score has been mathematically penalized. Move the camera further away and zoom in!`);
+                    angleDeductionScore += (distortionData.severity === 'severe' ? 1.5 : 0.5);
+                }
+
                 const metrics: MetricScores = {
                     canthalTilt: calculateCanthalTilt(scaledLandmarks),
-                    fwfhRatio: calculateFwFhRatio(scaledLandmarks, activePitch, activeYaw),
-                    midfaceRatio: calculateMidfaceRatio(scaledLandmarks, activePitch),
+                    fwfhRatio: fwfhRatio,
+                    midfaceRatio: midfaceRatio,
                     eyeSeparationRatio: calculateEyeSeparationRatio(scaledLandmarks),
                     gonialAngle: calculateGonialAngle(scaledLandmarks),
                     chinToPhiltrumRatio: calculateChinToPhiltrumRatio(scaledLandmarks),
@@ -375,7 +386,7 @@ export default function FaceAnalyzer() {
                     ipdRatio: calculateIPDRatio(scaledLandmarks),
                     facialThirdsRatio: facialThirdsData.ratio,
                     foreheadHeightRatio: calculateForeheadHeightRatio(scaledLandmarks),
-                    noseWidthRatio: calculateNoseWidthRatio(scaledLandmarks),
+                    noseWidthRatio: noseWidthRatio,
                     cheekboneProminence: calculateCheekboneProminence(scaledLandmarks),
                     hairlineRecession: calculateHairlineRecession(scaledLandmarks),
                     // NEW: 3D bone structure metrics

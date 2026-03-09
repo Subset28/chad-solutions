@@ -230,3 +230,30 @@ export function evaluateCameraAngle(pitch: number, yaw: number): { score: number
 
     return { score: angleDeduction, feedback };
 }
+
+// === LENS DISTORTION (Fisheye / Too Close) ===
+export function evaluateLensDistortion(
+    landmarks: NormalizedLandmark[],
+    midfaceRatio: number,
+    noseWidthRatio: number,
+    fwfhRatio: number
+): { isDistorted: boolean, severity: 'none' | 'moderate' | 'severe', feedback: string } {
+    // MediaPipe gives us coordinates normalized 0-1.
+    // Distance between cheekbones (234 to 454) gives us the face width as a % of the total image width.
+    const faceWidthFraction = Math.abs(landmarks[454].x - landmarks[234].x);
+
+    let markers = 0;
+
+    if (faceWidthFraction > 0.65) markers++; // Face takes up > 65% of screen width (very close to lens)
+    if (midfaceRatio < 0.72) markers++;      // Center of face looks artificially stretched vertically
+    if (noseWidthRatio > 0.35) markers++;    // Nose bloated horizontally relative to face
+    if (fwfhRatio < 1.30) markers++;         // Sides of face curving away from lens
+
+    if (markers >= 3) {
+        return { isDistorted: true, severity: 'severe', feedback: 'Severe Lens Distortion (Hold camera further away, at least 2ft/60cm)' };
+    } else if (markers == 2 && faceWidthFraction > 0.55) {
+        return { isDistorted: true, severity: 'moderate', feedback: 'Moderate Lens Distortion (Selfie warping detected)' };
+    }
+
+    return { isDistorted: false, severity: 'none', feedback: 'Good focal distance' };
+}
