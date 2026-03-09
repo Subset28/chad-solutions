@@ -575,8 +575,8 @@ export function calculatePSLScore(
     // ==========================================
 
     // Midface Ratio (Ideal: Compact)
-    const midfacePerf = isF ? [0.80, 1.05] : [0.95, 1.1];
-    const midfaceGood = isF ? [0.75, 1.15] : [0.90, 1.15];
+    const midfacePerf = isF ? [0.80, 1.05] : [0.85, 1.05];
+    const midfaceGood = isF ? [0.75, 1.15] : [0.80, 1.10];
     if (metrics.midfaceRatio >= midfacePerf[0] && metrics.midfaceRatio <= midfacePerf[1]) {
         score += 0.8;
         breakdown.push("Perfect Compact Midface (+0.8)");
@@ -704,7 +704,7 @@ export function calculatePSLScore(
         }
 
         // FW/FH Ratio
-        const fwfhPerf = isF ? 1.55 : 1.8;
+        const fwfhPerf = isF ? 1.55 : 1.65;
         if (metrics.fwfhRatio >= fwfhPerf) {
             score += 0.8;
             breakdown.push("Ideal Facial Width (+0.8)");
@@ -745,11 +745,14 @@ export function calculatePSLScore(
         }
 
         // Bigonial Width
-        const bigonialPerf = isF ? [1.15, 1.30] : [1.3, 1.4];
+        const bigonialPerf = isF ? [1.15, 1.30] : [1.05, 1.25];
         if (metrics.bigonialWidthRatio >= bigonialPerf[0] && metrics.bigonialWidthRatio <= bigonialPerf[1]) {
             score += 0.4;
             breakdown.push("Ideal Jaw Width (+0.4)");
-        } else if (metrics.bigonialWidthRatio < bigonialPerf[0] - 0.15) {
+        } else if (metrics.bigonialWidthRatio <= bigonialPerf[1] + 0.1) {
+            score += 0.2;
+            breakdown.push("Good Jaw Width (+0.2)");
+        } else {
             score -= 0.3;
             breakdown.push("Narrow Jaw (-0.3)");
         }
