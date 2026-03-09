@@ -575,8 +575,8 @@ export function calculatePSLScore(
     // ==========================================
 
     // Midface Ratio (Ideal: Compact)
-    const midfacePerf = isF ? [0.90, 1.05] : [0.95, 1.1];
-    const midfaceGood = isF ? [0.85, 1.15] : [0.90, 1.15];
+    const midfacePerf = isF ? [0.80, 1.05] : [0.95, 1.1];
+    const midfaceGood = isF ? [0.75, 1.15] : [0.90, 1.15];
     if (metrics.midfaceRatio >= midfacePerf[0] && metrics.midfaceRatio <= midfacePerf[1]) {
         score += 0.8;
         breakdown.push("Perfect Compact Midface (+0.8)");
@@ -589,8 +589,8 @@ export function calculatePSLScore(
     }
 
     // Gonial Angle
-    const gonialPerf = isF ? [120, 135] : [115, 130];
-    const gonialGood = isF ? [110, 140] : [105, 135];
+    const gonialPerf = isF ? [105, 130] : [115, 130];
+    const gonialGood = isF ? [100, 135] : [105, 135];
     if (metrics.gonialAngle >= gonialPerf[0] && metrics.gonialAngle <= gonialPerf[1]) {
         score += 0.8;
         breakdown.push("Perfect Jawline Angle (+0.8)");
@@ -704,7 +704,7 @@ export function calculatePSLScore(
         }
 
         // FW/FH Ratio
-        const fwfhPerf = isF ? 1.65 : 1.8;
+        const fwfhPerf = isF ? 1.55 : 1.8;
         if (metrics.fwfhRatio >= fwfhPerf) {
             score += 0.8;
             breakdown.push("Ideal Facial Width (+0.8)");
@@ -877,7 +877,7 @@ export function calculatePSLScore(
     // V2 ADVANCED METRICS
     // ==========================================
 
-    if (metrics.doubleChinRisk !== undefined) {
+    if ((profileType === 'side' || profileType === 'composite') && metrics.doubleChinRisk !== undefined) {
         if (metrics.doubleChinRisk > 0.02) {
             score += 0.4;
             breakdown.push("Excellent Jawline Definition (+0.4)");

@@ -724,9 +724,9 @@ export default function FaceAnalyzer() {
         if (gender === 'female') {
             const fRatings: Record<string, { text: string, color: string }> = {
                 canthalTilt: value >= 5 && value <= 8 ? { text: 'perfect feline tilt', color: 'text-green-400' } : value > 2 ? { text: 'good', color: 'text-blue-400' } : value < 0 ? { text: 'negative tilt', color: 'text-red-400' } : { text: 'neutral', color: 'text-yellow-400' },
-                fwfhRatio: value >= 1.70 ? { text: 'perfect (heart/oval)', color: 'text-green-400' } : value >= 1.60 ? { text: 'good', color: 'text-blue-400' } : { text: 'narrow face', color: 'text-orange-400' },
-                midfaceRatio: value >= 0.9 && value <= 1.05 ? { text: 'perfect compact midface', color: 'text-green-400' } : value <= 1.15 ? { text: 'good', color: 'text-blue-400' } : { text: 'long midface', color: 'text-red-400' },
-                gonialAngle: value >= 120 && value <= 135 ? { text: 'perfect feminine angle', color: 'text-green-400' } : value >= 110 && value <= 140 ? { text: 'good', color: 'text-blue-400' } : { text: 'square/steep', color: 'text-orange-400' },
+                fwfhRatio: value >= 1.55 ? { text: 'perfect (heart/oval)', color: 'text-green-400' } : value >= 1.45 ? { text: 'good', color: 'text-blue-400' } : { text: 'narrow face', color: 'text-orange-400' },
+                midfaceRatio: value >= 0.80 && value <= 1.05 ? { text: 'perfect compact midface', color: 'text-green-400' } : value <= 1.15 ? { text: 'good', color: 'text-blue-400' } : { text: 'long midface', color: 'text-red-400' },
+                gonialAngle: value >= 105 && value <= 130 ? { text: 'perfect feminine angle', color: 'text-green-400' } : value >= 100 && value <= 135 ? { text: 'good', color: 'text-blue-400' } : { text: 'square/steep', color: 'text-orange-400' },
                 chinToPhiltrumRatio: value >= 2.0 && value <= 2.25 ? { text: 'perfect', color: 'text-green-400' } : value < 1.8 ? { text: 'long philtrum', color: 'text-red-400' } : value > 2.5 ? { text: 'short philtrum / long chin', color: 'text-orange-400' } : { text: 'acceptable', color: 'text-blue-400' },
                 mouthToNoseWidthRatio: value >= 1.45 && value <= 1.6 ? { text: 'perfect', color: 'text-green-400' } : value >= 1.35 ? { text: 'good', color: 'text-blue-400' } : { text: 'narrow mouth', color: 'text-orange-400' },
                 bigonialWidthRatio: value >= 1.15 && value <= 1.3 ? { text: 'perfect oval jaw', color: 'text-green-400' } : value >= 1.1 ? { text: 'good', color: 'text-blue-400' } : value > 1.35 ? { text: 'very wide jaw', color: 'text-orange-400' } : { text: 'narrow', color: 'text-orange-400' },
@@ -794,9 +794,9 @@ export default function FaceAnalyzer() {
         if (gender === 'female') {
             const fIdeals: Record<string, string> = {
                 canthalTilt: '5° to 8°',
-                fwfhRatio: '> 1.65',
-                midfaceRatio: '0.9 to 1.05',
-                gonialAngle: '120° to 135°',
+                fwfhRatio: '> 1.55',
+                midfaceRatio: '0.8 to 1.05',
+                gonialAngle: '105° to 130°',
                 chinToPhiltrumRatio: '2.0 to 2.25',
                 mouthToNoseWidthRatio: '1.45 to 1.6',
                 bigonialWidthRatio: '1.15 to 1.30',

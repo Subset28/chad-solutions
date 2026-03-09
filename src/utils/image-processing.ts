@@ -110,7 +110,7 @@ export function analyzeSkinQuality(
     const baseline = Math.min(35, avgDev); // Cap calculation at severe texture
 
     // Score out of 100
-    let score = 100 - (Math.max(0, baseline - 5) * 3);
+    let score = 100 - (Math.max(0, baseline - 9) * 2.5);
     score = Math.max(1, Math.min(100, score));
 
     let feedback = "Clear / Glass Skin";
