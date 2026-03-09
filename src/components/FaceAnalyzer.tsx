@@ -1251,6 +1251,16 @@ export default function FaceAnalyzer() {
                             {(() => {
                                 const flawed = Object.entries(auditResult.metrics).filter(([key, value]) => {
                                     const metricKey = key as keyof MetricScores;
+
+                                    const sideOnlyMetrics = ['chinProjection', 'maxillaryProtrusion', 'orbitalRimProtrusion', 'browRidgeProtrusion', 'infraorbitalRimPosition', 'doubleChinRisk'];
+                                    const frontOnlyMetrics = ['facialAsymmetry', 'ipdRatio', 'eyeSeparationRatio', 'canthalTilt', 'fwfhRatio', 'noseWidthRatio', 'mouthToNoseWidthRatio', 'bigonialWidthRatio', 'cheekboneProminence', 'skinQuality', 'facialTension'];
+
+                                    let isValidForProfile = true;
+                                    if (auditResult.profileType === 'front' && sideOnlyMetrics.includes(key)) { isValidForProfile = false; }
+                                    else if (auditResult.profileType === 'side' && frontOnlyMetrics.includes(key)) { isValidForProfile = false; }
+
+                                    if (!isValidForProfile) return false;
+
                                     const rating = getRating(metricKey, value, gender);
                                     return rating.color.includes('orange') || rating.color.includes('red');
                                 });
