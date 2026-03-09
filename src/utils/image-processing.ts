@@ -105,18 +105,18 @@ export function analyzeSkinQuality(
     const avgDev = devs.length > 0 ? devs.reduce((a, b) => a + b) / devs.length : 0;
 
     // Normalizing standard deviation
-    // highly airbrushed / glass skin has local STDEV < 5
-    // very textured / acne skin has local STDEV > 15
-    const baseline = Math.min(25, avgDev); // Cap calculation at severe texture
+    // highly airbrushed / glass skin has local STDEV < 12
+    // very textured / acne skin has local STDEV > 35
+    const baseline = Math.min(35, avgDev); // Cap calculation at severe texture
 
     // Score out of 100
-    let score = 100 - (baseline * 4);
+    let score = 100 - (Math.max(0, baseline - 5) * 3);
     score = Math.max(1, Math.min(100, score));
 
     let feedback = "Clear / Glass Skin";
-    if (avgDev > 16) feedback = "Heavy Texture / Acne";
-    else if (avgDev > 11) feedback = "Moderate Texture";
-    else if (avgDev > 7) feedback = "Slight Texture";
+    if (avgDev > 25) feedback = "Heavy Texture / Acne";
+    else if (avgDev > 18) feedback = "Moderate Texture";
+    else if (avgDev > 12) feedback = "Slight Texture";
 
     return { clarityScore: score, feedback, value: avgDev };
 }

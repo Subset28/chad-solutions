@@ -391,7 +391,7 @@ export default function FaceAnalyzer() {
                     facialTension: tensionData.tensionScore,
                     skinQuality: skinQualityData.clarityScore
                 };
-                const pslData = calculatePSLScore(metrics, gender);
+                const pslData = calculatePSLScore(metrics, gender, profileType);
                 // Draw landmarks on a canvas matching the ORIGINAL image
                 // This avoids any dimension mismatch between normalized canvas and original
                 const drawLandmarksOnOriginal = (): string => {
@@ -488,7 +488,7 @@ export default function FaceAnalyzer() {
                             const hasSide = updated.some(s => s.profileType === 'side');
                             const combinedType = (hasFront && hasSide) ? 'composite' : profileType;
 
-                            const mergedScore = calculatePSLScore(compositeMetrics, combinedType);
+                            const mergedScore = calculatePSLScore(compositeMetrics, gender, combinedType);
 
                             setAuditResult({
                                 metrics: compositeMetrics,
