@@ -11,6 +11,10 @@ export const convertHeicToJpeg = async (file: File): Promise<Blob | Blob[]> => {
  * Extracts localized patches of skin from the face (Cheeks & Forehead)
  * and calculates High-Frequency Color Variance (Texture & Acne).
  * Heavy variance = Acne/Texture. Low variance = Clear Glass Skin.
+ * 
+ * V2: Widened outlier rejection + larger patches to handle makeup contouring
+ * and studio lighting without false positives. Uses median RGB reference 
+ * instead of mean to resist contouring gradient skew.
  */
 export function analyzeSkinQuality(
     image: HTMLImageElement | HTMLVideoElement,
@@ -45,7 +49,6 @@ export function analyzeSkinQuality(
 
             const imageData = ctx.getImageData(sx, sy, sWidth, sHeight);
             const data = imageData.data;
-            let sum = 0;
             const intensities = [];
 
             // Convert to grayscale purely to find the median for outlier rejection (hair, eyes, glasses rim)
@@ -58,10 +61,11 @@ export function analyzeSkinQuality(
             const sortedIntensities = [...intensities].sort((a, b) => a - b);
             const median = sortedIntensities[Math.floor(sortedIntensities.length / 2)];
 
-            // Collect valid RGB pixels (rejecting hair/shadows)
+            // Collect valid RGB pixels (rejecting hair/shadows/extreme highlights)
+            // V2: Widened from 40 to 55 to exclude makeup contouring gradients
             const validPixels = [];
             for (let i = 0; i < data.length; i += 4) {
-                if (Math.abs(intensities[i / 4] - median) < 40) {
+                if (Math.abs(intensities[i / 4] - median) < 55) {
                     validPixels.push([data[i], data[i + 1], data[i + 2]]);
                 }
             }
@@ -69,19 +73,18 @@ export function analyzeSkinQuality(
             // If less than a quarter of the patch is valid, return 0 (bad patch)
             if (validPixels.length < (data.length / 4) * 0.25) return 0;
 
-            // Compute mean RGB
-            let sumR = 0, sumG = 0, sumB = 0;
-            for (const p of validPixels) {
-                sumR += p[0]; sumG += p[1]; sumB += p[2];
-            }
-            const meanR = sumR / validPixels.length;
-            const meanG = sumG / validPixels.length;
-            const meanB = sumB / validPixels.length;
+            // Compute median RGB instead of mean (more robust against contouring gradient outliers)
+            const sortedR = validPixels.map(p => p[0]).sort((a, b) => a - b);
+            const sortedG = validPixels.map(p => p[1]).sort((a, b) => a - b);
+            const sortedB = validPixels.map(p => p[2]).sort((a, b) => a - b);
+            const medianR = sortedR[Math.floor(sortedR.length / 2)];
+            const medianG = sortedG[Math.floor(sortedG.length / 2)];
+            const medianB = sortedB[Math.floor(sortedB.length / 2)];
 
-            // Compute RGB Euclidean Variance
+            // Compute RGB Euclidean Variance against median (not mean)
             let varianceSum = 0;
             for (const p of validPixels) {
-                varianceSum += Math.pow(p[0] - meanR, 2) + Math.pow(p[1] - meanG, 2) + Math.pow(p[2] - meanB, 2);
+                varianceSum += Math.pow(p[0] - medianR, 2) + Math.pow(p[1] - medianG, 2) + Math.pow(p[2] - medianB, 2);
             }
 
             return Math.sqrt(varianceSum / validPixels.length);
@@ -92,9 +95,10 @@ export function analyzeSkinQuality(
 
     // Lower Cheek Patches (Further away from glasses rims / under-eye shadows)
     // 116 is mid-lower cheek left, 345 is mid-lower cheek right
-    // Also including 50 and 280 again since the multi-pass median outlier filter handles glasses dynamically!
+    // Also including 50 and 280 since the multi-pass median outlier filter handles glasses dynamically!
     // And 152 for chin!
-    const padding = Math.floor(width * 0.03);
+    // V2: Increased patch size from 3% to 5% of image width for better averaging
+    const padding = Math.floor(width * 0.05);
 
     const cheek1 = landmarks[116];
     const cheek2 = landmarks[345];
@@ -113,18 +117,22 @@ export function analyzeSkinQuality(
     const avgDev = devs.length > 0 ? devs.reduce((a, b) => a + b) / devs.length : 0;
 
     // Normalizing Euclidean color deviation
-    // highly airbrushed / glass skin has local RGB Euclidean STDEV < 12
-    // very textured / acne skin has local RGB Euclidean STDEV > 40
-    const baseline = Math.min(45, avgDev); // Cap calculation at severe texture
+    // V2 thresholds: Shifted baseline to be more forgiving of makeup/lighting:
+    //   - Glass skin / airbrushed: RGB STDEV < 14  
+    //   - Normal healthy skin: 14-22
+    //   - Slight texture: 22-30
+    //   - Moderate texture: 30-40
+    //   - Heavy acne/texture: > 40
+    const baseline = Math.min(50, avgDev); // Cap calculation at severe texture
 
-    // Score out of 100
-    let score = 100 - (Math.max(0, baseline - 10) * 3.0);
+    // Score out of 100 — V2: reduced multiplier from 3.0 to 2.2, shifted offset from 10 to 14
+    let score = 100 - (Math.max(0, baseline - 14) * 2.2);
     score = Math.max(1, Math.min(100, score));
 
     let feedback = "Clear / Glass Skin";
-    if (avgDev > 30) feedback = "Heavy Texture / Acne";
-    else if (avgDev > 22) feedback = "Moderate Texture";
-    else if (avgDev > 14) feedback = "Slight Texture";
+    if (avgDev > 38) feedback = "Heavy Texture / Acne";
+    else if (avgDev > 28) feedback = "Moderate Texture";
+    else if (avgDev > 18) feedback = "Slight Texture";
 
     return { clarityScore: score, feedback, value: avgDev };
 }
