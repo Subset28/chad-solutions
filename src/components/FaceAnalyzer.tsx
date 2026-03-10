@@ -821,7 +821,7 @@ export default function FaceAnalyzer() {
                 fwfhRatio: value >= 1.55 ? { text: 'perfect (heart/oval)', color: 'text-green-400' } : value >= 1.45 ? { text: 'good', color: 'text-blue-400' } : { text: 'narrow face', color: 'text-orange-400' },
                 midfaceRatio: value >= 0.80 && value <= 1.05 ? { text: 'perfect compact midface', color: 'text-green-400' } : (value >= 0.75 && value <= 1.15) ? { text: 'good', color: 'text-blue-400' } : value < 0.75 ? { text: 'excessively compact', color: 'text-red-400' } : { text: 'long midface', color: 'text-red-400' },
                 gonialAngle: value >= 105 && value <= 130 ? { text: 'perfect feminine angle', color: 'text-green-400' } : value >= 100 && value <= 135 ? { text: 'good', color: 'text-blue-400' } : { text: 'square/steep', color: 'text-orange-400' },
-                chinToPhiltrumRatio: value >= 2.0 && value <= 2.25 ? { text: 'perfect', color: 'text-green-400' } : value < 1.8 ? { text: 'long philtrum', color: 'text-red-400' } : value > 2.5 ? { text: 'short philtrum / long chin', color: 'text-orange-400' } : { text: 'acceptable', color: 'text-blue-400' },
+                chinToPhiltrumRatio: value >= 2.0 && value <= 2.75 ? { text: 'perfect', color: 'text-green-400' } : value < 1.6 ? { text: 'long philtrum / short chin', color: 'text-red-400' } : value > 3.4 ? { text: 'very long chin', color: 'text-orange-400' } : value < 1.8 ? { text: 'slightly long philtrum', color: 'text-yellow-400' } : { text: 'acceptable', color: 'text-blue-400' },
                 mouthToNoseWidthRatio: value >= 1.45 && value <= 1.6 ? { text: 'perfect', color: 'text-green-400' } : value >= 1.35 ? { text: 'good', color: 'text-blue-400' } : { text: 'narrow mouth', color: 'text-orange-400' },
                 bigonialWidthRatio: value >= 1.15 && value <= 1.3 ? { text: 'perfect oval jaw', color: 'text-green-400' } : value >= 1.1 ? { text: 'good', color: 'text-blue-400' } : value > 1.35 ? { text: 'very wide jaw', color: 'text-orange-400' } : { text: 'narrow', color: 'text-orange-400' },
                 lowerThirdRatio: value >= 0.58 && value <= 0.65 ? { text: 'perfect balance', color: 'text-green-400' } : value >= 0.55 ? { text: 'good', color: 'text-blue-400' } : { text: 'suboptimal lower third', color: 'text-orange-400' },
@@ -855,7 +855,7 @@ export default function FaceAnalyzer() {
             fwfhRatio: value >= 1.65 ? { text: 'perfect broad face', color: 'text-green-400' } : value >= 1.55 ? { text: 'good', color: 'text-blue-400' } : { text: 'narrow face', color: 'text-orange-400' },
             midfaceRatio: value >= 0.75 && value <= 1.05 ? { text: 'perfect compact midface', color: 'text-green-400' } : (value >= 0.70 && value <= 1.10) ? { text: 'good', color: 'text-blue-400' } : value < 0.70 ? { text: 'excessively compact', color: 'text-red-400' } : { text: 'long midface', color: 'text-red-400' },
             gonialAngle: value >= 110 && value <= 125 ? { text: 'perfect masculine square', color: 'text-green-400' } : value >= 100 && value <= 130 ? { text: 'good', color: 'text-blue-400' } : { text: 'steep/soft jawline', color: 'text-orange-400' },
-            chinToPhiltrumRatio: value >= 2.0 && value <= 2.25 ? { text: 'perfect', color: 'text-green-400' } : value < 1.8 ? { text: 'long philtrum / weak chin', color: 'text-red-400' } : value > 2.8 ? { text: 'short philtrum / long chin', color: 'text-orange-400' } : { text: 'acceptable', color: 'text-blue-400' },
+            chinToPhiltrumRatio: value >= 2.5 && value <= 3.2 ? { text: 'perfect', color: 'text-green-400' } : value < 1.6 ? { text: 'long philtrum / weak chin', color: 'text-red-400' } : value > 3.8 ? { text: 'very long chin', color: 'text-orange-400' } : value < 2.0 ? { text: 'slightly long philtrum', color: 'text-yellow-400' } : { text: 'acceptable', color: 'text-blue-400' },
             mouthToNoseWidthRatio: value >= 1.30 && value <= 1.62 ? { text: 'perfect', color: 'text-green-400' } : value >= 1.20 ? { text: 'good', color: 'text-blue-400' } : { text: 'narrow mouth', color: 'text-orange-400' },
             bigonialWidthRatio: value >= 1.05 && value <= 1.25 ? { text: 'perfect wide jaw', color: 'text-green-400' } : value <= 1.35 ? { text: 'good', color: 'text-blue-400' } : { text: 'narrow jaw', color: 'text-orange-400' },
             lowerThirdRatio: value >= 0.62 ? { text: 'perfect masculine lower third', color: 'text-green-400' } : value >= 0.58 ? { text: 'good', color: 'text-blue-400' } : { text: 'weak lower third', color: 'text-orange-400' },
@@ -891,7 +891,7 @@ export default function FaceAnalyzer() {
                 fwfhRatio: '> 1.55',
                 midfaceRatio: '0.8 to 1.05',
                 gonialAngle: '105° to 130°',
-                chinToPhiltrumRatio: '2.0 to 2.25',
+                chinToPhiltrumRatio: '2.0 to 2.75',
                 mouthToNoseWidthRatio: '1.45 to 1.6',
                 bigonialWidthRatio: '1.15 to 1.30',
                 lowerThirdRatio: '0.58 to 0.65',
@@ -924,7 +924,7 @@ export default function FaceAnalyzer() {
             fwfhRatio: '> 1.65',
             midfaceRatio: '0.75 to 1.05',
             gonialAngle: '110° to 125°',
-            chinToPhiltrumRatio: '2.0 to 2.65',
+            chinToPhiltrumRatio: '2.5 to 3.2',
             mouthToNoseWidthRatio: '1.30 to 1.62',
             bigonialWidthRatio: '1.05 to 1.25',
             lowerThirdRatio: 'more than 0.62',
@@ -1010,96 +1010,98 @@ export default function FaceAnalyzer() {
             </div>
 
             {appMode === 'single' ? (
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full items-start">
-                    {/* Camera Feed / Upload / Result Image */}
-                    <div className="relative aspect-[3/4] w-full overflow-hidden rounded-3xl border-2 border-zinc-800 bg-black shadow-2xl">
-                        {analyzedImageWithLandmarks ? (
-                            /* After analysis: show the annotated image with landmarks for ANY mode */
-                            <img src={analyzedImageWithLandmarks} alt="Analyzed with landmarks" className="h-full w-full object-contain" />
-                        ) : inputMode === 'webcam' ? (
-                            <Webcam
-                                ref={webcamRef}
-                                screenshotFormat="image/jpeg"
-                                className="h-full w-full object-cover transform scale-x-[-1]"
-                                videoConstraints={{ facingMode: "user" }}
-                            />
-                        ) : (
-                            <div className="h-full w-full flex items-center justify-center bg-zinc-950">
-                                {uploadedImage ? (
-                                    <img src={uploadedImage} alt="Uploaded" className="h-full w-full object-contain" />
-                                ) : (
-                                    <div className="text-center space-y-4">
-                                        <div className="text-6xl">📸</div>
-                                        <p className="text-zinc-400">No image uploaded</p>
-                                    </div>
-                                )}
-                            </div>
-                        )}
-                        {isAnalyzing && (
-                            <div className="absolute inset-0 bg-black/50 flex items-center justify-center backdrop-blur-sm">
-                                <div className="text-white font-mono text-xl animate-pulse">Running Neural Scan...</div>
-                            </div>
-                        )}
-
-                        {/* Scans Gallery Strip */}
-                        {scans.length > 0 && (
-                            <div className="absolute bottom-4 left-4 right-4 bg-zinc-900/90 rounded-2xl p-4 border border-zinc-700 backdrop-blur-md z-10 shadow-2xl">
-                                <div className="flex justify-between items-center mb-3">
-                                    <h4 className="text-sm font-bold text-zinc-200">Analysis Gallery</h4>
-                                    <span className="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded-full font-semibold">{scans.length} Angle{scans.length !== 1 ? 's' : ''}</span>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full items-start">
+                    {/* LEFT COLUMN: Image + Score Card + Controls */}
+                    <div className="flex flex-col gap-5">
+                        {/* Camera Feed / Upload / Result Image */}
+                        <div className="relative aspect-[3/4] w-full overflow-hidden rounded-3xl border-2 border-zinc-800 bg-black shadow-2xl">
+                            {analyzedImageWithLandmarks ? (
+                                /* After analysis: show the annotated image with landmarks for ANY mode */
+                                <img src={analyzedImageWithLandmarks} alt="Analyzed with landmarks" className="h-full w-full object-contain" />
+                            ) : inputMode === 'webcam' ? (
+                                <Webcam
+                                    ref={webcamRef}
+                                    screenshotFormat="image/jpeg"
+                                    className="h-full w-full object-cover transform scale-x-[-1]"
+                                    videoConstraints={{ facingMode: "user" }}
+                                />
+                            ) : (
+                                <div className="h-full w-full flex items-center justify-center bg-zinc-950">
+                                    {uploadedImage ? (
+                                        <img src={uploadedImage} alt="Uploaded" className="h-full w-full object-contain" />
+                                    ) : (
+                                        <div className="text-center space-y-4">
+                                            <div className="text-6xl">📸</div>
+                                            <p className="text-zinc-400">No image uploaded</p>
+                                        </div>
+                                    )}
                                 </div>
-                                <div className="flex gap-3 overflow-x-auto pb-2 snap-x">
-                                    {scans.map((scan, i) => (
-                                        <div key={i} className="relative shrink-0 w-20 h-28 rounded-xl overflow-hidden border-2 border-zinc-600 snap-center group">
-                                            <img src={scan.imageUrl} alt={`Scan ${i + 1}`} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
-                                            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent p-1.5 flex justify-center">
-                                                <div className="text-[9px] font-bold text-white uppercase text-center bg-black/60 rounded px-1.5 backdrop-blur-md">
-                                                    {scan.profileType}
+                            )}
+                            {isAnalyzing && (
+                                <div className="absolute inset-0 bg-black/50 flex items-center justify-center backdrop-blur-sm">
+                                    <div className="text-white font-mono text-xl animate-pulse">Running Neural Scan...</div>
+                                </div>
+                            )}
+
+                            {/* Scans Gallery Strip */}
+                            {scans.length > 0 && (
+                                <div className="absolute bottom-4 left-4 right-4 bg-zinc-900/90 rounded-2xl p-4 border border-zinc-700 backdrop-blur-md z-10 shadow-2xl">
+                                    <div className="flex justify-between items-center mb-3">
+                                        <h4 className="text-sm font-bold text-zinc-200">Analysis Gallery</h4>
+                                        <span className="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded-full font-semibold">{scans.length} Angle{scans.length !== 1 ? 's' : ''}</span>
+                                    </div>
+                                    <div className="flex gap-3 overflow-x-auto pb-2 snap-x">
+                                        {scans.map((scan, i) => (
+                                            <div key={i} className="relative shrink-0 w-20 h-28 rounded-xl overflow-hidden border-2 border-zinc-600 snap-center group">
+                                                <img src={scan.imageUrl} alt={`Scan ${i + 1}`} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
+                                                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent p-1.5 flex justify-center">
+                                                    <div className="text-[9px] font-bold text-white uppercase text-center bg-black/60 rounded px-1.5 backdrop-blur-md">
+                                                        {scan.profileType}
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    ))}
+                                        ))}
 
-                                    {/* Add New Angle Button */}
-                                    <button
-                                        onClick={() => {
-                                            setAuditResult(null);
-                                            setAnalyzedImageWithLandmarks(null);
-                                            setUploadedImage(null);
-                                            setInputMode('webcam'); // Default back to camera to invite next scan implicitly
-                                        }}
-                                        className="shrink-0 w-20 h-28 rounded-xl border-2 border-dashed border-zinc-600 flex flex-col items-center justify-center hover:bg-zinc-700 hover:border-zinc-400 transition-all snap-center group bg-black/40"
-                                    >
-                                        <div className="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400 group-hover:text-white group-hover:bg-zinc-600 transition-colors mb-1.5">
-                                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                                            </svg>
-                                        </div>
-                                        <span className="text-[9px] font-bold text-zinc-400 group-hover:text-zinc-200">ADD</span>
-                                    </button>
+                                        {/* Add New Angle Button */}
+                                        <button
+                                            onClick={() => {
+                                                setAuditResult(null);
+                                                setAnalyzedImageWithLandmarks(null);
+                                                setUploadedImage(null);
+                                                setInputMode('webcam');
+                                            }}
+                                            className="shrink-0 w-20 h-28 rounded-xl border-2 border-dashed border-zinc-600 flex flex-col items-center justify-center hover:bg-zinc-700 hover:border-zinc-400 transition-all snap-center group bg-black/40"
+                                        >
+                                            <div className="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400 group-hover:text-white group-hover:bg-zinc-600 transition-colors mb-1.5">
+                                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                                                </svg>
+                                            </div>
+                                            <span className="text-[9px] font-bold text-zinc-400 group-hover:text-zinc-200">ADD</span>
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        )}
-                    </div>
+                            )}
+                        </div>
 
-                    {/* Audit Report */}
-                    <div className="flex flex-col space-y-6">
+                        {/* Below-image panel — Score card when results visible, controls when not */}
                         {!auditResult ? (
-                            <div className="flex flex-col items-center justify-center h-full min-h-[400px] bg-zinc-900/30 border border-zinc-800/50 rounded-3xl p-8 text-center space-y-6">
-                                <div className="w-16 h-16 rounded-full bg-blue-500/10 flex items-center justify-center">
-                                    <svg className="w-8 h-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            /* Controls / Call to Action */
+                            <div className="flex flex-col items-center justify-center bg-zinc-900/40 border border-zinc-800/60 rounded-3xl p-7 text-center space-y-5">
+                                <div className="w-14 h-14 rounded-full bg-blue-500/10 flex items-center justify-center">
+                                    <svg className="w-7 h-7 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 className="text-3xl font-bold text-white mb-2">FaceAudit™ AI</h3>
-                                    <p className="text-zinc-400 max-w-sm mx-auto">
-                                        Position your face clearly. Ensure good lighting. Remove glasses. Multiple angles map a higher precision score.
+                                    <h3 className="text-2xl font-bold text-white mb-1.5">FaceAudit™ AI</h3>
+                                    <p className="text-zinc-400 text-sm max-w-xs mx-auto">
+                                        Position your face clearly. Good lighting. No glasses. Multiple angles increase precision.
                                     </p>
                                 </div>
 
-                                <div className="w-full max-w-xs mx-auto mb-2 bg-zinc-950/50 border border-zinc-800 p-3 rounded-xl flex items-start gap-3 text-left">
+                                <div className="w-full bg-zinc-950/50 border border-zinc-800 p-3 rounded-xl flex items-start gap-3 text-left">
                                     <input
                                         type="checkbox"
                                         id="privacy-consent-single"
@@ -1108,7 +1110,7 @@ export default function FaceAnalyzer() {
                                         className="mt-1 w-4 h-4 text-blue-600 bg-zinc-900 border-zinc-700 rounded focus:ring-blue-500 focus:ring-offset-zinc-900"
                                     />
                                     <label htmlFor="privacy-consent-single" className="text-xs text-zinc-400 leading-snug cursor-pointer">
-                                        I agree to the privacy policy and consent to my photos being anonymously mapped and securely logged to improve the AI model.
+                                        I agree to anonymously share my scan to improve the AI model.
                                     </label>
                                 </div>
 
@@ -1116,7 +1118,7 @@ export default function FaceAnalyzer() {
                                     <button
                                         onClick={captureAndAnalyze}
                                         disabled={!faceLandmarker || isAnalyzing || !consentGiven}
-                                        className="w-full max-w-xs py-4 rounded-full bg-white text-black font-bold text-lg hover:bg-zinc-200 transition-all active:scale-95 shadow-lg shadow-white/10 disabled:opacity-50 flex items-center justify-center gap-2"
+                                        className="w-full py-4 rounded-full bg-white text-black font-bold text-lg hover:bg-zinc-200 transition-all active:scale-95 shadow-lg shadow-white/10 disabled:opacity-50 flex items-center justify-center gap-2"
                                     >
                                         {isAnalyzing ? (
                                             <>
@@ -1138,14 +1140,14 @@ export default function FaceAnalyzer() {
                                         <button
                                             onClick={() => fileInputRef.current?.click()}
                                             disabled={!faceLandmarker || isAnalyzing || !consentGiven}
-                                            className="w-full max-w-xs py-4 rounded-full bg-white text-black font-bold text-lg hover:bg-zinc-200 transition-all active:scale-95 shadow-lg shadow-white/10 disabled:opacity-50"
+                                            className="w-full py-4 rounded-full bg-white text-black font-bold text-lg hover:bg-zinc-200 transition-all active:scale-95 shadow-lg shadow-white/10 disabled:opacity-50"
                                         >
                                             {isAnalyzing ? 'Scanning...' : 'Choose Image'}
                                         </button>
 
                                         {/* URL Upload */}
-                                        <div className="w-full max-w-xs">
-                                            <div className="flex items-center gap-2 my-2">
+                                        <div className="w-full">
+                                            <div className="flex items-center gap-2 my-1">
                                                 <div className="flex-1 h-px bg-zinc-700" />
                                                 <span className="text-xs text-zinc-500 font-medium">OR</span>
                                                 <div className="flex-1 h-px bg-zinc-700" />
@@ -1171,35 +1173,35 @@ export default function FaceAnalyzer() {
                                         </div>
                                     </>
                                 )}
-                                {!faceLandmarker && <p className="text-xs text-yellow-500 mt-4 animate-pulse">Initializing neural models. Please wait...</p>}
+                                {!faceLandmarker && <p className="text-xs text-yellow-500 animate-pulse">Initializing neural models. Please wait...</p>}
                             </div>
                         ) : (
-                            <div className="space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-700">
-
-                                {/* Score Hero Card */}
-                                {(() => {
-                                    const s = auditResult.psl.score;
-                                    const gradient = s >= 7.0
-                                        ? 'from-amber-400 via-yellow-300 to-amber-500'
-                                        : s >= 6.0 ? 'from-emerald-400 to-green-500'
-                                            : s >= 5.0 ? 'from-sky-400 to-blue-500'
-                                                : s >= 4.0 ? 'from-blue-500 to-indigo-600'
-                                                    : 'from-zinc-500 to-zinc-600';
-                                    const barColor = s >= 7.0 ? '#F59E0B' : s >= 6.0 ? '#10B981' : s >= 5.0 ? '#38BDF8' : s >= 4.0 ? '#6366F1' : '#71717A';
-                                    const pct = (s / 8) * 100;
-                                    return (
-                                        <div className="relative rounded-3xl overflow-hidden border border-zinc-800 bg-gradient-to-br from-zinc-900 to-zinc-950 p-7">
+                            /* Score Hero Card — shown below image when results are in */
+                            (() => {
+                                const s = auditResult.psl.score;
+                                const gradient = s >= 7.0
+                                    ? 'from-amber-400 via-yellow-300 to-amber-500'
+                                    : s >= 6.0 ? 'from-emerald-400 to-green-500'
+                                        : s >= 5.0 ? 'from-sky-400 to-blue-500'
+                                            : s >= 4.0 ? 'from-blue-500 to-indigo-600'
+                                                : 'from-zinc-500 to-zinc-600';
+                                const barColor = s >= 7.0 ? '#F59E0B' : s >= 6.0 ? '#10B981' : s >= 5.0 ? '#38BDF8' : s >= 4.0 ? '#6366F1' : '#71717A';
+                                const pct = (s / 8) * 100;
+                                return (
+                                    <div className="flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
+                                        {/* Score Card */}
+                                        <div className="relative rounded-3xl overflow-hidden border border-zinc-800 bg-gradient-to-br from-zinc-900 to-zinc-950 p-6">
                                             <div className="absolute inset-0 opacity-5 bg-gradient-to-br from-white to-transparent pointer-events-none" />
-                                            <div className="flex items-start justify-between mb-5">
+                                            <div className="flex items-start justify-between mb-4">
                                                 <div>
                                                     <p className="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-1">
                                                         {auditResult.profileType === 'composite' ? '⚡ Composite Score' : '📸 Scan Score'}
                                                     </p>
                                                     <div className="flex items-baseline gap-2">
-                                                        <span className={`text-6xl font-black bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}>
+                                                        <span className={`text-5xl font-black bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}>
                                                             {s.toFixed(1)}
                                                         </span>
-                                                        <span className="text-2xl font-bold text-zinc-600">/ 8.0 PSL</span>
+                                                        <span className="text-xl font-bold text-zinc-600">/ 8.0 PSL</span>
                                                     </div>
                                                     <p className="text-sm font-medium text-zinc-300 mt-1">{auditResult.psl.tier}</p>
                                                 </div>
@@ -1240,9 +1242,29 @@ export default function FaceAnalyzer() {
                                                 })}
                                             </div>
                                         </div>
-                                    );
-                                })()}
 
+                                        {/* New Scan Button — pinned below score card */}
+                                        <button
+                                            onClick={() => { setAuditResult(null); setIsAnalyzing(false); setUploadedImage(null); setAnalyzedImageWithLandmarks(null); setExpandedMetric(null); }}
+                                            className="w-full py-3.5 rounded-2xl bg-zinc-800 hover:bg-zinc-700 text-white font-bold transition-colors border border-zinc-700 hover:border-zinc-500 text-sm"
+                                        >
+                                            New Scan
+                                        </button>
+                                    </div>
+                                );
+                            })()
+                        )}
+                    </div>
+
+                    {/* RIGHT COLUMN: Audit Report / Feature Cards */}
+                    <div className="flex flex-col space-y-6">
+                        {!auditResult ? (
+                            <div className="flex flex-col items-center justify-center h-full min-h-[300px] bg-zinc-900/20 border border-zinc-800/40 rounded-3xl p-8 text-center space-y-3">
+                                <div className="text-4xl">🔬</div>
+                                <p className="text-zinc-500 text-sm">Run a scan to see your detailed feature-by-feature analysis here.</p>
+                            </div>
+                        ) : (
+                            <div className="space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-700">
                                 {/* Metric Cards */}
                                 <div className="space-y-2">
                                     <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-widest px-1">Feature Analysis</h3>
@@ -1402,7 +1424,7 @@ export default function FaceAnalyzer() {
                                     });
                                     if (flawed.length === 0) return null;
                                     return (
-                                        <div className="rounded-2xl border border-amber-500/20 bg-amber-950/10 p-5 mt-6">
+                                        <div className="rounded-2xl border border-amber-500/20 bg-amber-950/10 p-5 mt-2">
                                             <div className="flex items-center gap-2 mb-3">
                                                 <span className="text-lg">🚀</span>
                                                 <h3 className="text-sm font-bold text-amber-400">Your PSL Boost Roadmap</h3>
@@ -1441,7 +1463,7 @@ export default function FaceAnalyzer() {
 
                                 {/* Haircut Recommender Section */}
                                 {(() => {
-                                    if (auditResult.profileType === 'side') return null; // Front profile required for face shape
+                                    if (auditResult.profileType === 'side') return null;
 
                                     const hairRecs = getHaircutRecommendations({
                                         fwfhRatio: auditResult.metrics.fwfhRatio,
@@ -1453,7 +1475,7 @@ export default function FaceAnalyzer() {
                                     }, gender);
 
                                     return (
-                                        <div className="rounded-2xl border border-indigo-500/20 bg-indigo-950/10 p-5 mt-6">
+                                        <div className="rounded-2xl border border-indigo-500/20 bg-indigo-950/10 p-5 mt-2">
                                             <div className="flex items-center justify-between mb-4">
                                                 <div className="flex items-center gap-2">
                                                     <span className="text-lg">✂️</span>
@@ -1525,18 +1547,11 @@ export default function FaceAnalyzer() {
                                         </div>
                                     );
                                 })()}
-
-                                {/* New Scan */}
-                                <button
-                                    onClick={() => { setAuditResult(null); setIsAnalyzing(false); setUploadedImage(null); setAnalyzedImageWithLandmarks(null); setExpandedMetric(null); }}
-                                    className="w-full py-4 rounded-2xl bg-zinc-800 hover:bg-zinc-700 text-white font-bold transition-colors border border-zinc-700 hover:border-zinc-500"
-                                >
-                                    New Scan
-                                </button>
                             </div>
                         )}
                     </div>
                 </div>
+
             ) : (
                 /* Compare Mode Layout */
                 <div className="flex flex-col w-full gap-8">

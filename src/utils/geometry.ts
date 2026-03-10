@@ -211,16 +211,14 @@ export function calculateGonialAngle(landmarks: NormalizedLandmark[]): number {
 // --- New Advanced Metrics ---
 
 export function calculateChinToPhiltrumRatio(landmarks: NormalizedLandmark[]): number {
-    // Philtrum: Subnasale 164 to Upper Lip 0 (Top of Upper Lip)
+    // Chin-to-Philtrum Ratio = chin height / philtrum length
+    // Philtrum: Subnasale (164) → top of Upper Lip vermillion border (0)
     const philtrum = distance(landmarks[164], landmarks[0]);
-    // Chin: Lower Lip 17 (Bottom of lower lip) to Menton 152
-    // Stomion to Menton is standard, let's use Stomion/mouth center (13) to Menton (152) and Subnasale (164) to Stomion (13)
-    const stomion = landmarks[13];
-    const upperThird = distance(landmarks[164], stomion);
-    const lowerTwoThirds = distance(stomion, landmarks[152]);
+    // Chin height: Stomion / mouth center (13) → Menton / chin bottom (152)
+    const chinHeight = distance(landmarks[13], landmarks[152]);
 
-    if (upperThird === 0) return 0;
-    return lowerTwoThirds / upperThird;
+    if (philtrum === 0) return 0;
+    return chinHeight / philtrum;
 }
 
 export function calculateMouthToNoseWidthRatio(landmarks: NormalizedLandmark[]): number {
@@ -604,15 +602,16 @@ export function calculatePSLScore(
         breakdown.push("Steep/Soft Jawline Angle (-0.6)");
     }
 
-    // Chin to Philtrum 
-    const c2pPerf = isF ? [2.0, 2.25] : [2.0, 2.65];
+    // Chin to Philtrum Ratio = chin height (stomion→menton) / philtrum length (subnasale→upper-lip)
+    // Perfect male: 2.5–3.2 (tall chin, compact philtrum). Perfect female: 2.0–2.75.
+    const c2pPerf = isF ? [2.0, 2.75] : [2.5, 3.2];
     if (metrics.chinToPhiltrumRatio >= c2pPerf[0] && metrics.chinToPhiltrumRatio <= c2pPerf[1]) {
         score += 0.2;
         breakdown.push("Ideal Lower Face Proportions (+0.2)");
-    } else if (metrics.chinToPhiltrumRatio < 1.5 || metrics.chinToPhiltrumRatio > 3.0) {
+    } else if (metrics.chinToPhiltrumRatio < 1.4 || metrics.chinToPhiltrumRatio > 4.0) {
         score -= 0.8;
         breakdown.push("Severely Unbalanced Chin-to-Philtrum (-0.8)");
-    } else if (metrics.chinToPhiltrumRatio < 1.8 || metrics.chinToPhiltrumRatio > 2.8) {
+    } else if (metrics.chinToPhiltrumRatio < 1.8 || metrics.chinToPhiltrumRatio > 3.6) {
         score -= 0.4;
         breakdown.push("Unbalanced Lower Face (-0.4)");
     }
