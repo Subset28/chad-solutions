@@ -28,8 +28,23 @@ import {
     calculatePSLScore,
     calculateAggregatedMetrics,
     extractEulerAngles,
+    scaleLandmarks,
+    distance,
     MetricScores
 } from '@/utils/geometry';
+import {
+    calculateOrbitalRimProtrusion,
+    calculateMaxillaryProtrusion,
+    calculateBrowRidgeProtrusion,
+    calculateInfraorbitalRimPosition,
+    calculateChinProjection,
+    calculateDoubleChinRisk,
+    evaluateFacialTension,
+    evaluateCameraAngle,
+    evaluateLensDistortion
+} from '@/utils/advanced-metrics';
+import { analyzeSkinQuality } from '@/utils/image-processing';
+import { getHaircutRecommendations, FaceShapeProfile } from '@/utils/haircut-recommendations';
 
 type InputMode = 'webcam' | 'upload';
 
@@ -258,15 +273,6 @@ export default function FaceAnalyzer() {
                 image.src = imageSrc;
 
                 const processDetectionResults = (results: any, analyzedCanvas: HTMLCanvasElement) => {
-                    const {
-                        extractEulerAngles, calculateCanthalTilt, calculateFwFhRatio, calculateMidfaceRatio, calculateEyeSeparationRatio,
-                        calculateGonialAngle, calculateChinToPhiltrumRatio, calculateMouthToNoseWidthRatio, calculateBigonialWidthRatio,
-                        calculateLowerThirdRatio, calculatePalpebralFissureLength, calculateEyeToMouthAngle, calculateLipRatio,
-                        calculateFacialAsymmetry, calculateIPDRatio, calculateFacialThirds, calculateForeheadHeightRatio,
-                        calculateNoseWidthRatio, calculateCheekboneProminence, calculateHairlineRecession, calculateAggregatedMetrics,
-                        calculatePSLScore, scaleLandmarks, distance
-                    } = require('../utils/geometry');
-
                     const landmarks = results.faceLandmarks[0];
 
                     // Validate landmark array has enough points (MediaPipe should have 478 landmarks)
@@ -345,19 +351,6 @@ export default function FaceAnalyzer() {
 
                     const facialThirdsData = calculateFacialThirds(scaledLandmarks);
 
-                    const {
-                        calculateOrbitalRimProtrusion,
-                        calculateMaxillaryProtrusion,
-                        calculateBrowRidgeProtrusion,
-                        calculateInfraorbitalRimPosition,
-                        calculateChinProjection,
-                        calculateDoubleChinRisk,
-                        evaluateFacialTension,
-                        evaluateCameraAngle,
-                        evaluateLensDistortion
-                    } = require('../utils/advanced-metrics');
-
-                    const { analyzeSkinQuality } = require('../utils/image-processing');
 
                     // Advanced V2 Evaluators
                     const tensionData = evaluateFacialTension(results.faceBlendshapes || []);
@@ -543,15 +536,20 @@ export default function FaceAnalyzer() {
 
                     // Send to telemetry proxy for anonymous data harvesting
                     if (consentGiven && pslData) {
-                        try {
-                            fetch('/api/upload', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({ image: imageSrc })
-                            }).catch(e => console.error("Telemetry proxy unreachable: ", e));
-                        } catch (e) {
-                            // Non-fatal telemetry catch
-                        }
+                        fetch('/api/upload', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ image: imageSrc })
+                        })
+                            .then(async res => {
+                                if (!res.ok) {
+                                    const err = await res.json();
+                                    console.error('Telemetry Harvest Failed:', err);
+                                } else {
+                                    console.log('Telemetry Harvest Success');
+                                }
+                            })
+                            .catch(e => console.error("Telemetry proxy unreachable: ", e));
                     }
 
                     resolve(true); // Resolution of the scan
@@ -1384,7 +1382,7 @@ export default function FaceAnalyzer() {
 
                                 {/* PSL Boost Roadmap */}
                                 {(() => {
-                                    const flawed = Object.entries(auditResult.metrics).filter(([key, value]) => {
+                                    const flawed = Object.entries(auditResult.metrics).filter(([key]) => {
                                         const metricKey = key as keyof MetricScores;
 
                                         const sideOnlyMetrics = ['chinProjection', 'maxillaryProtrusion', 'orbitalRimProtrusion', 'browRidgeProtrusion', 'infraorbitalRimPosition', 'doubleChinRisk'];
@@ -1396,12 +1394,15 @@ export default function FaceAnalyzer() {
 
                                         if (!isValidForProfile) return false;
 
-                                        const rating = getRating(metricKey, value, gender);
+                                        const val = auditResult.metrics[metricKey];
+                                        if (val === undefined) return false;
+
+                                        const rating = getRating(metricKey, val, gender);
                                         return rating.color.includes('orange') || rating.color.includes('red');
                                     });
                                     if (flawed.length === 0) return null;
                                     return (
-                                        <div className="rounded-2xl border border-amber-500/20 bg-amber-950/10 p-5">
+                                        <div className="rounded-2xl border border-amber-500/20 bg-amber-950/10 p-5 mt-6">
                                             <div className="flex items-center gap-2 mb-3">
                                                 <span className="text-lg">🚀</span>
                                                 <h3 className="text-sm font-bold text-amber-400">Your PSL Boost Roadmap</h3>
@@ -1411,8 +1412,11 @@ export default function FaceAnalyzer() {
                                             </p>
                                             <div className="space-y-2">
                                                 {flawed.map(([key]) => {
+                                                    const val = auditResult.metrics[key as keyof MetricScores];
+                                                    if (val === undefined) return null;
+
                                                     const explanation = metricExplanations[key];
-                                                    const rating = getRating(key as keyof MetricScores, auditResult.metrics[key as keyof MetricScores], gender);
+                                                    const rating = getRating(key as keyof MetricScores, val, gender);
                                                     const isBad = rating.color.includes('red');
                                                     return (
                                                         <button
@@ -1430,6 +1434,93 @@ export default function FaceAnalyzer() {
                                                         </button>
                                                     );
                                                 })}
+                                            </div>
+                                        </div>
+                                    );
+                                })()}
+
+                                {/* Haircut Recommender Section */}
+                                {(() => {
+                                    if (auditResult.profileType === 'side') return null; // Front profile required for face shape
+
+                                    const hairRecs = getHaircutRecommendations({
+                                        fwfhRatio: auditResult.metrics.fwfhRatio,
+                                        foreheadHeightRatio: auditResult.metrics.foreheadHeightRatio,
+                                        bigonialWidthRatio: auditResult.metrics.bigonialWidthRatio,
+                                        midfaceRatio: auditResult.metrics.midfaceRatio,
+                                        gonialAngle: auditResult.metrics.gonialAngle,
+                                        lowerThirdRatio: auditResult.metrics.lowerThirdRatio
+                                    }, gender);
+
+                                    return (
+                                        <div className="rounded-2xl border border-indigo-500/20 bg-indigo-950/10 p-5 mt-6">
+                                            <div className="flex items-center justify-between mb-4">
+                                                <div className="flex items-center gap-2">
+                                                    <span className="text-lg">✂️</span>
+                                                    <h3 className="text-sm font-bold text-indigo-400 uppercase tracking-wider">Haircut Recommender</h3>
+                                                </div>
+                                                <div className="px-2 py-1 rounded-md bg-indigo-500/20 border border-indigo-500/30">
+                                                    <span className="text-[10px] font-black text-indigo-300 uppercase tracking-tighter">AI Analysis</span>
+                                                </div>
+                                            </div>
+
+                                            <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-4 mb-5">
+                                                <div className="flex items-center gap-3 mb-2">
+                                                    <span className="text-2xl">{hairRecs.emoji}</span>
+                                                    <div>
+                                                        <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Detected Shape</p>
+                                                        <h4 className="text-lg font-black text-white">{hairRecs.label}</h4>
+                                                    </div>
+                                                    <div className="ml-auto text-right">
+                                                        <p className="text-[10px] font-bold text-zinc-500 uppercase">Confidence</p>
+                                                        <p className="text-sm font-black text-indigo-400">{hairRecs.confidence}%</p>
+                                                    </div>
+                                                </div>
+                                                <p className="text-xs text-zinc-400 italic leading-relaxed">{hairRecs.description}</p>
+                                            </div>
+
+                                            <div className="space-y-4">
+                                                <div>
+                                                    <h5 className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-3">Recommended For You</h5>
+                                                    <div className="grid gap-2">
+                                                        {hairRecs.recommendations.map((rec, idx) => (
+                                                            <div key={idx} className="p-3 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-indigo-500/30 transition-colors">
+                                                                <p className="text-sm font-bold text-white mb-1">{rec.name}</p>
+                                                                <p className="text-[11px] text-indigo-300/80 mb-1 leading-snug">{rec.why}</p>
+                                                                <p className="text-[10px] text-zinc-500 leading-relaxed">{rec.description}</p>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
+
+                                                <div className="grid grid-cols-2 gap-3">
+                                                    <div className="p-3 rounded-xl bg-red-500/5 border border-red-500/10">
+                                                        <h5 className="text-[9px] font-bold text-red-400 uppercase tracking-widest mb-2 flex items-center gap-1">
+                                                            <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                                            </svg>
+                                                            To Avoid
+                                                        </h5>
+                                                        <ul className="space-y-1.5">
+                                                            {hairRecs.avoid.map((item, idx) => (
+                                                                <li key={idx} className="text-[10px] text-zinc-400 leading-tight">• {item}</li>
+                                                            ))}
+                                                        </ul>
+                                                    </div>
+                                                    <div className="p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
+                                                        <h5 className="text-[9px] font-bold text-emerald-400 uppercase tracking-widest mb-2 flex items-center gap-1">
+                                                            <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                                            </svg>
+                                                            Pro Tips
+                                                        </h5>
+                                                        <ul className="space-y-1.5">
+                                                            {hairRecs.stylingTips.map((item, idx) => (
+                                                                <li key={idx} className="text-[10px] text-zinc-400 leading-tight">• {item}</li>
+                                                            ))}
+                                                        </ul>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     );
