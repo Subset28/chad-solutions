@@ -146,20 +146,22 @@ export function calculateCanthalTilt(landmarks: NormalizedLandmark[]): number {
 }
 
 export function calculateFwFhRatio(landmarks: NormalizedLandmark[], pitchStr: number = 0, yawStr: number = 0): number {
-    // Bizygomatic Width
+    // Bizygomatic Width (cheekbone to cheekbone — widest point)
     let width = distance(landmarks[234], landmarks[454]);
-    // Upper facial height: middle part of the eyebrow to the upper lip (0).
-    const midBrow = midpoint(landmarks[105], landmarks[334]); // 105: right mid eyebrow, 334: left mid eyebrow
-    let height = distance(midBrow, landmarks[0]);
+
+    // Height: Eye-center level → Chin (Menton [152])
+    // Using eye centers rather than brow gives a shorter, more standard anthropometric height
+    // that matches conventions used in competing tools (fWHR ≈ width / eye-to-chin height)
+    const rightEyeCenter = midpoint(landmarks[33], landmarks[133]);
+    const leftEyeCenter = midpoint(landmarks[263], landmarks[362]);
+    const eyeMid = midpoint(rightEyeCenter, leftEyeCenter);
+    let height = distance(eyeMid, landmarks[152]); // eye center to chin
 
     // Euler Angle Maximum Mathematical Correction (Adapts to Anglemaxxing instead of punishing it!)
-    // Convert pitch/yaw to absolute radians for scalar distortion multiplier.
     const pitchRad = Math.abs(pitchStr) * (Math.PI / 180);
     const yawRad = Math.abs(yawStr) * (Math.PI / 180);
 
-    // If the lens is pitched artificially up or down, the vertical height shrinks via foreshortening. Fix it.
     if (pitchRad > 0.05) { height = height / Math.cos(pitchRad); }
-    // If the lens is yawed heavily left or right, horizontal width shrinks. Fix it.
     if (yawRad > 0.05) { width = width / Math.cos(yawRad); }
 
     if (height === 0) return 0;
@@ -212,9 +214,10 @@ export function calculateGonialAngle(landmarks: NormalizedLandmark[]): number {
 
 export function calculateChinToPhiltrumRatio(landmarks: NormalizedLandmark[]): number {
     // Chin-to-Philtrum Ratio = chin height / philtrum length
-    // Philtrum: Subnasale (164) → top of Upper Lip vermillion border (0)
-    const philtrum = distance(landmarks[164], landmarks[0]);
-    // Chin height: Stomion / mouth center (13) → Menton / chin bottom (152)
+    // Philtrum: Subnasale landmark[2] (nose base / top of philtrum) → Cupid's bow [0] (top of upper lip)
+    // NOTE: landmark[164] is the lower lip — using [2] for subnasale is anatomically correct
+    const philtrum = distance(landmarks[2], landmarks[0]);
+    // Chin height: Stomion / mouth center [13] → Menton / chin bottom [152]
     const chinHeight = distance(landmarks[13], landmarks[152]);
 
     if (philtrum === 0) return 0;
@@ -497,6 +500,9 @@ export interface MetricScores {
     angleDeduction: number;
     facialTension: number;
     skinQuality: number;
+
+    // V3: Grooming / Hair Quality (0-100 score, estimated from image analysis)
+    hairQualityScore: number;
 }
 
 export type ProfileType = 'front' | 'side';
@@ -602,21 +608,7 @@ export function calculatePSLScore(
         breakdown.push("Steep/Soft Jawline Angle (-0.6)");
     }
 
-    // Chin to Philtrum Ratio = chin height (stomion→menton) / philtrum length (subnasale→upper-lip)
-    // Perfect male: 2.5–3.2 (tall chin, compact philtrum). Perfect female: 2.0–2.75.
-    const c2pPerf = isF ? [2.0, 2.75] : [2.5, 3.2];
-    if (metrics.chinToPhiltrumRatio >= c2pPerf[0] && metrics.chinToPhiltrumRatio <= c2pPerf[1]) {
-        score += 0.2;
-        breakdown.push("Ideal Lower Face Proportions (+0.2)");
-    } else if (metrics.chinToPhiltrumRatio < 1.4 || metrics.chinToPhiltrumRatio > 4.0) {
-        score -= 0.8;
-        breakdown.push("Severely Unbalanced Chin-to-Philtrum (-0.8)");
-    } else if (metrics.chinToPhiltrumRatio < 1.8 || metrics.chinToPhiltrumRatio > 3.6) {
-        score -= 0.4;
-        breakdown.push("Unbalanced Lower Face (-0.4)");
-    }
-
-    // Lip Ratio
+    // Lip Ratio (universal — reasonably accurate from any angle)
     const lipPerf = isF ? [1.15, 1.70] : [1.20, 1.70];
     if (metrics.lipRatio >= lipPerf[0] && metrics.lipRatio <= lipPerf[1]) {
         score += 0.1;
@@ -629,69 +621,19 @@ export function calculatePSLScore(
         breakdown.push("Suboptimal Lip Harmony (-0.3)");
     }
 
-
-    // Lower / Full Face Ratio
-    const lowerFacePerf = isF ? [0.60, 0.65] : [0.62, 0.68];
-    if (metrics.lowerThirdRatio >= lowerFacePerf[0] && metrics.lowerThirdRatio <= lowerFacePerf[1]) {
-        score += 0.2;
-        breakdown.push("Strong Lower Face Proportion (+0.2)");
-    } else if (metrics.lowerThirdRatio > lowerFacePerf[1]) {
-        score -= 0.6;
-        breakdown.push("Overly Long Lower Face (-0.6)");
-    } else if (metrics.lowerThirdRatio >= lowerFacePerf[0] - 0.04) {
-        score += 0.0;
-        breakdown.push("Average Lower Face (+0.0)");
-    } else {
-        score -= 0.8;
-        breakdown.push("Weak Lower Face Volume (-0.8)");
-    }
-
-    // Palpebral Fissure
-    const fissurePerf = isF ? 2.8 : 3.0;
-    if (metrics.palpebralFissureLength >= fissurePerf) {
-        score += 0.5;
-        breakdown.push("Elite Horizontal Eye Length (+0.5)");
-    } else if (metrics.palpebralFissureLength > fissurePerf - 0.3) {
-        score += 0.1;
-        breakdown.push("Good Horizontal Eye Length (+0.1)");
-    } else {
-        score -= 0.5;
-        breakdown.push("Short Eye Fissure (-0.5)");
-    }
-
-    // Facial Thirds Ratio (Ideal: 95-100)
-    // Men often have a stronger lower third causing an artificial "unbalance"
-    const thirdsGood = isF ? 80 : 75;
-    if (metrics.facialThirdsRatio >= 95) {
-        score += 0.2;
-        breakdown.push("Perfect Facial Thirds (+0.2)");
-    } else if (metrics.facialThirdsRatio < thirdsGood) {
-        score -= 0.6;
-        breakdown.push("Severely Unbalanced Thirds (-0.6)");
-    }
-
-    // Forehead Height Ratio (Ideal: 0.30-0.35)
-    if (metrics.foreheadHeightRatio >= 0.30 && metrics.foreheadHeightRatio <= 0.35) {
-        score += 0.1;
-        breakdown.push("Ideal Forehead (+0.1)");
-    } else if (metrics.foreheadHeightRatio > 0.38) {
-        score -= 0.4;
-        breakdown.push("Fivehead (-0.4)");
-    }
-
-    // Hairline Recession (Ideal: 90-100)
+    // Hairline Recession (Ideal: 90-100) — works from any angle
     if (metrics.hairlineRecession >= 95) {
         score += 0.1;
         breakdown.push("Full Hairline (+0.1)");
     } else if (metrics.hairlineRecession >= 85) {
         score += 0.0;
         breakdown.push("Average Hairline (+0.0)");
-    } else if (metrics.hairlineRecession < 70) {
-        score -= 0.6;
-        breakdown.push("Receding Hairline (-0.6)");
     } else if (metrics.hairlineRecession < 50) {
         score -= 1.0;
         breakdown.push("Significant Hair Loss (-1.0)");
+    } else if (metrics.hairlineRecession < 70) {
+        score -= 0.6;
+        breakdown.push("Receding Hairline (-0.6)");
     }
 
     // ==========================================
@@ -712,18 +654,19 @@ export function calculatePSLScore(
             breakdown.push("Negative Canthal Tilt (-0.8)");
         }
 
-        // FW/FH Ratio
-        const fwfhPerf = isF ? 1.55 : 1.65;
+        // FW/FH Ratio — thresholds calibrated to eye-to-chin height baseline
+        // Expected range: ~1.7–2.1 (typical adults), ideal >1.90 male / >1.75 female
+        const fwfhPerf = isF ? 1.75 : 1.90;
         if (metrics.fwfhRatio >= fwfhPerf) {
             score += 0.5;
             breakdown.push("Ideal Facial Width (+0.5)");
         } else if (metrics.fwfhRatio >= fwfhPerf - 0.1) {
             score += 0.1;
             breakdown.push("Good Facial Structure (+0.1)");
-        } else if (metrics.fwfhRatio < fwfhPerf - 0.25) {
+        } else if (metrics.fwfhRatio < fwfhPerf - 0.30) {
             score -= 1.2;
             breakdown.push("Severely Narrow Face (-1.2)");
-        } else if (metrics.fwfhRatio < fwfhPerf - 0.15) {
+        } else if (metrics.fwfhRatio < fwfhPerf - 0.18) {
             score -= 0.6;
             breakdown.push("Narrow Face (-0.6)");
         }
@@ -813,6 +756,72 @@ export function calculatePSLScore(
         } else if (metrics.cheekboneProminence < cheekPerf[0] - 0.05) {
             score -= 0.4;
             breakdown.push("Flat Cheekbones (-0.4)");
+        }
+
+        // Chin to Philtrum Ratio (front only — geometry unreliable from side view)
+        // With corrected landmark[2] subnasale: expected range ~1.5–4.0, ideal 2.0–2.75 male / 1.8–2.5 female
+        const c2pPerf = isF ? [1.8, 2.5] : [2.0, 2.75];
+        const c2pGood = isF ? [1.5, 3.0] : [1.7, 3.2];
+        if (metrics.chinToPhiltrumRatio >= c2pPerf[0] && metrics.chinToPhiltrumRatio <= c2pPerf[1]) {
+            score += 0.2;
+            breakdown.push("Ideal Lower Face Proportions (+0.2)");
+        } else if (metrics.chinToPhiltrumRatio >= c2pGood[0] && metrics.chinToPhiltrumRatio <= c2pGood[1]) {
+            score += 0.0;
+            breakdown.push("Acceptable Lower Face Proportions (+0.0)");
+        } else if (metrics.chinToPhiltrumRatio < 1.2 || metrics.chinToPhiltrumRatio > 4.5) {
+            score -= 0.8;
+            breakdown.push("Severely Unbalanced Chin-to-Philtrum (-0.8)");
+        } else {
+            score -= 0.4;
+            breakdown.push("Unbalanced Lower Face (-0.4)");
+        }
+
+        // Lower / Full Face Ratio (front only — midline landmarks shift on side profiles)
+        const lowerFacePerf = isF ? [0.60, 0.65] : [0.62, 0.68];
+        if (metrics.lowerThirdRatio >= lowerFacePerf[0] && metrics.lowerThirdRatio <= lowerFacePerf[1]) {
+            score += 0.2;
+            breakdown.push("Strong Lower Face Proportion (+0.2)");
+        } else if (metrics.lowerThirdRatio > lowerFacePerf[1]) {
+            score -= 0.6;
+            breakdown.push("Overly Long Lower Face (-0.6)");
+        } else if (metrics.lowerThirdRatio >= lowerFacePerf[0] - 0.04) {
+            score += 0.0;
+            breakdown.push("Average Lower Face (+0.0)");
+        } else {
+            score -= 0.8;
+            breakdown.push("Weak Lower Face Volume (-0.8)");
+        }
+
+        // Palpebral Fissure (front only — side view shows only one eye)
+        const fissurePerf = isF ? 2.8 : 3.0;
+        if (metrics.palpebralFissureLength >= fissurePerf) {
+            score += 0.5;
+            breakdown.push("Elite Horizontal Eye Length (+0.5)");
+        } else if (metrics.palpebralFissureLength > fissurePerf - 0.3) {
+            score += 0.1;
+            breakdown.push("Good Horizontal Eye Length (+0.1)");
+        } else {
+            score -= 0.5;
+            breakdown.push("Short Eye Fissure (-0.5)");
+        }
+
+        // Facial Thirds Ratio (front only — hairline landmark unreliable from side)
+        const thirdsGood = isF ? 80 : 75;
+        if (metrics.facialThirdsRatio >= 95) {
+            score += 0.2;
+            breakdown.push("Perfect Facial Thirds (+0.2)");
+        } else if (metrics.facialThirdsRatio < thirdsGood) {
+            score -= 0.6;
+            breakdown.push("Severely Unbalanced Thirds (-0.6)");
+        }
+
+        // Forehead Height Ratio (front only)
+        if (metrics.foreheadHeightRatio >= 0.30 && metrics.foreheadHeightRatio <= 0.35) {
+            score += 0.1;
+            breakdown.push("Ideal Forehead (+0.1)");
+        } else if (metrics.foreheadHeightRatio > 0.38) {
+            score -= 0.4;
+            breakdown.push("Fivehead (-0.4)");
         }
     }
 
@@ -918,6 +927,27 @@ export function calculatePSLScore(
         } else if (metrics.skinQuality < 60) {
             score -= 0.2;
             breakdown.push("Slight Skin Irregularities (-0.2)");
+        }
+    }
+
+    // Hair Quality — Hair functions as grooming / "makeup for men"
+    // Clean, well-styled hair is a legitimate attractiveness booster
+    if (metrics.hairQualityScore !== undefined && metrics.hairQualityScore > 0) {
+        if (metrics.hairQualityScore >= 85) {
+            score += 0.3;
+            breakdown.push("Elite Grooming / Hair (+0.3)");
+        } else if (metrics.hairQualityScore >= 70) {
+            score += 0.1;
+            breakdown.push("Good Hair / Grooming (+0.1)");
+        } else if (metrics.hairQualityScore >= 50) {
+            score += 0.0;
+            breakdown.push("Average Hair / Grooming (+0.0)");
+        } else if (metrics.hairQualityScore < 30) {
+            score -= 0.4;
+            breakdown.push("Unkempt / Damaged Hair (-0.4)");
+        } else {
+            score -= 0.1;
+            breakdown.push("Below-Average Grooming (-0.1)");
         }
     }
 

@@ -3,8 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Webcam from 'react-webcam';
 import { FilesetResolver, FaceLandmarker } from '@mediapipe/tasks-vision';
-import { metricExplanations } from '@/utils/explanations';
-import { metricRecommendations } from '@/utils/recommendations';
+
 import {
     calculateCanthalTilt,
     calculateFwFhRatio,
@@ -44,13 +43,16 @@ import {
     evaluateLensDistortion
 } from '@/utils/advanced-metrics';
 import { analyzeSkinQuality } from '@/utils/image-processing';
-import { getHaircutRecommendations, FaceShapeProfile } from '@/utils/haircut-recommendations';
+import AnalysisTab from '@/components/AnalysisTab';
+import RoadmapTab from '@/components/RoadmapTab';
+import HaircutTab from '@/components/HaircutTab';
 
-type InputMode = 'webcam' | 'upload';
+type InputMode = 'webcam' | 'upload' | 'roll';
 
 export default function FaceAnalyzer() {
     const webcamRef = useRef<Webcam>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const rollInputRef = useRef<HTMLInputElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [faceLandmarker, setFaceLandmarker] = useState<FaceLandmarker | null>(null);
     const [scans, setScans] = useState<{ metrics: MetricScores, psl: { score: number, breakdown: string[], tier: string }, imageUrl: string, profileType: 'front' | 'side' }[]>([]);
@@ -69,7 +71,14 @@ export default function FaceAnalyzer() {
 
     const [urlInput, setUrlInput] = useState('');
     const [gender, setGender] = useState<'male' | 'female'>('male');
+
     const [consentGiven, setConsentGiven] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+    const [resultsTab, setResultsTab] = useState<'analysis' | 'roadmap' | 'haircut'>('analysis');
+
+    useEffect(() => {
+        setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
+    }, []);
 
     useEffect(() => {
         // Suppress MediaPipe/TensorFlow Lite info messages
@@ -290,7 +299,8 @@ export default function FaceAnalyzer() {
                         const euler = extractEulerAngles(matrix);
 
                         // Absolute YAW dictates if head turns enough to be considered a side-profile.
-                        if (Math.abs(euler.yaw) > 40) {
+                        // Threshold lowered to 30° so that users turning ~45° get detected as side profile.
+                        if (Math.abs(euler.yaw) > 30) {
                             console.log(`True 3D Yaw detected: ${euler.yaw.toFixed(2)}° (SIDE profile mode activated)`);
                             profileType = 'side';
                         } else {
@@ -408,7 +418,42 @@ export default function FaceAnalyzer() {
                         doubleChinRisk: calculateDoubleChinRisk(zNormalizedLandmarks),
                         angleDeduction: angleDeductionScore,
                         facialTension: tensionData.tensionScore,
-                        skinQuality: skinQualityData.clarityScore
+                        skinQuality: skinQualityData.clarityScore,
+
+                        // V3: Hair quality — pixel-level analysis of hair region above forehead
+                        hairQualityScore: (() => {
+                            try {
+                                const ctx2 = analyzedCanvas.getContext('2d');
+                                if (!ctx2) return 0;
+                                const hairline = landmarks[10]; // forehead top
+                                const foreheadY = hairline.y; // normalized 0-1
+                                // Sample a band above the forehead (0% to 8% above it)
+                                const sampleTop = Math.max(0, foreheadY - 0.10);
+                                const sampleBot = Math.max(0, foreheadY - 0.01);
+                                const sampleLeft = Math.max(0, landmarks[234].x - 0.05);
+                                const sampleRight = Math.min(1, landmarks[454].x + 0.05);
+                                const px = Math.round(sampleLeft * analyzedCanvas.width);
+                                const py = Math.round(sampleTop * analyzedCanvas.height);
+                                const pw = Math.max(1, Math.round((sampleRight - sampleLeft) * analyzedCanvas.width));
+                                const ph = Math.max(1, Math.round((sampleBot - sampleTop) * analyzedCanvas.height));
+                                const imgData = ctx2.getImageData(px, py, pw, ph).data;
+                                // Compute variance in luminance → high variance = messy/unkempt, low = clean/uniform
+                                let lumSum = 0, lumSqSum = 0, count = 0;
+                                for (let i = 0; i < imgData.length; i += 4) {
+                                    const r = imgData[i], g = imgData[i+1], b = imgData[i+2];
+                                    const lum = 0.299*r + 0.587*g + 0.114*b;
+                                    lumSum += lum; lumSqSum += lum*lum; count++;
+                                }
+                                if (count === 0) return 50;
+                                const mean = lumSum / count;
+                                const variance = (lumSqSum / count) - (mean * mean);
+                                const stdDev = Math.sqrt(Math.max(0, variance));
+                                // Low stdDev (0-15) = uniform/clean hair → high score
+                                // High stdDev (50+) = very messy/uneven → low score
+                                const raw = Math.max(0, 100 - (stdDev * 1.5));
+                                return Math.round(Math.min(100, raw));
+                            } catch { return 50; }
+                        })()
                     };
                     const pslData = calculatePSLScore(metrics, gender, profileType);
                     // Draw landmarks on a canvas matching the ORIGINAL image
@@ -844,7 +889,8 @@ export default function FaceAnalyzer() {
                 doubleChinRisk: value > 0.02 ? { text: 'sharp jawline', color: 'text-green-400' } : value > 0.008 ? { text: 'good definition', color: 'text-blue-400' } : value > 0 ? { text: 'soft jawline', color: 'text-yellow-400' } : { text: 'submental fullness', color: 'text-orange-400' },
                 angleDeduction: value === 0 ? { text: 'ideal camera setup', color: 'text-green-400' } : value <= 0.5 ? { text: 'minor tilt', color: 'text-yellow-400' } : { text: 'high distortion check', color: 'text-red-400' },
                 facialTension: value < 0.5 ? { text: 'relaxed / neutral', color: 'text-green-400' } : value < 1.2 ? { text: 'minor tension', color: 'text-yellow-400' } : { text: 'high tension detected', color: 'text-orange-400' },
-                skinQuality: value > 90 ? { text: 'glass skin', color: 'text-green-400' } : value > 75 ? { text: 'clear skin', color: 'text-blue-400' } : value > 50 ? { text: 'textured', color: 'text-yellow-400' } : { text: 'acne / heavy texture', color: 'text-red-400' }
+                skinQuality: value > 90 ? { text: 'glass skin', color: 'text-green-400' } : value > 75 ? { text: 'clear skin', color: 'text-blue-400' } : value > 50 ? { text: 'textured', color: 'text-yellow-400' } : { text: 'acne / heavy texture', color: 'text-red-400' },
+                hairQualityScore: value >= 85 ? { text: 'elite grooming', color: 'text-green-400' } : value >= 65 ? { text: 'well-groomed', color: 'text-blue-400' } : value >= 40 ? { text: 'average grooming', color: 'text-yellow-400' } : { text: 'unkempt / poor', color: 'text-red-400' }
             };
             return fRatings[metric] || { text: 'unknown', color: 'text-gray-400' };
         }
@@ -878,7 +924,8 @@ export default function FaceAnalyzer() {
             doubleChinRisk: value > 0.02 ? { text: 'sharp jawline', color: 'text-green-400' } : value > 0.008 ? { text: 'good definition', color: 'text-blue-400' } : value > 0 ? { text: 'soft jawline', color: 'text-yellow-400' } : { text: 'submental fullness', color: 'text-orange-400' },
             angleDeduction: value === 0 ? { text: 'ideal camera setup', color: 'text-green-400' } : value <= 0.5 ? { text: 'minor tilt', color: 'text-yellow-400' } : { text: 'high distortion check', color: 'text-red-400' },
             facialTension: value < 0.5 ? { text: 'relaxed / neutral', color: 'text-green-400' } : value < 1.2 ? { text: 'minor tension', color: 'text-yellow-400' } : { text: 'high tension detected', color: 'text-orange-400' },
-            skinQuality: value > 90 ? { text: 'glass skin', color: 'text-green-400' } : value > 75 ? { text: 'clear skin', color: 'text-blue-400' } : value > 50 ? { text: 'textured', color: 'text-yellow-400' } : { text: 'acne / heavy texture', color: 'text-red-400' }
+            skinQuality: value > 90 ? { text: 'glass skin', color: 'text-green-400' } : value > 75 ? { text: 'clear skin', color: 'text-blue-400' } : value > 50 ? { text: 'textured', color: 'text-yellow-400' } : { text: 'acne / heavy texture', color: 'text-red-400' },
+            hairQualityScore: value >= 85 ? { text: 'elite grooming', color: 'text-green-400' } : value >= 65 ? { text: 'well-groomed', color: 'text-blue-400' } : value >= 40 ? { text: 'average grooming', color: 'text-yellow-400' } : { text: 'unkempt / poor', color: 'text-red-400' }
         };
 
         return mRatings[metric] || { text: 'unknown', color: 'text-gray-400' };
@@ -914,7 +961,8 @@ export default function FaceAnalyzer() {
                 doubleChinRisk: '> 0.020 (sharp jaw)',
                 angleDeduction: '0 (neutral)',
                 facialTension: '< 0.5 (relaxed)',
-                skinQuality: '85-100 (clear)'
+                skinQuality: '85-100 (clear)',
+                hairQualityScore: '65-100 (groomed)'
             };
             return fIdeals[metric] || '';
         }
@@ -947,7 +995,8 @@ export default function FaceAnalyzer() {
             doubleChinRisk: '> 0.020 (sharp jaw)',
             angleDeduction: '0 (neutral)',
             facialTension: '< 0.5 (relaxed)',
-            skinQuality: '85-100 (clear)'
+            skinQuality: '85-100 (clear)',
+            hairQualityScore: '65-100 (groomed)'
         };
         return mIdeals[metric];
     };
@@ -956,6 +1005,23 @@ export default function FaceAnalyzer() {
         <div className="flex flex-col items-center gap-8 w-full max-w-7xl mx-auto p-4 md:p-8">
             {/* Hidden canvas for drawing */}
             <canvas ref={canvasRef} style={{ display: 'none' }} />
+            {/* Hidden file input for gallery / file uploads */}
+            <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={handleFileUpload}
+                className="hidden"
+            />
+            {/* Hidden file input for mobile Camera Roll (no capture attr so it opens gallery) */}
+            <input
+                ref={rollInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleFileUpload}
+                className="hidden"
+            />
 
             {/* Controls Row */}
             <div className="flex flex-wrap gap-4 justify-center items-center w-full">
@@ -977,19 +1043,28 @@ export default function FaceAnalyzer() {
                 </div>
 
                 {/* Input Mode Toggle */}
-                <div className="flex gap-2 bg-zinc-900 p-1.5 rounded-full border border-zinc-800 shadow-xl">
+                <div className="flex gap-1.5 bg-zinc-900 p-1.5 rounded-full border border-zinc-800 shadow-xl">
                     <button
                         onClick={() => setInputMode('webcam')}
-                        className={`px-5 py-2 rounded-full font-semibold transition-all text-sm ${inputMode === 'webcam' ? 'bg-white text-black' : 'text-zinc-400 hover:text-white'}`}
+                        className={`px-4 py-2 rounded-full font-semibold transition-all text-sm flex items-center gap-1.5 ${inputMode === 'webcam' ? 'bg-white text-black shadow-sm' : 'text-zinc-400 hover:text-white'}`}
                     >
-                        📷 Camera
+                        <span>📷</span> Camera
                     </button>
-                    <button
-                        onClick={() => setInputMode('upload')}
-                        className={`px-5 py-2 rounded-full font-semibold transition-all text-sm ${inputMode === 'upload' ? 'bg-white text-black' : 'text-zinc-400 hover:text-white'}`}
-                    >
-                        📁 File / URL
-                    </button>
+                    {isMobile ? (
+                        <button
+                            onClick={() => { setInputMode('roll'); rollInputRef.current?.click(); }}
+                            className={`px-4 py-2 rounded-full font-semibold transition-all text-sm flex items-center gap-1.5 ${inputMode === 'roll' ? 'bg-white text-black shadow-sm' : 'text-zinc-400 hover:text-white'}`}
+                        >
+                            <span>🖼️</span> Roll
+                        </button>
+                    ) : (
+                        <button
+                            onClick={() => setInputMode('upload')}
+                            className={`px-4 py-2 rounded-full font-semibold transition-all text-sm flex items-center gap-1.5 ${inputMode === 'upload' ? 'bg-white text-black shadow-sm' : 'text-zinc-400 hover:text-white'}`}
+                        >
+                            <span>📁</span> File / URL
+                        </button>
+                    )}
                 </div>
 
                 {/* Gender Toggle */}
@@ -1030,9 +1105,13 @@ export default function FaceAnalyzer() {
                                     {uploadedImage ? (
                                         <img src={uploadedImage} alt="Uploaded" className="h-full w-full object-contain" />
                                     ) : (
-                                        <div className="text-center space-y-4">
-                                            <div className="text-6xl">📸</div>
-                                            <p className="text-zinc-400">No image uploaded</p>
+                                        <div className="text-center space-y-4 px-6">
+                                            <div className="text-5xl">{inputMode === 'roll' ? '🖼️' : '📸'}</div>
+                                            <p className="text-zinc-400 text-sm">
+                                                {inputMode === 'roll'
+                                                    ? 'Tap “Choose from Photos” below to select an image from your camera roll.'
+                                                    : 'No image uploaded yet. Use the button below to choose a file or paste a URL.'}
+                                            </p>
                                         </div>
                                     )}
                                 </div>
@@ -1256,297 +1335,66 @@ export default function FaceAnalyzer() {
                         )}
                     </div>
 
-                    {/* RIGHT COLUMN: Audit Report / Feature Cards */}
-                    <div className="flex flex-col space-y-6">
+                    {/* RIGHT COLUMN: Tabbed Results */}
+                    <div className="flex flex-col space-y-4">
                         {!auditResult ? (
                             <div className="flex flex-col items-center justify-center h-full min-h-[300px] bg-zinc-900/20 border border-zinc-800/40 rounded-3xl p-8 text-center space-y-3">
                                 <div className="text-4xl">🔬</div>
                                 <p className="text-zinc-500 text-sm">Run a scan to see your detailed feature-by-feature analysis here.</p>
                             </div>
                         ) : (
-                            <div className="space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-700">
-                                {/* Metric Cards */}
-                                <div className="space-y-2">
-                                    <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-widest px-1">Feature Analysis</h3>
-                                    {Object.entries(auditResult.metrics).map(([key, value]) => {
-                                        const metricKey = key as keyof MetricScores;
-                                        const rating = getRating(metricKey, value, gender);
-                                        const idealRange = getIdealRange(metricKey, gender);
-                                        const label = key.replace(/([A-Z])/g, ' $1').trim();
-                                        const isExpanded = expandedMetric === key;
-                                        const explanation = metricExplanations[key];
-                                        const recs = metricRecommendations[key];
+                            <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
 
-                                        const sideOnlyMetrics = ['chinProjection', 'maxillaryProtrusion', 'orbitalRimProtrusion', 'browRidgeProtrusion', 'infraorbitalRimPosition', 'doubleChinRisk'];
-                                        const frontOnlyMetrics = ['facialAsymmetry', 'ipdRatio', 'eyeSeparationRatio', 'canthalTilt', 'fwfhRatio', 'noseWidthRatio', 'mouthToNoseWidthRatio', 'bigonialWidthRatio', 'cheekboneProminence', 'skinQuality', 'facialTension'];
-
-                                        const isSideMetric = sideOnlyMetrics.includes(key);
-                                        const isFrontMetric = frontOnlyMetrics.includes(key);
-                                        let isValidForProfile = true;
-                                        let profileNote = '';
-                                        if (auditResult.profileType === 'front' && isSideMetric) { isValidForProfile = false; profileNote = 'Side profile required'; }
-                                        else if (auditResult.profileType === 'side' && isFrontMetric) { isValidForProfile = false; profileNote = 'Front profile required'; }
-
-                                        const isGood = rating.color.includes('green');
-                                        const isOk = rating.color.includes('blue') || rating.color.includes('yellow');
-                                        const isBad = rating.color.includes('orange') || rating.color.includes('red');
-                                        const borderColor = !isValidForProfile ? 'border-zinc-800' : isGood ? 'border-emerald-500/40' : isBad ? 'border-red-500/40' : 'border-zinc-700';
-                                        const bgHover = !isValidForProfile ? '' : isGood ? 'hover:bg-emerald-950/20' : isBad ? 'hover:bg-red-950/20' : 'hover:bg-zinc-800/50';
-
-                                        return (
-                                            <div
-                                                key={key}
-                                                className={`rounded-2xl border ${borderColor} bg-zinc-900 transition-all duration-200 overflow-hidden ${!isValidForProfile ? 'opacity-30' : 'cursor-pointer ' + bgHover}`}
-                                                onClick={() => isValidForProfile && setExpandedMetric(isExpanded ? null : key)}
-                                            >
-                                                {/* Row */}
-                                                <div className="flex items-center gap-3 px-4 py-3.5">
-                                                    {/* Status dot */}
-                                                    <div className={`w-2 h-2 rounded-full flex-shrink-0 ${!isValidForProfile ? 'bg-zinc-700' : isGood ? 'bg-emerald-400' : isBad ? 'bg-red-400' : 'bg-yellow-400'}`} />
-                                                    <div className="flex-1 min-w-0">
-                                                        <div className="flex items-baseline justify-between gap-2">
-                                                            <span className="text-sm font-semibold text-white capitalize truncate">{explanation?.title || label}</span>
-                                                            <span className={`text-xs font-bold flex-shrink-0 ${isValidForProfile ? rating.color : 'text-zinc-600'}`}>
-                                                                {isValidForProfile ? rating.text : profileNote}
-                                                            </span>
-                                                        </div>
-                                                        <div className="flex items-center justify-between mt-0.5">
-                                                            <span className="text-[11px] text-zinc-500">Ideal: {idealRange}</span>
-                                                            {isValidForProfile && (
-                                                                <span className="text-[11px] font-mono text-zinc-400">{typeof value === 'number' ? value.toFixed(2) : value}</span>
-                                                            )}
-                                                        </div>
-                                                    </div>
-                                                    {isValidForProfile && (
-                                                        <svg className={`w-4 h-4 text-zinc-600 flex-shrink-0 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                                        </svg>
-                                                    )}
-                                                </div>
-
-                                                {/* Expanded Panel */}
-                                                {isExpanded && isValidForProfile && (
-                                                    <div className="border-t border-zinc-800 px-4 pb-5 pt-4 space-y-4 text-sm">
-                                                        {/* What it means */}
-                                                        {explanation && (
-                                                            <div>
-                                                                <p className="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-1.5">What this measures</p>
-                                                                <p className="text-zinc-300 leading-relaxed">{explanation.whatItIs}</p>
-                                                                <p className="text-zinc-400 leading-relaxed mt-2">{explanation.scientificContext}</p>
-                                                                {explanation.blackpillNote && (
-                                                                    <p className="text-amber-400/80 text-xs leading-relaxed mt-2 italic">{explanation.blackpillNote}</p>
-                                                                )}
-                                                            </div>
-                                                        )}
-
-                                                        {/* Recommendations — only show for non-perfect metrics */}
-                                                        {recs && !isGood && (
-                                                            <div className="space-y-3 pt-1">
-                                                                <p className="text-xs font-bold text-zinc-500 uppercase tracking-wider">How to improve</p>
-
-                                                                {recs.surgical.length > 0 && (
-                                                                    <div className="bg-red-950/20 border border-red-500/20 rounded-xl p-3">
-                                                                        <p className="text-xs font-bold text-red-400 mb-2">🔪 Surgical Options</p>
-                                                                        <ul className="space-y-1.5">
-                                                                            {recs.surgical.map((r, i) => (
-                                                                                <li key={i} className="text-xs text-zinc-300 leading-relaxed flex gap-2">
-                                                                                    <span className="text-red-500/60 flex-shrink-0 mt-0.5">•</span>
-                                                                                    {r}
-                                                                                </li>
-                                                                            ))}
-                                                                        </ul>
-                                                                    </div>
-                                                                )}
-
-                                                                {recs.nonSurgical.length > 0 && (
-                                                                    <div className="bg-blue-950/20 border border-blue-500/20 rounded-xl p-3">
-                                                                        <p className="text-xs font-bold text-blue-400 mb-2">💊 Non-Surgical Options</p>
-                                                                        <ul className="space-y-1.5">
-                                                                            {recs.nonSurgical.map((r, i) => (
-                                                                                <li key={i} className="text-xs text-zinc-300 leading-relaxed flex gap-2">
-                                                                                    <span className="text-blue-500/60 flex-shrink-0 mt-0.5">•</span>
-                                                                                    {r}
-                                                                                </li>
-                                                                            ))}
-                                                                        </ul>
-                                                                    </div>
-                                                                )}
-
-                                                                {recs.lifestyle.length > 0 && (
-                                                                    <div className="bg-emerald-950/20 border border-emerald-500/20 rounded-xl p-3">
-                                                                        <p className="text-xs font-bold text-emerald-400 mb-2">🌱 Lifestyle Changes</p>
-                                                                        <ul className="space-y-1.5">
-                                                                            {recs.lifestyle.map((r, i) => (
-                                                                                <li key={i} className="text-xs text-zinc-300 leading-relaxed flex gap-2">
-                                                                                    <span className="text-emerald-500/60 flex-shrink-0 mt-0.5">•</span>
-                                                                                    {r}
-                                                                                </li>
-                                                                            ))}
-                                                                        </ul>
-                                                                    </div>
-                                                                )}
-
-                                                                <p className="text-[11px] text-zinc-500 italic leading-relaxed border-t border-zinc-800 pt-3">{recs.outlook}</p>
-                                                            </div>
-                                                        )}
-
-                                                        {isGood && (
-                                                            <div className="flex items-center gap-2 text-emerald-400/80 text-xs italic">
-                                                                <span>✓</span> This feature is within the ideal range. No intervention needed.
-                                                            </div>
-                                                        )}
-                                                    </div>
-                                                )}
-                                            </div>
-                                        );
-                                    })}
+                                {/* ── Tab Bar ── */}
+                                <div className="flex gap-1 p-1 bg-zinc-900 border border-zinc-800 rounded-2xl sticky top-2 z-10">
+                                    {([
+                                        { id: 'analysis', label: 'Analysis', icon: '🔬' },
+                                        { id: 'roadmap',  label: 'Roadmap',  icon: '🚀' },
+                                        ...(auditResult.profileType !== 'side' ? [{ id: 'haircut', label: 'Haircut', icon: '✂️' }] : []),
+                                    ] as { id: 'analysis' | 'roadmap' | 'haircut'; label: string; icon: string }[]).map(tab => (
+                                        <button
+                                            key={tab.id}
+                                            onClick={() => setResultsTab(tab.id)}
+                                            className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-sm font-bold transition-all ${
+                                                resultsTab === tab.id
+                                                    ? 'bg-white text-black shadow-sm'
+                                                    : 'text-zinc-400 hover:text-white hover:bg-zinc-800'
+                                            }`}
+                                        >
+                                            <span className="text-base leading-none">{tab.icon}</span>
+                                            {tab.label}
+                                        </button>
+                                    ))}
                                 </div>
+                                {/* ── ANALYSIS TAB ── */}
+                                {resultsTab === 'analysis' && (
+                                    <AnalysisTab
+                                        metrics={auditResult.metrics}
+                                        profileType={auditResult.profileType}
+                                        gender={gender}
+                                        expandedMetric={expandedMetric}
+                                        onToggleMetric={setExpandedMetric}
+                                    />
+                                )}
 
-                                {/* PSL Boost Roadmap */}
-                                {(() => {
-                                    const flawed = Object.entries(auditResult.metrics).filter(([key]) => {
-                                        const metricKey = key as keyof MetricScores;
+                                {/* ── ROADMAP TAB ── */}
+                                {resultsTab === 'roadmap' && (
+                                    <RoadmapTab
+                                        metrics={auditResult.metrics}
+                                        profileType={auditResult.profileType}
+                                        gender={gender}
+                                        expandedMetric={expandedMetric}
+                                        onToggleMetric={setExpandedMetric}
+                                    />
+                                )}
 
-                                        const sideOnlyMetrics = ['chinProjection', 'maxillaryProtrusion', 'orbitalRimProtrusion', 'browRidgeProtrusion', 'infraorbitalRimPosition', 'doubleChinRisk'];
-                                        const frontOnlyMetrics = ['facialAsymmetry', 'ipdRatio', 'eyeSeparationRatio', 'canthalTilt', 'fwfhRatio', 'noseWidthRatio', 'mouthToNoseWidthRatio', 'bigonialWidthRatio', 'cheekboneProminence', 'skinQuality', 'facialTension'];
-
-                                        let isValidForProfile = true;
-                                        if (auditResult.profileType === 'front' && sideOnlyMetrics.includes(key)) { isValidForProfile = false; }
-                                        else if (auditResult.profileType === 'side' && frontOnlyMetrics.includes(key)) { isValidForProfile = false; }
-
-                                        if (!isValidForProfile) return false;
-
-                                        const val = auditResult.metrics[metricKey];
-                                        if (val === undefined) return false;
-
-                                        const rating = getRating(metricKey, val, gender);
-                                        return rating.color.includes('orange') || rating.color.includes('red');
-                                    });
-                                    if (flawed.length === 0) return null;
-                                    return (
-                                        <div className="rounded-2xl border border-amber-500/20 bg-amber-950/10 p-5 mt-2">
-                                            <div className="flex items-center gap-2 mb-3">
-                                                <span className="text-lg">🚀</span>
-                                                <h3 className="text-sm font-bold text-amber-400">Your PSL Boost Roadmap</h3>
-                                            </div>
-                                            <p className="text-xs text-zinc-400 mb-4 leading-relaxed">
-                                                The following metrics are impacting your score the most. Click any item above to see specific steps you can take.
-                                            </p>
-                                            <div className="space-y-2">
-                                                {flawed.map(([key]) => {
-                                                    const val = auditResult.metrics[key as keyof MetricScores];
-                                                    if (val === undefined) return null;
-
-                                                    const explanation = metricExplanations[key];
-                                                    const rating = getRating(key as keyof MetricScores, val, gender);
-                                                    const isBad = rating.color.includes('red');
-                                                    return (
-                                                        <button
-                                                            key={key}
-                                                            onClick={() => setExpandedMetric(expandedMetric === key ? null : key)}
-                                                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-amber-500/30 hover:bg-amber-950/10 transition-all text-left"
-                                                        >
-                                                            <span className={`text-xs px-1.5 py-0.5 rounded-md font-bold ${isBad ? 'bg-red-500/20 text-red-400' : 'bg-yellow-500/20 text-yellow-400'}`}>
-                                                                {isBad ? 'FIX' : 'IMPROVE'}
-                                                            </span>
-                                                            <span className="text-sm text-zinc-200 font-medium">{explanation?.title || key.replace(/([A-Z])/g, ' $1').trim()}</span>
-                                                            <svg className="w-3.5 h-3.5 text-zinc-600 ml-auto flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                            </svg>
-                                                        </button>
-                                                    );
-                                                })}
-                                            </div>
-                                        </div>
-                                    );
-                                })()}
-
-                                {/* Haircut Recommender Section */}
-                                {(() => {
-                                    if (auditResult.profileType === 'side') return null;
-
-                                    const hairRecs = getHaircutRecommendations({
-                                        fwfhRatio: auditResult.metrics.fwfhRatio,
-                                        foreheadHeightRatio: auditResult.metrics.foreheadHeightRatio,
-                                        bigonialWidthRatio: auditResult.metrics.bigonialWidthRatio,
-                                        midfaceRatio: auditResult.metrics.midfaceRatio,
-                                        gonialAngle: auditResult.metrics.gonialAngle,
-                                        lowerThirdRatio: auditResult.metrics.lowerThirdRatio
-                                    }, gender);
-
-                                    return (
-                                        <div className="rounded-2xl border border-indigo-500/20 bg-indigo-950/10 p-5 mt-2">
-                                            <div className="flex items-center justify-between mb-4">
-                                                <div className="flex items-center gap-2">
-                                                    <span className="text-lg">✂️</span>
-                                                    <h3 className="text-sm font-bold text-indigo-400 uppercase tracking-wider">Haircut Recommender</h3>
-                                                </div>
-                                                <div className="px-2 py-1 rounded-md bg-indigo-500/20 border border-indigo-500/30">
-                                                    <span className="text-[10px] font-black text-indigo-300 uppercase tracking-tighter">AI Analysis</span>
-                                                </div>
-                                            </div>
-
-                                            <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-4 mb-5">
-                                                <div className="flex items-center gap-3 mb-2">
-                                                    <span className="text-2xl">{hairRecs.emoji}</span>
-                                                    <div>
-                                                        <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Detected Shape</p>
-                                                        <h4 className="text-lg font-black text-white">{hairRecs.label}</h4>
-                                                    </div>
-                                                    <div className="ml-auto text-right">
-                                                        <p className="text-[10px] font-bold text-zinc-500 uppercase">Confidence</p>
-                                                        <p className="text-sm font-black text-indigo-400">{hairRecs.confidence}%</p>
-                                                    </div>
-                                                </div>
-                                                <p className="text-xs text-zinc-400 italic leading-relaxed">{hairRecs.description}</p>
-                                            </div>
-
-                                            <div className="space-y-4">
-                                                <div>
-                                                    <h5 className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-3">Recommended For You</h5>
-                                                    <div className="grid gap-2">
-                                                        {hairRecs.recommendations.map((rec, idx) => (
-                                                            <div key={idx} className="p-3 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-indigo-500/30 transition-colors">
-                                                                <p className="text-sm font-bold text-white mb-1">{rec.name}</p>
-                                                                <p className="text-[11px] text-indigo-300/80 mb-1 leading-snug">{rec.why}</p>
-                                                                <p className="text-[10px] text-zinc-500 leading-relaxed">{rec.description}</p>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                </div>
-
-                                                <div className="grid grid-cols-2 gap-3">
-                                                    <div className="p-3 rounded-xl bg-red-500/5 border border-red-500/10">
-                                                        <h5 className="text-[9px] font-bold text-red-400 uppercase tracking-widest mb-2 flex items-center gap-1">
-                                                            <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                                            </svg>
-                                                            To Avoid
-                                                        </h5>
-                                                        <ul className="space-y-1.5">
-                                                            {hairRecs.avoid.map((item, idx) => (
-                                                                <li key={idx} className="text-[10px] text-zinc-400 leading-tight">• {item}</li>
-                                                            ))}
-                                                        </ul>
-                                                    </div>
-                                                    <div className="p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
-                                                        <h5 className="text-[9px] font-bold text-emerald-400 uppercase tracking-widest mb-2 flex items-center gap-1">
-                                                            <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                                            </svg>
-                                                            Pro Tips
-                                                        </h5>
-                                                        <ul className="space-y-1.5">
-                                                            {hairRecs.stylingTips.map((item, idx) => (
-                                                                <li key={idx} className="text-[10px] text-zinc-400 leading-tight">• {item}</li>
-                                                            ))}
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    );
-                                })()}
+                                {/* ── HAIRCUT TAB ── */}
+                                {resultsTab === 'haircut' && auditResult.profileType !== 'side' && (
+                                    <HaircutTab
+                                        metrics={auditResult.metrics}
+                                        gender={gender}
+                                    />
+                                )}
                             </div>
                         )}
                     </div>
