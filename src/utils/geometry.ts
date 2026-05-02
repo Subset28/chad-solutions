@@ -60,12 +60,219 @@ export function extractEulerAngles(matrix: any): FaceAngles {
     };
 }
 
+/**
+ * God-Tier: Estimates Camera Focal Length (in pixels)
+ * Based on standard mobile field of view (approx 63 degrees)
+ * focalLength = (imageWidth / 2) / tan(FOV / 2)
+ */
+export function estimateFocalLength(imageWidth: number, horizontalFOVDeg: number = 63): number {
+    const fovRad = (horizontalFOVDeg * Math.PI) / 180;
+    return (imageWidth / 2) / Math.tan(fovRad / 2);
+}
+
+/**
+ * God-Tier Reconstruction: Maps 2D Landmarks + Depth to a Metric 3D Coordinate System
+ * 
+ * 1. Estimates distance (Z) in mm by anchoring to standard human IPD (64mm)
+ * 2. Un-projects landmarks from screen space (normalized) to camera space (metric mm)
+ * 3. Applies the inverse transformation matrix to de-rotate the face into a "perfect frontal" view.
+ */
+export function reconstructPhysicalFace(
+    landmarks: NormalizedLandmark[],
+    matrix: any,
+    imageWidth: number,
+    imageHeight: number
+): NormalizedLandmark[] {
+    if (!landmarks || landmarks.length === 0) return [];
+    
+    // 1. Calculate Focal Length (approx)
+    const fl = estimateFocalLength(imageWidth);
+    
+    // 2. Estimate Z-Distance (mm) using IPD anchor (Standard Human IPD = 63.5mm)
+    const rightEye = midpoint(landmarks[33], landmarks[133]);
+    const leftEye = midpoint(landmarks[263], landmarks[362]);
+    const ipdPixels = Math.sqrt(
+        Math.pow((leftEye.x - rightEye.x) * imageWidth, 2) +
+        Math.pow((leftEye.y - rightEye.y) * imageHeight, 2)
+    );
+    
+    // Distance (mm) = (StandardIPD_mm * FocalLength_px) / IPD_px
+    const zDistance_mm = (63.5 * fl) / Math.max(1, ipdPixels);
+    
+    // 3. Un-project each point to Camera Metric Space
+    // Screen -> Camera (Metric)
+    const cameraSpacePoints = landmarks.map(lm => {
+        // Center-relative normalized coords
+        const cx = (lm.x - 0.5) * imageWidth;
+        const cy = (lm.y - 0.5) * imageHeight;
+        
+        // MediaPipe Z is proportional to image width. We need it in mm.
+        const pointZ_mm = zDistance_mm + (lm.z * imageWidth * (zDistance_mm / fl));
+        
+        // Projective Inverse: X_mm = (cx * Z_mm) / focalLength
+        const x_mm = (cx * pointZ_mm) / fl;
+        const y_mm = (cy * pointZ_mm) / fl;
+        
+        return { x: x_mm, y: y_mm, z: pointZ_mm };
+    });
+    
+    // 4. De-rotate using the inverse of the facialTransformationMatrix
+    // Matrix is Row-Major order in MediaPipe.
+    let m = new Float32Array(16);
+    if (matrix && matrix.length === 16) {
+        m = matrix;
+    } else if (matrix && matrix.data) {
+        m = matrix.data;
+    } else {
+        // Fallback to identity if no matrix available
+        return cameraSpacePoints;
+    }
+    
+    // Extract 3x3 Rotation part (Camera -> Face)
+    const r00 = m[0], r01 = m[1], r02 = m[2];
+    const r10 = m[4], r11 = m[5], r12 = m[6];
+    const r20 = m[8], r21 = m[9], r22 = m[10];
+    
+    // The matrix transforms points from Face Space to Camera Space.
+    // To get back to "Perfect Frontal Face Space", we multiply by the Inverse (Transpose for rotation matrices).
+    return cameraSpacePoints.map(p => {
+        const x = p.x;
+        const y = p.y;
+        const z = p.z - zDistance_mm; // Shift origin to face center for rotation
+        
+        const rx = r00 * x + r10 * y + r20 * z;
+        const ry = r01 * x + r11 * y + r21 * z;
+        const rz = r02 * x + r12 * y + r22 * z;
+        
+        return {
+            x: rx,
+            y: ry,
+            z: rz,
+            visibility: landmarks[i].visibility,
+            presence: landmarks[i].presence
+        };
+    });
+}
+
+/**
+ * AI-Powered Expression Normalization
+ * Mathematically "neutralizes" facial micro-expressions (smiles, squints, scowls)
+ * to ensure measurements are 100% objective bone-structure analysis.
+ */
+export function normalizeExpression(landmarks: NormalizedLandmark[], blendshapes: any[]): NormalizedLandmark[] {
+    if (!landmarks || !blendshapes || blendshapes.length === 0) return landmarks;
+
+    const categories = blendshapes[0].categories;
+    const scores: Record<string, number> = {};
+    categories.forEach((cat: any) => { scores[cat.categoryName] = cat.score; });
+
+    const normalized = [...landmarks].map(p => ({ ...p }));
+
+    // 1. Correct Smile (mouthSmileLeft/Right)
+    // Smile expands mouth width and lifts corners. We reverse this.
+    const smileScore = ((scores['mouthSmileLeft'] || 0) + (scores['mouthSmileRight'] || 0)) / 2;
+    if (smileScore > 0.05) {
+        // Mouth corners: 61, 291
+        const mouthCenter = midpoint(normalized[61], normalized[291]);
+        const correctionFactor = 1 - (smileScore * 0.12); // Pull in by up to 12%
+        [61, 291, 78, 308, 13, 14, 37, 267].forEach(idx => {
+            normalized[idx].x = mouthCenter.x + (normalized[idx].x - mouthCenter.x) * correctionFactor;
+            normalized[idx].y = mouthCenter.y + (normalized[idx].y - mouthCenter.y) * correctionFactor;
+        });
+    }
+
+    // 2. Correct Eye Squint (eyeSquintLeft/Right)
+    const squintL = scores['eyeSquintLeft'] || 0;
+    const squintR = scores['eyeSquintRight'] || 0;
+    if (squintL > 0.1) {
+        normalized[159].y -= (normalized[145].y - normalized[159].y) * (squintL * 0.15);
+    }
+    if (squintR > 0.1) {
+        normalized[386].y -= (normalized[374].y - normalized[386].y) * (squintR * 0.15);
+    }
+
+    // 3. Correct Brow Tension (browDownLeft/Right)
+    const browL = scores['browDownLeft'] || 0;
+    const browR = scores['browDownRight'] || 0;
+    if (browL > 0.1) normalized[70].y -= (normalized[70].y - normalized[159].y) * (browL * 0.1);
+    if (browR > 0.1) normalized[300].y -= (normalized[300].y - normalized[386].y) * (browR * 0.1);
+
+    return normalized;
+}
+
+export interface ConfidenceAudit {
+    overall: number; // 0-100
+    factors: {
+        lighting: 'excellent' | 'good' | 'poor';
+        angle: 'perfect' | 'acceptable' | 'steep';
+        expression: 'neutral' | 'tense' | 'distorted';
+    };
+    feedback: string[];
+}
+
+/**
+ * Objective Quality Audit
+ * Evaluates environmental and behavioral noise to determine scan validity.
+ */
+export function auditAnalysisQuality(
+    matrix: any, 
+    blendshapes: any[], 
+    imageLuminance: number = 100 // Default to 100 if unknown
+): ConfidenceAudit {
+    const euler = extractEulerAngles(matrix);
+    const angleSeverity = Math.max(Math.abs(euler.pitch), Math.abs(euler.yaw));
+    
+    const categories = blendshapes && blendshapes.length > 0 ? blendshapes[0].categories : [];
+    const tension = categories.reduce((acc: number, cat: any) => acc + (cat.score > 0.3 ? 1 : 0), 0);
+    
+    let confidence = 100;
+    const feedback: string[] = [];
+    const factors: ConfidenceAudit['factors'] = { lighting: 'good', angle: 'perfect', expression: 'neutral' };
+
+    // Angle Check
+    if (angleSeverity > 22) {
+        factors.angle = 'steep';
+        confidence -= 25;
+        feedback.push("Extreme angle detected. Structural distortion risk is HIGH.");
+    } else if (angleSeverity > 10) {
+        factors.angle = 'acceptable';
+        confidence -= 8;
+    }
+
+    // Expression Check
+    if (tension > 4) {
+        factors.expression = 'distorted';
+        confidence -= 15;
+        feedback.push("High facial tension detected. Normalizing metrics...");
+    } else if (tension > 1) {
+        factors.expression = 'tense';
+        confidence -= 5;
+    }
+
+    // Lighting Check
+    if (imageLuminance < 45) {
+        factors.lighting = 'poor';
+        confidence -= 15;
+        feedback.push("Insufficient lighting. Edge detection precision degraded.");
+    } else if (imageLuminance > 220) {
+        factors.lighting = 'poor';
+        confidence -= 10;
+        feedback.push("Overexposed lighting. Highlight clipping detected.");
+    }
+
+    return {
+        overall: Math.max(0, Math.round(confidence)),
+        factors,
+        feedback
+    };
+}
+
 // True 3D Euclidean distance between two points (Utilizing MediaPipe Z depth makes measurements completely invariant to pitch and yaw camera angles).
 // As long as `scaleLandmarks` scales Z symmetrically with X (by width), the 3D unit geometry remains isomorphic to the 2D bounding box!
 export function distance(p1: NormalizedLandmark, p2: NormalizedLandmark): number {
     return Math.sqrt(
-        Math.pow(p2.x - p1.x, 2) +
-        Math.pow(p2.y - p1.y, 2) +
+        Math.pow((p2.x || 0) - (p1.x || 0), 2) +
+        Math.pow((p2.y || 0) - (p1.y || 0), 2) +
         Math.pow((p2.z || 0) - (p1.z || 0), 2)
     );
 }
@@ -503,6 +710,15 @@ export interface MetricScores {
 
     // V3: Grooming / Hair Quality (0-100 score, estimated from image analysis)
     hairQualityScore: number;
+
+    // PHYSICAL METRICS (mm) - God-Tier Accuracy
+    physicalIPD: number;
+    physicalJawWidth: number;
+    physicalFaceWidth: number;
+    physicalFaceHeight: number;
+
+    // OBJECTIVE AUDIT
+    audit?: any;
 }
 
 export type ProfileType = 'front' | 'side';

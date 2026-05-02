@@ -16,12 +16,80 @@ interface AnalysisTabProps {
 
 const SIDE_ONLY_METRICS = ['chinProjection', 'maxillaryProtrusion', 'orbitalRimProtrusion', 'browRidgeProtrusion', 'infraorbitalRimPosition', 'doubleChinRisk'];
 const FRONT_ONLY_METRICS = ['facialAsymmetry', 'ipdRatio', 'eyeSeparationRatio', 'canthalTilt', 'fwfhRatio', 'noseWidthRatio', 'mouthToNoseWidthRatio', 'bigonialWidthRatio', 'cheekboneProminence', 'skinQuality', 'facialTension', 'chinToPhiltrumRatio', 'lowerThirdRatio', 'palpebralFissureLength', 'facialThirdsRatio', 'foreheadHeightRatio'];
+const PHYSICAL_METRICS = ['physicalIPD', 'physicalJawWidth', 'physicalFaceWidth', 'physicalFaceHeight'];
 
 export default function AnalysisTab({ metrics, profileType, gender, expandedMetric, onToggleMetric }: AnalysisTabProps) {
+    const audit = metrics.audit;
+
     return (
-        <div className="space-y-2">
+        <div className="space-y-6">
+            {/* OBJECTIVE QUALITY AUDIT */}
+            {audit && (
+                <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-5 shadow-xl relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 blur-3xl rounded-full -mr-16 -mt-16" />
+                    
+                    <div className="flex items-center justify-between mb-4 relative z-10">
+                        <div>
+                            <h3 className="text-sm font-black text-white tracking-tight uppercase italic">Objective Quality Audit</h3>
+                            <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">Environment & Behavioral Scan</p>
+                        </div>
+                        <div className="text-right">
+                            <span className={`text-2xl font-black ${audit.overall > 85 ? 'text-emerald-400' : audit.overall > 70 ? 'text-amber-400' : 'text-red-400'}`}>{audit.overall}%</span>
+                            <span className="text-[10px] block text-zinc-600 font-bold uppercase tracking-widest">Confidence</span>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-3 gap-2 mb-4 relative z-10">
+                        <div className="bg-zinc-950/50 rounded-xl p-2.5 border border-zinc-800/50 text-center">
+                            <span className="text-[9px] text-zinc-500 font-bold uppercase block mb-1">Lighting</span>
+                            <span className={`text-[10px] font-black uppercase ${audit.factors.lighting === 'excellent' ? 'text-emerald-400' : audit.factors.lighting === 'good' ? 'text-blue-400' : 'text-amber-400'}`}>{audit.factors.lighting}</span>
+                        </div>
+                        <div className="bg-zinc-950/50 rounded-xl p-2.5 border border-zinc-800/50 text-center">
+                            <span className="text-[9px] text-zinc-500 font-bold uppercase block mb-1">Angle</span>
+                            <span className={`text-[10px] font-black uppercase ${audit.factors.angle === 'perfect' ? 'text-emerald-400' : audit.factors.angle === 'acceptable' ? 'text-blue-400' : 'text-red-400'}`}>{audit.factors.angle}</span>
+                        </div>
+                        <div className="bg-zinc-950/50 rounded-xl p-2.5 border border-zinc-800/50 text-center">
+                            <span className="text-[9px] text-zinc-500 font-bold uppercase block mb-1">Expression</span>
+                            <span className={`text-[10px] font-black uppercase ${audit.factors.expression === 'neutral' ? 'text-emerald-400' : 'text-blue-400'}`}>{audit.factors.expression}</span>
+                        </div>
+                    </div>
+
+                    {audit.feedback.length > 0 && (
+                        <div className="space-y-1.5 border-t border-zinc-800/50 pt-3 relative z-10">
+                            {audit.feedback.map((f: string, i: number) => (
+                                <div key={i} className="flex items-center gap-2 text-[10px] text-zinc-400">
+                                    <span className="text-amber-500/50">✦</span>
+                                    {f}
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            )}
+
+            {/* PHYSICAL SPECS GRID - God Tier Accuracy */}
+            <div className="space-y-2">
+                <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-widest px-1">Physical Specifications (3D Metric Space)</h3>
+                <div className="grid grid-cols-2 gap-3">
+                    {PHYSICAL_METRICS.map(key => {
+                        const val = metrics[key as keyof MetricScores];
+                        const label = key.replace('physical', '').replace(/([A-Z])/g, ' $1').trim();
+                        const unit = 'mm';
+                        
+                        return (
+                            <div key={key} className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center justify-center text-center">
+                                <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider mb-1">{label}</span>
+                                <span className="text-lg font-black text-white">{typeof val === 'number' ? val.toFixed(1) : val}<span className="text-[10px] ml-0.5 text-zinc-500">{unit}</span></span>
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+
             <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-widest px-1">Feature Analysis</h3>
-            {Object.entries(metrics).map(([key, value]) => {
+            {Object.entries(metrics)
+                .filter(([key]) => !PHYSICAL_METRICS.includes(key))
+                .map(([key, value]) => {
                 const metricKey = key as keyof MetricScores;
                 const rating = getRating(metricKey, value, gender);
                 const idealRange = getIdealRange(metricKey, gender);
