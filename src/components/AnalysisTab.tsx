@@ -5,6 +5,7 @@ import { MetricScores } from '@/utils/geometry';
 import { metricExplanations } from '@/utils/explanations';
 import { metricRecommendations } from '@/utils/recommendations';
 import { getRating, getIdealRange } from '@/utils/ratings';
+import { calculatePercentile } from '@/utils/statistics';
 
 interface AnalysisTabProps {
     metrics: MetricScores;
@@ -39,18 +40,22 @@ export default function AnalysisTab({ metrics, profileType, gender, expandedMetr
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-2 mb-4 relative z-10">
-                        <div className="bg-zinc-950/50 rounded-xl p-2.5 border border-zinc-800/50 text-center">
+                    <div className="grid grid-cols-4 gap-2 mb-4 relative z-10">
+                        <div className="bg-zinc-950/50 rounded-xl p-2 border border-zinc-800/50 text-center">
                             <span className="text-[9px] text-zinc-500 font-bold uppercase block mb-1">Lighting</span>
                             <span className={`text-[10px] font-black uppercase ${audit.factors.lighting === 'excellent' ? 'text-emerald-400' : audit.factors.lighting === 'good' ? 'text-blue-400' : 'text-amber-400'}`}>{audit.factors.lighting}</span>
                         </div>
-                        <div className="bg-zinc-950/50 rounded-xl p-2.5 border border-zinc-800/50 text-center">
+                        <div className="bg-zinc-950/50 rounded-xl p-2 border border-zinc-800/50 text-center">
                             <span className="text-[9px] text-zinc-500 font-bold uppercase block mb-1">Angle</span>
                             <span className={`text-[10px] font-black uppercase ${audit.factors.angle === 'perfect' ? 'text-emerald-400' : audit.factors.angle === 'acceptable' ? 'text-blue-400' : 'text-red-400'}`}>{audit.factors.angle}</span>
                         </div>
-                        <div className="bg-zinc-950/50 rounded-xl p-2.5 border border-zinc-800/50 text-center">
+                        <div className="bg-zinc-950/50 rounded-xl p-2 border border-zinc-800/50 text-center">
                             <span className="text-[9px] text-zinc-500 font-bold uppercase block mb-1">Expression</span>
                             <span className={`text-[10px] font-black uppercase ${audit.factors.expression === 'neutral' ? 'text-emerald-400' : 'text-blue-400'}`}>{audit.factors.expression}</span>
+                        </div>
+                        <div className="bg-zinc-950/50 rounded-xl p-2 border border-zinc-800/50 text-center">
+                            <span className="text-[9px] text-zinc-500 font-bold uppercase block mb-1">Phenotype</span>
+                            <span className="text-[10px] font-black uppercase text-purple-400">{metrics.phenotype || 'Generic'}</span>
                         </div>
                     </div>
 
@@ -88,11 +93,12 @@ export default function AnalysisTab({ metrics, profileType, gender, expandedMetr
 
             <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-widest px-1">Feature Analysis</h3>
             {Object.entries(metrics)
-                .filter(([key]) => !PHYSICAL_METRICS.includes(key))
+                .filter(([key]) => !PHYSICAL_METRICS.includes(key) && key !== 'phenotype' && key !== 'vitality' && key !== 'audit')
                 .map(([key, value]) => {
                 const metricKey = key as keyof MetricScores;
                 const rating = getRating(metricKey, value, gender);
                 const idealRange = getIdealRange(metricKey, gender);
+                const percentileData = calculatePercentile(metricKey, typeof value === 'number' ? value : 0);
                 const label = key.replace(/([A-Z])/g, ' $1').trim();
                 const isExpanded = expandedMetric === key;
                 const explanation = metricExplanations[key];
@@ -128,7 +134,12 @@ export default function AnalysisTab({ metrics, profileType, gender, expandedMetr
                                     </span>
                                 </div>
                                 <div className="flex items-center justify-between mt-0.5">
-                                    <span className="text-[11px] text-zinc-500">Ideal: {idealRange}</span>
+                                    <div className="flex flex-col">
+                                        <span className="text-[11px] text-zinc-500">Ideal: {idealRange}</span>
+                                        {isValidForProfile && (
+                                            <span className="text-[10px] text-blue-400 font-bold uppercase">Elite Rank: {percentileData.rank}</span>
+                                        )}
+                                    </div>
                                     {isValidForProfile && (
                                         <span className="text-[11px] font-mono text-zinc-400">{typeof value === 'number' ? value.toFixed(2) : value}</span>
                                     )}

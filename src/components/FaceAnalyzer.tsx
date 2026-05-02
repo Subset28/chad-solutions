@@ -45,10 +45,14 @@ import {
 import { analyzeSkinQuality } from '@/utils/image-processing';
 import AnalysisTab from '@/components/AnalysisTab';
 import RoadmapTab from '@/components/RoadmapTab';
+import VitalityTab from '@/components/VitalityTab';
 import { getHardwareProfile, extractHardwareFocalLength } from '@/utils/hardware';
+import { predictPhenotype } from '@/utils/phenotype';
+import { analyzeVitality } from '@/utils/vitality';
 import HaircutTab from '@/components/HaircutTab';
 
 type InputMode = 'webcam' | 'upload' | 'roll';
+type Tab = 'analysis' | 'roadmap' | 'haircut' | 'vitality';
 
 export default function FaceAnalyzer() {
     const webcamRef = useRef<Webcam>(null);
@@ -313,7 +317,7 @@ export default function FaceAnalyzer() {
                 } catch { return 100; }
             })();
 
-            // 3. 3D Metric Reconstruction
+            // 3. 3D Metric Reconstruction (Hardware-Aware)
             const rawPhysicalLandmarks = reconstructPhysicalFace(
                 landmarks, 
                 matrix, 
@@ -334,6 +338,21 @@ export default function FaceAnalyzer() {
             const facialThirdsData = calculateFacialThirds(scaledLandmarks);
             const tensionData = evaluateFacialTension(results.faceBlendshapes || []);
             const skinQualityData = analyzeSkinQuality(img, landmarks);
+            
+            // NEW: Vitality & Phenotype
+            const phenotype = predictPhenotype({
+                fwfhRatio: calculateFwFhRatio(physicalLandmarks, 0, 0),
+                midfaceRatio: calculateMidfaceRatio(physicalLandmarks, 0),
+                noseWidthRatio: distance(physicalLandmarks[48], physicalLandmarks[278]) / distance(physicalLandmarks[234], physicalLandmarks[454]),
+                bigonialWidthRatio: calculateBigonialWidthRatio(physicalLandmarks)
+            });
+            
+            const vitality = analyzeVitality(
+                ctx.getImageData(0, 0, analyzedCanvas.width, analyzedCanvas.height).data,
+                landmarks,
+                analyzedCanvas.width,
+                analyzedCanvas.height
+            );
 
             const metrics: MetricScores = {
                 canthalTilt: calculateCanthalTilt(physicalLandmarks),
@@ -369,7 +388,11 @@ export default function FaceAnalyzer() {
                 physicalFaceWidth: distance(physicalLandmarks[234], physicalLandmarks[454]),
                 physicalFaceHeight: distance(physicalLandmarks[10], physicalLandmarks[152]),
                 audit: audit,
-                hairQualityScore: 50
+                hairQualityScore: 50,
+                
+                // GOD-TIER ADDITIONS
+                phenotype,
+                vitality
             };
 
             const pslData = calculatePSLScore(metrics, gender, profileType);
@@ -1065,8 +1088,9 @@ export default function FaceAnalyzer() {
                                     {([
                                         { id: 'analysis', label: 'Analysis', icon: '🔬' },
                                         { id: 'roadmap',  label: 'Roadmap',  icon: '🚀' },
+                                        { id: 'vitality', label: 'Vitality', icon: '⚡' },
                                         ...(auditResult.profileType !== 'side' ? [{ id: 'haircut', label: 'Haircut', icon: '✂️' }] : []),
-                                    ] as { id: 'analysis' | 'roadmap' | 'haircut'; label: string; icon: string }[]).map(tab => (
+                                    ] as { id: Tab; label: string; icon: string }[]).map(tab => (
                                         <button
                                             key={tab.id}
                                             onClick={() => setResultsTab(tab.id)}
@@ -1102,6 +1126,11 @@ export default function FaceAnalyzer() {
                                         onToggleMetric={setExpandedMetric}
                                         currentPSL={auditResult.psl.score}
                                     />
+                                )}
+
+                                {/* ── VITALITY TAB ── */}
+                                {resultsTab === 'vitality' && (
+                                    <VitalityTab metrics={auditResult.metrics} />
                                 )}
 
                                 {/* ── HAIRCUT TAB ── */}

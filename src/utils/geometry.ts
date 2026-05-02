@@ -685,6 +685,15 @@ export function calculateHairlineRecession(landmarks: NormalizedLandmark[]): num
 
 // --- Scoring ---
 
+export type Phenotype = 'caucasian' | 'eastAsian' | 'african' | 'middleEastern' | 'southAsian' | 'generic';
+
+export interface VitalityData {
+    vitalityScore: number;
+    biologicalAgeDelta: number;
+    sleepScore: number;
+    collagenIndex: number;
+}
+
 export interface MetricScores {
     canthalTilt: number;
     fwfhRatio: number;
@@ -729,6 +738,10 @@ export interface MetricScores {
 
     // OBJECTIVE AUDIT
     audit?: any;
+
+    // NEW GOD-TIER FIELDS
+    phenotype?: Phenotype;
+    vitality?: VitalityData;
 }
 
 export type ProfileType = 'front' | 'side';
