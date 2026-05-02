@@ -638,21 +638,6 @@ export function calculatePhiltrumLength(landmarks: NormalizedLandmark[]): number
     if (faceHeight === 0) return 0.05;
     return philtrum / faceHeight;
 }
-        Math.abs(upperThird - ideal) +
-        Math.abs(middleThird - ideal) +
-        Math.abs(lowerThird - ideal)
-    ) / total;
-
-    // Convert to 0-100 score (100 = perfect 1:1:1)
-    const ratio = Math.max(0, 100 - (deviation * 200));
-
-    return {
-        upper: total > 0 ? upperThird / total : 0,
-        middle: total > 0 ? middleThird / total : 0,
-        lower: total > 0 ? lowerThird / total : 0,
-        ratio
-    };
-}
 
 export function calculateForeheadHeightRatio(landmarks: NormalizedLandmark[]): number {
     // Forehead height / Face height

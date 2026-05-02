@@ -36,6 +36,10 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock', '**/pnpm-lock.yaml') }}-
       - name: Install dependencies
         run: npm install
+      - name: Run Linting
+        run: npm run lint
+      - name: Run Unit Tests
+        run: npm run test
       - name: Build with Next.js
         run: npm run build
       - name: Upload artifact

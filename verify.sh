@@ -23,7 +23,15 @@ if [ -f "tsconfig.json" ]; then
     fi
 fi
 
-# 3. Build Check
+# 3. Unit Test Check
+echo "🧪 Running Unit Tests..."
+npm run test
+if [ $? -ne 0 ]; then
+    echo "❌ Unit tests failed."
+    exit 1
+fi
+
+# 4. Build Check
 echo "🏗️  Running Production Build..."
 npm run build
 if [ $? -ne 0 ]; then
