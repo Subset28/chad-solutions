@@ -168,5 +168,19 @@ export const metricExplanations: Record<string, MetricExplanation> = {
         idealRange: "Aligned with or slightly past the nasion",
         scientificContext: "A strong, forward-projecting chin is an indicator of healthy lower jaw (mandible) development and clear airways.",
         blackpillNote: "A recessed chin creates a 'weak' profile, often associated with mouth-breathing, snoring, and a lack of perceived physical dominance."
+    },
+    upperEyelidExposure: {
+        title: "Upper Eyelid Exposure (UEE)",
+        whatItIs: "The vertical amount of the upper eyelid visible when the eyes are in a neutral position.",
+        idealRange: "Minimal to Zero (Hooded)",
+        scientificContext: "Low UEE is a hallmark of 'Hunter Eyes'. It indicates a well-developed supraorbital ridge and deep-set eyes, which protect the ocular surface.",
+        blackpillNote: "High UEE ('bug eyes' or 'frog eyes') makes the face look startled and vulnerable, signaling high cortisol and poor bone support."
+    },
+    philtrumLength: {
+        title: "Philtrum Length",
+        whatItIs: "The vertical distance between the base of the nose (subnasale) and the top of the upper lip.",
+        idealRange: "Short (11mm - 15mm)",
+        scientificContext: "A short philtrum is a youthful trait that contributes to a 'compact' midface. As humans age, the philtrum tends to lengthen due to gravity and loss of collagen.",
+        blackpillNote: "A long philtrum creates a 'chimp' or 'simian' look, disrupting the lower-third harmony and making the face look vertically elongated."
     }
 };

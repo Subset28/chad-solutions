@@ -16,7 +16,7 @@ interface AnalysisTabProps {
 }
 
 const SIDE_ONLY_METRICS = ['chinProjection', 'maxillaryProtrusion', 'orbitalRimProtrusion', 'browRidgeProtrusion', 'infraorbitalRimPosition', 'doubleChinRisk'];
-const FRONT_ONLY_METRICS = ['facialAsymmetry', 'ipdRatio', 'eyeSeparationRatio', 'canthalTilt', 'fwfhRatio', 'noseWidthRatio', 'mouthToNoseWidthRatio', 'bigonialWidthRatio', 'cheekboneProminence', 'skinQuality', 'facialTension', 'chinToPhiltrumRatio', 'lowerThirdRatio', 'palpebralFissureLength', 'facialThirdsRatio', 'foreheadHeightRatio'];
+const FRONT_ONLY_METRICS = ['facialAsymmetry', 'ipdRatio', 'eyeSeparationRatio', 'canthalTilt', 'fwfhRatio', 'noseWidthRatio', 'mouthToNoseWidthRatio', 'bigonialWidthRatio', 'cheekboneProminence', 'skinQuality', 'facialTension', 'chinToPhiltrumRatio', 'lowerThirdRatio', 'palpebralFissureLength', 'facialThirdsRatio', 'foreheadHeightRatio', 'upperEyelidExposure', 'philtrumLength'];
 const PHYSICAL_METRICS = ['physicalIPD', 'physicalJawWidth', 'physicalFaceWidth', 'physicalFaceHeight'];
 
 export default function AnalysisTab({ metrics, profileType, gender, expandedMetric, onToggleMetric }: AnalysisTabProps) {

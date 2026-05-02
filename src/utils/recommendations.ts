@@ -388,5 +388,36 @@ export const metricRecommendations: Record<string, MetricRecommendation> = {
             "IPD is purely skeletal and cannot be modified via lifestyle choices"
         ],
         outlook: "IPD is largely a genetic bone measurement. Minor shifts in perceived spacing can be achieved cosmetically, but structural change is not possible in adults."
+    },
+    upperEyelidExposure: {
+        surgical: [
+            "Supraorbital rim implants — build up the brow ridge to physically hood the eye",
+            "Blepharoplasty (Upper) — removes excess skin if the UEE is caused by sagging, though true 'hunter eyes' require more bone support",
+            "Upper eyelid filler — adds volume to the upper lid area to reduce exposure and create a 'hooded' look"
+        ],
+        nonSurgical: [
+            "Eyelid tape — a temporary cosmetic fix to create a hooded lid appearance",
+            "Strategic brow grooming — keeping brows lower and flatter can minimize the appearance of UEE"
+        ],
+        lifestyle: [
+            "Quality sleep — reduces inflammation that can make eyelids look puffy and more exposed",
+            "Reducing salt intake — prevents water retention that can lead to 'bug eye' appearance"
+        ],
+        outlook: "UEE is largely determined by the relationship between the eyeball and the supraorbital ridge. Bone-level changes via implants are the most effective structural fix."
+    },
+    philtrumLength: {
+        surgical: [
+            "Subnasal Lip Lift — the gold standard for shortening the philtrum directly and increasing upper lip show",
+            "Le Fort I osteotomy with maxillary impaction — shortens the overall midface and philtrum distance skeletal-wise"
+        ],
+        nonSurgical: [
+            "Upper lip filler — by adding volume to the upper lip, the perceived length of the philtrum is reduced",
+            "Mustache grooming — a well-maintained mustache can effectively hide a long philtrum"
+        ],
+        lifestyle: [
+            "Correct oral posture (Mewing) — applies upward pressure that may counteract long-term philtrum elongation",
+            "Sun protection — prevents the loss of collagen that causes the philtrum to sag and lengthen with age"
+        ],
+        outlook: "A long philtrum is a difficult trait to fix without surgery. A subnasal lip lift is highly effective but requires careful scar management."
     }
 };

@@ -31,7 +31,9 @@ export const getRating = (metric: keyof MetricScores, value: number, gender: 'ma
             angleDeduction: value === 0 ? { text: 'ideal camera setup', color: 'text-green-400' } : value <= 0.5 ? { text: 'minor tilt', color: 'text-yellow-400' } : { text: 'high distortion check', color: 'text-red-400' },
             facialTension: value < 0.5 ? { text: 'relaxed / neutral', color: 'text-green-400' } : value < 1.2 ? { text: 'minor tension', color: 'text-yellow-400' } : { text: 'high tension detected', color: 'text-orange-400' },
             skinQuality: value > 90 ? { text: 'glass skin', color: 'text-green-400' } : value > 75 ? { text: 'clear skin', color: 'text-blue-400' } : value > 50 ? { text: 'textured', color: 'text-yellow-400' } : { text: 'acne / heavy texture', color: 'text-red-400' },
-            hairQualityScore: value >= 85 ? { text: 'elite grooming', color: 'text-green-400' } : value >= 65 ? { text: 'well-groomed', color: 'text-blue-400' } : value >= 40 ? { text: 'average grooming', color: 'text-yellow-400' } : { text: 'unkempt / poor', color: 'text-red-400' }
+            hairQualityScore: value >= 85 ? { text: 'elite grooming', color: 'text-green-400' } : value >= 65 ? { text: 'well-groomed', color: 'text-blue-400' } : value >= 40 ? { text: 'average grooming', color: 'text-yellow-400' } : { text: 'unkempt / poor', color: 'text-red-400' },
+            upperEyelidExposure: value < 0.25 ? { text: 'hooded / ideal', color: 'text-green-400' } : value < 0.35 ? { text: 'good', color: 'text-blue-400' } : value > 0.45 ? { text: 'excessive (bug eyes)', color: 'text-red-400' } : { text: 'noticeable UEE', color: 'text-yellow-400' },
+            philtrumLength: value < 0.08 ? { text: 'compact / ideal', color: 'text-green-400' } : value < 0.10 ? { text: 'good', color: 'text-blue-400' } : value > 0.12 ? { text: 'long (chimp)', color: 'text-red-400' } : { text: 'average', color: 'text-yellow-400' }
         };
         return fRatings[metric] || { text: 'unknown', color: 'text-gray-400' };
     }
@@ -66,7 +68,9 @@ export const getRating = (metric: keyof MetricScores, value: number, gender: 'ma
         angleDeduction: value === 0 ? { text: 'ideal camera setup', color: 'text-green-400' } : value <= 0.5 ? { text: 'minor tilt', color: 'text-yellow-400' } : { text: 'high distortion check', color: 'text-red-400' },
         facialTension: value < 0.5 ? { text: 'relaxed / neutral', color: 'text-green-400' } : value < 1.2 ? { text: 'minor tension', color: 'text-yellow-400' } : { text: 'high tension detected', color: 'text-orange-400' },
         skinQuality: value > 90 ? { text: 'glass skin', color: 'text-green-400' } : value > 75 ? { text: 'clear skin', color: 'text-blue-400' } : value > 50 ? { text: 'textured', color: 'text-yellow-400' } : { text: 'acne / heavy texture', color: 'text-red-400' },
-        hairQualityScore: value >= 85 ? { text: 'elite grooming', color: 'text-green-400' } : value >= 65 ? { text: 'well-groomed', color: 'text-blue-400' } : value >= 40 ? { text: 'average grooming', color: 'text-yellow-400' } : { text: 'unkempt / poor', color: 'text-red-400' }
+        hairQualityScore: value >= 85 ? { text: 'elite grooming', color: 'text-green-400' } : value >= 65 ? { text: 'well-groomed', color: 'text-blue-400' } : value >= 40 ? { text: 'average grooming', color: 'text-yellow-400' } : { text: 'unkempt / poor', color: 'text-red-400' },
+        upperEyelidExposure: value < 0.25 ? { text: 'hunter eyes (no UEE)', color: 'text-green-400' } : value < 0.35 ? { text: 'good', color: 'text-blue-400' } : value > 0.45 ? { text: 'bug eyes (high UEE)', color: 'text-red-400' } : { text: 'noticeable UEE', color: 'text-yellow-400' },
+        philtrumLength: value < 0.08 ? { text: 'compact / ideal', color: 'text-green-400' } : value < 0.10 ? { text: 'good', color: 'text-blue-400' } : value > 0.12 ? { text: 'long (chimp)', color: 'text-red-400' } : { text: 'average', color: 'text-yellow-400' }
     };
 
     return mRatings[metric] || { text: 'unknown', color: 'text-gray-400' };
@@ -103,7 +107,9 @@ export const getIdealRange = (metric: keyof MetricScores, gender: 'male' | 'fema
             angleDeduction: '0 (neutral)',
             facialTension: '< 0.5 (relaxed)',
             skinQuality: '85-100 (clear)',
-            hairQualityScore: '65-100 (groomed)'
+            hairQualityScore: '65-100 (groomed)',
+            upperEyelidExposure: '< 0.25 (Minimal)',
+            philtrumLength: '< 0.08 (Compact)'
         };
         return fIdeals[metric] || '';
     }
@@ -137,7 +143,9 @@ export const getIdealRange = (metric: keyof MetricScores, gender: 'male' | 'fema
         angleDeduction: '0 (neutral)',
         facialTension: '< 0.5 (relaxed)',
         skinQuality: '85-100 (clear)',
-        hairQualityScore: '65-100 (groomed)'
+        hairQualityScore: '65-100 (groomed)',
+        upperEyelidExposure: '< 0.25 (Minimal)',
+        philtrumLength: '< 0.08 (Compact)'
     };
     return mIdeals[metric];
 };

@@ -24,6 +24,8 @@ import {
     calculateNoseWidthRatio,
     calculateCheekboneProminence,
     calculateHairlineRecession,
+    calculateUpperEyelidExposure,
+    calculatePhiltrumLength,
     calculatePSLScore,
     calculateAggregatedMetrics,
     extractEulerAngles,
@@ -31,6 +33,7 @@ import {
     distance,
     MetricScores
 } from '@/utils/geometry';
+import { calculatePercentile, calculateCommunityStatus } from '@/utils/statistics';
 import {
     calculateOrbitalRimProtrusion,
     calculateMaxillaryProtrusion,
@@ -79,7 +82,7 @@ export default function FaceAnalyzer() {
 
     const [consentGiven, setConsentGiven] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
-    const [resultsTab, setResultsTab] = useState<'analysis' | 'roadmap' | 'haircut'>('analysis');
+    const [resultsTab, setResultsTab] = useState<Tab>('analysis');
 
     useEffect(() => {
         setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
@@ -383,6 +386,8 @@ export default function FaceAnalyzer() {
                 angleDeduction: 0,
                 facialTension: tensionData.tensionScore,
                 skinQuality: skinQualityData.clarityScore,
+                upperEyelidExposure: calculateUpperEyelidExposure(physicalLandmarks),
+                philtrumLength: calculatePhiltrumLength(physicalLandmarks),
                 physicalIPD: distance(midpoint(physicalLandmarks[33], physicalLandmarks[133]), midpoint(physicalLandmarks[263], physicalLandmarks[362])),
                 physicalJawWidth: distance(physicalLandmarks[58], physicalLandmarks[288]),
                 physicalFaceWidth: distance(physicalLandmarks[234], physicalLandmarks[454]),
@@ -455,16 +460,6 @@ export default function FaceAnalyzer() {
             return false;
         }
     };
-                   });
-                    } else if (appMode === 'compare') {
-                        if (compareSlot === 'before') {
-                            setBeforeScan(newScan);
-                        } else {
-                            setAfterScan(newScan);
-                        }
-                    }
-
-
     const captureAndAnalyze = () => {
         if (!webcamRef.current || !faceLandmarker) return;
 
@@ -1022,13 +1017,35 @@ export default function FaceAnalyzer() {
                                                     </div>
                                                     <p className="text-sm font-medium text-zinc-300 mt-1">{auditResult.psl.tier}</p>
                                                 </div>
-                                                <button
-                                                    onClick={() => { setAuditResult(null); setScans([]); setAnalyzedImageWithLandmarks(null); setUploadedImage(null); }}
-                                                    className="text-xs font-semibold text-zinc-600 hover:text-red-400 transition-colors border border-zinc-700 hover:border-red-500/50 rounded-lg px-3 py-1.5"
-                                                >
-                                                    Reset
-                                                </button>
+                                                <div className="flex flex-col items-end">
+                                                    <button
+                                                        onClick={() => { setAuditResult(null); setScans([]); setAnalyzedImageWithLandmarks(null); setUploadedImage(null); }}
+                                                        className="text-xs font-semibold text-zinc-600 hover:text-red-400 transition-colors border border-zinc-700 hover:border-red-500/50 rounded-lg px-3 py-1.5 mb-2"
+                                                    >
+                                                        Reset
+                                                    </button>
+                                                    
+                                                    {(() => {
+                                                        const status = calculateCommunityStatus(s);
+                                                        return (
+                                                            <div className="flex flex-col items-end">
+                                                                <span className={`text-[10px] font-black uppercase tracking-[0.2em] px-2 py-0.5 rounded bg-zinc-800 border border-zinc-700 mb-1 ${status.color}`}>
+                                                                    {status.status}
+                                                                </span>
+                                                            </div>
+                                                        );
+                                                    })()}
+                                                </div>
                                             </div>
+
+                                            {(() => {
+                                                const status = calculateCommunityStatus(s);
+                                                return (
+                                                    <p className="text-[11px] text-zinc-500 mb-4 leading-relaxed bg-zinc-800/50 p-2 rounded-xl border border-zinc-800/50 italic">
+                                                        "{status.description}"
+                                                    </p>
+                                                );
+                                            })()}
 
                                             {/* Score Bar */}
                                             <div className="h-2.5 bg-zinc-800 rounded-full overflow-hidden">

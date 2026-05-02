@@ -603,6 +603,46 @@ export function calculateFacialThirds(landmarks: NormalizedLandmark[]): { upper:
         Math.abs(lowerThird - ideal)
     ) / total;
 
+    return {
+        upper: upperThird / total,
+        middle: middleThird / total,
+        lower: lowerThird / total,
+        ratio: 1 - deviation
+    };
+}
+
+export function calculateUpperEyelidExposure(landmarks: NormalizedLandmark[]): number {
+    // UEE = distance from upper lid to iris center / pupil
+    // More UEE = bug eyes, Less UEE = hunter eyes
+    // Using landmarks: 
+    // Left eye top lid: 159, Iris center: 468
+    // Right eye top lid: 386, Iris center: 473
+    const leftUEE = distance(landmarks[159], landmarks[468]);
+    const rightUEE = distance(landmarks[386], landmarks[473]);
+    
+    // Normalize by eye height to make it scale-invariant
+    const leftEyeHeight = distance(landmarks[159], landmarks[145]);
+    const rightEyeHeight = distance(landmarks[386], landmarks[374]);
+    
+    if (leftEyeHeight === 0 || rightEyeHeight === 0) return 0.5;
+    
+    return ((leftUEE / leftEyeHeight) + (rightUEE / rightEyeHeight)) / 2;
+}
+
+export function calculatePhiltrumLength(landmarks: NormalizedLandmark[]): number {
+    // Philtrum Length: Subnasale [2] to Cupid's bow [0]
+    // Normalized by face height (hairline to chin) for relative measure
+    const philtrum = distance(landmarks[2], landmarks[0]);
+    const faceHeight = distance(landmarks[10], landmarks[152]);
+    
+    if (faceHeight === 0) return 0.05;
+    return philtrum / faceHeight;
+}
+        Math.abs(upperThird - ideal) +
+        Math.abs(middleThird - ideal) +
+        Math.abs(lowerThird - ideal)
+    ) / total;
+
     // Convert to 0-100 score (100 = perfect 1:1:1)
     const ratio = Math.max(0, 100 - (deviation * 200));
 
@@ -739,6 +779,10 @@ export interface MetricScores {
     // OBJECTIVE AUDIT
     audit?: any;
 
+    // NEW: Scientific Blackpill / PSL Wiki Metrics
+    upperEyelidExposure: number;      // Less is better (Hunter eyes)
+    philtrumLength: number;           // Shorter is better
+    
     // NEW GOD-TIER FIELDS
     phenotype?: Phenotype;
     vitality?: VitalityData;
@@ -1139,6 +1183,35 @@ export function calculatePSLScore(
         } else if (metrics.chinProjection < 0) {
             score -= 0.8;
             breakdown.push("Recessed Chin / Weak Genioplasty Target (-0.8)");
+        }
+    }
+
+    // ==========================================
+    // SCIENTIFIC BLACKPILL / WIKI METRICS
+    // ==========================================
+
+    // Upper Eyelid Exposure (UEE)
+    if (metrics.upperEyelidExposure !== undefined) {
+        if (metrics.upperEyelidExposure < 0.25) {
+            score += 0.6;
+            breakdown.push("Hunter Eyes / Minimal UEE (+0.6)");
+        } else if (metrics.upperEyelidExposure > 0.45) {
+            score -= 1.0;
+            breakdown.push("Bug Eyes / Excessive UEE (-1.0)");
+        } else if (metrics.upperEyelidExposure > 0.35) {
+            score -= 0.3;
+            breakdown.push("Noticeable Upper Eyelid Exposure (-0.3)");
+        }
+    }
+
+    // Philtrum Length
+    if (metrics.philtrumLength !== undefined) {
+        if (metrics.philtrumLength < 0.08) {
+            score += 0.3;
+            breakdown.push("Short Compact Philtrum (+0.3)");
+        } else if (metrics.philtrumLength > 0.12) {
+            score -= 0.7;
+            breakdown.push("Long Philtrum / Facial Elongation (-0.7)");
         }
     }
 
