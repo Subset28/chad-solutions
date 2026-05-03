@@ -80,7 +80,7 @@ export function generateAscensionPlan(
     for (const [key, weight] of sortedMetrics) {
         const metricKey = key as keyof MetricScores;
         const val = metrics[metricKey];
-        if (val === undefined) continue;
+        if (val === undefined || typeof val !== 'number') continue;
 
         const rating = getRating(metricKey, val, gender);
         const isIdeal = rating.color.includes('green');
