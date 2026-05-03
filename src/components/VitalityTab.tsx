@@ -7,6 +7,18 @@ interface VitalityTabProps {
     metrics: MetricScores;
 }
 
+const StatCard = ({ label, value, sub, color }: { label: string, value: string | number, sub: string, color: string }) => (
+    <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="bg-white/5 border border-white/10 p-4 rounded-2xl backdrop-blur-xl"
+    >
+        <div className="text-white/50 text-xs font-bold uppercase tracking-wider mb-1">{label}</div>
+        <div className={`text-2xl font-black ${color}`}>{value}</div>
+        <div className="text-white/30 text-[10px] mt-1">{sub}</div>
+    </motion.div>
+);
+
 export default function VitalityTab({ metrics }: VitalityTabProps) {
     if (!metrics.vitality) return null;
 
@@ -18,17 +30,7 @@ export default function VitalityTab({ metrics }: VitalityTabProps) {
         cheekboneProminence: metrics.cheekboneProminence
     });
 
-    const StatCard = ({ label, value, sub, color }: { label: string, value: string | number, sub: string, color: string }) => (
-        <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="bg-white/5 border border-white/10 p-4 rounded-2xl backdrop-blur-xl"
-        >
-            <div className="text-white/50 text-xs font-bold uppercase tracking-wider mb-1">{label}</div>
-            <div className={`text-2xl font-black ${color}`}>{value}</div>
-            <div className="text-white/30 text-[10px] mt-1">{sub}</div>
-        </motion.div>
-    );
+
 
     return (
         <div className="space-y-6">
