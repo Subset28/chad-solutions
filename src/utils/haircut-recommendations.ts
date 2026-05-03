@@ -91,7 +91,7 @@ interface ShapeScore {
     score: number;
 }
 
-export function classifyFaceShape(metrics: FaceShapeInput, gender: 'male' | 'female'): { shape: FaceShape; confidence: number } {
+export function classifyFaceShape(metrics: FaceShapeInput, _gender: 'male' | 'female'): { shape: FaceShape; confidence: number } {
     const { fwfhRatio, foreheadHeightRatio, bigonialWidthRatio, midfaceRatio, gonialAngle, lowerThirdRatio } = metrics;
 
     const scores: ShapeScore[] = [];

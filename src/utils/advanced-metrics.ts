@@ -90,7 +90,6 @@ export function calculateInfraorbitalRimPosition(landmarks: NormalizedLandmark[]
 // === CHIN PROJECTION ===
 export function calculateChinProjection(landmarks: NormalizedLandmark[]): number {
     const chin = landmarks[152];
-    const noseBase = landmarks[2];
     const forehead = landmarks[10];
 
     // Ideal: chin slightly overshoots glabella (forehead)
@@ -180,6 +179,7 @@ export function calculateDoubleChinRisk(landmarks: NormalizedLandmark[]): number
 }
 
 // === POSTURE & EXPRESSION (Blendshapes) ===
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 export function evaluateFacialTension(blendshapes: any[]): { tensionScore: number, dominantExpressions: string[] } {
     if (!blendshapes || blendshapes.length === 0) return { tensionScore: 0, dominantExpressions: [] };
 
@@ -187,9 +187,9 @@ export function evaluateFacialTension(blendshapes: any[]): { tensionScore: numbe
     const tensionMetrics = ['browInnerUp', 'browDownLeft', 'browDownRight', 'jawOpen', 'mouthSmileLeft', 'mouthSmileRight', 'mouthStretch', 'mouthPressLeft', 'mouthPressRight', 'mouthDimpleLeft', 'mouthDimpleRight'];
 
     let totalTension = 0;
-    let dominant: string[] = [];
+    const dominant: string[] = [];
 
-    categories.forEach((cat: any) => {
+    categories.forEach((cat: { categoryName: string; score: number }) => {
         if (tensionMetrics.includes(cat.categoryName)) {
             totalTension += cat.score;
             if (cat.score > 0.3) {

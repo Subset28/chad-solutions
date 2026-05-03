@@ -21,19 +21,22 @@ import {
     calculateIPDRatio,
     calculateFacialThirds,
     calculateForeheadHeightRatio,
-    calculateNoseWidthRatio,
-    calculateCheekboneProminence,
-    calculateHairlineRecession,
-    calculateUpperEyelidExposure,
     calculatePhiltrumLength,
     calculatePSLScore,
     calculateAggregatedMetrics,
     extractEulerAngles,
     scaleLandmarks,
+    reconstructPhysicalFace,
+    normalizeExpression,
+    auditAnalysisQuality,
+    calculateCheekboneProminence,
+    calculateHairlineRecession,
+    calculateUpperEyelidExposure,
     distance,
+    midpoint,
     MetricScores
 } from '@/utils/geometry';
-import { calculatePercentile, calculateCommunityStatus } from '@/utils/statistics';
+import { calculateCommunityStatus } from '@/utils/statistics';
 import {
     calculateOrbitalRimProtrusion,
     calculateMaxillaryProtrusion,
@@ -41,9 +44,7 @@ import {
     calculateInfraorbitalRimPosition,
     calculateChinProjection,
     calculateDoubleChinRisk,
-    evaluateFacialTension,
-    evaluateCameraAngle,
-    evaluateLensDistortion
+    evaluateFacialTension
 } from '@/utils/advanced-metrics';
 import { analyzeSkinQuality } from '@/utils/image-processing';
 import AnalysisTab from '@/components/AnalysisTab';
@@ -68,7 +69,6 @@ export default function FaceAnalyzer() {
     const [inputMode, setInputMode] = useState<InputMode>('webcam');
     const [uploadedImage, setUploadedImage] = useState<string | null>(null);
     const [analyzedImageWithLandmarks, setAnalyzedImageWithLandmarks] = useState<string | null>(null);
-    const [selectedMetric, setSelectedMetric] = useState<keyof MetricScores | null>(null);
     const [expandedMetric, setExpandedMetric] = useState<string | null>(null);
     const [isAnalyzing, setIsAnalyzing] = useState(false);
 
@@ -91,7 +91,7 @@ export default function FaceAnalyzer() {
     useEffect(() => {
         // Suppress MediaPipe/TensorFlow Lite info messages
         const originalError = console.error;
-        console.error = (...args: any[]) => {
+        console.error = (...args: unknown[]) => {
             const message = args[0]?.toString() || '';
             // Filter out TensorFlow Lite initialization messages
             if (message.includes('Created TensorFlow Lite XNNPACK delegate') ||
@@ -128,7 +128,7 @@ export default function FaceAnalyzer() {
         };
     }, []);
 
-    const drawLandmarks = (image: HTMLImageElement, landmarks: any) => {
+    const _drawLandmarks = (image: HTMLImageElement, landmarks: { x: number; y: number; z: number }[]) => {
         if (!canvasRef.current) return '';
 
         const canvas = canvasRef.current;
@@ -139,7 +139,7 @@ export default function FaceAnalyzer() {
         canvas.height = image.height;
         ctx.drawImage(image, 0, 0);
 
-        const toCanvas = (landmark: any) => ({
+        const toCanvas = (landmark: { x: number; y: number }) => ({
             x: landmark.x * canvas.width,
             y: landmark.y * canvas.height
         });
@@ -196,7 +196,7 @@ export default function FaceAnalyzer() {
     };
 
     // Draw landmarks on canvas element (for normalized canvas from image processing)
-    const drawLandmarksOnCanvas = (inputCanvas: HTMLCanvasElement, landmarks: any[]): string => {
+    const _drawLandmarksOnCanvas = (inputCanvas: HTMLCanvasElement, landmarks: { x: number; y: number; z: number }[]): string => {
         // Create a new canvas to draw on (don't modify the input)
         const canvas = document.createElement('canvas');
         canvas.width = inputCanvas.width;
@@ -216,7 +216,7 @@ export default function FaceAnalyzer() {
         // Copy the input canvas content
         ctx.drawImage(inputCanvas, 0, 0);
 
-        const toCanvas = (landmark: any) => ({
+        const toCanvas = (landmark: { x: number; y: number }) => ({
             x: landmark.x * canvas.width,
             y: landmark.y * canvas.height
         });
@@ -323,7 +323,7 @@ export default function FaceAnalyzer() {
             // 3. 3D Metric Reconstruction (Hardware-Aware)
             const rawPhysicalLandmarks = reconstructPhysicalFace(
                 landmarks, 
-                matrix, 
+                matrix as unknown, 
                 analyzedCanvas.width, 
                 analyzedCanvas.height,
                 hwFocalLength_mm,
@@ -334,7 +334,7 @@ export default function FaceAnalyzer() {
             const physicalLandmarks = normalizeExpression(rawPhysicalLandmarks, results.faceBlendshapes);
 
             // 5. Quality Audit
-            const audit = auditAnalysisQuality(matrix, results.faceBlendshapes, imageLuminance);
+            const audit = auditAnalysisQuality(matrix as unknown, results.faceBlendshapes, imageLuminance);
 
             // 6. Metrics Calculation
             const scaledLandmarks = scaleLandmarks(landmarks, analyzedCanvas.width, analyzedCanvas.height);
@@ -429,8 +429,8 @@ export default function FaceAnalyzer() {
             const annotatedImage = drawAnnotated();
             const newScan = { metrics, psl: pslData, imageUrl: annotatedImage, profileType };
 
-            // 8. State Updates (Single vs Compare vs Roll)
-            if (appMode === 'single' || appMode === 'roll') {
+            // 8. State Updates (Single vs Compare)
+            if (appMode === 'single') {
                 setScans(prev => {
                     const updated = [...prev, newScan];
                     const compositeMetrics = calculateAggregatedMetrics(updated);
@@ -469,7 +469,7 @@ export default function FaceAnalyzer() {
         }
     };
 
-    const [hwProfile, setHwProfile] = React.useState(() => getHardwareProfile());
+    const [_hwProfile, _setHwProfile] = React.useState(() => getHardwareProfile());
 
     const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files;
@@ -495,7 +495,7 @@ export default function FaceAnalyzer() {
                 setUploadedImage(imageSrc);
             }
 
-            const success = await analyzeImage(imageSrc, exifFocalLength);
+            const success = await analyzeImage(imageSrc, exifFocalLength || undefined);
 
             if (success && i < fileArray.length - 1) {
                 await new Promise(r => setTimeout(r, 600));
@@ -534,7 +534,7 @@ export default function FaceAnalyzer() {
         if (fileInputRef.current) fileInputRef.current.value = '';
     };
 
-    const generateFinalReport = () => {
+    const _generateFinalReport = () => {
         if (scans.length === 0) return;
 
         const compositeMetrics = calculateAggregatedMetrics(scans);
@@ -592,7 +592,7 @@ export default function FaceAnalyzer() {
         }
     };
 
-    const getRating = (metric: keyof MetricScores, value: number, gender: 'male' | 'female' = 'male'): { text: string, color: string } => {
+    const _getRating = (metric: keyof MetricScores, value: number, gender: 'male' | 'female' = 'male'): { text: string, color: string } => {
         if (gender === 'female') {
             const fRatings: Record<string, { text: string, color: string }> = {
                 canthalTilt: value >= 5 && value <= 9.5 ? { text: 'perfect feline tilt', color: 'text-green-400' } : value > 2 ? { text: 'good', color: 'text-blue-400' } : value < 0 ? { text: 'negative tilt', color: 'text-red-400' } : { text: 'neutral', color: 'text-yellow-400' },
@@ -664,7 +664,7 @@ export default function FaceAnalyzer() {
         return mRatings[metric] || { text: 'unknown', color: 'text-gray-400' };
     };
 
-    const getIdealRange = (metric: keyof MetricScores, gender: 'male' | 'female' = 'male'): string => {
+    const _getIdealRange = (metric: keyof MetricScores, gender: 'male' | 'female' = 'male'): string => {
         if (gender === 'female') {
             const fIdeals: Record<string, string> = {
                 canthalTilt: '5° to 9.5°',
@@ -700,7 +700,7 @@ export default function FaceAnalyzer() {
             return fIdeals[metric] || '';
         }
 
-        const mIdeals: Record<keyof MetricScores, string> = {
+        const mIdeals: Partial<Record<keyof MetricScores, string>> = {
             canthalTilt: '4° to 6°',
             fwfhRatio: '> 1.65',
             midfaceRatio: '0.75 to 1.05',
@@ -731,7 +731,7 @@ export default function FaceAnalyzer() {
             skinQuality: '85-100 (clear)',
             hairQualityScore: '65-100 (groomed)'
         };
-        return mIdeals[metric];
+        return mIdeals[metric] || '';
     };
 
     return (
@@ -1042,7 +1042,7 @@ export default function FaceAnalyzer() {
                                                 const status = calculateCommunityStatus(s);
                                                 return (
                                                     <p className="text-[11px] text-zinc-500 mb-4 leading-relaxed bg-zinc-800/50 p-2 rounded-xl border border-zinc-800/50 italic">
-                                                        "{status.description}"
+                                                        &ldquo;{status.description}&rdquo;
                                                     </p>
                                                 );
                                             })()}

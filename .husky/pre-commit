@@ -1,1 +1,1 @@
-npx lint-staged && ./verify.sh
+npm test

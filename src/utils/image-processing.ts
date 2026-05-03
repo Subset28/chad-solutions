@@ -18,7 +18,7 @@ export const convertHeicToJpeg = async (file: File): Promise<Blob | Blob[]> => {
  */
 export function analyzeSkinQuality(
     image: HTMLImageElement | HTMLVideoElement,
-    landmarks: any[] // Normalized landmarks
+    landmarks: { x: number; y: number; z: number }[] // Normalized landmarks
 ): { clarityScore: number, feedback: string, value: number } {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
@@ -88,7 +88,7 @@ export function analyzeSkinQuality(
             }
 
             return Math.sqrt(varianceSum / validPixels.length);
-        } catch (e) {
+        } catch (_e) {
             return 0; // Canvas cross-origin taint or bounds issue
         }
     };

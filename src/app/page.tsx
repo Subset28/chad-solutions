@@ -22,7 +22,7 @@ export default function Home() {
           </h1>
 
           <p className="text-lg md:text-xl text-zinc-400 max-w-xl mx-auto font-medium leading-relaxed">
-            The world's most advanced facial analysis engine.
+            The world&apos;s most advanced facial analysis engine.
             25+ clinical metrics. Surgical-grade precision.
             Your personalized roadmap to peak potential.
           </p>

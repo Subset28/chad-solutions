@@ -24,11 +24,14 @@ export interface AscensionPlan {
 }
 
 export function getTierName(score: number): string {
-    if (score >= 7.5) return "God Tier";
-    if (score >= 6.5) return "Chad / GigaChad";
-    if (score >= 5.5) return "Model Tier";
-    if (score >= 4.5) return "Above Average";
-    return "Average / MTN";
+    if (score >= 7.5) return "GIGACHAD / PSL GOD";
+    if (score >= 6.5) return "CHAD";
+    if (score >= 5.5) return "CHADLITE";
+    if (score >= 4.5) return "HIGH-TIER NORMIE";
+    if (score >= 3.5) return "MID-TIER NORMIE";
+    if (score >= 2.5) return "LOW-TIER NORMIE";
+    if (score >= 1.5) return "TRUECEL";
+    return "SUBHUMAN";
 }
 
 // Estimated PSL boost for moving a metric from 'Bad/Average' to 'Perfect'
@@ -52,6 +55,8 @@ const PSL_IMPACT_WEIGHTS: Record<string, number> = {
     infraorbitalRimPosition: 0.3,
     chinProjection: 0.5,
     doubleChinRisk: 0.4,
+    upperEyelidExposure: 0.6,
+    philtrumLength: 0.5,
 };
 
 export function generateAscensionPlan(

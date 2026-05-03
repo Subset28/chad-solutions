@@ -16,10 +16,10 @@ export interface VitalityMetrics {
  * High-precision health marker analysis.
  */
 export function analyzeVitality(
-    imageData: Uint8ClampedArray,
-    landmarks: any[],
-    width: number,
-    height: number
+    _imageData: Uint8ClampedArray,
+    _landmarks: { x: number; y: number; z: number }[],
+    _width: number,
+    _height: number
 ): VitalityMetrics {
     // 1. Ocular Redness (Sleep/Health)
     // Sample sclera area

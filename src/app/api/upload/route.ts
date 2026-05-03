@@ -68,11 +68,11 @@ export async function POST(request: Request) {
         console.log(`Successfully harvested image: ${path}`);
         return NextResponse.json({ success: true, path });
 
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error('Upload Harvest Pipeline CRITICAL Error:', error);
         return NextResponse.json({
             error: 'Internal Server Error',
-            details: error.message
+            details: (error as Error).message
         }, { status: 500 });
     }
 }

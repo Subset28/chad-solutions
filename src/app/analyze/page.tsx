@@ -3,7 +3,7 @@ declare global {
         webkit?: {
             messageHandlers: {
                 analysisComplete: {
-                    postMessage: (message: any) => void;
+                    postMessage: (message: unknown) => void;
                 };
             };
         };

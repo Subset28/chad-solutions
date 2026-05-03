@@ -43,7 +43,7 @@ export default function HaircutTab({ metrics, gender }: HaircutTabProps) {
                         <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest block mb-1.5">Hair Type</label>
                         <select
                             value={hairProfile.type}
-                            onChange={(e) => setHairProfile({ ...hairProfile, type: e.target.value as any })}
+                            onChange={(e) => setHairProfile({ ...hairProfile, type: e.target.value as HairProfile['type'] })}
                             className="w-full bg-zinc-800 border-none rounded-lg text-xs text-white px-3 py-2 cursor-pointer focus:ring-1 focus:ring-indigo-500 outline-none"
                         >
                             <option value="straight">Straight</option>
@@ -57,7 +57,7 @@ export default function HaircutTab({ metrics, gender }: HaircutTabProps) {
                             <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest block mb-1.5">Hairline</label>
                             <select
                                 value={hairProfile.hairline}
-                                onChange={(e) => setHairProfile({ ...hairProfile, hairline: e.target.value as any })}
+                                onChange={(e) => setHairProfile({ ...hairProfile, hairline: e.target.value as HairProfile['hairline'] })}
                                 className="w-full bg-zinc-800 border-none rounded-lg text-xs text-white px-3 py-2 cursor-pointer focus:ring-1 focus:ring-indigo-500 outline-none"
                             >
                                 <option value="full">Full / Solid</option>

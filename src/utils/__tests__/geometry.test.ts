@@ -2,7 +2,6 @@ import { describe, it, expect } from 'vitest';
 import { 
     distance, 
     calculatePSLScore, 
-    calculateCanthalTilt,
     MetricScores 
 } from '../geometry';
 

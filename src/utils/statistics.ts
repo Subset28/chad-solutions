@@ -24,7 +24,7 @@ export function calculatePercentile(metric: string, value: number): PercentileDa
     const zScore = (value - stats.mean) / stats.stdDev;
     
     // Normal distribution approximation (simplified)
-    const percentile = Math.round(100 * (0.5 * (1 + Math.erf(Math.abs(zScore) / Math.sqrt(2)))));
+    const percentile = Math.round(100 * (0.5 * (1 + erf(Math.abs(zScore) / Math.sqrt(2)))));
     const finalPercentile = zScore > 0 ? percentile : 100 - percentile;
 
     let rank = "Average";

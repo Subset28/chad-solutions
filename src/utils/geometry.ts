@@ -15,22 +15,21 @@ export interface FaceAngles {
  * provided by MediaPipe's FaceLandmarker `facialTransformationMatrixes`.
  * Matrix is Row-Major order.
  */
-export function extractEulerAngles(matrix: any): FaceAngles {
-    // Array format is often flattened: [m00, m01, m02, m03, m10, m11, ...]
-    // Note: MediaPipe matrix format might slightly differ in translation columns,
-    // but the 3x3 rotation subset should be standard.
-    let m00, m01, m02, m10, m11, m12, m20, m21, m22;
+export function extractEulerAngles(matrix: unknown): FaceAngles {
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+    const m = matrix as any;
+    let m00, m10, m11, m12, m20, m21, m22;
 
     // Check if it's a flattened 16-element array or 4x4 array of arrays
-    if (matrix.length === 16) {
+    if (m.length === 16) {
         // Flattened Float32Array
-        m00 = matrix[0]; m01 = matrix[1]; m02 = matrix[2];
-        m10 = matrix[4]; m11 = matrix[5]; m12 = matrix[6];
-        m20 = matrix[8]; m21 = matrix[9]; m22 = matrix[10];
+        m00 = m[0]; 
+        m10 = m[4]; m11 = m[5]; m12 = m[6];
+        m20 = m[8]; m21 = m[9]; m22 = m[10];
     } else {
         // Assume MatrixData structure or 2D array
-        const getVal = (r: number, c: number) => matrix.data ? matrix.data[r * 4 + c] : matrix[r][c];
-        m00 = getVal(0, 0); m01 = getVal(0, 1); m02 = getVal(0, 2);
+        const getVal = (r: number, c: number) => m.data ? m.data[r * 4 + c] : m[r][c];
+        m00 = getVal(0, 0); 
         m10 = getVal(1, 0); m11 = getVal(1, 1); m12 = getVal(1, 2);
         m20 = getVal(2, 0); m21 = getVal(2, 1); m22 = getVal(2, 2);
     }
@@ -82,7 +81,7 @@ export function estimateFocalLength(imageWidth: number, horizontalFOVDeg: number
  */
 export function reconstructPhysicalFace(
     landmarks: NormalizedLandmark[],
-    matrix: any,
+    matrix: unknown,
     imageWidth: number,
     imageHeight: number,
     hwFocalLength_mm?: number,
@@ -128,14 +127,19 @@ export function reconstructPhysicalFace(
     
     // 4. De-rotate using the inverse of the facialTransformationMatrix
     // Matrix is Row-Major order in MediaPipe.
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+    const mat = matrix as any;
     let m = new Float32Array(16);
-    if (matrix && matrix.length === 16) {
-        m = matrix;
-    } else if (matrix && matrix.data) {
-        m = matrix.data;
+    if (mat && mat.length === 16) {
+        m = mat;
+    } else if (mat && mat.data) {
+        m = mat.data;
     } else {
         // Fallback to identity if no matrix available
-        return cameraSpacePoints;
+        return cameraSpacePoints.map((p, i) => ({
+            ...p,
+            visibility: landmarks[i].visibility
+        })) as NormalizedLandmark[];
     }
     
     // Extract 3x3 Rotation part (Camera -> Face)
@@ -145,7 +149,7 @@ export function reconstructPhysicalFace(
     
     // The matrix transforms points from Face Space to Camera Space.
     // To get back to "Perfect Frontal Face Space", we multiply by the Inverse (Transpose for rotation matrices).
-    return cameraSpacePoints.map(p => {
+    return cameraSpacePoints.map((p, i) => {
         const x = p.x;
         const y = p.y;
         const z = p.z - zDistance_mm; // Shift origin to face center for rotation
@@ -158,9 +162,8 @@ export function reconstructPhysicalFace(
             x: rx,
             y: ry,
             z: rz,
-            visibility: landmarks[i].visibility,
-            presence: landmarks[i].presence
-        };
+            visibility: landmarks[i].visibility
+        } as NormalizedLandmark;
     });
 }
 
@@ -169,12 +172,13 @@ export function reconstructPhysicalFace(
  * Mathematically "neutralizes" facial micro-expressions (smiles, squints, scowls)
  * to ensure measurements are 100% objective bone-structure analysis.
  */
-export function normalizeExpression(landmarks: NormalizedLandmark[], blendshapes: any[]): NormalizedLandmark[] {
-    if (!landmarks || !blendshapes || blendshapes.length === 0) return landmarks;
+export function normalizeExpression(landmarks: NormalizedLandmark[], blendshapes: unknown): NormalizedLandmark[] {
+    const shapes = blendshapes as { categories: { categoryName: string; score: number }[] }[];
+    if (!landmarks || !shapes || shapes.length === 0) return landmarks;
 
-    const categories = blendshapes[0].categories;
+    const categories = shapes[0].categories;
     const scores: Record<string, number> = {};
-    categories.forEach((cat: any) => { scores[cat.categoryName] = cat.score; });
+    categories.forEach((cat: { categoryName: string; score: number }) => { scores[cat.categoryName] = cat.score; });
 
     const normalized = [...landmarks].map(p => ({ ...p }));
 
@@ -225,15 +229,13 @@ export interface ConfidenceAudit {
  * Evaluates environmental and behavioral noise to determine scan validity.
  */
 export function auditAnalysisQuality(
-    matrix: any, 
-    blendshapes: any[], 
+    matrix: unknown, 
+    blendshapes: unknown, 
     imageLuminance: number = 100 // Default to 100 if unknown
 ): ConfidenceAudit {
-    const euler = extractEulerAngles(matrix);
-    const angleSeverity = Math.max(Math.abs(euler.pitch), Math.abs(euler.yaw));
-    
-    const categories = blendshapes && blendshapes.length > 0 ? blendshapes[0].categories : [];
-    const tension = categories.reduce((acc: number, cat: any) => acc + (cat.score > 0.3 ? 1 : 0), 0);
+    const shapes = blendshapes as { categories: { categoryName: string; score: number }[] }[];
+    const categories = shapes && shapes.length > 0 ? shapes[0].categories : [];
+    const tension = categories.reduce((acc: number, cat: { categoryName: string; score: number }) => acc + (cat.score > 0.3 ? 1 : 0), 0);
     
     let confidence = 100;
     const feedback: string[] = [];
@@ -762,7 +764,7 @@ export interface MetricScores {
     physicalFaceHeight: number;
 
     // OBJECTIVE AUDIT
-    audit?: any;
+    audit?: ConfidenceAudit;
 
     // NEW: Scientific Blackpill / PSL Wiki Metrics
     upperEyelidExposure: number;      // Less is better (Hunter eyes)
@@ -780,12 +782,13 @@ export interface ScanResult {
     profileType: ProfileType;
 }
 
-export function calculateAggregatedMetrics(scans: ScanResult[]): MetricScores | null {
-    if (!scans || scans.length === 0) return null;
+export function calculateAggregatedMetrics(scans: unknown[]): MetricScores | null {
+    const scanResults = scans as ScanResult[];
+    if (!scanResults || scanResults.length === 0) return null;
 
     // Use the base structure to zero everything out
-    const aggregated: any = {};
-    const counters: any = {};
+    const aggregated: Record<string, number> = {};
+    const counters: Record<string, number> = {};
 
     // Initialize everything to zero
     const templateMetrics = scans[0].metrics;
@@ -823,18 +826,18 @@ export function calculateAggregatedMetrics(scans: ScanResult[]): MetricScores | 
         } else {
             // No valid scans for this metric (e.g. we only scanned side profile faces, so Asymmetry == 0)
             // Just drop in a neutral placeholder to satisfy typescript or the last scanned value
+            /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
             aggregated[key] = (templateMetrics as any)[key];
         }
     }
 
-    return aggregated as MetricScores;
+    return aggregated as unknown as MetricScores;
 }
 
 export function calculatePSLScore(
     metrics: MetricScores,
     gender: 'male' | 'female' = 'male',
-    profileType: ProfileType | 'composite' = 'composite',
-    availableProfiles: Set<ProfileType> = new Set(['front', 'side'])
+    profileType: ProfileType | 'composite' = 'composite'
 ): { score: number; breakdown: string[]; tier: string } {
     let score = 4.0; // Base: 4.0 (MTN / Average according to strict 8.0 scale)
     const breakdown: string[] = ["Base: 4.0 (MTN - Average)"];
@@ -1260,7 +1263,7 @@ export function calculatePSLScore(
     // Apply scalars to normalize to 0-8 range based on max potential points
     // Positive scores use a tight divisor (hard to earn high scores).
     // Negative scores use a moderate divisor (penalties bite but Z-depth noise doesn't nuke scores).
-    let rawDiff = score - 4.0;
+    const rawDiff = score - 4.0;
 
     if (rawDiff > 0) {
         // Compress positive scores — earning above 4.0 requires genuine elite traits

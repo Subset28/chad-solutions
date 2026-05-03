@@ -30,7 +30,7 @@ export function getHardwareProfile(): HardwareProfile {
     // WebGL check for high-performance GPU (usually Pro models)
     try {
         const canvas = document.createElement('canvas');
-        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl') as any;
+        const gl = (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')) as WebGLRenderingContext | null;
         if (gl) {
             const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
             const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
@@ -41,7 +41,7 @@ export function getHardwareProfile(): HardwareProfile {
                 return IPHONE_PROFILES['iPhone15Pro'];
             }
         }
-    } catch (e) {}
+    } catch (_e) {}
 
     return IPHONE_PROFILES['Generic'];
 }
