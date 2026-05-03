@@ -794,7 +794,7 @@ export function calculateAggregatedMetrics(scans: unknown[]): MetricScores | nul
     const counters: Record<string, number> = {};
 
     // Initialize everything to zero
-    const templateMetrics = scans[0].metrics;
+    const templateMetrics = scanResults[0].metrics;
     for (const key of Object.keys(templateMetrics)) {
         aggregated[key] = 0;
         counters[key] = 0;
@@ -804,7 +804,7 @@ export function calculateAggregatedMetrics(scans: unknown[]): MetricScores | nul
     const frontOnlyMetrics = ['facialAsymmetry', 'ipdRatio', 'eyeSeparationRatio', 'canthalTilt', 'fwfhRatio', 'noseWidthRatio', 'mouthToNoseWidthRatio', 'bigonialWidthRatio', 'cheekboneProminence', 'skinQuality'];
 
     // Accumulate valid scans
-    for (const scan of scans) {
+    for (const scan of scanResults) {
         for (const [key, value] of Object.entries(scan.metrics)) {
             let isValid = true;
 
