@@ -233,6 +233,9 @@ export function auditAnalysisQuality(
     blendshapes: unknown, 
     imageLuminance: number = 100 // Default to 100 if unknown
 ): ConfidenceAudit {
+    const euler = extractEulerAngles(matrix);
+    const angleSeverity = Math.abs(euler.pitch) + Math.abs(euler.yaw) + Math.abs(euler.roll);
+    
     const shapes = blendshapes as { categories: { categoryName: string; score: number }[] }[];
     const categories = shapes && shapes.length > 0 ? shapes[0].categories : [];
     const tension = categories.reduce((acc: number, cat: { categoryName: string; score: number }) => acc + (cat.score > 0.3 ? 1 : 0), 0);
