@@ -827,17 +827,18 @@ export function calculateAggregatedMetrics(scans: unknown[]): MetricScores | nul
         }
     }
 
-    const finalMetrics = {} as any;
+    const finalMetrics: Record<string, unknown> = {};
     for (const key of Object.keys(templateMetrics)) {
-        if (typeof (templateMetrics as any)[key] === 'number') {
-            finalMetrics[key] = counters[key] > 0 ? aggregated[key] / counters[key] : (templateMetrics as any)[key];
+        const val = (templateMetrics as Record<string, any>)[key];
+        if (typeof val === 'number') {
+            finalMetrics[key] = counters[key] > 0 ? aggregated[key] / counters[key] : val;
         } else {
             // Take from the most recent scan for non-numeric fields
-            finalMetrics[key] = (scanResults[scanResults.length - 1].metrics as any)[key];
+            finalMetrics[key] = (scanResults[scanResults.length - 1].metrics as Record<string, any>)[key];
         }
     }
 
-    return finalMetrics as MetricScores;
+    return finalMetrics as unknown as MetricScores;
 }
 
 export function calculatePSLScore(

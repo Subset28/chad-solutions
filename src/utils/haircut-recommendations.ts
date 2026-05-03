@@ -183,7 +183,7 @@ export function classifyFaceShape(metrics: FaceShapeInput, _gender: 'male' | 'fe
 export function calculateHairPSL(
     hairProfile: HairProfile,
     faceShape: FaceShape,
-    gender: 'male' | 'female'
+    _gender: 'male' | 'female'
 ): HairPSLScore {
     const breakdown: string[] = [];
     const recommendations: string[] = [];

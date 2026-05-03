@@ -43,7 +43,8 @@ export function getHardwareProfile(): HardwareProfile {
                 }
             }
         }
-    } catch (_e) {}
+    } catch (__e) {
+}
 
     return IPHONE_PROFILES['Generic'];
 }
