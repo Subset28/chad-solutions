@@ -33,12 +33,14 @@ export function getHardwareProfile(): HardwareProfile {
         const gl = (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')) as WebGLRenderingContext | null;
         if (gl) {
             const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
-            const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
-            
-            // Simple heuristic: newer Pro models often use 'Apple GPU'
-            if (isIOS && /Apple/.test(renderer)) {
-                // If it's a newer iPhone, we assume Pro sensor specs for better reconstruction
-                return IPHONE_PROFILES['iPhone15Pro'];
+            if (debugInfo) {
+                const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+                
+                // Simple heuristic: newer Pro models often use 'Apple GPU'
+                if (isIOS && /Apple/.test(renderer)) {
+                    // If it's a newer iPhone, we assume Pro sensor specs for better reconstruction
+                    return IPHONE_PROFILES['iPhone15Pro'];
+                }
             }
         }
     } catch (_e) {}
