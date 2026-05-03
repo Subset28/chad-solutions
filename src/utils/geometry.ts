@@ -791,7 +791,6 @@ export interface MetricScores {
     phenotype?: Phenotype;
     vitality?: VitalityData;
 }
-
 export type ProfileType = 'front' | 'side';
 
 export interface ScanResult {
@@ -803,52 +802,42 @@ export function calculateAggregatedMetrics(scans: unknown[]): MetricScores | nul
     const scanResults = scans as ScanResult[];
     if (!scanResults || scanResults.length === 0) return null;
 
-    // Use the base structure to zero everything out
+    const templateMetrics = scanResults[0].metrics;
     const aggregated: Record<string, number> = {};
     const counters: Record<string, number> = {};
 
-    // Initialize everything to zero
-    const templateMetrics = scanResults[0].metrics;
     for (const key of Object.keys(templateMetrics)) {
         aggregated[key] = 0;
         counters[key] = 0;
     }
 
-    const sideOnlyMetrics = ['chinProjection', 'maxillaryProtrusion', 'orbitalRimProtrusion', 'browRidgeProtrusion', 'infraorbitalRimPosition'];
-    const frontOnlyMetrics = ['facialAsymmetry', 'ipdRatio', 'eyeSeparationRatio', 'canthalTilt', 'fwfhRatio', 'noseWidthRatio', 'mouthToNoseWidthRatio', 'bigonialWidthRatio', 'cheekboneProminence', 'skinQuality'];
+    const sideOnlyMetrics = ['chinProjection', 'maxillaryProtrusion', 'orbitalRimProtrusion', 'browRidgeProtrusion', 'infraorbitalRimPosition', 'doubleChinRisk'];
+    const frontOnlyMetrics = ['facialAsymmetry', 'ipdRatio', 'eyeSeparationRatio', 'canthalTilt', 'fwfhRatio', 'noseWidthRatio', 'mouthToNoseWidthRatio', 'bigonialWidthRatio', 'cheekboneProminence', 'skinQuality', 'facialTension', 'chinToPhiltrumRatio', 'lowerThirdRatio', 'palpebralFissureLength', 'facialThirdsRatio', 'foreheadHeightRatio', 'upperEyelidExposure', 'philtrumLength'];
 
-    // Accumulate valid scans
     for (const scan of scanResults) {
         for (const [key, value] of Object.entries(scan.metrics)) {
             let isValid = true;
+            if (scan.profileType === 'front' && sideOnlyMetrics.includes(key)) isValid = false;
+            else if (scan.profileType === 'side' && frontOnlyMetrics.includes(key)) isValid = false;
 
-            // Validate context bounds based on profile type
-            if (scan.profileType === 'front' && sideOnlyMetrics.includes(key)) {
-                isValid = false;
-            } else if (scan.profileType === 'side' && frontOnlyMetrics.includes(key)) {
-                isValid = false;
-            }
-
-            if (isValid) {
-                aggregated[key] += value as number;
+            if (isValid && typeof value === 'number') {
+                aggregated[key] += value;
                 counters[key] += 1;
             }
         }
     }
 
-    // Average them out
-    for (const key of Object.keys(aggregated)) {
-        if (counters[key] > 0) {
-            aggregated[key] = aggregated[key] / counters[key];
+    const finalMetrics = {} as any;
+    for (const key of Object.keys(templateMetrics)) {
+        if (typeof (templateMetrics as any)[key] === 'number') {
+            finalMetrics[key] = counters[key] > 0 ? aggregated[key] / counters[key] : (templateMetrics as any)[key];
         } else {
-            // No valid scans for this metric (e.g. we only scanned side profile faces, so Asymmetry == 0)
-            // Just drop in a neutral placeholder to satisfy typescript or the last scanned value
-            /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-            aggregated[key] = (templateMetrics as any)[key];
+            // Take from the most recent scan for non-numeric fields
+            finalMetrics[key] = (scanResults[scanResults.length - 1].metrics as any)[key];
         }
     }
 
-    return aggregated as unknown as MetricScores;
+    return finalMetrics as MetricScores;
 }
 
 export function calculatePSLScore(

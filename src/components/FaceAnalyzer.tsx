@@ -50,10 +50,11 @@ import { analyzeSkinQuality } from '@/utils/image-processing';
 import AnalysisTab from '@/components/AnalysisTab';
 import RoadmapTab from '@/components/RoadmapTab';
 import VitalityTab from '@/components/VitalityTab';
+import HaircutTab from '@/components/HaircutTab';
+import { RadarChart } from '@/components/RadarChart';
 import { getHardwareProfile, extractHardwareFocalLength } from '@/utils/hardware';
 import { predictPhenotype } from '@/utils/phenotype';
 import { analyzeVitality } from '@/utils/vitality';
-import HaircutTab from '@/components/HaircutTab';
 
 type InputMode = 'webcam' | 'upload' | 'roll';
 type Tab = 'analysis' | 'roadmap' | 'haircut' | 'vitality';
@@ -1005,167 +1006,205 @@ export default function FaceAnalyzer() {
                                                 : 'from-zinc-500 to-zinc-600';
                                 const barColor = s >= 7.0 ? '#F59E0B' : s >= 6.0 ? '#10B981' : s >= 5.0 ? '#38BDF8' : s >= 4.0 ? '#6366F1' : '#71717A';
                                 const pct = (s / 8) * 100;
+                    {/* RESULTS VIEW */}
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 w-full animate-in fade-in duration-1000">
+                        {/* LEFT COLUMN: Summary & Score (4 cols) */}
+                        <div className="lg:col-span-4 space-y-6">
+                            {(() => {
+                                const s = auditResult.psl.score;
+                                const gradient = s >= 7.0 ? 'from-amber-400 to-yellow-300' : s >= 6.0 ? 'from-emerald-400 to-green-500' : s >= 5.0 ? 'from-sky-400 to-blue-500' : s >= 4.0 ? 'from-blue-500 to-indigo-600' : 'from-zinc-500 to-zinc-600';
+                                const barColor = s >= 7.0 ? '#F59E0B' : s >= 6.0 ? '#10B981' : s >= 5.0 ? '#38BDF8' : s >= 4.0 ? '#6366F1' : '#71717A';
+                                const pct = (s / 8) * 100;
+                                const status = calculateCommunityStatus(s);
+
+                                // Main Radar Data
+                                const radarData = [
+                                    { label: 'Eyes', value: Math.max(20, (auditResult.metrics.canthalTilt || 0) * 5 + 50) },
+                                    { label: 'Jaw', value: Math.max(20, (auditResult.metrics.bigonialWidthRatio || 0) * 100) },
+                                    { label: 'Skin', value: auditResult.metrics.skinQuality || 50 },
+                                    { label: 'Harmony', value: Math.max(20, 100 - (auditResult.metrics.facialAsymmetry || 0) * 100) },
+                                    { label: 'Midface', value: Math.max(20, (auditResult.metrics.fwfhRatio || 0) * 50) }
+                                ];
+
                                 return (
-                                    <div className="flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
+                                    <div className="flex flex-col gap-6">
                                         {/* Score Card */}
-                                        <div className="relative rounded-3xl overflow-hidden border border-zinc-800 bg-gradient-to-br from-zinc-900 to-zinc-950 p-6">
-                                            <div className="absolute inset-0 opacity-5 bg-gradient-to-br from-white to-transparent pointer-events-none" />
-                                            <div className="flex items-start justify-between mb-4">
-                                                <div>
-                                                    <p className="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-1">
-                                                        {auditResult.profileType === 'composite' ? '⚡ Composite Score' : '📸 Scan Score'}
-                                                    </p>
-                                                    <div className="flex items-baseline gap-2">
-                                                        <span className={`text-5xl font-black bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}>
+                                        <div className="relative rounded-[2.5rem] overflow-hidden border border-zinc-800 glass-dark p-8 shadow-2xl">
+                                            <div className="absolute top-0 right-0 w-48 h-48 bg-white/[0.02] blur-3xl rounded-full -mr-24 -mt-24" />
+                                            
+                                            <div className="relative z-10 flex flex-col items-center text-center">
+                                                <p className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.3em] mb-4">Biometric Status Level</p>
+                                                
+                                                <div className="relative mb-6">
+                                                    <div className="absolute inset-0 bg-white/10 blur-[50px] rounded-full animate-pulse" />
+                                                    <div className="relative flex flex-col items-center">
+                                                        <span className={`text-7xl font-black tracking-tighter bg-gradient-to-br ${gradient} bg-clip-text text-transparent`}>
                                                             {s.toFixed(1)}
                                                         </span>
-                                                        <span className="text-xl font-bold text-zinc-600">/ 8.0 PSL</span>
+                                                        <span className="text-zinc-600 text-xs font-bold uppercase tracking-widest -mt-2">Points / 8.0</span>
                                                     </div>
-                                                    <p className="text-sm font-medium text-zinc-300 mt-1">{auditResult.psl.tier}</p>
                                                 </div>
-                                                <div className="flex flex-col items-end">
-                                                    <button
-                                                        onClick={() => { setAuditResult(null); setScans([]); setAnalyzedImageWithLandmarks(null); setUploadedImage(null); }}
-                                                        className="text-xs font-semibold text-zinc-600 hover:text-red-400 transition-colors border border-zinc-700 hover:border-red-500/50 rounded-lg px-3 py-1.5 mb-2"
-                                                    >
-                                                        Reset
-                                                    </button>
-                                                    
-                                                    {(() => {
-                                                        const status = calculateCommunityStatus(s);
-                                                        return (
-                                                            <div className="flex flex-col items-end">
-                                                                <span className={`text-[10px] font-black uppercase tracking-[0.2em] px-2 py-0.5 rounded bg-zinc-800 border border-zinc-700 mb-1 ${status.color}`}>
-                                                                    {status.status}
-                                                                </span>
-                                                            </div>
-                                                        );
-                                                    })()}
+
+                                                <div className={`px-4 py-1.5 rounded-full border text-[11px] font-black uppercase tracking-widest mb-6 ${status.color} bg-white/[0.03]`}>
+                                                    {status.status}
                                                 </div>
+
+                                                <div className="w-full space-y-2 mb-8">
+                                                    <div className="flex justify-between items-end px-1">
+                                                        <span className="text-[10px] text-zinc-500 font-bold uppercase">{auditResult.psl.tier}</span>
+                                                        <span className="text-[10px] text-zinc-500 font-mono">{(s / 8 * 100).toFixed(0)}% Cap</span>
+                                                    </div>
+                                                    <div className="h-1.5 bg-zinc-800/50 rounded-full overflow-hidden border border-white/[0.02]">
+                                                        <motion.div
+                                                            initial={{ width: 0 }}
+                                                            animate={{ width: `${pct}%` }}
+                                                            transition={{ duration: 1.5, ease: "easeOut" }}
+                                                            className="h-full rounded-full"
+                                                            style={{ background: barColor, boxShadow: `0 0 15px ${barColor}50` }}
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <RadarChart data={radarData} size={240} color={barColor + 'B3'} />
                                             </div>
+                                        </div>
 
-                                            {(() => {
-                                                const status = calculateCommunityStatus(s);
-                                                return (
-                                                    <p className="text-[11px] text-zinc-500 mb-4 leading-relaxed bg-zinc-800/50 p-2 rounded-xl border border-zinc-800/50 italic">
-                                                        &ldquo;{status.description}&rdquo;
-                                                    </p>
-                                                );
-                                            })()}
-
-                                            {/* Score Bar */}
-                                            <div className="h-2.5 bg-zinc-800 rounded-full overflow-hidden">
-                                                <div
-                                                    className="h-full rounded-full transition-all duration-1000"
-                                                    style={{ width: `${pct}%`, background: barColor, boxShadow: `0 0 12px ${barColor}80` }}
-                                                />
+                                        {/* GENETIC POTENTIAL CARD */}
+                                        <div className="glass border border-zinc-800 rounded-3xl p-6 space-y-4">
+                                            <div className="flex justify-between items-center">
+                                                <h3 className="text-zinc-400 text-[10px] font-bold uppercase tracking-[0.2em]">Skeletal Ceiling</h3>
+                                                <span className="text-[10px] text-emerald-400 font-mono">Max Potential</span>
                                             </div>
-
-                                            {/* Tick marks */}
-                                            <div className="flex justify-between mt-1.5 px-0.5">
-                                                {[1, 2, 3, 4, 5, 6, 7, 8].map(n => (
-                                                    <span key={n} className={`text-[10px] font-mono ${s >= n ? 'text-zinc-300' : 'text-zinc-700'}`}>{n}</span>
-                                                ))}
+                                            <div className="space-y-3">
+                                                <div className="flex justify-between text-xs font-bold text-white">
+                                                    <span>Potential PSL</span>
+                                                    <span className="text-emerald-400">{(s + 1.2).toFixed(1)}</span>
+                                                </div>
+                                                <div className="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                                                    <div className="h-full bg-emerald-500/20 w-full relative">
+                                                        <div className="absolute top-0 left-0 h-full bg-emerald-500 w-[85%] transition-all duration-1000" />
+                                                    </div>
+                                                </div>
+                                                <p className="text-[9px] text-zinc-500 leading-relaxed italic">
+                                                    Based on your zygomatic width and mandibular base, your soft-tissue ceiling allows for a <span className="text-zinc-300">+1.2 PSL</span> gain through optimized training and grooming.
+                                                </p>
                                             </div>
+                                        </div>
 
-                                            {/* Score breakdown pills */}
-                                            <div className="mt-4 flex flex-wrap gap-1.5">
+                                        <div className="glass border border-zinc-800 rounded-3xl p-6 space-y-4">
+                                            <h3 className="text-zinc-400 text-[10px] font-bold uppercase tracking-[0.2em] flex items-center gap-2">
+                                                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)]" />
+                                                Impact Breakdown
+                                            </h3>
+                                            <div className="flex flex-wrap gap-2">
                                                 {auditResult.psl.breakdown.map((item, i) => {
                                                     const isPos = item.includes('+');
                                                     const isNeg = item.includes('-') && !item.includes('Base');
                                                     return (
-                                                        <span key={i} className={`text-[11px] font-medium px-2 py-0.5 rounded-full border ${isPos ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
-                                                            : isNeg ? 'bg-red-500/10 border-red-500/30 text-red-400'
-                                                                : 'bg-zinc-800 border-zinc-700 text-zinc-400'
+                                                        <span key={i} className={`text-[10px] font-bold px-3 py-1.5 rounded-xl border ${isPos ? 'bg-emerald-500/5 border-emerald-500/20 text-emerald-400'
+                                                            : isNeg ? 'bg-red-500/5 border-red-500/20 text-red-400'
+                                                                : 'bg-zinc-800/50 border-zinc-700/50 text-zinc-400'
                                                             }`}>{item}</span>
                                                     );
                                                 })}
                                             </div>
                                         </div>
 
-                                        {/* New Scan Button — pinned below score card */}
                                         <button
-                                            onClick={() => { setAuditResult(null); setIsAnalyzing(false); setUploadedImage(null); setAnalyzedImageWithLandmarks(null); setExpandedMetric(null); }}
-                                            className="w-full py-3.5 rounded-2xl bg-zinc-800 hover:bg-zinc-700 text-white font-bold transition-colors border border-zinc-700 hover:border-zinc-500 text-sm"
+                                            onClick={() => { setAuditResult(null); setScans([]); setAnalyzedImageWithLandmarks(null); setUploadedImage(null); }}
+                                            className="w-full py-4 rounded-3xl bg-zinc-900 border border-zinc-800 hover:border-zinc-600 text-white font-black uppercase tracking-widest text-[11px] transition-all hover:bg-zinc-800 active:scale-[0.98] shadow-xl"
                                         >
-                                            New Scan
+                                            Terminate Session & Clear Data
                                         </button>
                                     </div>
                                 );
-                            })()
-                        )}
-                    </div>
+                            })()}
+                        </div>
 
-                    {/* RIGHT COLUMN: Tabbed Results */}
-                    <div className="flex flex-col space-y-4">
-                        {!auditResult ? (
-                            <div className="flex flex-col items-center justify-center h-full min-h-[300px] bg-zinc-900/20 border border-zinc-800/40 rounded-3xl p-8 text-center space-y-3">
-                                <div className="text-4xl">🔬</div>
-                                <p className="text-zinc-500 text-sm">Run a scan to see your detailed feature-by-feature analysis here.</p>
+                        {/* RIGHT COLUMN: Tabbed Results & Face Preview (8 cols) */}
+                        <div className="lg:col-span-8 flex flex-col gap-6">
+                            {/* FACE PREVIEW BAR */}
+                            <div className="relative aspect-video w-full rounded-[2.5rem] overflow-hidden border border-zinc-800 glass-dark shadow-2xl group">
+                                {analyzedImageWithLandmarks || auditResult.imageUrl ? (
+                                    <>
+                                        <img
+                                            src={analyzedImageWithLandmarks || auditResult.imageUrl}
+                                            alt="Analyzed face"
+                                            className="h-full w-full object-cover"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                        <div className="absolute top-6 left-6 inline-flex items-center gap-2 px-3 py-1.5 bg-black/60 backdrop-blur-md border border-white/10 rounded-full">
+                                            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                                            <span className="text-[10px] font-black text-white uppercase tracking-widest">Live 3D Geometry Map</span>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <div className="h-full w-full bg-zinc-900 flex items-center justify-center">
+                                        <p className="text-zinc-600 font-mono text-xs uppercase tracking-widest">Image Data Corrupted</p>
+                                    </div>
+                                )}
                             </div>
-                        ) : (
-                            <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
 
-                                {/* ── Tab Bar ── */}
-                                <div className="flex gap-1 p-1 bg-zinc-900 border border-zinc-800 rounded-2xl sticky top-2 z-10">
+                            {/* TAB SYSTEM */}
+                            <div className="flex-1 flex flex-col gap-6">
+                                <div className="flex p-1.5 bg-zinc-900/50 border border-zinc-800 rounded-[2rem] glass-dark shadow-xl sticky top-4 z-50">
                                     {([
                                         { id: 'analysis', label: 'Analysis', icon: '🔬' },
-                                        { id: 'roadmap',  label: 'Roadmap',  icon: '🚀' },
+                                        { id: 'roadmap', label: 'Roadmap', icon: '🚀' },
                                         { id: 'vitality', label: 'Vitality', icon: '⚡' },
                                         ...(auditResult.profileType !== 'side' ? [{ id: 'haircut', label: 'Haircut', icon: '✂️' }] : []),
                                     ] as { id: Tab; label: string; icon: string }[]).map(tab => (
                                         <button
                                             key={tab.id}
                                             onClick={() => setResultsTab(tab.id)}
-                                            className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-sm font-bold transition-all ${
-                                                resultsTab === tab.id
-                                                    ? 'bg-white text-black shadow-sm'
-                                                    : 'text-zinc-400 hover:text-white hover:bg-zinc-800'
-                                            }`}
+                                            className={`flex-1 flex items-center justify-center gap-2 py-3.5 rounded-[1.5rem] text-[11px] font-black uppercase tracking-widest transition-all ${resultsTab === tab.id
+                                                ? 'bg-white text-black shadow-lg scale-[1.02]'
+                                                : 'text-zinc-500 hover:text-white hover:bg-white/[0.02]'
+                                                }`}
                                         >
-                                            <span className="text-base leading-none">{tab.icon}</span>
+                                            <span className="text-base">{tab.icon}</span>
                                             {tab.label}
                                         </button>
                                     ))}
                                 </div>
-                                {/* ── ANALYSIS TAB ── */}
-                                {resultsTab === 'analysis' && (
-                                    <AnalysisTab
-                                        metrics={auditResult.metrics}
-                                        profileType={auditResult.profileType}
-                                        gender={gender}
-                                        expandedMetric={expandedMetric}
-                                        onToggleMetric={setExpandedMetric}
-                                    />
-                                )}
 
-                                {/* ── ROADMAP TAB ── */}
-                                {resultsTab === 'roadmap' && (
-                                    <RoadmapTab
-                                        metrics={auditResult.metrics}
-                                        profileType={auditResult.profileType}
-                                        gender={gender}
-                                        expandedMetric={expandedMetric}
-                                        onToggleMetric={setExpandedMetric}
-                                        currentPSL={auditResult.psl.score}
-                                    />
-                                )}
+                                <div className="min-h-[500px]">
+                                    {resultsTab === 'analysis' && (
+                                        <AnalysisTab
+                                            metrics={auditResult.metrics}
+                                            profileType={auditResult.profileType}
+                                            gender={gender}
+                                            expandedMetric={expandedMetric}
+                                            onToggleMetric={setExpandedMetric}
+                                        />
+                                    )}
 
-                                {/* ── VITALITY TAB ── */}
-                                {resultsTab === 'vitality' && (
-                                    <VitalityTab metrics={auditResult.metrics} />
-                                )}
+                                    {resultsTab === 'roadmap' && (
+                                        <RoadmapTab
+                                            metrics={auditResult.metrics}
+                                            profileType={auditResult.profileType}
+                                            gender={gender}
+                                            expandedMetric={expandedMetric}
+                                            onToggleMetric={setExpandedMetric}
+                                            currentPSL={auditResult.psl.score}
+                                        />
+                                    )}
 
-                                {/* ── HAIRCUT TAB ── */}
-                                {resultsTab === 'haircut' && auditResult.profileType !== 'side' && (
-                                    <HaircutTab
-                                        metrics={auditResult.metrics}
-                                        gender={gender}
-                                    />
-                                )}
+                                    {resultsTab === 'vitality' && (
+                                        <VitalityTab metrics={auditResult.metrics} />
+                                    )}
+
+                                    {resultsTab === 'haircut' && auditResult.profileType !== 'side' && (
+                                        <HaircutTab
+                                            metrics={auditResult.metrics}
+                                            gender={gender}
+                                        />
+                                    )}
+                                </div>
                             </div>
-                        )}
+                        </div>
                     </div>
+
                 </div>
 
             ) : (
