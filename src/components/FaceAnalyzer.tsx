@@ -470,7 +470,7 @@ export default function FaceAnalyzer() {
         }
     };
 
-    const [_hwProfile, _setHwProfile] = React.useState(() => getHardwareProfile());
+    const [hwProfile, _setHwProfile] = React.useState(() => getHardwareProfile());
 
     const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files;
