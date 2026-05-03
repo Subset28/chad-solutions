@@ -98,13 +98,27 @@ export function reconstructPhysicalFace(
         fl = estimateFocalLength(imageWidth);
     }
     
-    // 2. Estimate Z-Distance (mm) using IPD anchor
+    // 2. Estimate Z-Distance (mm) using robust scale anchor
+    // IPD is unreliable for side profiles, so we fall back to face height/width ratio
     const rightEye = midpoint(landmarks[33], landmarks[133]);
     const leftEye = midpoint(landmarks[263], landmarks[362]);
-    const ipdPixels = Math.sqrt(
+    let ipdPixels = Math.sqrt(
         Math.pow((leftEye.x - rightEye.x) * imageWidth, 2) +
         Math.pow((leftEye.y - rightEye.y) * imageHeight, 2)
     );
+    
+    // Detection for profile type based on landmark visibility and eye distance
+    const isProfile = ipdPixels < (imageWidth * 0.1); // If eyes are less than 10% of image width apart, it's likely a profile
+    
+    if (isProfile) {
+        // Use face height (nose bridge to chin) as anchor for side profiles
+        // Average human face height (nasion to menton) is ~120mm
+        const faceHeightPixels = Math.sqrt(
+            Math.pow((landmarks[152].x - landmarks[6].x) * imageWidth, 2) +
+            Math.pow((landmarks[152].y - landmarks[6].y) * imageHeight, 2)
+        );
+        ipdPixels = faceHeightPixels * 0.52; // Scale height to "virtual" IPD for consistency
+    }
     
     const zDistance_mm = (63.5 * fl) / Math.max(1, ipdPixels);
     
@@ -1268,20 +1282,32 @@ export function calculatePSLScore(
     // Negative scores use a moderate divisor (penalties bite but Z-depth noise doesn't nuke scores).
     const rawDiff = score - 4.0;
 
-    if (rawDiff > 0) {
+    // PROFILE COMPENSATION: 
+    // Side profiles have fewer measurable traits, so the score variance is lower.
+    // We boost the rawDiff slightly for side profiles to match front profile dynamic range.
+    const profileScalar = profileType === 'side' ? 1.25 : 1.0;
+    const adjustedDiff = rawDiff * profileScalar;
+
+    if (adjustedDiff > 0) {
         // Compress positive scores — earning above 4.0 requires genuine elite traits
         if (profileType === 'composite') {
-            score = 4.0 + (rawDiff / 2.0);
+            score = 4.0 + (adjustedDiff / 2.0);
         } else {
-            score = 4.0 + (rawDiff / 1.3);
+            score = 4.0 + (adjustedDiff / 1.3);
         }
     } else {
         // Moderate negative compression — penalties still bite but noisy Z-depth doesn't obliterate
         if (profileType === 'composite') {
-            score = 4.0 + (rawDiff / 1.8);
+            score = 4.0 + (adjustedDiff / 1.8);
         } else {
-            score = 4.0 + (rawDiff / 1.4);
+            score = 4.0 + (adjustedDiff / 1.4);
         }
+    }
+
+    // FINAL SAFETY: If it's a side profile and score is abnormally low, 
+    // it's likely a geometry error. Ensure a floor of 2.0 unless severe issues are confirmed.
+    if (profileType === 'side' && score < 2.5 && metrics.audit?.angleSeverity < 50) {
+        score = Math.max(score, 2.5);
     }
 
     // Cap score to authentic 0-8 scale

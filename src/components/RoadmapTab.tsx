@@ -42,10 +42,22 @@ export default function RoadmapTab({ metrics, gender, currentPSL }: RoadmapTabPr
         localStorage.setItem('completedItems', JSON.stringify(Array.from(completedItems)));
     }, [completedItems]);
 
+    const [naturalOnly, setNaturalOnly] = React.useState(false);
+
     const plan = React.useMemo(() => 
         generateAscensionPlan(metrics, currentPSL, targetPSL, gender),
         [metrics, currentPSL, targetPSL, gender]
     );
+
+    const filteredPhases = React.useMemo(() => {
+        if (!naturalOnly) return plan.phases;
+        return plan.phases
+            .map(phase => ({
+                ...phase,
+                items: phase.items.filter(item => item.category !== 'surgical')
+            }))
+            .filter(phase => phase.items.length > 0);
+    }, [plan.phases, naturalOnly]);
 
     // Calculate Genetic Potential based on skeletal "hard-coded" traits (IPD, spacing, etc.)
     const geneticPotential = React.useMemo(() => {
@@ -152,21 +164,29 @@ export default function RoadmapTab({ metrics, gender, currentPSL }: RoadmapTabPr
                 </div>
             </div>
 
-            {/* PDF EXPORT BUTTON */}
-            <button 
-                onClick={handlePrint}
-                className="w-full bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-95 print:hidden"
-            >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                Export Ascension Audit (PDF)
-            </button>
+            {/* OPTIONS PANEL */}
+            <div className="flex gap-4 print:hidden">
+                <button 
+                    onClick={() => setNaturalOnly(!naturalOnly)}
+                    className={`flex-1 py-3 px-4 rounded-2xl font-bold text-xs transition-all border flex items-center justify-center gap-2 ${naturalOnly ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/50' : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700'}`}
+                >
+                    <span className="text-base">{naturalOnly ? '🌿' : '🧬'}</span>
+                    {naturalOnly ? 'Natural Fixes Only' : 'Include Surgical'}
+                </button>
+                <button 
+                    onClick={handlePrint}
+                    className="flex-shrink-0 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-white font-bold px-6 rounded-2xl transition-all active:scale-95"
+                    title="Export PDF"
+                >
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                </button>
+            </div>
 
-            {/* PHASES */}
             <div className="space-y-4 print:space-y-8">
                 <AnimatePresence mode="wait">
-                    {plan.phases.map((phase, pIdx) => (
+                    {filteredPhases.map((phase, pIdx) => (
                         <motion.div 
                             key={phase.title}
                             initial={{ opacity: 0, y: 20 }}

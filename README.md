@@ -49,10 +49,13 @@ Chad Solutions is a **Next.js 14** application powered by **Google MediaPipe Fac
 **Analysis Tab**
 - Every metric displayed as an expandable card with current value, ideal range, and a color-coded rating (Exceptional / Above Average / Average / Below Average / Poor)
 - Tap any card to expand a full explanation and personalized recommendation
+- **Elite Ranking** — See where you stand in the global population percentile for each feature.
 
 **Roadmap Tab**
 - A prioritized, PSL-boosting action plan generated from the metric results
-- Each action item is scored by impact and categorized (Grooming, Training, Style, Medical, Skincare)
+- **Natural Fixes Only Toggle** — Switch between comprehensive roadmaps and strictly non-surgical/grooming-focused plans.
+- **Genetic Potential** — Calculation of your skeletal ceiling based on hard-coded traits.
+- Each action item is scored by impact and ROI.
 
 **Haircut Tab**
 - Interactive hair profile builder (face shape, hair density, texture, growth pattern, preferred length, styling time)
@@ -75,6 +78,26 @@ A `/guides` page with curated educational content on facial aesthetics benchmark
 ### 🔒 Privacy First
 
 All processing happens **entirely in the browser** using WebAssembly. No images, landmarks, or scores are transmitted to any server.
+
+---
+
+## Technical Enhancements & "Awesome Sauce" UI
+
+- **Robust Side-Profile Anchor** — Implemented a dual-anchor 3D reconstruction system. When Interpupillary Distance (IPD) is unreliable (side profiles), the engine automatically falls back to Face Height (Nasion-Menton) anchors to maintain metric precision.
+- **Glassmorphic Design System** — A premium, high-performance UI featuring real-time "Biometric Scanning" animations and blurred glass surfaces.
+- **Zero Build Error Integrity** — Strict TypeScript compliance and CI-validated build pipeline ensure stability across all platforms.
+
+---
+
+## Limitations & Best Practices
+
+To achieve the highest precision (Surgical-Grade), users should adhere to the following:
+
+- **Lighting**: Bright, even lighting is mandatory. Overhead shadows can corrupt eye-depth and skin quality metrics.
+- **Distance**: Maintain at least 2ft (60cm) from the lens. Wide-angle selfie lenses cause barrel distortion (fisheye effect) which bloating the nose and thinning the face.
+- **Glasses**: Thick frames will corrupt orbital rim and infraorbital rim protrusion scores. Remove glasses for side-profile scans.
+- **Facial Hair**: Heavy beards will obscure the jawline (gonial angle) and chin projection metrics. The engine will attempt to estimate, but accuracy decreases.
+- **Expressions**: A neutral expression is required. Smiling or squinting will skew mouth width, lip ratio, and canthal tilt.
 
 ---
 

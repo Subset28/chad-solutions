@@ -306,7 +306,12 @@ export default function FaceAnalyzer() {
             let profileType: 'front' | 'side' = 'front';
             if (matrix) {
                 const euler = extractEulerAngles(matrix);
-                profileType = Math.abs(euler.yaw) > 30 ? 'side' : 'front';
+                // Wider threshold for side profiles to ensure we use depth metrics when needed
+                profileType = Math.abs(euler.yaw) > 25 ? 'side' : 'front';
+            } else {
+                // Heuristic fallback if matrix fails
+                const ipdRatio = distance(landmarks[33], landmarks[133]) / distance(landmarks[263], landmarks[362]);
+                if (ipdRatio < 0.4 || ipdRatio > 2.5) profileType = 'side';
             }
 
             // 2. Image Quality Audit
@@ -1244,10 +1249,24 @@ export default function FaceAnalyzer() {
                                     </div>
                                 )}
                                 {isAnalyzing && (
-                                    <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center backdrop-blur-sm z-20">
-                                        <svg className="w-8 h-8 animate-spin text-white mb-3" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
-                                        <div className="text-white font-mono text-xl animate-pulse font-bold tracking-widest text-shadow-glow">ANALYZING...</div>
-                                    </div>
+                                    <>
+                                        <div className="scan-line" />
+                                        <div className="absolute inset-0 bg-emerald-500/5 flex flex-col items-center justify-center backdrop-blur-[2px] z-20">
+                                            <div className="relative">
+                                                <div className="absolute -inset-4 bg-emerald-500/20 blur-xl animate-pulse rounded-full" />
+                                                <svg className="w-12 h-12 animate-spin text-emerald-400 mb-4 relative" fill="none" viewBox="0 0 24 24">
+                                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                                                </svg>
+                                            </div>
+                                            <div className="text-emerald-400 font-mono text-xl animate-pulse font-black tracking-[0.3em] text-shadow-glow">
+                                                SCANNING BIOMETRICS...
+                                            </div>
+                                            <div className="text-[10px] text-emerald-500/60 font-mono mt-2 uppercase tracking-widest">
+                                                Extracting 3D Geometry
+                                            </div>
+                                        </div>
+                                    </>
                                 )}
                             </div>
 

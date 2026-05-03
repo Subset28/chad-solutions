@@ -26,34 +26,36 @@ export default function AnalysisTab({ metrics, profileType, gender, expandedMetr
         <div className="space-y-6">
             {/* OBJECTIVE QUALITY AUDIT */}
             {audit && (
-                <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-5 shadow-xl relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 blur-3xl rounded-full -mr-16 -mt-16" />
+                <div className="glass-dark border border-zinc-800 rounded-3xl p-5 shadow-2xl relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 blur-3xl rounded-full -mr-16 -mt-16" />
                     
                     <div className="flex items-center justify-between mb-4 relative z-10">
                         <div>
-                            <h3 className="text-sm font-black text-white tracking-tight uppercase italic">Objective Quality Audit</h3>
-                            <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">Environment & Behavioral Scan</p>
+                            <h3 className="text-sm font-black text-white tracking-tight uppercase italic flex items-center gap-2">
+                                <span className="text-amber-400">⚡</span> Objective Quality Audit
+                            </h3>
+                            <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest mt-1">Environment & Behavioral Scan</p>
                         </div>
                         <div className="text-right">
-                            <span className={`text-2xl font-black ${audit.overall > 85 ? 'text-emerald-400' : audit.overall > 70 ? 'text-amber-400' : 'text-red-400'}`}>{audit.overall}%</span>
+                            <span className={`text-3xl font-black ${audit.overall > 85 ? 'text-emerald-400' : audit.overall > 70 ? 'text-amber-400' : 'text-red-400'}`}>{audit.overall}%</span>
                             <span className="text-[10px] block text-zinc-600 font-bold uppercase tracking-widest">Confidence</span>
                         </div>
                     </div>
 
                     <div className="grid grid-cols-4 gap-2 mb-4 relative z-10">
-                        <div className="bg-zinc-950/50 rounded-xl p-2 border border-zinc-800/50 text-center">
+                        <div className="bg-zinc-950/30 rounded-xl p-2 border border-zinc-800/50 text-center glass">
                             <span className="text-[9px] text-zinc-500 font-bold uppercase block mb-1">Lighting</span>
                             <span className={`text-[10px] font-black uppercase ${audit.factors.lighting === 'excellent' ? 'text-emerald-400' : audit.factors.lighting === 'good' ? 'text-blue-400' : 'text-amber-400'}`}>{audit.factors.lighting}</span>
                         </div>
-                        <div className="bg-zinc-950/50 rounded-xl p-2 border border-zinc-800/50 text-center">
+                        <div className="bg-zinc-950/30 rounded-xl p-2 border border-zinc-800/50 text-center glass">
                             <span className="text-[9px] text-zinc-500 font-bold uppercase block mb-1">Angle</span>
                             <span className={`text-[10px] font-black uppercase ${audit.factors.angle === 'perfect' ? 'text-emerald-400' : audit.factors.angle === 'acceptable' ? 'text-blue-400' : 'text-red-400'}`}>{audit.factors.angle}</span>
                         </div>
-                        <div className="bg-zinc-950/50 rounded-xl p-2 border border-zinc-800/50 text-center">
+                        <div className="bg-zinc-950/30 rounded-xl p-2 border border-zinc-800/50 text-center glass">
                             <span className="text-[9px] text-zinc-500 font-bold uppercase block mb-1">Expression</span>
                             <span className={`text-[10px] font-black uppercase ${audit.factors.expression === 'neutral' ? 'text-emerald-400' : 'text-blue-400'}`}>{audit.factors.expression}</span>
                         </div>
-                        <div className="bg-zinc-950/50 rounded-xl p-2 border border-zinc-800/50 text-center">
+                        <div className="bg-zinc-950/30 rounded-xl p-2 border border-zinc-800/50 text-center glass">
                             <span className="text-[9px] text-zinc-500 font-bold uppercase block mb-1">Phenotype</span>
                             <span className="text-[10px] font-black uppercase text-purple-400">{metrics.phenotype || 'Generic'}</span>
                         </div>
@@ -63,7 +65,7 @@ export default function AnalysisTab({ metrics, profileType, gender, expandedMetr
                         <div className="space-y-1.5 border-t border-zinc-800/50 pt-3 relative z-10">
                             {audit.feedback.map((f: string, i: number) => (
                                 <div key={i} className="flex items-center gap-2 text-[10px] text-zinc-400">
-                                    <span className="text-amber-500/50">✦</span>
+                                    <span className="text-amber-500/50 animate-pulse">✦</span>
                                     {f}
                                 </div>
                             ))}
@@ -82,7 +84,7 @@ export default function AnalysisTab({ metrics, profileType, gender, expandedMetr
                         const unit = 'mm';
                         
                         return (
-                            <div key={key} className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center justify-center text-center">
+                            <div key={key} className="glass border border-zinc-800 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:bg-zinc-800/20 transition-all">
                                 <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider mb-1">{label}</span>
                                 <span className="text-lg font-black text-white">
                                     {typeof val === 'number' ? val.toFixed(1) : String(val ?? '')}
@@ -116,13 +118,13 @@ export default function AnalysisTab({ metrics, profileType, gender, expandedMetr
 
                 const isGood = rating.color.includes('green');
                 const isBad = rating.color.includes('orange') || rating.color.includes('red');
-                const borderColor = !isValidForProfile ? 'border-zinc-800' : isGood ? 'border-emerald-500/40' : isBad ? 'border-red-500/40' : 'border-zinc-700';
-                const bgHover = !isValidForProfile ? '' : isGood ? 'hover:bg-emerald-950/20' : isBad ? 'hover:bg-red-950/20' : 'hover:bg-zinc-800/50';
+                const borderColor = !isValidForProfile ? 'border-zinc-800/50' : isGood ? 'border-emerald-500/20' : isBad ? 'border-red-500/20' : 'border-zinc-700/50';
+                const bgHover = !isValidForProfile ? '' : isGood ? 'hover:bg-emerald-500/5' : isBad ? 'hover:bg-red-500/5' : 'hover:bg-zinc-800/80';
 
                 return (
                     <div
                         key={key}
-                        className={`rounded-2xl border ${borderColor} bg-zinc-900 transition-all duration-200 overflow-hidden ${!isValidForProfile ? 'opacity-30' : 'cursor-pointer ' + bgHover}`}
+                        className={`rounded-2xl border ${borderColor} glass transition-all duration-300 overflow-hidden ${!isValidForProfile ? 'opacity-30' : 'cursor-pointer ' + bgHover} hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-0.5 active:scale-[0.98]`}
                         onClick={() => isValidForProfile && onToggleMetric(isExpanded ? null : key)}
                     >
                         {/* Row */}

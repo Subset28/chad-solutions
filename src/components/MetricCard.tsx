@@ -36,12 +36,12 @@ export function MetricCard({ metricKey, value, gender, profileType, expandedMetr
 
     const isGood = rating.color.includes('green');
     const isBad = rating.color.includes('orange') || rating.color.includes('red');
-    const borderColor = !isValidForProfile ? 'border-zinc-800' : isGood ? 'border-emerald-500/40' : isBad ? 'border-red-500/40' : 'border-zinc-700';
-    const bgHover = !isValidForProfile ? '' : isGood ? 'hover:bg-emerald-950/20' : isBad ? 'hover:bg-red-950/20' : 'hover:bg-zinc-800/50';
+    const borderColor = !isValidForProfile ? 'border-zinc-800/50' : isGood ? 'border-emerald-500/20' : isBad ? 'border-red-500/20' : 'border-zinc-700/50';
+    const bgHover = !isValidForProfile ? '' : isGood ? 'hover:bg-emerald-500/5' : isBad ? 'hover:bg-red-500/5' : 'hover:bg-zinc-800/80';
 
     return (
         <div
-            className={`rounded-2xl border ${borderColor} bg-zinc-900 transition-all duration-200 overflow-hidden ${!isValidForProfile ? 'opacity-30' : 'cursor-pointer ' + bgHover}`}
+            className={`rounded-2xl border ${borderColor} glass transition-all duration-300 overflow-hidden ${!isValidForProfile ? 'opacity-30' : 'cursor-pointer ' + bgHover} hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-0.5 active:scale-[0.98]`}
             onClick={() => isValidForProfile && onToggle(key)}
         >
             {/* Row */}
