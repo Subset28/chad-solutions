@@ -81,12 +81,13 @@ export default function FaceAnalyzer() {
     const [gender, setGender] = useState<'male' | 'female'>('male');
 
     const [consentGiven, setConsentGiven] = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
+    const [isMobile, setIsMobile] = useState(() => {
+        if (typeof window !== 'undefined') {
+            return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        }
+        return false;
+    });
     const [resultsTab, setResultsTab] = useState<Tab>('analysis');
-
-    useEffect(() => {
-        setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
-    }, []);
 
     useEffect(() => {
         // Suppress MediaPipe/TensorFlow Lite info messages
