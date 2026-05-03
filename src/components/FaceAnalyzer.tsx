@@ -743,9 +743,7 @@ export default function FaceAnalyzer() {
 
     return (
         <div className="flex flex-col items-center gap-8 w-full max-w-7xl mx-auto p-4 md:p-8">
-            {/* Hidden canvas for drawing */}
             <canvas ref={canvasRef} style={{ display: 'none' }} />
-            {/* Hidden file input for gallery / file uploads */}
             <input
                 ref={fileInputRef}
                 type="file"
@@ -754,7 +752,6 @@ export default function FaceAnalyzer() {
                 onChange={handleFileUpload}
                 className="hidden"
             />
-            {/* Hidden file input for mobile Camera Roll (no capture attr so it opens gallery) */}
             <input
                 ref={rollInputRef}
                 type="file"
@@ -763,9 +760,7 @@ export default function FaceAnalyzer() {
                 className="hidden"
             />
 
-            {/* Controls Row */}
             <div className="flex flex-wrap gap-4 justify-center items-center w-full">
-                {/* App Mode Switcher */}
                 <div className="flex bg-zinc-900 p-1.5 rounded-full border border-zinc-800 shadow-xl relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 pointer-events-none" />
                     <button
@@ -782,7 +777,6 @@ export default function FaceAnalyzer() {
                     </button>
                 </div>
 
-                {/* Input Mode Toggle */}
                 <div className="flex gap-1.5 bg-zinc-900 p-1.5 rounded-full border border-zinc-800 shadow-xl">
                     <button
                         onClick={() => setInputMode('webcam')}
@@ -807,7 +801,6 @@ export default function FaceAnalyzer() {
                     )}
                 </div>
 
-                {/* Gender Toggle */}
                 <div className="flex gap-2 bg-zinc-900 p-1.5 rounded-full border border-zinc-800 shadow-xl">
                     <button
                         onClick={() => setGender('male')}
@@ -826,12 +819,9 @@ export default function FaceAnalyzer() {
 
             {appMode === 'single' ? (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full items-start">
-                    {/* LEFT COLUMN: Image + Score Card + Controls */}
                     <div className="flex flex-col gap-5">
-                        {/* Camera Feed / Upload / Result Image */}
                         <div className="relative aspect-[3/4] w-full overflow-hidden rounded-3xl border-2 border-zinc-800 bg-black shadow-2xl">
                             {analyzedImageWithLandmarks ? (
-                                /* After analysis: show the annotated image with landmarks for ANY mode */
                                 <img src={analyzedImageWithLandmarks} alt="Analyzed with landmarks" className="h-full w-full object-contain" />
                             ) : inputMode === 'webcam' ? (
                                 <Webcam
@@ -862,7 +852,6 @@ export default function FaceAnalyzer() {
                                 </div>
                             )}
 
-                            {/* Scans Gallery Strip */}
                             {scans.length > 0 && (
                                 <div className="absolute bottom-4 left-4 right-4 bg-zinc-900/90 rounded-2xl p-4 border border-zinc-700 backdrop-blur-md z-10 shadow-2xl">
                                     <div className="flex justify-between items-center mb-3">
@@ -881,7 +870,6 @@ export default function FaceAnalyzer() {
                                             </div>
                                         ))}
 
-                                        {/* Add New Angle Button */}
                                         <button
                                             onClick={() => {
                                                 setAuditResult(null);
@@ -903,9 +891,7 @@ export default function FaceAnalyzer() {
                             )}
                         </div>
 
-                        {/* Below-image panel — Score card when results visible, controls when not */}
                         {!auditResult ? (
-                            /* Controls / Call to Action */
                             <div className="flex flex-col items-center justify-center bg-zinc-900/40 border border-zinc-800/60 rounded-3xl p-7 text-center space-y-5">
                                 <div className="w-14 h-14 rounded-full bg-blue-500/10 flex items-center justify-center">
                                     <svg className="w-7 h-7 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -964,7 +950,6 @@ export default function FaceAnalyzer() {
                                             {isAnalyzing ? 'Scanning...' : 'Choose Image'}
                                         </button>
 
-                                        {/* URL Upload */}
                                         <div className="w-full">
                                             <div className="flex items-center gap-2 my-1">
                                                 <div className="flex-1 h-px bg-zinc-700" />
@@ -995,220 +980,201 @@ export default function FaceAnalyzer() {
                                 {!faceLandmarker && <p className="text-xs text-yellow-500 animate-pulse">Initializing neural models. Please wait...</p>}
                             </div>
                         ) : (
-                            /* Score Hero Card — shown below image when results are in */
-                            (() => {
-                                const s = auditResult.psl.score;
-                                const gradient = s >= 7.0
-                                    ? 'from-amber-400 via-yellow-300 to-amber-500'
-                                    : s >= 6.0 ? 'from-emerald-400 to-green-500'
-                                        : s >= 5.0 ? 'from-sky-400 to-blue-500'
-                                            : s >= 4.0 ? 'from-blue-500 to-indigo-600'
-                                                : 'from-zinc-500 to-zinc-600';
-                                const barColor = s >= 7.0 ? '#F59E0B' : s >= 6.0 ? '#10B981' : s >= 5.0 ? '#38BDF8' : s >= 4.0 ? '#6366F1' : '#71717A';
-                                const pct = (s / 8) * 100;
-                    {/* RESULTS VIEW */}
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 w-full animate-in fade-in duration-1000">
-                        {/* LEFT COLUMN: Summary & Score (4 cols) */}
-                        <div className="lg:col-span-4 space-y-6">
-                            {(() => {
-                                const s = auditResult.psl.score;
-                                const gradient = s >= 7.0 ? 'from-amber-400 to-yellow-300' : s >= 6.0 ? 'from-emerald-400 to-green-500' : s >= 5.0 ? 'from-sky-400 to-blue-500' : s >= 4.0 ? 'from-blue-500 to-indigo-600' : 'from-zinc-500 to-zinc-600';
-                                const barColor = s >= 7.0 ? '#F59E0B' : s >= 6.0 ? '#10B981' : s >= 5.0 ? '#38BDF8' : s >= 4.0 ? '#6366F1' : '#71717A';
-                                const pct = (s / 8) * 100;
-                                const status = calculateCommunityStatus(s);
+                            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 w-full animate-in fade-in duration-1000">
+                                <div className="lg:col-span-4 space-y-6">
+                                    {(() => {
+                                        const s = auditResult.psl.score;
+                                        const gradient = s >= 7.0 ? 'from-amber-400 to-yellow-300' : s >= 6.0 ? 'from-emerald-400 to-green-500' : s >= 5.0 ? 'from-sky-400 to-blue-500' : s >= 4.0 ? 'from-blue-500 to-indigo-600' : 'from-zinc-500 to-zinc-600';
+                                        const barColor = s >= 7.0 ? '#F59E0B' : s >= 6.0 ? '#10B981' : s >= 5.0 ? '#38BDF8' : s >= 4.0 ? '#6366F1' : '#71717A';
+                                        const pct = (s / 8) * 100;
+                                        const status = calculateCommunityStatus(s);
 
-                                // Main Radar Data
-                                const radarData = [
-                                    { label: 'Eyes', value: Math.max(20, (auditResult.metrics.canthalTilt || 0) * 5 + 50) },
-                                    { label: 'Jaw', value: Math.max(20, (auditResult.metrics.bigonialWidthRatio || 0) * 100) },
-                                    { label: 'Skin', value: auditResult.metrics.skinQuality || 50 },
-                                    { label: 'Harmony', value: Math.max(20, 100 - (auditResult.metrics.facialAsymmetry || 0) * 100) },
-                                    { label: 'Midface', value: Math.max(20, (auditResult.metrics.fwfhRatio || 0) * 50) }
-                                ];
+                                        const radarData = [
+                                            { label: 'Eyes', value: Math.max(20, (auditResult.metrics.canthalTilt || 0) * 5 + 50) },
+                                            { label: 'Jaw', value: Math.max(20, (auditResult.metrics.bigonialWidthRatio || 0) * 100) },
+                                            { label: 'Skin', value: auditResult.metrics.skinQuality || 50 },
+                                            { label: 'Harmony', value: Math.max(20, 100 - (auditResult.metrics.facialAsymmetry || 0) * 100) },
+                                            { label: 'Midface', value: Math.max(20, (auditResult.metrics.fwfhRatio || 0) * 50) }
+                                        ];
 
-                                return (
-                                    <div className="flex flex-col gap-6">
-                                        {/* Score Card */}
-                                        <div className="relative rounded-[2.5rem] overflow-hidden border border-zinc-800 glass-dark p-8 shadow-2xl">
-                                            <div className="absolute top-0 right-0 w-48 h-48 bg-white/[0.02] blur-3xl rounded-full -mr-24 -mt-24" />
-                                            
-                                            <div className="relative z-10 flex flex-col items-center text-center">
-                                                <p className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.3em] mb-4">Biometric Status Level</p>
-                                                
-                                                <div className="relative mb-6">
-                                                    <div className="absolute inset-0 bg-white/10 blur-[50px] rounded-full animate-pulse" />
-                                                    <div className="relative flex flex-col items-center">
-                                                        <span className={`text-7xl font-black tracking-tighter bg-gradient-to-br ${gradient} bg-clip-text text-transparent`}>
-                                                            {s.toFixed(1)}
-                                                        </span>
-                                                        <span className="text-zinc-600 text-xs font-bold uppercase tracking-widest -mt-2">Points / 8.0</span>
+                                        return (
+                                            <div className="flex flex-col gap-6">
+                                                <div className="relative rounded-[2.5rem] overflow-hidden border border-zinc-800 glass-dark p-8 shadow-2xl">
+                                                    <div className="absolute top-0 right-0 w-48 h-48 bg-white/[0.02] blur-3xl rounded-full -mr-24 -mt-24" />
+                                                    
+                                                    <div className="relative z-10 flex flex-col items-center text-center">
+                                                        <p className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.3em] mb-4">Biometric Status Level</p>
+                                                        
+                                                        <div className="relative mb-6">
+                                                            <div className="absolute inset-0 bg-white/10 blur-[50px] rounded-full animate-pulse" />
+                                                            <div className="relative flex flex-col items-center">
+                                                                <span className={`text-7xl font-black tracking-tighter bg-gradient-to-br ${gradient} bg-clip-text text-transparent`}>
+                                                                    {s.toFixed(1)}
+                                                                </span>
+                                                                <span className="text-zinc-600 text-xs font-bold uppercase tracking-widest -mt-2">Points / 8.0</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className={`px-4 py-1.5 rounded-full border text-[11px] font-black uppercase tracking-widest mb-6 ${status.color} bg-white/[0.03]`}>
+                                                            {status.status}
+                                                        </div>
+
+                                                        <div className="w-full space-y-2 mb-8">
+                                                            <div className="flex justify-between items-end px-1">
+                                                                <span className="text-[10px] text-zinc-500 font-bold uppercase">{auditResult.psl.tier}</span>
+                                                                <span className="text-[10px] text-zinc-500 font-mono">{(s / 8 * 100).toFixed(0)}% Cap</span>
+                                                            </div>
+                                                            <div className="h-1.5 bg-zinc-800/50 rounded-full overflow-hidden border border-white/[0.02]">
+                                                                <motion.div
+                                                                    initial={{ width: 0 }}
+                                                                    animate={{ width: `${pct}%` }}
+                                                                    transition={{ duration: 1.5, ease: "easeOut" }}
+                                                                    className="h-full rounded-full"
+                                                                    style={{ background: barColor, boxShadow: `0 0 15px ${barColor}50` }}
+                                                                />
+                                                            </div>
+                                                        </div>
+
+                                                        <RadarChart data={radarData} size={240} color={barColor + 'B3'} />
                                                     </div>
                                                 </div>
 
-                                                <div className={`px-4 py-1.5 rounded-full border text-[11px] font-black uppercase tracking-widest mb-6 ${status.color} bg-white/[0.03]`}>
-                                                    {status.status}
-                                                </div>
-
-                                                <div className="w-full space-y-2 mb-8">
-                                                    <div className="flex justify-between items-end px-1">
-                                                        <span className="text-[10px] text-zinc-500 font-bold uppercase">{auditResult.psl.tier}</span>
-                                                        <span className="text-[10px] text-zinc-500 font-mono">{(s / 8 * 100).toFixed(0)}% Cap</span>
+                                                <div className="glass border border-zinc-800 rounded-3xl p-6 space-y-4">
+                                                    <div className="flex justify-between items-center">
+                                                        <h3 className="text-zinc-400 text-[10px] font-bold uppercase tracking-[0.2em]">Skeletal Ceiling</h3>
+                                                        <span className="text-[10px] text-emerald-400 font-mono">Max Potential</span>
                                                     </div>
-                                                    <div className="h-1.5 bg-zinc-800/50 rounded-full overflow-hidden border border-white/[0.02]">
-                                                        <motion.div
-                                                            initial={{ width: 0 }}
-                                                            animate={{ width: `${pct}%` }}
-                                                            transition={{ duration: 1.5, ease: "easeOut" }}
-                                                            className="h-full rounded-full"
-                                                            style={{ background: barColor, boxShadow: `0 0 15px ${barColor}50` }}
-                                                        />
-                                                    </div>
-                                                </div>
-
-                                                <RadarChart data={radarData} size={240} color={barColor + 'B3'} />
-                                            </div>
-                                        </div>
-
-                                        {/* GENETIC POTENTIAL CARD */}
-                                        <div className="glass border border-zinc-800 rounded-3xl p-6 space-y-4">
-                                            <div className="flex justify-between items-center">
-                                                <h3 className="text-zinc-400 text-[10px] font-bold uppercase tracking-[0.2em]">Skeletal Ceiling</h3>
-                                                <span className="text-[10px] text-emerald-400 font-mono">Max Potential</span>
-                                            </div>
-                                            <div className="space-y-3">
-                                                <div className="flex justify-between text-xs font-bold text-white">
-                                                    <span>Potential PSL</span>
-                                                    <span className="text-emerald-400">{(s + 1.2).toFixed(1)}</span>
-                                                </div>
-                                                <div className="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
-                                                    <div className="h-full bg-emerald-500/20 w-full relative">
-                                                        <div className="absolute top-0 left-0 h-full bg-emerald-500 w-[85%] transition-all duration-1000" />
+                                                    <div className="space-y-3">
+                                                        <div className="flex justify-between text-xs font-bold text-white">
+                                                            <span>Potential PSL</span>
+                                                            <span className="text-emerald-400">{(s + 1.2).toFixed(1)}</span>
+                                                        </div>
+                                                        <div className="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                                                            <div className="h-full bg-emerald-500/20 w-full relative">
+                                                                <div className="absolute top-0 left-0 h-full bg-emerald-500 w-[85%] transition-all duration-1000" />
+                                                            </div>
+                                                        </div>
+                                                        <p className="text-[9px] text-zinc-500 leading-relaxed italic">
+                                                            Based on your zygomatic width and mandibular base, your soft-tissue ceiling allows for a <span className="text-zinc-300">+1.2 PSL</span> gain through optimized training and grooming.
+                                                        </p>
                                                     </div>
                                                 </div>
-                                                <p className="text-[9px] text-zinc-500 leading-relaxed italic">
-                                                    Based on your zygomatic width and mandibular base, your soft-tissue ceiling allows for a <span className="text-zinc-300">+1.2 PSL</span> gain through optimized training and grooming.
-                                                </p>
+
+                                                <div className="glass border border-zinc-800 rounded-3xl p-6 space-y-4">
+                                                    <h3 className="text-zinc-400 text-[10px] font-bold uppercase tracking-[0.2em] flex items-center gap-2">
+                                                        <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)]" />
+                                                        Impact Breakdown
+                                                    </h3>
+                                                    <div className="flex flex-wrap gap-2">
+                                                        {auditResult.psl.breakdown.map((item, i) => {
+                                                            const isPos = item.includes('+');
+                                                            const isNeg = item.includes('-') && !item.includes('Base');
+                                                            return (
+                                                                <span key={i} className={`text-[10px] font-bold px-3 py-1.5 rounded-xl border ${isPos ? 'bg-emerald-500/5 border-emerald-500/20 text-emerald-400'
+                                                                    : isNeg ? 'bg-red-500/5 border-red-500/20 text-red-400'
+                                                                        : 'bg-zinc-800/50 border-zinc-700/50 text-zinc-400'
+                                                                    }`}>{item}</span>
+                                                            );
+                                                        })}
+                                                    </div>
+                                                </div>
+
+                                                <button
+                                                    onClick={() => { setAuditResult(null); setScans([]); setAnalyzedImageWithLandmarks(null); setUploadedImage(null); }}
+                                                    className="w-full py-4 rounded-3xl bg-zinc-900 border border-zinc-800 hover:border-zinc-600 text-white font-black uppercase tracking-widest text-[11px] transition-all hover:bg-zinc-800 active:scale-[0.98] shadow-xl"
+                                                >
+                                                    Terminate Session & Clear Data
+                                                </button>
                                             </div>
-                                        </div>
-
-                                        <div className="glass border border-zinc-800 rounded-3xl p-6 space-y-4">
-                                            <h3 className="text-zinc-400 text-[10px] font-bold uppercase tracking-[0.2em] flex items-center gap-2">
-                                                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)]" />
-                                                Impact Breakdown
-                                            </h3>
-                                            <div className="flex flex-wrap gap-2">
-                                                {auditResult.psl.breakdown.map((item, i) => {
-                                                    const isPos = item.includes('+');
-                                                    const isNeg = item.includes('-') && !item.includes('Base');
-                                                    return (
-                                                        <span key={i} className={`text-[10px] font-bold px-3 py-1.5 rounded-xl border ${isPos ? 'bg-emerald-500/5 border-emerald-500/20 text-emerald-400'
-                                                            : isNeg ? 'bg-red-500/5 border-red-500/20 text-red-400'
-                                                                : 'bg-zinc-800/50 border-zinc-700/50 text-zinc-400'
-                                                            }`}>{item}</span>
-                                                    );
-                                                })}
-                                            </div>
-                                        </div>
-
-                                        <button
-                                            onClick={() => { setAuditResult(null); setScans([]); setAnalyzedImageWithLandmarks(null); setUploadedImage(null); }}
-                                            className="w-full py-4 rounded-3xl bg-zinc-900 border border-zinc-800 hover:border-zinc-600 text-white font-black uppercase tracking-widest text-[11px] transition-all hover:bg-zinc-800 active:scale-[0.98] shadow-xl"
-                                        >
-                                            Terminate Session & Clear Data
-                                        </button>
-                                    </div>
-                                );
-                            })()}
-                        </div>
-
-                        {/* RIGHT COLUMN: Tabbed Results & Face Preview (8 cols) */}
-                        <div className="lg:col-span-8 flex flex-col gap-6">
-                            {/* FACE PREVIEW BAR */}
-                            <div className="relative aspect-video w-full rounded-[2.5rem] overflow-hidden border border-zinc-800 glass-dark shadow-2xl group">
-                                {analyzedImageWithLandmarks || auditResult.imageUrl ? (
-                                    <>
-                                        <img
-                                            src={analyzedImageWithLandmarks || auditResult.imageUrl}
-                                            alt="Analyzed face"
-                                            className="h-full w-full object-cover"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                        <div className="absolute top-6 left-6 inline-flex items-center gap-2 px-3 py-1.5 bg-black/60 backdrop-blur-md border border-white/10 rounded-full">
-                                            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                                            <span className="text-[10px] font-black text-white uppercase tracking-widest">Live 3D Geometry Map</span>
-                                        </div>
-                                    </>
-                                ) : (
-                                    <div className="h-full w-full bg-zinc-900 flex items-center justify-center">
-                                        <p className="text-zinc-600 font-mono text-xs uppercase tracking-widest">Image Data Corrupted</p>
-                                    </div>
-                                )}
-                            </div>
-
-                            {/* TAB SYSTEM */}
-                            <div className="flex-1 flex flex-col gap-6">
-                                <div className="flex p-1.5 bg-zinc-900/50 border border-zinc-800 rounded-[2rem] glass-dark shadow-xl sticky top-4 z-50">
-                                    {([
-                                        { id: 'analysis', label: 'Analysis', icon: '🔬' },
-                                        { id: 'roadmap', label: 'Roadmap', icon: '🚀' },
-                                        { id: 'vitality', label: 'Vitality', icon: '⚡' },
-                                        ...(auditResult.profileType !== 'side' ? [{ id: 'haircut', label: 'Haircut', icon: '✂️' }] : []),
-                                    ] as { id: Tab; label: string; icon: string }[]).map(tab => (
-                                        <button
-                                            key={tab.id}
-                                            onClick={() => setResultsTab(tab.id)}
-                                            className={`flex-1 flex items-center justify-center gap-2 py-3.5 rounded-[1.5rem] text-[11px] font-black uppercase tracking-widest transition-all ${resultsTab === tab.id
-                                                ? 'bg-white text-black shadow-lg scale-[1.02]'
-                                                : 'text-zinc-500 hover:text-white hover:bg-white/[0.02]'
-                                                }`}
-                                        >
-                                            <span className="text-base">{tab.icon}</span>
-                                            {tab.label}
-                                        </button>
-                                    ))}
+                                        );
+                                    })()}
                                 </div>
 
-                                <div className="min-h-[500px]">
-                                    {resultsTab === 'analysis' && (
-                                        <AnalysisTab
-                                            metrics={auditResult.metrics}
-                                            profileType={auditResult.profileType}
-                                            gender={gender}
-                                            expandedMetric={expandedMetric}
-                                            onToggleMetric={setExpandedMetric}
-                                        />
-                                    )}
+                                <div className="lg:col-span-8 flex flex-col gap-6">
+                                    <div className="relative aspect-video w-full rounded-[2.5rem] overflow-hidden border border-zinc-800 glass-dark shadow-2xl group">
+                                        {analyzedImageWithLandmarks || auditResult.imageUrl ? (
+                                            <>
+                                                <img
+                                                    src={analyzedImageWithLandmarks || auditResult.imageUrl}
+                                                    alt="Analyzed face"
+                                                    className="h-full w-full object-cover"
+                                                />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                                <div className="absolute top-6 left-6 inline-flex items-center gap-2 px-3 py-1.5 bg-black/60 backdrop-blur-md border border-white/10 rounded-full">
+                                                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                                                    <span className="text-[10px] font-black text-white uppercase tracking-widest">Live 3D Geometry Map</span>
+                                                </div>
+                                            </>
+                                        ) : (
+                                            <div className="h-full w-full bg-zinc-900 flex items-center justify-center">
+                                                <p className="text-zinc-600 font-mono text-xs uppercase tracking-widest">Image Data Corrupted</p>
+                                            </div>
+                                        )}
+                                    </div>
 
-                                    {resultsTab === 'roadmap' && (
-                                        <RoadmapTab
-                                            metrics={auditResult.metrics}
-                                            profileType={auditResult.profileType}
-                                            gender={gender}
-                                            expandedMetric={expandedMetric}
-                                            onToggleMetric={setExpandedMetric}
-                                            currentPSL={auditResult.psl.score}
-                                        />
-                                    )}
+                                    <div className="flex-1 flex flex-col gap-6">
+                                        <div className="flex p-1.5 bg-zinc-900/50 border border-zinc-800 rounded-[2rem] glass-dark shadow-xl sticky top-4 z-50">
+                                            {([
+                                                { id: 'analysis', label: 'Analysis', icon: '🔬' },
+                                                { id: 'roadmap', label: 'Roadmap', icon: '🚀' },
+                                                { id: 'vitality', label: 'Vitality', icon: '⚡' },
+                                                ...(auditResult.profileType !== 'side' ? [{ id: 'haircut', label: 'Haircut', icon: '✂️' }] : []),
+                                            ] as { id: Tab; label: string; icon: string }[]).map(tab => (
+                                                <button
+                                                    key={tab.id}
+                                                    onClick={() => setResultsTab(tab.id)}
+                                                    className={`flex-1 flex items-center justify-center gap-2 py-3.5 rounded-[1.5rem] text-[11px] font-black uppercase tracking-widest transition-all ${resultsTab === tab.id
+                                                        ? 'bg-white text-black shadow-lg scale-[1.02]'
+                                                        : 'text-zinc-500 hover:text-white hover:bg-white/[0.02]'
+                                                        }`}
+                                                >
+                                                    <span className="text-base">{tab.icon}</span>
+                                                    {tab.label}
+                                                </button>
+                                            ))}
+                                        </div>
 
-                                    {resultsTab === 'vitality' && (
-                                        <VitalityTab metrics={auditResult.metrics} />
-                                    )}
+                                        <div className="min-h-[500px]">
+                                            {resultsTab === 'analysis' && (
+                                                <AnalysisTab
+                                                    metrics={auditResult.metrics}
+                                                    profileType={auditResult.profileType}
+                                                    gender={gender}
+                                                    expandedMetric={expandedMetric}
+                                                    onToggleMetric={setExpandedMetric}
+                                                />
+                                            )}
 
-                                    {resultsTab === 'haircut' && auditResult.profileType !== 'side' && (
-                                        <HaircutTab
-                                            metrics={auditResult.metrics}
-                                            gender={gender}
-                                        />
-                                    )}
+                                            {resultsTab === 'roadmap' && (
+                                                <RoadmapTab
+                                                    metrics={auditResult.metrics}
+                                                    profileType={auditResult.profileType}
+                                                    gender={gender}
+                                                    expandedMetric={expandedMetric}
+                                                    onToggleMetric={setExpandedMetric}
+                                                    currentPSL={auditResult.psl.score}
+                                                />
+                                            )}
+
+                                            {resultsTab === 'vitality' && (
+                                                <VitalityTab metrics={auditResult.metrics} />
+                                            )}
+
+                                            {resultsTab === 'haircut' && auditResult.profileType !== 'side' && (
+                                                <HaircutTab
+                                                    metrics={auditResult.metrics}
+                                                    gender={gender}
+                                                />
+                                            )}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        )}
                     </div>
-
                 </div>
 
             ) : (
-                /* Compare Mode Layout */
                 <div className="flex flex-col w-full gap-8">
                     {beforeScan && afterScan ? (
                         <div className="flex flex-col space-y-6">
