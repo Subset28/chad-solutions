@@ -114,7 +114,7 @@ export const getIdealRange = (metric: keyof MetricScores, gender: 'male' | 'fema
         return fIdeals[metric] || '';
     }
 
-    const mIdeals: Record<keyof MetricScores, string> = {
+    const mIdeals: Partial<Record<keyof MetricScores, string>> = {
         canthalTilt: '4° to 6°',
         fwfhRatio: '> 1.65',
         midfaceRatio: '0.75 to 1.05',
@@ -147,5 +147,5 @@ export const getIdealRange = (metric: keyof MetricScores, gender: 'male' | 'fema
         upperEyelidExposure: '< 0.25 (Minimal)',
         philtrumLength: '< 0.08 (Compact)'
     };
-    return mIdeals[metric];
+    return mIdeals[metric] || '';
 };
