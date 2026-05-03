@@ -84,7 +84,10 @@ export default function AnalysisTab({ metrics, profileType, gender, expandedMetr
                         return (
                             <div key={key} className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center justify-center text-center">
                                 <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider mb-1">{label}</span>
-                                <span className="text-lg font-black text-white">{typeof val === 'number' ? val.toFixed(1) : val}<span className="text-[10px] ml-0.5 text-zinc-500">{unit}</span></span>
+                                <span className="text-lg font-black text-white">
+                                    {typeof val === 'number' ? val.toFixed(1) : String(val ?? '')}
+                                    <span className="text-[10px] ml-0.5 text-zinc-500">{unit}</span>
+                                </span>
                             </div>
                         );
                     })}
@@ -141,7 +144,7 @@ export default function AnalysisTab({ metrics, profileType, gender, expandedMetr
                                         )}
                                     </div>
                                     {isValidForProfile && (
-                                        <span className="text-[11px] font-mono text-zinc-400">{typeof value === 'number' ? value.toFixed(2) : value}</span>
+                                        <span className="text-[11px] font-mono text-zinc-400">{typeof value === 'number' ? value.toFixed(2) : String(value ?? '')}</span>
                                     )}
                                 </div>
                             </div>
