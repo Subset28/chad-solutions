@@ -129,8 +129,8 @@ The engine calculates three distinct types of scores:
 ### Troubleshooting Low Scores (The "1.0" Problem)
 If a user receives a 1.0, it is usually due to one of three factors:
 - **Bad Landmark Read**: The Landmark Audit Layer (`normalization.ts`) detected occlusions or low confidence but the user proceeded anyway.
-- **Extreme Outliers**: A measurement > 3 standard deviations from the mean. **(Fixed in v2.2)**: Individual Z-scores are now clamped to `[-3.0, 3.0]` to prevent a single bad metric from flooring the overall score.
-- **Aspect Ratio Distortion**: (Fixed in v2.1) Sensor distortion making the face appear "crushed" or "stretched."
+- **Extreme Outliers**: (Fixed in v2.2) Individual Z-scores are now clamped to `[-3.5, 3.5]`.
+- **Calibration**: **(Updated in v3.0)**: The engine is now calibrated to the "Looksmax Standard" (Z=0 -> PSL 4.0). Previously, the average was shifted too high, leading to "rating inflation" or "outlier collapse."
 
 ---
 
