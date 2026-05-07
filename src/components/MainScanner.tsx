@@ -44,6 +44,7 @@ export default function MainScanner({ challengerData }: MainScannerProps) {
     const [activeTab, setActiveTab] = useState<'scan' | 'rankings'>('scan');
     const [showChallenge, setShowChallenge] = useState(!!challengerData);
     const [username, setUsername] = useState('');
+    const [showTips, setShowTips] = useState(false);
 
     useEffect(() => {
         setUsername(getOrCreateUsername());
@@ -245,6 +246,7 @@ export default function MainScanner({ challengerData }: MainScannerProps) {
                             <LeaderboardTab />
                         </motion.div>
                     ) : !result ? (
+                    ) : !result ? (
                         <motion.div 
                             key="camera"
                             initial={{ opacity: 0 }}
@@ -263,7 +265,7 @@ export default function MainScanner({ challengerData }: MainScannerProps) {
                             <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/80 pointer-events-none" />
 
                             {/* Scanner HUD UI */}
-                            <div className="relative z-10 flex flex-col items-center gap-12">
+                            <div className="relative z-10 flex flex-col items-center gap-8">
                                 <div className="w-64 h-80 border-2 border-white/20 rounded-[3rem] relative">
                                     <div className="absolute inset-0 border border-white/10 rounded-[3rem] scale-105" />
                                     <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black px-4 py-1 border border-white/20 rounded-full">
@@ -281,16 +283,69 @@ export default function MainScanner({ challengerData }: MainScannerProps) {
                                     )}
                                 </div>
 
-                                <button
-                                    onClick={startScan}
-                                    disabled={isAnalyzing || countdown !== null}
-                                    className="group relative w-24 h-24 rounded-full bg-white flex items-center justify-center transition-all active:scale-90 disabled:opacity-50"
-                                >
-                                    <div className="absolute inset-0 rounded-full border-4 border-white scale-110 group-hover:scale-125 transition-transform opacity-20" />
-                                    <div className="w-20 h-20 rounded-full border-2 border-black/10" />
-                                    <div className="absolute inset-0 flex items-center justify-center text-black font-black text-[10px] uppercase tracking-widest">Scan</div>
-                                </button>
+                                <div className="flex flex-col items-center gap-4">
+                                    <button
+                                        onClick={startScan}
+                                        disabled={isAnalyzing || countdown !== null}
+                                        className="group relative w-24 h-24 rounded-full bg-white flex items-center justify-center transition-all active:scale-90 disabled:opacity-50"
+                                    >
+                                        <div className="absolute inset-0 rounded-full border-4 border-white scale-110 group-hover:scale-125 transition-transform opacity-20" />
+                                        <div className="w-20 h-20 rounded-full border-2 border-black/10" />
+                                        <div className="absolute inset-0 flex items-center justify-center text-black font-black text-[10px] uppercase tracking-widest">Scan</div>
+                                    </button>
+
+                                    <button 
+                                        onClick={() => setShowTips(true)}
+                                        className="px-4 py-2 rounded-full border border-white/20 bg-black/40 backdrop-blur-md flex items-center gap-2 group hover:bg-white/10 transition-all"
+                                    >
+                                        <span className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center text-[10px] font-black group-hover:bg-white group-hover:text-black transition-all">i</span>
+                                        <span className="text-[10px] font-black uppercase tracking-widest text-white/60 group-hover:text-white">Photo Protocol</span>
+                                    </button>
+                                </div>
                             </div>
+
+                            {/* Tips Modal */}
+                            <AnimatePresence>
+                                {showTips && (
+                                    <motion.div
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        exit={{ opacity: 0 }}
+                                        className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-xl p-8 flex flex-col items-center justify-center"
+                                    >
+                                        <div className="w-full max-w-sm space-y-8">
+                                            <div className="space-y-2">
+                                                <p className="text-[10px] font-black text-white/40 uppercase tracking-[0.4em]">Accuracy Standards</p>
+                                                <h2 className="text-3xl font-black tracking-tighter italic italic">THE 6-FOOT RULE</h2>
+                                            </div>
+
+                                            <div className="space-y-6">
+                                                {[
+                                                    { title: "Avoid Distortion", desc: "Smartphone lenses distort features up close. Stand at least 6-8 feet away for medical-grade accuracy." },
+                                                    { title: "Eye Level", desc: "Position the camera exactly at eye level. Tilting up or down will invalidate midface measurements." },
+                                                    { title: "Neutral Face", desc: "Maintain a deadpan expression. No smiling or tension in the jaw." },
+                                                    { title: "Lighting", desc: "Face a window directly. Avoid overhead lights that create artificial eye bags." }
+                                                ].map((tip, i) => (
+                                                    <div key={i} className="flex gap-4">
+                                                        <span className="text-white/20 font-black italic">0{i+1}</span>
+                                                        <div className="space-y-1">
+                                                            <p className="text-[10px] font-black uppercase tracking-widest text-white">{tip.title}</p>
+                                                            <p className="text-xs text-zinc-500 leading-relaxed">{tip.desc}</p>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+
+                                            <button 
+                                                onClick={() => setShowTips(false)}
+                                                className="w-full py-5 bg-white text-black font-black uppercase tracking-[0.3em] text-xs rounded-2xl"
+                                            >
+                                                Understood
+                                            </button>
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                         </motion.div>
                     ) : (
                         <div key="result" className="w-full h-full overflow-y-auto bg-black scroll-smooth pb-32">

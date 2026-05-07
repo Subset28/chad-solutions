@@ -221,16 +221,25 @@ This guide details exactly which lines to change to modify the engine behavior.
 
 ## 📸 10. User Guide: Achieving Surgical Precision
 
-To get a medical-grade reading, you must follow these protocols:
+To get a medical-grade reading, you must follow the **Looksmax Standard Photo Protocol**. Smartphone wide-angle lenses (24mm-28mm) cause severe "lens distortion" at arm's length, making the nose look larger and the face narrower.
 
-1.  **The 3-Foot Rule**: Smartphone cameras are wide-angle. If you hold it close, your nose will look 20% larger. **Stand 3-4 feet away and use 2x zoom.**
-2.  **The Horizon Lock**: Keep your eyes level with the camera lens. Do not tilt your chin up or down unless specifically testing "Protrusion" metrics.
-3.  **Lighting Homogeneity**: Use flat, frontal lighting (facing a window). Avoid overhead lights or side-shadows which create "asymmetry noise."
-4.  **The Deadpan**: Maintain a neutral, relaxed face. Tension in the masseter or brow can skew skeletal readings.
+### The Primary Method (Recommended)
+1. **The 6-Foot Rule**: Stand at least **6-8 feet (2 meters) away** from the camera. Holding the phone at arm's length *will* skew your ratios and lower your score.
+2. **Back Camera Preference**: Use your phone's back camera. Front-facing cameras are optimized for social media, not biometric accuracy.
+3. **The Horizon Lock**: Place the phone on a stable surface at **eye level**. Do not tilt the phone up or down.
+4. **Alignment**: Align your eyes perfectly with the lens and maintain a neutral, deadpan expression.
+5. **Lighting**: Face a window for flat, natural lighting. Avoid overhead lights that create artificial shadows under the eyes.
+
+### The Mirror Method (Backup)
+If you cannot use a timer or assistant:
+1. Position yourself **3 feet away** from a large mirror.
+2. Hold your phone next to your head, ensuring the camera is level with your eyes.
+3. Gaze into the mirror, keeping your face parallel to the phone.
+4. **Important**: After capture, you must horizontally flip (mirror) the screenshot to correct for reflection distortion before uploading.
 
 ---
 
-## ⚖️ 11. Disclaimer & Ethical Boundary
+## ⚡ 11. Vitality Index & Environment Mastery
 
 OmniSight is for **Objective Biometric Data Acquisition**. It is not a clinical diagnostic tool.
 -   **Math doesn't lie**, but it also doesn't define your value.
