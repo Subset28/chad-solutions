@@ -1,11 +1,13 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MetricScores } from '@/utils/geometry';
+import { MetricReport } from '@/utils/metrics';
 import { analyzeShadowProjection } from '@/utils/lighting';
 import { RadarChart } from './RadarChart';
 
 interface VitalityTabProps {
-    metrics: MetricScores;
+    metrics: MetricReport;
 }
 
 const StatCard = ({ label, value, sub, color }: { label: string, value: string | number, sub: string, color: string }) => (
@@ -34,17 +36,17 @@ export default function VitalityTab({ metrics }: VitalityTabProps) {
     const { vitalityScore, biologicalAgeDelta, sleepScore, collagenIndex } = metrics.vitality;
     
     const lighting = analyzeShadowProjection({
-        orbitalRimProtrusion: metrics.orbitalRimProtrusion,
-        infraorbitalRimPosition: metrics.infraorbitalRimPosition,
-        cheekboneProminence: metrics.cheekboneProminence
+        orbitalRimProtrusion: metrics.periorbital.orbitalRim.average,
+        infraorbitalRimPosition: metrics.periorbital.infraorbitalRim.average,
+        cheekboneProminence: metrics.midface.cheekboneProminence
     });
 
     const radarData = [
         { label: 'Ocular', value: sleepScore },
         { label: 'Collagen', value: collagenIndex },
         { label: 'Health', value: Math.max(0, 100 - biologicalAgeDelta * 5) },
-        { label: 'Skin', value: metrics.skinQuality || 50 },
-        { label: 'Tone', value: 80 } // Placeholder
+        { label: 'Tension', value: (1 - metrics.skin.tension) * 100 },
+        { label: 'Tone', value: 80 } 
     ];
 
     return (
@@ -104,15 +106,15 @@ export default function VitalityTab({ metrics }: VitalityTabProps) {
                     color="text-blue-400"
                 />
                 <StatCard 
-                    label="Phenotype" 
-                    value={metrics.phenotype?.toUpperCase() || 'GENERIC'} 
-                    sub="Genetic Cluster"
+                    label="Facial Tension" 
+                    value={metrics.skin.tension.toFixed(2)} 
+                    sub="Expression Fatigue"
                     color="text-purple-400"
                 />
                 <StatCard 
-                    label="Skin Quality" 
-                    value={typeof metrics.skinQuality === 'number' ? metrics.skinQuality.toFixed(0) : 'N/A'} 
-                    sub="Texture Homogeneity"
+                    label="Symmetry Index" 
+                    value={metrics.symmetry.overallSymmetry.toFixed(1)} 
+                    sub="Bilateral Balance"
                     color="text-emerald-400"
                 />
             </div>
@@ -139,7 +141,7 @@ export default function VitalityTab({ metrics }: VitalityTabProps) {
                 </div>
 
                 <p className="text-zinc-500 text-[10px] leading-relaxed italic bg-black/20 p-3 rounded-xl border border-zinc-800/50">
-                    Based on your infraorbital rim position ({metrics.infraorbitalRimPosition.toFixed(1)}mm), you are sensitive to overhead lighting which casts "negative vectors". Prioritize broad-spectrum frontal lighting.
+                    Based on your infraorbital rim position ({metrics.periorbital.infraorbitalRim.average.toFixed(1)}mm), you are sensitive to overhead lighting which casts "negative vectors". Prioritize broad-spectrum frontal lighting.
                 </p>
             </div>
         </div>

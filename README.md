@@ -1,147 +1,216 @@
-# Chad Solutions — The Ultimate Facial Anthropometry Manifesto v2.0
-> **An Exhaustive Technical Guide, Developer Handbook, and Objective Aesthetic Research Document.**
+# OmniSight Facial Anthropometry Manifesto v2.0
+> **The Definitive Technical Documentation, Mathematical Blueprint, and Developer Handbook for Medical-Grade Facial Analysis.**
 
 ---
 
 ## 📑 Table of Contents
-1. [Introduction & Philosophy](#-introduction--philosophy)
-2. [Technical Architecture Deep Dive](#-technical-architecture-deep-dive)
-3. [The Formula Bible (Mathematical Foundations)](#-the-formula-bible-mathematical-foundations)
-4. [Neural Landmark Mapping (Index Guide)](#-neural-landmark-mapping-index-guide)
-5. [The PSL Scoring Engine (Algorithm & Tiers)](#-the-psl-scoring-engine-algorithm--tiers)
-6. [Haircut Recommendation Engine (Logic & Catalog)](#-haircut-recommendation-engine-logic--catalog)
-7. [Developer’s Modification Guide (Where to Edit)](#-developers-modification-guide-where-to-edit)
-8. [User Guide: Achieving Surgical Precision](#-user-guide-achieving-surgical-precision)
-9. [Future Innovation & V3.0 Roadmap](#-future-innovation--v30-roadmap)
-10. [Disclaimer & Ethical Boundary](#-disclaimer--ethical-boundary)
+1. [Introduction & Philosophy](#-1-introduction--philosophy)
+2. [Clinical-Grade Technical Architecture](#-2-clinical-grade-technical-architecture)
+3. [The Mathematical Formula Bible](#-3-the-mathematical-formula-bible)
+4. [Neural Landmark Mapping (Index 478)](#-4-neural-landmark-mapping-index-478)
+5. [The Z-Score Statistical Scoring Engine](#-5-the-z-score-statistical-scoring-engine)
+6. [Haircut Architecture & Synergy Logic](#-6-haircut-architecture--synergy-logic)
+7. [Vitality Index & Environment Mastery](#-7-vitality-index--environment-mastery)
+8. [Comprehensive Developer’s Modification Guide](#-8-comprehensive-developers-modification-guide)
+9. [User Guide: Achieving Surgical Precision](#-9-user-guide-achieving-surgical-precision)
+10. [Future Innovation & V3.0 Roadmap](#-10-future-innovation--v30-roadmap)
+11. [Disclaimer & Ethical Boundary](#-11-disclaimer--ethical-boundary)
 
 ---
 
 ## 🏛️ 1. Introduction & Philosophy
 
-Chad Solutions is a specialized **Facial Biometric Analysis Engine** built for the Next.js ecosystem. It bridges the gap between clinical maxillofacial research and consumer-level web technology.
+OmniSight (formerly Chad Solutions) is a specialized **Facial Biometric Analysis Engine** built for the Next.js ecosystem. It bridges the gap between clinical maxillofacial research and consumer-level web technology.
 
-**Privacy Policy**: This is a **Zero-Backend** application. Every pixel of your image is processed locally in your browser's RAM and discarded immediately. No images, landmarks, or scores are ever sent to a server.
-
----
-
-## 💻 2. Technical Architecture Deep Dive
-
-### The Stack
-- **Frontend**: Next.js 14 (React), Tailwind CSS (Vanilla), Framer Motion.
-- **Inference Engine**: Google MediaPipe FaceLandmarker (WASM).
-- **UI Design System**: **Glassmorphism 2.0** — High-transparency cards, backdrop blurs, and neon accent borders. The layout is fully responsive, optimized for both desktop "Surgical Workstations" and mobile "Real-time Audits."
-
-### The Data Flow
-1. **Input**: Webcam Stream or Image Upload.
-2. **Detection**: MediaPipe identifies 478 points in 3D space.
-3. **Euler Normalization**: The system extracts the head's rotation matrix and mathematically "levels" the face.
-4. **Reconstruction**: Coordinates are scaled to physical millimeters using **Interpupillary Distance (IPD)** as a constant anchor (63.5mm average).
+Our philosophy is built on three pillars:
+1. **Mathematical Objectivity**: We remove the subjective "vibe" and replace it with Z-scores relative to clinical population norms.
+2. **Zero-Backend Privacy**: Every pixel of your image is processed locally in your browser's RAM and discarded immediately. No images, landmarks, or scores are ever sent to a server.
+3. **Ascension Roadmap**: We don't just provide scores; we provide a structured structural roadmap for improvement across lifestyle, non-surgical, and surgical interventions.
 
 ---
 
-## 📐 3. The Formula Bible (Mathematical Foundations)
+## 💻 2. Clinical-Grade Technical Architecture
 
-### Ocular Metrics
-- **Canthal Tilt**:
+### The Tech Stack
+- **Framework**: Next.js 14 (App Router) with TypeScript for strict type safety.
+- **Styling**: Vanilla CSS for maximum performance and custom glassmorphism effects.
+- **Inference Engine**: Google MediaPipe FaceLandmarker (WASM) for real-time 3D coordinate extraction.
+- **State Management**: React Context & Hooks for local-first ephemeral state.
+- **Storage**: Optional `IndexedDB` (via local state) for persistent trend tracking without cloud exposure.
+
+### The Analysis Pipeline (Under the Hood)
+1. **Input Acquisition**: The system captures raw pixel data from the webcam or an uploaded high-resolution file.
+2. **Neural Mesh Generation**: MediaPipe identifies 478 landmarks in 3D space (`x`, `y`, `z`).
+3. **Audit & Validation**: The **Landmark Audit Layer** (`normalization.ts`) checks confidence scores for critical anchors (jaw corners, chin, canthi). If confidence is < 0.7, the scan is rejected to prevent "hallucinated" measurements.
+4. **3-Axis Pose Correction**:
+   - **Roll**: Corrected by rotating coordinates around the Z-axis until the eyes are perfectly level.
+   - **Yaw/Pitch**: The system extracts the `facialTransformationMatrix` from MediaPipe to mathematically "rotate" the face back to a dead-center neutral position before measuring. This prevents a tilted head from inflating the midface ratio.
+5. **Perspective Undistortion**: We apply a focal length correction factor to account for the "fisheye" effect common in front-facing smartphone cameras.
+
+---
+
+## 📐 3. The Mathematical Formula Bible
+
+Every metric in OmniSight is derived from geometric distance or angular calculation between 3D vectors.
+
+### Ocular & Periorbital Suite
+- **Canthal Tilt (Degree)**:
   `theta = atan2(-(outer.y - inner.y), outer.x - inner.x) - head_roll`
+  *Calculated bilaterally to detect asymmetry.*
 - **Eye Separation Ratio (ESR)**:
-  `ratio = Distance(inner_eye_L, inner_eye_R) / bizygomatic_width`
-  *Ideal: 0.45 - 0.47*
+  `ratio = Distance(Inner_Canthus_L, Inner_Canthus_R) / Bizygomatic_Width`
+  *Clinical Ideal: 0.45 - 0.47*
+- **Palpebral Fissure Length (PFL)**:
+  Measured in normalized units relative to bizygomatic width to ensure scale-invariant results.
 
-### Bone Structure
+### Midface & Proportions
 - **fWHR (Facial Width to Height Ratio)**:
-  `fWHR = Width(Zygoma_L, Zygoma_R) / Distance(Nasion, Stomion)`
+  `fWHR = Bizygomatic_Width / Distance(Nasion, Stomion)`
+  *High fWHR is strongly correlated with perceived dominance.*
+- **Midface Ratio**:
+  `ratio = Distance(Pupils) / Distance(Nasion, Stomion)`
+  *A more compact midface is associated with higher dimorphic attractiveness.*
+
+### Jawline & Lower Third
 - **Gonial Angle**:
-  `angle = angle_between_vectors((JawPoint, EarPoint), (JawPoint, ChinPoint))`
-
-### Skin Analysis (Clarity Score)
-Using a **Euclidean Variance** algorithm:
-`Clarity = 100 - (STDEV(RGB_Pixels) * Sensitivity_Scalar)`
-
----
-
-## 📍 4. Neural Landmark Mapping (Index Guide)
-
-| Feature | MediaPipe Indices |
-|---|---|
-| **Nose Tip** | 1 |
-| **Chin (Menton)** | 152 |
-| **Top of Forehead** | 10 |
-| **Inner Eye Corner (L/R)** | 362 / 133 |
-| **Outer Eye Corner (L/R)** | 263 / 33 |
-| **Zygoma (Cheekbones)** | 454 / 234 |
-| **Gonial Angle (Jaw Corner)** | 397 / 172 |
+  `angle = angle_between_vectors((JawCorner, Ear), (JawCorner, Chin))`
+  *Ideal Male: 110-120° | Ideal Female: 120-130°*
+- **Chin-to-Philtrum Ratio**:
+  `ratio = Distance(Stomion, Menton) / Distance(Subnasale, Stomion)`
+  *The "Golden Ratio" of the lower third (ideally 2:1).*
 
 ---
 
-## 🏆 5. The PSL Scoring Engine (Algorithm & Tiers)
+## 📍 4. Neural Landmark Mapping (Index 478)
 
-The PSL (Physical Status Level) scale is a 0-8 distribution based on the **Pareto Distribution of Attractiveness**.
+We utilize the standard MediaPipe 478-point mesh. Below are the critical anchors used for all core logic:
 
-### The Math
-1. **Base**: 4.0 (Average Normie).
-2. **Additive Bonuses**: Perfect Midface (+0.4), Ideal Jaw Angle (+0.4), Positive Canthal Tilt (+0.5).
-3. **Additive Penalties**: Negative Tilt (-0.8), High UEE (-1.0), Significant Hair Loss (-1.0).
+| Feature | MediaPipe Index | Clinical Significance |
+|---|---|---|
+| **Nose Tip (Prunasale)** | 1 | Midline anchor |
+| **Chin (Menton)** | 152 | Lower third boundary |
+| **Top of Forehead (Trichion)** | 10 | Upper boundary |
+| **Nasion** | 168 | Midface/Forehead boundary |
+| **Inner Canthus (L/R)** | 133 / 362 | Ocular width anchor |
+| **Outer Canthus (L/R)** | 33 / 263 | Tilt anchor |
+| **Zygoma (L/R)** | 234 / 454 | Maximum facial width |
+| **Gonial Corner (L/R)** | 172 / 397 | Jawline angularity |
+| **Subnasale** | 2 | Upper lip/Nose boundary |
+| **Stomion** | 13 | Lip contact point |
+
+*Note: For the full mapping, refer to `src/utils/metrics.ts` where these indices are resolved into semantic `Point3D` objects.*
 
 ---
 
-## ✂️ 6. Haircut Recommendation Engine (Logic & Catalog)
+## 🏆 5. The Z-Score Statistical Scoring Engine
 
-The haircut engine is a multi-factor expert system that synthesizes facial geometry with user-defined hair characteristics.
+Unlike other apps that give "random" scores out of 100, OmniSight uses a **Gaussian Distribution Model** (`scoring.ts`).
 
-### How It Works (The Logic)
-1. **Face Shape Classification**: The system uses a point-based heuristic (calculated in `classifyFaceShape`) to assign a shape (Oval, Round, Square, Heart, Oblong, Diamond).
-2. **Synergy Scoring**: Every haircut in our database has a **Synergy Coefficient** for each face shape.
-3. **Profile Filtering**: Recommendations are filtered by **Gender**, **Hair Type** (Straight to Coily), **Texture** (Fine to Coarse), and **Hairline Status** (Full to Thinning).
+### The Population Norms
+We maintain a `POPULATION_NORMS` constant that contains the **Mean** and **Standard Deviation** for every metric, segregated by gender. These norms are derived from:
+- Anthropometric surveys (e.g., Farkas et al.)
+- Clinical maxillofacial datasets.
+- Aesthetic "Perfect" averages.
 
-### Recommendation Catalog (Sample)
-- **Oval**: Textured Quiff, Classic Side Part, Blunt Bob (F).
-- **Round**: High Volume Pompadour, Angular Fringe, Lob with Side Bangs (F).
-- **Square**: Textured Crop, Slicked Back, Romantic Curls (F).
-- **Oblong**: Side-Swept Fringe, Curtain Bangs, Layered Bob (F).
-- **Diamond**: Textured Fringe, Chin-Length Layers, Half-Up Half-Down (F).
+### The Calculation Pipeline
+1. **Raw Measurement**: e.g., Gonial Angle = 115°.
+2. **Z-Score Mapping**: `z = (measurement - mean) / stdev`.
+3. **Sigmoid Normalization**: We convert the Z-score into a 0.0 - 10.0 scale using a customized sigmoid function that rewards "Ideal" values and penalizes "Outliers" (deviations from the mean).
+4. **Weighted Aggregation**: Metrics are weighted by their impact on perceived attractiveness (e.g., Canthal Tilt has a higher weight than Nose Width Ratio).
+
+---
+
+## ✂️ 6. Haircut Architecture & Synergy Logic
+
+The haircut engine (`haircut-recommendations.ts`) is a multi-factor expert system.
+
+### Face Shape Classification
+We use a point-based heuristic to assign one of 6 face shapes:
+- **Oval**: Balanced, versatile.
+- **Round**: Wide zygoma, soft jaw.
+- **Square**: Geometric jaw, wide forehead.
+- **Heart**: Wide forehead, narrow chin.
+- **Oblong**: Significant vertical height.
+- **Diamond**: Narrow top/bottom, wide cheekbones.
+
+### The Synergy Algorithm
+Every haircut has a synergy bonus/penalty for specific face shapes.
+- **Vertical Correction**: Oblong faces get haircuts that add horizontal width.
+- **Angular Softening**: Square faces get haircuts that use organic texture to break hard lines.
+- **Length Elongation**: Round faces get "High-Top" styles to add vertical dimension.
 
 ### Data Sources
-Our styling recommendations are derived from:
-- **Maxillofacial Anthropometry**: Clinical standards for facial balancing.
-- **Expert Grooming Repositories**: Stylist-vetted archetypes for specific bone structures.
-- **Looksmax.org Community Data**: Aggregated crowdsourced data on visual synergy and "Halo effects."
+Our recommendations are sourced from:
+- **Facial Balancing Principles**: Clinical standards for visual harmony.
+- **Stylist Archetypes**: Professional grooming standards.
+- **Community Consensus**: Aggregated data from aesthetic forums (Looksmax.org, etc.) regarding the "Halo Effect."
 
 ---
 
-## 🛠️ 7. Developer’s Modification Guide (Where to Edit)
+## ⚡ 7. Vitality Index & Environment Mastery
 
-| Change Request | Target File | Logic Block |
-|---|---|---|
-| **Modify Ideal Ranges** | `src/utils/geometry.ts` | `_getIdealRange` |
-| **Change Scoring Weights** | `src/utils/geometry.ts` | `calculatePSLScore` |
-| **Add New Haircuts** | `src/utils/haircut-recommendations.ts` | `maleHairstyles` / `femaleHairstyles` |
-| **Add improvement Tips** | `src/utils/recommendations.ts` | `metricRecommendations` |
-| **UI Components** | `src/components/` | React TSX files |
+A new addition to V2.0, the **Vitality Tab** (`VitalityTab.tsx`) measures health-correlated aesthetics.
 
----
+### Bio-Marker Scan
+- **Ocular Clarity**: Analyzes the ratio of eyelid openness to detect fatigue.
+- **Collagen Index**: A derived metric calculating midface support (nasolabial depth).
+- **Biological Age Delta**: Compares structural support against age-based norms.
 
-## 📸 8. User Guide: Achieving Surgical Precision
-
-1. **Avoid the "Fisheye" Effect**: Front-cameras distort features. **Hold the camera 3-4 feet away and zoom in 2x.**
-2. **The "Shadow Scam"**: Overhead lighting creates fake under-eye hollows. Use **front-facing, natural light**.
-3. **Neutral Expression**: Do not smile. The AI can neutralize some tension, but a dead-neutral face provides the best bone-structure reading.
+### Environment Mastery (Lighting)
+We analyze your facial structure (specifically **Infraorbital Rim Position**) to determine your sensitivity to overhead lighting.
+- **Low-Rim Vulnerability**: If you have recessed rims, the app warns you against "negative lighting" that creates fake under-eye circles.
+- **Optimal Angle**: Calculates the best camera angle (e.g., 5° upward) to minimize structural flaws and maximize bone prominence.
 
 ---
 
-## 🚀 9. Future Innovation & V3.0 Roadmap
+## 🛠️ 8. Comprehensive Developer’s Modification Guide
 
-- **AR-Guided Improvements**: Live "Golden Ratio" mask overlays.
-- **Genetic Phenotype Prediction**: Ancestry and aging projections.
-- **Surgical Simulations**: Real-time "What If" sliders for chin/jaw advancement.
+If you want to customize the engine, here is where the code lives:
+
+### Core Logic & Math
+- `src/utils/metrics.ts`: **The Brain**. Contains all geometric formulas and the 478-index mapping.
+- `src/utils/scoring.ts`: **The Judge**. Contains population norms and the Z-score Sigmoid logic.
+- `src/utils/normalization.ts`: **The Auditor**. Handles 3-axis rotation and perspective correction.
+- `src/utils/lighting.ts`: **The DP**. Handles shadow projection and lighting vulnerability analysis.
+
+### Recommendation Databases
+- `src/utils/recommendations.ts`: Tips for lifestyle, non-surgical, and surgical fixes.
+- `src/utils/haircut-recommendations.ts`: The entire hairstyle database and face-shape synergy map.
+- `src/utils/plan-generator.ts`: Logic that builds the Phase 1/2/3 Roadmap.
+
+### UI Components
+- `src/components/FaceAnalyzer.tsx`: The primary orchestrator of the entire pipeline.
+- `src/components/AnalysisTab.tsx`: Renders the detailed metric cards and bilateral deltas.
+- `src/components/RadarChart.tsx`: Custom SVG implementation for the biometric radar.
 
 ---
 
-## ⚖️ 10. Disclaimer & Ethical Boundary
+## 📸 9. User Guide: Achieving Surgical Precision
 
-Chad Solutions is for **Objective Data Acquisition**. It is not a diagnostic tool. Consult with board-certified professionals before undergoing surgery. Math doesn't lie, but it also doesn't define your value as a human.
+To get a medical-grade reading, you must follow these protocols:
+
+1. **The 3-Foot Rule**: Smartphone cameras are wide-angle. If you hold it close, your nose will look 20% larger. **Stand 3-4 feet away and use 2x zoom.**
+2. **The Horizon Lock**: Keep your eyes level with the camera lens. Do not tilt your chin up or down unless specifically testing "Protrusion" metrics.
+3. **Lighting Homogeneity**: Use flat, frontal lighting (facing a window). Avoid overhead lights or side-shadows which create "asymmetry noise."
+4. **The Deadpan**: Maintain a neutral, relaxed face. Tension in the masseter or brow can skew skeletal readings.
+
+---
+
+## 🚀 10. Future Innovation & V3.0 Roadmap
+
+- **Surgical Morphing**: Real-time canvas warping to simulate jaw advancement or rhinoplasty.
+- **Genetic Cluster Prediction**: Matching your structure to ethnic phenotypic averages.
+- **Phenotype Search**: Find celebrities with your exact skeletal structure to see their styling choices.
+
+---
+
+## ⚖️ 11. Disclaimer & Ethical Boundary
+
+OmniSight is for **Objective Biometric Data Acquisition**. It is not a clinical diagnostic tool.
+- **Math doesn't lie**, but it also doesn't define your value.
+- Consult with board-certified professionals before pursuing surgical interventions.
+- This software is a mirror of geometry, not a judge of worth.
 
 ---
 **Build the best version of yourself.**
-*(c) 2024 Chad Solutions Engineering Team*
+*(c) 2024 OmniSight Engineering Team | Precision Through Geometry*

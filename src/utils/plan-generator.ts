@@ -1,4 +1,4 @@
-import { MetricScores } from './geometry';
+import { MetricReport, flattenMetrics } from './metrics';
 import { metricRecommendations } from './recommendations';
 import { getRating } from './ratings';
 
@@ -34,38 +34,34 @@ export function getTierName(score: number): string {
     return "SUBHUMAN";
 }
 
-// Estimated PSL boost for moving a metric from 'Bad/Average' to 'Perfect'
 const PSL_IMPACT_WEIGHTS: Record<string, number> = {
     canthalTilt: 0.5,
-    fwfhRatio: 0.4,
+    fWHR: 0.4,
     midfaceRatio: 0.5,
     gonialAngle: 0.4,
     chinToPhiltrumRatio: 0.4,
-    mouthToNoseWidthRatio: 0.2,
-    bigonialWidthRatio: 0.3,
+    bigonialRatio: 0.3,
     lowerThirdRatio: 0.3,
-    palpebralFissureLength: 0.3,
-    facialAsymmetry: 0.4,
+    overallSymmetry: 0.4,
     cheekboneProminence: 0.4,
-    hairlineRecession: 0.8,
-    skinQuality: 0.3,
     orbitalRimProtrusion: 0.4,
     maxillaryProtrusion: 0.5,
     browRidgeProtrusion: 0.3,
     infraorbitalRimPosition: 0.3,
     chinProjection: 0.5,
     doubleChinRisk: 0.4,
-    upperEyelidExposure: 0.6,
+    uee: 0.6,
     philtrumLength: 0.5,
 };
 
 export function generateAscensionPlan(
-    metrics: MetricScores,
+    metrics: MetricReport,
     currentPSL: number,
     targetPSL: number,
     gender: 'male' | 'female'
 ): AscensionPlan {
     const gap = Math.max(0, targetPSL - currentPSL);
+    const flatMetrics = flattenMetrics(metrics);
     
     const phases: AscensionPhase[] = [
         { title: 'Phase 1: Surface (Lifestyle)', description: 'Immediate, low-cost foundations focusing on skin, grooming, and posture.', items: [] },
@@ -74,37 +70,34 @@ export function generateAscensionPlan(
     ];
 
     let accruedBoost = 0;
-    const sortedMetrics = Object.entries(PSL_IMPACT_WEIGHTS)
-        .sort((a, b) => b[1] - a[1]); // Focus on high impact first
+    const sortedWeights = Object.entries(PSL_IMPACT_WEIGHTS)
+        .sort((a, b) => b[1] - a[1]);
 
-    for (const [key, weight] of sortedMetrics) {
-        const metricKey = key as keyof MetricScores;
-        const val = metrics[metricKey];
+    for (const [key, weight] of sortedWeights) {
+        const val = flatMetrics[key];
         if (val === undefined || typeof val !== 'number') continue;
 
-        const rating = getRating(metricKey, val, gender);
+        const rating = getRating(key, val, gender);
         const isIdeal = rating.color.includes('green');
 
         if (!isIdeal) {
-            const recs = metricRecommendations[key];
+            const recs = (metricRecommendations as any)[key];
             if (!recs) continue;
 
             const label = key.replace(/([A-Z])/g, ' $1').trim();
 
-            // Add Lifestyle to Phase 1
-            if (recs.lifestyle.length > 0) {
+            if (recs.lifestyle && recs.lifestyle.length > 0) {
                 phases[0].items.push({
                     metric: key,
                     label,
                     recommendation: recs.lifestyle[0],
-                    impact: weight * 0.2, // Lifestyle contributes partially
+                    impact: weight * 0.2,
                     category: 'lifestyle'
                 });
                 accruedBoost += weight * 0.2;
             }
 
-            // If still below gap, add Non-Surgical to Phase 2
-            if (accruedBoost < gap && recs.nonSurgical.length > 0) {
+            if (accruedBoost < gap && recs.nonSurgical && recs.nonSurgical.length > 0) {
                 phases[1].items.push({
                     metric: key,
                     label,
@@ -115,8 +108,7 @@ export function generateAscensionPlan(
                 accruedBoost += weight * 0.4;
             }
 
-            // If still below gap, add Surgical to Phase 3
-            if (accruedBoost < gap && recs.surgical.length > 0) {
+            if (accruedBoost < gap && recs.surgical && recs.surgical.length > 0) {
                 phases[2].items.push({
                     metric: key,
                     label,
@@ -126,11 +118,6 @@ export function generateAscensionPlan(
                 });
                 accruedBoost += weight * 0.4;
             }
-        }
-
-        if (accruedBoost >= gap && gap > 0) {
-            // We've found enough interventions to reach the target
-            // But we keep going to provide a full roadmap if the user wants to exceed the target
         }
     }
 

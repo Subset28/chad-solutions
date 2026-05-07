@@ -1,0 +1,15 @@
+import { MetricReport, PSLResult } from '@/utils/metrics';
+
+export interface ScanResult {
+    metrics: MetricReport;
+    psl: PSLResult;
+    profileType: 'front' | 'side' | 'composite';
+    image: string; // Base64 annotated
+    confidence: number;
+    timestamp: number;
+    audit?: {
+        isValid: boolean;
+        reason?: string;
+        overall: number;
+    };
+}
