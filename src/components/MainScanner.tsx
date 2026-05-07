@@ -246,7 +246,6 @@ export default function MainScanner({ challengerData }: MainScannerProps) {
                             <LeaderboardTab />
                         </motion.div>
                     ) : !result ? (
-                    ) : !result ? (
                         <motion.div 
                             key="camera"
                             initial={{ opacity: 0 }}
