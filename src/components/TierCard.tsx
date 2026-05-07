@@ -38,7 +38,7 @@ export default function TierCard({ metrics, pslScore, tier, percentile, thumbnai
             
             canvas.toBlob(async (blob) => {
                 if (!blob) return;
-                const file = new File([blob], 'omnisight-card.png', { type: 'image/png' });
+                const file = new File([blob], 'chadsolutions-card.png', { type: 'image/png' });
                 
                 if (navigator.canShare?.({ files: [file] })) {
                     track('tier_card_shared', {
@@ -48,7 +48,7 @@ export default function TierCard({ metrics, pslScore, tier, percentile, thumbnai
                     });
                     await navigator.share({
                         title: `PSL ${pslScore.toFixed(2)} — ${tier}`,
-                        text: `Rate my aesthetics on OmniSight. PSL: ${pslScore.toFixed(2)} (${tier})\nomnisight.app`,
+                        text: `Rate my aesthetics on Chad Solutions. PSL: ${pslScore.toFixed(2)} (${tier})\nchadsolutions.app`,
                         files: [file]
                     });
                 } else {
@@ -58,7 +58,7 @@ export default function TierCard({ metrics, pslScore, tier, percentile, thumbnai
                         method: 'download',
                     });
                     const link = document.createElement('a');
-                    link.download = `omnisight-psl-${pslScore.toFixed(2)}.png`;
+                    link.download = `chadsolutions-psl-${pslScore.toFixed(2)}.png`;
                     link.href = URL.createObjectURL(blob);
                     link.click();
                 }
