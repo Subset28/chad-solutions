@@ -94,10 +94,14 @@ export function calculatePSLScore(
         if (norm.idealDirection === -1) z = -z;
         else if (norm.idealDirection === 0) z = -Math.abs(z); // Penalize distance from mean
 
-        const contribution = z * norm.weight;
+        // CLAMP: Prevent extreme outliers from flooring the entire score
+        // A single -5.0 Z-score should not be possible due to sensor noise
+        const clampedZ = Math.max(-3.0, Math.min(3.0, z));
+
+        const contribution = clampedZ * norm.weight;
         totalWeightedZ += contribution;
         totalWeight += norm.weight;
-        breakdown[key] = { zScore: z, contribution };
+        breakdown[key] = { zScore: clampedZ, contribution };
     };
 
     // Map metrics to norms

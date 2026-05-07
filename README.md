@@ -129,7 +129,7 @@ The engine calculates three distinct types of scores:
 ### Troubleshooting Low Scores (The "1.0" Problem)
 If a user receives a 1.0, it is usually due to one of three factors:
 - **Bad Landmark Read**: The Landmark Audit Layer (`normalization.ts`) detected occlusions or low confidence but the user proceeded anyway.
-- **Extreme Outliers**: A measurement > 3 standard deviations from the mean.
+- **Extreme Outliers**: A measurement > 3 standard deviations from the mean. **(Fixed in v2.2)**: Individual Z-scores are now clamped to `[-3.0, 3.0]` to prevent a single bad metric from flooring the overall score.
 - **Aspect Ratio Distortion**: (Fixed in v2.1) Sensor distortion making the face appear "crushed" or "stretched."
 
 ---
