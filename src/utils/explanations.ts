@@ -14,7 +14,7 @@ export const metricExplanations: Record<string, MetricExplanation> = {
         scientificContext: "A positive canthal tilt (outer corners higher than inner corners) is universally perceived as more attractive and dominant. It creates the 'hunter eye' aesthetic associated with high testosterone and genetic fitness.",
         blackpillNote: "Negative or neutral tilt can make the face look tired ('prey eyes'). Positive canthal tilt is a highly dimorphic male trait."
     },
-    fwfhRatio: {
+    fWHR: {
         title: "Facial Width-to-Height Ratio (fWHR)",
         whatItIs: "The bizygomatic width of the face divided by the upper facial height (from the middle of eyebrows to the upper lip).",
         idealRange: "1.8+",
@@ -28,7 +28,7 @@ export const metricExplanations: Record<string, MetricExplanation> = {
         scientificContext: "A compact vertically short midface is crucial for 'forward growth' and facial harmony. It indicates ideal maxillary development during puberty.",
         blackpillNote: "A long midface (often caused by chronic mouth breathing and 'adenoid face' development) is one of the most severe facial detriments and is extremely difficult to mask."
     },
-    eyeSeparationRatio: {
+    esr: {
         title: "Eye Separation Ratio (ESR)",
         whatItIs: "The distance between the pupils (IPD) divided by the bizygomatic width of the face.",
         idealRange: "0.45 - 0.47",
@@ -56,8 +56,8 @@ export const metricExplanations: Record<string, MetricExplanation> = {
         scientificContext: "A wide palate supports a broad mouth algorithmically tied to airway volume. The nose should be proportionately narrower than the mouth to conform to the golden ratio.",
         blackpillNote: "A narrow mouth (mouth smaller than nose) points to a collapsed palate."
     },
-    bigonialWidthRatio: {
-        title: "Bigonial to Bizygomatic Width",
+    bigonialRatio: {
+        title: "Bigonial Width Ratio",
         whatItIs: "The ratio of the cheekbone width to the jaw (bigonial) width.",
         idealRange: "1.35",
         scientificContext: "A jaw that is robust but properly enveloped directly under prominent cheekbones indicates extreme dimorphic robustness. If the jaw is significantly narrower, it creates a 'weak' shape.",
@@ -90,13 +90,13 @@ export const metricExplanations: Record<string, MetricExplanation> = {
         idealRange: "1.62",
         scientificContext: "Human lips naturally follow the golden ratio (phi), where the lower lip is roughly 1.618 times thicker than the upper lip. Deviations look unnatural."
     },
-    facialAsymmetry: {
-        title: "Facial Asymmetry",
-        whatItIs: "The percentage deviation of bilateral landmarks (eyes, cheekbones, jaw) from the facial midline.",
+    overallSymmetry: {
+        title: "Overall Symmetry",
+        whatItIs: "The percentage adherence of bilateral landmarks (eyes, cheekbones, jaw) to the facial midline.",
         idealRange: "95% - 100% Symmetry",
         scientificContext: "Symmetry is an unconscious evolutionary readout of generic quality, low mutational load, and a strong immune system capable of resisting environmental stress during development."
     },
-    ipdRatio: {
+    ipd: {
         title: "Interpupillary Distance (IPD)",
         whatItIs: "The distance between the pupils relative to the overall face width.",
         idealRange: "0.42 - 0.47",
@@ -169,7 +169,7 @@ export const metricExplanations: Record<string, MetricExplanation> = {
         scientificContext: "A strong, forward-projecting chin is an indicator of healthy lower jaw (mandible) development and clear airways.",
         blackpillNote: "A recessed chin creates a 'weak' profile, often associated with mouth-breathing, snoring, and a lack of perceived physical dominance."
     },
-    upperEyelidExposure: {
+    uee: {
         title: "Upper Eyelid Exposure (UEE)",
         whatItIs: "The vertical amount of the upper eyelid visible when the eyes are in a neutral position.",
         idealRange: "Minimal to Zero (Hooded)",

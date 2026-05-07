@@ -21,7 +21,7 @@ export const metricRecommendations: Record<string, MetricRecommendation> = {
         ],
         outlook: "Negative canthal tilt is primarily skeletal. Non-surgical options provide cosmetic illusions but surgery is the only definitive solution."
     },
-    fwfhRatio: {
+    fWHR: {
         surgical: [
             "Zygoma (cheekbone) implants — increases bizygomatic width directly",
             "Masseter muscle hypertrophy via Botox titration (unilateral dosing, not reduction) — though this is controversial",
@@ -100,7 +100,7 @@ export const metricRecommendations: Record<string, MetricRecommendation> = {
         ],
         outlook: "A narrow mouth is primarily a palate development issue. Orthodontic or surgical palate expansion is the root-cause fix."
     },
-    bigonialWidthRatio: {
+    bigonialRatio: {
         surgical: [
             "Mandibular angle implants — increases jaw angle width and projection",
             "Jaw angle osteointegration implants — the most robust solution for jaw width"
@@ -131,7 +131,7 @@ export const metricRecommendations: Record<string, MetricRecommendation> = {
         ],
         outlook: "True PFL increase is surgical. Non-surgical options are powerful illusions. Lateral canthoplasty is the single most impactful hunter-eye surgery available."
     },
-    facialAsymmetry: {
+    overallSymmetry: {
         surgical: [
             "Unilateral cheekbone or jaw implant — corrects structural asymmetries",
             "Orthognathic (jaw) surgery — corrects bite and skeletal crossover causing one side to be more developed"
@@ -375,7 +375,7 @@ export const metricRecommendations: Record<string, MetricRecommendation> = {
         ],
         outlook: "Lip filler for balanced ratios is highly effective and extremely low-risk when performed by a skilled injector. Results last 9-18 months."
     },
-    ipdRatio: {
+    esr: {
         surgical: [
             "This metric is entirely bony and cannot be meaningfully altered surgically in adults",
             "Medial epicanthoplasty (for genetic medial folds) — opens the inner corner, slightly affecting perceived spacing"
@@ -389,7 +389,7 @@ export const metricRecommendations: Record<string, MetricRecommendation> = {
         ],
         outlook: "IPD is largely a genetic bone measurement. Minor shifts in perceived spacing can be achieved cosmetically, but structural change is not possible in adults."
     },
-    upperEyelidExposure: {
+    uee: {
         surgical: [
             "Supraorbital rim implants — build up the brow ridge to physically hood the eye",
             "Blepharoplasty (Upper) — removes excess skin if the UEE is caused by sagging, though true 'hunter eyes' require more bone support",
@@ -403,7 +403,7 @@ export const metricRecommendations: Record<string, MetricRecommendation> = {
             "Quality sleep — reduces inflammation that can make eyelids look puffy and more exposed",
             "Reducing salt intake — prevents water retention that can lead to 'bug eye' appearance"
         ],
-        outlook: "UEE is largely determined by the relationship between the eyeball and the supraorbital ridge. Bone-level changes via implants are the most effective structural fix."
+        outlook: "UEE is largely determined by the relationship between the eyeball and the supraorbital ridge. Bone-weight changes via implants are the most effective structural fix."
     },
     philtrumLength: {
         surgical: [

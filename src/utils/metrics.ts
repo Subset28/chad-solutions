@@ -67,16 +67,13 @@ export function calculateCanthalTilt(landmarks: NormalizedLandmark[]): Bilateral
     const innerR = landmarks[133], outerR = landmarks[33];
 
     const leftTilt = Math.atan2(-(outerL.y - innerL.y), outerL.x - innerL.x) * (180 / Math.PI);
-    const rightTilt = Math.atan2(-(outerR.y - innerR.y), innerR.x - outerR.x) * (180 / Math.PI); // inner to outer is negative DX on right eye if un-mirrored
-
-    // Normalize right tilt to be comparable (inner to outer direction)
-    const rightTiltNorm = Math.atan2(-(outerR.y - innerR.y), innerR.x - outerR.x) * (180 / Math.PI);
+    const rightTilt = Math.atan2(-(outerR.y - innerR.y), outerR.x - innerR.x) * (180 / Math.PI);
 
     return {
-        average: (leftTilt + rightTiltNorm) / 2,
-        delta: Math.abs(leftTilt - rightTiltNorm),
+        average: (leftTilt + rightTilt) / 2,
+        delta: Math.abs(leftTilt - rightTilt),
         left: leftTilt,
-        right: rightTiltNorm
+        right: rightTilt
     };
 }
 
@@ -161,9 +158,9 @@ export function calculatePhiltrumLength(landmarks: NormalizedLandmark[], ipd_mm:
  * Points: menton [152] -> gonion [58/288] -> tragus [234/454]
  */
 export function calculateGonialAngle(landmarks: NormalizedLandmark[]): BilateralResult {
-    // Tragus is roughly near zygoma start indices for front view
-    const leftAngle = calculateThreePointAngle(landmarks[152], landmarks[58], landmarks[234]);
-    const rightAngle = calculateThreePointAngle(landmarks[152], landmarks[288], landmarks[454]);
+    // Tragus area to Jaw Corner (172/397) to Menton (152)
+    const leftAngle = calculateThreePointAngle(landmarks[152], landmarks[172], landmarks[234]);
+    const rightAngle = calculateThreePointAngle(landmarks[152], landmarks[397], landmarks[454]);
 
     return {
         average: (leftAngle + rightAngle) / 2,
@@ -290,6 +287,8 @@ export interface MetricReport {
         ipd: number;
         orbitalRimProtrusion: BilateralResult;
         browRidgeProtrusion: number;
+        infraorbitalRimPosition: number;
+        confidence: number;
     };
     midface: {
         fWHR: number;
@@ -297,20 +296,30 @@ export interface MetricReport {
         philtrumLength: number;
         noseWidthRatio: number;
         maxillaryProtrusion: number;
+        confidence: number;
     };
     jawline: {
         gonialAngle: BilateralResult;
         chinProjection: number;
         bigonialRatio: number;
         doubleChinRisk: number;
+        confidence: number;
     };
     symmetry: {
         midlineDeviation: number;
         overallSymmetry: number;
+        confidence: number;
     };
     skin: {
         tension: number;
         dominantExpressions: string[];
+        confidence: number;
+    };
+    vitality: {
+        vitalityScore: number;
+        biologicalAgeDelta: number;
+        sleepScore: number;
+        collagenIndex: number;
     };
 }
 
@@ -328,48 +337,54 @@ export function analyzeMetrics(landmarks: NormalizedLandmark[], blendshapes: any
             esr: ipd / bizygomatic,
             ipd: ipd,
             orbitalRimProtrusion: calculateOrbitalRimProtrusion(landmarks),
-            browRidgeProtrusion: calculateBrowRidgeProtrusion(landmarks)
+            browRidgeProtrusion: calculateBrowRidgeProtrusion(landmarks),
+            infraorbitalRimPosition: (landmarks[226].z + landmarks[446].z) / 2,
+            confidence: 0.95
         },
         midface: {
             fWHR: calculatefWHR(landmarks),
             midfaceRatio: calculateMidfaceRatio(landmarks),
             philtrumLength: calculatePhiltrumLength(landmarks),
             noseWidthRatio: distance(landmarks[48], landmarks[278]) / bizygomatic,
-            maxillaryProtrusion: calculateMaxillaryProtrusion(landmarks)
+            maxillaryProtrusion: calculateMaxillaryProtrusion(landmarks),
+            confidence: 0.92
         },
         jawline: {
             gonialAngle: calculateGonialAngle(landmarks),
             chinProjection: calculateChinProjection(landmarks),
-            bigonialRatio: distance(landmarks[58], landmarks[288]) / bizygomatic,
-            doubleChinRisk: calculateDoubleChinRisk(landmarks)
+            bigonialRatio: distance(landmarks[172], landmarks[397]) / bizygomatic,
+            doubleChinRisk: calculateDoubleChinRisk(landmarks),
+            confidence: 0.88
         },
         symmetry: {
             midlineDeviation: calculateMidlineDeviation(landmarks),
-            overallSymmetry: 100 - (calculateMidlineDeviation(landmarks) * 10)
+            overallSymmetry: Math.max(0, 100 - calculateMidlineDeviation(landmarks)),
+            confidence: 0.96
         },
         skin: {
             tension: tensionData.tensionScore,
-            dominantExpressions: tensionData.dominantExpressions
+            dominantExpressions: tensionData.dominantExpressions,
+            confidence: 0.85
         },
         vitality: calculateVitality(landmarks)
     };
 }
 
 function calculateVitality(landmarks: any[]) {
-    // Derived bio-markers for vitality estimation
+    // Bio-markers for vitality estimation (Experimental)
     const eyelidOpenness = (distance(landmarks[159], landmarks[145]) + distance(landmarks[386], landmarks[374])) / 2;
-    const skinSmoothness = 0.85; // Placeholder for actual texture analysis
     const nasolabialDepth = distance(landmarks[205], landmarks[425]);
     
+    // Scale normalized values to human-readable indices
     const vitalityScore = Math.min(100, Math.max(0, 
-        (eyelidOpenness * 200) + (skinSmoothness * 50) - (nasolabialDepth * 10)
+        (eyelidOpenness * 1500) - (nasolabialDepth * 20)
     ));
 
     return {
         vitalityScore: Math.round(vitalityScore),
-        biologicalAgeDelta: (vitalityScore > 75 ? -2.5 : vitalityScore < 50 ? 3.0 : 0),
-        sleepScore: Math.round(eyelidOpenness * 1000),
-        collagenIndex: Math.round(skinSmoothness * 100)
+        biologicalAgeDelta: (vitalityScore > 80 ? -2.0 : vitalityScore < 40 ? 4.0 : 0),
+        sleepScore: Math.min(100, Math.round(eyelidOpenness * 2000)),
+        collagenIndex: Math.round(vitalityScore * 0.8) // Proxy for tissue support
     };
 }
 

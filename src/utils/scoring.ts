@@ -40,6 +40,22 @@ const POPULATION_NORMS: Record<string, Record<'male' | 'female', MetricNorm>> = 
     symmetry: {
         male: { mean: 90, stdDev: 5, weight: 2.0, idealDirection: 1 },
         female: { mean: 92, stdDev: 5, weight: 2.0, idealDirection: 1 }
+    },
+    midfaceRatio: {
+        male: { mean: 0.30, stdDev: 0.02, weight: 1.3, idealDirection: 0 },
+        female: { mean: 0.29, stdDev: 0.02, weight: 1.3, idealDirection: 0 }
+    },
+    noseWidthRatio: {
+        male: { mean: 0.25, stdDev: 0.02, weight: 1.0, idealDirection: 0 },
+        female: { mean: 0.23, stdDev: 0.02, weight: 1.0, idealDirection: 0 }
+    },
+    bigonialRatio: {
+        male: { mean: 0.78, stdDev: 0.04, weight: 1.2, idealDirection: 0 },
+        female: { mean: 0.75, stdDev: 0.04, weight: 1.2, idealDirection: 0 }
+    },
+    philtrumLength: {
+        male: { mean: 14.0, stdDev: 1.5, weight: 0.8, idealDirection: 0 },
+        female: { mean: 12.0, stdDev: 1.2, weight: 0.8, idealDirection: 0 }
     }
 };
 
@@ -91,11 +107,22 @@ export function calculatePSLScore(
     };
 
     // Map metrics to norms
+    // Periorbital
     processMetric('canthalTilt', metrics.periorbital.canthalTilt.average);
-    processMetric('fWHR', metrics.midface.fWHR);
     processMetric('esr', metrics.periorbital.esr);
     processMetric('uee', metrics.periorbital.uee.average);
+    
+    // Midface
+    processMetric('fWHR', metrics.midface.fWHR);
+    processMetric('midfaceRatio', metrics.midface.midfaceRatio);
+    processMetric('noseWidthRatio', metrics.midface.noseWidthRatio);
+    processMetric('philtrumLength', metrics.midface.philtrumLength);
+    
+    // Jawline
     processMetric('gonialAngle', metrics.jawline.gonialAngle.average);
+    processMetric('bigonialRatio', metrics.jawline.bigonialRatio);
+    
+    // Symmetry
     processMetric('symmetry', metrics.symmetry.overallSymmetry);
 
     const averageZ = totalWeight > 0 ? totalWeightedZ / totalWeight : 0;
@@ -131,14 +158,14 @@ function erf(x: number): number {
 }
 
 function getTier(score: number): string {
-    if (score >= 9.0) return "Deity / Genetic Miracle";
-    if (score >= 8.0) return "Supermodel (Elite)";
-    if (score >= 7.0) return "Chad / Stacy";
-    if (score >= 6.0) return "Chadlite / High-Tier Normie";
-    if (score >= 5.0) return "Average / Mid-Tier Normie";
-    if (score >= 4.0) return "Below Average";
-    if (score >= 3.0) return "Low-Tier";
-    return "Truecel / Subhuman";
+    if (score >= 9.0) return "Exceptional / Elite";
+    if (score >= 8.0) return "High Aesthetic (Top 5%)";
+    if (score >= 7.0) return "Above Average (Top 20%)";
+    if (score >= 6.0) return "Slightly Above Average";
+    if (score >= 5.0) return "Average";
+    if (score >= 4.0) return "Slightly Below Average";
+    if (score >= 3.0) return "Below Average";
+    return "Developing / Significant Improvement Potential";
 }
 
 /**

@@ -163,53 +163,71 @@ We analyze your facial structure (specifically **Infraorbital Rim Position**) to
 
 ---
 
-## 🛠️ 8. Comprehensive Developer’s Modification Guide
+## 🛠️ 8. Deep-Dive: Haircut Recommendation Engine
 
-If you want to customize the engine, here is where the code lives:
+The haircut engine (`src/utils/haircut-recommendations.ts`) is a multi-stage classification system that eliminates generic "style tips" in favor of geometric harmony.
 
-### Core Logic & Math
-- `src/utils/metrics.ts`: **The Brain**. Contains all geometric formulas and the 478-index mapping.
-- `src/utils/scoring.ts`: **The Judge**. Contains population norms and the Z-score Sigmoid logic.
-- `src/utils/normalization.ts`: **The Auditor**. Handles 3-axis rotation and perspective correction.
-- `src/utils/lighting.ts`: **The DP**. Handles shadow projection and lighting vulnerability analysis.
+### The Classification Pipeline
+1.  **Metric Ingestion**: The engine pulls `fWHR`, `bigonialRatio`, `midfaceRatio`, and `gonialAngle` from the `MetricReport`.
+2.  **Point Scoring**: Each face shape (Oval, Round, Square, Heart, Oblong, Diamond) is assigned a score based on threshold logic (e.g., if `fwfhRatio < 1.40`, `oblongScore += 40`).
+3.  **Synergy Mapping**: Once a shape is identified, it is cross-referenced with your **Hair Profile** (Type, Texture, Thickness, Ethnicity).
+4.  **The Formula**: `Base Score (5.0) + Shape Synergy + Texture Bonus + Thickness Modifier - Hairline Penalty = Hair PSL`.
 
-### Recommendation Databases
-- `src/utils/recommendations.ts`: Tips for lifestyle, non-surgical, and surgical fixes.
-- `src/utils/haircut-recommendations.ts`: The entire hairstyle database and face-shape synergy map.
-- `src/utils/plan-generator.ts`: Logic that builds the Phase 1/2/3 Roadmap.
-
-### UI Components
-- `src/components/FaceAnalyzer.tsx`: The primary orchestrator of the entire pipeline.
-- `src/components/AnalysisTab.tsx`: Renders the detailed metric cards and bilateral deltas.
-- `src/components/RadarChart.tsx`: Custom SVG implementation for the biometric radar.
+### Recommendation Database
+-   **Data Source**: Our synergy maps and recommendations are derived from **clinical anthropometry** and **visagisme** (the art of face-shaping through hair). Data points are anchored in structural goals (e.g., using horizontal volume to balance an oblong face).
+-   **Options**:
+    *   **Male**: Textured Quiff, High Pompadour, Textured Crop, Side Part, Side-Swept Fringe, etc.
+    *   **Female**: Long Layers, Chin-Length Bob, Full Bangs, Side-Swept Layers, etc.
+-   **Avoidance Logic**: The algorithm explicitly identifies styles that would emphasize structural weaknesses (e.g., severe pulled-back styles for Diamond faces with narrow foreheads).
 
 ---
 
-## 📸 9. User Guide: Achieving Surgical Precision
+## 💻 9. Comprehensive Developer’s Modification Guide
+
+This guide details exactly which lines to change to modify the engine behavior.
+
+### 🧠 Modifying Biometric Formulas
+-   **File**: `src/utils/metrics.ts`
+    -   **Change the Jaw Tracker**: Search for `calculateGonialAngle`. Change the indices in the `calculateThreePointAngle` calls to track different skeletal landmarks.
+    -   **Adjust Eye Tracking**: Search for `calculateCanthalTilt`. The formula uses `Math.atan2`. To invert the tilt logic, swap the `outer` and `inner` canthus arguments.
+    -   **Add a New Metric**: Add a new key to the `MetricReport` interface (Line 282) and implement its calculation logic in the `analyzeMetrics` function (Line 314).
+
+### ⚖️ Tuning the Scoring System
+-   **File**: `src/utils/scoring.ts`
+    -   **Change the "Ideal"**: In the `POPULATION_NORMS` object (Line 19), change the `mean`. For example, to make a higher Canthal Tilt more "ideal," increase the `mean` for your gender.
+    -   **Adjust Importance**: Change the `weight`. A weight of `2.0` makes a metric twice as influential as a weight of `1.0`.
+    -   **Tweak Tier Labels**: Modify the `getTier` function (Line 160) to change the string labels returned for specific scores.
+
+### ✂️ Customizing Haircut Logic
+-   **File**: `src/utils/haircut-recommendations.ts`
+    -   **Add a New Hairstyle**: Add a new object to `maleHairstyles` or `femaleHairstyles` (Lines 302-318).
+    -   **Adjust Face Shape Detection**: Modify the `classifyFaceShape` function (Line 85). Change the scoring thresholds (e.g., `fwfhRatio < 1.40`) to make the classifier more or less sensitive to specific shapes.
+
+### 🎨 UI & Layout
+-   **Architecture**: This is a **100% Zero-Backend** application. All MediaPipe inference and biometric math happen in the user's browser (Client-Side).
+-   **Framework**: Next.js 14 (App Router).
+-   **Styling**: Vanilla Tailwind CSS + Framer Motion for high-fidelity animations.
+-   **State Management**: Standard React `useState` and `useEffect` hooks. No heavy global state (Redux/Zustand) is required due to the localized nature of the analysis.
+
+---
+
+## 📸 10. User Guide: Achieving Surgical Precision
 
 To get a medical-grade reading, you must follow these protocols:
 
-1. **The 3-Foot Rule**: Smartphone cameras are wide-angle. If you hold it close, your nose will look 20% larger. **Stand 3-4 feet away and use 2x zoom.**
-2. **The Horizon Lock**: Keep your eyes level with the camera lens. Do not tilt your chin up or down unless specifically testing "Protrusion" metrics.
-3. **Lighting Homogeneity**: Use flat, frontal lighting (facing a window). Avoid overhead lights or side-shadows which create "asymmetry noise."
-4. **The Deadpan**: Maintain a neutral, relaxed face. Tension in the masseter or brow can skew skeletal readings.
-
----
-
-## 🚀 10. Future Innovation & V3.0 Roadmap
-
-- **Surgical Morphing**: Real-time canvas warping to simulate jaw advancement or rhinoplasty.
-- **Genetic Cluster Prediction**: Matching your structure to ethnic phenotypic averages.
-- **Phenotype Search**: Find celebrities with your exact skeletal structure to see their styling choices.
+1.  **The 3-Foot Rule**: Smartphone cameras are wide-angle. If you hold it close, your nose will look 20% larger. **Stand 3-4 feet away and use 2x zoom.**
+2.  **The Horizon Lock**: Keep your eyes level with the camera lens. Do not tilt your chin up or down unless specifically testing "Protrusion" metrics.
+3.  **Lighting Homogeneity**: Use flat, frontal lighting (facing a window). Avoid overhead lights or side-shadows which create "asymmetry noise."
+4.  **The Deadpan**: Maintain a neutral, relaxed face. Tension in the masseter or brow can skew skeletal readings.
 
 ---
 
 ## ⚖️ 11. Disclaimer & Ethical Boundary
 
 OmniSight is for **Objective Biometric Data Acquisition**. It is not a clinical diagnostic tool.
-- **Math doesn't lie**, but it also doesn't define your value.
-- Consult with board-certified professionals before pursuing surgical interventions.
-- This software is a mirror of geometry, not a judge of worth.
+-   **Math doesn't lie**, but it also doesn't define your value.
+-   Consult with board-certified professionals before pursuing surgical interventions.
+-   This software is a mirror of geometry, not a judge of worth.
 
 ---
 **Build the best version of yourself.**

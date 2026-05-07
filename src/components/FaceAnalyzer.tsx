@@ -99,9 +99,10 @@ export default function FaceAnalyzer() {
         // 1. Validate Quality & Occlusions
         const audit = validateLandmarks(landmarks);
         
-        if (!audit.isReliable) {
-            const reason = audit.issues.join(", ");
-            alert(`⚠️ Scan Quality Warning: ${reason}. Please retake for clinical accuracy.`);
+        if (!audit.isValid) {
+            alert(`⚠️ Scan Quality Rejection: ${audit.reason}. Please retake for clinical accuracy.`);
+            setIsAnalyzing(false);
+            return;
         }
 
         // 2. Normalize Pose (3-axis)
@@ -208,6 +209,13 @@ export default function FaceAnalyzer() {
         <div className="flex flex-col items-center gap-8 w-full max-w-7xl mx-auto p-4 md:p-8 min-h-screen text-zinc-100">
             <canvas ref={canvasRef} className="hidden" />
             <input ref={fileInputRef} type="file" accept="image/*" onChange={handleFileUpload} className="hidden" />
+            
+            {/* Focal Length Disclaimer */}
+            <div className="w-full bg-blue-500/10 border border-blue-500/20 rounded-2xl p-4 text-center">
+                <p className="text-[10px] font-black text-blue-400 uppercase tracking-[0.2em]">
+                    ⚠️ Optical Standard: Scores are calibrated for photos taken at 3+ feet distance. Selfies may show inflated nose width.
+                </p>
+            </div>
             
             {/* Header / Mode Toggles */}
             <div className="flex flex-wrap gap-4 justify-center items-center w-full z-20">
