@@ -28,7 +28,8 @@ export function midpoint(p1: NormalizedLandmark, p2: NormalizedLandmark): Normal
     return {
         x: (p1.x + p2.x) / 2,
         y: (p1.y + p2.y) / 2,
-        z: (p1.z + p2.z) / 2
+        z: (p1.z + p2.z) / 2,
+        visibility: ((p1.visibility || 0) + (p2.visibility || 0)) / 2
     };
 }
 

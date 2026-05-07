@@ -1,6 +1,7 @@
 import { MetricReport, flattenMetrics } from './metrics';
 import { metricRecommendations } from './recommendations';
 import { getRating } from './ratings';
+import { MetricScores } from './geometry';
 
 export interface LooksmaxPhase {
     title: string;
@@ -81,7 +82,7 @@ export function generateLooksmaxPlan(
         const val = flatMetrics[key];
         if (val === undefined || typeof val !== 'number') continue;
 
-        const rating = getRating(key, val, gender);
+        const rating = getRating(key as keyof MetricScores, val, gender);
         const isIdeal = rating.color.includes('green');
 
         if (!isIdeal) {

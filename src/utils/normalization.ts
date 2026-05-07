@@ -3,7 +3,7 @@ import { NormalizedLandmark } from "@mediapipe/tasks-vision";
 export interface ValidationResult {
     isValid: boolean;
     reason?: string;
-    confidence: number;
+    overall: number;
 }
 
 /**
@@ -14,7 +14,7 @@ export function validateLandmarks(
     landmarks: NormalizedLandmark[]
 ): ValidationResult {
     if (!landmarks || landmarks.length === 0) {
-        return { isValid: false, reason: "No landmarks detected", confidence: 0 };
+        return { isValid: false, reason: "No landmarks detected", overall: 0 };
     }
 
     const keyGroups = {
@@ -38,17 +38,17 @@ export function validateLandmarks(
         if (avg < 0.7) occludedRegions.push(name);
     }
 
-    const confidence = totalVisibility / Object.keys(keyGroups).length;
+    const overall = totalVisibility / Object.keys(keyGroups).length;
 
     if (occludedRegions.length > 0) {
         return {
             isValid: false,
             reason: `Potential occlusion detected in: ${occludedRegions.join(", ")}. Please ensure your face is fully visible.`,
-            confidence
+            overall
         };
     }
 
-    return { isValid: true, confidence };
+    return { isValid: true, overall };
 }
 
 /**

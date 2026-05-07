@@ -20,10 +20,13 @@ const SIDE_ONLY_METRICS = ['chinProjection', 'maxillaryProtrusion', 'orbitalRimP
 export default function AnalysisTab({ metrics, profileType, gender, expandedMetric, onToggleMetric }: AnalysisTabProps) {
     const flatMetrics = flattenMetrics(metrics);
     const falios = Object.entries(flatMetrics)
-        .filter(([key, val]) => typeof val === 'number' && !getRating(key, val, gender).color.includes('green'))
+        .filter(([key, val]) => {
+            const isMetric = key in ({} as import('@/utils/geometry').MetricScores);
+            return isMetric && typeof val === 'number' && !getRating(key as keyof import('@/utils/geometry').MetricScores, val, gender).color.includes('green');
+        })
         .sort((a, b) => {
-            const ratingA = getRating(a[0], a[1] as number, gender);
-            const ratingB = getRating(b[0], b[1] as number, gender);
+            const ratingA = getRating(a[0] as keyof import('@/utils/geometry').MetricScores, a[1] as number, gender);
+            const ratingB = getRating(b[0] as keyof import('@/utils/geometry').MetricScores, b[1] as number, gender);
             if (ratingA.color.includes('red') && !ratingB.color.includes('red')) return -1;
             if (!ratingA.color.includes('red') && ratingB.color.includes('red')) return 1;
             return 0;
@@ -64,7 +67,7 @@ export default function AnalysisTab({ metrics, profileType, gender, expandedMetr
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         {falios.map(([key, val]) => {
                             const exp = (metricExplanations as any)[key];
-                            const rating = getRating(key, val as number, gender);
+                            const rating = getRating(key as keyof import('@/utils/geometry').MetricScores, val as number, gender);
                             return (
                                 <div key={key} className="bg-red-500/5 border border-red-500/20 rounded-2xl p-4 cursor-pointer hover:bg-red-500/10 transition-colors" onClick={() => onToggleMetric(key)}>
                                     <div className="flex justify-between items-start mb-2">
@@ -103,7 +106,7 @@ export default function AnalysisTab({ metrics, profileType, gender, expandedMetr
                                 {groupMetrics.map(([key, val]) => {
                                     const value = typeof val === 'number' ? val : (val as any).average;
                                     const exp = (metricExplanations as any)[key];
-                                    const rating = getRating(key, value, gender);
+                                    const rating = getRating(key as keyof import('@/utils/geometry').MetricScores, value, gender);
                                     const isExpanded = expandedMetric === key;
 
                                     return (

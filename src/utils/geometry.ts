@@ -230,6 +230,7 @@ export function normalizeExpression(landmarks: NormalizedLandmark[], blendshapes
 
 export interface ConfidenceAudit {
     overall: number; // 0-100
+    angleSeverity: number; // 0-180
     factors: {
         lighting: 'excellent' | 'good' | 'poor';
         angle: 'perfect' | 'acceptable' | 'steep';
@@ -291,6 +292,7 @@ export function auditAnalysisQuality(
 
     return {
         overall: Math.max(0, Math.round(confidence)),
+        angleSeverity,
         factors,
         feedback
     };
@@ -940,16 +942,16 @@ export function calculatePSLScore(
         // FW/FH Ratio — thresholds calibrated to eye-to-chin height baseline
         // Expected range: ~1.7–2.1 (typical adults), ideal >1.90 male / >1.75 female
         const fwfhPerf = isF ? 1.75 : 1.90;
-        if (metrics.fwfhRatio >= fwfhPerf) {
+        if (metrics.fWHR >= fwfhPerf) {
             score += 0.5;
             breakdown.push("Ideal Facial Width (+0.5)");
-        } else if (metrics.fwfhRatio >= fwfhPerf - 0.1) {
+        } else if (metrics.fWHR >= fwfhPerf - 0.1) {
             score += 0.1;
             breakdown.push("Good Facial Structure (+0.1)");
-        } else if (metrics.fwfhRatio < fwfhPerf - 0.30) {
+        } else if (metrics.fWHR < fwfhPerf - 0.30) {
             score -= 1.2;
             breakdown.push("Severely Narrow Face (-1.2)");
-        } else if (metrics.fwfhRatio < fwfhPerf - 0.18) {
+        } else if (metrics.fWHR < fwfhPerf - 0.18) {
             score -= 0.6;
             breakdown.push("Narrow Face (-0.6)");
         }
@@ -965,10 +967,10 @@ export function calculatePSLScore(
         }
 
         // Eye Separation / ESR (Ideal: 0.45-0.47)
-        if (metrics.eyeSeparationRatio >= 0.45 && metrics.eyeSeparationRatio <= 0.47) {
+        if (metrics.esr >= 0.45 && metrics.esr <= 0.47) {
             score += 0.1;
             breakdown.push("Ideal Eye Spacing (+0.1)");
-        } else if (metrics.eyeSeparationRatio < 0.42 || metrics.eyeSeparationRatio > 0.50) {
+        } else if (metrics.esr < 0.42 || metrics.esr > 0.50) {
             score -= 0.4;
             breakdown.push("Suboptimal Eye Spacing (-0.4)");
         }
@@ -985,10 +987,10 @@ export function calculatePSLScore(
 
         // Bigonial Width
         const bigonialPerf = isF ? [1.15, 1.30] : [1.05, 1.25];
-        if (metrics.bigonialWidthRatio >= bigonialPerf[0] && metrics.bigonialWidthRatio <= bigonialPerf[1]) {
+        if (metrics.bigonialRatio >= bigonialPerf[0] && metrics.bigonialRatio <= bigonialPerf[1]) {
             score += 0.2;
             breakdown.push("Ideal Jaw Width (+0.2)");
-        } else if (metrics.bigonialWidthRatio <= bigonialPerf[1] + 0.1) {
+        } else if (metrics.bigonialRatio <= bigonialPerf[1] + 0.1) {
             score += 0.0;
             breakdown.push("Average Jaw Width (+0.0)");
         } else {
@@ -998,25 +1000,25 @@ export function calculatePSLScore(
 
         // Facial Asymmetry (Ideal: 95-100)
         // Most people are somewhat symmetrical. Prevent massive free points.
-        if (metrics.facialAsymmetry >= 95) {
+        if (metrics.overallSymmetry >= 95) {
             score += 0.0;
             breakdown.push("Perfect Symmetry (+0.0)");
-        } else if (metrics.facialAsymmetry >= 90) {
+        } else if (metrics.overallSymmetry >= 90) {
             score += 0.0;
             breakdown.push("Average Symmetry (+0.0)");
-        } else if (metrics.facialAsymmetry < 85) {
+        } else if (metrics.overallSymmetry < 85) {
             score -= 1.0;
             breakdown.push("Severe Facial Asymmetry (-1.0)");
-        } else if (metrics.facialAsymmetry < 90) {
+        } else if (metrics.overallSymmetry < 90) {
             score -= 0.4;
             breakdown.push("Noticeable Asymmetry (-0.4)");
         }
 
         // IPD Ratio (Ideal: 0.45-0.47)
-        if (metrics.ipdRatio >= 0.45 && metrics.ipdRatio <= 0.47) {
+        if (metrics.ipd >= 0.45 && metrics.ipd <= 0.47) {
             score += 0.1;
             breakdown.push("Ideal Interpupillary Distance (+0.1)");
-        } else if (metrics.ipdRatio < 0.40 || metrics.ipdRatio > 0.50) {
+        } else if (metrics.ipd < 0.40 || metrics.ipd > 0.50) {
             score -= 0.3;
             breakdown.push("Suboptimal Interpupillary Distance (-0.3)");
         }
@@ -1077,10 +1079,10 @@ export function calculatePSLScore(
 
         // Palpebral Fissure (front only — side view shows only one eye)
         const fissurePerf = isF ? 2.8 : 3.0;
-        if (metrics.palpebralFissureLength >= fissurePerf) {
+        if (metrics.pfl >= fissurePerf) {
             score += 0.5;
             breakdown.push("Elite Horizontal Eye Length (+0.5)");
-        } else if (metrics.palpebralFissureLength > fissurePerf - 0.3) {
+        } else if (metrics.pfl > fissurePerf - 0.3) {
             score += 0.1;
             breakdown.push("Good Horizontal Eye Length (+0.1)");
         } else {
@@ -1191,14 +1193,14 @@ export function calculatePSLScore(
     // ==========================================
 
     // Upper Eyelid Exposure (UEE)
-    if (metrics.upperEyelidExposure !== undefined) {
-        if (metrics.upperEyelidExposure < 0.25) {
+    if (metrics.uee !== undefined) {
+        if (metrics.uee < 0.25) {
             score += 0.6;
             breakdown.push("Hunter Eyes / Minimal UEE (+0.6)");
-        } else if (metrics.upperEyelidExposure > 0.45) {
+        } else if (metrics.uee > 0.45) {
             score -= 1.0;
             breakdown.push("Bug Eyes / Excessive UEE (-1.0)");
-        } else if (metrics.upperEyelidExposure > 0.35) {
+        } else if (metrics.uee > 0.35) {
             score -= 0.3;
             breakdown.push("Noticeable Upper Eyelid Exposure (-0.3)");
         }
@@ -1229,14 +1231,14 @@ export function calculatePSLScore(
         }
     }
 
-    if (metrics.skinQuality !== undefined) {
-        if (metrics.skinQuality >= 85) {
+    if (metrics.collagenIndex !== undefined) {
+        if (metrics.collagenIndex >= 85) {
             score += 0.2;
             breakdown.push("Exceptional Clear/Glass Skin (+0.2)");
-        } else if (metrics.skinQuality < 35) {
+        } else if (metrics.collagenIndex < 35) {
             score -= 0.6;
             breakdown.push("Textured/Acne Skin (-0.6)");
-        } else if (metrics.skinQuality < 60) {
+        } else if (metrics.collagenIndex < 60) {
             score -= 0.2;
             breakdown.push("Slight Skin Irregularities (-0.2)");
         }
@@ -1301,7 +1303,7 @@ export function calculatePSLScore(
 
     // FINAL SAFETY: If it's a side profile and score is abnormally low, 
     // it's likely a geometry error. Ensure a floor of 2.0 unless severe issues are confirmed.
-    if (profileType === 'side' && score < 2.5 && metrics.audit?.angleSeverity < 50) {
+    if (profileType === 'side' && score < 2.5 && (metrics.audit?.angleSeverity || 0) < 50) {
         score = Math.max(score, 2.5);
     }
 

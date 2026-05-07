@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { PSLResult } from '@/utils/scoring';
 import { MetricReport } from '@/utils/metrics';
+import { PSLResult } from '@/types';
 import { track } from '@/lib/analytics';
 
 interface ScoreRevealProps {

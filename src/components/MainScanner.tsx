@@ -15,6 +15,7 @@ import LeaderboardTab from './LeaderboardTab';
 import BattleVerdictCard from './BattleVerdictCard';
 import { getOrCreateUsername } from '@/lib/username';
 import { track } from '@/lib/analytics';
+import { supabase } from '@/lib/supabase';
 
 interface MainScannerProps {
     challengerData?: {
@@ -125,7 +126,7 @@ export default function MainScanner({ challengerData }: MainScannerProps) {
         const gender: Gender = 'male';
 
         const metrics = analyzeMetrics(normalizedLandmarks, blendshapes, imageData, landmarks);
-        const psl = calculatePSLScore(metrics, { gender }, audit.overallConfidence);
+        const psl = calculatePSLScore(metrics, { gender }, audit.overall);
 
         const scanId = crypto.randomUUID();
         const currentWeek = Math.floor(Date.now() / (7 * 24 * 60 * 60 * 1000));
@@ -137,7 +138,8 @@ export default function MainScanner({ challengerData }: MainScannerProps) {
             metrics,
             psl,
             profileType: 'front',
-            confidence: audit.overallConfidence
+            audit,
+            gender
         });
 
         // Save to Supabase for global leaderboard
@@ -158,7 +160,7 @@ export default function MainScanner({ challengerData }: MainScannerProps) {
             tier: psl.tier,
             percentile: psl.percentile,
             phenotype: metrics.community?.phenotype,
-            confidence: audit.overallConfidence,
+            confidence: audit.overall,
             was_challenge: !!challengerData,
         });
 

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { MetricReport, flattenMetrics } from '@/utils/metrics';
 import { getRating } from '@/utils/ratings';
 import html2canvas from 'html2canvas';

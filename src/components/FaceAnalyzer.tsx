@@ -7,12 +7,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import { 
     validateLandmarks, 
-    inversePoseNormalization, 
-    extractEulerAngles 
+    inversePoseNormalization 
 } from '@/utils/normalization';
 import { analyzeMetrics, MetricReport, flattenMetrics } from '@/utils/metrics';
-import { calculatePSLScore, calculateAggregatedMetrics, PSLResult } from '@/utils/scoring';
-import { ScanResult, Gender, AppTab, InputMode } from '@/types';
+import { calculatePSLScore, calculateAggregatedMetrics } from '@/utils/scoring';
+import { extractEulerAngles } from '@/utils/geometry';
+import { ScanResult, Gender, AppTab, InputMode, PSLResult } from '@/types';
 import AnalysisTab from '@/components/AnalysisTab';
 import RoadmapTab from '@/components/RoadmapTab';
 import VitalityTab from '@/components/VitalityTab';
@@ -122,7 +122,7 @@ export default function FaceAnalyzer() {
         const metrics = analyzeMetrics(normalizedLandmarks, result.faceBlendshapes?.[0]?.categories || [], imageData, landmarks);
 
         // 5. Calculate Score
-        const psl = calculatePSLScore(metrics, { gender }, audit.overallConfidence);
+        const psl = calculatePSLScore(metrics, { gender }, audit.overall);
 
         const scan: ScanResult = {
             id: crypto.randomUUID(),
