@@ -225,13 +225,13 @@ export default function FaceAnalyzer() {
                         onClick={() => { setAppMode('single'); setAuditResult(null); setScans([]); }}
                         className={`px-6 py-2 rounded-full font-bold transition-all text-xs uppercase tracking-widest ${appMode === 'single' ? 'bg-white text-black' : 'text-zinc-500 hover:text-white'}`}
                     >
-                        Single Audit
+                        The Blackpill Audit
                     </button>
                     <button
                         onClick={() => { setAppMode('compare'); setAuditResult(null); setBeforeScan(null); setAfterScan(null); }}
                         className={`px-6 py-2 rounded-full font-bold transition-all text-xs uppercase tracking-widest ${appMode === 'compare' ? 'bg-white text-black' : 'text-zinc-500 hover:text-white'}`}
                     >
-                        Before & After
+                        PSL Compare Mode
                     </button>
                 </div>
 
@@ -404,13 +404,13 @@ export default function FaceAnalyzer() {
                                 </div>
 
                                 <div className="flex p-1.5 bg-zinc-900/50 border border-zinc-800 rounded-[2.5rem] glass-dark shadow-xl">
-                                    {(['analysis', 'roadmap', 'vitality', 'haircut'] as AppTab[]).map(tab => (
+                                    {(['analysis', 'looksmax', 'vitality', 'haircut'] as AppTab[]).map(tab => (
                                         <button
                                             key={tab}
                                             onClick={() => setResultsTab(tab)}
                                             className={`flex-1 py-4 rounded-[2rem] text-[10px] font-black uppercase tracking-[0.2em] transition-all ${resultsTab === tab ? 'bg-white text-black shadow-xl' : 'text-zinc-500 hover:text-white'}`}
                                         >
-                                            {tab}
+                                            {tab === 'looksmax' ? 'Looksmaxxing' : tab}
                                         </button>
                                     ))}
                                 </div>
@@ -425,7 +425,7 @@ export default function FaceAnalyzer() {
                                             onToggleMetric={setExpandedMetric}
                                         />
                                     )}
-                                    {resultsTab === 'roadmap' && (
+                                    {resultsTab === 'looksmax' && (
                                         <RoadmapTab 
                                             metrics={auditResult.metrics} 
                                             pslScore={auditResult.psl.overall}
@@ -484,31 +484,73 @@ export default function FaceAnalyzer() {
                             <div className="flex justify-center items-center gap-12 mb-12">
                                 <div className="text-center">
                                     <p className="text-4xl font-bold text-zinc-600">{beforeScan.psl.overall.toFixed(1)}</p>
-                                    <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mt-2">Before</p>
+                                    <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mt-2 italic">Baseline</p>
                                 </div>
                                 <div className="text-4xl text-zinc-800">→</div>
                                 <div className="text-center">
                                     <p className={`text-8xl font-black tracking-tighter ${afterScan.psl.overall > beforeScan.psl.overall ? 'text-emerald-400' : 'text-white'}`}>
                                         {afterScan.psl.overall.toFixed(1)}
                                     </p>
-                                    <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mt-2">After</p>
+                                    <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mt-2 italic">Outcome</p>
                                 </div>
                             </div>
                             
-                            <div className="inline-flex items-center gap-4 px-8 py-4 rounded-[2rem] bg-emerald-500/10 border border-emerald-500/20 mb-12">
-                                <span className="text-emerald-400 font-black text-2xl">
-                                    {afterScan.psl.overall > beforeScan.psl.overall ? '+' : ''}
-                                    {(afterScan.psl.overall - beforeScan.psl.overall).toFixed(1)}
-                                </span>
-                                <span className="text-emerald-500/60 font-black uppercase tracking-[0.2em] text-xs">PSL Index Shift</span>
+                            <div className="flex flex-col items-center gap-4 mb-12">
+                                <div className="inline-flex items-center gap-4 px-8 py-4 rounded-[2rem] bg-emerald-500/10 border border-emerald-500/20">
+                                    <span className="text-emerald-400 font-black text-2xl">
+                                        {afterScan.psl.overall > beforeScan.psl.overall ? '+' : ''}
+                                        {(afterScan.psl.overall - beforeScan.psl.overall).toFixed(1)}
+                                    </span>
+                                    <span className="text-emerald-500/60 font-black uppercase tracking-[0.2em] text-xs">PSL Index Shift</span>
+                                </div>
+                                
+                                {(() => {
+                                    const flatBefore = flattenMetrics(beforeScan.metrics);
+                                    const flatAfter = flattenMetrics(afterScan.metrics);
+                                    const mogging: string[] = [];
+                                    const keys = [
+                                        { k: 'canthalTilt', l: 'Canthal Tilt' },
+                                        { k: 'fWHR', l: 'fWHR' },
+                                        { k: 'midfaceRatio', l: 'Midface' },
+                                        { k: 'overallSymmetry', l: 'Symmetry' }
+                                    ];
+                                    keys.forEach(({ k, l }) => {
+                                        const vB = typeof flatBefore[k] === 'number' ? flatBefore[k] : (flatBefore[k] as any)?.average;
+                                        const vA = typeof flatAfter[k] === 'number' ? flatAfter[k] : (flatAfter[k] as any)?.average;
+                                        if (vB !== undefined && vA !== undefined && Math.abs(vA - vB) > 0.05) {
+                                            if (vA > vB) mogging.push(`${l}`);
+                                        }
+                                    });
+                                    if (mogging.length > 0) {
+                                        return (
+                                            <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">
+                                                Outcome is <span className="text-emerald-400">mogging</span> Baseline in: {mogging.join(', ')}
+                                            </p>
+                                        );
+                                    }
+                                    return null;
+                                })()}
                             </div>
 
-                            <button
-                                onClick={() => { setBeforeScan(null); setAfterScan(null); }}
-                                className="block mx-auto text-[10px] font-black text-zinc-600 uppercase tracking-[0.3em] hover:text-white transition-colors"
-                            >
-                                Reset Comparison
-                            </button>
+                            <div className="flex flex-col gap-4">
+                                <button
+                                    onClick={() => {
+                                        const report = `[PSL RATE REQUEST]\n\nPSL Score: ${afterScan.psl.overall.toFixed(2)} (${afterScan.psl.tier})\nPhenotype: ${afterScan.metrics.community?.phenotype}\nNW Scale: ${afterScan.metrics.community?.nwScale}\n\nTop 3 Metrics:\n- Canthal Tilt: ${afterScan.metrics.periorbital.canthalTilt.average.toFixed(1)}°\n- fWHR: ${afterScan.metrics.midface.fWHR.toFixed(2)}\n- Symmetry: ${afterScan.metrics.symmetry.overallSymmetry.toFixed(1)}%\n\nSent from OmniSight`;
+                                        navigator.clipboard.writeText(report);
+                                        alert("📋 Report copied to clipboard for Reddit/Lookism!");
+                                    }}
+                                    className="w-full py-4 rounded-2xl bg-zinc-800 border border-zinc-700 hover:border-zinc-500 text-[10px] font-black uppercase tracking-[0.2em] transition-all"
+                                >
+                                    Get Rated (Export to Forum)
+                                </button>
+                                
+                                <button
+                                    onClick={() => { setBeforeScan(null); setAfterScan(null); }}
+                                    className="text-[10px] font-black text-zinc-600 uppercase tracking-[0.3em] hover:text-white transition-colors"
+                                >
+                                    Reset Comparison
+                                </button>
+                            </div>
                         </div>
                     )}
                 </div>

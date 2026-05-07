@@ -13,3 +13,7 @@ export interface ScanResult {
         overall: number;
     };
 }
+
+export type Gender = 'male' | 'female';
+export type AppTab = 'analysis' | 'looksmax' | 'vitality' | 'haircut';
+export type InputMode = 'webcam' | 'upload';

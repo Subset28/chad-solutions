@@ -2,7 +2,7 @@ import { MetricReport, flattenMetrics } from './metrics';
 import { metricRecommendations } from './recommendations';
 import { getRating } from './ratings';
 
-export interface AscensionPhase {
+export interface LooksmaxPhase {
     title: string;
     description: string;
     items: {
@@ -14,24 +14,24 @@ export interface AscensionPhase {
     }[];
 }
 
-export interface AscensionPlan {
+export interface LooksmaxPlan {
     currentPSL: number;
     targetPSL: number;
     targetTier: string;
     gap: number;
-    phases: AscensionPhase[];
+    phases: LooksmaxPhase[];
     totalPotentialBoost: number;
 }
 
 export function getTierName(score: number): string {
-    if (score >= 7.5) return "GIGACHAD / PSL GOD";
-    if (score >= 6.5) return "CHAD";
-    if (score >= 5.5) return "CHADLITE";
-    if (score >= 4.5) return "HIGH-TIER NORMIE";
-    if (score >= 3.5) return "MID-TIER NORMIE";
-    if (score >= 2.5) return "LOW-TIER NORMIE";
-    if (score >= 1.5) return "TRUECEL";
-    return "SUBHUMAN";
+    if (score >= 9.0) return "Looksmaxxed God / Genetic Lottery";
+    if (score >= 8.0) return "Gigachad (Elite)";
+    if (score >= 7.0) return "Chad";
+    if (score >= 6.0) return "Chadlite";
+    if (score >= 5.0) return "Normie";
+    if (score >= 4.0) return "Betabuxx / Below Average";
+    if (score >= 3.0) return "Incel-tier";
+    return "Subhuman";
 }
 
 const PSL_IMPACT_WEIGHTS: Record<string, number> = {
@@ -58,19 +58,19 @@ const PSL_IMPACT_WEIGHTS: Record<string, number> = {
     eyeAperture: 0.2
 };
 
-export function generateAscensionPlan(
+export function generateLooksmaxPlan(
     metrics: MetricReport,
     currentPSL: number,
     targetPSL: number,
     gender: 'male' | 'female'
-): AscensionPlan {
+): LooksmaxPlan {
     const gap = Math.max(0, targetPSL - currentPSL);
     const flatMetrics = flattenMetrics(metrics);
     
-    const phases: AscensionPhase[] = [
-        { title: 'Phase 1: Surface (Lifestyle)', description: 'Immediate, low-cost foundations focusing on skin, grooming, and posture.', items: [] },
-        { title: 'Phase 2: Depth (Non-Surgical)', description: 'Injectables and orthodontic refinements to bridge the gap.', items: [] },
-        { title: 'Phase 3: Structure (Surgical)', description: 'Bone-level interventions for permanent skeletal ascension.', items: [] }
+    const phases: LooksmaxPhase[] = [
+        { title: 'Phase 1: Softmaxxing (Lifestyle)', description: 'Immediate, low-cost foundations focusing on skin, grooming, and posture.', items: [] },
+        { title: 'Phase 2: Surgerymaxxing Lite (Non-Surgical)', description: 'Injectables and orthodontic refinements to bridge the gap.', items: [] },
+        { title: 'Phase 3: Hardmaxxing (Surgical)', description: 'Bone-level interventions for permanent skeletal ascension.', items: [] }
     ];
 
     let accruedBoost = 0;

@@ -324,6 +324,11 @@ export interface MetricReport {
         eyeAperture: number;
         collagenIndex: number;
     };
+    community: {
+        phenotype: string;
+        nwScale: string;
+        potentialPSLBoost: number;
+    };
 }
 
 export function analyzeMetrics(
@@ -385,7 +390,12 @@ export function analyzeMetrics(
             dominantExpressions: tensionData.dominantExpressions,
             confidence: getConfidence(skinIndices)
         },
-        vitality: calculateVitality(landmarks, imageData, rawLandmarks)
+        vitality: calculateVitality(landmarks, imageData, rawLandmarks),
+        community: {
+            phenotype: calculatePhenotype(landmarks),
+            nwScale: calculateNWScale(landmarks),
+            potentialPSLBoost: 1.5 // Estimated max boost from looksmaxxing
+        }
     };
 }
 
@@ -461,6 +471,36 @@ function calculateOverallSymmetry(landmarks: NormalizedLandmark[]): number {
     
     // Scale 0-100: 0 asymmetry = 100 score. 0.05 total delta is ~significant.
     return Math.max(0, 100 - (totalAsymmetry * 1500));
+}
+
+function calculatePhenotype(landmarks: NormalizedLandmark[]): string {
+    const fwhr = calculatefWHR(landmarks);
+    const midface = calculateMidfaceRatio(landmarks);
+    const gonial = calculateGonialAngle(landmarks).average;
+    const tilt = calculateCanthalTilt(landmarks).average;
+
+    if (fwhr > 1.9 && gonial < 122 && tilt > 2) return "Robust / Warrior";
+    if (midface > 1.05 && tilt > 3) return "Model-tier / Compact";
+    if (midface < 0.95) return "Elongated / Long Midface";
+    if (fwhr < 1.7 && gonial > 130) return "Neotenous / Soft";
+    return "Balanced / Average";
+}
+
+function calculateNWScale(landmarks: NormalizedLandmark[]): string {
+    const foreheadTop = landmarks[10];
+    const eyebrows = landmarks[168];
+    const noseTip = landmarks[1];
+    
+    const foreheadHeight = distance(foreheadTop, eyebrows);
+    const midfaceHeight = distance(eyebrows, noseTip);
+    
+    const ratio = foreheadHeight / midfaceHeight;
+    
+    if (ratio < 0.7) return "NW1 - Juvenile";
+    if (ratio < 0.85) return "NW2 - Mature";
+    if (ratio < 1.0) return "NW3 - Early Thinning";
+    if (ratio < 1.2) return "NW4 - Significant Loss";
+    return "NW5+ - Advanced Recession";
 }
 
 export function flattenMetrics(report: MetricReport): Record<string, any> {

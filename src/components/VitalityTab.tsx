@@ -144,6 +144,91 @@ export default function VitalityTab({ metrics }: VitalityTabProps) {
                     Based on your infraorbital rim position ({metrics.periorbital.infraorbitalRim.average.toFixed(1)}mm), you are sensitive to overhead lighting which casts "negative vectors". Prioritize broad-spectrum frontal lighting.
                 </p>
             </div>
+
+            {/* MEWING & MAXILLARY GROWTH AUDIT */}
+            <div className="glass-dark border border-zinc-800 p-6 rounded-3xl space-y-6">
+                <div className="flex items-center justify-between">
+                    <h4 className="text-white font-bold flex items-center gap-2 text-sm uppercase tracking-widest">
+                        <span className="text-blue-400">🦴</span> Mewing & Forward Growth
+                    </h4>
+                    <span className="text-[9px] text-zinc-600 font-bold uppercase border border-zinc-800 px-2 py-0.5 rounded">Skeletal Audit</span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="bg-black/30 p-4 rounded-2xl border border-zinc-800/50 text-center">
+                        <p className="text-[9px] font-black text-zinc-500 uppercase tracking-widest mb-1">Palate Width</p>
+                        <p className="text-xl font-black text-white">{metrics.midface.mouthToNoseWidthRatio.toFixed(2)}</p>
+                        <p className="text-[8px] text-zinc-600 uppercase mt-1">Inter-Alar Ratio</p>
+                    </div>
+                    <div className="bg-black/30 p-4 rounded-2xl border border-zinc-800/50 text-center">
+                        <p className="text-[9px] font-black text-zinc-500 uppercase tracking-widest mb-1">Jaw Definition</p>
+                        <p className="text-xl font-black text-white">{metrics.lowerFace.gonialAngle.average.toFixed(1)}°</p>
+                        <p className="text-[8px] text-zinc-600 uppercase mt-1">Gonial Sharpness</p>
+                    </div>
+                    <div className="bg-black/30 p-4 rounded-2xl border border-zinc-800/50 text-center">
+                        <p className="text-[9px] font-black text-zinc-500 uppercase tracking-widest mb-1">Maxillary Growth</p>
+                        <p className="text-xl font-black text-emerald-400">DECENT</p>
+                        <p className="text-[8px] text-zinc-600 uppercase mt-1">Forward Projection</p>
+                    </div>
+                </div>
+
+                <div className="p-4 bg-blue-500/5 border border-blue-500/20 rounded-2xl">
+                    <p className="text-[10px] font-black text-blue-400 uppercase tracking-widest mb-2">Mewing Progress Tracker</p>
+                    <p className="text-xs text-zinc-400 leading-relaxed italic">
+                        "Maxillary forward growth is the 'Chad' baseline. Your current midface compactness ({metrics.midface.midfaceRatio.toFixed(2)}) indicates {metrics.midface.midfaceRatio < 1.05 ? 'superior' : 'sub-optimal'} skeletal development. Consistent tongue posture can prevent further 'melted' facial aging."
+                    </p>
+                </div>
+            </div>
+
+            {/* COLORMAXXING / AURA AUDIT */}
+            <div className="glass-dark border border-zinc-800 p-6 rounded-3xl space-y-6">
+                <div className="flex items-center justify-between">
+                    <h4 className="text-white font-bold flex items-center gap-2 text-sm uppercase tracking-widest">
+                        <span className="text-emerald-400">✨</span> Aura & Colormaxxing
+                    </h4>
+                    <span className="text-[9px] text-zinc-600 font-bold uppercase border border-zinc-800 px-2 py-0.5 rounded">Softmax Audit</span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-4">
+                        <div className="bg-black/30 p-4 rounded-2xl border border-zinc-800/50">
+                            <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-2">Eyebrow Contrast</p>
+                            <div className="flex items-center gap-3">
+                                <div className="h-2 flex-1 bg-zinc-800 rounded-full overflow-hidden">
+                                    <div className="h-full bg-emerald-500" style={{ width: '85%' }} />
+                                </div>
+                                <span className="text-xs font-black text-white">HIGH</span>
+                            </div>
+                            <p className="text-[9px] text-zinc-500 mt-2 uppercase tracking-tighter italic">High contrast increases perceived dimorphism.</p>
+                        </div>
+                        <div className="bg-black/30 p-4 rounded-2xl border border-zinc-800/50">
+                            <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-2">Skin Homogeneity</p>
+                            <div className="flex items-center gap-3">
+                                <div className="h-2 flex-1 bg-zinc-800 rounded-full overflow-hidden">
+                                    <div className="h-full bg-amber-500" style={{ width: `${collagenIndex}%` }} />
+                                </div>
+                                <span className="text-xs font-black text-white">{collagenIndex > 80 ? 'IDEAL' : 'LOW'}</span>
+                            </div>
+                            <p className="text-[9px] text-zinc-500 mt-2 uppercase tracking-tighter italic">Uniformity is a primary marker of genetic health.</p>
+                        </div>
+                    </div>
+
+                    <div className="bg-emerald-500/5 border border-emerald-500/20 rounded-2xl p-4 flex flex-col justify-center">
+                        <p className="text-[10px] font-black text-emerald-400 uppercase tracking-widest mb-3">Colormaxxing Protocol</p>
+                        <ul className="space-y-2">
+                            {[
+                                "Optimize eyebrow density to increase 'dark triad' contrast.",
+                                "Reduce skin redness/inflammation to improve 'aura' score.",
+                                "Hair color synergy: Cool tones recommended for high-contrast features."
+                            ].map((rec, i) => (
+                                <li key={i} className="text-xs text-zinc-300 flex gap-2">
+                                    <span className="text-emerald-500">•</span> {rec}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { MetricReport } from '@/utils/metrics';
-import { generateAscensionPlan, getTierName } from '@/utils/plan-generator';
+import { generateLooksmaxPlan, getTierName } from '@/utils/plan-generator';
 
 interface RoadmapTabProps {
     metrics: MetricReport;
@@ -12,8 +12,8 @@ interface RoadmapTabProps {
 }
 
 export default function RoadmapTab({ metrics, pslScore, gender }: RoadmapTabProps) {
-    const targetPSL = Math.min(8.0, pslScore + 1.5);
-    const plan = generateAscensionPlan(metrics, pslScore, targetPSL, gender);
+    const targetPSL = Math.min(9.5, pslScore + 1.5);
+    const plan = generateLooksmaxPlan(metrics, pslScore, targetPSL, gender);
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
@@ -27,11 +27,11 @@ export default function RoadmapTab({ metrics, pslScore, gender }: RoadmapTabProp
                     <div className="space-y-2">
                         <div className="flex items-center gap-2">
                             <div className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
-                            <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-[0.2em]">Ascension Strategy</span>
+                            <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-[0.2em]">Looksmaxxing Strategy</span>
                         </div>
-                        <h3 className="text-3xl font-black text-white tracking-tighter">Projected {getTierName(targetPSL)}</h3>
+                        <h3 className="text-3xl font-black text-white tracking-tighter">Target: {getTierName(targetPSL)}</h3>
                         <p className="text-zinc-500 text-xs max-w-md leading-relaxed">
-                            Based on your structural skeletal baseline, we have calculated an optimal path to increase your PSL by <span className="text-indigo-400 font-bold">{plan.gap.toFixed(2)} points</span>.
+                            Based on your structural skeletal baseline, we have calculated an optimal path to looksmax and increase your PSL by <span className="text-indigo-400 font-bold">{plan.gap.toFixed(2)} points</span>.
                         </p>
                     </div>
 
@@ -70,7 +70,12 @@ export default function RoadmapTab({ metrics, pslScore, gender }: RoadmapTabProp
                             
                             <div className="flex-1 pb-8">
                                 <div className="glass-dark border border-zinc-800 rounded-2xl p-5 hover:border-indigo-500/30 transition-all group">
-                                    <h4 className="text-white font-bold text-sm mb-1 group-hover:text-indigo-300 transition-colors">{phase.title}</h4>
+                                    <div className="flex justify-between items-start mb-1">
+                                        <h4 className="text-white font-bold text-sm group-hover:text-indigo-300 transition-colors">{phase.title}</h4>
+                                        <span className="text-[9px] font-black px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 uppercase tracking-widest">
+                                            {idx === 0 ? '+0.3-0.5 PSL' : idx === 1 ? '+0.5-0.8 PSL' : '+1.0-2.0 PSL'}
+                                        </span>
+                                    </div>
                                     <p className="text-zinc-500 text-[10px] mb-4 leading-relaxed uppercase tracking-wider">{phase.description}</p>
                                     
                                     <div className="space-y-2">
