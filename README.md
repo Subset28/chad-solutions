@@ -45,7 +45,13 @@ Our philosophy is built on three pillars:
 4. **3-Axis Pose Correction**:
    - **Roll**: Corrected by rotating coordinates around the Z-axis until the eyes are perfectly level.
    - **Yaw/Pitch**: The system extracts the `facialTransformationMatrix` from MediaPipe to mathematically "rotate" the face back to a dead-center neutral position before measuring. This prevents a tilted head from inflating the midface ratio.
-5. **Perspective Undistortion**: We apply a focal length correction factor to account for the "fisheye" effect common in front-facing smartphone cameras.
+5. **Geometric Accuracy (Aspect Ratio Correction)**:
+   - Modern smartphones use various aspect ratios (16:9, 4:3, etc.). MediaPipe normalizes landmarks to a [0, 1] square, which distorts geometric ratios on non-square sensors.
+   - **Fix**: The engine now automatically detects image dimensions and rescales landmarks into a uniform physical coordinate space before analysis. This ensures `fWHR` and `Canthal Tilt` remain accurate regardless of the device.
+6. **Mobile-First Robustness**:
+   - Implemented `try...finally` state recovery to prevent UI freezes during heavy AI inference.
+   - Added polyfills/fallbacks for `crypto.randomUUID()` to support older mobile browsers and non-secure local environments.
+7. **Perspective Undistortion**: We apply a focal length correction factor to account for the "fisheye" effect common in front-facing smartphone cameras.
 
 ---
 
@@ -115,8 +121,10 @@ We maintain a `POPULATION_NORMS` constant that contains the **Mean** and **Stand
 ### The Calculation Pipeline
 1. **Raw Measurement**: e.g., Gonial Angle = 115°.
 2. **Z-Score Mapping**: `z = (measurement - mean) / stdev`.
-3. **Sigmoid Normalization**: We convert the Z-score into a 0.0 - 10.0 scale using a customized sigmoid function that rewards "Ideal" values and penalizes "Outliers" (deviations from the mean).
+3. **Sigmoid Normalization**: We convert the Z-score into a 0.0 - 10.0 scale using a customized sigmoid function.
+   - **v2.1 Update**: Reduced sigmoid steepness (`k=1.0`) to provide a more natural and balanced distribution for typical populations.
 4. **Weighted Aggregation**: Metrics are weighted by their impact on perceived attractiveness (e.g., Canthal Tilt has a higher weight than Nose Width Ratio).
+5. **Debug Transparency**: Developers can inspect the exact Z-score breakdown and audit logs in the browser console for every scan.
 
 ---
 
