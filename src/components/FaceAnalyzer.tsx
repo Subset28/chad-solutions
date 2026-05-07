@@ -19,6 +19,8 @@ import VitalityTab from '@/components/VitalityTab';
 import HaircutTab from '@/components/HaircutTab';
 import { RadarChart } from '@/components/RadarChart';
 import TierCard from '@/components/TierCard';
+import HistoryTab from '@/components/HistoryTab';
+import { saveScan } from '@/lib/scanHistory';
 
 export default function FaceAnalyzer() {
     const webcamRef = useRef<Webcam>(null);
@@ -146,6 +148,41 @@ export default function FaceAnalyzer() {
         if (appMode === 'single') {
             setScans(prev => [...prev, scan]);
             setAuditResult(scan);
+
+            // Save to Persistent History
+            const thumbCanvas = document.createElement('canvas');
+            thumbCanvas.width = 120;
+            thumbCanvas.height = 120;
+            const thumbCtx = thumbCanvas.getContext('2d');
+            if (thumbCtx) {
+                // Crop around nose tip (landmark 1)
+                const nose = landmarks[1];
+                const sw = canvas.width * 0.4;
+                const sh = canvas.width * 0.4;
+                thumbCtx.drawImage(
+                    img, 
+                    nose.x * canvas.width - sw/2, nose.y * canvas.height - sh/2, sw, sh,
+                    0, 0, 120, 120
+                );
+            }
+
+            saveScan({
+                id: scan.id,
+                timestamp: scan.timestamp,
+                psl: scan.psl.overall,
+                tier: scan.psl.tier,
+                phenotype: scan.metrics.community.phenotype,
+                nwScale: scan.metrics.community.nwScale,
+                metrics: scan.metrics,
+                thumbnailBase64: thumbCanvas.toDataURL('image/jpeg', 0.7)
+            });
+
+            // Request Notification Permission (First Scan)
+            if (Notification.permission === 'default') {
+                setTimeout(() => {
+                    Notification.requestPermission();
+                }, 3000);
+            }
         } else {
             if (compareSlot === 'before') setBeforeScan(scan);
             else setAfterScan(scan);
@@ -387,6 +424,7 @@ export default function FaceAnalyzer() {
                                             metrics={auditResult.metrics} 
                                             pslScore={auditResult.psl.overall} 
                                             tier={auditResult.psl.tier} 
+                                            percentile={auditResult.psl.percentile}
                                         />
                                     </div>
                                 </div>
@@ -413,14 +451,14 @@ export default function FaceAnalyzer() {
                                     </div>
                                 </div>
 
-                                <div className="flex p-1.5 bg-zinc-900/50 border border-zinc-800 rounded-[2.5rem] glass-dark shadow-xl">
-                                    {(['analysis', 'looksmax', 'vitality', 'haircut'] as AppTab[]).map(tab => (
+                                <div className="flex p-1.5 bg-zinc-900/50 border border-zinc-800 rounded-[2.5rem] glass-dark shadow-xl overflow-x-auto">
+                                    {(['analysis', 'looksmax', 'vitality', 'haircut', 'history'] as AppTab[]).map(tab => (
                                         <button
                                             key={tab}
                                             onClick={() => setResultsTab(tab)}
-                                            className={`flex-1 py-4 rounded-[2rem] text-[10px] font-black uppercase tracking-[0.2em] transition-all ${resultsTab === tab ? 'bg-white text-black shadow-xl' : 'text-zinc-500 hover:text-white'}`}
+                                            className={`flex-1 py-4 px-6 rounded-[2rem] text-[10px] font-black uppercase tracking-[0.2em] transition-all whitespace-nowrap ${resultsTab === tab ? 'bg-white text-black shadow-xl' : 'text-zinc-500 hover:text-white'}`}
                                         >
-                                            {tab === 'looksmax' ? 'Looksmaxxing' : tab}
+                                            {tab === 'looksmax' ? 'Roadmap' : tab}
                                         </button>
                                     ))}
                                 </div>
@@ -444,6 +482,7 @@ export default function FaceAnalyzer() {
                                     )}
                                     {resultsTab === 'vitality' && <VitalityTab metrics={auditResult.metrics} />}
                                     {resultsTab === 'haircut' && <HaircutTab metrics={auditResult.metrics} gender={gender} />}
+                                    {resultsTab === 'history' && <HistoryTab />}
                                 </div>
                             </div>
                         </>
@@ -546,7 +585,7 @@ export default function FaceAnalyzer() {
                              <div className="grid grid-cols-2 gap-4">
                                 <button
                                     onClick={() => {
-                                        const report = `**[Rate Me] OmniSight Analysis**\n\nPSL: ${afterScan.psl.overall.toFixed(2)} (${afterScan.psl.tier})\nPhenotype: ${afterScan.metrics.community?.phenotype}\nNW Scale: ${afterScan.metrics.community?.nwScale}\n\n**Top Metrics:**\n- Canthal Tilt: ${afterScan.metrics.periorbital.canthalTilt.average.toFixed(1)}°\n- fWHR: ${afterScan.metrics.midface.fWHR.toFixed(2)}\n- Symmetry: ${afterScan.metrics.symmetry.overallSymmetry.toFixed(1)}%\n\nSent from OmniSight.app`;
+                                        const report = `**[Rate Me] OmniSight Analysis**\n\nPSL: ${afterScan.psl.overall.toFixed(2)} (${afterScan.psl.tier})\nPhenotype: ${afterScan.metrics.community?.phenotype || 'N/A'}\nNW Scale: ${afterScan.metrics.community?.nwScale || 'N/A'}\n\n**Top Metrics:**\n- Canthal Tilt: ${afterScan.metrics.periorbital.canthalTilt.average.toFixed(1)}°\n- fWHR: ${afterScan.metrics.midface.fWHR.toFixed(2)}\n- Symmetry: ${afterScan.metrics.symmetry.overallSymmetry.toFixed(1)}%\n\nSent from OmniSight.app`;
                                         navigator.clipboard.writeText(report);
                                         alert("📋 Reddit/Lookism format copied!");
                                     }}

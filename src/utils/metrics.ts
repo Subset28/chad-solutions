@@ -1,4 +1,5 @@
 import { NormalizedLandmark } from "@mediapipe/tasks-vision";
+import { classifyPhenotype, classifyNorwood } from './community';
 
 // ==========================================
 // 1. Core Types & Helpers
@@ -300,6 +301,7 @@ export interface MetricReport {
         mouthToNoseWidthRatio: number;
         noseWidthRatio: number;
         maxillaryProtrusion: number;
+        foreheadHeightRatio: number;
         confidence: number;
     };
     jawline: {
@@ -374,6 +376,7 @@ export function analyzeMetrics(
             mouthToNoseWidthRatio: distance(landmarks[61], landmarks[291]) / distance(landmarks[48], landmarks[278]),
             noseWidthRatio: distance(landmarks[48], landmarks[278]) / bizygomatic,
             maxillaryProtrusion: calculateMaxillaryProtrusion(landmarks),
+            foreheadHeightRatio: distance(landmarks[10], landmarks[168]) / distance(landmarks[168], landmarks[1]),
             confidence: getConfidence(midfaceIndices)
         },
         jawline: {
@@ -396,11 +399,17 @@ export function analyzeMetrics(
         },
         vitality: calculateVitality(landmarks, imageData, rawLandmarks),
         community: {
-            phenotype: calculatePhenotype(landmarks),
-            nwScale: calculateNWScale(landmarks),
-            potentialPSLBoost: 1.5 // Estimated max boost from looksmaxxing
+            phenotype: '',
+            nwScale: '',
+            potentialPSLBoost: 1.5
         }
     };
+
+    // Attach community classifications after initial object creation
+    report.community.phenotype = classifyPhenotype(report);
+    report.community.nwScale = classifyNorwood(report);
+
+    return report;
 }
 
 function calculateVitality(landmarks: any[], imageData?: ImageData, rawLandmarks?: NormalizedLandmark[]) {

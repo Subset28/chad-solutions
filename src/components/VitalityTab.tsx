@@ -36,9 +36,9 @@ export default function VitalityTab({ metrics }: VitalityTabProps) {
     const { vitalityScore, biologicalAgeDelta, eyeAperture, collagenIndex } = metrics.vitality;
     
     const lighting = analyzeShadowProjection({
-        orbitalRimProtrusion: metrics.periorbital.orbitalRim.average,
-        infraorbitalRimPosition: metrics.periorbital.infraorbitalRim.average,
-        cheekboneProminence: metrics.midface.cheekboneProminence
+        orbitalRimProtrusion: metrics.periorbital.orbitalRimProtrusion.average,
+        infraorbitalRimPosition: metrics.periorbital.infraorbitalRimPosition,
+        cheekboneProminence: metrics.midface.noseWidthRatio // Proxy for now
     });
 
     const radarData = [

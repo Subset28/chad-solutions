@@ -13,8 +13,36 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Chad Solutions | Facial Analysis & Haircuts",
-  description: "AI-powered facial analysis, PSL scoring, and haircut recommendations based on your bone structure and facial geometry.",
+  title: "OmniSight — Facial Biometric Analysis",
+  description: "Scan your face. Get your PSL. Find your looksmax ceiling.",
+  manifest: "/manifest.json",
+  themeColor: "#000000",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "OmniSight",
+  },
+  openGraph: {
+    title: "OmniSight — Facial Biometric Analysis",
+    description: "Scan your face. Get your PSL. Find your looksmax ceiling.",
+    url: "https://omnisight.app",
+    siteName: "OmniSight",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "OmniSight — Facial Biometric Analysis",
+    description: "Scan your face. Get your PSL. Find your looksmax ceiling.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({
