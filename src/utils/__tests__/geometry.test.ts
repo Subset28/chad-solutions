@@ -8,13 +8,13 @@ import {
 describe('Geometry Engine - Objectivity Tests', () => {
     
     it('calculates 3D Euclidean distance correctly', () => {
-        const p1 = { x: 0, y: 0, z: 0 };
-        const p2 = { x: 3, y: 4, z: 0 };
-        expect(distance(p1, p2)).toBe(5);
+        const p1 = { x: 0, y: 0, z: 0, visibility: 1 };
+        const p2 = { x: 3, y: 4, z: 0, visibility: 1 };
+        expect(distance(p1 as any, p2 as any)).toBe(5);
         
-        const p3 = { x: 0, y: 0, z: 0 };
-        const p4 = { x: 1, y: 1, z: 1 };
-        expect(distance(p3, p4)).toBeCloseTo(Math.sqrt(3));
+        const p3 = { x: 0, y: 0, z: 0, visibility: 1 };
+        const p4 = { x: 1, y: 1, z: 1, visibility: 1 };
+        expect(distance(p3 as any, p4 as any)).toBeCloseTo(Math.sqrt(3));
     });
 
     it('calculates PSL score correctly for balanced metrics', () => {
@@ -23,23 +23,25 @@ describe('Geometry Engine - Objectivity Tests', () => {
             gonialAngle: 122,
             lipRatio: 1.6,
             canthalTilt: 5,
-            fwfhRatio: 1.9,
+            fWHR: 1.9,
             mouthToNoseWidthRatio: 1.5,
-            eyeSeparationRatio: 0.46,
+            esr: 0.46,
             eyeToMouthAngle: 48,
-            bigonialWidthRatio: 1.15,
-            facialAsymmetry: 98,
-            ipdRatio: 0.46,
+            bigonialRatio: 1.15,
+            overallSymmetry: 98,
+            ipd: 0.46,
             noseWidthRatio: 0.28,
             cheekboneProminence: 0.45,
             chinToPhiltrumRatio: 2.5,
             lowerThirdRatio: 0.64,
-            palpebralFissureLength: 3.2,
+            pfl: 3.2,
             facialThirdsRatio: 98,
             foreheadHeightRatio: 0.32,
             hairlineRecession: 100,
-            upperEyelidExposure: 0.1,
-            philtrumLength: 0.07
+            uee: 0.1,
+            philtrumLength: 0.07,
+            facialTension: 0,
+            angleDeduction: 0
         };
 
         const result = calculatePSLScore(mockMetrics as MetricScores, 'male', 'composite');
@@ -55,23 +57,25 @@ describe('Geometry Engine - Objectivity Tests', () => {
             gonialAngle: 122,
             lipRatio: 1.6,
             canthalTilt: -5, // NEGATIVE TILT
-            fwfhRatio: 1.9,
+            fWHR: 1.9,
             mouthToNoseWidthRatio: 1.5,
-            eyeSeparationRatio: 0.46,
+            esr: 0.46,
             eyeToMouthAngle: 48,
-            bigonialWidthRatio: 1.15,
-            facialAsymmetry: 98,
-            ipdRatio: 0.46,
+            bigonialRatio: 1.15,
+            overallSymmetry: 98,
+            ipd: 0.46,
             noseWidthRatio: 0.28,
             cheekboneProminence: 0.45,
             chinToPhiltrumRatio: 2.5,
             lowerThirdRatio: 0.64,
-            palpebralFissureLength: 3.2,
+            pfl: 3.2,
             facialThirdsRatio: 98,
             foreheadHeightRatio: 0.32,
             hairlineRecession: 100,
-            upperEyelidExposure: 0.1,
-            philtrumLength: 0.07
+            uee: 0.1,
+            philtrumLength: 0.07,
+            facialTension: 0,
+            angleDeduction: 0
         };
 
         const result = calculatePSLScore(baseMetrics as MetricScores, 'male', 'composite');
