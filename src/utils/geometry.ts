@@ -740,19 +740,19 @@ export interface VitalityData {
 
 export interface MetricScores {
     canthalTilt: number;
-    fwfhRatio: number;
+    fWHR: number;
     midfaceRatio: number;
-    eyeSeparationRatio: number;
+    esr: number;
     gonialAngle: number;
     chinToPhiltrumRatio: number;
     mouthToNoseWidthRatio: number;
-    bigonialWidthRatio: number;
+    bigonialRatio: number;
     lowerThirdRatio: number;
-    palpebralFissureLength: number;
+    pfl: number;
     eyeToMouthAngle: number;
     lipRatio: number;
-    facialAsymmetry: number;
-    ipdRatio: number;
+    overallSymmetry: number;
+    ipd: number;
     facialThirdsRatio: number;
     foreheadHeightRatio: number;
     noseWidthRatio: number;
@@ -769,7 +769,7 @@ export interface MetricScores {
     doubleChinRisk: number;
     angleDeduction: number;
     facialTension: number;
-    skinQuality: number;
+    collagenIndex: number;
 
     // V3: Grooming / Hair Quality (0-100 score, estimated from image analysis)
     hairQualityScore: number;
@@ -784,12 +784,17 @@ export interface MetricScores {
     audit?: ConfidenceAudit;
 
     // NEW: Scientific Blackpill / PSL Wiki Metrics
-    upperEyelidExposure: number;      // Less is better (Hunter eyes)
+    uee: number;      // Less is better (Hunter eyes)
     philtrumLength: number;           // Shorter is better
     
     // NEW GOD-TIER FIELDS
     phenotype?: Phenotype;
-    vitality?: VitalityData;
+    vitality?: {
+        vitalityScore: number;
+        biologicalAgeDelta: number;
+        eyeAperture: number;
+        collagenIndex: number;
+    };
 }
 export type ProfileType = 'front' | 'side';
 

@@ -115,7 +115,7 @@ export const metricRecommendations: Record<string, MetricRecommendation> = {
         ],
         outlook: "A narrow bigonial width is purely skeletal. Implants are reliable and highly effective. Chewing is a non-surgical booster."
     },
-    palpebralFissureLength: {
+    pfl: {
         surgical: [
             "Lateral canthoplasty — extends the outer corner of the eye, increasing horizontal length",
             "Medial epicanthoplasty — removes the medial epicanthal fold, opening the inner corner",
@@ -180,7 +180,7 @@ export const metricRecommendations: Record<string, MetricRecommendation> = {
         ],
         outlook: "Hair loss is highly genetic (androgenetic alopecia). Finasteride + Minoxidil is the current gold standard first line. Transplant is near-permanent at advanced stages."
     },
-    skinQuality: {
+    collagenIndex: {
         surgical: [
             "CO2 laser resurfacing — ablates surface skin, dramatically reducing textures and pores",
             "Microneedling with PRP — stimulates collagen remodeling to fill acne scars and reduce texture",

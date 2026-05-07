@@ -70,8 +70,8 @@ export const metricExplanations: Record<string, MetricExplanation> = {
         scientificContext: "The face requires substantial vertical lower quadrant growth to accommodate proper dental occlusion and airway space. Lower numbers represent insufficient facial height.",
         blackpillNote: "A short non-dominant lower face looks inherently neotenous and prepubescent."
     },
-    palpebralFissureLength: {
-        title: "Palpebral Fissure Length",
+    pfl: {
+        title: "Palpebral Fissure Length (PFL)",
         whatItIs: "The length ratio of the horizontal width of the eye opening over the height of the eye opening.",
         idealRange: "3.0 - 3.5",
         scientificContext: "Horizontally long, vertically squinted eyes suggest sharp visual acuity and lack of prey-like fear responses. They are the defining metric of 'Hunter Eyes'.",
@@ -182,5 +182,12 @@ export const metricExplanations: Record<string, MetricExplanation> = {
         idealRange: "Short (11mm - 15mm)",
         scientificContext: "A short philtrum is a youthful trait that contributes to a 'compact' midface. As humans age, the philtrum tends to lengthen due to gravity and loss of collagen.",
         blackpillNote: "A long philtrum creates a 'chimp' or 'simian' look, disrupting the lower-third harmony and making the face look vertically elongated."
+    },
+    collagenIndex: {
+        title: "Collagen / Skin Index",
+        whatItIs: "A measure of skin smoothness and micro-texture variance using pixel-level standard deviation analysis.",
+        idealRange: "85 - 100 (Smooth)",
+        scientificContext: "High collagen density correlates with smooth skin texture and low light scattering. This is an objective proxy for biological youth and hormonal health.",
+        blackpillNote: "Bad skin (acne, texture, large pores) is the single biggest 'falio' that can be fixed via lifestyle and topicals."
     }
-};
+}

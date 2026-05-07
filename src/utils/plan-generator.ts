@@ -52,6 +52,10 @@ const PSL_IMPACT_WEIGHTS: Record<string, number> = {
     doubleChinRisk: 0.4,
     uee: 0.6,
     philtrumLength: 0.5,
+    esr: 0.4,
+    pfl: 0.5,
+    collagenIndex: 0.3,
+    eyeAperture: 0.2
 };
 
 export function generateAscensionPlan(

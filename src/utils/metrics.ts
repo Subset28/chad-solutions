@@ -66,8 +66,10 @@ export function calculateCanthalTilt(landmarks: NormalizedLandmark[]): Bilateral
     const innerL = landmarks[362], outerL = landmarks[263];
     const innerR = landmarks[133], outerR = landmarks[33];
 
-    const leftTilt = Math.atan2(-(outerL.y - innerL.y), outerL.x - innerL.x) * (180 / Math.PI);
-    const rightTilt = Math.atan2(-(outerR.y - innerR.y), outerR.x - innerR.x) * (180 / Math.PI);
+    // Use Math.abs on the x-delta to ensure we calculate the angle relative to horizontal 
+    // regardless of whether the eye is on the left or right of the mirrored frame.
+    const leftTilt = Math.atan2(-(outerL.y - innerL.y), Math.abs(outerL.x - innerL.x)) * (180 / Math.PI);
+    const rightTilt = Math.atan2(-(outerR.y - innerR.y), Math.abs(outerR.x - innerR.x)) * (180 / Math.PI);
 
     return {
         average: (leftTilt + rightTilt) / 2,
@@ -125,15 +127,16 @@ export function calculatefWHR(landmarks: NormalizedLandmark[]): number {
  * Nose tip to upper lip / Total face height
  */
 export function calculateMidfaceRatio(landmarks: NormalizedLandmark[]): number {
-    const noseTip = landmarks[1];
-    const upperLip = landmarks[0];
-    const menton = landmarks[152];
-    const foreheadTop = landmarks[10];
+    const leftEye = midpoint(landmarks[33], landmarks[133]);
+    const rightEye = midpoint(landmarks[263], landmarks[362]);
+    const ipd = distance(leftEye, rightEye);
+    
+    const eyeMidpoint = midpoint(leftEye, rightEye);
+    const stomion = landmarks[13]; // Upper lip center
+    
+    const midfaceHeight = distance(eyeMidpoint, stomion);
 
-    const midfaceSegment = distance(noseTip, upperLip);
-    const totalHeight = distance(foreheadTop, menton);
-
-    return totalHeight === 0 ? 0 : midfaceSegment / totalHeight;
+    return midfaceHeight === 0 ? 0 : ipd / midfaceHeight;
 }
 
 /**
@@ -318,17 +321,33 @@ export interface MetricReport {
     vitality: {
         vitalityScore: number;
         biologicalAgeDelta: number;
-        sleepScore: number;
+        eyeAperture: number;
         collagenIndex: number;
     };
 }
 
-export function analyzeMetrics(landmarks: NormalizedLandmark[], blendshapes: any[] = []): MetricReport {
+export function analyzeMetrics(
+    landmarks: NormalizedLandmark[], 
+    blendshapes: any[] = [],
+    imageData?: ImageData,
+    rawLandmarks?: NormalizedLandmark[]
+): MetricReport {
     const bizygomatic = distance(landmarks[234], landmarks[454]);
     const leftEye = midpoint(landmarks[33], landmarks[133]);
     const rightEye = midpoint(landmarks[263], landmarks[362]);
     const ipd = distance(leftEye, rightEye);
     const tensionData = calculateFacialTension(blendshapes);
+
+    // Calculate Dynamic Confidence based on landmark visibility/presence
+    const getConfidence = (indices: number[]) => {
+        const visibilities = indices.map(i => landmarks[i].visibility || 1.0);
+        return visibilities.reduce((a, b) => a + b, 0) / indices.length;
+    };
+
+    const periorbitalIndices = [33, 133, 362, 263, 159, 145, 386, 374];
+    const midfaceIndices = [234, 454, 1, 2, 48, 278, 6, 197];
+    const jawlineIndices = [172, 397, 152, 175, 396, 400];
+    const skinIndices = [205, 425, 50, 280];
 
     return {
         periorbital: {
@@ -339,7 +358,7 @@ export function analyzeMetrics(landmarks: NormalizedLandmark[], blendshapes: any
             orbitalRimProtrusion: calculateOrbitalRimProtrusion(landmarks),
             browRidgeProtrusion: calculateBrowRidgeProtrusion(landmarks),
             infraorbitalRimPosition: (landmarks[226].z + landmarks[446].z) / 2,
-            confidence: 0.95
+            confidence: getConfidence(periorbitalIndices)
         },
         midface: {
             fWHR: calculatefWHR(landmarks),
@@ -347,31 +366,31 @@ export function analyzeMetrics(landmarks: NormalizedLandmark[], blendshapes: any
             philtrumLength: calculatePhiltrumLength(landmarks),
             noseWidthRatio: distance(landmarks[48], landmarks[278]) / bizygomatic,
             maxillaryProtrusion: calculateMaxillaryProtrusion(landmarks),
-            confidence: 0.92
+            confidence: getConfidence(midfaceIndices)
         },
         jawline: {
             gonialAngle: calculateGonialAngle(landmarks),
             chinProjection: calculateChinProjection(landmarks),
             bigonialRatio: distance(landmarks[172], landmarks[397]) / bizygomatic,
             doubleChinRisk: calculateDoubleChinRisk(landmarks),
-            confidence: 0.88
+            confidence: getConfidence(jawlineIndices)
         },
         symmetry: {
             midlineDeviation: calculateMidlineDeviation(landmarks),
-            overallSymmetry: Math.max(0, 100 - calculateMidlineDeviation(landmarks)),
-            confidence: 0.96
+            overallSymmetry: calculateOverallSymmetry(landmarks),
+            confidence: (getConfidence(periorbitalIndices) + getConfidence(jawlineIndices)) / 2
         },
         skin: {
             tension: tensionData.tensionScore,
             dominantExpressions: tensionData.dominantExpressions,
-            confidence: 0.85
+            confidence: getConfidence(skinIndices)
         },
-        vitality: calculateVitality(landmarks)
+        vitality: calculateVitality(landmarks, imageData, rawLandmarks)
     };
 }
 
-function calculateVitality(landmarks: any[]) {
-    // Bio-markers for vitality estimation (Experimental)
+function calculateVitality(landmarks: any[], imageData?: ImageData, rawLandmarks?: NormalizedLandmark[]) {
+    // Bio-markers for vitality estimation
     const eyelidOpenness = (distance(landmarks[159], landmarks[145]) + distance(landmarks[386], landmarks[374])) / 2;
     const nasolabialDepth = distance(landmarks[205], landmarks[425]);
     
@@ -380,12 +399,68 @@ function calculateVitality(landmarks: any[]) {
         (eyelidOpenness * 1500) - (nasolabialDepth * 20)
     ));
 
+    // Pixel-based Texture Analysis (Cheek Patches)
+    let smoothness = 0.85; // Baseline
+    if (imageData && rawLandmarks) {
+        const leftCheek = rawLandmarks[205]; // Approximate cheek center
+        const rightCheek = rawLandmarks[425];
+        
+        const samplePatch = (center: NormalizedLandmark) => {
+            const x = Math.floor(center.x * imageData.width);
+            const y = Math.floor(center.y * imageData.height);
+            const size = 20;
+            const values: number[] = [];
+            
+            for (let i = -size/2; i < size/2; i++) {
+                for (let j = -size/2; j < size/2; j++) {
+                    const px = (y + i) * imageData.width + (x + j);
+                    if (px >= 0 && px < imageData.data.length / 4) {
+                        const r = imageData.data[px * 4];
+                        const g = imageData.data[px * 4 + 1];
+                        const b = imageData.data[px * 4 + 2];
+                        values.push((r + g + b) / 3);
+                    }
+                }
+            }
+            
+            if (values.length === 0) return 0;
+            const mean = values.reduce((a, b) => a + b, 0) / values.length;
+            const variance = values.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / values.length;
+            return Math.sqrt(variance); // Standard Deviation
+        };
+
+        const leftStd = samplePatch(leftCheek);
+        const rightStd = samplePatch(rightCheek);
+        const avgStd = (leftStd + rightStd) / 2;
+        
+        // Map StdDev to smoothness: lower is smoother. 0-20 scale typical.
+        smoothness = Math.max(0, Math.min(1.0, 1.0 - (avgStd / 25)));
+    }
+
     return {
         vitalityScore: Math.round(vitalityScore),
-        biologicalAgeDelta: (vitalityScore > 80 ? -2.0 : vitalityScore < 40 ? 4.0 : 0),
-        sleepScore: Math.min(100, Math.round(eyelidOpenness * 2000)),
-        collagenIndex: Math.round(vitalityScore * 0.8) // Proxy for tissue support
+        biologicalAgeDelta: (50 - vitalityScore) / 10, // -5 to +5 years linear
+        eyeAperture: Math.min(100, Math.round(eyelidOpenness * 2000)), // Relabeled from sleepScore
+        collagenIndex: Math.round(smoothness * 100) // Now based on pixel variance
     };
+}
+
+function calculateOverallSymmetry(landmarks: NormalizedLandmark[]): number {
+    const pairs = [
+        [33, 263], [133, 362], // Eyes
+        [234, 454], // Zygos
+        [172, 397], // Jaw
+        [48, 278]   // Mouth
+    ];
+    let totalAsymmetry = 0;
+    pairs.forEach(([p1, p2]) => {
+        // Measure Y and Z delta (X is the symmetry axis, so delta is expected)
+        totalAsymmetry += Math.abs(landmarks[p1].y - landmarks[p2].y);
+        totalAsymmetry += Math.abs(landmarks[p1].z - landmarks[p2].z);
+    });
+    
+    // Scale 0-100: 0 asymmetry = 100 score. 0.05 total delta is ~significant.
+    return Math.max(0, 100 - (totalAsymmetry * 1500));
 }
 
 export function flattenMetrics(report: MetricReport): Record<string, any> {

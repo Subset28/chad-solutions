@@ -115,7 +115,8 @@ export default function FaceAnalyzer() {
         const profileType = Math.abs(angles.yaw) > 30 ? 'side' : 'front';
 
         // 4. Calculate Clinical Metrics
-        const metrics = analyzeMetrics(normalizedLandmarks);
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const metrics = analyzeMetrics(normalizedLandmarks, result.faceBlendshapes?.[0]?.categories || [], imageData, landmarks);
 
         // 5. Calculate Score
         const psl = calculatePSLScore(metrics, { gender }, audit.overallConfidence);
