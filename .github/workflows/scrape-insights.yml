@@ -1,0 +1,31 @@
+name: Weekly Insight Scraper
+
+on:
+  schedule:
+    - cron: '0 10 * * 2' # Every Tuesday 10am
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - run: npm install
+      
+      - name: Run scraper
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: npx ts-node scripts/scrape-and-update.ts
+        
+      - name: Commit results
+        run: |
+          git config --global user.email "bot@chadsolutions.app"
+          git config --global user.name "Chad Solutions Bot"
+          git add data/community-insights.json
+          git diff --staged --quiet || (git commit -m "chore(data): weekly insight sync $(date +%Y-%m-%d)" && git push)

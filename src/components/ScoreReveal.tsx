@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PSLResult } from '@/utils/scoring';
 import { MetricReport } from '@/utils/metrics';
+import { track } from '@/lib/analytics';
 
 interface ScoreRevealProps {
     score: number;
@@ -146,7 +147,13 @@ export default function ScoreReveal({ score, tier, metrics, onComplete }: ScoreR
                             <motion.button
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                onClick={onComplete}
+                                onClick={() => {
+                                    track('full_audit_opened', {
+                                        psl_score: score,
+                                        tier: tier,
+                                    });
+                                    onComplete();
+                                }}
                                 className="mt-8 px-12 py-5 bg-white text-black font-black uppercase tracking-[0.2em] text-sm rounded-2xl shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-105 transition-all"
                             >
                                 Open Full Audit

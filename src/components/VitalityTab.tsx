@@ -45,8 +45,8 @@ export default function VitalityTab({ metrics }: VitalityTabProps) {
         { label: 'Ocular', value: eyeAperture },
         { label: 'Collagen', value: collagenIndex },
         { label: 'Health', value: Math.max(0, 100 - biologicalAgeDelta * 5) },
-        { label: 'Tension', value: (1 - metrics.skin.tension) * 100 },
-        { label: 'Tone', value: 80 } 
+        { label: 'Tension', value: (1 - metrics.skin.tension / 100) * 100 }, // Tension is usually 0-100 or normalized
+        { label: 'Symmetry', value: metrics.symmetry.overallSymmetry } 
     ];
 
     return (
@@ -141,7 +141,7 @@ export default function VitalityTab({ metrics }: VitalityTabProps) {
                 </div>
 
                 <p className="text-zinc-500 text-[10px] leading-relaxed italic bg-black/20 p-3 rounded-xl border border-zinc-800/50">
-                    Based on your infraorbital rim position ({metrics.periorbital.infraorbitalRim.average.toFixed(1)}mm), you are sensitive to overhead lighting which casts "negative vectors". Prioritize broad-spectrum frontal lighting.
+                    Based on your infraorbital rim position ({metrics.periorbital.infraorbitalRimPosition.toFixed(2)}), you are sensitive to overhead lighting which casts "negative vectors". Prioritize broad-spectrum frontal lighting.
                 </p>
             </div>
 

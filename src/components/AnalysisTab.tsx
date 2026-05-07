@@ -39,7 +39,7 @@ export default function AnalysisTab({ metrics, profileType, gender, expandedMetr
                         <svg className="w-24 h-24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
                     </div>
                     <p className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.3em] mb-4">Phenotype Classification</p>
-                    <h4 className="text-2xl font-black text-white mb-2 italic uppercase tracking-tight">{(metrics as any).community?.phenotype || 'Analyzing...'}</h4>
+                    <h4 className="text-2xl font-black text-white mb-2 italic uppercase tracking-tight">{metrics.community?.phenotype || 'Analyzing...'}</h4>
                     <p className="text-xs text-zinc-400 leading-relaxed">Based on your fWHR, midface ratio, and jaw angularity.</p>
                 </div>
                 
@@ -48,7 +48,7 @@ export default function AnalysisTab({ metrics, profileType, gender, expandedMetr
                         <svg className="w-24 h-24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L4 9v12h16V9l-8-6zm0 13c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg>
                     </div>
                     <p className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.3em] mb-4">Hairline (Norwood Scale)</p>
-                    <h4 className="text-2xl font-black text-white mb-2 italic uppercase tracking-tight">{(metrics as any).community?.nwScale || 'Analyzing...'}</h4>
+                    <h4 className="text-2xl font-black text-white mb-2 italic uppercase tracking-tight">{metrics.community?.nwScale || 'Analyzing...'}</h4>
                     <p className="text-xs text-zinc-400 leading-relaxed">Forehead to midface height ratio analysis.</p>
                 </div>
             </div>

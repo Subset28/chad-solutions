@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { ScanResult } from '@/types';
 import { getOrCreateUsername } from '@/lib/username';
+import { track } from '@/lib/analytics';
 
 interface BattleLinkProps {
     result: ScanResult;
@@ -40,10 +41,15 @@ export default function BattleLink({ result }: BattleLinkProps) {
             const url = `${window.location.origin}/compare/${result.id}`;
             setBattleUrl(url);
 
+            track('battle_link_created', {
+                psl_score: result.psl.overall,
+                tier: result.psl.tier,
+            });
+
             if (navigator.share) {
                 await navigator.share({
-                    title: 'PSL Battle Challenge',
-                    text: `Think you're more aesthetic? My PSL is ${result.psl.overall.toFixed(2)}. Beat me here:`,
+                    title: 'MOG CHALLENGE — Chad Solutions',
+                    text: `Think you're more aesthetic? My PSL is ${result.psl.overall.toFixed(2)}. Do you mog?`,
                     url: url
                 });
             }

@@ -263,7 +263,7 @@ export default function FaceAnalyzer() {
                         onClick={() => { setAppMode('single'); setAuditResult(null); setScans([]); }}
                         className={`px-6 py-2 rounded-full font-bold transition-all text-xs uppercase tracking-widest ${appMode === 'single' ? 'bg-white text-black' : 'text-zinc-500 hover:text-white'}`}
                     >
-                        The Blackpill Audit
+                        Skeletal Audit
                     </button>
                     <button
                         onClick={() => { setAppMode('compare'); setAuditResult(null); setBeforeScan(null); setAfterScan(null); }}
@@ -585,7 +585,7 @@ export default function FaceAnalyzer() {
                              <div className="grid grid-cols-2 gap-4">
                                 <button
                                     onClick={() => {
-                                        const report = `**[Rate Me] OmniSight Analysis**\n\nPSL: ${afterScan.psl.overall.toFixed(2)} (${afterScan.psl.tier})\nPhenotype: ${afterScan.metrics.community?.phenotype || 'N/A'}\nNW Scale: ${afterScan.metrics.community?.nwScale || 'N/A'}\n\n**Top Metrics:**\n- Canthal Tilt: ${afterScan.metrics.periorbital.canthalTilt.average.toFixed(1)}°\n- fWHR: ${afterScan.metrics.midface.fWHR.toFixed(2)}\n- Symmetry: ${afterScan.metrics.symmetry.overallSymmetry.toFixed(1)}%\n\nSent from OmniSight.app`;
+                                        const report = `**[Rate Me] Chad Solutions Analysis**\n\nPSL: ${afterScan.psl.overall.toFixed(2)} (${afterScan.psl.tier})\nPhenotype: ${afterScan.metrics.community?.phenotype || 'N/A'}\nNW Scale: ${afterScan.metrics.community?.nwScale || 'N/A'}\n\n**Top Metrics:**\n- Canthal Tilt: ${afterScan.metrics.periorbital.canthalTilt.average.toFixed(1)}°\n- fWHR: ${afterScan.metrics.midface.fWHR.toFixed(2)}\n- Symmetry: ${afterScan.metrics.symmetry.overallSymmetry.toFixed(1)}%\n\nSent from ChadSolutions.app`;
                                         navigator.clipboard.writeText(report);
                                         alert("📋 Reddit/Lookism format copied!");
                                     }}
@@ -595,7 +595,7 @@ export default function FaceAnalyzer() {
                                 </button>
                                 <button
                                     onClick={() => {
-                                        const report = `Just ran my face through @OmniSight\n\nPSL: ${afterScan.psl.overall.toFixed(1)}/10\nTier: ${afterScan.psl.tier}\nPhenotype: ${afterScan.metrics.community?.phenotype}\n\nomnisight.app #looksmaxxing #psl`;
+                                        const report = `Just ran my face through @ChadSolutions\n\nPSL: ${afterScan.psl.overall.toFixed(1)}/10\nTier: ${afterScan.psl.tier}\nPhenotype: ${afterScan.metrics.community?.phenotype}\n\nchadsolutions.app #looksmaxxing #psl`;
                                         navigator.clipboard.writeText(report);
                                         alert("📋 Twitter/X format copied!");
                                     }}

@@ -18,17 +18,10 @@ jobs:
       - name: Install dependencies
         run: npm install
         
-      - name: Run trend sync script
+      - name: Run trends update
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: |
-          # Note: This requires a script at scripts/update-trends.ts
-          # For now, we'll create a placeholder script if it doesn't exist
-          if [ -f scripts/update-trends.ts ]; then
-            npx ts-node scripts/update-trends.ts
-          else
-            echo "Trend sync script not found. Skipping."
-          fi
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: npx ts-node scripts/update-trends.ts
           
       - name: Commit and Push
         run: |

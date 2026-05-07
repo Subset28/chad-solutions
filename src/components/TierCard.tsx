@@ -6,6 +6,7 @@ import { getRating } from '@/utils/ratings';
 import html2canvas from 'html2canvas';
 
 import { getOrCreateUsername } from '@/lib/username';
+import { track } from '@/lib/analytics';
 
 interface TierCardProps {
     metrics: MetricReport;
@@ -40,12 +41,22 @@ export default function TierCard({ metrics, pslScore, tier, percentile, thumbnai
                 const file = new File([blob], 'omnisight-card.png', { type: 'image/png' });
                 
                 if (navigator.canShare?.({ files: [file] })) {
+                    track('tier_card_shared', {
+                        psl_score: pslScore,
+                        tier: tier,
+                        method: 'native_share',
+                    });
                     await navigator.share({
                         title: `PSL ${pslScore.toFixed(2)} — ${tier}`,
                         text: `Rate my aesthetics on OmniSight. PSL: ${pslScore.toFixed(2)} (${tier})\nomnisight.app`,
                         files: [file]
                     });
                 } else {
+                    track('tier_card_shared', {
+                        psl_score: pslScore,
+                        tier: tier,
+                        method: 'download',
+                    });
                     const link = document.createElement('a');
                     link.download = `omnisight-psl-${pslScore.toFixed(2)}.png`;
                     link.href = URL.createObjectURL(blob);
@@ -86,8 +97,8 @@ export default function TierCard({ metrics, pslScore, tier, percentile, thumbnai
                     {/* Header */}
                     <div className="flex justify-between items-start mb-6">
                         <div className="space-y-0.5">
-                            <div className="text-[14px] tracking-[0.4em] text-white uppercase">OMNISIGHT</div>
-                            <div className="text-[8px] tracking-[0.6em] text-zinc-600 uppercase">SKELETAL AUDIT V1.0</div>
+                            <div className="text-[14px] tracking-[0.4em] text-white uppercase font-black">CHAD SOLUTIONS</div>
+                            <div className="text-[8px] tracking-[0.6em] text-zinc-600 uppercase font-bold">SKELETAL AUDIT V1.0</div>
                         </div>
                         <div className="bg-zinc-900 border border-zinc-800 px-3 py-1 rounded-full">
                             <span className="text-[10px] text-zinc-400 uppercase tracking-widest">{username}</span>
@@ -148,7 +159,7 @@ export default function TierCard({ metrics, pslScore, tier, percentile, thumbnai
                             <div className="text-[10px] text-zinc-400 truncate w-32 uppercase">{metrics.community?.phenotype || 'ROBUST'}</div>
                         </div>
                         <div className="text-right">
-                            <div className="text-[10px] text-zinc-500 tracking-[0.2em]">OMNISIGHT.APP</div>
+                            <div className="text-[10px] text-zinc-500 tracking-[0.2em] font-bold">CHADSOLUTIONS.APP</div>
                         </div>
                     </div>
                 </div>

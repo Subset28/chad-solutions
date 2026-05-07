@@ -1,4 +1,4 @@
-import { MetricReport, BilateralResult } from "./metrics";
+import { MetricReport, BilateralResult, PSLResult } from "@/types/metrics";
 
 export interface ScoreContext {
     gender: 'male' | 'female';
@@ -71,13 +71,7 @@ export function sigmoidMap(zScore: number): number {
     return Math.round(mapped * 10) / 10;
 }
 
-export interface PSLResult {
-    overall: number;
-    confidence: number;
-    tier: string;
-    percentile: number;
-    breakdown: Record<string, { zScore: number, contribution: number }>;
-}
+// Replaced by central types in @/types/metrics
 
 export function calculatePSLScore(
     metrics: MetricReport,
@@ -158,14 +152,14 @@ function erf(x: number): number {
 }
 
 function getTier(score: number): string {
-    if (score >= 9.0) return "Exceptional / Elite";
-    if (score >= 8.0) return "High Aesthetic (Top 5%)";
-    if (score >= 7.0) return "Above Average (Top 20%)";
-    if (score >= 6.0) return "Slightly Above Average";
-    if (score >= 5.0) return "Average";
-    if (score >= 4.0) return "Slightly Below Average";
-    if (score >= 3.0) return "Below Average";
-    return "Developing / Significant Improvement Potential";
+    if (score >= 9.0) return "Looksmaxxed God / Genetic Lottery";
+    if (score >= 8.0) return "Gigachad (Elite)";
+    if (score >= 7.0) return "Chad";
+    if (score >= 6.0) return "Chadlite";
+    if (score >= 5.0) return "Normie";
+    if (score >= 4.0) return "Betabuxx / Below Average";
+    if (score >= 3.0) return "Incel-tier";
+    return "Subhuman";
 }
 
 /**

@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { MetricReport } from '@/utils/metrics';
 import { generateLooksmaxPlan, getTierName } from '@/utils/plan-generator';
+import { getInsightsForMetric, getLastUpdated } from '@/lib/insights';
 
 interface RoadmapTabProps {
     metrics: MetricReport;
@@ -154,10 +155,82 @@ export default function RoadmapTab({ metrics, pslScore, gender }: RoadmapTabProp
                 </div>
             </div>
 
+            {/* LOOKSMAX PHASES */}
+            <div className="space-y-6">
+                {plan.phases.map((phase, i) => (
+                    <motion.div
+                        key={phase.title}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.1 * i }}
+                        className="space-y-4"
+                    >
+                        <div className="flex items-center gap-4">
+                            <div className="w-8 h-8 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-[10px] font-black text-zinc-500">
+                                0{i + 1}
+                            </div>
+                            <div className="flex-1">
+                                <h4 className="text-sm font-black text-white uppercase tracking-widest">{phase.title}</h4>
+                                <p className="text-[10px] text-zinc-600 uppercase tracking-tight">{phase.description}</p>
+                            </div>
+                        </div>
+
+                        <div className="grid gap-4">
+                            {phase.items.map((item) => {
+                                const insights = getInsightsForMetric(
+                                    item.metric, 
+                                    metrics.community.phenotype, // Using phenotype as face shape approximation
+                                    metrics.community.phenotype
+                                );
+                                
+                                return (
+                                    <div key={item.metric} className="glass-dark border border-zinc-800/50 rounded-2xl p-5 space-y-4">
+                                        <div className="flex items-start justify-between">
+                                            <div className="space-y-1">
+                                                <div className="flex items-center gap-2">
+                                                    <span className="text-[9px] font-black text-indigo-400 uppercase tracking-widest">{item.label}</span>
+                                                    <span className="px-1.5 py-0.5 bg-zinc-800 text-[8px] font-bold text-zinc-500 rounded uppercase">
+                                                        +{item.impact.toFixed(2)} PSL
+                                                    </span>
+                                                </div>
+                                                <p className="text-xs font-medium text-zinc-300 leading-relaxed">
+                                                    {item.recommendation}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        {insights.length > 0 && (
+                                            <div className="pt-4 border-t border-zinc-800/50 space-y-3">
+                                                <div className="flex items-center justify-between">
+                                                    <span className="text-[8px] font-black text-zinc-500 uppercase tracking-[0.2em]">Community Insights</span>
+                                                    <span className="text-[8px] font-bold text-zinc-700 uppercase italic">
+                                                        Updated {getLastUpdated() ? new Date(getLastUpdated()!).toLocaleDateString() : 'Weekly'}
+                                                    </span>
+                                                </div>
+                                                <div className="space-y-2">
+                                                    {insights.map((insight, idx) => (
+                                                        <div key={idx} className="flex gap-3 items-start">
+                                                            <div className="w-1.5 h-1.5 rounded-full bg-indigo-500/30 mt-1 flex-shrink-0" />
+                                                            <p className="text-[10px] text-zinc-400 leading-relaxed italic">
+                                                                "{insight.advice}"
+                                                            </p>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </motion.div>
+                ))}
+            </div>
+
             {/* DISCLAIMER */}
-            <div className="p-4 bg-amber-500/5 border border-amber-500/10 rounded-2xl">
+            <div className="p-6 bg-amber-500/5 border border-amber-500/10 rounded-3xl">
                 <p className="text-[10px] text-amber-500/80 leading-relaxed text-center italic">
-                    Medical Disclaimer: This roadmap is algorithmically generated based on geometric facial optimization. Consult with board-certified maxillofacial or plastic surgeons before pursuing any clinical interventions.
+                    Medical Disclaimer: This roadmap is algorithmically generated based on geometric facial optimization and community trend data. Consult with board-certified professionals before pursuing any clinical or lifestyle interventions.
                 </p>
             </div>
         </div>

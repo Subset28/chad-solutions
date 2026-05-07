@@ -14,9 +14,22 @@ import BattleLink from './BattleLink';
 import LeaderboardTab from './LeaderboardTab';
 import BattleVerdictCard from './BattleVerdictCard';
 import { getOrCreateUsername } from '@/lib/username';
+import { track } from '@/lib/analytics';
 
 interface MainScannerProps {
-    challengerData?: any;
+    challengerData?: {
+        id: string;
+        username: string;
+        psl_score: number;
+        tier: string;
+        percentile: number;
+        phenotype: string;
+        canthal_tilt: number;
+        fwhr: number;
+        symmetry: number;
+        midface_ratio: number;
+        gonial_angle: number;
+    } | null;
 }
 
 export default function MainScanner({ challengerData }: MainScannerProps) {
@@ -28,12 +41,21 @@ export default function MainScanner({ challengerData }: MainScannerProps) {
     const [showFullAudit, setShowFullAudit] = useState(false);
     const [countdown, setCountdown] = useState<number | null>(null);
     const [activeTab, setActiveTab] = useState<'scan' | 'rankings'>('scan');
-    const [challengeAccepted, setChallengeAccepted] = useState(false);
+    const [showChallenge, setShowChallenge] = useState(!!challengerData);
     const [username, setUsername] = useState('');
 
     useEffect(() => {
         setUsername(getOrCreateUsername());
         
+        if (challengerData) {
+            track('challenge_link_opened', {
+                challenger_psl: challengerData.psl_score,
+                challenger_tier: challengerData.tier,
+            });
+        } else {
+            track('scanner_opened');
+        }
+
         const initLandmarker = async () => {
             const filesetResolver = await FilesetResolver.forVisionTasks(
                 "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm"
@@ -54,6 +76,7 @@ export default function MainScanner({ challengerData }: MainScannerProps) {
     }, []);
 
     const startScan = () => {
+        track('scan_started');
         setCountdown(3);
         const timer = setInterval(() => {
             setCountdown(prev => {
@@ -85,6 +108,7 @@ export default function MainScanner({ challengerData }: MainScannerProps) {
 
         const landmarkerResult = faceLandmarker.detect(canvas);
         if (!landmarkerResult.faceLandmarks?.length) {
+            track('scan_failed', { reason: 'no_face_detected' });
             alert("Face not detected. Retrying...");
             setIsAnalyzing(false);
             return;
@@ -112,6 +136,16 @@ export default function MainScanner({ challengerData }: MainScannerProps) {
             profileType: 'front',
             confidence: audit.overallConfidence
         });
+
+        track('scan_completed', {
+            psl_score: psl.overall,
+            tier: psl.tier,
+            percentile: psl.percentile,
+            phenotype: metrics.community?.phenotype,
+            confidence: audit.overallConfidence,
+            was_challenge: !!challengerData,
+        });
+
         setIsAnalyzing(false);
     };
 
@@ -121,48 +155,54 @@ export default function MainScanner({ challengerData }: MainScannerProps) {
             
             <div className="flex-1 overflow-y-auto">
                 <AnimatePresence mode="wait">
-                    {challengerData && !challengeAccepted ? (
+                    {showChallenge && challengerData ? (
                         <motion.div
                             key="hook"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="h-full flex flex-col items-center justify-center p-8 bg-black"
+                            className="fixed inset-0 bg-black z-50 flex flex-col items-center justify-center gap-8 p-8"
                         >
-                            <div className="text-center space-y-12">
-                                <div className="space-y-4">
-                                    <p className="text-[10px] font-black text-zinc-500 tracking-[0.4em] uppercase">Incoming Challenge</p>
-                                    <h1 className="text-4xl font-black italic tracking-tighter uppercase line-clamp-1">
-                                        @{challengerData.username} is challenging you
-                                    </h1>
-                                </div>
+                            <p className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.4em]">
+                                You've been challenged
+                            </p>
 
-                                <div className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 space-y-6">
-                                    <div className="space-y-1">
-                                        <div className="text-6xl font-black tracking-tighter">{challengerData.psl_score.toFixed(2)}</div>
-                                        <div className="text-xs font-black text-zinc-500 uppercase tracking-widest">{challengerData.tier}</div>
-                                    </div>
-                                    
-                                    <div className="grid grid-cols-2 gap-4 text-[10px] font-black text-zinc-400 uppercase tracking-widest pt-6 border-t border-zinc-800">
-                                        <div>Tilt: {challengerData.canthal_tilt.toFixed(1)}°</div>
-                                        <div>fWHR: {challengerData.fwhr.toFixed(2)}</div>
-                                        <div>Symmetry: {challengerData.symmetry.toFixed(0)}%</div>
-                                        <div>Midface: {challengerData.midface_ratio.toFixed(2)}</div>
-                                    </div>
+                            <div className="w-full max-w-sm bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 text-center space-y-4">
+                                <p className="text-[10px] text-zinc-600 uppercase tracking-widest font-black">
+                                    @{challengerData.username}
+                                </p>
+                                <div className="text-7xl font-black tracking-tighter italic">
+                                    {challengerData.psl_score.toFixed(2)}
                                 </div>
-
-                                <div className="space-y-6">
-                                    <h2 className="text-2xl font-black italic tracking-tighter uppercase">DO YOU MOG?</h2>
-                                    <button 
-                                        onClick={() => setChallengeAccepted(true)}
-                                        className="w-full px-12 py-6 bg-white text-black font-black uppercase tracking-[0.2em] text-sm rounded-2xl shadow-[0_0_50px_rgba(255,255,255,0.2)] animate-pulse"
-                                    >
-                                        Accept Challenge
-                                    </button>
+                                <div className="inline-block px-4 py-1 bg-white text-black text-[10px] font-black uppercase rounded-full tracking-widest">
+                                    {challengerData.tier}
+                                </div>
+                                <div className="grid grid-cols-2 gap-3 pt-6 border-t border-zinc-800 text-left">
+                                    {[
+                                        ['Canthal Tilt', `${challengerData.canthal_tilt?.toFixed(1)}°`],
+                                        ['fWHR', challengerData.fwhr?.toFixed(2)],
+                                        ['Symmetry', `${challengerData.symmetry?.toFixed(1)}%`],
+                                        ['Midface', challengerData.midface_ratio?.toFixed(2)],
+                                    ].map(([label, val]) => (
+                                        <div key={label}>
+                                            <p className="text-[8px] text-zinc-600 uppercase tracking-[0.2em] font-black">{label}</p>
+                                            <p className="text-sm font-black text-white">{val}</p>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
+
+                            <p className="text-zinc-400 text-xs font-black uppercase tracking-[0.3em] italic">Do you mog?</p>
+
+                            <button
+                                onClick={() => setShowChallenge(false)}
+                                className="w-full max-w-sm py-5 bg-white text-black font-black uppercase tracking-[0.3em] text-sm rounded-2xl shadow-[0_0_50px_rgba(255,255,255,0.1)] hover:scale-105 transition-all active:scale-95"
+                            >
+                                Accept Challenge
+                            </button>
                         </motion.div>
-                    ) : activeTab === 'rankings' ? (
+                    ) :
+: activeTab === 'rankings' ? (
                         <motion.div
                             key="rankings"
                             initial={{ opacity: 0, x: 50 }}
@@ -258,7 +298,7 @@ export default function MainScanner({ challengerData }: MainScannerProps) {
                                             onClick={() => {
                                                 setResult(null);
                                                 setShowFullAudit(false);
-                                                setChallengeAccepted(false);
+                                                setShowChallenge(!!challengerData);
                                             }}
                                             className="w-full py-4 text-[10px] font-black text-zinc-600 uppercase tracking-[0.4em] hover:text-white transition-all text-center border border-zinc-900 rounded-xl"
                                         >

@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { motion } from 'framer-motion';
+import { track } from '@/lib/analytics';
 
 interface LeaderboardEntry {
     id: string;
@@ -18,6 +19,7 @@ export default function LeaderboardTab() {
     const [timeLeft, setTimeLeft] = useState('');
 
     useEffect(() => {
+        track('leaderboard_viewed');
         const fetchLeaderboard = async () => {
             try {
                 const currentWeek = Math.floor(Date.now() / (7 * 24 * 60 * 60 * 1000));

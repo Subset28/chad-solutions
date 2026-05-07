@@ -13,20 +13,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "OmniSight — Facial Biometric Analysis",
+  title: "Chad Solutions — Facial Biometric Analysis",
   description: "Scan your face. Get your PSL. Find your looksmax ceiling.",
   manifest: "/manifest.json",
   themeColor: "#000000",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "OmniSight",
+    title: "Chad Solutions",
   },
   openGraph: {
-    title: "OmniSight — Facial Biometric Analysis",
+    title: "Chad Solutions — Facial Biometric Analysis",
     description: "Scan your face. Get your PSL. Find your looksmax ceiling.",
-    url: "https://omnisight.app",
-    siteName: "OmniSight",
+    url: "https://chadsolutions.app",
+    siteName: "Chad Solutions",
     images: [
       {
         url: "/og-image.png",
@@ -39,11 +39,13 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "OmniSight — Facial Biometric Analysis",
+    title: "Chad Solutions — Facial Biometric Analysis",
     description: "Scan your face. Get your PSL. Find your looksmax ceiling.",
     images: ["/og-image.png"],
   },
 };
+
+import AnalyticsProvider from "@/components/AnalyticsProvider";
 
 export default function RootLayout({
   children,
@@ -55,7 +57,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <AnalyticsProvider>
+          {children}
+        </AnalyticsProvider>
       </body>
     </html>
   );

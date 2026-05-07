@@ -1,52 +1,35 @@
-'use client';
-
-import { useEffect, useState, use } from 'react';
 import { supabase } from '@/lib/supabase';
-import MainScanner from '@/components/MainScanner';
-import { motion } from 'framer-motion';
+import CompareClient from './CompareClient';
+import { Metadata } from 'next';
 
-export default function ComparePage({ params: paramsPromise }: { params: Promise<{ id: string }> }) {
-    const params = use(paramsPromise);
-    const [challenger, setChallenger] = useState<any>(null);
-    const [loading, setLoading] = useState(true);
+export async function generateMetadata({ params: paramsPromise }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+    const params = await paramsPromise;
+    const { data } = await supabase
+        .from('battle_challenges')
+        .select('username')
+        .eq('id', params.id)
+        .single();
 
-    useEffect(() => {
-        const fetchChallenger = async () => {
-            const { data, error } = await supabase
-                .from('battle_challenges')
-                .select('*')
-                .eq('id', params.id)
-                .single();
-
-            if (!error && data) {
-                setChallenger(data);
-            }
-            setLoading(false);
-        };
-        fetchChallenger();
-    }, [params.id]);
-
-    if (loading) return <LoadingScreen />;
-    if (!challenger) return <ExpiredScreen />;
-
-    return <MainScanner challengerData={challenger} />;
+    const username = data?.username || 'Someone';
+    
+    return {
+        title: `MOG CHALLENGE — @${username}`,
+        description: `Someone challenged you to a biometric battle on Chad Solutions. Do you mog?`,
+        openGraph: {
+            title: 'MOG CHALLENGE',
+            description: `@${username} challenged you. Accept and scan to see if you mog.`,
+            images: ['/og-challenge.png'],
+        }
+    };
 }
 
-function LoadingScreen() {
-    return (
-        <div className="h-screen bg-black flex flex-col items-center justify-center gap-4">
-            <div className="w-12 h-12 border-4 border-white/20 border-t-white rounded-full animate-spin" />
-            <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Retrieving Challenge...</p>
-        </div>
-    );
-}
+export default async function ComparePage({ params: paramsPromise }: { params: Promise<{ id: string }> }) {
+    const params = await paramsPromise;
+    const { data: challenger } = await supabase
+        .from('battle_challenges')
+        .select('*')
+        .eq('id', params.id)
+        .single();
 
-function ExpiredScreen() {
-    return (
-        <div className="h-screen bg-black flex flex-col items-center justify-center gap-6 p-12 text-center">
-            <h1 className="text-4xl font-black italic tracking-tighter uppercase">Challenge Expired</h1>
-            <p className="text-zinc-500 text-sm">This battle link is no longer active or the data was purged.</p>
-            <a href="/" className="px-8 py-4 bg-white text-black font-black uppercase text-xs rounded-xl hover:scale-105 transition-all">Start New Scan</a>
-        </div>
-    );
+    return <CompareClient challenger={challenger} />;
 }

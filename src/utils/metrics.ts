@@ -1,26 +1,17 @@
 import { NormalizedLandmark } from "@mediapipe/tasks-vision";
 import { classifyPhenotype, classifyNorwood } from './community';
+import { 
+    MetricReport, 
+    BilateralResult, 
+    DetailedMetric, 
+    PSLResult 
+} from '@/types/metrics';
+
+export { type MetricReport, type BilateralResult, type DetailedMetric, type PSLResult };
 
 // ==========================================
 // 1. Core Types & Helpers
 // ==========================================
-
-export interface BilateralResult {
-    average: number;
-    delta: number; // Asymmetry delta
-    left: number;
-    right: number;
-}
-
-export interface DetailedMetric {
-    value: number;
-    unit: string;
-    percentile?: number;
-    confidence: number;
-    idealRange: [number, number];
-    citation?: string;
-    interpretation: string;
-}
 
 /**
  * 3D Euclidean distance
@@ -283,57 +274,7 @@ export function calculateMidlineDeviation(landmarks: NormalizedLandmark[]): numb
 // 6. Comprehensive Metric Aggregator
 // ==========================================
 
-export interface MetricReport {
-    periorbital: {
-        canthalTilt: BilateralResult;
-        uee: BilateralResult;
-        esr: number;
-        ipd: number;
-        orbitalRimProtrusion: BilateralResult;
-        browRidgeProtrusion: number;
-        infraorbitalRimPosition: number;
-        confidence: number;
-    };
-    midface: {
-        fWHR: number;
-        midfaceRatio: number;
-        philtrumLength: number;
-        mouthToNoseWidthRatio: number;
-        noseWidthRatio: number;
-        maxillaryProtrusion: number;
-        foreheadHeightRatio: number;
-        confidence: number;
-    };
-    jawline: {
-        gonialAngle: BilateralResult;
-        chinProjection: number;
-        bigonialRatio: number;
-        doubleChinRisk: number;
-        confidence: number;
-    };
-    symmetry: {
-        midlineDeviation: number;
-        overallSymmetry: number;
-        confidence: number;
-    };
-    skin: {
-        tension: number;
-        eyebrowContrast: number;
-        dominantExpressions: string[];
-        confidence: number;
-    };
-    vitality: {
-        vitalityScore: number;
-        biologicalAgeDelta: number;
-        eyeAperture: number;
-        collagenIndex: number;
-    };
-    community: {
-        phenotype: string;
-        nwScale: string;
-        potentialPSLBoost: number;
-    };
-}
+// Replaced by central types in @/types/metrics
 
 export function analyzeMetrics(
     landmarks: NormalizedLandmark[], 
@@ -358,7 +299,7 @@ export function analyzeMetrics(
     const jawlineIndices = [172, 397, 152, 175, 396, 400];
     const skinIndices = [205, 425, 50, 280];
 
-    return {
+    const report: MetricReport = {
         periorbital: {
             canthalTilt: calculateCanthalTilt(landmarks),
             uee: calculateUEE(landmarks),
@@ -506,35 +447,7 @@ function calculateOverallSymmetry(landmarks: NormalizedLandmark[]): number {
     return Math.max(0, 100 - (totalAsymmetry * 1500));
 }
 
-function calculatePhenotype(landmarks: NormalizedLandmark[]): string {
-    const fwhr = calculatefWHR(landmarks);
-    const midface = calculateMidfaceRatio(landmarks);
-    const gonial = calculateGonialAngle(landmarks).average;
-    const tilt = calculateCanthalTilt(landmarks).average;
-
-    if (fwhr > 1.9 && gonial < 122 && tilt > 2) return "Robust / Warrior";
-    if (midface > 1.05 && tilt > 3) return "Model-tier / Compact";
-    if (midface < 0.95) return "Elongated / Long Midface";
-    if (fwhr < 1.7 && gonial > 130) return "Neotenous / Soft";
-    return "Balanced / Average";
-}
-
-function calculateNWScale(landmarks: NormalizedLandmark[]): string {
-    const foreheadTop = landmarks[10];
-    const eyebrows = landmarks[168];
-    const noseTip = landmarks[1];
-    
-    const foreheadHeight = distance(foreheadTop, eyebrows);
-    const midfaceHeight = distance(eyebrows, noseTip);
-    
-    const ratio = foreheadHeight / midfaceHeight;
-    
-    if (ratio < 0.7) return "NW1 - Juvenile";
-    if (ratio < 0.85) return "NW2 - Mature";
-    if (ratio < 1.0) return "NW3 - Early Thinning";
-    if (ratio < 1.2) return "NW4 - Significant Loss";
-    return "NW5+ - Advanced Recession";
-}
+// Redundant functions removed in favor of community.ts classifiers
 
 export function flattenMetrics(report: MetricReport): Record<string, any> {
     const flattened: Record<string, any> = {};

@@ -1,4 +1,4 @@
-import { MetricReport } from './metrics';
+import { MetricReport } from '@/types/metrics';
 
 export type Phenotype = 
   | 'GIGACHAD / GOD TIER'
