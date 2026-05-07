@@ -158,8 +158,8 @@ function getTier(score: number): string {
     if (score >= 6.0) return "Chadlite";
     if (score >= 5.0) return "Normie";
     if (score >= 4.0) return "Betabuxx / Below Average";
-    if (score >= 3.0) return "Incel-tier";
-    return "Subhuman";
+    if (score >= 3.0) return "Low-tier";
+    return "Developing";
 }
 
 /**

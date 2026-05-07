@@ -25,7 +25,7 @@ export default function LeaderboardTab() {
                 const currentWeek = Math.floor(Date.now() / (7 * 24 * 60 * 60 * 1000));
                 
                 const { data, error } = await supabase
-                    .from('battle_challenges')
+                    .from('scans')
                     .select('id, psl_score, tier, username, created_at')
                     .eq('week_number', currentWeek)
                     .order('psl_score', { ascending: false })
@@ -97,7 +97,7 @@ export default function LeaderboardTab() {
                                 </span>
                                 <div className="flex flex-col">
                                     <span className={`text-sm font-black uppercase tracking-tight ${i < 3 ? 'text-black' : 'text-white'}`}>
-                                        {entry.username}
+                                        {entry.username || `User ${entry.id.substring(0, 6)}`}
                                     </span>
                                     <span className={`text-[8px] font-black uppercase tracking-[0.2em] ${i < 3 ? 'text-black/40' : 'text-zinc-600'}`}>
                                         ID: {entry.id.substring(0, 6)}

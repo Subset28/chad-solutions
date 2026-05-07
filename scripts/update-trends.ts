@@ -7,7 +7,7 @@ import dotenv from 'dotenv';
 dotenv.config({ path: path.join(process.cwd(), '.env.local') });
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
-const model = genAI.getGenerativeModel({ model: 'gemini-flash-latest' });
+const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
 const cleanJSON = (text: string) => 
   text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();

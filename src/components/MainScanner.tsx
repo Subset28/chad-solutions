@@ -127,14 +127,30 @@ export default function MainScanner({ challengerData }: MainScannerProps) {
         const metrics = analyzeMetrics(normalizedLandmarks, blendshapes, imageData, landmarks);
         const psl = calculatePSLScore(metrics, { gender }, audit.overallConfidence);
 
+        const scanId = crypto.randomUUID();
+        const currentWeek = Math.floor(Date.now() / (7 * 24 * 60 * 60 * 1000));
+
         setResult({
-            id: crypto.randomUUID(),
+            id: scanId,
             timestamp: Date.now(),
             image: imageSrc,
             metrics,
             psl,
             profileType: 'front',
             confidence: audit.overallConfidence
+        });
+
+        // Save to Supabase for global leaderboard
+        supabase.from('scans').insert({
+            id: scanId,
+            week_number: currentWeek,
+            username: localStorage.getItem('cs_username') || 'Anonymous',
+            psl_score: psl.overall,
+            tier: psl.tier,
+            percentile: psl.percentile,
+            phenotype: metrics.community?.phenotype
+        }).then(({ error }) => {
+            if (error) console.error('Failed to save scan to global leaderboard:', error);
         });
 
         track('scan_completed', {
@@ -201,8 +217,7 @@ export default function MainScanner({ challengerData }: MainScannerProps) {
                                 Accept Challenge
                             </button>
                         </motion.div>
-                    ) :
-: activeTab === 'rankings' ? (
+                    ) : activeTab === 'rankings' ? (
                         <motion.div
                             key="rankings"
                             initial={{ opacity: 0, x: 50 }}
