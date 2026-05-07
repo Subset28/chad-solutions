@@ -131,6 +131,9 @@ export default function MainScanner({ challengerData }: MainScannerProps) {
             const metrics = analyzeMetrics(normalizedLandmarks, blendshapes, imageData, landmarks);
             const psl = calculatePSLScore(metrics, { gender }, audit.overall);
 
+            console.log(`[PSL Audit] Score: ${psl.overall}, Tier: ${psl.tier}`);
+            console.log('[PSL Breakdown]', psl.breakdown);
+
             // Fallback for crypto.randomUUID if not available (non-secure context/older browsers)
             const scanId = (typeof crypto !== 'undefined' && crypto.randomUUID) 
                 ? crypto.randomUUID() 

@@ -65,8 +65,8 @@ const POPULATION_NORMS: Record<string, Record<'male' | 'female', MetricNorm>> = 
  */
 export function sigmoidMap(zScore: number): number {
     // Sigmoid: 1 / (1 + exp(-x))
-    // We want z=0 to be 5, z=3 to be 9, z=-3 to be 1
-    const k = 1.2; // Steepness
+    // We want z=0 to be around 5, z=3 to be 9, z=-3 to be 1
+    const k = 1.0; // Slightly reduced steepness for more natural distribution
     const mapped = 1 + (9 / (1 + Math.exp(-k * zScore)));
     return Math.round(mapped * 10) / 10;
 }

@@ -291,15 +291,31 @@ export function analyzeMetrics(
     imageData?: ImageData,
     rawLandmarks?: NormalizedLandmark[]
 ): MetricReport {
-    const bizygomatic = distance(landmarks[234], landmarks[454]);
-    const leftEye = midpoint(landmarks[33], landmarks[133]);
-    const rightEye = midpoint(landmarks[263], landmarks[362]);
+    // 1. Correct for Aspect Ratio Distortion
+    // MediaPipe landmarks are normalized [0, 1] for width and height separately.
+    // To get true geometry, we need to map them to a uniform space.
+    let correctedLandmarks = landmarks;
+    if (imageData && imageData.width && imageData.height) {
+        const aspect = imageData.width / imageData.height;
+        correctedLandmarks = landmarks.map(lm => ({
+            ...lm,
+            // We scale X by the aspect ratio so that distances are physically proportional.
+            // This turns the [0, 1] x [0, 1] square into a [0, aspect] x [0, 1] rectangle.
+            x: lm.x * aspect,
+            y: lm.y,
+            z: lm.z * aspect // Scale Z similarly to maintain 3D proportions
+        }));
+    }
+
+    const bizygomatic = distance(correctedLandmarks[234], correctedLandmarks[454]);
+    const leftEye = midpoint(correctedLandmarks[33], correctedLandmarks[133]);
+    const rightEye = midpoint(correctedLandmarks[263], correctedLandmarks[362]);
     const ipd = distance(leftEye, rightEye);
     const tensionData = calculateFacialTension(blendshapes);
 
     // Calculate Dynamic Confidence based on landmark visibility/presence
     const getConfidence = (indices: number[]) => {
-        const visibilities = indices.map(i => landmarks[i].visibility || 1.0);
+        const visibilities = indices.map(i => correctedLandmarks[i].visibility || 1.0);
         return visibilities.reduce((a, b) => a + b, 0) / indices.length;
     };
 
@@ -310,44 +326,44 @@ export function analyzeMetrics(
 
     const report: MetricReport = {
         periorbital: {
-            canthalTilt: calculateCanthalTilt(landmarks),
-            uee: calculateUEE(landmarks),
+            canthalTilt: calculateCanthalTilt(correctedLandmarks),
+            uee: calculateUEE(correctedLandmarks),
             esr: ipd / bizygomatic,
             ipd: ipd,
-            orbitalRimProtrusion: calculateOrbitalRimProtrusion(landmarks),
-            browRidgeProtrusion: calculateBrowRidgeProtrusion(landmarks),
-            infraorbitalRimPosition: (landmarks[226].z + landmarks[446].z) / 2,
+            orbitalRimProtrusion: calculateOrbitalRimProtrusion(correctedLandmarks),
+            browRidgeProtrusion: calculateBrowRidgeProtrusion(correctedLandmarks),
+            infraorbitalRimPosition: (correctedLandmarks[226].z + correctedLandmarks[446].z) / 2,
             confidence: getConfidence(periorbitalIndices)
         },
         midface: {
-            fWHR: calculatefWHR(landmarks),
-            midfaceRatio: calculateMidfaceRatio(landmarks),
-            philtrumLength: calculatePhiltrumLength(landmarks),
-            mouthToNoseWidthRatio: distance(landmarks[61], landmarks[291]) / distance(landmarks[48], landmarks[278]),
-            noseWidthRatio: distance(landmarks[48], landmarks[278]) / bizygomatic,
-            maxillaryProtrusion: calculateMaxillaryProtrusion(landmarks),
-            foreheadHeightRatio: distance(landmarks[10], landmarks[168]) / distance(landmarks[168], landmarks[1]),
+            fWHR: calculatefWHR(correctedLandmarks),
+            midfaceRatio: calculateMidfaceRatio(correctedLandmarks),
+            philtrumLength: calculatePhiltrumLength(correctedLandmarks),
+            mouthToNoseWidthRatio: distance(correctedLandmarks[61], correctedLandmarks[291]) / distance(correctedLandmarks[48], correctedLandmarks[278]),
+            noseWidthRatio: distance(correctedLandmarks[48], correctedLandmarks[278]) / bizygomatic,
+            maxillaryProtrusion: calculateMaxillaryProtrusion(correctedLandmarks),
+            foreheadHeightRatio: distance(correctedLandmarks[10], correctedLandmarks[168]) / distance(correctedLandmarks[168], correctedLandmarks[1]),
             confidence: getConfidence(midfaceIndices)
         },
         jawline: {
-            gonialAngle: calculateGonialAngle(landmarks),
-            chinProjection: calculateChinProjection(landmarks),
-            bigonialRatio: distance(landmarks[172], landmarks[397]) / bizygomatic,
-            doubleChinRisk: calculateDoubleChinRisk(landmarks),
+            gonialAngle: calculateGonialAngle(correctedLandmarks),
+            chinProjection: calculateChinProjection(correctedLandmarks),
+            bigonialRatio: distance(correctedLandmarks[172], correctedLandmarks[397]) / bizygomatic,
+            doubleChinRisk: calculateDoubleChinRisk(correctedLandmarks),
             confidence: getConfidence(jawlineIndices)
         },
         symmetry: {
-            midlineDeviation: calculateMidlineDeviation(landmarks),
-            overallSymmetry: calculateOverallSymmetry(landmarks),
+            midlineDeviation: calculateMidlineDeviation(correctedLandmarks),
+            overallSymmetry: calculateOverallSymmetry(correctedLandmarks),
             confidence: (getConfidence(periorbitalIndices) + getConfidence(jawlineIndices)) / 2
         },
         skin: {
             tension: tensionData.tensionScore,
-            eyebrowContrast: calculateEyebrowContrast(landmarks, imageData),
+            eyebrowContrast: calculateEyebrowContrast(correctedLandmarks, imageData),
             dominantExpressions: tensionData.dominantExpressions,
             confidence: getConfidence(skinIndices)
         },
-        vitality: calculateVitality(landmarks, imageData, rawLandmarks),
+        vitality: calculateVitality(correctedLandmarks, imageData, rawLandmarks),
         community: {
             phenotype: '',
             nwScale: '',
