@@ -77,118 +77,126 @@ export default function FaceAnalyzer() {
         if (!faceLandmarker || !canvasRef.current) return;
         setIsAnalyzing(true);
 
-        const img = new Image();
-        img.src = dataUrl;
-        await img.decode();
+        try {
+            const img = new Image();
+            img.src = dataUrl;
+            await img.decode();
 
-        const canvas = canvasRef.current;
-        canvas.width = img.width;
-        canvas.height = img.height;
-        const ctx = canvas.getContext('2d');
-        if (!ctx) return;
-        ctx.drawImage(img, 0, 0);
+            const canvas = canvasRef.current;
+            canvas.width = img.width;
+            canvas.height = img.height;
+            const ctx = canvas.getContext('2d');
+            if (!ctx) throw new Error("Could not initialize canvas context");
+            ctx.drawImage(img, 0, 0);
 
-        const result = faceLandmarker.detect(canvas);
-        
-        if (!result.faceLandmarks || result.faceLandmarks.length === 0) {
-            alert("❌ No face detected. Please ensure your face is clearly visible and well-lit.");
-            setIsAnalyzing(false);
-            return;
-        }
-
-        const landmarks = result.faceLandmarks[0];
-        const matrix = result.facialTransformationMatrixes?.[0];
-        
-        // 1. Validate Quality & Occlusions
-        const audit = validateLandmarks(landmarks);
-        
-        if (!audit.isValid) {
-            alert(`⚠️ Scan Quality Rejection: ${audit.reason}. Please retake for clinical accuracy.`);
-            setIsAnalyzing(false);
-            return;
-        }
-
-        // 2. Normalize Pose (3-axis)
-        const normalizedLandmarks = matrix 
-            ? inversePoseNormalization(landmarks, matrix) 
-            : landmarks;
-
-        // 3. Extract Angles for Profile Detection
-        const angles = matrix ? extractEulerAngles(matrix) : { yaw: 0, pitch: 0, roll: 0 };
-        const profileType = Math.abs(angles.yaw) > 30 ? 'side' : 'front';
-
-        // 4. Calculate Clinical Metrics
-        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        const metrics = analyzeMetrics(normalizedLandmarks, result.faceBlendshapes?.[0]?.categories || [], imageData, landmarks);
-
-        // 5. Calculate Score
-        const psl = calculatePSLScore(metrics, { gender }, audit.overall);
-
-        const scan: ScanResult = {
-            id: crypto.randomUUID(),
-            timestamp: Date.now(),
-            image: dataUrl,
-            metrics,
-            psl,
-            profileType,
-            audit,
-            gender
-        };
-
-        // Draw landmarks for visual feedback
-        ctx.strokeStyle = '#00ff00';
-        ctx.lineWidth = 2;
-        landmarks.forEach(point => {
-            ctx.beginPath();
-            ctx.arc(point.x * canvas.width, point.y * canvas.height, 1, 0, 2 * Math.PI);
-            ctx.stroke();
-        });
-        setAnalyzedImageWithLandmarks(canvas.toDataURL());
-
-        if (appMode === 'single') {
-            setScans(prev => [...prev, scan]);
-            setAuditResult(scan);
-
-            // Save to Persistent History
-            const thumbCanvas = document.createElement('canvas');
-            thumbCanvas.width = 120;
-            thumbCanvas.height = 120;
-            const thumbCtx = thumbCanvas.getContext('2d');
-            if (thumbCtx) {
-                // Crop around nose tip (landmark 1)
-                const nose = landmarks[1];
-                const sw = canvas.width * 0.4;
-                const sh = canvas.width * 0.4;
-                thumbCtx.drawImage(
-                    img, 
-                    nose.x * canvas.width - sw/2, nose.y * canvas.height - sh/2, sw, sh,
-                    0, 0, 120, 120
-                );
+            const result = faceLandmarker.detect(canvas);
+            
+            if (!result.faceLandmarks || result.faceLandmarks.length === 0) {
+                alert("❌ No face detected. Please ensure your face is clearly visible and well-lit.");
+                return;
             }
 
-            saveScan({
-                id: scan.id,
-                timestamp: scan.timestamp,
-                psl: scan.psl.overall,
-                tier: scan.psl.tier,
-                phenotype: scan.metrics.community.phenotype,
-                nwScale: scan.metrics.community.nwScale,
-                metrics: scan.metrics,
-                thumbnailBase64: thumbCanvas.toDataURL('image/jpeg', 0.7)
+            const landmarks = result.faceLandmarks[0];
+            const matrix = result.facialTransformationMatrixes?.[0];
+            
+            // 1. Validate Quality & Occlusions
+            const audit = validateLandmarks(landmarks);
+            
+            if (!audit.isValid) {
+                alert(`⚠️ Scan Quality Rejection: ${audit.reason}. Please retake for clinical accuracy.`);
+                return;
+            }
+
+            // 2. Normalize Pose (3-axis)
+            const normalizedLandmarks = matrix 
+                ? inversePoseNormalization(landmarks, matrix) 
+                : landmarks;
+
+            // 3. Extract Angles for Profile Detection
+            const angles = matrix ? extractEulerAngles(matrix) : { yaw: 0, pitch: 0, roll: 0 };
+            const profileType = Math.abs(angles.yaw) > 30 ? 'side' : 'front';
+
+            // 4. Calculate Clinical Metrics
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const metrics = analyzeMetrics(normalizedLandmarks, result.faceBlendshapes?.[0]?.categories || [], imageData, landmarks);
+
+            // 5. Calculate Score
+            const psl = calculatePSLScore(metrics, { gender }, audit.overall);
+
+            // UUID Fallback
+            const scanId = (typeof crypto !== 'undefined' && crypto.randomUUID) 
+                ? crypto.randomUUID() 
+                : Math.random().toString(36).substring(2, 15);
+
+            const scan: ScanResult = {
+                id: scanId,
+                timestamp: Date.now(),
+                image: dataUrl,
+                metrics,
+                psl,
+                profileType,
+                audit,
+                gender
+            };
+
+            // Draw landmarks for visual feedback
+            ctx.strokeStyle = '#00ff00';
+            ctx.lineWidth = 2;
+            landmarks.forEach(point => {
+                ctx.beginPath();
+                ctx.arc(point.x * canvas.width, point.y * canvas.height, 1, 0, 2 * Math.PI);
+                ctx.stroke();
             });
+            setAnalyzedImageWithLandmarks(canvas.toDataURL());
 
-            // Request Notification Permission (First Scan)
-            if (Notification.permission === 'default') {
-                setTimeout(() => {
-                    Notification.requestPermission();
-                }, 3000);
+            if (appMode === 'single') {
+                setScans(prev => [...prev, scan]);
+                setAuditResult(scan);
+
+                // Save to Persistent History
+                const thumbCanvas = document.createElement('canvas');
+                thumbCanvas.width = 120;
+                thumbCanvas.height = 120;
+                const thumbCtx = thumbCanvas.getContext('2d');
+                if (thumbCtx) {
+                    // Crop around nose tip (landmark 1)
+                    const nose = landmarks[1];
+                    const sw = canvas.width * 0.4;
+                    const sh = canvas.width * 0.4;
+                    thumbCtx.drawImage(
+                        img, 
+                        nose.x * canvas.width - sw/2, nose.y * canvas.height - sh/2, sw, sh,
+                        0, 0, 120, 120
+                    );
+                }
+
+                saveScan({
+                    id: scan.id,
+                    timestamp: scan.timestamp,
+                    psl: scan.psl.overall,
+                    tier: scan.psl.tier,
+                    phenotype: scan.metrics.community.phenotype,
+                    nwScale: scan.metrics.community.nwScale,
+                    metrics: scan.metrics,
+                    thumbnailBase64: thumbCanvas.toDataURL('image/jpeg', 0.7)
+                });
+
+                // Request Notification Permission (First Scan)
+                if (Notification.permission === 'default') {
+                    setTimeout(() => {
+                        Notification.requestPermission();
+                    }, 3000);
+                }
+            } else {
+                if (compareSlot === 'before') setBeforeScan(scan);
+                else setAfterScan(scan);
             }
-        } else {
-            if (compareSlot === 'before') setBeforeScan(scan);
-            else setAfterScan(scan);
+        } catch (err) {
+            console.error('Analysis failed:', err);
+            alert("❌ Analysis failed. Please try again with a clearer photo.");
+        } finally {
+            setIsAnalyzing(false);
         }
-
-        setIsAnalyzing(false);
     };
 
     const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {

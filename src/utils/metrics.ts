@@ -235,12 +235,20 @@ export function calculateDoubleChinRisk(landmarks: NormalizedLandmark[]): number
  */
 export function calculateFacialTension(blendshapes: any[]): { tensionScore: number, dominantExpressions: string[] } {
     if (!blendshapes || blendshapes.length === 0) return { tensionScore: 0, dominantExpressions: [] };
-    const categories = blendshapes[0].categories;
+    
+    // Handle both raw Classifications array and the inner categories array
+    // MediaPipe returns Classifications[] where each has a .categories property.
+    // Some callers flatten this to just Category[].
+    const categories = blendshapes[0]?.categories || blendshapes;
+    
+    if (!Array.isArray(categories)) return { tensionScore: 0, dominantExpressions: [] };
+
     const tensionMetrics = ['browInnerUp', 'browDownLeft', 'browDownRight', 'jawOpen', 'mouthSmileLeft', 'mouthSmileRight', 'mouthStretch', 'mouthPressLeft', 'mouthPressRight', 'mouthDimpleLeft', 'mouthDimpleRight'];
     let totalTension = 0;
     const dominant: string[] = [];
-    categories.forEach((cat: { categoryName: string; score: number }) => {
-        if (tensionMetrics.includes(cat.categoryName)) {
+    
+    categories.forEach((cat: any) => {
+        if (cat && typeof cat === 'object' && tensionMetrics.includes(cat.categoryName)) {
             totalTension += cat.score;
             if (cat.score > 0.3) dominant.push(cat.categoryName);
         }

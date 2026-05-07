@@ -93,78 +93,90 @@ export default function MainScanner({ challengerData }: MainScannerProps) {
 
     const capture = async () => {
         const imageSrc = webcamRef.current?.getScreenshot();
-        if (!imageSrc || !faceLandmarker || !canvasRef.current) return;
-        
-        setIsAnalyzing(true);
-        const img = new Image();
-        img.src = imageSrc;
-        await img.decode();
-
-        const canvas = canvasRef.current;
-        canvas.width = img.width;
-        canvas.height = img.height;
-        const ctx = canvas.getContext('2d');
-        if (!ctx) return;
-        ctx.drawImage(img, 0, 0);
-
-        const landmarkerResult = faceLandmarker.detect(canvas);
-        if (!landmarkerResult.faceLandmarks?.length) {
-            track('scan_failed', { reason: 'no_face_detected' });
-            alert("Face not detected. Retrying...");
-            setIsAnalyzing(false);
+        if (!imageSrc || !faceLandmarker || !canvasRef.current) {
+            if (!faceLandmarker) alert("AI Engine still loading... please wait 2-3 seconds.");
             return;
         }
-
-        const landmarks = landmarkerResult.faceLandmarks[0];
-        const matrix = landmarkerResult.facialTransformationMatrixes?.[0];
-        const audit = validateLandmarks(landmarks);
         
-        const normalizedLandmarks = matrix ? inversePoseNormalization(landmarks, matrix) : landmarks;
-        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        
-        const blendshapes = landmarkerResult.faceBlendshapes?.[0]?.categories || [];
-        const gender: Gender = 'male';
+        setIsAnalyzing(true);
+        try {
+            const img = new Image();
+            img.src = imageSrc;
+            await img.decode();
 
-        const metrics = analyzeMetrics(normalizedLandmarks, blendshapes, imageData, landmarks);
-        const psl = calculatePSLScore(metrics, { gender }, audit.overall);
+            const canvas = canvasRef.current;
+            canvas.width = img.width;
+            canvas.height = img.height;
+            const ctx = canvas.getContext('2d');
+            if (!ctx) throw new Error("Could not initialize canvas context");
+            ctx.drawImage(img, 0, 0);
 
-        const scanId = crypto.randomUUID();
-        const currentWeek = Math.floor(Date.now() / (7 * 24 * 60 * 60 * 1000));
+            const landmarkerResult = faceLandmarker.detect(canvas);
+            if (!landmarkerResult.faceLandmarks?.length) {
+                track('scan_failed', { reason: 'no_face_detected' });
+                alert("Face not detected. Ensure your face is centered and well-lit.");
+                return;
+            }
 
-        setResult({
-            id: scanId,
-            timestamp: Date.now(),
-            image: imageSrc,
-            metrics,
-            psl,
-            profileType: 'front',
-            audit,
-            gender
-        });
+            const landmarks = landmarkerResult.faceLandmarks[0];
+            const matrix = landmarkerResult.facialTransformationMatrixes?.[0];
+            const audit = validateLandmarks(landmarks);
+            
+            const normalizedLandmarks = matrix ? inversePoseNormalization(landmarks, matrix) : landmarks;
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            
+            const blendshapes = landmarkerResult.faceBlendshapes?.[0]?.categories || [];
+            const gender: Gender = 'male';
 
-        // Save to Supabase for global leaderboard
-        supabase.from('scans').insert({
-            id: scanId,
-            week_number: currentWeek,
-            username: localStorage.getItem('cs_username') || 'Anonymous',
-            psl_score: psl.overall,
-            tier: psl.tier,
-            percentile: psl.percentile,
-            phenotype: metrics.community?.phenotype
-        }).then(({ error }) => {
-            if (error) console.error('Failed to save scan to global leaderboard:', error);
-        });
+            const metrics = analyzeMetrics(normalizedLandmarks, blendshapes, imageData, landmarks);
+            const psl = calculatePSLScore(metrics, { gender }, audit.overall);
 
-        track('scan_completed', {
-            psl_score: psl.overall,
-            tier: psl.tier,
-            percentile: psl.percentile,
-            phenotype: metrics.community?.phenotype,
-            confidence: audit.overall,
-            was_challenge: !!challengerData,
-        });
+            // Fallback for crypto.randomUUID if not available (non-secure context/older browsers)
+            const scanId = (typeof crypto !== 'undefined' && crypto.randomUUID) 
+                ? crypto.randomUUID() 
+                : Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+                
+            const currentWeek = Math.floor(Date.now() / (7 * 24 * 60 * 60 * 1000));
 
-        setIsAnalyzing(false);
+            setResult({
+                id: scanId,
+                timestamp: Date.now(),
+                image: imageSrc,
+                metrics,
+                psl,
+                profileType: 'front',
+                audit,
+                gender
+            });
+
+            // Save to Supabase for global leaderboard
+            supabase.from('scans').insert({
+                id: scanId,
+                week_number: currentWeek,
+                username: localStorage.getItem('cs_username') || 'Anonymous',
+                psl_score: psl.overall,
+                tier: psl.tier,
+                percentile: psl.percentile,
+                phenotype: metrics.community?.phenotype
+            }).then(({ error }) => {
+                if (error) console.error('Failed to save scan to global leaderboard:', error);
+            });
+
+            track('scan_completed', {
+                psl_score: psl.overall,
+                tier: psl.tier,
+                percentile: psl.percentile,
+                phenotype: metrics.community?.phenotype,
+                confidence: audit.overall,
+                was_challenge: !!challengerData,
+            });
+        } catch (err) {
+            console.error('Scan capture failed:', err);
+            alert("Analysis failed. Please try again with better lighting.");
+            track('scan_failed', { reason: 'processing_error', error: String(err) });
+        } finally {
+            setIsAnalyzing(false);
+        }
     };
 
     return (
