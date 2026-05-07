@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { ScanResult } from '@/types';
+import { getOrCreateUsername } from '@/lib/username';
 
 interface BattleLinkProps {
     result: ScanResult;
@@ -15,20 +16,24 @@ export default function BattleLink({ result }: BattleLinkProps) {
     const generateBattleLink = async () => {
         setIsGenerating(true);
         try {
-            // Save result to Supabase for comparison
-            // We'll store it in a 'scans' table
-            const { data, error } = await supabase
-                .from('scans')
+            const currentWeek = Math.floor(Date.now() / (7 * 24 * 60 * 60 * 1000));
+            
+            const { error } = await supabase
+                .from('battle_challenges')
                 .insert({
                     id: result.id,
+                    username: getOrCreateUsername(),
                     psl_score: result.psl.overall,
                     tier: result.psl.tier,
-                    metrics: result.metrics,
-                    thumbnail: result.image, // Base64 or separate storage
-                    metadata: { gender: 'male' }
-                })
-                .select()
-                .single();
+                    percentile: result.psl.percentile,
+                    phenotype: result.metrics.community?.phenotype,
+                    canthal_tilt: result.metrics.periorbital.canthalTilt.average,
+                    fwhr: result.metrics.midface.fWHR,
+                    symmetry: result.metrics.symmetry.overallSymmetry,
+                    midface_ratio: result.metrics.midface.midfaceRatio,
+                    gonial_angle: result.metrics.jawline.gonialAngle.average,
+                    week_number: currentWeek
+                });
 
             if (error) throw error;
 

@@ -12,8 +12,14 @@ import ScoreReveal from './ScoreReveal';
 import TierCard from './TierCard';
 import BattleLink from './BattleLink';
 import LeaderboardTab from './LeaderboardTab';
+import BattleVerdictCard from './BattleVerdictCard';
+import { getOrCreateUsername } from '@/lib/username';
 
-export default function MainScanner() {
+interface MainScannerProps {
+    challengerData?: any;
+}
+
+export default function MainScanner({ challengerData }: MainScannerProps) {
     const webcamRef = useRef<Webcam>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [faceLandmarker, setFaceLandmarker] = useState<FaceLandmarker | null>(null);
@@ -22,8 +28,12 @@ export default function MainScanner() {
     const [showFullAudit, setShowFullAudit] = useState(false);
     const [countdown, setCountdown] = useState<number | null>(null);
     const [activeTab, setActiveTab] = useState<'scan' | 'rankings'>('scan');
+    const [challengeAccepted, setChallengeAccepted] = useState(false);
+    const [username, setUsername] = useState('');
 
     useEffect(() => {
+        setUsername(getOrCreateUsername());
+        
         const initLandmarker = async () => {
             const filesetResolver = await FilesetResolver.forVisionTasks(
                 "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm"
@@ -87,9 +97,8 @@ export default function MainScanner() {
         const normalizedLandmarks = matrix ? inversePoseNormalization(landmarks, matrix) : landmarks;
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         
-        // Detect gender from blendshapes (crude but fast)
         const blendshapes = landmarkerResult.faceBlendshapes?.[0]?.categories || [];
-        const gender: Gender = 'male'; // Default for now, can refine with ML or post-scan toggle
+        const gender: Gender = 'male';
 
         const metrics = analyzeMetrics(normalizedLandmarks, blendshapes, imageData, landmarks);
         const psl = calculatePSLScore(metrics, { gender }, audit.overallConfidence);
@@ -112,7 +121,48 @@ export default function MainScanner() {
             
             <div className="flex-1 overflow-y-auto">
                 <AnimatePresence mode="wait">
-                    {activeTab === 'rankings' ? (
+                    {challengerData && !challengeAccepted ? (
+                        <motion.div
+                            key="hook"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="h-full flex flex-col items-center justify-center p-8 bg-black"
+                        >
+                            <div className="text-center space-y-12">
+                                <div className="space-y-4">
+                                    <p className="text-[10px] font-black text-zinc-500 tracking-[0.4em] uppercase">Incoming Challenge</p>
+                                    <h1 className="text-4xl font-black italic tracking-tighter uppercase line-clamp-1">
+                                        @{challengerData.username} is challenging you
+                                    </h1>
+                                </div>
+
+                                <div className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 space-y-6">
+                                    <div className="space-y-1">
+                                        <div className="text-6xl font-black tracking-tighter">{challengerData.psl_score.toFixed(2)}</div>
+                                        <div className="text-xs font-black text-zinc-500 uppercase tracking-widest">{challengerData.tier}</div>
+                                    </div>
+                                    
+                                    <div className="grid grid-cols-2 gap-4 text-[10px] font-black text-zinc-400 uppercase tracking-widest pt-6 border-t border-zinc-800">
+                                        <div>Tilt: {challengerData.canthal_tilt.toFixed(1)}°</div>
+                                        <div>fWHR: {challengerData.fwhr.toFixed(2)}</div>
+                                        <div>Symmetry: {challengerData.symmetry.toFixed(0)}%</div>
+                                        <div>Midface: {challengerData.midface_ratio.toFixed(2)}</div>
+                                    </div>
+                                </div>
+
+                                <div className="space-y-6">
+                                    <h2 className="text-2xl font-black italic tracking-tighter uppercase">DO YOU MOG?</h2>
+                                    <button 
+                                        onClick={() => setChallengeAccepted(true)}
+                                        className="w-full px-12 py-6 bg-white text-black font-black uppercase tracking-[0.2em] text-sm rounded-2xl shadow-[0_0_50px_rgba(255,255,255,0.2)] animate-pulse"
+                                    >
+                                        Accept Challenge
+                                    </button>
+                                </div>
+                            </div>
+                        </motion.div>
+                    ) : activeTab === 'rankings' ? (
                         <motion.div
                             key="rankings"
                             initial={{ opacity: 0, x: 50 }}
@@ -171,7 +221,7 @@ export default function MainScanner() {
                             </div>
                         </motion.div>
                     ) : (
-                        <div key="result" className="w-full h-full overflow-y-auto bg-black scroll-smooth">
+                        <div key="result" className="w-full h-full overflow-y-auto bg-black scroll-smooth pb-32">
                             {!showFullAudit ? (
                                 <ScoreReveal 
                                     score={result.psl.overall} 
@@ -185,25 +235,34 @@ export default function MainScanner() {
                                     animate={{ opacity: 1 }}
                                     className="flex flex-col items-center gap-12 p-8 py-20"
                                 >
-                                    <TierCard 
-                                        metrics={result.metrics}
-                                        pslScore={result.psl.overall}
-                                        tier={result.psl.tier}
-                                        percentile={result.psl.percentile}
-                                        thumbnail={result.image}
-                                    />
+                                    {challengerData ? (
+                                        <BattleVerdictCard 
+                                            userResult={result} 
+                                            challengerData={challengerData} 
+                                            userUsername={username}
+                                        />
+                                    ) : (
+                                        <TierCard 
+                                            metrics={result.metrics}
+                                            pslScore={result.psl.overall}
+                                            tier={result.psl.tier}
+                                            percentile={result.psl.percentile}
+                                            thumbnail={result.image}
+                                        />
+                                    )}
                                     
                                     <div className="w-full max-w-[400px] space-y-4">
-                                        <BattleLink result={result} />
+                                        {!challengerData && <BattleLink result={result} />}
                                         
                                         <button 
                                             onClick={() => {
                                                 setResult(null);
                                                 setShowFullAudit(false);
+                                                setChallengeAccepted(false);
                                             }}
                                             className="w-full py-4 text-[10px] font-black text-zinc-600 uppercase tracking-[0.4em] hover:text-white transition-all text-center border border-zinc-900 rounded-xl"
                                         >
-                                            Scan Again
+                                            {challengerData ? 'Rematch' : 'Scan Again'}
                                         </button>
                                     </div>
                                 </motion.div>

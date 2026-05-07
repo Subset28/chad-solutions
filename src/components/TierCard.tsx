@@ -5,6 +5,8 @@ import { MetricReport, flattenMetrics } from '@/utils/metrics';
 import { getRating } from '@/utils/ratings';
 import html2canvas from 'html2canvas';
 
+import { getOrCreateUsername } from '@/lib/username';
+
 interface TierCardProps {
     metrics: MetricReport;
     pslScore: number;
@@ -16,6 +18,12 @@ interface TierCardProps {
 
 export default function TierCard({ metrics, pslScore, tier, percentile, thumbnail, variant = 'full' }: TierCardProps) {
     const cardRef = useRef<HTMLDivElement>(null);
+    const [isAnonymous, setIsAnonymous] = useState(true);
+    const [username, setUsername] = useState('');
+
+    useEffect(() => {
+        setUsername(getOrCreateUsername());
+    }, []);
 
     const handleShare = async () => {
         if (!cardRef.current) return;
@@ -23,7 +31,7 @@ export default function TierCard({ metrics, pslScore, tier, percentile, thumbnai
         try {
             const canvas = await html2canvas(cardRef.current, { 
                 backgroundColor: '#000000', 
-                scale: 3, // High res
+                scale: 3, 
                 useCORS: true 
             });
             
@@ -78,21 +86,23 @@ export default function TierCard({ metrics, pslScore, tier, percentile, thumbnai
                     {/* Header */}
                     <div className="flex justify-between items-start mb-6">
                         <div className="space-y-0.5">
-                            <div className="text-[14px] tracking-[0.4em] text-white">OMNISIGHT</div>
-                            <div className="text-[8px] tracking-[0.6em] text-zinc-600">SKELETAL AUDIT V1.0</div>
+                            <div className="text-[14px] tracking-[0.4em] text-white uppercase">OMNISIGHT</div>
+                            <div className="text-[8px] tracking-[0.6em] text-zinc-600 uppercase">SKELETAL AUDIT V1.0</div>
                         </div>
                         <div className="bg-zinc-900 border border-zinc-800 px-3 py-1 rounded-full">
-                            <span className="text-[10px] text-zinc-400">UID: {Math.random().toString(36).substring(7).toUpperCase()}</span>
+                            <span className="text-[10px] text-zinc-400 uppercase tracking-widest">{username}</span>
                         </div>
                     </div>
 
                     {/* Main Image & Score Area */}
                     <div className="flex-1 flex flex-col gap-6">
                         <div className="relative aspect-square w-full bg-zinc-900 border border-zinc-800 overflow-hidden group">
-                            {thumbnail ? (
+                            {!isAnonymous && thumbnail ? (
                                 <img src={thumbnail} alt="Scan" className="w-full h-full object-cover" />
                             ) : (
-                                <div className="w-full h-full flex items-center justify-center opacity-10">👤</div>
+                                <div className="w-full h-full flex items-center justify-center opacity-20 grayscale bg-[#080808]">
+                                    <svg className="w-48 h-48" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+                                </div>
                             )}
                             <div className="absolute inset-0 border-[16px] border-black/20 pointer-events-none" />
                             <div className="absolute top-4 right-4 bg-black/80 backdrop-blur-md px-4 py-2 border border-white/10">
@@ -102,7 +112,7 @@ export default function TierCard({ metrics, pslScore, tier, percentile, thumbnai
                         </div>
 
                         <div className="text-center">
-                            <h2 className="text-4xl tracking-tighter leading-none mb-1 italic">{tier}</h2>
+                            <h2 className="text-4xl tracking-tighter leading-none mb-1 italic uppercase">{tier}</h2>
                             <p className="text-[10px] text-zinc-500 uppercase tracking-[0.3em]">
                                 RANK: TOP {(100 - percentile).toFixed(1)}% MALE
                             </p>
@@ -134,8 +144,8 @@ export default function TierCard({ metrics, pslScore, tier, percentile, thumbnai
                     {/* Footer */}
                     <div className="mt-8 pt-6 border-t border-zinc-800/50 flex justify-between items-end">
                         <div className="space-y-1">
-                            <div className="text-[8px] text-zinc-600 tracking-[0.3em]">PHENOTYPE</div>
-                            <div className="text-[10px] text-zinc-400 truncate w-32">{metrics.community?.phenotype || 'ROBUST'}</div>
+                            <div className="text-[8px] text-zinc-600 tracking-[0.3em] uppercase">PHENOTYPE</div>
+                            <div className="text-[10px] text-zinc-400 truncate w-32 uppercase">{metrics.community?.phenotype || 'ROBUST'}</div>
                         </div>
                         <div className="text-right">
                             <div className="text-[10px] text-zinc-500 tracking-[0.2em]">OMNISIGHT.APP</div>
@@ -144,19 +154,31 @@ export default function TierCard({ metrics, pslScore, tier, percentile, thumbnai
                 </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 w-full">
-                <button 
-                    onClick={handleShare}
-                    className="flex-1 bg-white text-black font-black py-4 rounded-xl hover:bg-zinc-200 transition-all uppercase tracking-widest text-xs shadow-xl active:scale-95"
-                >
-                    Share Card
-                </button>
-                <button 
-                    onClick={handleShare}
-                    className="flex-1 bg-zinc-900 text-white font-black py-4 rounded-xl border border-zinc-800 hover:bg-zinc-800 transition-all uppercase tracking-widest text-xs active:scale-95"
-                >
-                    Save Image
-                </button>
+            <div className="w-full flex flex-col gap-4">
+                <div className="flex items-center justify-between px-4 py-3 bg-zinc-900/50 rounded-xl border border-zinc-800">
+                    <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Share Anonymous</span>
+                    <button 
+                        onClick={() => setIsAnonymous(!isAnonymous)}
+                        className={`w-12 h-6 rounded-full transition-all relative ${isAnonymous ? 'bg-emerald-600' : 'bg-zinc-700'}`}
+                    >
+                        <div className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-all ${isAnonymous ? 'right-1' : 'left-1'}`} />
+                    </button>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4 w-full">
+                    <button 
+                        onClick={handleShare}
+                        className="flex-1 bg-white text-black font-black py-4 rounded-xl hover:bg-zinc-200 transition-all uppercase tracking-widest text-xs shadow-xl active:scale-95"
+                    >
+                        Share Card
+                    </button>
+                    <button 
+                        onClick={handleShare}
+                        className="flex-1 bg-zinc-900 text-white font-black py-4 rounded-xl border border-zinc-800 hover:bg-zinc-800 transition-all uppercase tracking-widest text-xs active:scale-95"
+                    >
+                        Save Image
+                    </button>
+                </div>
             </div>
         </div>
     );

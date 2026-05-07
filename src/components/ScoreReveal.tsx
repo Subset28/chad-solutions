@@ -12,15 +12,28 @@ interface ScoreRevealProps {
     onComplete: () => void;
 }
 
+// Singleton AudioContext to prevent resource leaks and browser warnings
+let audioCtx: AudioContext | null = null;
+
+const getAudioContext = () => {
+    if (typeof window === 'undefined') return null;
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+    }
+    return audioCtx;
+};
+
 export default function ScoreReveal({ score, tier, metrics, onComplete }: ScoreRevealProps) {
     const [count, setCount] = useState(0);
     const [phase, setPhase] = useState<'counting' | 'impact' | 'metrics' | 'complete'>('counting');
 
     useEffect(() => {
-        // Sound effects using Web Audio API
         const playSound = (freq: number, type: OscillatorType = 'sine', duration = 0.1, vol = 0.1) => {
             try {
-                const ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
+                const ctx = getAudioContext();
+                if (!ctx) return;
+                if (ctx.state === 'suspended') ctx.resume();
+                
                 const osc = ctx.createOscillator();
                 const gain = ctx.createGain();
                 osc.type = type;
@@ -32,7 +45,7 @@ export default function ScoreReveal({ score, tier, metrics, onComplete }: ScoreR
                 osc.start();
                 osc.stop(ctx.currentTime + duration);
             } catch (e) {
-                console.warn("Audio context not supported or blocked");
+                console.warn("Audio context blocked");
             }
         };
 
