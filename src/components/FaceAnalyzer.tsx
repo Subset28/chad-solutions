@@ -18,6 +18,7 @@ import RoadmapTab from '@/components/RoadmapTab';
 import VitalityTab from '@/components/VitalityTab';
 import HaircutTab from '@/components/HaircutTab';
 import { RadarChart } from '@/components/RadarChart';
+import TierCard from '@/components/TierCard';
 
 export default function FaceAnalyzer() {
     const webcamRef = useRef<Webcam>(null);
@@ -366,7 +367,7 @@ export default function FaceAnalyzer() {
                                         </div>
                                     </div>
 
-                                    <div className="aspect-square w-full max-w-[280px] mx-auto opacity-80">
+                                    <div className="aspect-square w-full max-w-[280px] mx-auto opacity-80 mb-10">
                                         <RadarChart 
                                             data={[
                                                 { label: 'EYES', value: (auditResult.metrics.periorbital.canthalTilt.average + 10) * 5 },
@@ -377,6 +378,15 @@ export default function FaceAnalyzer() {
                                             ]} 
                                             size={280} 
                                             color="#ffffff" 
+                                        />
+                                    </div>
+
+                                    {/* Shareable Tier Card */}
+                                    <div className="pt-6 border-t border-zinc-800">
+                                        <TierCard 
+                                            metrics={auditResult.metrics} 
+                                            pslScore={auditResult.psl.overall} 
+                                            tier={auditResult.psl.tier} 
                                         />
                                     </div>
                                 </div>
@@ -533,16 +543,28 @@ export default function FaceAnalyzer() {
                             </div>
 
                             <div className="flex flex-col gap-4">
+                             <div className="grid grid-cols-2 gap-4">
                                 <button
                                     onClick={() => {
-                                        const report = `[PSL RATE REQUEST]\n\nPSL Score: ${afterScan.psl.overall.toFixed(2)} (${afterScan.psl.tier})\nPhenotype: ${afterScan.metrics.community?.phenotype}\nNW Scale: ${afterScan.metrics.community?.nwScale}\n\nTop 3 Metrics:\n- Canthal Tilt: ${afterScan.metrics.periorbital.canthalTilt.average.toFixed(1)}°\n- fWHR: ${afterScan.metrics.midface.fWHR.toFixed(2)}\n- Symmetry: ${afterScan.metrics.symmetry.overallSymmetry.toFixed(1)}%\n\nSent from OmniSight`;
+                                        const report = `**[Rate Me] OmniSight Analysis**\n\nPSL: ${afterScan.psl.overall.toFixed(2)} (${afterScan.psl.tier})\nPhenotype: ${afterScan.metrics.community?.phenotype}\nNW Scale: ${afterScan.metrics.community?.nwScale}\n\n**Top Metrics:**\n- Canthal Tilt: ${afterScan.metrics.periorbital.canthalTilt.average.toFixed(1)}°\n- fWHR: ${afterScan.metrics.midface.fWHR.toFixed(2)}\n- Symmetry: ${afterScan.metrics.symmetry.overallSymmetry.toFixed(1)}%\n\nSent from OmniSight.app`;
                                         navigator.clipboard.writeText(report);
-                                        alert("📋 Report copied to clipboard for Reddit/Lookism!");
+                                        alert("📋 Reddit/Lookism format copied!");
                                     }}
                                     className="w-full py-4 rounded-2xl bg-zinc-800 border border-zinc-700 hover:border-zinc-500 text-[10px] font-black uppercase tracking-[0.2em] transition-all"
                                 >
-                                    Get Rated (Export to Forum)
+                                    Reddit/Lookism
                                 </button>
+                                <button
+                                    onClick={() => {
+                                        const report = `Just ran my face through @OmniSight\n\nPSL: ${afterScan.psl.overall.toFixed(1)}/10\nTier: ${afterScan.psl.tier}\nPhenotype: ${afterScan.metrics.community?.phenotype}\n\nomnisight.app #looksmaxxing #psl`;
+                                        navigator.clipboard.writeText(report);
+                                        alert("📋 Twitter/X format copied!");
+                                    }}
+                                    className="w-full py-4 rounded-2xl bg-zinc-800 border border-zinc-700 hover:border-zinc-500 text-[10px] font-black uppercase tracking-[0.2em] transition-all"
+                                >
+                                    Twitter / X
+                                </button>
+                             </div>
                                 
                                 <button
                                     onClick={() => { setBeforeScan(null); setAfterScan(null); }}

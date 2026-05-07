@@ -1,0 +1,38 @@
+name: Weekly Trend Update
+on:
+  schedule:
+    - cron: '0 9 * * 1' # Every Monday at 9 AM
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  update-trends:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Run trend sync script
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          # Note: This requires a script at scripts/update-trends.ts
+          # For now, we'll create a placeholder script if it doesn't exist
+          if [ -f scripts/update-trends.ts ]; then
+            npx ts-node scripts/update-trends.ts
+          else
+            echo "Trend sync script not found. Skipping."
+          fi
+          
+      - name: Commit and Push
+        run: |
+          git config --global user.email "bot@omnisight.app"
+          git config --global user.name "OmniSight Trend Bot"
+          git add data/trends.json || true
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(data): weekly trend sync $(date +%Y-%m-%d)" && git push)

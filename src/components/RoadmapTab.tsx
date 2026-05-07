@@ -12,8 +12,41 @@ interface RoadmapTabProps {
 }
 
 export default function RoadmapTab({ metrics, pslScore, gender }: RoadmapTabProps) {
+    const [selectedInterventions, setSelectedInterventions] = React.useState<string[]>([]);
+    
     const targetPSL = Math.min(9.5, pslScore + 1.5);
     const plan = generateLooksmaxPlan(metrics, pslScore, targetPSL, gender);
+
+    const surgeries = [
+        { id: 'rhino', label: 'Rhinoplasty', boost: [0.2, 0.4], cost: [5000, 12000] },
+        { id: 'jaw', label: 'Jaw Angle Implants', boost: [0.3, 0.5], cost: [8000, 15000] },
+        { id: 'cantho', label: 'Canthoplasty (Lateral)', boost: [0.4, 0.8], cost: [4000, 8000], highlight: true },
+        { id: 'chin', label: 'Chin Augmentation', boost: [0.2, 0.3], cost: [4000, 7000] },
+        { id: 'cheek', label: 'Cheek Implants', boost: [0.1, 0.3], cost: [6000, 10000] },
+    ];
+
+    const projectedBoost = selectedInterventions.reduce((acc, id) => {
+        const s = surgeries.find(x => x.id === id);
+        return acc + (s ? (s.boost[0] + s.boost[1]) / 2 : 0);
+    }, 0);
+
+    const projectedPSL = Math.min(9.9, pslScore + projectedBoost);
+
+    const totalCost = selectedInterventions.reduce((acc, id) => {
+        const s = surgeries.find(x => x.id === id);
+        return acc + (s ? s.cost[0] : 0);
+    }, 0);
+
+    const totalCostMax = selectedInterventions.reduce((acc, id) => {
+        const s = surgeries.find(x => x.id === id);
+        return acc + (s ? s.cost[1] : 0);
+    }, 0);
+
+    const toggleIntervention = (id: string) => {
+        setSelectedInterventions(prev => 
+            prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
+        );
+    };
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
@@ -49,58 +82,76 @@ export default function RoadmapTab({ metrics, pslScore, gender }: RoadmapTabProp
                 </div>
             </div>
 
-            {/* PHASES */}
-            <div className="space-y-4">
-                {plan.phases.map((phase, idx) => (
-                    <motion.div 
-                        key={idx}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: idx * 0.1 }}
-                        className="relative"
-                    >
-                        {idx < plan.phases.length - 1 && (
-                            <div className="absolute left-[19px] top-10 bottom-[-20px] w-px bg-gradient-to-b from-indigo-500/50 to-transparent z-0" />
-                        )}
-                        
-                        <div className="flex gap-6 relative z-10">
-                            <div className="flex-shrink-0 w-10 h-10 rounded-full glass border border-indigo-500/30 flex items-center justify-center text-xs font-black text-indigo-400 shadow-[0_0_15px_rgba(99,102,241,0.2)]">
-                                {idx + 1}
-                            </div>
-                            
-                            <div className="flex-1 pb-8">
-                                <div className="glass-dark border border-zinc-800 rounded-2xl p-5 hover:border-indigo-500/30 transition-all group">
-                                    <div className="flex justify-between items-start mb-1">
-                                        <h4 className="text-white font-bold text-sm group-hover:text-indigo-300 transition-colors">{phase.title}</h4>
-                                        <span className="text-[9px] font-black px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 uppercase tracking-widest">
-                                            {idx === 0 ? '+0.3-0.5 PSL' : idx === 1 ? '+0.5-0.8 PSL' : '+1.0-2.0 PSL'}
-                                        </span>
-                                    </div>
-                                    <p className="text-zinc-500 text-[10px] mb-4 leading-relaxed uppercase tracking-wider">{phase.description}</p>
-                                    
-                                    <div className="space-y-2">
-                                        {phase.items.map((item, i) => (
-                                            <div key={i} className="flex items-center gap-3 bg-black/30 p-3 rounded-xl border border-zinc-800/50 group/item hover:bg-black/50 transition-colors">
-                                                <div className={`w-1 h-8 rounded-full ${
-                                                    item.category === 'lifestyle' ? 'bg-emerald-500/50' : 
-                                                    item.category === 'nonSurgical' ? 'bg-amber-500/50' : 'bg-red-500/50'
-                                                }`} />
-                                                <div className="flex-1">
-                                                    <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">{item.label}</p>
-                                                    <p className="text-xs text-white font-medium">{item.recommendation}</p>
-                                                </div>
-                                                <div className="text-right">
-                                                    <p className="text-[9px] font-bold text-zinc-600 uppercase">Impact</p>
-                                                    <p className="text-[10px] font-black text-indigo-400">+{item.impact.toFixed(2)}</p>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
+            {/* SURGERY CALCULATOR */}
+            <div className="glass-dark border border-zinc-800 rounded-[2.5rem] p-8 space-y-8 shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-8 opacity-[0.03] select-none pointer-events-none">
+                    <span className="text-9xl font-black">ROI</span>
+                </div>
+
+                <div className="flex flex-col md:flex-row justify-between gap-8 relative z-10">
+                    <div className="space-y-6 flex-1">
+                        <div>
+                            <h4 className="text-white font-black text-sm uppercase tracking-[0.2em] mb-2">Hardmax ROI Calculator</h4>
+                            <p className="text-zinc-500 text-[10px] uppercase tracking-widest leading-relaxed">
+                                Select intended clinical interventions to project your maximal aesthetic potential and estimated investment.
+                            </p>
                         </div>
-                    </motion.div>
-                ))}
+
+                        <div className="space-y-2">
+                            {surgeries.map(s => (
+                                <button 
+                                    key={s.id}
+                                    onClick={() => toggleIntervention(s.id)}
+                                    className={`w-full flex items-center justify-between p-4 rounded-2xl border transition-all ${
+                                        selectedInterventions.includes(s.id) 
+                                            ? 'bg-indigo-500/10 border-indigo-500/50' 
+                                            : 'bg-black/40 border-zinc-800 hover:border-zinc-700'
+                                    }`}
+                                >
+                                    <div className="flex items-center gap-4">
+                                        <div className={`w-5 h-5 rounded-md border flex items-center justify-center transition-all ${
+                                            selectedInterventions.includes(s.id) ? 'bg-indigo-500 border-indigo-500' : 'border-zinc-700'
+                                        }`}>
+                                            {selectedInterventions.includes(s.id) && <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M5 13l4 4L19 7" /></svg>}
+                                        </div>
+                                        <div className="text-left">
+                                            <p className="text-xs font-bold text-white uppercase">{s.label}</p>
+                                            {s.highlight && <p className="text-[8px] font-black text-indigo-400 uppercase tracking-widest mt-0.5">Highest ROI Target</p>}
+                                        </div>
+                                    </div>
+                                    <div className="text-right">
+                                        <p className="text-[10px] font-black text-emerald-400">+{s.boost[0]}-{s.boost[1]} PSL</p>
+                                        <p className="text-[8px] text-zinc-600 uppercase tracking-tighter mt-0.5">${s.cost[0]}-${s.cost[1]}</p>
+                                    </div>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="md:w-72 bg-indigo-500/5 border border-indigo-500/20 rounded-3xl p-8 flex flex-col items-center justify-center text-center space-y-6">
+                        <div className="space-y-1">
+                            <p className="text-[9px] font-black text-indigo-400 uppercase tracking-[0.3em]">Projected PSL</p>
+                            <div className="text-6xl font-black text-white tracking-tighter">
+                                {projectedPSL.toFixed(1)}
+                            </div>
+                            <p className="text-[10px] font-bold text-indigo-500/60 uppercase">
+                                +{projectedBoost.toFixed(2)} Gain
+                            </p>
+                        </div>
+
+                        <div className="h-px w-full bg-indigo-500/20" />
+
+                        <div className="space-y-1">
+                            <p className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.2em]">Estimated Cost</p>
+                            <p className="text-xl font-black text-white">
+                                ${totalCost.toLocaleString()}+
+                            </p>
+                            <p className="text-[9px] text-zinc-600 uppercase tracking-widest italic">
+                                Approx. ${totalCost.toLocaleString()}-${totalCostMax.toLocaleString()}
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             {/* DISCLAIMER */}

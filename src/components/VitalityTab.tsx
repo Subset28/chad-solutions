@@ -33,7 +33,7 @@ export default function VitalityTab({ metrics }: VitalityTabProps) {
         );
     }
 
-    const { vitalityScore, biologicalAgeDelta, sleepScore, collagenIndex } = metrics.vitality;
+    const { vitalityScore, biologicalAgeDelta, eyeAperture, collagenIndex } = metrics.vitality;
     
     const lighting = analyzeShadowProjection({
         orbitalRimProtrusion: metrics.periorbital.orbitalRim.average,
@@ -42,7 +42,7 @@ export default function VitalityTab({ metrics }: VitalityTabProps) {
     });
 
     const radarData = [
-        { label: 'Ocular', value: sleepScore },
+        { label: 'Ocular', value: eyeAperture },
         { label: 'Collagen', value: collagenIndex },
         { label: 'Health', value: Math.max(0, 100 - biologicalAgeDelta * 5) },
         { label: 'Tension', value: (1 - metrics.skin.tension) * 100 },
@@ -95,7 +95,7 @@ export default function VitalityTab({ metrics }: VitalityTabProps) {
             <div className="grid grid-cols-2 gap-3">
                 <StatCard 
                     label="Ocular Clarity" 
-                    value={`${sleepScore}%`} 
+                    value={`${eyeAperture}%`} 
                     sub="Scleral Brightness Audit"
                     color="text-cyan-400"
                 />
@@ -162,12 +162,14 @@ export default function VitalityTab({ metrics }: VitalityTabProps) {
                     </div>
                     <div className="bg-black/30 p-4 rounded-2xl border border-zinc-800/50 text-center">
                         <p className="text-[9px] font-black text-zinc-500 uppercase tracking-widest mb-1">Jaw Definition</p>
-                        <p className="text-xl font-black text-white">{metrics.lowerFace.gonialAngle.average.toFixed(1)}°</p>
+                        <p className="text-xl font-black text-white">{metrics.jawline.gonialAngle.average.toFixed(1)}°</p>
                         <p className="text-[8px] text-zinc-600 uppercase mt-1">Gonial Sharpness</p>
                     </div>
                     <div className="bg-black/30 p-4 rounded-2xl border border-zinc-800/50 text-center">
                         <p className="text-[9px] font-black text-zinc-500 uppercase tracking-widest mb-1">Maxillary Growth</p>
-                        <p className="text-xl font-black text-emerald-400">DECENT</p>
+                        <p className={`text-xl font-black ${metrics.midface.maxillaryProtrusion > 0.05 ? 'text-emerald-400' : 'text-amber-400'}`}>
+                            {metrics.midface.maxillaryProtrusion > 0.05 ? 'SUPERIOR' : metrics.midface.maxillaryProtrusion > 0.02 ? 'DECENT' : 'POOR'}
+                        </p>
                         <p className="text-[8px] text-zinc-600 uppercase mt-1">Forward Projection</p>
                     </div>
                 </div>
@@ -195,9 +197,9 @@ export default function VitalityTab({ metrics }: VitalityTabProps) {
                             <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-2">Eyebrow Contrast</p>
                             <div className="flex items-center gap-3">
                                 <div className="h-2 flex-1 bg-zinc-800 rounded-full overflow-hidden">
-                                    <div className="h-full bg-emerald-500" style={{ width: '85%' }} />
+                                    <div className="h-full bg-emerald-500" style={{ width: `${metrics.skin.eyebrowContrast}%` }} />
                                 </div>
-                                <span className="text-xs font-black text-white">HIGH</span>
+                                <span className="text-xs font-black text-white">{metrics.skin.eyebrowContrast > 70 ? 'HIGH' : 'LOW'}</span>
                             </div>
                             <p className="text-[9px] text-zinc-500 mt-2 uppercase tracking-tighter italic">High contrast increases perceived dimorphism.</p>
                         </div>

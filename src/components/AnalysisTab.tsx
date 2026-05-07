@@ -5,6 +5,7 @@ import { MetricReport, flattenMetrics, BilateralResult } from '@/utils/metrics';
 import { metricExplanations } from '@/utils/explanations';
 import { metricRecommendations } from '@/utils/recommendations';
 import { getRating, getIdealRange } from '@/utils/ratings';
+import { getVerdict } from '@/utils/verdicts';
 
 interface AnalysisTabProps {
     metrics: MetricReport;
@@ -136,8 +137,12 @@ export default function AnalysisTab({ metrics, profileType, gender, expandedMetr
                                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                                         <div className="space-y-4">
                                                             <div>
-                                                                <p className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.2em] mb-2">The Blackpill Truth</p>
-                                                                <p className="text-xs text-white leading-relaxed font-medium bg-zinc-800/50 p-4 rounded-xl border border-zinc-700/50 italic">
+                                                                <p className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.2em] mb-2">The Blackpill Verdict</p>
+                                                                <p className="text-xs text-white leading-relaxed font-medium bg-zinc-800/50 p-4 rounded-xl border border-zinc-700/50 italic mb-4">
+                                                                    "{getVerdict(key, rating.text)}"
+                                                                </p>
+                                                                <p className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.2em] mb-2">Community Context</p>
+                                                                <p className="text-[10px] text-zinc-400 leading-relaxed italic">
                                                                     "{exp?.blackpillNote || 'No community notes available.'}"
                                                                 </p>
                                                             </div>

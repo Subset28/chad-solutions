@@ -297,6 +297,7 @@ export interface MetricReport {
         fWHR: number;
         midfaceRatio: number;
         philtrumLength: number;
+        mouthToNoseWidthRatio: number;
         noseWidthRatio: number;
         maxillaryProtrusion: number;
         confidence: number;
@@ -315,6 +316,7 @@ export interface MetricReport {
     };
     skin: {
         tension: number;
+        eyebrowContrast: number;
         dominantExpressions: string[];
         confidence: number;
     };
@@ -369,6 +371,7 @@ export function analyzeMetrics(
             fWHR: calculatefWHR(landmarks),
             midfaceRatio: calculateMidfaceRatio(landmarks),
             philtrumLength: calculatePhiltrumLength(landmarks),
+            mouthToNoseWidthRatio: distance(landmarks[61], landmarks[291]) / distance(landmarks[48], landmarks[278]),
             noseWidthRatio: distance(landmarks[48], landmarks[278]) / bizygomatic,
             maxillaryProtrusion: calculateMaxillaryProtrusion(landmarks),
             confidence: getConfidence(midfaceIndices)
@@ -387,6 +390,7 @@ export function analyzeMetrics(
         },
         skin: {
             tension: tensionData.tensionScore,
+            eyebrowContrast: calculateEyebrowContrast(landmarks, imageData),
             dominantExpressions: tensionData.dominantExpressions,
             confidence: getConfidence(skinIndices)
         },
@@ -453,6 +457,26 @@ function calculateVitality(landmarks: any[], imageData?: ImageData, rawLandmarks
         eyeAperture: Math.min(100, Math.round(eyelidOpenness * 2000)), // Relabeled from sleepScore
         collagenIndex: Math.round(smoothness * 100) // Now based on pixel variance
     };
+}
+
+function calculateEyebrowContrast(landmarks: any[], imageData?: ImageData): number {
+    if (!imageData) return 85; // Fallback
+    
+    // Sample eyebrow and forehead
+    const sampleLuminance = (idx: number) => {
+        const x = Math.floor(landmarks[idx].x * imageData.width);
+        const y = Math.floor(landmarks[idx].y * imageData.height);
+        const px = (y * imageData.width + x) * 4;
+        if (px < 0 || px >= imageData.data.length) return 128;
+        return (imageData.data[px] + imageData.data[px+1] + imageData.data[px+2]) / 3;
+    };
+
+    const browLum = (sampleLuminance(70) + sampleLuminance(300)) / 2;
+    const foreheadLum = sampleLuminance(10);
+    
+    // Simple contrast ratio
+    const contrast = Math.abs(foreheadLum - browLum) / 255;
+    return Math.min(100, Math.round(contrast * 200));
 }
 
 function calculateOverallSymmetry(landmarks: NormalizedLandmark[]): number {
