@@ -1,4 +1,4 @@
-# OmniSight Facial Anthropometry Manifesto v2.0
+# Chad Solutions Facial Anthropometry Manifesto v2.0
 > **The Definitive Technical Documentation, Mathematical Blueprint, and Developer Handbook for Medical-Grade Facial Analysis.**
 
 ---
@@ -20,7 +20,7 @@
 
 ## 🏛️ 1. Introduction & Philosophy
 
-OmniSight (formerly Chad Solutions) is a specialized **Facial Biometric Analysis Engine** built for the Next.js ecosystem. It bridges the gap between clinical maxillofacial research and consumer-level web technology.
+Chad Solutions is a specialized **Facial Biometric Analysis Engine** built for the Next.js ecosystem. It bridges the gap between clinical maxillofacial research and consumer-level web technology.
 
 Our philosophy is built on three pillars:
 1. **Mathematical Objectivity**: We remove the subjective "vibe" and replace it with Z-scores relative to clinical population norms.
@@ -57,7 +57,7 @@ Our philosophy is built on three pillars:
 
 ## 📐 3. The Mathematical Formula Bible
 
-Every metric in OmniSight is derived from geometric distance or angular calculation between 3D vectors.
+Every metric in Chad Solutions is derived from geometric distance or angular calculation between 3D vectors.
 
 ### Ocular & Periorbital Suite
 - **Canthal Tilt (Degree)**:
@@ -110,7 +110,7 @@ We utilize the standard MediaPipe 478-point mesh. Below are the critical anchors
 
 ## 🏆 5. The Z-Score Statistical Scoring Engine
 
-Unlike other apps that give "random" scores out of 100, OmniSight uses a **Gaussian Distribution Model** (`scoring.ts`).
+Unlike other apps that give "random" scores out of 100, Chad Solutions uses a **Gaussian Distribution Model** (`scoring.ts`).
 
 ### The Population Norms
 We maintain a `POPULATION_NORMS` constant that contains the **Mean** and **Standard Deviation** for every metric, segregated by gender. These norms are derived from:
@@ -186,7 +186,7 @@ The haircut engine (`src/utils/haircut-recommendations.ts`) is a multi-stage cla
 -   **Options**:
     *   **Male**: Textured Quiff, High Pompadour, Textured Crop, Side Part, Side-Swept Fringe, etc.
     *   **Female**: Long Layers, Chin-Length Bob, Full Bangs, Side-Swept Layers, etc.
--   **Avoidance Logic**: The algorithm explicitly identifies styles that would emphasize structural weaknesses (e.g., severe pulled-back styles for Diamond faces with narrow foreheads).
+    *   **Avoidance Logic**: The algorithm explicitly identifies styles that would emphasize structural weaknesses (e.g., severe pulled-back styles for Diamond faces with narrow foreheads).
 
 ---
 
@@ -241,11 +241,11 @@ If you cannot use a timer or assistant:
 
 ## ⚡ 11. Vitality Index & Environment Mastery
 
-OmniSight is for **Objective Biometric Data Acquisition**. It is not a clinical diagnostic tool.
+Chad Solutions is for **Objective Biometric Data Acquisition**. It is not a clinical diagnostic tool.
 -   **Math doesn't lie**, but it also doesn't define your value.
 -   Consult with board-certified professionals before pursuing surgical interventions.
 -   This software is a mirror of geometry, not a judge of worth.
 
 ---
 **Build the best version of yourself.**
-*(c) 2024 OmniSight Engineering Team | Precision Through Geometry*
+*(c) 2024 Chad Solutions Engineering Team | Precision Through Geometry*
