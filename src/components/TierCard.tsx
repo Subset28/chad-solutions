@@ -10,9 +10,11 @@ interface TierCardProps {
     pslScore: number;
     tier: string;
     percentile: number;
+    thumbnail?: string;
+    variant?: 'clean' | 'full';
 }
 
-export default function TierCard({ metrics, pslScore, tier, percentile }: TierCardProps) {
+export default function TierCard({ metrics, pslScore, tier, percentile, thumbnail, variant = 'full' }: TierCardProps) {
     const cardRef = useRef<HTMLDivElement>(null);
 
     const handleShare = async () => {
@@ -21,25 +23,23 @@ export default function TierCard({ metrics, pslScore, tier, percentile }: TierCa
         try {
             const canvas = await html2canvas(cardRef.current, { 
                 backgroundColor: '#000000', 
-                scale: 2,
+                scale: 3, // High res
                 useCORS: true 
             });
             
             canvas.toBlob(async (blob) => {
                 if (!blob) return;
-                const file = new File([blob], 'omnisight-audit.png', { type: 'image/png' });
+                const file = new File([blob], 'omnisight-card.png', { type: 'image/png' });
                 
-                // Mobile: native share sheet
                 if (navigator.canShare?.({ files: [file] })) {
                     await navigator.share({
-                        title: `PSL ${pslScore.toFixed(1)} — OmniSight Audit`,
-                        text: `Just ran my face through OmniSight. PSL: ${pslScore.toFixed(1)} (${tier})\nomnisight.app`,
+                        title: `PSL ${pslScore.toFixed(2)} — ${tier}`,
+                        text: `Rate my aesthetics on OmniSight. PSL: ${pslScore.toFixed(2)} (${tier})\nomnisight.app`,
                         files: [file]
                     });
                 } else {
-                    // Desktop: download
                     const link = document.createElement('a');
-                    link.download = `omnisight-psl-${pslScore.toFixed(1)}.png`;
+                    link.download = `omnisight-psl-${pslScore.toFixed(2)}.png`;
                     link.href = URL.createObjectURL(blob);
                     link.click();
                 }
@@ -58,88 +58,106 @@ export default function TierCard({ metrics, pslScore, tier, percentile }: TierCa
     ];
 
     const getBarWidth = (key: string, val: number, min: number, max: number) => {
-        // For angles like gonial, lower is often "sharper" but within range
-        // For canthal, higher is usually better in community meta
         const percent = ((val - min) / (max - min)) * 100;
         return Math.min(100, Math.max(5, percent));
     };
 
     return (
-        <div className="flex flex-col items-center gap-4">
-            {/* The actual card that gets captured */}
+        <div className="flex flex-col items-center gap-6 w-full max-w-[400px]">
+            {/* The actual card */}
             <div 
                 ref={cardRef}
-                className="w-[350px] bg-black border-2 border-zinc-800 p-8 font-mono text-white relative overflow-hidden"
+                className="w-full bg-[#050505] border-4 border-zinc-800 p-6 font-black text-white relative overflow-hidden shadow-[0_0_80px_rgba(255,255,255,0.05)] rounded-sm"
+                style={{ aspectRatio: '1 / 1.4' }}
             >
-                {/* Background Grid Pattern */}
-                <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+                {/* Holographic Overlays */}
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-emerald-500/10 pointer-events-none" />
+                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-zinc-600 to-transparent" />
                 
-                <div className="relative z-10 flex flex-col gap-6">
-                    <div className="flex justify-between items-center border-b border-zinc-800 pb-4">
-                        <span className="text-[10px] font-black tracking-[0.3em] text-zinc-500">⬡ OMNISIGHT AUDIT</span>
-                        <span className="text-[10px] font-black text-zinc-500 italic">v1.0.4</span>
+                <div className="relative z-10 flex flex-col h-full">
+                    {/* Header */}
+                    <div className="flex justify-between items-start mb-6">
+                        <div className="space-y-0.5">
+                            <div className="text-[14px] tracking-[0.4em] text-white">OMNISIGHT</div>
+                            <div className="text-[8px] tracking-[0.6em] text-zinc-600">SKELETAL AUDIT V1.0</div>
+                        </div>
+                        <div className="bg-zinc-900 border border-zinc-800 px-3 py-1 rounded-full">
+                            <span className="text-[10px] text-zinc-400">UID: {Math.random().toString(36).substring(7).toUpperCase()}</span>
+                        </div>
                     </div>
 
-                    <div className="text-center py-4">
-                        <div className="text-5xl font-black tracking-tighter mb-1">PSL: {pslScore.toFixed(1)}</div>
-                        <div className="flex items-center justify-center gap-2">
-                            <div className="h-2 w-48 bg-zinc-900 rounded-full overflow-hidden border border-zinc-800">
-                                <div 
-                                    className="h-full bg-white transition-all duration-1000" 
-                                    style={{ width: `${(pslScore / 10) * 100}%` }} 
-                                />
+                    {/* Main Image & Score Area */}
+                    <div className="flex-1 flex flex-col gap-6">
+                        <div className="relative aspect-square w-full bg-zinc-900 border border-zinc-800 overflow-hidden group">
+                            {thumbnail ? (
+                                <img src={thumbnail} alt="Scan" className="w-full h-full object-cover" />
+                            ) : (
+                                <div className="w-full h-full flex items-center justify-center opacity-10">👤</div>
+                            )}
+                            <div className="absolute inset-0 border-[16px] border-black/20 pointer-events-none" />
+                            <div className="absolute top-4 right-4 bg-black/80 backdrop-blur-md px-4 py-2 border border-white/10">
+                                <div className="text-3xl tracking-tighter">{pslScore.toFixed(2)}</div>
+                                <div className="text-[8px] text-zinc-500 text-center -mt-1 tracking-widest">PSL INDEX</div>
                             </div>
-                            <span className="text-[10px] font-black uppercase tracking-widest">{tier}</span>
                         </div>
-                        <p className="text-[10px] text-zinc-500 mt-2 uppercase tracking-widest">
-                            Top {(100 - percentile).toFixed(1)}% Male Aesthetic
-                        </p>
+
+                        <div className="text-center">
+                            <h2 className="text-4xl tracking-tighter leading-none mb-1 italic">{tier}</h2>
+                            <p className="text-[10px] text-zinc-500 uppercase tracking-[0.3em]">
+                                RANK: TOP {(100 - percentile).toFixed(1)}% MALE
+                            </p>
+                        </div>
+
+                        {variant === 'full' && (
+                            <div className="grid grid-cols-2 gap-x-8 gap-y-4">
+                                {displayMetrics.map(m => {
+                                    const val = flat[m.key];
+                                    return (
+                                        <div key={m.key} className="space-y-1">
+                                            <div className="flex justify-between text-[8px] text-zinc-500 tracking-widest">
+                                                <span>{m.label}</span>
+                                                <span className="text-white">{typeof val === 'number' ? (m.key.includes('Angle') || m.key.includes('Tilt') ? `${val.toFixed(1)}°` : val.toFixed(2)) : 'N/A'}</span>
+                                            </div>
+                                            <div className="h-[2px] w-full bg-zinc-900">
+                                                <div 
+                                                    className="h-full bg-white" 
+                                                    style={{ width: `${getBarWidth(m.key, val, m.min, m.max)}%` }} 
+                                                />
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        )}
                     </div>
 
-                    <div className="space-y-4">
-                        {displayMetrics.map(m => {
-                            const val = flat[m.key];
-                            return (
-                                <div key={m.key} className="space-y-1">
-                                    <div className="flex justify-between text-[10px] font-black text-zinc-500">
-                                        <span>{m.label}</span>
-                                        <span>{typeof val === 'number' ? (m.key.includes('Angle') || m.key.includes('Tilt') ? `${val.toFixed(1)}°` : val.toFixed(2)) : 'N/A'}</span>
-                                    </div>
-                                    <div className="h-1.5 w-full bg-zinc-900 rounded-full overflow-hidden">
-                                        <div 
-                                            className="h-full bg-zinc-400" 
-                                            style={{ width: `${getBarWidth(m.key, val, m.min, m.max)}%` }} 
-                                        />
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-4 border-t border-zinc-800 pt-6">
+                    {/* Footer */}
+                    <div className="mt-8 pt-6 border-t border-zinc-800/50 flex justify-between items-end">
                         <div className="space-y-1">
-                            <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest">PHENOTYPE</span>
-                            <div className="text-xs font-bold text-white uppercase truncate">{metrics.community?.phenotype || 'ANALYZING...'}</div>
+                            <div className="text-[8px] text-zinc-600 tracking-[0.3em]">PHENOTYPE</div>
+                            <div className="text-[10px] text-zinc-400 truncate w-32">{metrics.community?.phenotype || 'ROBUST'}</div>
                         </div>
-                        <div className="space-y-1">
-                            <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest">NW SCALE</span>
-                            <div className="text-xs font-bold text-white uppercase">{metrics.community?.nwScale || 'NW1'}</div>
+                        <div className="text-right">
+                            <div className="text-[10px] text-zinc-500 tracking-[0.2em]">OMNISIGHT.APP</div>
                         </div>
-                    </div>
-
-                    <div className="text-center pt-4 border-t border-zinc-800/50">
-                        <span className="text-[10px] font-black text-zinc-600 tracking-[0.2em]">OMNISIGHT.APP</span>
                     </div>
                 </div>
             </div>
 
-            <button 
-                onClick={handleShare}
-                className="w-full bg-white text-black font-black py-4 rounded-2xl hover:bg-zinc-200 transition-colors uppercase tracking-widest text-sm flex items-center justify-center gap-2"
-            >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" /></svg>
-                Share Tier Card
-            </button>
+            <div className="grid grid-cols-2 gap-4 w-full">
+                <button 
+                    onClick={handleShare}
+                    className="flex-1 bg-white text-black font-black py-4 rounded-xl hover:bg-zinc-200 transition-all uppercase tracking-widest text-xs shadow-xl active:scale-95"
+                >
+                    Share Card
+                </button>
+                <button 
+                    onClick={handleShare}
+                    className="flex-1 bg-zinc-900 text-white font-black py-4 rounded-xl border border-zinc-800 hover:bg-zinc-800 transition-all uppercase tracking-widest text-xs active:scale-95"
+                >
+                    Save Image
+                </button>
+            </div>
         </div>
     );
 }
