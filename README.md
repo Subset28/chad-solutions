@@ -112,34 +112,31 @@ We utilize the standard MediaPipe 478-point mesh. Below are the critical anchors
 
 Unlike other apps that give "random" scores out of 100, Chad Solutions uses a **Gaussian Distribution Model** (`scoring.ts`).
 
-### The Population Norms
-We maintain a `POPULATION_NORMS` constant that contains the **Mean** and **Standard Deviation** for every metric, segregated by gender. These norms are derived from:
-- Anthropometric surveys (e.g., Farkas et al.)
-- Clinical maxillofacial datasets.
-- Aesthetic "Perfect" averages.
+### The Scoring Hierarchy
+The engine calculates three distinct types of scores:
+1. **Metric Scores**: Individual Z-score mappings for specific features (e.g., Canthal Tilt, fWHR). These are raw geometric comparisons against population means.
+2. **Overall PSL Score**: A weighted average of all facial metrics, normalized through a sigmoid function. This is the primary "rating" shown to the user.
+3. **Hair PSL**: A separate heuristic score calculated in `haircut-recommendations.ts` based on face shape synergy, hair texture, and hairline health. It does *not* affect the primary facial PSL score.
 
 ### The Calculation Pipeline
 1. **Raw Measurement**: e.g., Gonial Angle = 115°.
 2. **Z-Score Mapping**: `z = (measurement - mean) / stdev`.
-3. **Sigmoid Normalization**: We convert the Z-score into a 0.0 - 10.0 scale using a customized sigmoid function.
-   - **v2.1 Update**: Reduced sigmoid steepness (`k=1.0`) to provide a more natural and balanced distribution for typical populations.
+3. **Sigmoid Normalization**: We convert the Z-score into a 0.0 - 10.0 scale using a customized sigmoid function:
+   - **Formula**: `1 + (9 / (1 + exp(-k * z)))`
+   - **v2.1 Calibration**: `k=1.0`. A lower `k` makes the engine less sensitive to minor flaws, preventing "score floor" issues where average faces receive a 1.0.
 4. **Weighted Aggregation**: Metrics are weighted by their impact on perceived attractiveness (e.g., Canthal Tilt has a higher weight than Nose Width Ratio).
-5. **Debug Transparency**: Developers can inspect the exact Z-score breakdown and audit logs in the browser console for every scan.
+
+### Troubleshooting Low Scores (The "1.0" Problem)
+If a user receives a 1.0, it is usually due to one of three factors:
+- **Bad Landmark Read**: The Landmark Audit Layer (`normalization.ts`) detected occlusions or low confidence but the user proceeded anyway.
+- **Extreme Outliers**: A measurement > 3 standard deviations from the mean.
+- **Aspect Ratio Distortion**: (Fixed in v2.1) Sensor distortion making the face appear "crushed" or "stretched."
 
 ---
 
 ## ✂️ 6. Haircut Architecture & Synergy Logic
 
-The haircut engine (`haircut-recommendations.ts`) is a multi-factor expert system.
-
-### Face Shape Classification
-We use a point-based heuristic to assign one of 6 face shapes:
-- **Oval**: Balanced, versatile.
-- **Round**: Wide zygoma, soft jaw.
-- **Square**: Geometric jaw, wide forehead.
-- **Heart**: Wide forehead, narrow chin.
-- **Oblong**: Significant vertical height.
-- **Diamond**: Narrow top/bottom, wide cheekbones.
+The haircut engine (`haircut-recommendations.ts`) is a separate expert system from the facial biometrics.
 
 ### The Synergy Algorithm
 Every haircut has a synergy bonus/penalty for specific face shapes.
@@ -147,11 +144,9 @@ Every haircut has a synergy bonus/penalty for specific face shapes.
 - **Angular Softening**: Square faces get haircuts that use organic texture to break hard lines.
 - **Length Elongation**: Round faces get "High-Top" styles to add vertical dimension.
 
-### Data Sources
-Our recommendations are sourced from:
-- **Facial Balancing Principles**: Clinical standards for visual harmony.
-- **Stylist Archetypes**: Professional grooming standards.
-- **Community Consensus**: Aggregated data from aesthetic forums (Looksmax.org, etc.) regarding the "Halo Effect."
+### Hair PSL vs. Facial PSL
+- **Facial PSL** is structural and skeletal.
+- **Hair PSL** is stylistic and corrective. A high Hair PSL indicates the chosen style is perfectly masking structural flaws identified in the facial scan.
 
 ---
 
