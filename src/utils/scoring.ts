@@ -60,14 +60,17 @@ const POPULATION_NORMS: Record<string, Record<'male' | 'female', MetricNorm>> = 
 };
 
 /**
- * Maps a weighted Z-score to a 1-10 scale using a sigmoid function.
- * Compresses extremes as per requirement.
+ * Maps a weighted Z-score to the 0-8 PSL scale using a centered sigmoid.
+ * Centered at Z=0 -> PSL 4.0 (50th percentile) as per Looksmax standard.
  */
 export function sigmoidMap(zScore: number): number {
-    // Sigmoid: 1 / (1 + exp(-x))
-    // We want z=0 to be around 5, z=3 to be 9, z=-3 to be 1
-    const k = 1.0; // Slightly reduced steepness for more natural distribution
-    const mapped = 1 + (9 / (1 + Math.exp(-k * zScore)));
+    // Sigmoid: L / (1 + exp(-k(z - x0)))
+    // L=8 (Max PSL), k=0.6 (Calibrated for Z-score standard deviations), x0=0 (Centered at average)
+    const k = 0.6; 
+    const L = 8;
+    const mapped = L / (1 + Math.exp(-k * zScore));
+    
+    // Round to 1 decimal place
     return Math.round(mapped * 10) / 10;
 }
 
@@ -95,8 +98,7 @@ export function calculatePSLScore(
         else if (norm.idealDirection === 0) z = -Math.abs(z); // Penalize distance from mean
 
         // CLAMP: Prevent extreme outliers from flooring the entire score
-        // A single -5.0 Z-score should not be possible due to sensor noise
-        const clampedZ = Math.max(-3.0, Math.min(3.0, z));
+        const clampedZ = Math.max(-3.5, Math.min(3.5, z));
 
         const contribution = clampedZ * norm.weight;
         totalWeightedZ += contribution;
@@ -156,14 +158,15 @@ function erf(x: number): number {
 }
 
 function getTier(score: number): string {
-    if (score >= 9.0) return "Looksmaxxed God / Genetic Lottery";
-    if (score >= 8.0) return "Gigachad (Elite)";
-    if (score >= 7.0) return "Chad";
-    if (score >= 6.0) return "Chadlite";
-    if (score >= 5.0) return "Normie";
-    if (score >= 4.0) return "Betabuxx / Below Average";
-    if (score >= 3.0) return "Low-tier";
-    return "Developing";
+    if (score >= 7.5) return "Elite (Genetic Lottery)";
+    if (score >= 7.0) return "Chad (Top 0.1%)";
+    if (score >= 6.0) return "Model Tier (Elite)";
+    if (score >= 5.5) return "Chadlite";
+    if (score >= 5.0) return "High-Tier Attractive";
+    if (score >= 4.5) return "Above Average";
+    if (score >= 3.5) return "Average (Normie)";
+    if (score >= 2.5) return "Below Average";
+    return "Developing / Low-tier";
 }
 
 /**
