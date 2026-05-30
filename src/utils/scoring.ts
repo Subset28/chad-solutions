@@ -1,4 +1,5 @@
 import { MetricReport, BilateralResult, PSLResult } from "@/types/metrics";
+import { predictBenchmarkPsl, scoreToPercentile } from "./psl-calibration";
 
 export interface ScoreContext {
     gender: 'male' | 'female';
@@ -45,6 +46,30 @@ const POPULATION_NORMS: Record<string, Record<'male' | 'female', MetricNorm>> = 
         male: { mean: 1.05, stdDev: 0.05, weight: 1.3, idealDirection: 0 },
         female: { mean: 1.00, stdDev: 0.06, weight: 1.3, idealDirection: 0 }
     },
+    lowerThirdRatio: {
+        male: { mean: 0.64, stdDev: 0.03, weight: 0.8, idealDirection: 0 },
+        female: { mean: 0.62, stdDev: 0.03, weight: 0.8, idealDirection: 0 }
+    },
+    facialThirdsRatio: {
+        male: { mean: 98, stdDev: 2.0, weight: 0.5, idealDirection: 0 },
+        female: { mean: 98, stdDev: 2.0, weight: 0.5, idealDirection: 0 }
+    },
+    facialFifthsRatio: {
+        male: { mean: 1.0, stdDev: 0.05, weight: 0.4, idealDirection: 0 },
+        female: { mean: 1.0, stdDev: 0.05, weight: 0.4, idealDirection: 0 }
+    },
+    pfl: {
+        male: { mean: 3.25, stdDev: 0.15, weight: 0.6, idealDirection: 0 },
+        female: { mean: 3.05, stdDev: 0.15, weight: 0.6, idealDirection: 0 }
+    },
+    eyeToMouthAngle: {
+        male: { mean: 48, stdDev: 1.5, weight: 0.7, idealDirection: 0 },
+        female: { mean: 49, stdDev: 1.5, weight: 0.7, idealDirection: 0 }
+    },
+    lipRatio: {
+        male: { mean: 1.62, stdDev: 0.18, weight: 0.4, idealDirection: 0 },
+        female: { mean: 1.62, stdDev: 0.18, weight: 0.4, idealDirection: 0 }
+    },
     noseWidthRatio: {
         male: { mean: 0.20, stdDev: 0.02, weight: 1.0, idealDirection: 0 },
         female: { mean: 0.22, stdDev: 0.02, weight: 1.0, idealDirection: 0 }
@@ -88,6 +113,10 @@ const POPULATION_NORMS: Record<string, Record<'male' | 'female', MetricNorm>> = 
     doubleChinRisk: {
         male: { mean: 0.005, stdDev: 0.01, weight: 0.9, idealDirection: -1 },
         female: { mean: 0.006, stdDev: 0.01, weight: 0.9, idealDirection: -1 }
+    },
+    cervicomentalAngle: {
+        male: { mean: 112, stdDev: 6, weight: 0.7, idealDirection: 0 },
+        female: { mean: 115, stdDev: 6, weight: 0.7, idealDirection: 0 }
     }
 };
 
@@ -113,72 +142,16 @@ export function calculatePSLScore(
     context: ScoreContext,
     landmarkConfidence: number
 ): PSLResult {
-    const norms = POPULATION_NORMS;
-    const gender = context.gender;
-    let totalWeightedZ = 0;
-    let totalWeight = 0;
-    const breakdown: Record<string, { zScore: number, contribution: number }> = {};
-
-    const processMetric = (key: string, value: number) => {
-        const norm = norms[key]?.[gender];
-        if (!norm) return;
-
-        let z = (value - norm.mean) / norm.stdDev;
-        
-        // Handle ideal direction
-        if (norm.idealDirection === -1) z = -z;
-        else if (norm.idealDirection === 0) z = -Math.abs(z); // Penalize distance from mean
-
-        // CLAMP: Prevent extreme outliers from flooring the entire score
-        const clampedZ = Math.max(-3.5, Math.min(3.5, z));
-
-        const contribution = clampedZ * norm.weight;
-        totalWeightedZ += contribution;
-        totalWeight += norm.weight;
-        breakdown[key] = { zScore: clampedZ, contribution };
-    };
-
-    // Map metrics to norms
-    // Periorbital
-    processMetric('canthalTilt', metrics.periorbital.canthalTilt.average);
-    processMetric('esr', metrics.periorbital.esr);
-    processMetric('uee', metrics.periorbital.uee.average);
-    
-    // Midface
-    processMetric('fWHR', metrics.midface.fWHR);
-    processMetric('midfaceRatio', metrics.midface.midfaceRatio);
-    processMetric('noseWidthRatio', metrics.midface.noseWidthRatio);
-    processMetric('philtrumLength', metrics.midface.philtrumLength);
-    processMetric('mouthToNoseWidthRatio', metrics.midface.mouthToNoseWidthRatio);
-    processMetric('maxillaryProtrusion', metrics.midface.maxillaryProtrusion);
-    processMetric('foreheadHeightRatio', metrics.midface.foreheadHeightRatio);
-
-    // Jawline
-    processMetric('gonialAngle', metrics.jawline.gonialAngle.average);
-    processMetric('bigonialRatio', metrics.jawline.bigonialRatio);
-    processMetric('chinProjection', metrics.jawline.chinProjection);
-    processMetric('doubleChinRisk', metrics.jawline.doubleChinRisk);
-
-    // Structural support
-    processMetric('orbitalRimProtrusion', metrics.periorbital.orbitalRimProtrusion.average);
-    processMetric('browRidgeProtrusion', metrics.periorbital.browRidgeProtrusion);
-    processMetric('infraorbitalRimPosition', metrics.periorbital.infraorbitalRimPosition);
-
-    // Symmetry
-    processMetric('symmetry', metrics.symmetry.overallSymmetry);
-
-    const averageZ = totalWeight > 0 ? totalWeightedZ / totalWeight : 0;
-    const finalScore = sigmoidMap(averageZ);
-
-    // Percentile calculation from Z-score (Normal Distribution approximation)
-    const percentile = Math.round(0.5 * (1 + erf(averageZ / Math.sqrt(2))) * 100);
+    const calibrated = predictBenchmarkPsl(metrics);
+    const finalScore = calibrated.score;
+    const percentile = scoreToPercentile(finalScore);
 
     return {
         overall: finalScore,
         confidence: Math.round(landmarkConfidence * 100),
         tier: getTier(finalScore),
         percentile,
-        breakdown
+        breakdown: calibrated.breakdown
     };
 }
 

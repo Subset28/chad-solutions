@@ -41,6 +41,7 @@ export default function FaceAnalyzer() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     const [faceLandmarker, setFaceLandmarker] = useState<FaceLandmarker | null>(null);
+    const [qaMode, setQaMode] = useState(false);
     const [auditResult, setAuditResult] = useState<ScanResult | null>(null);
     const [inputMode, setInputMode] = useState<InputMode>('webcam');
     const [uploadedImage, setUploadedImage] = useState<string | null>(null);
@@ -78,6 +79,11 @@ export default function FaceAnalyzer() {
         void initLandmarker();
     }, []);
 
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        setQaMode(params.has('qa') || params.get('qa') === '1');
+    }, []);
+
     const analyzeImage = async (dataUrl: string) => {
         if (!faceLandmarker || !canvasRef.current) return;
         setIsAnalyzing(true);
@@ -106,9 +112,13 @@ export default function FaceAnalyzer() {
             const matrix = result.facialTransformationMatrixes?.[0];
             const audit = validateLandmarks(landmarks);
 
-            if (!audit.isValid) {
+            if (!audit.isValid && !qaMode) {
                 alert(`Scan quality rejection: ${audit.reason}. Please retake for better accuracy.`);
                 return;
+            }
+
+            if (!audit.isValid && qaMode) {
+                console.warn(`QA mode bypassed scan quality rejection: ${audit.reason}`);
             }
 
             const normalizedLandmarks = matrix ? inversePoseNormalization(landmarks, matrix) : landmarks;
@@ -120,7 +130,8 @@ export default function FaceAnalyzer() {
                 correctedLandmarks,
                 result.faceBlendshapes?.[0]?.categories || [],
                 imageData,
-                landmarks
+                landmarks,
+                profileType
             );
             const psl = calculatePSLScore(metrics, { gender }, audit.overall);
 
@@ -139,6 +150,24 @@ export default function FaceAnalyzer() {
                 audit,
                 gender,
             };
+
+            if (typeof window !== 'undefined') {
+                (window as typeof window & {
+                    __lastScan?: ScanResult;
+                    __lastMetrics?: typeof metrics;
+                    __lastAudit?: typeof audit;
+                }).__lastScan = scan;
+                (window as typeof window & {
+                    __lastScan?: ScanResult;
+                    __lastMetrics?: typeof metrics;
+                    __lastAudit?: typeof audit;
+                }).__lastMetrics = metrics;
+                (window as typeof window & {
+                    __lastScan?: ScanResult;
+                    __lastMetrics?: typeof metrics;
+                    __lastAudit?: typeof audit;
+                }).__lastAudit = audit;
+            }
 
             ctx.strokeStyle = '#00ff00';
             ctx.lineWidth = 2;
@@ -255,6 +284,13 @@ export default function FaceAnalyzer() {
                     PSL is a forum-derived 0-8 lookism scale. Scores are calibrated for photos taken at 3+ feet distance; selfies can inflate nose width.
                 </p>
             </div>
+            {qaMode && (
+                <div className="w-full bg-amber-500/10 border border-amber-500/20 rounded-2xl p-3 text-center">
+                    <p className="text-[10px] font-black text-amber-300 uppercase tracking-[0.2em]">
+                        QA mode enabled: relaxed visibility gate for local testing.
+                    </p>
+                </div>
+            )}
 
             <div className="flex flex-wrap gap-4 justify-center items-center w-full z-20">
                 <div className="flex gap-2 bg-zinc-900 p-1.5 rounded-full border border-zinc-800 shadow-2xl">
@@ -279,6 +315,18 @@ export default function FaceAnalyzer() {
                         Female
                     </button>
                 </div>
+                <button
+                    onClick={() => setQaMode((prev) => !prev)}
+                    className={`px-5 py-2 rounded-full font-bold text-xs uppercase tracking-widest transition-all border ${
+                        qaMode
+                            ? 'bg-amber-500 text-black border-amber-400 shadow-lg shadow-amber-500/20'
+                            : 'text-amber-300 border-amber-500/30 hover:bg-amber-500/10'
+                    }`}
+                    aria-pressed={qaMode}
+                    aria-label="Toggle test mode"
+                >
+                    Test Mode
+                </button>
             </div>
 
             {!auditResult ? (
