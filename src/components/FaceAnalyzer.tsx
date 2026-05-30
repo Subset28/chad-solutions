@@ -118,7 +118,11 @@ export default function FaceAnalyzer() {
 
             const landmarks = result.faceLandmarks[0];
             const matrix = result.facialTransformationMatrixes?.[0];
-            const audit = validateLandmarks(landmarks);
+            const angles = matrix ? extractEulerAngles(matrix) : { yaw: 0, pitch: 0, roll: 0 };
+            const isFrontFacing = Math.abs(angles.yaw) < 25 && Math.abs(angles.pitch) < 20;
+            const audit = validateLandmarks(landmarks, {
+                relaxed: shouldBypassQualityGate(sourceName) || isFrontFacing,
+            });
             const bypassQualityGate = shouldBypassQualityGate(sourceName);
 
             if (!audit.isValid && !bypassQualityGate) {
@@ -132,7 +136,6 @@ export default function FaceAnalyzer() {
 
             const normalizedLandmarks = matrix ? inversePoseNormalization(landmarks, matrix) : landmarks;
             const correctedLandmarks = undistortPerspective(normalizedLandmarks);
-            const angles = matrix ? extractEulerAngles(matrix) : { yaw: 0, pitch: 0, roll: 0 };
             const profileType = Math.abs(angles.yaw) > 30 ? 'side' : 'front';
             const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
             const metrics = analyzeMetrics(

@@ -6,17 +6,25 @@ export interface ValidationResult {
     overall: number;
 }
 
+export interface ValidationOptions {
+    relaxed?: boolean;
+    minGroupVisibility?: number;
+}
+
 /**
  * Validates landmark confidence scores.
  * Checks key landmarks for visibility and overall presence.
  */
 export function validateLandmarks(
     landmarks: NormalizedLandmark[],
-    minGroupVisibility: number = 0.7
+    options: ValidationOptions = {}
 ): ValidationResult {
     if (!landmarks || landmarks.length === 0) {
         return { isValid: false, reason: "No landmarks detected", overall: 0 };
     }
+
+    const relaxed = options.relaxed ?? false;
+    const minGroupVisibility = options.minGroupVisibility ?? (relaxed ? 0.5 : 0.7);
 
     const keyGroups = {
         jaw: [172, 397, 132, 361, 152],
@@ -41,7 +49,12 @@ export function validateLandmarks(
 
     const overall = totalVisibility / Object.keys(keyGroups).length;
 
-    if (occludedRegions.length > 0) {
+    const hardFail =
+        !relaxed
+            ? occludedRegions.length > 0
+            : occludedRegions.includes('eyes') || occludedRegions.includes('midface') || overall < 0.5;
+
+    if (hardFail) {
         return {
             isValid: false,
             reason: `Potential occlusion detected in: ${occludedRegions.join(", ")}. Please ensure your face is fully visible.`,
