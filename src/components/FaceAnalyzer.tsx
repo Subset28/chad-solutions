@@ -52,6 +52,7 @@ export default function FaceAnalyzer() {
     const [gender, setGender] = useState<Gender>('male');
     const [consentGiven, setConsentGiven] = useState(false);
     const [resultsTab, setResultsTab] = useState<AppTab>('analysis');
+    const [scanNotice, setScanNotice] = useState<{ kind: 'error' | 'warning' | 'info'; message: string } | null>(null);
 
     const shouldBypassQualityGate = (sourceName?: string) => {
         if (qaMode) return true;
@@ -95,6 +96,7 @@ export default function FaceAnalyzer() {
     const analyzeImage = async (dataUrl: string, sourceName?: string) => {
         if (!faceLandmarker || !canvasRef.current) return;
         setIsAnalyzing(true);
+        setScanNotice(null);
 
         try {
             const img = new Image();
@@ -112,7 +114,10 @@ export default function FaceAnalyzer() {
 
             const result = faceLandmarker.detect(canvas);
             if (!result.faceLandmarks || result.faceLandmarks.length === 0) {
-                alert('No face detected. Please ensure your face is clearly visible and well lit.');
+                setScanNotice({
+                    kind: 'error',
+                    message: 'No face detected. Please keep your face fully in frame, well lit, and facing the camera.',
+                });
                 return;
             }
 
@@ -120,18 +125,34 @@ export default function FaceAnalyzer() {
             const matrix = result.facialTransformationMatrixes?.[0];
             const angles = matrix ? extractEulerAngles(matrix) : { yaw: 0, pitch: 0, roll: 0 };
             const isFrontFacing = Math.abs(angles.yaw) < 25 && Math.abs(angles.pitch) < 20;
+            const isWebcamCapture = sourceName === 'webcam-capture';
+            const relaxedScan = shouldBypassQualityGate(sourceName) || isFrontFacing || isWebcamCapture;
             const audit = validateLandmarks(landmarks, {
-                relaxed: shouldBypassQualityGate(sourceName) || isFrontFacing,
+                relaxed: relaxedScan,
             });
-            const bypassQualityGate = shouldBypassQualityGate(sourceName);
-
-            if (!audit.isValid && !bypassQualityGate) {
-                alert(`Scan quality rejection: ${audit.reason}. Please retake for better accuracy.`);
+            if (!audit.isValid && !relaxedScan) {
+                setScanNotice({
+                    kind: 'error',
+                    message: `Scan quality rejection: ${audit.reason}`,
+                });
                 return;
             }
 
-            if (!audit.isValid && bypassQualityGate) {
-                console.warn(`Quality gate bypassed for ${sourceName || 'scan'}: ${audit.reason}`);
+            if (!audit.isValid && relaxedScan) {
+                console.warn(`Quality gate relaxed for ${sourceName || 'scan'}: ${audit.reason}`);
+                setScanNotice({
+                    kind: 'warning',
+                    message: `Scan quality warning: ${audit.reason} Proceeding because this scan is in relaxed mode.`,
+                });
+            } else if (audit.reason) {
+                setScanNotice({
+                    kind: audit.isValid ? 'warning' : 'error',
+                    message: audit.isValid
+                        ? audit.reason
+                        : `Scan quality rejection: ${audit.reason}`,
+                });
+            } else {
+                setScanNotice(null);
             }
 
             const normalizedLandmarks = matrix ? inversePoseNormalization(landmarks, matrix) : landmarks;
@@ -250,7 +271,10 @@ export default function FaceAnalyzer() {
             }
         } catch (err) {
             console.error('Analysis failed:', err);
-            alert('Analysis failed. Please try again with a clearer photo.');
+            setScanNotice({
+                kind: 'error',
+                message: 'Analysis failed. Please try again with a clearer photo.',
+            });
         } finally {
             setIsAnalyzing(false);
         }
@@ -293,7 +317,10 @@ export default function FaceAnalyzer() {
             reader.readAsDataURL(blob);
         } catch (error) {
             console.error('URL image load failed:', error);
-            alert('Failed to load image from URL. Try uploading directly.');
+            setScanNotice({
+                kind: 'error',
+                message: 'Failed to load image from URL. Try uploading directly.',
+            });
             setIsAnalyzing(false);
         }
     };
@@ -302,6 +329,7 @@ export default function FaceAnalyzer() {
         setAuditResult(null);
         setAnalyzedImageWithLandmarks(null);
         setExpandedMetric(null);
+        setScanNotice(null);
         setResultsTab('analysis');
     };
 
@@ -404,6 +432,22 @@ export default function FaceAnalyzer() {
                                 </div>
                             )}
                         </div>
+
+                        {scanNotice && (
+                            <div
+                                className={`w-full rounded-2xl border px-4 py-3 text-xs font-medium leading-relaxed ${
+                                    scanNotice.kind === 'error'
+                                        ? 'border-rose-500/30 bg-rose-500/10 text-rose-200'
+                                        : scanNotice.kind === 'warning'
+                                            ? 'border-amber-500/30 bg-amber-500/10 text-amber-200'
+                                            : 'border-sky-500/30 bg-sky-500/10 text-sky-200'
+                                }`}
+                                role="status"
+                                aria-live="polite"
+                            >
+                                {scanNotice.message}
+                            </div>
+                        )}
 
                         <div className="w-full space-y-6">
                             <div className="flex gap-4 p-1.5 bg-zinc-900 border border-zinc-800 rounded-2xl">

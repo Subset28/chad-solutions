@@ -49,15 +49,20 @@ export function validateLandmarks(
 
     const overall = totalVisibility / Object.keys(keyGroups).length;
 
-    const hardFail =
-        !relaxed
-            ? occludedRegions.length > 0
-            : occludedRegions.includes('eyes') || occludedRegions.includes('midface') || overall < 0.5;
+    const hardFail = !relaxed && occludedRegions.length > 0;
 
     if (hardFail) {
         return {
             isValid: false,
             reason: `Potential occlusion detected in: ${occludedRegions.join(", ")}. Please ensure your face is fully visible.`,
+            overall
+        };
+    }
+
+    if (occludedRegions.length > 0) {
+        return {
+            isValid: true,
+            reason: `Potential partial occlusion detected in: ${occludedRegions.join(", ")}. Proceeding with reduced confidence.`,
             overall
         };
     }
