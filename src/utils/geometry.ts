@@ -485,8 +485,9 @@ export function calculateBigonialWidthRatio(landmarks: NormalizedLandmark[]): nu
 }
 
 export function calculateLowerThirdRatio(landmarks: NormalizedLandmark[], pitchStr: number = 0): number {
-    // lower/full face ratio: 0.62-0.68
-    // Height between nasion (168) to bottom of chin (152) / Face height (hairline 10 to bottom of chin 152)
+    // Lower / Full Face Ratio: nasion-to-chin divided by hairline-to-chin.
+    // This matches the app's metric definition and the source thread more closely
+    // than using the subnasale, which underestimates the lower face length.
     let lowerHeight = distance(landmarks[168], landmarks[152]);
     let fullHeight = distance(landmarks[10], landmarks[152]);
 
@@ -607,7 +608,7 @@ export function calculateFacialThirds(landmarks: NormalizedLandmark[]): { upper:
 
     const hairline = landmarks[10];      // Top of face (approximation)
     const glabella = landmarks[168];     // Between eyebrows
-    const subnasion = landmarks[164];      // Nose base
+    const subnasion = landmarks[2];      // Subnasale / nose base
     const menton = landmarks[152];       // Chin
 
     const upperThird = distance(hairline, glabella);
@@ -753,6 +754,8 @@ export interface MetricScores {
     pfl: number;
     eyeToMouthAngle: number;
     lipRatio: number;
+    facialFifthsRatio: number;
+    cervicomentalAngle: number;
     overallSymmetry: number;
     ipd: number;
     facialThirdsRatio: number;
@@ -818,8 +821,8 @@ export function calculateAggregatedMetrics(scans: unknown[]): MetricScores | nul
         counters[key] = 0;
     }
 
-    const sideOnlyMetrics = ['chinProjection', 'maxillaryProtrusion', 'orbitalRimProtrusion', 'browRidgeProtrusion', 'infraorbitalRimPosition', 'doubleChinRisk'];
-    const frontOnlyMetrics = ['facialAsymmetry', 'ipdRatio', 'eyeSeparationRatio', 'canthalTilt', 'fwfhRatio', 'noseWidthRatio', 'mouthToNoseWidthRatio', 'bigonialWidthRatio', 'cheekboneProminence', 'skinQuality', 'facialTension', 'chinToPhiltrumRatio', 'lowerThirdRatio', 'palpebralFissureLength', 'facialThirdsRatio', 'foreheadHeightRatio', 'upperEyelidExposure', 'philtrumLength'];
+    const sideOnlyMetrics = ['chinProjection', 'maxillaryProtrusion', 'orbitalRimProtrusion', 'browRidgeProtrusion', 'infraorbitalRimPosition', 'doubleChinRisk', 'cervicomentalAngle'];
+    const frontOnlyMetrics = ['facialAsymmetry', 'ipdRatio', 'eyeSeparationRatio', 'canthalTilt', 'fwfhRatio', 'noseWidthRatio', 'mouthToNoseWidthRatio', 'bigonialWidthRatio', 'cheekboneProminence', 'skinQuality', 'facialTension', 'chinToPhiltrumRatio', 'lowerThirdRatio', 'palpebralFissureLength', 'facialThirdsRatio', 'foreheadHeightRatio', 'upperEyelidExposure', 'philtrumLength', 'eyeToMouthAngle', 'lipRatio', 'facialFifthsRatio', 'pfl'];
 
     for (const scan of scanResults) {
         for (const [key, value] of Object.entries(scan.metrics)) {
@@ -857,6 +860,17 @@ export function calculatePSLScore(
     const breakdown: string[] = ["Base: 4.0 (MTN - Average)"];
 
     const isF = gender === 'female';
+
+    if (profileType === 'side' || profileType === 'composite') {
+        // Cervicomental Angle
+        if (metrics.cervicomentalAngle >= 105 && metrics.cervicomentalAngle <= 120) {
+            score += 0.2;
+            breakdown.push("Ideal Cervicomental Angle (+0.2)");
+        } else if (metrics.cervicomentalAngle < 100) {
+            score -= 0.4;
+            breakdown.push("Soft Cervicomental Angle (-0.4)");
+        }
+    }
 
     // ==========================================
     // UNIVERSAL METRICS (Apply to both profiles)
@@ -907,6 +921,19 @@ export function calculatePSLScore(
     }
 
     // Hairline Recession (Ideal: 90-100) — works from any angle
+    // Facial Fifths Proxy (front only)
+    if (profileType === 'front' || profileType === 'composite') {
+        if (metrics.facialFifthsRatio >= 0.95 && metrics.facialFifthsRatio <= 1.05) {
+            score += 0.1;
+            breakdown.push("Ideal Facial Fifths (+0.1)");
+        } else if (metrics.facialFifthsRatio >= 0.90 && metrics.facialFifthsRatio <= 1.10) {
+            breakdown.push("Average Facial Fifths (+0.0)");
+        } else {
+            score -= 0.2;
+            breakdown.push("Imbalanced Facial Fifths (-0.2)");
+        }
+    }
+
     if (metrics.hairlineRecession >= 95) {
         score += 0.1;
         breakdown.push("Full Hairline (+0.1)");

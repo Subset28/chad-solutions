@@ -1,5 +1,12 @@
 import { NormalizedLandmark } from "@mediapipe/tasks-vision";
 import { classifyPhenotype, classifyNorwood } from './community';
+import {
+    calculateEyeToMouthAngle,
+    calculateFacialThirds,
+    calculateLipRatio,
+    calculateLowerThirdRatio,
+    calculatePalpebralFissureLength,
+} from '@/utils/geometry';
 import { 
     MetricReport, 
     BilateralResult, 
@@ -142,6 +149,42 @@ export function calculatePhiltrumLength(landmarks: NormalizedLandmark[], ipd_mm:
     
     // Scale to mm using IPD as anchor
     return (rawPhiltrum / rawIPD) * ipd_mm;
+}
+
+/**
+ * Facial Fifths Balance
+ * Proxy based on nose, eye opening, and mouth width relative to bizygomatic width.
+ * This keeps the metric measurable with the available face mesh landmarks even
+ * though the mesh does not provide ear landmarks.
+ */
+export function calculateFacialFifthsRatio(landmarks: NormalizedLandmark[]): number {
+    const faceWidth = distance(landmarks[234], landmarks[454]);
+    if (faceWidth === 0) return 0;
+
+    const noseWidth = distance(landmarks[48], landmarks[278]);
+    const mouthWidth = distance(landmarks[61], landmarks[291]);
+    const eyeWidth = (distance(landmarks[33], landmarks[133]) + distance(landmarks[263], landmarks[362])) / 2;
+    const idealSegment = faceWidth * 0.2;
+    const averageSegment = (noseWidth + mouthWidth + eyeWidth) / 3;
+
+    return idealSegment === 0 ? 0 : averageSegment / idealSegment;
+}
+
+/**
+ * Cervicomental Angle
+ * Proxy for the chin-to-neck junction using the submental landmark and the
+ * lower neck landmarks available in FaceMesh.
+ */
+export function calculateCervicomentalAngle(landmarks: NormalizedLandmark[]): number {
+    const chin = landmarks[152];
+    const hyoid = landmarks[175];
+    const lowerNeck = landmarks[400];
+
+    // The source definition uses the hyoid as the vertex with the chin and neck
+    // as the two arms. In the face mesh, the visible jaw-to-neck junction is best
+    // approximated by the exterior angle at that vertex.
+    const acuteAngle = calculateThreePointAngle(chin, hyoid, lowerNeck);
+    return 180 - acuteAngle;
 }
 
 // ==========================================
@@ -289,7 +332,8 @@ export function analyzeMetrics(
     landmarks: NormalizedLandmark[], 
     blendshapes: any[] = [],
     imageData?: ImageData,
-    rawLandmarks?: NormalizedLandmark[]
+    rawLandmarks?: NormalizedLandmark[],
+    profileType: 'front' | 'side' = 'front'
 ): MetricReport {
     // 1. Correct for Aspect Ratio Distortion
     // MediaPipe landmarks are normalized [0, 1] for width and height separately.
@@ -312,6 +356,7 @@ export function analyzeMetrics(
     const rightEye = midpoint(correctedLandmarks[263], correctedLandmarks[362]);
     const ipd = distance(leftEye, rightEye);
     const tensionData = calculateFacialTension(blendshapes);
+    const isSideProfile = profileType === 'side';
 
     // Calculate Dynamic Confidence based on landmark visibility/presence
     const getConfidence = (indices: number[]) => {
@@ -320,8 +365,8 @@ export function analyzeMetrics(
     };
 
     const periorbitalIndices = [33, 133, 362, 263, 159, 145, 386, 374];
-    const midfaceIndices = [234, 454, 1, 2, 48, 278, 6, 197];
-    const jawlineIndices = [172, 397, 152, 175, 396, 400];
+    const midfaceIndices = [234, 454, 1, 2, 48, 278, 6, 197, 61, 291, 33, 133, 263, 362];
+    const jawlineIndices = [172, 397, 152, 175, 396, 400, 200, 199];
     const skinIndices = [205, 425, 50, 280];
 
     const report: MetricReport = {
@@ -338,6 +383,12 @@ export function analyzeMetrics(
         midface: {
             fWHR: calculatefWHR(correctedLandmarks),
             midfaceRatio: calculateMidfaceRatio(correctedLandmarks),
+            lowerThirdRatio: calculateLowerThirdRatio(correctedLandmarks),
+            facialThirdsRatio: calculateFacialThirds(correctedLandmarks).ratio * 100,
+            facialFifthsRatio: calculateFacialFifthsRatio(correctedLandmarks),
+            pfl: calculatePalpebralFissureLength(correctedLandmarks),
+            eyeToMouthAngle: calculateEyeToMouthAngle(correctedLandmarks),
+            lipRatio: calculateLipRatio(correctedLandmarks),
             philtrumLength: calculatePhiltrumLength(correctedLandmarks),
             mouthToNoseWidthRatio: distance(correctedLandmarks[61], correctedLandmarks[291]) / distance(correctedLandmarks[48], correctedLandmarks[278]),
             noseWidthRatio: distance(correctedLandmarks[48], correctedLandmarks[278]) / bizygomatic,
@@ -350,6 +401,9 @@ export function analyzeMetrics(
             chinProjection: calculateChinProjection(correctedLandmarks),
             bigonialRatio: distance(correctedLandmarks[172], correctedLandmarks[397]) / bizygomatic,
             doubleChinRisk: calculateDoubleChinRisk(correctedLandmarks),
+            cervicomentalAngle: isSideProfile
+                ? calculateCervicomentalAngle(correctedLandmarks)
+                : calculateCervicomentalAngle(correctedLandmarks),
             confidence: getConfidence(jawlineIndices)
         },
         symmetry: {
@@ -494,5 +548,3 @@ export function flattenMetrics(report: MetricReport): Record<string, any> {
     processObject(report);
     return flattened;
 }
-
-
