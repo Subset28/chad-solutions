@@ -1,5 +1,5 @@
-import { MetricReport, BilateralResult, PSLResult } from "@/types/metrics";
-import { predictBenchmarkPsl, scoreToPercentile } from "./psl-calibration";
+import { MetricReport, PSLResult } from "@/types/metrics";
+import { predictBenchmarkPsl, REFERENCE_NORMS } from "./psl-calibration";
 
 export interface ScoreContext {
     gender: 'male' | 'female';
@@ -120,6 +120,46 @@ const POPULATION_NORMS: Record<string, Record<'male' | 'female', MetricNorm>> = 
     }
 };
 
+const AUXILIARY_NORMS: Record<string, Record<'male' | 'female', MetricNorm>> = {
+    vitalityScore: {
+        male: { mean: 28, stdDev: 10, weight: 0.3, idealDirection: 1 },
+        female: { mean: 28, stdDev: 10, weight: 0.3, idealDirection: 1 }
+    },
+    collagenIndex: {
+        male: { mean: 46, stdDev: 27, weight: 0.3, idealDirection: 1 },
+        female: { mean: 46, stdDev: 27, weight: 0.3, idealDirection: 1 }
+    },
+    eyeAperture: {
+        male: { mean: 42, stdDev: 14, weight: 0.25, idealDirection: -1 },
+        female: { mean: 42, stdDev: 14, weight: 0.25, idealDirection: -1 }
+    },
+    biologicalAgeDelta: {
+        male: { mean: 2.2, stdDev: 1.0, weight: 0.25, idealDirection: -1 },
+        female: { mean: 2.2, stdDev: 1.0, weight: 0.25, idealDirection: -1 }
+    },
+    eyebrowContrast: {
+        male: { mean: 43, stdDev: 28, weight: 0.2, idealDirection: 1 },
+        female: { mean: 43, stdDev: 28, weight: 0.2, idealDirection: 1 }
+    }
+};
+
+function mergeNorm(
+    referenceKey: string,
+    fallback: MetricNorm
+): MetricNorm {
+    const ref = REFERENCE_NORMS[referenceKey];
+    return {
+        mean: ref?.mean ?? fallback.mean,
+        stdDev: ref?.stdDev ?? fallback.stdDev,
+        weight: fallback.weight,
+        idealDirection: fallback.idealDirection,
+    };
+}
+
+function clamp(value: number, min: number, max: number): number {
+    return Math.min(max, Math.max(min, value));
+}
+
 /**
  * Maps a weighted Z-score to the 0-8 PSL scale using a centered sigmoid.
  * Centered at Z=0 -> PSL 4.0 (50th percentile) as per Looksmax standard.
@@ -143,16 +183,25 @@ export function calculatePSLScore(
     landmarkConfidence: number
 ): PSLResult {
     const calibrated = predictBenchmarkPsl(metrics);
-    const finalScore = calibrated.score;
+    const dampedScore = 4 + (calibrated.score - 4) * 0.75;
+    const finalScore = Math.round(clamp(dampedScore, 0, 8) * 10) / 10;
     const percentile = scoreToPercentile(finalScore);
+    const breakdown = Object.entries(calibrated.breakdown).map(
+        ([metric, detail]) => `${metric}: ${detail.contribution >= 0 ? '+' : ''}${detail.contribution.toFixed(2)} (${detail.zScore.toFixed(2)}σ)`
+    );
 
     return {
         overall: finalScore,
         confidence: Math.round(landmarkConfidence * 100),
         tier: getTier(finalScore),
         percentile,
-        breakdown: calibrated.breakdown
+        breakdown
     };
+}
+
+export function scoreToPercentile(score: number): number {
+    const normalized = 1 / (1 + Math.exp(-1.3 * (score - 4)));
+    return Math.max(1, Math.min(99, Math.round(normalized * 100)));
 }
 
 /**

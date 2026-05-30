@@ -81,5 +81,5 @@ export interface PSLResult {
     confidence: number;
     tier: string;
     percentile: number;
-    breakdown: Record<string, { zScore: number, contribution: number }>;
+    breakdown: string[];
 }

@@ -154,6 +154,16 @@ const BENCHMARK_MODEL: CalibrationModel = {
     },
 };
 
+export const REFERENCE_NORMS: Record<string, { mean: number; stdDev: number }> = Object.fromEntries(
+    Object.entries(BENCHMARK_MODEL.means).map(([key, mean]) => [
+        key,
+        {
+            mean,
+            stdDev: BENCHMARK_MODEL.stds[key] ?? 1,
+        },
+    ])
+);
+
 function flattenNumericValues(value: unknown, prefix = ''): Record<string, number> {
     if (!value || typeof value !== 'object') return {};
 
