@@ -3,6 +3,7 @@ import { classifyPhenotype, classifyNorwood } from './community';
 import {
     calculateEyeToMouthAngle,
     calculateFacialThirds,
+    calculateForeheadHeightRatio,
     calculateLipRatio,
     calculateLowerThirdRatio,
     calculatePalpebralFissureLength,
@@ -393,7 +394,7 @@ export function analyzeMetrics(
             mouthToNoseWidthRatio: distance(correctedLandmarks[61], correctedLandmarks[291]) / distance(correctedLandmarks[48], correctedLandmarks[278]),
             noseWidthRatio: distance(correctedLandmarks[48], correctedLandmarks[278]) / bizygomatic,
             maxillaryProtrusion: calculateMaxillaryProtrusion(correctedLandmarks),
-            foreheadHeightRatio: distance(correctedLandmarks[10], correctedLandmarks[168]) / distance(correctedLandmarks[168], correctedLandmarks[1]),
+            foreheadHeightRatio: calculateForeheadHeightRatio(correctedLandmarks),
             confidence: getConfidence(midfaceIndices)
         },
         jawline: {

@@ -1,4 +1,4 @@
-import { MetricReport, PSLResult } from "@/types/metrics";
+﻿import { MetricReport, PSLResult } from "@/types/metrics";
 import { predictBenchmarkPsl, REFERENCE_NORMS } from "./psl-calibration";
 
 export interface ScoreContext {
@@ -183,11 +183,11 @@ export function calculatePSLScore(
     landmarkConfidence: number
 ): PSLResult {
     const calibrated = predictBenchmarkPsl(metrics);
-    const dampedScore = 4 + (calibrated.score - 4) * 0.75;
+    const dampedScore = 4 + (calibrated.score - 4) * 0.9;
     const finalScore = Math.round(clamp(dampedScore, 0, 8) * 10) / 10;
     const percentile = scoreToPercentile(finalScore);
     const breakdown = Object.entries(calibrated.breakdown).map(
-        ([metric, detail]) => `${metric}: ${detail.contribution >= 0 ? '+' : ''}${detail.contribution.toFixed(2)} (${detail.zScore.toFixed(2)}σ)`
+        ([metric, detail]) => `${metric}: ${detail.contribution >= 0 ? '+' : ''}${detail.contribution.toFixed(2)} (z=${detail.zScore.toFixed(2)})`
     );
 
     return {
@@ -247,3 +247,4 @@ export function calculateAggregatedMetrics(scans: any[]): MetricReport | null {
     // For now, we'll just take the latest or average if applicable
     return base;
 }
+
