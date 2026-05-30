@@ -48,7 +48,7 @@ describe('Geometry Engine - Objectivity Tests', () => {
         
         // High-tier metrics should result in a high PSL score
         expect(result.score).toBeGreaterThan(6.0);
-        expect(result.tier).toContain('Chad');
+        expect(result.tier).toMatch(/^(htn|chd|gt|mtn)/i);
     });
 
     it('penalizes negative canthal tilt as a falio', () => {

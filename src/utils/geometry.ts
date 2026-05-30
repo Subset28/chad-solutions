@@ -1340,23 +1340,23 @@ export function calculatePSLScore(
     // Determine tier based on strict PSL Scale Distribution guide
     let tier = "";
     if (score >= 7.99) {
-        tier = "8 PSL  Perfection (Theoretical)";
+        tier = "gt";
     } else if (score >= 7.0) {
-        tier = "7 PSL  PSL God-Tier (Supermodels and Elite Actors)";
+        tier = "chd";
     } else if (score >= 6.0) {
-        tier = "6 PSL  Chad / Stacy";
+        tier = "htn";
     } else if (score >= 5.0) {
-        tier = "5 PSL  Above Average (High-Tier Normie / Chadlite)";
+        tier = "mtn";
     } else if (score >= 4.0) {
-        tier = "4 PSL  Average (Mid-Tier Normie)";
+        tier = "mtn-";
     } else if (score >= 3.0) {
-        tier = "3 PSL  Below Average (Low-Tier Normie)";
+        tier = "ltn";
     } else if (score >= 2.0) {
-        tier = "2 PSL  \"Truecel\"  Very Low Attractiveness";
+        tier = "ltn-";
     } else if (score >= 1.0) {
-        tier = "1 PSL  Extremely Low Attractiveness";
+        tier = "vltn";
     } else {
-        tier = "0 PSL  Severe Deformities (Subhuman)";
+        tier = "vltn-";
     }
 
     return {

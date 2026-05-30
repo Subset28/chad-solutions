@@ -233,15 +233,15 @@ function erf(x: number): number {
 }
 
 function getTier(score: number): string {
-    if (score >= 7.5) return "Elite (Genetic Lottery)";
-    if (score >= 7.0) return "Chad (Top 0.1%)";
-    if (score >= 6.0) return "Model Tier (Elite)";
-    if (score >= 5.5) return "Chadlite";
-    if (score >= 5.0) return "High-Tier Attractive";
-    if (score >= 4.5) return "Above Average";
-    if (score >= 3.5) return "Average (Normie)";
-    if (score >= 2.5) return "Below Average";
-    return "Developing / Low-tier";
+    if (score >= 7.5) return "gt";
+    if (score >= 7.0) return "chd";
+    if (score >= 6.0) return "htn";
+    if (score >= 5.5) return "mtn+";
+    if (score >= 5.0) return "mtn";
+    if (score >= 4.5) return "mtn-";
+    if (score >= 3.5) return "ltn";
+    if (score >= 2.5) return "ltn-";
+    return "vltn";
 }
 
 /**
