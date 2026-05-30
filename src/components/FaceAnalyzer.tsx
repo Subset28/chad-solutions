@@ -62,6 +62,34 @@ export default function FaceAnalyzer() {
         return normalized.includes('psl') && normalized.includes('example');
     };
 
+    const estimateCaptureBiasPenalty = (
+        landmarks: Array<{ x: number; y: number }>
+    ) => {
+        if (!landmarks.length) return 0;
+
+        let minX = 1;
+        let maxX = 0;
+        let minY = 1;
+        let maxY = 0;
+
+        for (const point of landmarks) {
+            minX = Math.min(minX, point.x);
+            maxX = Math.max(maxX, point.x);
+            minY = Math.min(minY, point.y);
+            maxY = Math.max(maxY, point.y);
+        }
+
+        const width = Math.max(0, maxX - minX);
+        const height = Math.max(0, maxY - minY);
+        const span = Math.max(width, height);
+        const area = width * height;
+
+        if (span >= 0.62 || area >= 0.30) return 0.9;
+        if (span >= 0.54 || area >= 0.22) return 0.6;
+        if (span >= 0.44 || area >= 0.16) return 0.3;
+        return 0;
+    };
+
     useEffect(() => {
         const initLandmarker = async () => {
             try {
@@ -127,6 +155,9 @@ export default function FaceAnalyzer() {
             const isFrontFacing = Math.abs(angles.yaw) < 25 && Math.abs(angles.pitch) < 20;
             const isWebcamCapture = sourceName === 'webcam-capture';
             const relaxedScan = shouldBypassQualityGate(sourceName) || isFrontFacing || isWebcamCapture;
+            const captureBiasPenalty = shouldBypassQualityGate(sourceName)
+                ? 0
+                : Math.min(1.2, estimateCaptureBiasPenalty(landmarks) + (isWebcamCapture ? 0.2 : 0));
             const audit = validateLandmarks(landmarks, {
                 relaxed: relaxedScan,
             });
@@ -173,7 +204,7 @@ export default function FaceAnalyzer() {
                 imageData,
                 landmarks
             );
-            const psl = calculatePSLScore(metrics, { gender }, audit.overall);
+            const psl = calculatePSLScore(metrics, { gender, captureBiasPenalty }, audit.overall);
 
             const scanId =
                 typeof crypto !== 'undefined' && crypto.randomUUID
@@ -190,6 +221,13 @@ export default function FaceAnalyzer() {
                 audit,
                 gender,
             };
+
+            if (captureBiasPenalty > 0) {
+                setScanNotice({
+                    kind: 'info',
+                    message: `Close-capture correction applied: -${captureBiasPenalty.toFixed(1)} PSL to reduce selfie inflation on nose width, fifths, and related ratios.`,
+                });
+            }
 
             if (typeof window !== 'undefined') {
                 (window as typeof window & {

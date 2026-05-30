@@ -271,7 +271,9 @@ function getNextStep(metricKey: string, modifiability?: string, assessment?: str
 export default function AnalysisTab({ metrics, profileType, gender, expandedMetric, onToggleMetric }: AnalysisTabProps) {
     const flatMetrics = flattenMetrics(metrics);
 
-    const metricEntries = Object.entries(flatMetrics).filter(([, value]) => typeof value === 'number') as Array<[string, number]>;
+    const metricEntries = Object.entries(flatMetrics).filter(
+        ([key, value]) => typeof value === 'number' && !key.toLowerCase().includes('confidence')
+    ) as Array<[string, number]>;
 
     const analyzedMetrics = metricEntries.map(([key, value]) => {
         const rating = getRating(key as keyof MetricScores, value, gender);

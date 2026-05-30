@@ -4,6 +4,7 @@ import { predictBenchmarkPsl, REFERENCE_NORMS } from "./psl-calibration";
 export interface ScoreContext {
     gender: 'male' | 'female';
     ageRange?: string;
+    captureBiasPenalty?: number;
 }
 
 export interface MetricNorm {
@@ -184,11 +185,16 @@ export function calculatePSLScore(
 ): PSLResult {
     const calibrated = predictBenchmarkPsl(metrics);
     const dampedScore = 4 + (calibrated.score - 4) * 0.97;
-    const finalScore = Math.round(clamp(dampedScore, 0, 8) * 10) / 10;
+    const captureBiasPenalty = clamp(context.captureBiasPenalty ?? 0, 0, 1.5);
+    const adjustedScore = clamp(dampedScore - captureBiasPenalty, 0, 8);
+    const finalScore = Math.round(adjustedScore * 10) / 10;
     const percentile = scoreToPercentile(finalScore);
     const breakdown = Object.entries(calibrated.breakdown).map(
         ([metric, detail]) => `${metric}: ${detail.contribution >= 0 ? '+' : ''}${detail.contribution.toFixed(2)} (z=${detail.zScore.toFixed(2)})`
     );
+    if (captureBiasPenalty > 0) {
+        breakdown.unshift(`Capture distance correction (-${captureBiasPenalty.toFixed(2)})`);
+    }
 
     return {
         overall: finalScore,
