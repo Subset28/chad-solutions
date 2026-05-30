@@ -43,6 +43,11 @@ const PSL_IMPACT_WEIGHTS: Record<string, number> = {
     chinToPhiltrumRatio: 0.4,
     bigonialRatio: 0.3,
     lowerThirdRatio: 0.3,
+    facialThirdsRatio: 0.25,
+    facialFifthsRatio: 0.2,
+    pfl: 0.4,
+    eyeToMouthAngle: 0.25,
+    lipRatio: 0.25,
     overallSymmetry: 0.4,
     cheekboneProminence: 0.4,
     orbitalRimProtrusion: 0.4,
@@ -51,10 +56,10 @@ const PSL_IMPACT_WEIGHTS: Record<string, number> = {
     infraorbitalRimPosition: 0.3,
     chinProjection: 0.5,
     doubleChinRisk: 0.4,
+    cervicomentalAngle: 0.35,
     uee: 0.6,
     philtrumLength: 0.5,
     esr: 0.4,
-    pfl: 0.5,
     collagenIndex: 0.3,
     eyeAperture: 0.2
 };

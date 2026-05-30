@@ -164,17 +164,37 @@ export default function FaceAnalyzer() {
                     __lastScan?: ScanResult;
                     __lastMetrics?: typeof metrics;
                     __lastAudit?: typeof audit;
+                    __lastLandmarks?: typeof landmarks;
+                    __lastCorrectedLandmarks?: typeof correctedLandmarks;
                 }).__lastScan = scan;
                 (window as typeof window & {
                     __lastScan?: ScanResult;
                     __lastMetrics?: typeof metrics;
                     __lastAudit?: typeof audit;
+                    __lastLandmarks?: typeof landmarks;
+                    __lastCorrectedLandmarks?: typeof correctedLandmarks;
                 }).__lastMetrics = metrics;
                 (window as typeof window & {
                     __lastScan?: ScanResult;
                     __lastMetrics?: typeof metrics;
                     __lastAudit?: typeof audit;
+                    __lastLandmarks?: typeof landmarks;
+                    __lastCorrectedLandmarks?: typeof correctedLandmarks;
                 }).__lastAudit = audit;
+                (window as typeof window & {
+                    __lastScan?: ScanResult;
+                    __lastMetrics?: typeof metrics;
+                    __lastAudit?: typeof audit;
+                    __lastLandmarks?: typeof landmarks;
+                    __lastCorrectedLandmarks?: typeof correctedLandmarks;
+                }).__lastLandmarks = landmarks;
+                (window as typeof window & {
+                    __lastScan?: ScanResult;
+                    __lastMetrics?: typeof metrics;
+                    __lastAudit?: typeof audit;
+                    __lastLandmarks?: typeof landmarks;
+                    __lastCorrectedLandmarks?: typeof correctedLandmarks;
+                }).__lastCorrectedLandmarks = correctedLandmarks;
             }
 
             ctx.strokeStyle = '#00ff00';

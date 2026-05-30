@@ -4,6 +4,7 @@ import React from 'react';
 import { MetricReport, flattenMetrics } from '@/utils/metrics';
 import { metricExplanations } from '@/utils/explanations';
 import { getRating, getIdealRange } from '@/utils/ratings';
+import { metricRecommendations } from '@/utils/recommendations';
 import type { MetricScores } from '@/utils/geometry';
 
 interface AnalysisTabProps {
@@ -21,6 +22,7 @@ const SIDE_ONLY_METRICS = [
     'browRidgeProtrusion',
     'infraorbitalRimPosition',
     'doubleChinRisk',
+    'cervicomentalAngle',
 ];
 
 const GROUP_STYLES = {
@@ -64,6 +66,81 @@ function getAssessment(color: string) {
     return 'Weak';
 }
 
+type IdealSpec =
+    | { kind: 'range'; low: number; high: number }
+    | { kind: 'min'; low: number }
+    | { kind: 'max'; high: number }
+    | { kind: 'exact'; target: number }
+    | { kind: 'none' };
+
+function parseIdealRange(ideal: string): IdealSpec {
+    const normalized = ideal.toLowerCase();
+    const numbers = [...ideal.matchAll(/-?\d+(?:\.\d+)?/g)].map((match) => Number(match[0])).filter((n) => Number.isFinite(n));
+
+    const rangeMatch = ideal.match(/(-?\d+(?:\.\d+)?)\s*(?:-|to)\s*(-?\d+(?:\.\d+)?)/i);
+    if (rangeMatch) {
+        return { kind: 'range', low: Number(rangeMatch[1]), high: Number(rangeMatch[2]) };
+    }
+
+    const minMatch = ideal.match(/(?:>|>=)\s*(-?\d+(?:\.\d+)?)/);
+    if (minMatch || normalized.includes('+')) {
+        const target = Number(minMatch?.[1] ?? numbers[0]);
+        if (Number.isFinite(target)) return { kind: 'min', low: target };
+    }
+
+    const maxMatch = ideal.match(/(?:<|<=)\s*(-?\d+(?:\.\d+)?)/);
+    if (maxMatch) {
+        const target = Number(maxMatch[1]);
+        if (Number.isFinite(target)) return { kind: 'max', high: target };
+    }
+
+    if (numbers.length === 1 && /ideal|target|perfect|balance|score/i.test(ideal)) {
+        return { kind: 'exact', target: numbers[0] };
+    }
+
+    return { kind: 'none' };
+}
+
+function describeMetricDelta(value: number, ideal: string) {
+    const spec = parseIdealRange(ideal);
+
+    switch (spec.kind) {
+        case 'range': {
+            if (value < spec.low) return `Below ideal by ${(spec.low - value).toFixed(2)}`;
+            if (value > spec.high) return `Above ideal by ${(value - spec.high).toFixed(2)}`;
+            const center = (spec.low + spec.high) / 2;
+            return `Within ideal, ${(Math.abs(value - center)).toFixed(2)} from center`;
+        }
+        case 'min':
+            return value >= spec.low
+                ? `Above minimum by ${(value - spec.low).toFixed(2)}`
+                : `Below minimum by ${(spec.low - value).toFixed(2)}`;
+        case 'max':
+            return value <= spec.high
+                ? `Below max by ${(spec.high - value).toFixed(2)}`
+                : `Above max by ${(value - spec.high).toFixed(2)}`;
+        case 'exact':
+            return `Offset ${(value - spec.target).toFixed(2)} from target`;
+        default:
+            return 'Target is qualitative';
+    }
+}
+
+function getFixSuggestion(metricKey: string, modifiability?: string) {
+    const rec = metricRecommendations[metricKey];
+    if (rec) {
+        return rec.lifestyle[0] || rec.nonSurgical[0] || rec.surgical[0] || rec.outlook;
+    }
+
+    if (modifiability === 'softmax') {
+        return 'Sleep, hydration, skin care, grooming, and body composition are the first levers to try.';
+    }
+    if (modifiability === 'hardmax') {
+        return 'This is mostly structural, so the main options are posture, framing, orthodontics, or specialist consultation.';
+    }
+    return 'Keep the scan conditions consistent so you can track real change over time.';
+}
+
 function getMetricContext(metricKey: string) {
     switch (metricKey) {
         case 'canthalTilt':
@@ -87,15 +164,19 @@ function getMetricContext(metricKey: string) {
         case 'esr':
             return 'Affects the spacing of the eyes relative to face width.';
         case 'eyeToMouthAngle':
-            return 'Affects the diagonal structure between the upper and lower face.';
+            return 'Affects the diagonal structure between the eyes, mouth, and overall face harmony.';
         case 'lipRatio':
-            return 'Affects balance between the upper and lower lip volumes.';
+            return 'Affects balance between the lower and upper lip volumes.';
+        case 'facialThirdsRatio':
+            return 'Affects whether the forehead, midface, and lower face read as evenly stacked.';
+        case 'facialFifthsRatio':
+            return 'Affects how balanced the nose, eyes, and mouth read within the face width.';
+        case 'cervicomentalAngle':
+            return 'Affects how clean the chin-to-neck transition looks from the side.';
         case 'overallSymmetry':
             return 'Affects how balanced the face reads at a glance.';
         case 'ipd':
             return 'Affects how the eye spacing relates to overall face width.';
-        case 'facialThirdsRatio':
-            return 'Affects whether the face divides into even vertical thirds.';
         case 'foreheadHeightRatio':
             return 'Affects forehead proportion and overall vertical balance.';
         case 'noseWidthRatio':
@@ -168,6 +249,14 @@ function getNextStep(metricKey: string, modifiability?: string, assessment?: str
             return 'Photo angle, light, and balanced framing matter most. Structural narrowing is surgical if someone wants a large change.';
         case 'lipRatio':
             return 'Hydration and lip care help a little; if balance remains a priority, cosmetic consultation is the main structural option.';
+        case 'lowerThirdRatio':
+        case 'facialThirdsRatio':
+        case 'facialFifthsRatio':
+        case 'eyeToMouthAngle':
+        case 'pfl':
+            return 'These are mostly structural or photographic readouts, so the biggest wins are posture, camera setup, and consistent framing.';
+        case 'cervicomentalAngle':
+            return 'Neck posture, body fat, and chin projection change how this reads most clearly in photos.';
         default:
             if (modifiability === 'softmax') {
                 return 'Focus on sleep, skin care, hydration, and grooming because those changes are the most reversible.';
@@ -187,14 +276,18 @@ export default function AnalysisTab({ metrics, profileType, gender, expandedMetr
     const analyzedMetrics = metricEntries.map(([key, value]) => {
         const rating = getRating(key as keyof MetricScores, value, gender);
         const explanation = metricExplanations[key];
+        const idealRange = getIdealRange(key as keyof MetricScores, gender);
         const severity = getSeverity(rating.color);
 
         return {
             key,
             value,
             explanation,
+            idealRange,
             severity,
             assessment: getAssessment(rating.color),
+            delta: describeMetricDelta(value, idealRange),
+            fixSuggestion: getFixSuggestion(key, explanation?.modifiability),
         };
     });
 
@@ -207,6 +300,16 @@ export default function AnalysisTab({ metrics, profileType, gender, expandedMetr
         .filter(metric => metric.severity <= 1)
         .sort((a, b) => a.severity - b.severity)
         .slice(0, 3);
+
+    const metricSummary = analyzedMetrics.reduce(
+        (acc, metric) => {
+            if (metric.severity <= 1) acc.strong += 1;
+            else if (metric.severity === 2) acc.mixed += 1;
+            else acc.needsWork += 1;
+            return acc;
+        },
+        { strong: 0, mixed: 0, needsWork: 0 }
+    );
 
     const groupedMetrics = [
         {
@@ -227,7 +330,7 @@ export default function AnalysisTab({ metrics, profileType, gender, expandedMetr
     ];
 
     const renderMetricCard = (metric: (typeof analyzedMetrics)[number]) => {
-        const { key, value, explanation, assessment, severity } = metric;
+        const { key, value, explanation, assessment, severity, idealRange, delta, fixSuggestion } = metric;
         const isExpanded = expandedMetric === key;
         const isProfileRelevant = profileType !== 'front' || !SIDE_ONLY_METRICS.includes(key);
         const badgeClass = severity === 0
@@ -264,7 +367,7 @@ export default function AnalysisTab({ metrics, profileType, gender, expandedMetr
                             </span>
                         </div>
                         <p className="text-[10px] text-zinc-600 uppercase tracking-[0.2em]">
-                            Ideal: {getIdealRange(key as keyof MetricScores, gender)}
+                            Ideal: {idealRange}
                         </p>
                     </div>
                     {isProfileRelevant && (
@@ -320,6 +423,11 @@ export default function AnalysisTab({ metrics, profileType, gender, expandedMetr
                                             Keep the same camera distance, head angle, and lighting when comparing scans so the measurement stays meaningful.
                                         </p>
                                     </div>
+                                    <div className="bg-black/30 border border-zinc-800 rounded-xl p-3">
+                                        <p className="text-[9px] font-black text-zinc-500 mb-2 uppercase tracking-[0.2em]">Delta</p>
+                                        <p className="text-xs text-zinc-300 leading-relaxed">{delta}</p>
+                                        <p className="mt-2 text-[10px] text-zinc-500 leading-relaxed">{fixSuggestion}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -331,6 +439,29 @@ export default function AnalysisTab({ metrics, profileType, gender, expandedMetr
 
     return (
         <div className="space-y-12">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-6">
+                    <p className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.3em]">Metrics measured</p>
+                    <p className="mt-3 text-3xl font-black text-white">{analyzedMetrics.length}</p>
+                    <p className="mt-2 text-xs text-zinc-400">Every numeric metric currently computed by the scan pipeline.</p>
+                </div>
+                <div className="bg-emerald-500/5 border border-emerald-500/20 rounded-3xl p-6">
+                    <p className="text-[10px] font-black text-emerald-300 uppercase tracking-[0.3em]">Strong / in-range</p>
+                    <p className="mt-3 text-3xl font-black text-white">{metricSummary.strong}</p>
+                    <p className="mt-2 text-xs text-zinc-400">Metrics reading as strong or excellent in the current scan.</p>
+                </div>
+                <div className="bg-blue-500/5 border border-blue-500/20 rounded-3xl p-6">
+                    <p className="text-[10px] font-black text-blue-300 uppercase tracking-[0.3em]">Borderline</p>
+                    <p className="mt-3 text-3xl font-black text-white">{metricSummary.mixed}</p>
+                    <p className="mt-2 text-xs text-zinc-400">Close to the ideal zone, but worth keeping an eye on.</p>
+                </div>
+                <div className="bg-orange-500/5 border border-orange-500/20 rounded-3xl p-6">
+                    <p className="text-[10px] font-black text-orange-300 uppercase tracking-[0.3em]">Needs work</p>
+                    <p className="mt-3 text-3xl font-black text-white">{metricSummary.needsWork}</p>
+                    <p className="mt-2 text-xs text-zinc-400">Areas that currently sit outside the preferred zone.</p>
+                </div>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 relative overflow-hidden group">
                     <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
@@ -438,6 +569,57 @@ export default function AnalysisTab({ metrics, profileType, gender, expandedMetr
                         </div>
                     );
                 })}
+            </div>
+
+            <div className="space-y-4">
+                <div className="flex items-center gap-4">
+                    <div className="h-px flex-1 bg-zinc-800" />
+                    <h3 className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.3em]">Full metric sheet</h3>
+                    <div className="h-px flex-1 bg-zinc-800" />
+                </div>
+
+                <div className="overflow-hidden rounded-[2rem] border border-zinc-800 bg-black/30">
+                    <div className="grid grid-cols-12 gap-3 border-b border-zinc-800 px-4 py-3 text-[9px] font-black uppercase tracking-[0.25em] text-zinc-500">
+                        <div className="col-span-4">Metric</div>
+                        <div className="col-span-2">Value</div>
+                        <div className="col-span-2">Ideal</div>
+                        <div className="col-span-2">Status</div>
+                        <div className="col-span-2">Fix</div>
+                    </div>
+                    <div className="max-h-[900px] overflow-auto">
+                        {analyzedMetrics.map((metric) => {
+                            const statusColor = metric.severity === 0
+                                ? 'text-emerald-300'
+                                : metric.severity === 1
+                                    ? 'text-blue-300'
+                                    : metric.severity === 2
+                                        ? 'text-yellow-300'
+                                        : 'text-orange-300';
+
+                            return (
+                                <div key={`sheet-${metric.key}`} className="grid grid-cols-12 gap-3 border-b border-zinc-900 px-4 py-4 text-sm last:border-b-0">
+                                    <div className="col-span-4">
+                                        <p className="font-bold text-white">{metric.explanation?.title || metric.key}</p>
+                                        <p className="mt-1 text-[10px] text-zinc-500">{metric.key}</p>
+                                    </div>
+                                    <div className="col-span-2">
+                                        <p className="font-mono text-white">{formatMetricValue(metric.key, metric.value)}</p>
+                                    </div>
+                                    <div className="col-span-2">
+                                        <p className="text-zinc-300">{metric.idealRange || 'See note'}</p>
+                                    </div>
+                                    <div className="col-span-2">
+                                        <p className={`text-[10px] font-black uppercase tracking-[0.2em] ${statusColor}`}>{metric.assessment}</p>
+                                        <p className="mt-1 text-[10px] text-zinc-500 normal-case tracking-normal">{metric.delta}</p>
+                                    </div>
+                                    <div className="col-span-2">
+                                        <p className="text-[10px] leading-relaxed text-zinc-400">{metric.fixSuggestion}</p>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
             </div>
         </div>
     );

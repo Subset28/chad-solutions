@@ -53,6 +53,114 @@ export const metricRecommendations: Record<string, MetricRecommendation> = {
         ],
         outlook: "A long midface is primarily skeletal. Surgery is the only corrective option. Cosmetic work can only partially offset the appearance."
     },
+    lowerThirdRatio: {
+        surgical: [
+            "Le Fort I / BSSO planning â€” if the lower third is structurally off, orthognathic consultation is the real starting point",
+            "Subnasal lip lift or genioplasty â€” depending on whether the issue is philtrum-heavy or chin-light"
+        ],
+        nonSurgical: [
+            "Hairstyle and beard framing â€” the easiest way to visually rebalance a long or short lower third",
+            "Camera height and posture â€” neutral head position prevents the lower third from reading shorter than it is"
+        ],
+        lifestyle: [
+            "Maintain low body fat so the jawline and chin read cleanly",
+            "Optimize nasal breathing and oral posture during development"
+        ],
+        outlook: "The lower-third ratio is mostly structural, but framing and posture can meaningfully improve how it reads in photos."
+    },
+    facialThirdsRatio: {
+        surgical: [
+            "Forehead reduction surgery â€” lowers the apparent upper third",
+            "Le Fort I maxillary impaction â€” compresses a long middle third",
+            "Genioplasty or chin implant â€” improves lower-third proportion"
+        ],
+        nonSurgical: [
+            "Fringe or volume at the hairline changes the upper-third read instantly",
+            "Beard shaping can visually lengthen the lower third"
+        ],
+        lifestyle: [
+            "Use the same head angle across photos to keep thirds comparable",
+            "Good posture prevents the face from collapsing visually"
+        ],
+        outlook: "The thirds ratio is mostly about skeletal proportion, but hairstyle and beard choices are powerful optical tools."
+    },
+    facialFifthsRatio: {
+        surgical: [
+            "Alar base reduction or cheekbone augmentation can rebalance the horizontal fifths read",
+            "Orthognathic or orbital support work can improve the underlying harmony"
+        ],
+        nonSurgical: [
+            "Contouring or strategic grooming can subtly rebalance the left-to-right read",
+            "Lens distance and frontal framing matter a lot for fifths"
+        ],
+        lifestyle: [
+            "Avoid ultra-close selfies that distort the nose and eye widths",
+            "Use a straight-on camera angle with even lighting"
+        ],
+        outlook: "This is a practical front-photo proxy. Treat it as a harmony readout rather than a literal anthropometric diagnosis."
+    },
+    pflLegacy: {
+        surgical: [
+            "Lateral canthoplasty â€” extends the outer corner of the eye, increasing horizontal length",
+            "Medial epicanthoplasty â€” removes the medial epicanthal fold, opening the inner corner",
+            "Double eyelid surgery (for those with epicanthal folds) â€” defines the crease and opens the eye horizontally"
+        ],
+        nonSurgical: [
+            "Eyeliner technique: drawing along the waterline and slightly extending the outer corner elongates perceived PFL",
+            "Castor oil applied to lash roots may thicken lashes, adding to the illusion of deeper, longer eyes"
+        ],
+        lifestyle: [
+            "Reducing allergies and salt intake reduces under-eye puffiness, revealing more of the eye shape",
+            "Quality sleep and cold-water eye washing reduces lid inflammation"
+        ],
+        outlook: "True PFL increase is surgical. Non-surgical options are powerful illusions."
+    },
+    eyeToMouthAngleLegacy: {
+        surgical: [
+            "Combination of zygoma implants + jaw implants â€” repositions the facial landmarks to correct the angle",
+            "Genioplasty â€” repositioning the chin changes the mouth position and thus the angle"
+        ],
+        nonSurgical: [
+            "This metric is primarily structural and cannot be meaningfully modified non-surgically",
+            "Strategic hairstyle choices can alter the perceived face shape and angle"
+        ],
+        lifestyle: [
+            "Body fat reduction will not change the angle but will improve overall facial proportion",
+            "Ensure correct head posture for photo â€” chin slightly back and down for neutral expression"
+        ],
+        outlook: "The EME angle is one of the most structural metrics â€” largely genetic and skeletal."
+    },
+    lipRatio: {
+        surgical: [
+            "Fat transfer to the upper lip â€” permanently augments thin upper lips to approach the golden ratio",
+            "Lip implants (Permalip) â€” permanent silicone implants, highly consistent results",
+            "Lip lift (upper) â€” shortens the upper lip and increases tooth show, indirectly improving ratio"
+        ],
+        nonSurgical: [
+            "Upper lip hyaluronic acid filler â€” most popular cosmetic procedure globally, reversible with hyaluronidase",
+            "Lip liner overdrawing â€” creating a shadow outside the vermilion border appears to increase lip volume"
+        ],
+        lifestyle: [
+            "Lip conditioning and topical peptides (Matrixyl) improve lip texture and slight plumping",
+            "Sun protection on lips â€” UV damage thins and denatures lip tissue over time"
+        ],
+        outlook: "Lip filler for balanced ratios is highly effective and extremely low-risk when performed by a skilled injector."
+    },
+    cervicomentalAngle: {
+        surgical: [
+            "Submentoplasty â€” removal of submental fat and tightening of the platysma muscle",
+            "Chin implant + neck liposuction â€” combined procedure for maximum jawline definition"
+        ],
+        nonSurgical: [
+            "Posture correction and chin tucking can improve the visual read in photos",
+            "Jawline contouring or beard shaping can sharpen the transition visually"
+        ],
+        lifestyle: [
+            "Caloric deficit is the most effective non-procedural lever for submental fullness",
+            "Reduce sodium and alcohol intake to limit puffiness under the chin"
+        ],
+        outlook: "The cervicomental angle is heavily influenced by body fat, posture, and mandibular support."
+    },
     gonialAngle: {
         surgical: [
             "Jaw angle implants — adds volume and sharpness to the gonial region, lowering the apparent angle",
@@ -311,7 +419,7 @@ export const metricRecommendations: Record<string, MetricRecommendation> = {
         ],
         outlook: "The eye-to-mouth angle is one of the most structural metrics — largely genetic and skeletal. It changes secondarily when other skeletal work is done."
     },
-    facialThirdsRatio: {
+    facialThirdsRatioLegacy: {
         surgical: [
             "Forehead reduction surgery — lowers the hairline to reduce forehead size",
             "Le Fort I maxillary impaction — compresses a long midface",
@@ -359,7 +467,7 @@ export const metricRecommendations: Record<string, MetricRecommendation> = {
         ],
         outlook: "Wide nose width responds extremely well to surgical intervention. Alaplasty is low-risk with dramatic impact on facial proportion."
     },
-    lipRatio: {
+    lipRatioLegacy: {
         surgical: [
             "Fat transfer to the upper lip — permanently augments thin upper lips to approach the golden ratio",
             "Lip implants (Permalip) — permanent silicone implants, highly consistent results",

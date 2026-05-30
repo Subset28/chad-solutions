@@ -127,8 +127,8 @@ export default function ScoreReveal({ score, tier, metrics, onComplete }: ScoreR
                             {[
                                 { label: 'Canthal Tilt', val: metrics.periorbital.canthalTilt.average.toFixed(1) + '°' },
                                 { label: 'fWHR', val: metrics.midface.fWHR.toFixed(2) },
-                                { label: 'Symmetry', val: metrics.symmetry.overallSymmetry.toFixed(1) + '%' },
-                                { label: 'Midface', val: metrics.midface.midfaceRatio.toFixed(2) }
+                                { label: 'Lower Third', val: metrics.midface.lowerThirdRatio.toFixed(2) },
+                                { label: 'EME Angle', val: metrics.midface.eyeToMouthAngle.toFixed(1) + '°' }
                             ].map((m, i) => (
                                 <motion.div
                                     key={m.label}

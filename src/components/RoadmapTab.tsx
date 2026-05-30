@@ -5,6 +5,10 @@ import { motion } from 'framer-motion';
 import { MetricReport } from '@/utils/metrics';
 import { generateLooksmaxPlan, getTierName } from '@/utils/plan-generator';
 import { getInsightsForMetric, getLastUpdated } from '@/lib/insights';
+import { flattenMetrics } from '@/utils/metrics';
+import { getIdealRange, getRating } from '@/utils/ratings';
+import { metricExplanations } from '@/utils/explanations';
+import type { MetricScores } from '@/utils/geometry';
 
 interface RoadmapTabProps {
     metrics: MetricReport;
@@ -14,9 +18,49 @@ interface RoadmapTabProps {
 
 export default function RoadmapTab({ metrics, pslScore, gender }: RoadmapTabProps) {
     const [selectedInterventions, setSelectedInterventions] = React.useState<string[]>([]);
+    const [goalName, setGoalName] = React.useState('Summer glow-up');
+    const [targetPSL, setTargetPSL] = React.useState(() => Math.min(9.5, pslScore + 1.5));
+    const [focusMetric, setFocusMetric] = React.useState<string>('');
 
-    const targetPSL = Math.min(9.5, pslScore + 1.5);
+    React.useEffect(() => {
+        setTargetPSL(Math.min(9.5, pslScore + 1.5));
+    }, [pslScore]);
+
+    const flatMetrics = React.useMemo(() => flattenMetrics(metrics), [metrics]);
+    const metricRows = React.useMemo(() => {
+        return Object.entries(flatMetrics)
+            .filter(([, value]) => typeof value === 'number')
+            .map(([key, value]) => {
+                const rating = getRating(key as keyof MetricScores, value as number, gender);
+                const severity = rating.color.includes('green')
+                    ? 0
+                    : rating.color.includes('blue')
+                        ? 1
+                        : rating.color.includes('yellow')
+                            ? 2
+                            : 3;
+                return {
+                    key,
+                    value: value as number,
+                    title: metricExplanations[key]?.title || key,
+                    ideal: getIdealRange(key as keyof MetricScores, gender),
+                    assessment: rating.text,
+                    color: rating.color,
+                    severity,
+                    explanation: metricExplanations[key],
+                };
+            })
+            .sort((a, b) => b.severity - a.severity);
+    }, [flatMetrics, gender]);
+
+    React.useEffect(() => {
+        if (!focusMetric && metricRows[0]) {
+            setFocusMetric(metricRows[0].key);
+        }
+    }, [focusMetric, metricRows]);
+
     const plan = generateLooksmaxPlan(metrics, pslScore, targetPSL, gender);
+    const selectedMetric = metricRows.find((row) => row.key === focusMetric);
 
     const options = [
         { id: 'rhino', label: 'Rhinoplasty', boost: [0.2, 0.4], cost: [5000, 12000] },
@@ -51,6 +95,81 @@ export default function RoadmapTab({ metrics, pslScore, gender }: RoadmapTabProp
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <div className="glass-dark border border-zinc-800 rounded-[2.5rem] p-6 space-y-6 shadow-2xl">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                    <div className="space-y-2">
+                        <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                            <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-[0.2em]">Goal setup</span>
+                        </div>
+                        <h3 className="text-3xl font-black text-white tracking-tighter">{goalName}</h3>
+                        <p className="text-zinc-500 text-xs max-w-2xl leading-relaxed">
+                            Set a target PSL and pick a focus metric. The roadmap will prioritize the biggest wins first and keep the rest visible for tracking.
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-3 md:w-[360px]">
+                        <label className="space-y-1">
+                            <span className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.2em]">Goal name</span>
+                            <input
+                                value={goalName}
+                                onChange={(e) => setGoalName(e.target.value)}
+                                className="w-full rounded-2xl border border-zinc-800 bg-black/40 px-4 py-3 text-sm font-medium text-white outline-none focus:border-zinc-600"
+                            />
+                        </label>
+                        <label className="space-y-1">
+                            <span className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.2em]">Target PSL</span>
+                            <input
+                                type="number"
+                                min="0"
+                                max="10"
+                                step="0.1"
+                                value={targetPSL}
+                                onChange={(e) => setTargetPSL(Math.max(0, Math.min(9.5, Number(e.target.value) || 0)))}
+                                className="w-full rounded-2xl border border-zinc-800 bg-black/40 px-4 py-3 text-sm font-medium text-white outline-none focus:border-zinc-600"
+                            />
+                        </label>
+                        <label className="space-y-1 md:col-span-2">
+                            <span className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.2em]">Focus metric</span>
+                            <select
+                                value={focusMetric}
+                                onChange={(e) => setFocusMetric(e.target.value)}
+                                className="w-full rounded-2xl border border-zinc-800 bg-black/40 px-4 py-3 text-sm font-medium text-white outline-none focus:border-zinc-600"
+                            >
+                                {metricRows.map((row) => (
+                                    <option key={row.key} value={row.key}>
+                                        {row.title}
+                                    </option>
+                                ))}
+                            </select>
+                        </label>
+                    </div>
+                </div>
+
+                {selectedMetric && (
+                    <div className="grid gap-4 md:grid-cols-4">
+                        <div className="rounded-2xl border border-zinc-800 bg-black/40 p-4">
+                            <p className="text-[9px] font-black uppercase tracking-[0.3em] text-zinc-500">Current</p>
+                            <p className="mt-2 text-2xl font-black text-white">{selectedMetric.value.toFixed(2)}</p>
+                        </div>
+                        <div className="rounded-2xl border border-zinc-800 bg-black/40 p-4">
+                            <p className="text-[9px] font-black uppercase tracking-[0.3em] text-zinc-500">Ideal</p>
+                            <p className="mt-2 text-sm font-black text-white">{selectedMetric.ideal || 'See note'}</p>
+                        </div>
+                        <div className="rounded-2xl border border-zinc-800 bg-black/40 p-4">
+                            <p className="text-[9px] font-black uppercase tracking-[0.3em] text-zinc-500">Assessment</p>
+                            <p className="mt-2 text-sm font-black text-white">{selectedMetric.assessment}</p>
+                        </div>
+                        <div className="rounded-2xl border border-zinc-800 bg-black/40 p-4">
+                            <p className="text-[9px] font-black uppercase tracking-[0.3em] text-zinc-500">Why it matters</p>
+                            <p className="mt-2 text-xs leading-relaxed text-zinc-300">
+                                {selectedMetric.explanation?.whatItIs || 'This metric contributes to the overall scan.'}
+                            </p>
+                        </div>
+                    </div>
+                )}
+            </div>
+
             <div className="glass border border-zinc-800 rounded-3xl p-6 overflow-hidden relative">
                 <div className="absolute top-0 right-0 p-4 opacity-10 select-none pointer-events-none">
                     <span className="text-8xl font-black">PLAN</span>
@@ -229,9 +348,17 @@ export default function RoadmapTab({ metrics, pslScore, gender }: RoadmapTabProp
             </div>
 
             <div className="p-6 bg-amber-500/5 border border-amber-500/10 rounded-3xl">
-                <p className="text-[10px] text-amber-500/80 leading-relaxed text-center italic">
-                    Informational disclaimer: This plan is generated from facial measurements and general improvement heuristics. Consult qualified professionals before making medical or surgical decisions.
-                </p>
+                <div className="space-y-2 text-center">
+                    <p className="text-[10px] text-amber-500/80 leading-relaxed italic">
+                        Informational disclaimer: This plan is generated from facial measurements and general improvement heuristics. Consult qualified professionals before making medical or surgical decisions.
+                    </p>
+                    <p className="text-[9px] font-black uppercase tracking-[0.3em] text-zinc-500">
+                        Apple Health sync
+                    </p>
+                    <p className="text-[10px] text-zinc-400 leading-relaxed">
+                        Native Apple Health integration is not available in a static web app, but we can add an iOS bridge or import health exports later for sleep, activity, and body-composition signals.
+                    </p>
+                </div>
             </div>
         </div>
     );

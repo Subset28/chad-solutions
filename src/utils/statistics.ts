@@ -15,6 +15,13 @@ const ELITE_MEANS: Record<string, { mean: number, stdDev: number }> = {
     canthalTilt: { mean: 5.5, stdDev: 2.0 },
     gonialAngle: { mean: 122, stdDev: 5.0 },
     ipdRatio: { mean: 0.46, stdDev: 0.02 },
+    lowerThirdRatio: { mean: 0.64, stdDev: 0.03 },
+    facialThirdsRatio: { mean: 98, stdDev: 2.0 },
+    facialFifthsRatio: { mean: 1.0, stdDev: 0.05 },
+    pfl: { mean: 3.2, stdDev: 0.15 },
+    eyeToMouthAngle: { mean: 48, stdDev: 1.5 },
+    lipRatio: { mean: 1.62, stdDev: 0.18 },
+    cervicomentalAngle: { mean: 112, stdDev: 6 },
 };
 
 export function calculatePercentile(metric: string, value: number): PercentileData {

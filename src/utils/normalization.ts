@@ -11,7 +11,8 @@ export interface ValidationResult {
  * Checks key landmarks for visibility and overall presence.
  */
 export function validateLandmarks(
-    landmarks: NormalizedLandmark[]
+    landmarks: NormalizedLandmark[],
+    minGroupVisibility: number = 0.7
 ): ValidationResult {
     if (!landmarks || landmarks.length === 0) {
         return { isValid: false, reason: "No landmarks detected", overall: 0 };
@@ -35,7 +36,7 @@ export function validateLandmarks(
         });
         const avg = groupVisibility / indices.length;
         totalVisibility += avg;
-        if (avg < 0.7) occludedRegions.push(name);
+        if (avg < minGroupVisibility) occludedRegions.push(name);
     }
 
     const overall = totalVisibility / Object.keys(keyGroups).length;

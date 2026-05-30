@@ -89,7 +89,7 @@ export const metricExplanations: Record<string, MetricExplanation> = {
         modifiability: 'hardmax'
     },
     eyeToMouthAngle: {
-        title: "Eye-to-Mouth Angle",
+        title: "EME Angle (Eye-Mouth-Eye)",
         whatItIs: "The resulting geometric angle forming the lateral vector from the stomion (lip center) up to the center of the pupils.",
         idealRange: "47° - 50°",
         scientificContext: "This denotes the sharpness and 'blockiness' of the facial bone structure. A good EME angle is a leading indicator of facial symmetry.",
@@ -97,7 +97,7 @@ export const metricExplanations: Record<string, MetricExplanation> = {
         modifiability: 'fixed'
     },
     lipRatio: {
-        title: "Lip Ratio",
+        title: "Lower / Upper Lip Ratio",
         whatItIs: "The vertical thickness of the lower lip compared to the upper lip.",
         idealRange: "1.62",
         scientificContext: "Human lips naturally follow the golden ratio (phi), where the lower lip is roughly 1.618 times thicker than the upper lip. Deviations look unnatural.",
@@ -126,6 +126,14 @@ export const metricExplanations: Record<string, MetricExplanation> = {
         idealRange: "95% - 100%",
         scientificContext: "Developmental stability is signaled by even proportions across the cranium, maxilla, and mandible.",
         blackpillNote: "The 'Golden Thirds' are the blueprint. If your midface is 10% longer than your lower face, you have 'long midface syndrome'—one of the hardest falios to fix.",
+        modifiability: 'fixed'
+    },
+    facialFifthsRatio: {
+        title: "Facial Fifths Balance",
+        whatItIs: "A front-photo proxy for the 'Rule of Fifths', based on the width of the eyes, nose, and mouth relative to overall face width.",
+        idealRange: "0.95 - 1.05",
+        scientificContext: "The classic facial fifths rule says the face should divide into five balanced vertical sections. We proxy it here with the accessible facial widths available in a single scan.",
+        blackpillNote: "This is a practical proxy, not a literal ear-to-ear measurement. Still, strong fifths balance usually reads as more harmonious and refined.",
         modifiability: 'fixed'
     },
     foreheadHeightRatio: {
@@ -230,6 +238,14 @@ export const metricExplanations: Record<string, MetricExplanation> = {
         idealRange: "Sharp (No sagging)",
         scientificContext: "A sharp cervicomental angle indicates low body fat and a high-set hyoid bone.",
         blackpillNote: "The 'double chin' is often just a recessed mandible. If you're lean but still have a soft neck, it's a bone issue (recession), not a fat issue.",
+        modifiability: 'hardmax'
+    },
+    cervicomentalAngle: {
+        title: "Cervicomental Angle",
+        whatItIs: "The angle formed by the chin, the submental point, and the upper neck.",
+        idealRange: "105Â° - 120Â°",
+        scientificContext: "A sharper cervicomental angle reads as a cleaner jaw-to-neck transition and usually indicates lower submental fullness or better mandibular support.",
+        blackpillNote: "This is a useful proxy for how clean the jawline looks from the side. It is sensitive to posture, body fat, and chin projection.",
         modifiability: 'hardmax'
     },
     facialTension: {

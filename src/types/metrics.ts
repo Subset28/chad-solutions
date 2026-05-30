@@ -31,6 +31,12 @@ export interface MetricReport {
     midface: {
         fWHR: number;
         midfaceRatio: number;
+        lowerThirdRatio: number;
+        facialThirdsRatio: number;
+        facialFifthsRatio: number;
+        pfl: number;
+        eyeToMouthAngle: number;
+        lipRatio: number;
         philtrumLength: number;
         mouthToNoseWidthRatio: number;
         noseWidthRatio: number;
@@ -43,6 +49,7 @@ export interface MetricReport {
         chinProjection: number;
         bigonialRatio: number;
         doubleChinRisk: number;
+        cervicomentalAngle: number;
         confidence: number;
     };
     symmetry: {

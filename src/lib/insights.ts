@@ -29,6 +29,11 @@ const METRIC_TO_INSIGHT_CATEGORY: Record<string, string> = {
     noseWidthRatio: 'grooming',
     maxillaryProtrusion: 'mewing',
     foreheadHeightRatio: 'haircut',
+    lowerThirdRatio: 'mewing',
+    facialThirdsRatio: 'grooming',
+    facialFifthsRatio: 'grooming',
+    eyeToMouthAngle: 'grooming',
+    lipRatio: 'style',
     
     // Jawline
     gonialAngle: 'mewing',
@@ -36,6 +41,7 @@ const METRIC_TO_INSIGHT_CATEGORY: Record<string, string> = {
     bigonialRatio: 'mewing',
     doubleChinRisk: 'fitness',
     chinToPhiltrumRatio: 'mewing',
+    cervicomentalAngle: 'fitness',
     
     // Skin / Vitality
     collagenIndex: 'skincare',
