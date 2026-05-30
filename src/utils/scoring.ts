@@ -183,7 +183,7 @@ export function calculatePSLScore(
     landmarkConfidence: number
 ): PSLResult {
     const calibrated = predictBenchmarkPsl(metrics);
-    const dampedScore = 4 + (calibrated.score - 4) * 0.9;
+    const dampedScore = 4 + (calibrated.score - 4) * 0.97;
     const finalScore = Math.round(clamp(dampedScore, 0, 8) * 10) / 10;
     const percentile = scoreToPercentile(finalScore);
     const breakdown = Object.entries(calibrated.breakdown).map(
