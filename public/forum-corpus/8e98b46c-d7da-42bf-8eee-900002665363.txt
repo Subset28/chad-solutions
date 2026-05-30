@@ -1,0 +1,4852 @@
+
+Looksmax.org - Men's Self-Improvement & Aesthetics
+Twitter
+Discord
+Instagram
+Pinterest
+Contact us
+
+    Forums
+    Rules
+
+Log in
+Register
+Search
+
+    Forums
+    Looksmax
+    Best of the Best
+    The Complete Shredding Guide For Summer
+
+The Complete Shredding Guide For Summer
+
+    OP Menas Start date Saturday at 8:57 AM 
+
+    Saturday at 8:57 AM Replies: 124 
+
+THE COMPLETE SHREDDING GUIDE FOR SUMMER
+(Get shredded in a fucking month)
+q50sla.png
+Table of contents:
+0 – Introduction / Disclaimer
+1 – Prerequisites (BF%, LBM & Protein Target)
+2 – Diet (PSMF Setup & Food Choices)
+3 – Maximizing Fat Loss Mechanisms
+3.0 – Overview: Lipolysis & Beta‑Oxidation
+3.1 – Maximizing Lipolysis (Fat Breakdown)
+3.2 – Maximizing Beta‑Oxidation (Fat Burning)
+4 – Ancillaries (Appetite, "Fat Burners", Peptides)
+5 – Exercise (Lifting, Cardio & Steps)
+6 – How to Prevent Failure (Mindset & Social Tactics)
+7 – TL;DR
+8 - Scientific Backup/ Sources:​
+
+Thread Music:
+
+
+
+0 – Introduction / Disclaimer
+949w48.png
+
+By no means is this medical advice. Even though the risks are relatively low, everyone is different and some people may respond to this differently than others (although as I said, the majority should be fine).​
+
+
+This thread is mainly focused on PSMF, most of the other stuff isn't mandatory but still better to include. PSMF stands for protein sparing modified fast, It's a diet where you mainly eat protein, it allows cutting efficiently without losing almost any muscle mass during cutting.
+​
+My 3 Month PSMF transformation:
+fyxzn2.png
+
+​
+
+
+1 – Prerequisites (BF%, LBM & Protein Target)
+​
+1.0 – Estimate your body fat %
+You can estimate body fat by eyeballing (Which is probably the most accurate tbh) or using calipers, DEXA, or a decent impedance scale.
+Once you have a body fat estimate, calculate your lean body mass (LBM): ​
+
+Lean Body Mass = Bodyweight × (1 − Body Fat %)
+
+Example: 180 lbs at 15% body fat → 180 × 0.85 = 153 lbs LBM.
+rkfdco.png
+1.1 – Set your daily protein target
+Aim for roughly 1 g of protein per lb of lean bodyweight (about 2.2–2.5 g/kg LBM). Higher protein intakes during a deficit preserve more lean mass and strength vs lower protein diets. [1]
+
+So at 180 lbs with 15% body fat (153 lbs LBM), target around 150–160 g of protein per day.
+​
+
+1.2 – Start tracking your caloric intake
+Download MyFitnessPal (or any decent tracker), weigh food on a kitchen scale, and log everything that goes into your mouth.
+Specify raw vs cooked and pick accurate entries, you can't run a precise PSMF if you're eyeballing calories.​
+​
+
+
+2 – Diet (PSMF Setup & Food Choices)
+1779706924686
+2.0 – Core diet rules
+This is a PSMF, so:
+
+– Protein: set by LBM (usually 120–200 g/day for most).
+– Carbs: ~20 g/day or less (mostly from low‑cal veggies).
+– Fats: ~20 g/day or less (just what rides along with lean meats).
+– Total calories: generally 600–900 kcal/day in a classic PSMF setup
+
+You're gonna be living on lean protein with trace fats/carbs. Everything else is flavor and damage control.
+
+2.1 – Food choices​
+​
+Food​
+	
+Protein per 100g​
+	
+Fat​
+	
+Carbs​
+Chicken breast (raw)​
+	
+~23g​
+	
+~1g​
+	
+0g​
+Turkey breast (raw)​
+	
+~22g​
+	
+~1g​
+	
+0g​
+Cod/white fish​
+	
+~18g​
+	
+~0.5g​
+	
+0g​
+Egg whites​
+	
+~11g​
+	
+0g​
+	
+~0.7g​
+Low-fat cottage cheese​
+	
+~11g​
+	
+~1g​
+	
+~3g​
+Whey isolate​
+	
+~90g​
+	
+~1g​
+	
+~1g​
+​
+A simple baseline day:
+– 500 g chicken or turkey breast across the day.
+– 1–2 scoops whey isolate to fill any protein gaps. ​
+​
+Solid meat is usually superior to shakes for satiety, but as long as you hit your protein target and keep fats/carbs low, you're doing it right.​
+​
+Use:
+
+– Zero‑cal seasonings, herbs, spices.
+– Sugar‑free drinks, black coffee, tea.
+– Low‑cal veggies (lettuce, cucumber, zucchini, broccoli) in moderation
+
+Because the calories are so low, official PSMF programs usually add a multivitamin and extra electrolytes (sodium, potassium, magnesium) to prevent deficiencies. [2] Target ranges (e.g., ~3–5 g sodium, ~2–3 g potassium, 300–400 mg magnesium per day).​
+​
+
+3 – Maximizing Fat Loss Mechanisms
+2xvu2d.png
+j9j8og.png
+
+3.0 – Overview: Lipolysis & Beta‑Oxidation
+Fat loss happens in two major biochemical steps:
+
+– Lipolysis: breakdown of stored triglycerides in fat cells into free fatty acids (FFAs) and glycerol.
+– Beta‑oxidation: transport of FFAs into mitochondria and burning them for ATP.
+https://www.ncbi.nlm.nih.gov/books/NBK560564/​
+​
+You still need a calorie deficit, but how much of that deficit is filled by fat vs glycogen/glucose and muscle depends on how well you're mobilizing and oxidizing fat.
+
+Keep in mind, we care about body composition and not just fat loss. [5]
+
+​
+
+3.1 – Maximizing Lipolysis (Fat Breakdown)
+2xvu2d.png
+
+
+Lipolysis is controlled mainly by hormone‑sensitive lipase and related enzymes in adipose tissue.
+https://en.wikipedia.org/wiki/Lipolysis
+https://journals.physiology.org/doi/full/10.1152/ajpgi.00554.2006
+​
+Key drivers:
+
+– Catecholamines (adrenaline & noradrenaline):
+Bind β‑adrenergic receptors (β1/β2/β3) on fat cells → ↑cAMP → activate hormone‑sensitive lipase → more FFAs released into the blood.
+
+– Glucagon:
+Works alongside catecholamines in the fasted state, especially when liver glycogen is low, to support fat breakdown. [7]
+
+– Low insulin:
+Insulin directly suppresses lipolysis, lowering insulin via fasting, low‑carb/ketogenic diets, or deep calorie restriction removes that, hence why PSMF mogs.
+
+Lifestyle factors that boost lipolysis:
+
+– Hard lifting / HIIT → big catecholamine spikes and acute increases in lipolysis. [8]
+
+– Fasted cardio → with low insulin, catecholamine signalling on fat cells is more effective (though daily fat loss still depends on the total deficit).
+– Cold exposure → cold showers / ice baths activate the sympathetic nervous system and brown fat, giving a modest increase in lipolysis and energy expenditure aswell though the effects are negligible. [7]
+
+Common lipolysis‑oriented drugs:
+
+– Clenbuterol: β2‑agonist → ↑cAMP → ↑lipolysis; can cause tachycardia (High heart rate) though.
+– Yohimbine: α2‑antagonist blocking anti‑lipolytic signalling; works best fasted (insulin blunts its effect) but can cause anxiety and blood pressure spikes.
+– Ephedrine + caffeine: increases catecholamine release / β‑receptor activation → ↑thermogenesis and lipolysis; significant CNS and cardiovascular load.
+– GLP‑1 agonists (e.g. Semaglutide): mainly reduce appetite and improve glycemic control; by lowering energy intake and postprandial insulin they indirectly support fat loss. [9]
+
+– Growth Hormone (GH): stimulates hormone‑sensitive lipase and increases FFA release [10]​
+wkacpt.png
+
+Also I must mention that on PSMF, you already have low insulin and frequent catecholamine spikes (training + big deficit), so you're naturally in a high‑lipolysis environment even without these.​
+​
+
+
+3.2 – Maximizing Beta‑Oxidation (Fat Burning)
+j9j8og.png
+
+
+Once FFAs are in the bloodstream, they must get into mitochondria to be burned.
+Long‑chain fatty acids depend on the carnitine shuttle for entry into the mitochondrial matrix. [11]
+​
+Key drivers:
+
+– Carnitine & mitochondria:
+Carnitine transports long‑chain fatty acids across the inner mitochondrial membrane; deficiencies or transport defects impair fat oxidation and shift fuel use toward carbs. [12]
+
+Endurance / Zone 2 training increases mitochondrial density and the ability of muscle to use fat as a primary fuel. [13]
+
+Keto / fasting / PSMF upregulate enzymes involved in fat oxidation and ketone production.
+
+– Metabolic rate & AMPK:
+Thyroid hormone (T3) increases metabolic rate and upregulates many genes involved in energy expenditure and fat oxidation. [9]
+AMPK activation (via exercise, deficit, metformin/berberine) signals a low‑energy state and promotes fat oxidation while improving insulin sensitivity. [8]
+
+Common beta‑oxidation‑oriented agents:
+
+– L‑Carnitine: Facilitates fatty acid transport into mitochondria. Best injected (oral absorption is kinda poor). [14]
+– Berberine / Metformin: Activates AMPK → ↑fat oxidation. Also improves insulin sensitivity. [15]
+– T3 (Cytomel): ramps metabolism and fat burning but can accelerate muscle loss, strain the heart, and suppress normal thyroid function if misused.
+– Exogenous ketones / ketone esters: Forces body into ketosis → ↑fat oxidation. Useful for non-keto dieters. ( doesn't really matter when on PSMF)
+– GW501516 (Cardarine): PPARδ agonist → ↑fat oxidation + endurance. called cancerine by some (although the evidence is mixed). Depletes carnitine—relies on sufficient carnitine for beta oxidation effects.
+​
+
+
+4 – Ancillaries (Appetite, "Fat Burners", Peptides)
+1779707383890
+
+​
+4.0 – Appetite control & GLP‑1s
+Retatrutide, Semaglutide, Cagrilintide, Tirzepatide (Mounjaro), etc. are GLP‑1 / multi‑agonist drugs that strongly reduce appetite and improve glycemic control, making it easier to adhere to a long‑term calorie deficit. [9]
+
+Makes PSMF 10 times easier to follow up.
+
+4.1 – Stimulants
+Caffeine, ephedrine, and prescription stimulants (Methylphenidate, Dextro, Vyvanse etc.) suppress appetite and increase catecholamines, which can raise energy expenditure but also heart rate, blood pressure.
+
+I must say they are very mogger for energy on cut to keep up with daily life, I'm probably going to post a thread about stims soon aswell.
+
+4.2 – "Fat‑loss enhancers"
+– Clenbuterol: β2‑agonist → ↑cAMP → ↑lipolysis; can cause tachycardia (High heart rate) though.
+– A-Yohimbine: α2‑antagonist blocking anti‑lipolytic signalling; works best fasted (insulin blunts its effect) but can cause anxiety and blood pressure spikes.
+– Ephedrine + caffeine: increases catecholamine release / β‑receptor activation → ↑thermogenesis and lipolysis; significant CNS and cardiovascular load.
+– L‑Carnitine: Facilitates fatty acid transport into mitochondria. Best injected (oral absorption is kinda poor). [14]
+– Berberine / Metformin: Activates AMPK → ↑fat oxidation. Also improves insulin sensitivity. [15]
+– T3 (Cytomel): ramps metabolism and fat burning but can accelerate muscle loss, strain the heart, and suppress normal thyroid function if misused.
+– Exogenous ketones / ketone esters: Forces body into ketosis → ↑fat oxidation. Useful for non-keto dieters. ( doesn't really matter when on PSMF)
+– GW501516 (Cardarine): PPARδ agonist → ↑fat oxidation + endurance. called cancerine by some (although the evidence is mixed). Depletes carnitine—relies on sufficient carnitine for beta oxidation effects.
+– Growth Hormone (GH): stimulates hormone‑sensitive lipase and increases FFA release;. [10]
+
+4.3 – Metabolic aids & cortisol modulation
+– MOTS‑c: mitochondrial‑derived peptide that mimics exercise‑/fasting‑like signals → ↑AMPK activity, insulin sensitivity, and fat oxidation; may help preserve muscle.
+
+– Metyrapone: cortisol‑synthesis inhibitor (blocks 11‑β‑hydroxylase) → lowers cortisol; used clinically in adrenal‑excess / Cushing‑related workups and mild autonomous cortisol secretion to improve metabolic markers.​
+
+Bottom line: if you aren't already sticking to your diet, ancillaries are not the bottleneck.
+​
+
+5 – Exercise (Lifting, Cardio & Steps)
+6d2ijo.png
+5.0 – Lifting to keep muscle
+On a PSMF, high protein plus resistance training is what tells your body "keep this muscle" while you're in a big deficit. [16]
+
+– Train each muscle group 1–2× per week.
+– Keep your main compounds in (bench, squat, deadlift, OHP, rows, pull‑ups), but don't chase PRs while aggressively dieting.
+– Focus on maintaining strength and performance, not progressing; 2–4 hard sets per exercise is usually enough stimulus without murdering recovery.
+
+5.1 – Cardio & steps
+– Baseline: aim for around 10k steps per day to keep NEAT high.
+– Avoid excessive added cardio at the start of a PSMF – it ramps hunger and fatigue and can speed up metabolic adaptation on very low calories.
+– In the final days before a deadline, you can add more Zone 2 cardio (incline treadmill, cycling, etc.) ​
+​
+
+6 – How to Prevent Failure (Mindset & Social Tactics)
+​
+– Don't say "I'm on a diet" to no. Just say you're not hungry or you already ate bro
+– Learn to enjoy social events without eating; sip sugar‑free soda, water, tea, or black coffee and chill.
+– No cheat meals, no "just one slice", no "I'll make up for it tomorrow".
+– Remember that in normal day‑to‑day life, almost no situation actually forces you to eat junk – either stay fat or be shredded, make your choice.
+
+Run this properly and, depending on your starting body fat, you can get noticeably lean in ~4–8 weeks,
+which lines up with what clinical PSMF programs see under supervision. [17]​
+​
+
+7 – TL;DR & More material​
+
+TL;DR:
+Track calories, Fats and Carbs < 20gr, Eat mainly protein, Supplement electrolytes, Eat Less than 1000calories, Train each muscle group 1-2 times a week, Keep your step count and daily activity high (<10.000 steps)
+
+Trust the process.
+
+Optionally:
+Use GLP‑1 / multi‑agonists like Reta, Tirz or Cagr for apetite suppresion, Use Stimulants for energy and apetite suppresion, Use the "Fat Loss Enhancers" to maximise lipolysis and beta oxidation, Use Mots-c for metabolic markers, Use Metyrapone to inhibit cortisol, Introduce Zone 2 cardio after a while​
+
+
+
+8 – Scientific Backup/ Sources:
+
+
+How WE are gonna look like this summer:
+
+
+
+
+- A glycogen depleted Menas
+ 
+Last edited: Wednesday at 11:44 AM
+
+    +1Love itJFL 
+
+Reactions: Yani, pslturi, CorinthianLOX and 86 others
+Menas
+Written by
+Menas Mercenary
+Contributor
+
+    Posts
+        2,588
+
+    Reputation
+        21,327
+
+    Points
+        139
+
+    1
+    2
+    3
+
+Next
+Sadist
+Sadist
+Hypermasculine RPB
+Contributor
+
+Joined
+    Jun 27, 2024
+
+Posts
+    4,357
+
+Reputation
+    10,674
+
+    Saturday at 8:57 AM 
+
+    #2
+
+how I am gonna be looking this summer:
+
+IMG 1911
+ 
+Last edited: Saturday at 9:00 AM
+
+    +1JFL 
+
+Reactions: Punjabi Waffen, IblameRhoda, Ascendingnerd711 and 30 others
+fgfr3
+Diamond
+
+Joined
+    Feb 15, 2026
+
+Posts
+    1,306
+
+Reputation
+    790
+
+    Saturday at 8:59 AM 
+
+    #3
+
+dnp and forget
+ 
+
+    +1JFLUgh.. 
+
+Reactions: sigmasigmasigmasjdj, Punjabi Waffen, MOLEPULE and 10 others
+Nodal
+Diamond
+
+Joined
+    Jan 24, 2026
+
+Posts
+    1,399
+
+Reputation
+    3,868
+
+    Saturday at 8:59 AM 
+
+    #4
+
+fuck @Sadist i waited longer than for this thread:ReallyMad::ReallyMad:
+
+gonna read the thread and tell you what i think boyo
+ 
+
+    JFL+1 
+
+Reactions: alexias, Navity, WhyNotMe?? and 2 others
+Orka
+Orka
+Øneheart | 2021
+Contributor
+
+Joined
+    Sep 8, 2024
+
+Posts
+    17,666
+
+Reputation
+    60,335
+
+    Saturday at 8:59 AM 
+
+    #5
+
+Will be following this
+ 
+
+    +1Love it 
+
+Reactions: alexias, vision_n, Navity and 4 others
+avgsub5human
+avgsub5human
+swedistan retard
+
+Joined
+    Dec 31, 2025
+
+Posts
+    2,218
+
+Reputation
+    3,501
+
+    Saturday at 9:00 AM 
+
+    #6
+
+good fucking shit:Okay:
+ 
+
+    +1Love it 
+
+Reactions: alexias, Max zap, WhyNotMe?? and 2 others
+NordicLeonhard
+NordicLeonhard
+The naked man fears no pickpocket.
+
+Joined
+    May 14, 2023
+
+Posts
+    9,555
+
+Reputation
+    10,911
+
+    Saturday at 9:02 AM 
+
+    #7
+
+All water + its almost june if youre not shredded yet its over
+ 
+
+    +1JFL 
+
+Reactions: ghost!, Punjabi Waffen, catslayer1234 and 9 others
+Menas
+Menas
+Mercenary
+Contributor
+
+Joined
+    May 16, 2024
+
+Posts
+    2,588
+
+Reputation
+    21,327
+
+    Saturday at 9:03 AM 
+
+    OP
+    #8
+
+    NordicLeonhard said:
+    All water + its almost june if youre not shredded yet its over
+
+That's the point of the thread, this shit will get you shredded in a month
+ 
+
+    +1Hmm...JFL 
+
+Reactions: alexias, fi93, lcberg04 and 4 others
+Sadist
+Sadist
+Hypermasculine RPB
+Contributor
+
+Joined
+    Jun 27, 2024
+
+Posts
+    4,357
+
+Reputation
+    10,674
+
+    Saturday at 9:04 AM 
+
+    #9
+
+    NordicLeonhard said:
+    All water + its almost june if youre not shredded yet its over
+
+the naked man still has his prison pocket to fear the pickpockets over
+ 
+
+    +1JFL 
+
+Reactions: aberagejoe, alexias, kdev and 4 others
+WhyNotMe??
+WhyNotMe??
+Watch out for yourself
+
+Joined
+    Aug 23, 2025
+
+Posts
+    2,092
+
+Reputation
+    8,906
+
+    Saturday at 9:04 AM 
+
+    #10
+
+No one will follow it unfortunately, everyone are fat fucks
+ 
+
+    +1 
+
+Reactions: alexias, fi93, Sadist and 1 other person
+Menas
+Menas
+Mercenary
+Contributor
+
+Joined
+    May 16, 2024
+
+Posts
+    2,588
+
+Reputation
+    21,327
+
+    Saturday at 9:04 AM 
+
+    OP
+    #11
+
+    Orka said:
+    Will be following this
+
+inb4 bro binges on sum shit like "pierogi"
+ 
+
+    JFL+1Love it 
+
+Reactions: alexias, fi93, Mast and 2 others
+NordicLeonhard
+NordicLeonhard
+The naked man fears no pickpocket.
+
+Joined
+    May 14, 2023
+
+Posts
+    9,555
+
+Reputation
+    10,911
+
+    Saturday at 9:05 AM 
+
+    #12
+
+    Menas said:
+    That's the point of the thread, this shit will get you shredded in a month
+
+If you want to do a psmf just read lyle mcdonalds guide to the rfl diet but atleast its not one of those shitty threads where they tell you to just eat 500 deficit as if thats gonna do anything
+ 
+
+    +1 
+
+Reactions: alexias and Menas
+Finncelchud
+Finncelchud
+hltnroidcelfoidrapistwerewolf
+
+Joined
+    Feb 18, 2026
+
+Posts
+    689
+
+Reputation
+    465
+
+    Saturday at 9:06 AM 
+
+    #13
+
+Mirin, good tips
+ 
+
+    Love it+1 
+
+Reactions: alexias and Menas
+Sceptical
+Sceptical
+Fire
+
+Joined
+    Nov 17, 2024
+
+Posts
+    17,101
+
+Reputation
+    41,075
+
+    Saturday at 9:06 AM 
+
+    #14
+
+read every molecule
+ 
+
+    Love it+1 
+
+Reactions: alexias and Menas
+Menas
+Menas
+Mercenary
+Contributor
+
+Joined
+    May 16, 2024
+
+Posts
+    2,588
+
+Reputation
+    21,327
+
+    Saturday at 9:09 AM 
+
+    OP
+    #15
+
+    NordicLeonhard said:
+    If you want to do a psmf just read lyle mcdonalds guide to the rfl diet but atleast its not one of those shitty threads where they tell you to just eat 500 deficit as if thats gonna do anything
+
+Yeah, I included his video in the tl;dr section, also this is not just about PSMF
+ 
+
+    +1JFL 
+
+Reactions: alexias and Mast
+combatingNorwooding
+combatingNorwooding
+Zephir
+
+Joined
+    Mar 1, 2026
+
+Posts
+    1,923
+
+Reputation
+    8,370
+
+    Saturday at 9:10 AM 
+
+    #16
+
+    Menas said:
+    THE COMPLETE SHREDDING GUIDE FOR SUMMER
+    q50sla.png
+    Table of contents:
+    0 – Introduction / Disclaimer
+    1 – Prerequisites (BF%, LBM & Protein Target)
+    2 – Diet (PSMF Setup & Food Choices)
+    3 – Maximizing Fat Loss Mechanisms
+    3.0 – Overview: Lipolysis & Beta‑Oxidation
+    3.1 – Maximizing Lipolysis (Fat Breakdown)
+    3.2 – Maximizing Beta‑Oxidation (Fat Burning)
+    4 – Ancillaries (Appetite, "Fat Burners", Peptides)
+    5 – Exercise (Lifting, Cardio & Steps)
+    6 – How to Prevent Failure (Mindset & Social Tactics)
+    7 – TL;DR
+    8 - Sources and credits​
+
+    Thread Music:
+
+
+
+    0 – Introduction / Disclaimer
+    949w48.png
+
+    By no means is this medical advice. Even though the risks are relatively low, everyone is different and some people may respond to this differently than others (although as I said, the majority should be fine).​
+
+
+    This thread is mainly focused on PSMF, most of the other stuff isn't mandatory but still better to include. PSMF stands for protein sparing modified fast, It's a diet where you mainly eat protein, it allows cutting efficiently without losing almost any muscle mass during cutting.
+    ​
+    My 3 Month PSMF transformation:
+    fyxzn2.png
+
+    ​
+
+
+    1 – Prerequisites (BF%, LBM & Protein Target)
+    ​
+    1.0 – Estimate your body fat %
+    You can estimate body fat by eyeballing (Which is probably the most accurate tbh) or using calipers, DEXA, or a decent impedance scale.
+    Once you have a body fat estimate, calculate your lean body mass (LBM): ​
+
+    Lean Body Mass = Bodyweight × (1 − Body Fat %)
+
+    Example: 180 lbs at 15% body fat → 180 × 0.85 = 153 lbs LBM.
+    rkfdco.png
+    1.1 – Set your daily protein target
+    Aim for roughly 1 g of protein per lb of lean bodyweight (about 2.2–2.5 g/kg LBM). Higher protein intakes during a deficit preserve more lean mass and strength versus lower‑protein diets. [1]
+
+    So at 180 lbs with 15% body fat (153 lbs LBM), target around 150–160 g of protein per day.
+    ​
+
+    1.2 – Start tracking your caloric intake
+    Download MyFitnessPal (or any decent tracker), weigh food on a kitchen scale, and log everything that goes into your mouth.
+    Specify raw vs cooked and pick accurate entries, you can't run a precise PSMF if you're eyeballing calories.​
+    ​
+
+
+    2 – Diet (PSMF Setup & Food Choices)
+    ss4wcj.png
+    2.0 – Core diet rules
+    This is a PSMF, so:
+
+    – Protein: set by LBM (usually 120–200 g/day for most).
+    – Carbs: ~20 g/day or less (mostly from low‑cal veggies).
+    – Fats: ~20 g/day or less (just what rides along with lean meats).
+    – Total calories: generally 600–900 kcal/day in a classic PSMF setup
+
+    You're gonna be living on lean protein with trace fats/carbs. Everything else is flavor and damage control.
+
+    2.1 – Food choices​
+    ​
+    Food​
+    	
+    Protein per 100g​
+    	
+    Fat​
+    	
+    Carbs​
+    Chicken breast (raw)​
+    	
+    ~23g​
+    	
+    ~1g​
+    	
+    0g​
+    Turkey breast (raw)​
+    	
+    ~22g​
+    	
+    ~1g​
+    	
+    0g​
+    Cod/white fish​
+    	
+    ~18g​
+    	
+    ~0.5g​
+    	
+    0g​
+    Egg whites​
+    	
+    ~11g​
+    	
+    0g​
+    	
+    ~0.7g​
+    Low-fat cottage cheese​
+    	
+    ~11g​
+    	
+    ~1g​
+    	
+    ~3g​
+    Whey isolate​
+    	
+    ~90g​
+    	
+    ~1g​
+    	
+    ~1g​
+    ​
+    A simple baseline day:
+    – 500 g chicken or turkey breast across the day.
+    – 1–2 scoops whey isolate to fill any protein gaps. ​
+    ​
+    Solid meat is usually superior to shakes for satiety, but as long as you hit your protein target and keep fats/carbs low, you're doing it right.​
+    ​
+    Use:
+
+    – Zero‑cal seasonings, herbs, spices.
+    – Sugar‑free drinks, black coffee, tea.
+    – Low‑cal veggies (lettuce, cucumber, zucchini, broccoli) in moderation
+
+    Because the calories are so low, official PSMF programs usually add a multivitamin and extra electrolytes (sodium, potassium, magnesium) to prevent deficiencies. [2] Target ranges (e.g., ~3–5 g sodium, ~2–3 g potassium, 300–400 mg magnesium per day).​
+    ​
+
+    3 – Maximizing Fat Loss Mechanisms
+    2xvu2d.png
+    j9j8og.png
+
+    3.0 – Overview: Lipolysis & Beta‑Oxidation
+    Fat loss happens in two major biochemical steps:
+
+    – Lipolysis: breakdown of stored triglycerides in fat cells into free fatty acids (FFAs) and glycerol.
+    – Beta‑oxidation: transport of FFAs into mitochondria and burning them for ATP.
+    https://www.ncbi.nlm.nih.gov/books/NBK560564/​
+    ​
+    You still need a calorie deficit, but how much of that deficit is filled by fat versus glycogen/glucose and muscle depends on how well you're mobilizing and oxidizing fat.
+
+    Keep in mind, we care about body composition and not just fat loss. [5]
+
+    ​
+
+    3.1 – Maximizing Lipolysis (Fat Breakdown)
+    2xvu2d.png
+
+    Lipolysis is controlled mainly by hormone‑sensitive lipase and related enzymes in adipose tissue.
+    https://en.wikipedia.org/wiki/Lipolysis
+    https://journals.physiology.org/doi/full/10.1152/ajpgi.00554.2006
+    ​
+    Key drivers:
+
+    – Catecholamines (adrenaline & noradrenaline):
+    Bind β‑adrenergic receptors (β1/β2/β3) on fat cells → ↑cAMP → activate hormone‑sensitive lipase → more FFAs released into the blood.
+
+    – Glucagon:
+    Works alongside catecholamines in the fasted state, especially when liver glycogen is low, to support fat breakdown. [7]
+
+    – Low insulin:
+    Insulin directly suppresses lipolysis, lowering insulin via fasting, low‑carb/ketogenic diets, or deep calorie restriction removes that, hence why PSMF mogs.
+
+    Lifestyle factors that boost lipolysis:
+
+    – Hard lifting / HIIT → big catecholamine spikes and acute increases in lipolysis. [8]
+
+    – Fasted cardio → with low insulin, catecholamine signalling on fat cells is more effective (though daily fat loss still depends on the total deficit).
+    – Cold exposure → cold showers / ice baths activate the sympathetic nervous system and brown fat, giving a modest increase in lipolysis and energy expenditure aswell though the effects are negligible. [7]
+
+    Common lipolysis‑oriented drugs:
+
+    – Clenbuterol: β2‑agonist → ↑cAMP → ↑lipolysis; can cause tachycardia (High heart rate) though.
+    – Yohimbine: α2‑antagonist blocking anti‑lipolytic signalling; works best fasted (insulin blunts its effect) but can cause anxiety and blood pressure spikes.
+    – Ephedrine + caffeine: increases catecholamine release / β‑receptor activation → ↑thermogenesis and lipolysis; significant CNS and cardiovascular load.
+    – GLP‑1 agonists (e.g. Semaglutide): mainly reduce appetite and improve glycemic control; by lowering energy intake and postprandial insulin they indirectly support fat loss. [9]
+
+    – Growth Hormone (GH): stimulates hormone‑sensitive lipase and increases FFA release; prescription drug with non‑trivial long‑term risk profile. [10]​
+    wkacpt.png
+
+    Also I must mention that on PSMF, you already have low insulin and frequent catecholamine spikes (training + big deficit), so you're naturally in a high‑lipolysis environment even without these.​
+    ​
+
+
+    3.2 – Maximizing Beta‑Oxidation (Fat Burning)
+    j9j8og.png
+
+    Once FFAs are in the bloodstream, they must get into mitochondria to be burned. Long‑chain fatty acids depend on the carnitine shuttle for entry into the mitochondrial matrix. [11]
+    ​
+    Key drivers:
+
+    – Carnitine & mitochondria:
+    Carnitine transports long‑chain fatty acids across the inner mitochondrial membrane; deficiencies or transport defects impair fat oxidation and shift fuel use toward carbs. [12]
+
+    Endurance / Zone 2 training increases mitochondrial density and the ability of muscle to use fat as a primary fuel. [13]
+
+    Keto / fasting / PSMF upregulate enzymes involved in fat oxidation and ketone production.
+
+    – Metabolic rate & AMPK:
+    Thyroid hormone (T3) increases metabolic rate and upregulates many genes involved in energy expenditure and fat oxidation. [9]
+    AMPK activation (via exercise, deficit, metformin/berberine) signals a low‑energy state and promotes fat oxidation while improving insulin sensitivity. [8]
+
+    Common beta‑oxidation‑oriented agents:
+
+    – L‑Carnitine: Facilitates fatty acid transport into mitochondria. Best injected (oral absorption is kinda poor). [14]
+    – Berberine / Metformin: Activates AMPK → ↑fat oxidation. Also improves insulin sensitivity. [15]
+    – T3 (Cytomel): ramps metabolism and fat burning but can accelerate muscle loss, strain the heart, and suppress normal thyroid function if misused.
+    – Exogenous ketones / ketone esters: Forces body into ketosis → ↑fat oxidation. Useful for non-keto dieters. ( doesn't really matter when on PSMF)
+    – GW501516 (Cardarine): PPARδ agonist → ↑fat oxidation + endurance. called cancerine by some (although the evidence is mixed). Depletes carnitine—relies on sufficient carnitine for beta oxidation effects.
+    ​
+
+
+    4 – Ancillaries (Appetite, "Fat Burners", Peptides)
+    57qjwk.png
+
+    ​
+    4.0 – Appetite control & GLP‑1s
+    Retatrutide, Semaglutide, Cagrilintide, Tirzepatide (Mounjaro), etc. are GLP‑1 / multi‑agonist drugs that strongly reduce appetite and improve glycemic control, making it easier to adhere to a long‑term calorie deficit. [9]
+
+    Makes PSMF 10 times easier to follow up.
+
+    4.1 – Stimulants
+    Caffeine, ephedrine, and prescription stimulants (Methylphenidate, Dextro, Vyvanse etc.) suppress appetite and increase catecholamines, which can raise energy expenditure but also heart rate, blood pressure.
+
+    I must say they are very mogger for energy on cut to keep up with daily life, I'm probably going to post a thread about stims soon aswell.
+
+    4.2 – "Fat‑loss enhancers"
+    – Clenbuterol: β2‑agonist → ↑cAMP → ↑lipolysis; can cause tachycardia (High heart rate) though.
+    – A-Yohimbine: α2‑antagonist blocking anti‑lipolytic signalling; works best fasted (insulin blunts its effect) but can cause anxiety and blood pressure spikes.
+    – Ephedrine + caffeine: increases catecholamine release / β‑receptor activation → ↑thermogenesis and lipolysis; significant CNS and cardiovascular load.
+    – L‑Carnitine: Facilitates fatty acid transport into mitochondria. Best injected (oral absorption is kinda poor). [14]
+    – Berberine / Metformin: Activates AMPK → ↑fat oxidation. Also improves insulin sensitivity. [15]
+    – T3 (Cytomel): ramps metabolism and fat burning but can accelerate muscle loss, strain the heart, and suppress normal thyroid function if misused.
+    – Exogenous ketones / ketone esters: Forces body into ketosis → ↑fat oxidation. Useful for non-keto dieters. ( doesn't really matter when on PSMF)
+    – GW501516 (Cardarine): PPARδ agonist → ↑fat oxidation + endurance. called cancerine by some (although the evidence is mixed). Depletes carnitine—relies on sufficient carnitine for beta oxidation effects.
+    – Growth Hormone (GH): stimulates hormone‑sensitive lipase and increases FFA release; prescription drug with non‑trivial long‑term risk profile. [10]
+
+    4.3 – Metabolic aids & cortisol modulation
+    – MOTS‑c: mitochondrial‑derived peptide that mimics exercise‑/fasting‑like signals → ↑AMPK activity, insulin sensitivity, and fat oxidation; may help preserve muscle.
+
+    – Metyrapone: cortisol‑synthesis inhibitor (blocks 11‑β‑hydroxylase) → lowers cortisol; used clinically in adrenal‑excess / Cushing‑related workups and mild autonomous cortisol secretion to improve metabolic markers.​
+
+    Bottom line: if you aren't already sticking to your diet, ancillaries are not the bottleneck.
+    ​
+
+    5 – Exercise (Lifting, Cardio & Steps)
+    6d2ijo.png
+    5.0 – Lifting to keep muscle
+    On a PSMF, high protein plus resistance training is what tells your body "keep this muscle" while you're in a big deficit. [16]
+
+    – Train each muscle group 1–2× per week.
+    – Keep your main compounds in (bench, squat, deadlift, OHP, rows, pull‑ups), but don't chase PRs while aggressively dieting.
+    – Focus on maintaining strength and performance, not progressing; 2–4 hard sets per exercise is usually enough stimulus without murdering recovery.
+
+    5.1 – Cardio & steps
+    – Baseline: aim for around 10k steps per day to keep NEAT high.
+    – Avoid excessive added cardio at the start of a PSMF – it ramps hunger and fatigue and can speed up metabolic adaptation on very low calories.
+    – In the final days before a deadline, you can add more Zone 2 cardio (incline treadmill, cycling, etc.) ​
+    ​
+
+    6 – How to Prevent Failure (Mindset & Social Tactics)
+    ​
+    – Don't say "I'm on a diet" to no. Just say you're not hungry or you already ate bro
+    – Learn to enjoy social events without eating; sip sugar‑free soda, water, tea, or black coffee and chill.
+    – No cheat meals, no "just one slice", no "I'll make up for it tomorrow".
+    – Remember that in normal day‑to‑day life, almost no situation actually forces you to eat junk – either stay fat or be shredded, make your choice.
+
+    Run this properly and, depending on your starting body fat, you can get noticeably lean in ~4–8 weeks,
+    which lines up with what clinical PSMF programs see under supervision. [17]​
+    ​
+
+    7 – TL;DR & More material​
+
+    TL;DR:
+    Track calories, Fats and Carbs < 20gr, Eat mainly protein, Supplement electrolytes, Eat Less than 1000calories, Train each muscle group 1-2 times a week, Keep your step count and daily activity high (<10.000 steps)
+
+    Trust the process.
+
+    Optionally:
+    Use GLP‑1 / multi‑agonists like Reta, Tirz or Cagr for apetite suppresion, Use Stimulants for energy and apetite suppresion, Use the "Fat Loss Enhancers" to maximise lipolysis and beta oxidation, Use Mots-c for metabolic markers, Use Metyrapone to inhibit cortisol, Introduce Zone 2 cardio after a while​
+
+
+
+    8 – Scientific Backup/ Sources:
+
+
+    How WE are gonna look like this summer:
+    View attachment 5105610​
+
+
+
+
+    - A glycogen depleted Menas
+    Click to expand...
+
+
+Will read
+ 
+
+    +1Love it 
+
+Reactions: alexias, fi93, Nodal and 1 other person
+Final Fantasy
+Final Fantasy
+we becoming zyzz kvnts↑
+
+Joined
+    Oct 21, 2023
+
+Posts
+    2,179
+
+Reputation
+    3,003
+
+    Saturday at 9:10 AM 
+
+    #17
+
+Great fucking shit
+Reading thru now
+Mirin format aswell
+ 
+
+    +1Love it 
+
+Reactions: alexias, fi93 and Menas
+copiod
+copiod
+grey is prey
+
+Joined
+    Apr 19, 2026
+
+Posts
+    100
+
+Reputation
+    77
+
+    Saturday at 9:15 AM 
+
+    #18
+
+    Menas said:
+    THE COMPLETE SHREDDING GUIDE FOR SUMMER
+    q50sla.png
+    Table of contents:
+    0 – Introduction / Disclaimer
+    1 – Prerequisites (BF%, LBM & Protein Target)
+    2 – Diet (PSMF Setup & Food Choices)
+    3 – Maximizing Fat Loss Mechanisms
+    3.0 – Overview: Lipolysis & Beta‑Oxidation
+    3.1 – Maximizing Lipolysis (Fat Breakdown)
+    3.2 – Maximizing Beta‑Oxidation (Fat Burning)
+    4 – Ancillaries (Appetite, "Fat Burners", Peptides)
+    5 – Exercise (Lifting, Cardio & Steps)
+    6 – How to Prevent Failure (Mindset & Social Tactics)
+    7 – TL;DR
+    8 - Sources and credits​
+
+    Thread Music:
+
+
+
+    0 – Introduction / Disclaimer
+    949w48.png
+
+    By no means is this medical advice. Even though the risks are relatively low, everyone is different and some people may respond to this differently than others (although as I said, the majority should be fine).​
+
+
+    This thread is mainly focused on PSMF, most of the other stuff isn't mandatory but still better to include. PSMF stands for protein sparing modified fast, It's a diet where you mainly eat protein, it allows cutting efficiently without losing almost any muscle mass during cutting.
+    ​
+    My 3 Month PSMF transformation:
+    fyxzn2.png
+
+    ​
+
+
+    1 – Prerequisites (BF%, LBM & Protein Target)
+    ​
+    1.0 – Estimate your body fat %
+    You can estimate body fat by eyeballing (Which is probably the most accurate tbh) or using calipers, DEXA, or a decent impedance scale.
+    Once you have a body fat estimate, calculate your lean body mass (LBM): ​
+
+    Lean Body Mass = Bodyweight × (1 − Body Fat %)
+
+    Example: 180 lbs at 15% body fat → 180 × 0.85 = 153 lbs LBM.
+    rkfdco.png
+    1.1 – Set your daily protein target
+    Aim for roughly 1 g of protein per lb of lean bodyweight (about 2.2–2.5 g/kg LBM). Higher protein intakes during a deficit preserve more lean mass and strength versus lower‑protein diets. [1]
+
+    So at 180 lbs with 15% body fat (153 lbs LBM), target around 150–160 g of protein per day.
+    ​
+
+    1.2 – Start tracking your caloric intake
+    Download MyFitnessPal (or any decent tracker), weigh food on a kitchen scale, and log everything that goes into your mouth.
+    Specify raw vs cooked and pick accurate entries, you can't run a precise PSMF if you're eyeballing calories.​
+    ​
+
+
+    2 – Diet (PSMF Setup & Food Choices)
+    ss4wcj.png
+    2.0 – Core diet rules
+    This is a PSMF, so:
+
+    – Protein: set by LBM (usually 120–200 g/day for most).
+    – Carbs: ~20 g/day or less (mostly from low‑cal veggies).
+    – Fats: ~20 g/day or less (just what rides along with lean meats).
+    – Total calories: generally 600–900 kcal/day in a classic PSMF setup
+
+    You're gonna be living on lean protein with trace fats/carbs. Everything else is flavor and damage control.
+
+    2.1 – Food choices​
+    ​
+    Food​
+    	
+    Protein per 100g​
+    	
+    Fat​
+    	
+    Carbs​
+    Chicken breast (raw)​
+    	
+    ~23g​
+    	
+    ~1g​
+    	
+    0g​
+    Turkey breast (raw)​
+    	
+    ~22g​
+    	
+    ~1g​
+    	
+    0g​
+    Cod/white fish​
+    	
+    ~18g​
+    	
+    ~0.5g​
+    	
+    0g​
+    Egg whites​
+    	
+    ~11g​
+    	
+    0g​
+    	
+    ~0.7g​
+    Low-fat cottage cheese​
+    	
+    ~11g​
+    	
+    ~1g​
+    	
+    ~3g​
+    Whey isolate​
+    	
+    ~90g​
+    	
+    ~1g​
+    	
+    ~1g​
+    ​
+    A simple baseline day:
+    – 500 g chicken or turkey breast across the day.
+    – 1–2 scoops whey isolate to fill any protein gaps. ​
+    ​
+    Solid meat is usually superior to shakes for satiety, but as long as you hit your protein target and keep fats/carbs low, you're doing it right.​
+    ​
+    Use:
+
+    – Zero‑cal seasonings, herbs, spices.
+    – Sugar‑free drinks, black coffee, tea.
+    – Low‑cal veggies (lettuce, cucumber, zucchini, broccoli) in moderation
+
+    Because the calories are so low, official PSMF programs usually add a multivitamin and extra electrolytes (sodium, potassium, magnesium) to prevent deficiencies. [2] Target ranges (e.g., ~3–5 g sodium, ~2–3 g potassium, 300–400 mg magnesium per day).​
+    ​
+
+    3 – Maximizing Fat Loss Mechanisms
+    2xvu2d.png
+    j9j8og.png
+
+    3.0 – Overview: Lipolysis & Beta‑Oxidation
+    Fat loss happens in two major biochemical steps:
+
+    – Lipolysis: breakdown of stored triglycerides in fat cells into free fatty acids (FFAs) and glycerol.
+    – Beta‑oxidation: transport of FFAs into mitochondria and burning them for ATP.
+    https://www.ncbi.nlm.nih.gov/books/NBK560564/​
+    ​
+    You still need a calorie deficit, but how much of that deficit is filled by fat versus glycogen/glucose and muscle depends on how well you're mobilizing and oxidizing fat.
+
+    Keep in mind, we care about body composition and not just fat loss. [5]
+
+    ​
+
+    3.1 – Maximizing Lipolysis (Fat Breakdown)
+    2xvu2d.png
+
+    Lipolysis is controlled mainly by hormone‑sensitive lipase and related enzymes in adipose tissue.
+    https://en.wikipedia.org/wiki/Lipolysis
+    https://journals.physiology.org/doi/full/10.1152/ajpgi.00554.2006
+    ​
+    Key drivers:
+
+    – Catecholamines (adrenaline & noradrenaline):
+    Bind β‑adrenergic receptors (β1/β2/β3) on fat cells → ↑cAMP → activate hormone‑sensitive lipase → more FFAs released into the blood.
+
+    – Glucagon:
+    Works alongside catecholamines in the fasted state, especially when liver glycogen is low, to support fat breakdown. [7]
+
+    – Low insulin:
+    Insulin directly suppresses lipolysis, lowering insulin via fasting, low‑carb/ketogenic diets, or deep calorie restriction removes that, hence why PSMF mogs.
+
+    Lifestyle factors that boost lipolysis:
+
+    – Hard lifting / HIIT → big catecholamine spikes and acute increases in lipolysis. [8]
+
+    – Fasted cardio → with low insulin, catecholamine signalling on fat cells is more effective (though daily fat loss still depends on the total deficit).
+    – Cold exposure → cold showers / ice baths activate the sympathetic nervous system and brown fat, giving a modest increase in lipolysis and energy expenditure aswell though the effects are negligible. [7]
+
+    Common lipolysis‑oriented drugs:
+
+    – Clenbuterol: β2‑agonist → ↑cAMP → ↑lipolysis; can cause tachycardia (High heart rate) though.
+    – Yohimbine: α2‑antagonist blocking anti‑lipolytic signalling; works best fasted (insulin blunts its effect) but can cause anxiety and blood pressure spikes.
+    – Ephedrine + caffeine: increases catecholamine release / β‑receptor activation → ↑thermogenesis and lipolysis; significant CNS and cardiovascular load.
+    – GLP‑1 agonists (e.g. Semaglutide): mainly reduce appetite and improve glycemic control; by lowering energy intake and postprandial insulin they indirectly support fat loss. [9]
+
+    – Growth Hormone (GH): stimulates hormone‑sensitive lipase and increases FFA release [10]​
+    wkacpt.png
+
+    Also I must mention that on PSMF, you already have low insulin and frequent catecholamine spikes (training + big deficit), so you're naturally in a high‑lipolysis environment even without these.​
+    ​
+
+
+    3.2 – Maximizing Beta‑Oxidation (Fat Burning)
+    j9j8og.png
+
+    Once FFAs are in the bloodstream, they must get into mitochondria to be burned. Long‑chain fatty acids depend on the carnitine shuttle for entry into the mitochondrial matrix. [11]
+    ​
+    Key drivers:
+
+    – Carnitine & mitochondria:
+    Carnitine transports long‑chain fatty acids across the inner mitochondrial membrane; deficiencies or transport defects impair fat oxidation and shift fuel use toward carbs. [12]
+
+    Endurance / Zone 2 training increases mitochondrial density and the ability of muscle to use fat as a primary fuel. [13]
+
+    Keto / fasting / PSMF upregulate enzymes involved in fat oxidation and ketone production.
+
+    – Metabolic rate & AMPK:
+    Thyroid hormone (T3) increases metabolic rate and upregulates many genes involved in energy expenditure and fat oxidation. [9]
+    AMPK activation (via exercise, deficit, metformin/berberine) signals a low‑energy state and promotes fat oxidation while improving insulin sensitivity. [8]
+
+    Common beta‑oxidation‑oriented agents:
+
+    – L‑Carnitine: Facilitates fatty acid transport into mitochondria. Best injected (oral absorption is kinda poor). [14]
+    – Berberine / Metformin: Activates AMPK → ↑fat oxidation. Also improves insulin sensitivity. [15]
+    – T3 (Cytomel): ramps metabolism and fat burning but can accelerate muscle loss, strain the heart, and suppress normal thyroid function if misused.
+    – Exogenous ketones / ketone esters: Forces body into ketosis → ↑fat oxidation. Useful for non-keto dieters. ( doesn't really matter when on PSMF)
+    – GW501516 (Cardarine): PPARδ agonist → ↑fat oxidation + endurance. called cancerine by some (although the evidence is mixed). Depletes carnitine—relies on sufficient carnitine for beta oxidation effects.
+    ​
+
+
+    4 – Ancillaries (Appetite, "Fat Burners", Peptides)
+    57qjwk.png
+
+    ​
+    4.0 – Appetite control & GLP‑1s
+    Retatrutide, Semaglutide, Cagrilintide, Tirzepatide (Mounjaro), etc. are GLP‑1 / multi‑agonist drugs that strongly reduce appetite and improve glycemic control, making it easier to adhere to a long‑term calorie deficit. [9]
+
+    Makes PSMF 10 times easier to follow up.
+
+    4.1 – Stimulants
+    Caffeine, ephedrine, and prescription stimulants (Methylphenidate, Dextro, Vyvanse etc.) suppress appetite and increase catecholamines, which can raise energy expenditure but also heart rate, blood pressure.
+
+    I must say they are very mogger for energy on cut to keep up with daily life, I'm probably going to post a thread about stims soon aswell.
+
+    4.2 – "Fat‑loss enhancers"
+    – Clenbuterol: β2‑agonist → ↑cAMP → ↑lipolysis; can cause tachycardia (High heart rate) though.
+    – A-Yohimbine: α2‑antagonist blocking anti‑lipolytic signalling; works best fasted (insulin blunts its effect) but can cause anxiety and blood pressure spikes.
+    – Ephedrine + caffeine: increases catecholamine release / β‑receptor activation → ↑thermogenesis and lipolysis; significant CNS and cardiovascular load.
+    – L‑Carnitine: Facilitates fatty acid transport into mitochondria. Best injected (oral absorption is kinda poor). [14]
+    – Berberine / Metformin: Activates AMPK → ↑fat oxidation. Also improves insulin sensitivity. [15]
+    – T3 (Cytomel): ramps metabolism and fat burning but can accelerate muscle loss, strain the heart, and suppress normal thyroid function if misused.
+    – Exogenous ketones / ketone esters: Forces body into ketosis → ↑fat oxidation. Useful for non-keto dieters. ( doesn't really matter when on PSMF)
+    – GW501516 (Cardarine): PPARδ agonist → ↑fat oxidation + endurance. called cancerine by some (although the evidence is mixed). Depletes carnitine—relies on sufficient carnitine for beta oxidation effects.
+    – Growth Hormone (GH): stimulates hormone‑sensitive lipase and increases FFA release;. [10]
+
+    4.3 – Metabolic aids & cortisol modulation
+    – MOTS‑c: mitochondrial‑derived peptide that mimics exercise‑/fasting‑like signals → ↑AMPK activity, insulin sensitivity, and fat oxidation; may help preserve muscle.
+
+    – Metyrapone: cortisol‑synthesis inhibitor (blocks 11‑β‑hydroxylase) → lowers cortisol; used clinically in adrenal‑excess / Cushing‑related workups and mild autonomous cortisol secretion to improve metabolic markers.​
+
+    Bottom line: if you aren't already sticking to your diet, ancillaries are not the bottleneck.
+    ​
+
+    5 – Exercise (Lifting, Cardio & Steps)
+    6d2ijo.png
+    5.0 – Lifting to keep muscle
+    On a PSMF, high protein plus resistance training is what tells your body "keep this muscle" while you're in a big deficit. [16]
+
+    – Train each muscle group 1–2× per week.
+    – Keep your main compounds in (bench, squat, deadlift, OHP, rows, pull‑ups), but don't chase PRs while aggressively dieting.
+    – Focus on maintaining strength and performance, not progressing; 2–4 hard sets per exercise is usually enough stimulus without murdering recovery.
+
+    5.1 – Cardio & steps
+    – Baseline: aim for around 10k steps per day to keep NEAT high.
+    – Avoid excessive added cardio at the start of a PSMF – it ramps hunger and fatigue and can speed up metabolic adaptation on very low calories.
+    – In the final days before a deadline, you can add more Zone 2 cardio (incline treadmill, cycling, etc.) ​
+    ​
+
+    6 – How to Prevent Failure (Mindset & Social Tactics)
+    ​
+    – Don't say "I'm on a diet" to no. Just say you're not hungry or you already ate bro
+    – Learn to enjoy social events without eating; sip sugar‑free soda, water, tea, or black coffee and chill.
+    – No cheat meals, no "just one slice", no "I'll make up for it tomorrow".
+    – Remember that in normal day‑to‑day life, almost no situation actually forces you to eat junk – either stay fat or be shredded, make your choice.
+
+    Run this properly and, depending on your starting body fat, you can get noticeably lean in ~4–8 weeks,
+    which lines up with what clinical PSMF programs see under supervision. [17]​
+    ​
+
+    7 – TL;DR & More material​
+
+    TL;DR:
+    Track calories, Fats and Carbs < 20gr, Eat mainly protein, Supplement electrolytes, Eat Less than 1000calories, Train each muscle group 1-2 times a week, Keep your step count and daily activity high (<10.000 steps)
+
+    Trust the process.
+
+    Optionally:
+    Use GLP‑1 / multi‑agonists like Reta, Tirz or Cagr for apetite suppresion, Use Stimulants for energy and apetite suppresion, Use the "Fat Loss Enhancers" to maximise lipolysis and beta oxidation, Use Mots-c for metabolic markers, Use Metyrapone to inhibit cortisol, Introduce Zone 2 cardio after a while​
+
+
+
+    8 – Scientific Backup/ Sources:
+
+
+    How WE are gonna look like this summer:
+    View attachment 5105610​
+
+
+
+
+    - A glycogen depleted Menas
+    Click to expand...
+
+
+bookmarked
+ 
+
+    Love it+1 
+
+Reactions: alexias and Menas
+lnceIs
+lnceIs
+2020
+
+Joined
+    Feb 5, 2026
+
+Posts
+    4,820
+
+Reputation
+    11,083
+
+    Saturday at 9:16 AM 
+
+    #19
+
+    Sadist said:
+    how I am gonna be looking this summer:
+
+    View attachment 5105897
+
+ 
+
+    JFL+1 
+
+Reactions: alexias, Sadist and Menas
+Seven
+Seven
+“The man in the mirror is my only threat.”
+
+Joined
+    Feb 28, 2025
+
+Posts
+    7,394
+
+Reputation
+    11,667
+
+    Saturday at 9:20 AM 
+
+    #20
+
+good thread
+mirin
+will read later
++ bookmarked
+ 
+
+    Love it+1 
+
+Reactions: alexias and Menas
+4lt.Real
+4lt.Real
+Diamond
+
+Joined
+    Oct 12, 2023
+
+Posts
+    1,478
+
+Reputation
+    2,965
+
+    Saturday at 9:30 AM 
+
+    #21
+
+read every pixel. it didnt even take too long.
+ 
+
+    Love it+1 
+
+Reactions: alexias and Menas
+accinr
+accinr
+life starts at 8% body fat
+
+Joined
+    Nov 13, 2025
+
+Posts
+    680
+
+Reputation
+    766
+
+    Saturday at 9:36 AM 
+
+    #22
+
+    Menas said:
+    THE COMPLETE SHREDDING GUIDE FOR SUMMER
+    q50sla.png
+    Table of contents:
+    0 – Introduction / Disclaimer
+    1 – Prerequisites (BF%, LBM & Protein Target)
+    2 – Diet (PSMF Setup & Food Choices)
+    3 – Maximizing Fat Loss Mechanisms
+    3.0 – Overview: Lipolysis & Beta‑Oxidation
+    3.1 – Maximizing Lipolysis (Fat Breakdown)
+    3.2 – Maximizing Beta‑Oxidation (Fat Burning)
+    4 – Ancillaries (Appetite, "Fat Burners", Peptides)
+    5 – Exercise (Lifting, Cardio & Steps)
+    6 – How to Prevent Failure (Mindset & Social Tactics)
+    7 – TL;DR
+    8 - Scientific Backup/ Sources:​
+
+    Thread Music:
+
+
+
+    0 – Introduction / Disclaimer
+    949w48.png
+
+    By no means is this medical advice. Even though the risks are relatively low, everyone is different and some people may respond to this differently than others (although as I said, the majority should be fine).​
+
+
+    This thread is mainly focused on PSMF, most of the other stuff isn't mandatory but still better to include. PSMF stands for protein sparing modified fast, It's a diet where you mainly eat protein, it allows cutting efficiently without losing almost any muscle mass during cutting.
+    ​
+    My 3 Month PSMF transformation:
+    fyxzn2.png
+
+    ​
+
+
+    1 – Prerequisites (BF%, LBM & Protein Target)
+    ​
+    1.0 – Estimate your body fat %
+    You can estimate body fat by eyeballing (Which is probably the most accurate tbh) or using calipers, DEXA, or a decent impedance scale.
+    Once you have a body fat estimate, calculate your lean body mass (LBM): ​
+
+    Lean Body Mass = Bodyweight × (1 − Body Fat %)
+
+    Example: 180 lbs at 15% body fat → 180 × 0.85 = 153 lbs LBM.
+    rkfdco.png
+    1.1 – Set your daily protein target
+    Aim for roughly 1 g of protein per lb of lean bodyweight (about 2.2–2.5 g/kg LBM). Higher protein intakes during a deficit preserve more lean mass and strength vs lower protein diets. [1]
+
+    So at 180 lbs with 15% body fat (153 lbs LBM), target around 150–160 g of protein per day.
+    ​
+
+    1.2 – Start tracking your caloric intake
+    Download MyFitnessPal (or any decent tracker), weigh food on a kitchen scale, and log everything that goes into your mouth.
+    Specify raw vs cooked and pick accurate entries, you can't run a precise PSMF if you're eyeballing calories.​
+    ​
+
+
+    2 – Diet (PSMF Setup & Food Choices)
+    ss4wcj.png
+    2.0 – Core diet rules
+    This is a PSMF, so:
+
+    – Protein: set by LBM (usually 120–200 g/day for most).
+    – Carbs: ~20 g/day or less (mostly from low‑cal veggies).
+    – Fats: ~20 g/day or less (just what rides along with lean meats).
+    – Total calories: generally 600–900 kcal/day in a classic PSMF setup
+
+    You're gonna be living on lean protein with trace fats/carbs. Everything else is flavor and damage control.
+
+    2.1 – Food choices​
+    ​
+    Food​
+    	
+    Protein per 100g​
+    	
+    Fat​
+    	
+    Carbs​
+    Chicken breast (raw)​
+    	
+    ~23g​
+    	
+    ~1g​
+    	
+    0g​
+    Turkey breast (raw)​
+    	
+    ~22g​
+    	
+    ~1g​
+    	
+    0g​
+    Cod/white fish​
+    	
+    ~18g​
+    	
+    ~0.5g​
+    	
+    0g​
+    Egg whites​
+    	
+    ~11g​
+    	
+    0g​
+    	
+    ~0.7g​
+    Low-fat cottage cheese​
+    	
+    ~11g​
+    	
+    ~1g​
+    	
+    ~3g​
+    Whey isolate​
+    	
+    ~90g​
+    	
+    ~1g​
+    	
+    ~1g​
+    ​
+    A simple baseline day:
+    – 500 g chicken or turkey breast across the day.
+    – 1–2 scoops whey isolate to fill any protein gaps. ​
+    ​
+    Solid meat is usually superior to shakes for satiety, but as long as you hit your protein target and keep fats/carbs low, you're doing it right.​
+    ​
+    Use:
+
+    – Zero‑cal seasonings, herbs, spices.
+    – Sugar‑free drinks, black coffee, tea.
+    – Low‑cal veggies (lettuce, cucumber, zucchini, broccoli) in moderation
+
+    Because the calories are so low, official PSMF programs usually add a multivitamin and extra electrolytes (sodium, potassium, magnesium) to prevent deficiencies. [2] Target ranges (e.g., ~3–5 g sodium, ~2–3 g potassium, 300–400 mg magnesium per day).​
+    ​
+
+    3 – Maximizing Fat Loss Mechanisms
+    2xvu2d.png
+    j9j8og.png
+
+    3.0 – Overview: Lipolysis & Beta‑Oxidation
+    Fat loss happens in two major biochemical steps:
+
+    – Lipolysis: breakdown of stored triglycerides in fat cells into free fatty acids (FFAs) and glycerol.
+    – Beta‑oxidation: transport of FFAs into mitochondria and burning them for ATP.
+    https://www.ncbi.nlm.nih.gov/books/NBK560564/​
+    ​
+    You still need a calorie deficit, but how much of that deficit is filled by fat vs glycogen/glucose and muscle depends on how well you're mobilizing and oxidizing fat.
+
+    Keep in mind, we care about body composition and not just fat loss. [5]
+
+    ​
+
+    3.1 – Maximizing Lipolysis (Fat Breakdown)
+    2xvu2d.png
+
+    Lipolysis is controlled mainly by hormone‑sensitive lipase and related enzymes in adipose tissue.
+    https://en.wikipedia.org/wiki/Lipolysis
+    https://journals.physiology.org/doi/full/10.1152/ajpgi.00554.2006
+    ​
+    Key drivers:
+
+    – Catecholamines (adrenaline & noradrenaline):
+    Bind β‑adrenergic receptors (β1/β2/β3) on fat cells → ↑cAMP → activate hormone‑sensitive lipase → more FFAs released into the blood.
+
+    – Glucagon:
+    Works alongside catecholamines in the fasted state, especially when liver glycogen is low, to support fat breakdown. [7]
+
+    – Low insulin:
+    Insulin directly suppresses lipolysis, lowering insulin via fasting, low‑carb/ketogenic diets, or deep calorie restriction removes that, hence why PSMF mogs.
+
+    Lifestyle factors that boost lipolysis:
+
+    – Hard lifting / HIIT → big catecholamine spikes and acute increases in lipolysis. [8]
+
+    – Fasted cardio → with low insulin, catecholamine signalling on fat cells is more effective (though daily fat loss still depends on the total deficit).
+    – Cold exposure → cold showers / ice baths activate the sympathetic nervous system and brown fat, giving a modest increase in lipolysis and energy expenditure aswell though the effects are negligible. [7]
+
+    Common lipolysis‑oriented drugs:
+
+    – Clenbuterol: β2‑agonist → ↑cAMP → ↑lipolysis; can cause tachycardia (High heart rate) though.
+    – Yohimbine: α2‑antagonist blocking anti‑lipolytic signalling; works best fasted (insulin blunts its effect) but can cause anxiety and blood pressure spikes.
+    – Ephedrine + caffeine: increases catecholamine release / β‑receptor activation → ↑thermogenesis and lipolysis; significant CNS and cardiovascular load.
+    – GLP‑1 agonists (e.g. Semaglutide): mainly reduce appetite and improve glycemic control; by lowering energy intake and postprandial insulin they indirectly support fat loss. [9]
+
+    – Growth Hormone (GH): stimulates hormone‑sensitive lipase and increases FFA release [10]​
+    wkacpt.png
+
+    Also I must mention that on PSMF, you already have low insulin and frequent catecholamine spikes (training + big deficit), so you're naturally in a high‑lipolysis environment even without these.​
+    ​
+
+
+    3.2 – Maximizing Beta‑Oxidation (Fat Burning)
+    j9j8og.png
+
+    Once FFAs are in the bloodstream, they must get into mitochondria to be burned. Long‑chain fatty acids depend on the carnitine shuttle for entry into the mitochondrial matrix. [11]
+    ​
+    Key drivers:
+
+    – Carnitine & mitochondria:
+    Carnitine transports long‑chain fatty acids across the inner mitochondrial membrane; deficiencies or transport defects impair fat oxidation and shift fuel use toward carbs. [12]
+
+    Endurance / Zone 2 training increases mitochondrial density and the ability of muscle to use fat as a primary fuel. [13]
+
+    Keto / fasting / PSMF upregulate enzymes involved in fat oxidation and ketone production.
+
+    – Metabolic rate & AMPK:
+    Thyroid hormone (T3) increases metabolic rate and upregulates many genes involved in energy expenditure and fat oxidation. [9]
+    AMPK activation (via exercise, deficit, metformin/berberine) signals a low‑energy state and promotes fat oxidation while improving insulin sensitivity. [8]
+
+    Common beta‑oxidation‑oriented agents:
+
+    – L‑Carnitine: Facilitates fatty acid transport into mitochondria. Best injected (oral absorption is kinda poor). [14]
+    – Berberine / Metformin: Activates AMPK → ↑fat oxidation. Also improves insulin sensitivity. [15]
+    – T3 (Cytomel): ramps metabolism and fat burning but can accelerate muscle loss, strain the heart, and suppress normal thyroid function if misused.
+    – Exogenous ketones / ketone esters: Forces body into ketosis → ↑fat oxidation. Useful for non-keto dieters. ( doesn't really matter when on PSMF)
+    – GW501516 (Cardarine): PPARδ agonist → ↑fat oxidation + endurance. called cancerine by some (although the evidence is mixed). Depletes carnitine—relies on sufficient carnitine for beta oxidation effects.
+    ​
+
+
+    4 – Ancillaries (Appetite, "Fat Burners", Peptides)
+    57qjwk.png
+
+    ​
+    4.0 – Appetite control & GLP‑1s
+    Retatrutide, Semaglutide, Cagrilintide, Tirzepatide (Mounjaro), etc. are GLP‑1 / multi‑agonist drugs that strongly reduce appetite and improve glycemic control, making it easier to adhere to a long‑term calorie deficit. [9]
+
+    Makes PSMF 10 times easier to follow up.
+
+    4.1 – Stimulants
+    Caffeine, ephedrine, and prescription stimulants (Methylphenidate, Dextro, Vyvanse etc.) suppress appetite and increase catecholamines, which can raise energy expenditure but also heart rate, blood pressure.
+
+    I must say they are very mogger for energy on cut to keep up with daily life, I'm probably going to post a thread about stims soon aswell.
+
+    4.2 – "Fat‑loss enhancers"
+    – Clenbuterol: β2‑agonist → ↑cAMP → ↑lipolysis; can cause tachycardia (High heart rate) though.
+    – A-Yohimbine: α2‑antagonist blocking anti‑lipolytic signalling; works best fasted (insulin blunts its effect) but can cause anxiety and blood pressure spikes.
+    – Ephedrine + caffeine: increases catecholamine release / β‑receptor activation → ↑thermogenesis and lipolysis; significant CNS and cardiovascular load.
+    – L‑Carnitine: Facilitates fatty acid transport into mitochondria. Best injected (oral absorption is kinda poor). [14]
+    – Berberine / Metformin: Activates AMPK → ↑fat oxidation. Also improves insulin sensitivity. [15]
+    – T3 (Cytomel): ramps metabolism and fat burning but can accelerate muscle loss, strain the heart, and suppress normal thyroid function if misused.
+    – Exogenous ketones / ketone esters: Forces body into ketosis → ↑fat oxidation. Useful for non-keto dieters. ( doesn't really matter when on PSMF)
+    – GW501516 (Cardarine): PPARδ agonist → ↑fat oxidation + endurance. called cancerine by some (although the evidence is mixed). Depletes carnitine—relies on sufficient carnitine for beta oxidation effects.
+    – Growth Hormone (GH): stimulates hormone‑sensitive lipase and increases FFA release;. [10]
+
+    4.3 – Metabolic aids & cortisol modulation
+    – MOTS‑c: mitochondrial‑derived peptide that mimics exercise‑/fasting‑like signals → ↑AMPK activity, insulin sensitivity, and fat oxidation; may help preserve muscle.
+
+    – Metyrapone: cortisol‑synthesis inhibitor (blocks 11‑β‑hydroxylase) → lowers cortisol; used clinically in adrenal‑excess / Cushing‑related workups and mild autonomous cortisol secretion to improve metabolic markers.​
+
+    Bottom line: if you aren't already sticking to your diet, ancillaries are not the bottleneck.
+    ​
+
+    5 – Exercise (Lifting, Cardio & Steps)
+    6d2ijo.png
+    5.0 – Lifting to keep muscle
+    On a PSMF, high protein plus resistance training is what tells your body "keep this muscle" while you're in a big deficit. [16]
+
+    – Train each muscle group 1–2× per week.
+    – Keep your main compounds in (bench, squat, deadlift, OHP, rows, pull‑ups), but don't chase PRs while aggressively dieting.
+    – Focus on maintaining strength and performance, not progressing; 2–4 hard sets per exercise is usually enough stimulus without murdering recovery.
+
+    5.1 – Cardio & steps
+    – Baseline: aim for around 10k steps per day to keep NEAT high.
+    – Avoid excessive added cardio at the start of a PSMF – it ramps hunger and fatigue and can speed up metabolic adaptation on very low calories.
+    – In the final days before a deadline, you can add more Zone 2 cardio (incline treadmill, cycling, etc.) ​
+    ​
+
+    6 – How to Prevent Failure (Mindset & Social Tactics)
+    ​
+    – Don't say "I'm on a diet" to no. Just say you're not hungry or you already ate bro
+    – Learn to enjoy social events without eating; sip sugar‑free soda, water, tea, or black coffee and chill.
+    – No cheat meals, no "just one slice", no "I'll make up for it tomorrow".
+    – Remember that in normal day‑to‑day life, almost no situation actually forces you to eat junk – either stay fat or be shredded, make your choice.
+
+    Run this properly and, depending on your starting body fat, you can get noticeably lean in ~4–8 weeks,
+    which lines up with what clinical PSMF programs see under supervision. [17]​
+    ​
+
+    7 – TL;DR & More material​
+
+    TL;DR:
+    Track calories, Fats and Carbs < 20gr, Eat mainly protein, Supplement electrolytes, Eat Less than 1000calories, Train each muscle group 1-2 times a week, Keep your step count and daily activity high (<10.000 steps)
+
+    Trust the process.
+
+    Optionally:
+    Use GLP‑1 / multi‑agonists like Reta, Tirz or Cagr for apetite suppresion, Use Stimulants for energy and apetite suppresion, Use the "Fat Loss Enhancers" to maximise lipolysis and beta oxidation, Use Mots-c for metabolic markers, Use Metyrapone to inhibit cortisol, Introduce Zone 2 cardio after a while​
+
+
+
+    8 – Scientific Backup/ Sources:
+
+
+    How WE are gonna look like this summer:
+    View attachment 5105610​
+
+
+
+
+    - A glycogen depleted Menas
+    Click to expand...
+
+
+fuahhhhh bump inb4 botb i was here wagfmi kunts
+ 
+
+    Love it+1 
+
+Reactions: alexias and Menas
+DavidePollo
+DavidePollo
+Bronze
+
+Joined
+    Oct 20, 2025
+
+Posts
+    388
+
+Reputation
+    283
+
+    Saturday at 9:49 AM 
+
+    #23
+
+naturally a 8-10% bf without dieting, calories counting or using glp's-1/2/3
+good thread though
+ 
+
+    Hmm...+1 
+
+Reactions: alexias and Menas
+Menas
+Menas
+Mercenary
+Contributor
+
+Joined
+    May 16, 2024
+
+Posts
+    2,588
+
+Reputation
+    21,327
+
+    Saturday at 9:51 AM 
+
+    OP
+    #24
+
+    DavidePollo said:
+    naturally a 8-10% bf without dieting, calories counting or using glp's-1/2/3
+    good thread though
+
+No one is 8-10% bf naturally, you're probably overestimating dude
+ 
+
+    +1JFL 
+
+Reactions: alexias and Mast
+DavidePollo
+DavidePollo
+Bronze
+
+Joined
+    Oct 20, 2025
+
+Posts
+    388
+
+Reputation
+    283
+
+    Saturday at 9:54 AM 
+
+    #25
+
+    Menas said:
+    No one is 8-10% bf naturally, you're probably overestimating dude
+
+whatever you say g
+ 
+
+    Hmm...+1 
+
+Reactions: alexias and Menas
+Menas
+Menas
+Mercenary
+Contributor
+
+Joined
+    May 16, 2024
+
+Posts
+    2,588
+
+Reputation
+    21,327
+
+    Saturday at 9:55 AM 
+
+    OP
+    #26
+
+    DavidePollo said:
+    whatever you say g
+
+you're probably around 12-14% and have defined abs genetically
+ 
+
+    +1JFL 
+
+Reactions: alexias, Mast and kdev
+N1kolai
+N1kolai
+Kalopsia
+
+Joined
+    Nov 27, 2025
+
+Posts
+    1,135
+
+Reputation
+    1,114
+
+    Saturday at 9:57 AM 
+
+    #27
+
+    Menas said:
+    THE COMPLETE SHREDDING GUIDE FOR SUMMER
+    q50sla.png
+    Table of contents:
+    0 – Introduction / Disclaimer
+    1 – Prerequisites (BF%, LBM & Protein Target)
+    2 – Diet (PSMF Setup & Food Choices)
+    3 – Maximizing Fat Loss Mechanisms
+    3.0 – Overview: Lipolysis & Beta‑Oxidation
+    3.1 – Maximizing Lipolysis (Fat Breakdown)
+    3.2 – Maximizing Beta‑Oxidation (Fat Burning)
+    4 – Ancillaries (Appetite, "Fat Burners", Peptides)
+    5 – Exercise (Lifting, Cardio & Steps)
+    6 – How to Prevent Failure (Mindset & Social Tactics)
+    7 – TL;DR
+    8 - Scientific Backup/ Sources:​
+
+    Thread Music:
+
+
+
+    0 – Introduction / Disclaimer
+    949w48.png
+
+    By no means is this medical advice. Even though the risks are relatively low, everyone is different and some people may respond to this differently than others (although as I said, the majority should be fine).​
+
+
+    This thread is mainly focused on PSMF, most of the other stuff isn't mandatory but still better to include. PSMF stands for protein sparing modified fast, It's a diet where you mainly eat protein, it allows cutting efficiently without losing almost any muscle mass during cutting.
+    ​
+    My 3 Month PSMF transformation:
+    fyxzn2.png
+
+    ​
+
+
+    1 – Prerequisites (BF%, LBM & Protein Target)
+    ​
+    1.0 – Estimate your body fat %
+    You can estimate body fat by eyeballing (Which is probably the most accurate tbh) or using calipers, DEXA, or a decent impedance scale.
+    Once you have a body fat estimate, calculate your lean body mass (LBM): ​
+
+    Lean Body Mass = Bodyweight × (1 − Body Fat %)
+
+    Example: 180 lbs at 15% body fat → 180 × 0.85 = 153 lbs LBM.
+    rkfdco.png
+    1.1 – Set your daily protein target
+    Aim for roughly 1 g of protein per lb of lean bodyweight (about 2.2–2.5 g/kg LBM). Higher protein intakes during a deficit preserve more lean mass and strength vs lower protein diets. [1]
+
+    So at 180 lbs with 15% body fat (153 lbs LBM), target around 150–160 g of protein per day.
+    ​
+
+    1.2 – Start tracking your caloric intake
+    Download MyFitnessPal (or any decent tracker), weigh food on a kitchen scale, and log everything that goes into your mouth.
+    Specify raw vs cooked and pick accurate entries, you can't run a precise PSMF if you're eyeballing calories.​
+    ​
+
+
+    2 – Diet (PSMF Setup & Food Choices)
+    ss4wcj.png
+    2.0 – Core diet rules
+    This is a PSMF, so:
+
+    – Protein: set by LBM (usually 120–200 g/day for most).
+    – Carbs: ~20 g/day or less (mostly from low‑cal veggies).
+    – Fats: ~20 g/day or less (just what rides along with lean meats).
+    – Total calories: generally 600–900 kcal/day in a classic PSMF setup
+
+    You're gonna be living on lean protein with trace fats/carbs. Everything else is flavor and damage control.
+
+    2.1 – Food choices​
+    ​
+    Food​
+    	
+    Protein per 100g​
+    	
+    Fat​
+    	
+    Carbs​
+    Chicken breast (raw)​
+    	
+    ~23g​
+    	
+    ~1g​
+    	
+    0g​
+    Turkey breast (raw)​
+    	
+    ~22g​
+    	
+    ~1g​
+    	
+    0g​
+    Cod/white fish​
+    	
+    ~18g​
+    	
+    ~0.5g​
+    	
+    0g​
+    Egg whites​
+    	
+    ~11g​
+    	
+    0g​
+    	
+    ~0.7g​
+    Low-fat cottage cheese​
+    	
+    ~11g​
+    	
+    ~1g​
+    	
+    ~3g​
+    Whey isolate​
+    	
+    ~90g​
+    	
+    ~1g​
+    	
+    ~1g​
+    ​
+    A simple baseline day:
+    – 500 g chicken or turkey breast across the day.
+    – 1–2 scoops whey isolate to fill any protein gaps. ​
+    ​
+    Solid meat is usually superior to shakes for satiety, but as long as you hit your protein target and keep fats/carbs low, you're doing it right.​
+    ​
+    Use:
+
+    – Zero‑cal seasonings, herbs, spices.
+    – Sugar‑free drinks, black coffee, tea.
+    – Low‑cal veggies (lettuce, cucumber, zucchini, broccoli) in moderation
+
+    Because the calories are so low, official PSMF programs usually add a multivitamin and extra electrolytes (sodium, potassium, magnesium) to prevent deficiencies. [2] Target ranges (e.g., ~3–5 g sodium, ~2–3 g potassium, 300–400 mg magnesium per day).​
+    ​
+
+    3 – Maximizing Fat Loss Mechanisms
+    2xvu2d.png
+    j9j8og.png
+
+    3.0 – Overview: Lipolysis & Beta‑Oxidation
+    Fat loss happens in two major biochemical steps:
+
+    – Lipolysis: breakdown of stored triglycerides in fat cells into free fatty acids (FFAs) and glycerol.
+    – Beta‑oxidation: transport of FFAs into mitochondria and burning them for ATP.
+    https://www.ncbi.nlm.nih.gov/books/NBK560564/​
+    ​
+    You still need a calorie deficit, but how much of that deficit is filled by fat vs glycogen/glucose and muscle depends on how well you're mobilizing and oxidizing fat.
+
+    Keep in mind, we care about body composition and not just fat loss. [5]
+
+    ​
+
+    3.1 – Maximizing Lipolysis (Fat Breakdown)
+    2xvu2d.png
+
+    Lipolysis is controlled mainly by hormone‑sensitive lipase and related enzymes in adipose tissue.
+    https://en.wikipedia.org/wiki/Lipolysis
+    https://journals.physiology.org/doi/full/10.1152/ajpgi.00554.2006
+    ​
+    Key drivers:
+
+    – Catecholamines (adrenaline & noradrenaline):
+    Bind β‑adrenergic receptors (β1/β2/β3) on fat cells → ↑cAMP → activate hormone‑sensitive lipase → more FFAs released into the blood.
+
+    – Glucagon:
+    Works alongside catecholamines in the fasted state, especially when liver glycogen is low, to support fat breakdown. [7]
+
+    – Low insulin:
+    Insulin directly suppresses lipolysis, lowering insulin via fasting, low‑carb/ketogenic diets, or deep calorie restriction removes that, hence why PSMF mogs.
+
+    Lifestyle factors that boost lipolysis:
+
+    – Hard lifting / HIIT → big catecholamine spikes and acute increases in lipolysis. [8]
+
+    – Fasted cardio → with low insulin, catecholamine signalling on fat cells is more effective (though daily fat loss still depends on the total deficit).
+    – Cold exposure → cold showers / ice baths activate the sympathetic nervous system and brown fat, giving a modest increase in lipolysis and energy expenditure aswell though the effects are negligible. [7]
+
+    Common lipolysis‑oriented drugs:
+
+    – Clenbuterol: β2‑agonist → ↑cAMP → ↑lipolysis; can cause tachycardia (High heart rate) though.
+    – Yohimbine: α2‑antagonist blocking anti‑lipolytic signalling; works best fasted (insulin blunts its effect) but can cause anxiety and blood pressure spikes.
+    – Ephedrine + caffeine: increases catecholamine release / β‑receptor activation → ↑thermogenesis and lipolysis; significant CNS and cardiovascular load.
+    – GLP‑1 agonists (e.g. Semaglutide): mainly reduce appetite and improve glycemic control; by lowering energy intake and postprandial insulin they indirectly support fat loss. [9]
+
+    – Growth Hormone (GH): stimulates hormone‑sensitive lipase and increases FFA release [10]​
+    wkacpt.png
+
+    Also I must mention that on PSMF, you already have low insulin and frequent catecholamine spikes (training + big deficit), so you're naturally in a high‑lipolysis environment even without these.​
+    ​
+
+
+    3.2 – Maximizing Beta‑Oxidation (Fat Burning)
+    j9j8og.png
+
+    Once FFAs are in the bloodstream, they must get into mitochondria to be burned. Long‑chain fatty acids depend on the carnitine shuttle for entry into the mitochondrial matrix. [11]
+    ​
+    Key drivers:
+
+    – Carnitine & mitochondria:
+    Carnitine transports long‑chain fatty acids across the inner mitochondrial membrane; deficiencies or transport defects impair fat oxidation and shift fuel use toward carbs. [12]
+
+    Endurance / Zone 2 training increases mitochondrial density and the ability of muscle to use fat as a primary fuel. [13]
+
+    Keto / fasting / PSMF upregulate enzymes involved in fat oxidation and ketone production.
+
+    – Metabolic rate & AMPK:
+    Thyroid hormone (T3) increases metabolic rate and upregulates many genes involved in energy expenditure and fat oxidation. [9]
+    AMPK activation (via exercise, deficit, metformin/berberine) signals a low‑energy state and promotes fat oxidation while improving insulin sensitivity. [8]
+
+    Common beta‑oxidation‑oriented agents:
+
+    – L‑Carnitine: Facilitates fatty acid transport into mitochondria. Best injected (oral absorption is kinda poor). [14]
+    – Berberine / Metformin: Activates AMPK → ↑fat oxidation. Also improves insulin sensitivity. [15]
+    – T3 (Cytomel): ramps metabolism and fat burning but can accelerate muscle loss, strain the heart, and suppress normal thyroid function if misused.
+    – Exogenous ketones / ketone esters: Forces body into ketosis → ↑fat oxidation. Useful for non-keto dieters. ( doesn't really matter when on PSMF)
+    – GW501516 (Cardarine): PPARδ agonist → ↑fat oxidation + endurance. called cancerine by some (although the evidence is mixed). Depletes carnitine—relies on sufficient carnitine for beta oxidation effects.
+    ​
+
+
+    4 – Ancillaries (Appetite, "Fat Burners", Peptides)
+    57qjwk.png
+
+    ​
+    4.0 – Appetite control & GLP‑1s
+    Retatrutide, Semaglutide, Cagrilintide, Tirzepatide (Mounjaro), etc. are GLP‑1 / multi‑agonist drugs that strongly reduce appetite and improve glycemic control, making it easier to adhere to a long‑term calorie deficit. [9]
+
+    Makes PSMF 10 times easier to follow up.
+
+    4.1 – Stimulants
+    Caffeine, ephedrine, and prescription stimulants (Methylphenidate, Dextro, Vyvanse etc.) suppress appetite and increase catecholamines, which can raise energy expenditure but also heart rate, blood pressure.
+
+    I must say they are very mogger for energy on cut to keep up with daily life, I'm probably going to post a thread about stims soon aswell.
+
+    4.2 – "Fat‑loss enhancers"
+    – Clenbuterol: β2‑agonist → ↑cAMP → ↑lipolysis; can cause tachycardia (High heart rate) though.
+    – A-Yohimbine: α2‑antagonist blocking anti‑lipolytic signalling; works best fasted (insulin blunts its effect) but can cause anxiety and blood pressure spikes.
+    – Ephedrine + caffeine: increases catecholamine release / β‑receptor activation → ↑thermogenesis and lipolysis; significant CNS and cardiovascular load.
+    – L‑Carnitine: Facilitates fatty acid transport into mitochondria. Best injected (oral absorption is kinda poor). [14]
+    – Berberine / Metformin: Activates AMPK → ↑fat oxidation. Also improves insulin sensitivity. [15]
+    – T3 (Cytomel): ramps metabolism and fat burning but can accelerate muscle loss, strain the heart, and suppress normal thyroid function if misused.
+    – Exogenous ketones / ketone esters: Forces body into ketosis → ↑fat oxidation. Useful for non-keto dieters. ( doesn't really matter when on PSMF)
+    – GW501516 (Cardarine): PPARδ agonist → ↑fat oxidation + endurance. called cancerine by some (although the evidence is mixed). Depletes carnitine—relies on sufficient carnitine for beta oxidation effects.
+    – Growth Hormone (GH): stimulates hormone‑sensitive lipase and increases FFA release;. [10]
+
+    4.3 – Metabolic aids & cortisol modulation
+    – MOTS‑c: mitochondrial‑derived peptide that mimics exercise‑/fasting‑like signals → ↑AMPK activity, insulin sensitivity, and fat oxidation; may help preserve muscle.
+
+    – Metyrapone: cortisol‑synthesis inhibitor (blocks 11‑β‑hydroxylase) → lowers cortisol; used clinically in adrenal‑excess / Cushing‑related workups and mild autonomous cortisol secretion to improve metabolic markers.​
+
+    Bottom line: if you aren't already sticking to your diet, ancillaries are not the bottleneck.
+    ​
+
+    5 – Exercise (Lifting, Cardio & Steps)
+    6d2ijo.png
+    5.0 – Lifting to keep muscle
+    On a PSMF, high protein plus resistance training is what tells your body "keep this muscle" while you're in a big deficit. [16]
+
+    – Train each muscle group 1–2× per week.
+    – Keep your main compounds in (bench, squat, deadlift, OHP, rows, pull‑ups), but don't chase PRs while aggressively dieting.
+    – Focus on maintaining strength and performance, not progressing; 2–4 hard sets per exercise is usually enough stimulus without murdering recovery.
+
+    5.1 – Cardio & steps
+    – Baseline: aim for around 10k steps per day to keep NEAT high.
+    – Avoid excessive added cardio at the start of a PSMF – it ramps hunger and fatigue and can speed up metabolic adaptation on very low calories.
+    – In the final days before a deadline, you can add more Zone 2 cardio (incline treadmill, cycling, etc.) ​
+    ​
+
+    6 – How to Prevent Failure (Mindset & Social Tactics)
+    ​
+    – Don't say "I'm on a diet" to no. Just say you're not hungry or you already ate bro
+    – Learn to enjoy social events without eating; sip sugar‑free soda, water, tea, or black coffee and chill.
+    – No cheat meals, no "just one slice", no "I'll make up for it tomorrow".
+    – Remember that in normal day‑to‑day life, almost no situation actually forces you to eat junk – either stay fat or be shredded, make your choice.
+
+    Run this properly and, depending on your starting body fat, you can get noticeably lean in ~4–8 weeks,
+    which lines up with what clinical PSMF programs see under supervision. [17]​
+    ​
+
+    7 – TL;DR & More material​
+
+    TL;DR:
+    Track calories, Fats and Carbs < 20gr, Eat mainly protein, Supplement electrolytes, Eat Less than 1000calories, Train each muscle group 1-2 times a week, Keep your step count and daily activity high (<10.000 steps)
+
+    Trust the process.
+
+    Optionally:
+    Use GLP‑1 / multi‑agonists like Reta, Tirz or Cagr for apetite suppresion, Use Stimulants for energy and apetite suppresion, Use the "Fat Loss Enhancers" to maximise lipolysis and beta oxidation, Use Mots-c for metabolic markers, Use Metyrapone to inhibit cortisol, Introduce Zone 2 cardio after a while​
+
+
+
+    8 – Scientific Backup/ Sources:
+
+
+    How WE are gonna look like this summer:
+    View attachment 5105610​
+
+
+
+
+    - A glycogen depleted Menas
+    Click to expand...
+
+
+don´t need it still read it
+mirin the music
+ 
+
+    +1Love it 
+
+Reactions: alexias, Selbstmord and Menas
+combatingNorwooding
+combatingNorwooding
+Zephir
+
+Joined
+    Mar 1, 2026
+
+Posts
+    1,923
+
+Reputation
+    8,370
+
+    Saturday at 10:01 AM 
+
+    #28
+
+I think doing PSMF diet is useless, especially if natty. A 300-600 deficit is better for many reasons. You should only do it if you want results now which is retarded since you could just start that but beforehand while still becoming stronger and lowering the risk of muscle loss which is very high in a diet like PSMF
+
+you should prioritize carbs during your cut, not protein. Eating 1.6-2x your BW (KG) is enough during a cut (and yes Im aware this is a PSMF guide but I’m advising this in general)
+
+You would be fatigued as hell after your 3rd exercise when working out
+
+Not to mention the way it’s going to ruin your relationship with food unless you know EXACTLY what you are doing or you are doing it with a coach
+
+A diet is not a period it’s a lifestyle, that’s something that is very important to note. You can’t just expect to stay in the weight you aim for if you can’t keep this style of weight lose as a lifestyle
+
+    Menas said:
+    rkfdco.png
+    Click to expand...
+
+Ts is not accurate at all
+
+Also you are just as lean as your fattest body part
+
+    Menas said:
+    Download MyFitnessPal
+
+I think cronometer and tracked mogs but it’s about priority tbh
+
+    Menas said:
+    Train each muscle group 1–2× per week.
+
+2 minimum. You would increase the risk of muscle loss the less you stimulate the muscle
+
+In an aggressive cit like this I would aim for 3x frequency for each muscle you care about tbh
+
+    Menas said:
+    Focus on maintaining strength and performance, not progressing; 2–4 hard sets per exercise is usually enough stimulus without murdering recovery
+
+this is very true. I know so many people who try to force progression during a cut and they just end up reducing progression.
+
+If you maintained the loads in the gym, you didn’t lose muscle- I think you should’ve mention this.
+
+    Menas said:
+    Avoid excessive added cardio at the start of a PSMF – it ramps hunger and fatigue and can speed up metabolic adaptation on very low calories.
+    – In the final days before a deadline, you can add more Zone 2 cardio (incline treadmill, cycling, etc.)
+
+Steps are the best form of “cardio”
+
+They cayse less fatigue + hunger while still making you lose weight rapidly
+
+I wouldnt do zone 4+ during a cut tbh
+
+Great guide tho BOTB worthy
+ 
+Last edited: Saturday at 10:04 AM
+
+    +1 
+
+Reactions: gymcelld, alexias and Menas
+Gandy'sOrbitalVecto
+Gandy'sOrbitalVecto
+NevER StreSS
+
+Joined
+    Dec 26, 2025
+
+Posts
+    197
+
+Reputation
+    185
+
+    Saturday at 10:02 AM 
+
+    #29
+
+    Menas said:
+    THE COMPLETE SHREDDING GUIDE FOR SUMMER
+    (Get shredded in a fucking month)
+    q50sla.png
+    Table of contents:
+    0 – Introduction / Disclaimer
+    1 – Prerequisites (BF%, LBM & Protein Target)
+    2 – Diet (PSMF Setup & Food Choices)
+    3 – Maximizing Fat Loss Mechanisms
+    3.0 – Overview: Lipolysis & Beta‑Oxidation
+    3.1 – Maximizing Lipolysis (Fat Breakdown)
+    3.2 – Maximizing Beta‑Oxidation (Fat Burning)
+    4 – Ancillaries (Appetite, "Fat Burners", Peptides)
+    5 – Exercise (Lifting, Cardio & Steps)
+    6 – How to Prevent Failure (Mindset & Social Tactics)
+    7 – TL;DR
+    8 - Scientific Backup/ Sources:​
+
+    Thread Music:
+
+
+
+    0 – Introduction / Disclaimer
+    949w48.png
+
+    By no means is this medical advice. Even though the risks are relatively low, everyone is different and some people may respond to this differently than others (although as I said, the majority should be fine).​
+
+
+    This thread is mainly focused on PSMF, most of the other stuff isn't mandatory but still better to include. PSMF stands for protein sparing modified fast, It's a diet where you mainly eat protein, it allows cutting efficiently without losing almost any muscle mass during cutting.
+    ​
+    My 3 Month PSMF transformation:
+    fyxzn2.png
+
+    ​
+
+
+    1 – Prerequisites (BF%, LBM & Protein Target)
+    ​
+    1.0 – Estimate your body fat %
+    You can estimate body fat by eyeballing (Which is probably the most accurate tbh) or using calipers, DEXA, or a decent impedance scale.
+    Once you have a body fat estimate, calculate your lean body mass (LBM): ​
+
+    Lean Body Mass = Bodyweight × (1 − Body Fat %)
+
+    Example: 180 lbs at 15% body fat → 180 × 0.85 = 153 lbs LBM.
+    rkfdco.png
+    1.1 – Set your daily protein target
+    Aim for roughly 1 g of protein per lb of lean bodyweight (about 2.2–2.5 g/kg LBM). Higher protein intakes during a deficit preserve more lean mass and strength vs lower protein diets. [1]
+
+    So at 180 lbs with 15% body fat (153 lbs LBM), target around 150–160 g of protein per day.
+    ​
+
+    1.2 – Start tracking your caloric intake
+    Download MyFitnessPal (or any decent tracker), weigh food on a kitchen scale, and log everything that goes into your mouth.
+    Specify raw vs cooked and pick accurate entries, you can't run a precise PSMF if you're eyeballing calories.​
+    ​
+
+
+    2 – Diet (PSMF Setup & Food Choices)
+    ss4wcj.png
+    2.0 – Core diet rules
+    This is a PSMF, so:
+
+    – Protein: set by LBM (usually 120–200 g/day for most).
+    – Carbs: ~20 g/day or less (mostly from low‑cal veggies).
+    – Fats: ~20 g/day or less (just what rides along with lean meats).
+    – Total calories: generally 600–900 kcal/day in a classic PSMF setup
+
+    You're gonna be living on lean protein with trace fats/carbs. Everything else is flavor and damage control.
+
+    2.1 – Food choices​
+    ​
+    Food​
+    	
+    Protein per 100g​
+    	
+    Fat​
+    	
+    Carbs​
+    Chicken breast (raw)​
+    	
+    ~23g​
+    	
+    ~1g​
+    	
+    0g​
+    Turkey breast (raw)​
+    	
+    ~22g​
+    	
+    ~1g​
+    	
+    0g​
+    Cod/white fish​
+    	
+    ~18g​
+    	
+    ~0.5g​
+    	
+    0g​
+    Egg whites​
+    	
+    ~11g​
+    	
+    0g​
+    	
+    ~0.7g​
+    Low-fat cottage cheese​
+    	
+    ~11g​
+    	
+    ~1g​
+    	
+    ~3g​
+    Whey isolate​
+    	
+    ~90g​
+    	
+    ~1g​
+    	
+    ~1g​
+    ​
+    A simple baseline day:
+    – 500 g chicken or turkey breast across the day.
+    – 1–2 scoops whey isolate to fill any protein gaps. ​
+    ​
+    Solid meat is usually superior to shakes for satiety, but as long as you hit your protein target and keep fats/carbs low, you're doing it right.​
+    ​
+    Use:
+
+    – Zero‑cal seasonings, herbs, spices.
+    – Sugar‑free drinks, black coffee, tea.
+    – Low‑cal veggies (lettuce, cucumber, zucchini, broccoli) in moderation
+
+    Because the calories are so low, official PSMF programs usually add a multivitamin and extra electrolytes (sodium, potassium, magnesium) to prevent deficiencies. [2] Target ranges (e.g., ~3–5 g sodium, ~2–3 g potassium, 300–400 mg magnesium per day).​
+    ​
+
+    3 – Maximizing Fat Loss Mechanisms
+    2xvu2d.png
+    j9j8og.png
+
+    3.0 – Overview: Lipolysis & Beta‑Oxidation
+    Fat loss happens in two major biochemical steps:
+
+    – Lipolysis: breakdown of stored triglycerides in fat cells into free fatty acids (FFAs) and glycerol.
+    – Beta‑oxidation: transport of FFAs into mitochondria and burning them for ATP.
+    https://www.ncbi.nlm.nih.gov/books/NBK560564/​
+    ​
+    You still need a calorie deficit, but how much of that deficit is filled by fat vs glycogen/glucose and muscle depends on how well you're mobilizing and oxidizing fat.
+
+    Keep in mind, we care about body composition and not just fat loss. [5]
+
+    ​
+
+    3.1 – Maximizing Lipolysis (Fat Breakdown)
+    2xvu2d.png
+
+    Lipolysis is controlled mainly by hormone‑sensitive lipase and related enzymes in adipose tissue.
+    https://en.wikipedia.org/wiki/Lipolysis
+    https://journals.physiology.org/doi/full/10.1152/ajpgi.00554.2006
+    ​
+    Key drivers:
+
+    – Catecholamines (adrenaline & noradrenaline):
+    Bind β‑adrenergic receptors (β1/β2/β3) on fat cells → ↑cAMP → activate hormone‑sensitive lipase → more FFAs released into the blood.
+
+    – Glucagon:
+    Works alongside catecholamines in the fasted state, especially when liver glycogen is low, to support fat breakdown. [7]
+
+    – Low insulin:
+    Insulin directly suppresses lipolysis, lowering insulin via fasting, low‑carb/ketogenic diets, or deep calorie restriction removes that, hence why PSMF mogs.
+
+    Lifestyle factors that boost lipolysis:
+
+    – Hard lifting / HIIT → big catecholamine spikes and acute increases in lipolysis. [8]
+
+    – Fasted cardio → with low insulin, catecholamine signalling on fat cells is more effective (though daily fat loss still depends on the total deficit).
+    – Cold exposure → cold showers / ice baths activate the sympathetic nervous system and brown fat, giving a modest increase in lipolysis and energy expenditure aswell though the effects are negligible. [7]
+
+    Common lipolysis‑oriented drugs:
+
+    – Clenbuterol: β2‑agonist → ↑cAMP → ↑lipolysis; can cause tachycardia (High heart rate) though.
+    – Yohimbine: α2‑antagonist blocking anti‑lipolytic signalling; works best fasted (insulin blunts its effect) but can cause anxiety and blood pressure spikes.
+    – Ephedrine + caffeine: increases catecholamine release / β‑receptor activation → ↑thermogenesis and lipolysis; significant CNS and cardiovascular load.
+    – GLP‑1 agonists (e.g. Semaglutide): mainly reduce appetite and improve glycemic control; by lowering energy intake and postprandial insulin they indirectly support fat loss. [9]
+
+    – Growth Hormone (GH): stimulates hormone‑sensitive lipase and increases FFA release [10]​
+    wkacpt.png
+
+    Also I must mention that on PSMF, you already have low insulin and frequent catecholamine spikes (training + big deficit), so you're naturally in a high‑lipolysis environment even without these.​
+    ​
+
+
+    3.2 – Maximizing Beta‑Oxidation (Fat Burning)
+    j9j8og.png
+
+    Once FFAs are in the bloodstream, they must get into mitochondria to be burned. Long‑chain fatty acids depend on the carnitine shuttle for entry into the mitochondrial matrix. [11]
+    ​
+    Key drivers:
+
+    – Carnitine & mitochondria:
+    Carnitine transports long‑chain fatty acids across the inner mitochondrial membrane; deficiencies or transport defects impair fat oxidation and shift fuel use toward carbs. [12]
+
+    Endurance / Zone 2 training increases mitochondrial density and the ability of muscle to use fat as a primary fuel. [13]
+
+    Keto / fasting / PSMF upregulate enzymes involved in fat oxidation and ketone production.
+
+    – Metabolic rate & AMPK:
+    Thyroid hormone (T3) increases metabolic rate and upregulates many genes involved in energy expenditure and fat oxidation. [9]
+    AMPK activation (via exercise, deficit, metformin/berberine) signals a low‑energy state and promotes fat oxidation while improving insulin sensitivity. [8]
+
+    Common beta‑oxidation‑oriented agents:
+
+    – L‑Carnitine: Facilitates fatty acid transport into mitochondria. Best injected (oral absorption is kinda poor). [14]
+    – Berberine / Metformin: Activates AMPK → ↑fat oxidation. Also improves insulin sensitivity. [15]
+    – T3 (Cytomel): ramps metabolism and fat burning but can accelerate muscle loss, strain the heart, and suppress normal thyroid function if misused.
+    – Exogenous ketones / ketone esters: Forces body into ketosis → ↑fat oxidation. Useful for non-keto dieters. ( doesn't really matter when on PSMF)
+    – GW501516 (Cardarine): PPARδ agonist → ↑fat oxidation + endurance. called cancerine by some (although the evidence is mixed). Depletes carnitine—relies on sufficient carnitine for beta oxidation effects.
+    ​
+
+
+    4 – Ancillaries (Appetite, "Fat Burners", Peptides)
+    57qjwk.png
+
+    ​
+    4.0 – Appetite control & GLP‑1s
+    Retatrutide, Semaglutide, Cagrilintide, Tirzepatide (Mounjaro), etc. are GLP‑1 / multi‑agonist drugs that strongly reduce appetite and improve glycemic control, making it easier to adhere to a long‑term calorie deficit. [9]
+
+    Makes PSMF 10 times easier to follow up.
+
+    4.1 – Stimulants
+    Caffeine, ephedrine, and prescription stimulants (Methylphenidate, Dextro, Vyvanse etc.) suppress appetite and increase catecholamines, which can raise energy expenditure but also heart rate, blood pressure.
+
+    I must say they are very mogger for energy on cut to keep up with daily life, I'm probably going to post a thread about stims soon aswell.
+
+    4.2 – "Fat‑loss enhancers"
+    – Clenbuterol: β2‑agonist → ↑cAMP → ↑lipolysis; can cause tachycardia (High heart rate) though.
+    – A-Yohimbine: α2‑antagonist blocking anti‑lipolytic signalling; works best fasted (insulin blunts its effect) but can cause anxiety and blood pressure spikes.
+    – Ephedrine + caffeine: increases catecholamine release / β‑receptor activation → ↑thermogenesis and lipolysis; significant CNS and cardiovascular load.
+    – L‑Carnitine: Facilitates fatty acid transport into mitochondria. Best injected (oral absorption is kinda poor). [14]
+    – Berberine / Metformin: Activates AMPK → ↑fat oxidation. Also improves insulin sensitivity. [15]
+    – T3 (Cytomel): ramps metabolism and fat burning but can accelerate muscle loss, strain the heart, and suppress normal thyroid function if misused.
+    – Exogenous ketones / ketone esters: Forces body into ketosis → ↑fat oxidation. Useful for non-keto dieters. ( doesn't really matter when on PSMF)
+    – GW501516 (Cardarine): PPARδ agonist → ↑fat oxidation + endurance. called cancerine by some (although the evidence is mixed). Depletes carnitine—relies on sufficient carnitine for beta oxidation effects.
+    – Growth Hormone (GH): stimulates hormone‑sensitive lipase and increases FFA release;. [10]
+
+    4.3 – Metabolic aids & cortisol modulation
+    – MOTS‑c: mitochondrial‑derived peptide that mimics exercise‑/fasting‑like signals → ↑AMPK activity, insulin sensitivity, and fat oxidation; may help preserve muscle.
+
+    – Metyrapone: cortisol‑synthesis inhibitor (blocks 11‑β‑hydroxylase) → lowers cortisol; used clinically in adrenal‑excess / Cushing‑related workups and mild autonomous cortisol secretion to improve metabolic markers.​
+
+    Bottom line: if you aren't already sticking to your diet, ancillaries are not the bottleneck.
+    ​
+
+    5 – Exercise (Lifting, Cardio & Steps)
+    6d2ijo.png
+    5.0 – Lifting to keep muscle
+    On a PSMF, high protein plus resistance training is what tells your body "keep this muscle" while you're in a big deficit. [16]
+
+    – Train each muscle group 1–2× per week.
+    – Keep your main compounds in (bench, squat, deadlift, OHP, rows, pull‑ups), but don't chase PRs while aggressively dieting.
+    – Focus on maintaining strength and performance, not progressing; 2–4 hard sets per exercise is usually enough stimulus without murdering recovery.
+
+    5.1 – Cardio & steps
+    – Baseline: aim for around 10k steps per day to keep NEAT high.
+    – Avoid excessive added cardio at the start of a PSMF – it ramps hunger and fatigue and can speed up metabolic adaptation on very low calories.
+    – In the final days before a deadline, you can add more Zone 2 cardio (incline treadmill, cycling, etc.) ​
+    ​
+
+    6 – How to Prevent Failure (Mindset & Social Tactics)
+    ​
+    – Don't say "I'm on a diet" to no. Just say you're not hungry or you already ate bro
+    – Learn to enjoy social events without eating; sip sugar‑free soda, water, tea, or black coffee and chill.
+    – No cheat meals, no "just one slice", no "I'll make up for it tomorrow".
+    – Remember that in normal day‑to‑day life, almost no situation actually forces you to eat junk – either stay fat or be shredded, make your choice.
+
+    Run this properly and, depending on your starting body fat, you can get noticeably lean in ~4–8 weeks,
+    which lines up with what clinical PSMF programs see under supervision. [17]​
+    ​
+
+    7 – TL;DR & More material​
+
+    TL;DR:
+    Track calories, Fats and Carbs < 20gr, Eat mainly protein, Supplement electrolytes, Eat Less than 1000calories, Train each muscle group 1-2 times a week, Keep your step count and daily activity high (<10.000 steps)
+
+    Trust the process.
+
+    Optionally:
+    Use GLP‑1 / multi‑agonists like Reta, Tirz or Cagr for apetite suppresion, Use Stimulants for energy and apetite suppresion, Use the "Fat Loss Enhancers" to maximise lipolysis and beta oxidation, Use Mots-c for metabolic markers, Use Metyrapone to inhibit cortisol, Introduce Zone 2 cardio after a while​
+
+
+
+    8 – Scientific Backup/ Sources:
+
+
+    How WE are gonna look like this summer:
+    View attachment 5105610​
+
+
+
+
+    - A glycogen depleted Menas
+    Click to expand...
+
+
+HOLY GOLD LOOT
+ 
+
+    Love it+1 
+
+Reactions: alexias and Menas
+polarpop
+polarpop
+chicken stir fry lover
+
+Joined
+    Mar 23, 2026
+
+Posts
+    1,215
+
+Reputation
+    1,916
+
+    Saturday at 10:04 AM 
+
+    #30
+
+really good thread, was gonna make a similar one myself.
+
+i would of just possibly added the alperts cap as a general rule of thumb so the deficit isint too aggressive to the point that it would be a waste in the sense of not losing only fat depending on the persons height or weight
+
+but good shi, i used psmf when i was getting lean.
+ 
+
+    +1Love it 
+
+Reactions: alexias, Gandy'sOrbitalVecto and Menas
+Orka
+Orka
+Øneheart | 2021
+Contributor
+
+Joined
+    Sep 8, 2024
+
+Posts
+    17,666
+
+Reputation
+    60,335
+
+    Saturday at 10:07 AM 
+
+    #31
+
+    Menas said:
+    inb4 bro binges on sum shit like "pierogi"
+
+Just finished 2 dozen chocolate chip cookies
+
+Let me read the guide now
+ 
+
+    JFL+1 
+
+Reactions: alexias, Mast and Menas
+Menas
+Menas
+Mercenary
+Contributor
+
+Joined
+    May 16, 2024
+
+Posts
+    2,588
+
+Reputation
+    21,327
+
+    Saturday at 10:09 AM 
+
+    OP
+    #32
+
+    combatingNorwooding said:
+    I think doing PSMF diet is useless, especially if natty. A 300-600 deficit is better for many reasons. You should only do it if you want results now which is retarded since you could just start that but beforehand while still becoming stronger and lowering the risk of muscle loss which is very high in a diet like PSMF
+
+I just edited some stuff before your reply lol, I forgot to add the (Get shredded in a fucking month) part, the main point is to get results ASAP.
+
+    combatingNorwooding said:
+    Ts is not accurate at all
+
+It's the best one I could find
+
+    combatingNorwooding said:
+    I think cronometer and tracked mogs but it’s about priority
+
+Never used them so I wouldn't know, thanks for the recs tho
+
+    combatingNorwooding said:
+    2 minimum. You would increase the risk of muscle loss the less you stimulate the muscle
+
+    In an aggressive cit like this I would aim for 3x frequency for each muscle you care about tbh
+
+1 is sufficient, 2 or 3 would obviously be better.
+
+    combatingNorwooding said:
+    Steps are the best form of “cardio”
+
+Yeah I tried to highlight them as much as possible anyway.
+
+    combatingNorwooding said:
+    They cayse less fatigue + hunger while still making you lose weight rapidly
+
+I did mention that aswell no?
+
+    combatingNorwooding said:
+    Great guide tho BOTB worthy
+
+Thanks brah :Comfy:
+ 
+
+    +1JFL 
+
+Reactions: alexias, Mast and combatingNorwooding
+combatingNorwooding
+combatingNorwooding
+Zephir
+
+Joined
+    Mar 1, 2026
+
+Posts
+    1,923
+
+Reputation
+    8,370
+
+    Saturday at 10:12 AM 
+
+    #33
+
+    Menas said:
+    I just edited some stuff before your reply lol, I forgot to add the (Get shredded in a fucking month) part, the main point is to get results ASAP
+
+Yeah, no point in doing this diet for more than
+8 weeks tbh, you will just risk much more muscle loss
+
+I agree tho
+
+    Menas said:
+    I did mention that aswell no?
+
+yeah you did
+ 
+
+    +1 
+
+Reactions: alexias and Menas
+Menas
+Menas
+Mercenary
+Contributor
+
+Joined
+    May 16, 2024
+
+Posts
+    2,588
+
+Reputation
+    21,327
+
+    Saturday at 10:31 AM 
+
+    OP
+    #34
+
+@Master take notes
+ 
+
+    +1JFL 
+
+Reactions: alexias and Mast
+kdev
+kdev
+Platinum
+
+Joined
+    Oct 4, 2025
+
+Posts
+    1,098
+
+Reputation
+    4,032
+
+    Saturday at 11:01 AM 
+
+    #35
+
+WE all getting lean this summer :love:
+ 
+
+    +1Love itJFL 
+
+Reactions: CoderShaper, alexias, Mast and 1 other person
+Menas
+Menas
+Mercenary
+Contributor
+
+Joined
+    May 16, 2024
+
+Posts
+    2,588
+
+Reputation
+    21,327
+
+    Saturday at 11:02 AM 
+
+    OP
+    #36
+
+    kdev said:
+    WE all getting lean this summer :love:
+
+Fuck yeah
+ 
+
+    Love it+1JFL 
+
+Reactions: alexias, PAUL_ALLEN, Mast and 2 others
+FUCK YEA
+FUCK YEA
+I came here to give positive energy to people
+
+Joined
+    Dec 10, 2025
+
+Posts
+    1,336
+
+Reputation
+    2,507
+
+    Saturday at 11:30 AM 
+
+    #37
+
+    Menas said:
+    THE COMPLETE SHREDDING GUIDE FOR SUMMER
+    (Get shredded in a fucking month)
+    q50sla.png
+    Table of contents:
+    0 – Introduction / Disclaimer
+    1 – Prerequisites (BF%, LBM & Protein Target)
+    2 – Diet (PSMF Setup & Food Choices)
+    3 – Maximizing Fat Loss Mechanisms
+    3.0 – Overview: Lipolysis & Beta‑Oxidation
+    3.1 – Maximizing Lipolysis (Fat Breakdown)
+    3.2 – Maximizing Beta‑Oxidation (Fat Burning)
+    4 – Ancillaries (Appetite, "Fat Burners", Peptides)
+    5 – Exercise (Lifting, Cardio & Steps)
+    6 – How to Prevent Failure (Mindset & Social Tactics)
+    7 – TL;DR
+    8 - Scientific Backup/ Sources:​
+
+    Thread Music:
+
+
+
+    0 – Introduction / Disclaimer
+    949w48.png
+
+    By no means is this medical advice. Even though the risks are relatively low, everyone is different and some people may respond to this differently than others (although as I said, the majority should be fine).​
+
+
+    This thread is mainly focused on PSMF, most of the other stuff isn't mandatory but still better to include. PSMF stands for protein sparing modified fast, It's a diet where you mainly eat protein, it allows cutting efficiently without losing almost any muscle mass during cutting.
+    ​
+    My 3 Month PSMF transformation:
+    fyxzn2.png
+
+    ​
+
+
+    1 – Prerequisites (BF%, LBM & Protein Target)
+    ​
+    1.0 – Estimate your body fat %
+    You can estimate body fat by eyeballing (Which is probably the most accurate tbh) or using calipers, DEXA, or a decent impedance scale.
+    Once you have a body fat estimate, calculate your lean body mass (LBM): ​
+
+    Lean Body Mass = Bodyweight × (1 − Body Fat %)
+
+    Example: 180 lbs at 15% body fat → 180 × 0.85 = 153 lbs LBM.
+    rkfdco.png
+    1.1 – Set your daily protein target
+    Aim for roughly 1 g of protein per lb of lean bodyweight (about 2.2–2.5 g/kg LBM). Higher protein intakes during a deficit preserve more lean mass and strength vs lower protein diets. [1]
+
+    So at 180 lbs with 15% body fat (153 lbs LBM), target around 150–160 g of protein per day.
+    ​
+
+    1.2 – Start tracking your caloric intake
+    Download MyFitnessPal (or any decent tracker), weigh food on a kitchen scale, and log everything that goes into your mouth.
+    Specify raw vs cooked and pick accurate entries, you can't run a precise PSMF if you're eyeballing calories.​
+    ​
+
+
+    2 – Diet (PSMF Setup & Food Choices)
+    ss4wcj.png
+    2.0 – Core diet rules
+    This is a PSMF, so:
+
+    – Protein: set by LBM (usually 120–200 g/day for most).
+    – Carbs: ~20 g/day or less (mostly from low‑cal veggies).
+    – Fats: ~20 g/day or less (just what rides along with lean meats).
+    – Total calories: generally 600–900 kcal/day in a classic PSMF setup
+
+    You're gonna be living on lean protein with trace fats/carbs. Everything else is flavor and damage control.
+
+    2.1 – Food choices​
+    ​
+    Food​
+    	
+    Protein per 100g​
+    	
+    Fat​
+    	
+    Carbs​
+    Chicken breast (raw)​
+    	
+    ~23g​
+    	
+    ~1g​
+    	
+    0g​
+    Turkey breast (raw)​
+    	
+    ~22g​
+    	
+    ~1g​
+    	
+    0g​
+    Cod/white fish​
+    	
+    ~18g​
+    	
+    ~0.5g​
+    	
+    0g​
+    Egg whites​
+    	
+    ~11g​
+    	
+    0g​
+    	
+    ~0.7g​
+    Low-fat cottage cheese​
+    	
+    ~11g​
+    	
+    ~1g​
+    	
+    ~3g​
+    Whey isolate​
+    	
+    ~90g​
+    	
+    ~1g​
+    	
+    ~1g​
+    ​
+    A simple baseline day:
+    – 500 g chicken or turkey breast across the day.
+    – 1–2 scoops whey isolate to fill any protein gaps. ​
+    ​
+    Solid meat is usually superior to shakes for satiety, but as long as you hit your protein target and keep fats/carbs low, you're doing it right.​
+    ​
+    Use:
+
+    – Zero‑cal seasonings, herbs, spices.
+    – Sugar‑free drinks, black coffee, tea.
+    – Low‑cal veggies (lettuce, cucumber, zucchini, broccoli) in moderation
+
+    Because the calories are so low, official PSMF programs usually add a multivitamin and extra electrolytes (sodium, potassium, magnesium) to prevent deficiencies. [2] Target ranges (e.g., ~3–5 g sodium, ~2–3 g potassium, 300–400 mg magnesium per day).​
+    ​
+
+    3 – Maximizing Fat Loss Mechanisms
+    2xvu2d.png
+    j9j8og.png
+
+    3.0 – Overview: Lipolysis & Beta‑Oxidation
+    Fat loss happens in two major biochemical steps:
+
+    – Lipolysis: breakdown of stored triglycerides in fat cells into free fatty acids (FFAs) and glycerol.
+    – Beta‑oxidation: transport of FFAs into mitochondria and burning them for ATP.
+    https://www.ncbi.nlm.nih.gov/books/NBK560564/​
+    ​
+    You still need a calorie deficit, but how much of that deficit is filled by fat vs glycogen/glucose and muscle depends on how well you're mobilizing and oxidizing fat.
+
+    Keep in mind, we care about body composition and not just fat loss. [5]
+
+    ​
+
+    3.1 – Maximizing Lipolysis (Fat Breakdown)
+    2xvu2d.png
+
+    Lipolysis is controlled mainly by hormone‑sensitive lipase and related enzymes in adipose tissue.
+    https://en.wikipedia.org/wiki/Lipolysis
+    https://journals.physiology.org/doi/full/10.1152/ajpgi.00554.2006
+    ​
+    Key drivers:
+
+    – Catecholamines (adrenaline & noradrenaline):
+    Bind β‑adrenergic receptors (β1/β2/β3) on fat cells → ↑cAMP → activate hormone‑sensitive lipase → more FFAs released into the blood.
+
+    – Glucagon:
+    Works alongside catecholamines in the fasted state, especially when liver glycogen is low, to support fat breakdown. [7]
+
+    – Low insulin:
+    Insulin directly suppresses lipolysis, lowering insulin via fasting, low‑carb/ketogenic diets, or deep calorie restriction removes that, hence why PSMF mogs.
+
+    Lifestyle factors that boost lipolysis:
+
+    – Hard lifting / HIIT → big catecholamine spikes and acute increases in lipolysis. [8]
+
+    – Fasted cardio → with low insulin, catecholamine signalling on fat cells is more effective (though daily fat loss still depends on the total deficit).
+    – Cold exposure → cold showers / ice baths activate the sympathetic nervous system and brown fat, giving a modest increase in lipolysis and energy expenditure aswell though the effects are negligible. [7]
+
+    Common lipolysis‑oriented drugs:
+
+    – Clenbuterol: β2‑agonist → ↑cAMP → ↑lipolysis; can cause tachycardia (High heart rate) though.
+    – Yohimbine: α2‑antagonist blocking anti‑lipolytic signalling; works best fasted (insulin blunts its effect) but can cause anxiety and blood pressure spikes.
+    – Ephedrine + caffeine: increases catecholamine release / β‑receptor activation → ↑thermogenesis and lipolysis; significant CNS and cardiovascular load.
+    – GLP‑1 agonists (e.g. Semaglutide): mainly reduce appetite and improve glycemic control; by lowering energy intake and postprandial insulin they indirectly support fat loss. [9]
+
+    – Growth Hormone (GH): stimulates hormone‑sensitive lipase and increases FFA release [10]​
+    wkacpt.png
+
+    Also I must mention that on PSMF, you already have low insulin and frequent catecholamine spikes (training + big deficit), so you're naturally in a high‑lipolysis environment even without these.​
+    ​
+
+
+    3.2 – Maximizing Beta‑Oxidation (Fat Burning)
+    j9j8og.png
+
+    Once FFAs are in the bloodstream, they must get into mitochondria to be burned. Long‑chain fatty acids depend on the carnitine shuttle for entry into the mitochondrial matrix. [11]
+    ​
+    Key drivers:
+
+    – Carnitine & mitochondria:
+    Carnitine transports long‑chain fatty acids across the inner mitochondrial membrane; deficiencies or transport defects impair fat oxidation and shift fuel use toward carbs. [12]
+
+    Endurance / Zone 2 training increases mitochondrial density and the ability of muscle to use fat as a primary fuel. [13]
+
+    Keto / fasting / PSMF upregulate enzymes involved in fat oxidation and ketone production.
+
+    – Metabolic rate & AMPK:
+    Thyroid hormone (T3) increases metabolic rate and upregulates many genes involved in energy expenditure and fat oxidation. [9]
+    AMPK activation (via exercise, deficit, metformin/berberine) signals a low‑energy state and promotes fat oxidation while improving insulin sensitivity. [8]
+
+    Common beta‑oxidation‑oriented agents:
+
+    – L‑Carnitine: Facilitates fatty acid transport into mitochondria. Best injected (oral absorption is kinda poor). [14]
+    – Berberine / Metformin: Activates AMPK → ↑fat oxidation. Also improves insulin sensitivity. [15]
+    – T3 (Cytomel): ramps metabolism and fat burning but can accelerate muscle loss, strain the heart, and suppress normal thyroid function if misused.
+    – Exogenous ketones / ketone esters: Forces body into ketosis → ↑fat oxidation. Useful for non-keto dieters. ( doesn't really matter when on PSMF)
+    – GW501516 (Cardarine): PPARδ agonist → ↑fat oxidation + endurance. called cancerine by some (although the evidence is mixed). Depletes carnitine—relies on sufficient carnitine for beta oxidation effects.
+    ​
+
+
+    4 – Ancillaries (Appetite, "Fat Burners", Peptides)
+    57qjwk.png
+
+    ​
+    4.0 – Appetite control & GLP‑1s
+    Retatrutide, Semaglutide, Cagrilintide, Tirzepatide (Mounjaro), etc. are GLP‑1 / multi‑agonist drugs that strongly reduce appetite and improve glycemic control, making it easier to adhere to a long‑term calorie deficit. [9]
+
+    Makes PSMF 10 times easier to follow up.
+
+    4.1 – Stimulants
+    Caffeine, ephedrine, and prescription stimulants (Methylphenidate, Dextro, Vyvanse etc.) suppress appetite and increase catecholamines, which can raise energy expenditure but also heart rate, blood pressure.
+
+    I must say they are very mogger for energy on cut to keep up with daily life, I'm probably going to post a thread about stims soon aswell.
+
+    4.2 – "Fat‑loss enhancers"
+    – Clenbuterol: β2‑agonist → ↑cAMP → ↑lipolysis; can cause tachycardia (High heart rate) though.
+    – A-Yohimbine: α2‑antagonist blocking anti‑lipolytic signalling; works best fasted (insulin blunts its effect) but can cause anxiety and blood pressure spikes.
+    – Ephedrine + caffeine: increases catecholamine release / β‑receptor activation → ↑thermogenesis and lipolysis; significant CNS and cardiovascular load.
+    – L‑Carnitine: Facilitates fatty acid transport into mitochondria. Best injected (oral absorption is kinda poor). [14]
+    – Berberine / Metformin: Activates AMPK → ↑fat oxidation. Also improves insulin sensitivity. [15]
+    – T3 (Cytomel): ramps metabolism and fat burning but can accelerate muscle loss, strain the heart, and suppress normal thyroid function if misused.
+    – Exogenous ketones / ketone esters: Forces body into ketosis → ↑fat oxidation. Useful for non-keto dieters. ( doesn't really matter when on PSMF)
+    – GW501516 (Cardarine): PPARδ agonist → ↑fat oxidation + endurance. called cancerine by some (although the evidence is mixed). Depletes carnitine—relies on sufficient carnitine for beta oxidation effects.
+    – Growth Hormone (GH): stimulates hormone‑sensitive lipase and increases FFA release;. [10]
+
+    4.3 – Metabolic aids & cortisol modulation
+    – MOTS‑c: mitochondrial‑derived peptide that mimics exercise‑/fasting‑like signals → ↑AMPK activity, insulin sensitivity, and fat oxidation; may help preserve muscle.
+
+    – Metyrapone: cortisol‑synthesis inhibitor (blocks 11‑β‑hydroxylase) → lowers cortisol; used clinically in adrenal‑excess / Cushing‑related workups and mild autonomous cortisol secretion to improve metabolic markers.​
+
+    Bottom line: if you aren't already sticking to your diet, ancillaries are not the bottleneck.
+    ​
+
+    5 – Exercise (Lifting, Cardio & Steps)
+    6d2ijo.png
+    5.0 – Lifting to keep muscle
+    On a PSMF, high protein plus resistance training is what tells your body "keep this muscle" while you're in a big deficit. [16]
+
+    – Train each muscle group 1–2× per week.
+    – Keep your main compounds in (bench, squat, deadlift, OHP, rows, pull‑ups), but don't chase PRs while aggressively dieting.
+    – Focus on maintaining strength and performance, not progressing; 2–4 hard sets per exercise is usually enough stimulus without murdering recovery.
+
+    5.1 – Cardio & steps
+    – Baseline: aim for around 10k steps per day to keep NEAT high.
+    – Avoid excessive added cardio at the start of a PSMF – it ramps hunger and fatigue and can speed up metabolic adaptation on very low calories.
+    – In the final days before a deadline, you can add more Zone 2 cardio (incline treadmill, cycling, etc.) ​
+    ​
+
+    6 – How to Prevent Failure (Mindset & Social Tactics)
+    ​
+    – Don't say "I'm on a diet" to no. Just say you're not hungry or you already ate bro
+    – Learn to enjoy social events without eating; sip sugar‑free soda, water, tea, or black coffee and chill.
+    – No cheat meals, no "just one slice", no "I'll make up for it tomorrow".
+    – Remember that in normal day‑to‑day life, almost no situation actually forces you to eat junk – either stay fat or be shredded, make your choice.
+
+    Run this properly and, depending on your starting body fat, you can get noticeably lean in ~4–8 weeks,
+    which lines up with what clinical PSMF programs see under supervision. [17]​
+    ​
+
+    7 – TL;DR & More material​
+
+    TL;DR:
+    Track calories, Fats and Carbs < 20gr, Eat mainly protein, Supplement electrolytes, Eat Less than 1000calories, Train each muscle group 1-2 times a week, Keep your step count and daily activity high (<10.000 steps)
+
+    Trust the process.
+
+    Optionally:
+    Use GLP‑1 / multi‑agonists like Reta, Tirz or Cagr for apetite suppresion, Use Stimulants for energy and apetite suppresion, Use the "Fat Loss Enhancers" to maximise lipolysis and beta oxidation, Use Mots-c for metabolic markers, Use Metyrapone to inhibit cortisol, Introduce Zone 2 cardio after a while​
+
+
+
+    8 – Scientific Backup/ Sources:
+
+
+    How WE are gonna look like this summer:
+    View attachment 5105610​
+
+
+
+
+    - A glycogen depleted Menas
+    Click to expand...
+
+
+Mirin thread bhai :feelsautistic:
+ 
+
+    Love it+1 
+
+Reactions: alexias and Menas
+Menas
+Menas
+Mercenary
+Contributor
+
+Joined
+    May 16, 2024
+
+Posts
+    2,588
+
+Reputation
+    21,327
+
+    Saturday at 12:25 PM 
+
+    OP
+    #38
+
+    4lt.Real said:
+    read every pixel. it didnt even take too long.
+
+bro read 123456765432345432345432123432234... pixels
+ 
+
+    +1 
+
+Reactions: alexias and Mast
+Mast
+Quit. Check bio.
+
+Joined
+    Feb 14, 2026
+
+Posts
+    1,633
+
+Reputation
+    14,948
+
+    Saturday at 12:29 PM 
+
+    #39
+
+    Menas said:
+    THE COMPLETE SHREDDING GUIDE FOR SUMMER
+    (Get shredded in a fucking month)
+    q50sla.png
+    Table of contents:
+    0 – Introduction / Disclaimer
+    1 – Prerequisites (BF%, LBM & Protein Target)
+    2 – Diet (PSMF Setup & Food Choices)
+    3 – Maximizing Fat Loss Mechanisms
+    3.0 – Overview: Lipolysis & Beta‑Oxidation
+    3.1 – Maximizing Lipolysis (Fat Breakdown)
+    3.2 – Maximizing Beta‑Oxidation (Fat Burning)
+    4 – Ancillaries (Appetite, "Fat Burners", Peptides)
+    5 – Exercise (Lifting, Cardio & Steps)
+    6 – How to Prevent Failure (Mindset & Social Tactics)
+    7 – TL;DR
+    8 - Scientific Backup/ Sources:​
+
+    Thread Music:
+
+
+
+    0 – Introduction / Disclaimer
+    949w48.png
+
+    By no means is this medical advice. Even though the risks are relatively low, everyone is different and some people may respond to this differently than others (although as I said, the majority should be fine).​
+
+
+    This thread is mainly focused on PSMF, most of the other stuff isn't mandatory but still better to include. PSMF stands for protein sparing modified fast, It's a diet where you mainly eat protein, it allows cutting efficiently without losing almost any muscle mass during cutting.
+    ​
+    My 3 Month PSMF transformation:
+    fyxzn2.png
+
+    ​
+
+
+    1 – Prerequisites (BF%, LBM & Protein Target)
+    ​
+    1.0 – Estimate your body fat %
+    You can estimate body fat by eyeballing (Which is probably the most accurate tbh) or using calipers, DEXA, or a decent impedance scale.
+    Once you have a body fat estimate, calculate your lean body mass (LBM): ​
+
+    Lean Body Mass = Bodyweight × (1 − Body Fat %)
+
+    Example: 180 lbs at 15% body fat → 180 × 0.85 = 153 lbs LBM.
+    rkfdco.png
+    1.1 – Set your daily protein target
+    Aim for roughly 1 g of protein per lb of lean bodyweight (about 2.2–2.5 g/kg LBM). Higher protein intakes during a deficit preserve more lean mass and strength vs lower protein diets. [1]
+
+    So at 180 lbs with 15% body fat (153 lbs LBM), target around 150–160 g of protein per day.
+    ​
+
+    1.2 – Start tracking your caloric intake
+    Download MyFitnessPal (or any decent tracker), weigh food on a kitchen scale, and log everything that goes into your mouth.
+    Specify raw vs cooked and pick accurate entries, you can't run a precise PSMF if you're eyeballing calories.​
+    ​
+
+
+    2 – Diet (PSMF Setup & Food Choices)
+    ss4wcj.png
+    2.0 – Core diet rules
+    This is a PSMF, so:
+
+    – Protein: set by LBM (usually 120–200 g/day for most).
+    – Carbs: ~20 g/day or less (mostly from low‑cal veggies).
+    – Fats: ~20 g/day or less (just what rides along with lean meats).
+    – Total calories: generally 600–900 kcal/day in a classic PSMF setup
+
+    You're gonna be living on lean protein with trace fats/carbs. Everything else is flavor and damage control.
+
+    2.1 – Food choices​
+    ​
+    Food​
+    	
+    Protein per 100g​
+    	
+    Fat​
+    	
+    Carbs​
+    Chicken breast (raw)​
+    	
+    ~23g​
+    	
+    ~1g​
+    	
+    0g​
+    Turkey breast (raw)​
+    	
+    ~22g​
+    	
+    ~1g​
+    	
+    0g​
+    Cod/white fish​
+    	
+    ~18g​
+    	
+    ~0.5g​
+    	
+    0g​
+    Egg whites​
+    	
+    ~11g​
+    	
+    0g​
+    	
+    ~0.7g​
+    Low-fat cottage cheese​
+    	
+    ~11g​
+    	
+    ~1g​
+    	
+    ~3g​
+    Whey isolate​
+    	
+    ~90g​
+    	
+    ~1g​
+    	
+    ~1g​
+    ​
+    A simple baseline day:
+    – 500 g chicken or turkey breast across the day.
+    – 1–2 scoops whey isolate to fill any protein gaps. ​
+    ​
+    Solid meat is usually superior to shakes for satiety, but as long as you hit your protein target and keep fats/carbs low, you're doing it right.​
+    ​
+    Use:
+
+    – Zero‑cal seasonings, herbs, spices.
+    – Sugar‑free drinks, black coffee, tea.
+    – Low‑cal veggies (lettuce, cucumber, zucchini, broccoli) in moderation
+
+    Because the calories are so low, official PSMF programs usually add a multivitamin and extra electrolytes (sodium, potassium, magnesium) to prevent deficiencies. [2] Target ranges (e.g., ~3–5 g sodium, ~2–3 g potassium, 300–400 mg magnesium per day).​
+    ​
+
+    3 – Maximizing Fat Loss Mechanisms
+    2xvu2d.png
+    j9j8og.png
+
+    3.0 – Overview: Lipolysis & Beta‑Oxidation
+    Fat loss happens in two major biochemical steps:
+
+    – Lipolysis: breakdown of stored triglycerides in fat cells into free fatty acids (FFAs) and glycerol.
+    – Beta‑oxidation: transport of FFAs into mitochondria and burning them for ATP.
+    https://www.ncbi.nlm.nih.gov/books/NBK560564/​
+    ​
+    You still need a calorie deficit, but how much of that deficit is filled by fat vs glycogen/glucose and muscle depends on how well you're mobilizing and oxidizing fat.
+
+    Keep in mind, we care about body composition and not just fat loss. [5]
+
+    ​
+
+    3.1 – Maximizing Lipolysis (Fat Breakdown)
+    2xvu2d.png
+
+    Lipolysis is controlled mainly by hormone‑sensitive lipase and related enzymes in adipose tissue.
+    https://en.wikipedia.org/wiki/Lipolysis
+    https://journals.physiology.org/doi/full/10.1152/ajpgi.00554.2006
+    ​
+    Key drivers:
+
+    – Catecholamines (adrenaline & noradrenaline):
+    Bind β‑adrenergic receptors (β1/β2/β3) on fat cells → ↑cAMP → activate hormone‑sensitive lipase → more FFAs released into the blood.
+
+    – Glucagon:
+    Works alongside catecholamines in the fasted state, especially when liver glycogen is low, to support fat breakdown. [7]
+
+    – Low insulin:
+    Insulin directly suppresses lipolysis, lowering insulin via fasting, low‑carb/ketogenic diets, or deep calorie restriction removes that, hence why PSMF mogs.
+
+    Lifestyle factors that boost lipolysis:
+
+    – Hard lifting / HIIT → big catecholamine spikes and acute increases in lipolysis. [8]
+
+    – Fasted cardio → with low insulin, catecholamine signalling on fat cells is more effective (though daily fat loss still depends on the total deficit).
+    – Cold exposure → cold showers / ice baths activate the sympathetic nervous system and brown fat, giving a modest increase in lipolysis and energy expenditure aswell though the effects are negligible. [7]
+
+    Common lipolysis‑oriented drugs:
+
+    – Clenbuterol: β2‑agonist → ↑cAMP → ↑lipolysis; can cause tachycardia (High heart rate) though.
+    – Yohimbine: α2‑antagonist blocking anti‑lipolytic signalling; works best fasted (insulin blunts its effect) but can cause anxiety and blood pressure spikes.
+    – Ephedrine + caffeine: increases catecholamine release / β‑receptor activation → ↑thermogenesis and lipolysis; significant CNS and cardiovascular load.
+    – GLP‑1 agonists (e.g. Semaglutide): mainly reduce appetite and improve glycemic control; by lowering energy intake and postprandial insulin they indirectly support fat loss. [9]
+
+    – Growth Hormone (GH): stimulates hormone‑sensitive lipase and increases FFA release [10]​
+    wkacpt.png
+
+    Also I must mention that on PSMF, you already have low insulin and frequent catecholamine spikes (training + big deficit), so you're naturally in a high‑lipolysis environment even without these.​
+    ​
+
+
+    3.2 – Maximizing Beta‑Oxidation (Fat Burning)
+    j9j8og.png
+
+    Once FFAs are in the bloodstream, they must get into mitochondria to be burned. Long‑chain fatty acids depend on the carnitine shuttle for entry into the mitochondrial matrix. [11]
+    ​
+    Key drivers:
+
+    – Carnitine & mitochondria:
+    Carnitine transports long‑chain fatty acids across the inner mitochondrial membrane; deficiencies or transport defects impair fat oxidation and shift fuel use toward carbs. [12]
+
+    Endurance / Zone 2 training increases mitochondrial density and the ability of muscle to use fat as a primary fuel. [13]
+
+    Keto / fasting / PSMF upregulate enzymes involved in fat oxidation and ketone production.
+
+    – Metabolic rate & AMPK:
+    Thyroid hormone (T3) increases metabolic rate and upregulates many genes involved in energy expenditure and fat oxidation. [9]
+    AMPK activation (via exercise, deficit, metformin/berberine) signals a low‑energy state and promotes fat oxidation while improving insulin sensitivity. [8]
+
+    Common beta‑oxidation‑oriented agents:
+
+    – L‑Carnitine: Facilitates fatty acid transport into mitochondria. Best injected (oral absorption is kinda poor). [14]
+    – Berberine / Metformin: Activates AMPK → ↑fat oxidation. Also improves insulin sensitivity. [15]
+    – T3 (Cytomel): ramps metabolism and fat burning but can accelerate muscle loss, strain the heart, and suppress normal thyroid function if misused.
+    – Exogenous ketones / ketone esters: Forces body into ketosis → ↑fat oxidation. Useful for non-keto dieters. ( doesn't really matter when on PSMF)
+    – GW501516 (Cardarine): PPARδ agonist → ↑fat oxidation + endurance. called cancerine by some (although the evidence is mixed). Depletes carnitine—relies on sufficient carnitine for beta oxidation effects.
+    ​
+
+
+    4 – Ancillaries (Appetite, "Fat Burners", Peptides)
+    57qjwk.png
+
+    ​
+    4.0 – Appetite control & GLP‑1s
+    Retatrutide, Semaglutide, Cagrilintide, Tirzepatide (Mounjaro), etc. are GLP‑1 / multi‑agonist drugs that strongly reduce appetite and improve glycemic control, making it easier to adhere to a long‑term calorie deficit. [9]
+
+    Makes PSMF 10 times easier to follow up.
+
+    4.1 – Stimulants
+    Caffeine, ephedrine, and prescription stimulants (Methylphenidate, Dextro, Vyvanse etc.) suppress appetite and increase catecholamines, which can raise energy expenditure but also heart rate, blood pressure.
+
+    I must say they are very mogger for energy on cut to keep up with daily life, I'm probably going to post a thread about stims soon aswell.
+
+    4.2 – "Fat‑loss enhancers"
+    – Clenbuterol: β2‑agonist → ↑cAMP → ↑lipolysis; can cause tachycardia (High heart rate) though.
+    – A-Yohimbine: α2‑antagonist blocking anti‑lipolytic signalling; works best fasted (insulin blunts its effect) but can cause anxiety and blood pressure spikes.
+    – Ephedrine + caffeine: increases catecholamine release / β‑receptor activation → ↑thermogenesis and lipolysis; significant CNS and cardiovascular load.
+    – L‑Carnitine: Facilitates fatty acid transport into mitochondria. Best injected (oral absorption is kinda poor). [14]
+    – Berberine / Metformin: Activates AMPK → ↑fat oxidation. Also improves insulin sensitivity. [15]
+    – T3 (Cytomel): ramps metabolism and fat burning but can accelerate muscle loss, strain the heart, and suppress normal thyroid function if misused.
+    – Exogenous ketones / ketone esters: Forces body into ketosis → ↑fat oxidation. Useful for non-keto dieters. ( doesn't really matter when on PSMF)
+    – GW501516 (Cardarine): PPARδ agonist → ↑fat oxidation + endurance. called cancerine by some (although the evidence is mixed). Depletes carnitine—relies on sufficient carnitine for beta oxidation effects.
+    – Growth Hormone (GH): stimulates hormone‑sensitive lipase and increases FFA release;. [10]
+
+    4.3 – Metabolic aids & cortisol modulation
+    – MOTS‑c: mitochondrial‑derived peptide that mimics exercise‑/fasting‑like signals → ↑AMPK activity, insulin sensitivity, and fat oxidation; may help preserve muscle.
+
+    – Metyrapone: cortisol‑synthesis inhibitor (blocks 11‑β‑hydroxylase) → lowers cortisol; used clinically in adrenal‑excess / Cushing‑related workups and mild autonomous cortisol secretion to improve metabolic markers.​
+
+    Bottom line: if you aren't already sticking to your diet, ancillaries are not the bottleneck.
+    ​
+
+    5 – Exercise (Lifting, Cardio & Steps)
+    6d2ijo.png
+    5.0 – Lifting to keep muscle
+    On a PSMF, high protein plus resistance training is what tells your body "keep this muscle" while you're in a big deficit. [16]
+
+    – Train each muscle group 1–2× per week.
+    – Keep your main compounds in (bench, squat, deadlift, OHP, rows, pull‑ups), but don't chase PRs while aggressively dieting.
+    – Focus on maintaining strength and performance, not progressing; 2–4 hard sets per exercise is usually enough stimulus without murdering recovery.
+
+    5.1 – Cardio & steps
+    – Baseline: aim for around 10k steps per day to keep NEAT high.
+    – Avoid excessive added cardio at the start of a PSMF – it ramps hunger and fatigue and can speed up metabolic adaptation on very low calories.
+    – In the final days before a deadline, you can add more Zone 2 cardio (incline treadmill, cycling, etc.) ​
+    ​
+
+    6 – How to Prevent Failure (Mindset & Social Tactics)
+    ​
+    – Don't say "I'm on a diet" to no. Just say you're not hungry or you already ate bro
+    – Learn to enjoy social events without eating; sip sugar‑free soda, water, tea, or black coffee and chill.
+    – No cheat meals, no "just one slice", no "I'll make up for it tomorrow".
+    – Remember that in normal day‑to‑day life, almost no situation actually forces you to eat junk – either stay fat or be shredded, make your choice.
+
+    Run this properly and, depending on your starting body fat, you can get noticeably lean in ~4–8 weeks,
+    which lines up with what clinical PSMF programs see under supervision. [17]​
+    ​
+
+    7 – TL;DR & More material​
+
+    TL;DR:
+    Track calories, Fats and Carbs < 20gr, Eat mainly protein, Supplement electrolytes, Eat Less than 1000calories, Train each muscle group 1-2 times a week, Keep your step count and daily activity high (<10.000 steps)
+
+    Trust the process.
+
+    Optionally:
+    Use GLP‑1 / multi‑agonists like Reta, Tirz or Cagr for apetite suppresion, Use Stimulants for energy and apetite suppresion, Use the "Fat Loss Enhancers" to maximise lipolysis and beta oxidation, Use Mots-c for metabolic markers, Use Metyrapone to inhibit cortisol, Introduce Zone 2 cardio after a while​
+
+
+
+    8 – Scientific Backup/ Sources:
+
+
+    How WE are gonna look like this summer:
+    View attachment 5105610​
+
+
+
+
+    - A glycogen depleted Menas
+    Click to expand...
+
+
+Will read later bump @ICL
+ 
+
+    +1Love it 
+
+Reactions: alexias, ICL and Menas
+Nodal
+Diamond
+
+Joined
+    Jan 24, 2026
+
+Posts
+    1,399
+
+Reputation
+    3,868
+
+    Saturday at 12:30 PM 
+
+    #40
+
+got in botb so fucking fast there so sort of Jewish connections
+ 
+
+    JFL+1 
+
+Reactions: alexias, PAUL_ALLEN and Menas
+Starborn
+Starborn
+Voughts Homelander
+
+Joined
+    Aug 16, 2025
+
+Posts
+    10,529
+
+Reputation
+    30,483
+
+    Saturday at 12:31 PM 
+
+    #41
+
+    Menas said:
+    THE COMPLETE SHREDDING GUIDE FOR SUMMER
+    (Get shredded in a fucking month)
+    q50sla.png
+    Table of contents:
+    0 – Introduction / Disclaimer
+    1 – Prerequisites (BF%, LBM & Protein Target)
+    2 – Diet (PSMF Setup & Food Choices)
+    3 – Maximizing Fat Loss Mechanisms
+    3.0 – Overview: Lipolysis & Beta‑Oxidation
+    3.1 – Maximizing Lipolysis (Fat Breakdown)
+    3.2 – Maximizing Beta‑Oxidation (Fat Burning)
+    4 – Ancillaries (Appetite, "Fat Burners", Peptides)
+    5 – Exercise (Lifting, Cardio & Steps)
+    6 – How to Prevent Failure (Mindset & Social Tactics)
+    7 – TL;DR
+    8 - Scientific Backup/ Sources:​
+
+    Thread Music:
+
+
+
+    0 – Introduction / Disclaimer
+    949w48.png
+
+    By no means is this medical advice. Even though the risks are relatively low, everyone is different and some people may respond to this differently than others (although as I said, the majority should be fine).​
+
+
+    This thread is mainly focused on PSMF, most of the other stuff isn't mandatory but still better to include. PSMF stands for protein sparing modified fast, It's a diet where you mainly eat protein, it allows cutting efficiently without losing almost any muscle mass during cutting.
+    ​
+    My 3 Month PSMF transformation:
+    fyxzn2.png
+
+    ​
+
+
+    1 – Prerequisites (BF%, LBM & Protein Target)
+    ​
+    1.0 – Estimate your body fat %
+    You can estimate body fat by eyeballing (Which is probably the most accurate tbh) or using calipers, DEXA, or a decent impedance scale.
+    Once you have a body fat estimate, calculate your lean body mass (LBM): ​
+
+    Lean Body Mass = Bodyweight × (1 − Body Fat %)
+
+    Example: 180 lbs at 15% body fat → 180 × 0.85 = 153 lbs LBM.
+    rkfdco.png
+    1.1 – Set your daily protein target
+    Aim for roughly 1 g of protein per lb of lean bodyweight (about 2.2–2.5 g/kg LBM). Higher protein intakes during a deficit preserve more lean mass and strength vs lower protein diets. [1]
+
+    So at 180 lbs with 15% body fat (153 lbs LBM), target around 150–160 g of protein per day.
+    ​
+
+    1.2 – Start tracking your caloric intake
+    Download MyFitnessPal (or any decent tracker), weigh food on a kitchen scale, and log everything that goes into your mouth.
+    Specify raw vs cooked and pick accurate entries, you can't run a precise PSMF if you're eyeballing calories.​
+    ​
+
+
+    2 – Diet (PSMF Setup & Food Choices)
+    ss4wcj.png
+    2.0 – Core diet rules
+    This is a PSMF, so:
+
+    – Protein: set by LBM (usually 120–200 g/day for most).
+    – Carbs: ~20 g/day or less (mostly from low‑cal veggies).
+    – Fats: ~20 g/day or less (just what rides along with lean meats).
+    – Total calories: generally 600–900 kcal/day in a classic PSMF setup
+
+    You're gonna be living on lean protein with trace fats/carbs. Everything else is flavor and damage control.
+
+    2.1 – Food choices​
+    ​
+    Food​
+    	
+    Protein per 100g​
+    	
+    Fat​
+    	
+    Carbs​
+    Chicken breast (raw)​
+    	
+    ~23g​
+    	
+    ~1g​
+    	
+    0g​
+    Turkey breast (raw)​
+    	
+    ~22g​
+    	
+    ~1g​
+    	
+    0g​
+    Cod/white fish​
+    	
+    ~18g​
+    	
+    ~0.5g​
+    	
+    0g​
+    Egg whites​
+    	
+    ~11g​
+    	
+    0g​
+    	
+    ~0.7g​
+    Low-fat cottage cheese​
+    	
+    ~11g​
+    	
+    ~1g​
+    	
+    ~3g​
+    Whey isolate​
+    	
+    ~90g​
+    	
+    ~1g​
+    	
+    ~1g​
+    ​
+    A simple baseline day:
+    – 500 g chicken or turkey breast across the day.
+    – 1–2 scoops whey isolate to fill any protein gaps. ​
+    ​
+    Solid meat is usually superior to shakes for satiety, but as long as you hit your protein target and keep fats/carbs low, you're doing it right.​
+    ​
+    Use:
+
+    – Zero‑cal seasonings, herbs, spices.
+    – Sugar‑free drinks, black coffee, tea.
+    – Low‑cal veggies (lettuce, cucumber, zucchini, broccoli) in moderation
+
+    Because the calories are so low, official PSMF programs usually add a multivitamin and extra electrolytes (sodium, potassium, magnesium) to prevent deficiencies. [2] Target ranges (e.g., ~3–5 g sodium, ~2–3 g potassium, 300–400 mg magnesium per day).​
+    ​
+
+    3 – Maximizing Fat Loss Mechanisms
+    2xvu2d.png
+    j9j8og.png
+
+    3.0 – Overview: Lipolysis & Beta‑Oxidation
+    Fat loss happens in two major biochemical steps:
+
+    – Lipolysis: breakdown of stored triglycerides in fat cells into free fatty acids (FFAs) and glycerol.
+    – Beta‑oxidation: transport of FFAs into mitochondria and burning them for ATP.
+    https://www.ncbi.nlm.nih.gov/books/NBK560564/​
+    ​
+    You still need a calorie deficit, but how much of that deficit is filled by fat vs glycogen/glucose and muscle depends on how well you're mobilizing and oxidizing fat.
+
+    Keep in mind, we care about body composition and not just fat loss. [5]
+
+    ​
+
+    3.1 – Maximizing Lipolysis (Fat Breakdown)
+    2xvu2d.png
+
+    Lipolysis is controlled mainly by hormone‑sensitive lipase and related enzymes in adipose tissue.
+    https://en.wikipedia.org/wiki/Lipolysis
+    https://journals.physiology.org/doi/full/10.1152/ajpgi.00554.2006
+    ​
+    Key drivers:
+
+    – Catecholamines (adrenaline & noradrenaline):
+    Bind β‑adrenergic receptors (β1/β2/β3) on fat cells → ↑cAMP → activate hormone‑sensitive lipase → more FFAs released into the blood.
+
+    – Glucagon:
+    Works alongside catecholamines in the fasted state, especially when liver glycogen is low, to support fat breakdown. [7]
+
+    – Low insulin:
+    Insulin directly suppresses lipolysis, lowering insulin via fasting, low‑carb/ketogenic diets, or deep calorie restriction removes that, hence why PSMF mogs.
+
+    Lifestyle factors that boost lipolysis:
+
+    – Hard lifting / HIIT → big catecholamine spikes and acute increases in lipolysis. [8]
+
+    – Fasted cardio → with low insulin, catecholamine signalling on fat cells is more effective (though daily fat loss still depends on the total deficit).
+    – Cold exposure → cold showers / ice baths activate the sympathetic nervous system and brown fat, giving a modest increase in lipolysis and energy expenditure aswell though the effects are negligible. [7]
+
+    Common lipolysis‑oriented drugs:
+
+    – Clenbuterol: β2‑agonist → ↑cAMP → ↑lipolysis; can cause tachycardia (High heart rate) though.
+    – Yohimbine: α2‑antagonist blocking anti‑lipolytic signalling; works best fasted (insulin blunts its effect) but can cause anxiety and blood pressure spikes.
+    – Ephedrine + caffeine: increases catecholamine release / β‑receptor activation → ↑thermogenesis and lipolysis; significant CNS and cardiovascular load.
+    – GLP‑1 agonists (e.g. Semaglutide): mainly reduce appetite and improve glycemic control; by lowering energy intake and postprandial insulin they indirectly support fat loss. [9]
+
+    – Growth Hormone (GH): stimulates hormone‑sensitive lipase and increases FFA release [10]​
+    wkacpt.png
+
+    Also I must mention that on PSMF, you already have low insulin and frequent catecholamine spikes (training + big deficit), so you're naturally in a high‑lipolysis environment even without these.​
+    ​
+
+
+    3.2 – Maximizing Beta‑Oxidation (Fat Burning)
+    j9j8og.png
+
+    Once FFAs are in the bloodstream, they must get into mitochondria to be burned. Long‑chain fatty acids depend on the carnitine shuttle for entry into the mitochondrial matrix. [11]
+    ​
+    Key drivers:
+
+    – Carnitine & mitochondria:
+    Carnitine transports long‑chain fatty acids across the inner mitochondrial membrane; deficiencies or transport defects impair fat oxidation and shift fuel use toward carbs. [12]
+
+    Endurance / Zone 2 training increases mitochondrial density and the ability of muscle to use fat as a primary fuel. [13]
+
+    Keto / fasting / PSMF upregulate enzymes involved in fat oxidation and ketone production.
+
+    – Metabolic rate & AMPK:
+    Thyroid hormone (T3) increases metabolic rate and upregulates many genes involved in energy expenditure and fat oxidation. [9]
+    AMPK activation (via exercise, deficit, metformin/berberine) signals a low‑energy state and promotes fat oxidation while improving insulin sensitivity. [8]
+
+    Common beta‑oxidation‑oriented agents:
+
+    – L‑Carnitine: Facilitates fatty acid transport into mitochondria. Best injected (oral absorption is kinda poor). [14]
+    – Berberine / Metformin: Activates AMPK → ↑fat oxidation. Also improves insulin sensitivity. [15]
+    – T3 (Cytomel): ramps metabolism and fat burning but can accelerate muscle loss, strain the heart, and suppress normal thyroid function if misused.
+    – Exogenous ketones / ketone esters: Forces body into ketosis → ↑fat oxidation. Useful for non-keto dieters. ( doesn't really matter when on PSMF)
+    – GW501516 (Cardarine): PPARδ agonist → ↑fat oxidation + endurance. called cancerine by some (although the evidence is mixed). Depletes carnitine—relies on sufficient carnitine for beta oxidation effects.
+    ​
+
+
+    4 – Ancillaries (Appetite, "Fat Burners", Peptides)
+    57qjwk.png
+
+    ​
+    4.0 – Appetite control & GLP‑1s
+    Retatrutide, Semaglutide, Cagrilintide, Tirzepatide (Mounjaro), etc. are GLP‑1 / multi‑agonist drugs that strongly reduce appetite and improve glycemic control, making it easier to adhere to a long‑term calorie deficit. [9]
+
+    Makes PSMF 10 times easier to follow up.
+
+    4.1 – Stimulants
+    Caffeine, ephedrine, and prescription stimulants (Methylphenidate, Dextro, Vyvanse etc.) suppress appetite and increase catecholamines, which can raise energy expenditure but also heart rate, blood pressure.
+
+    I must say they are very mogger for energy on cut to keep up with daily life, I'm probably going to post a thread about stims soon aswell.
+
+    4.2 – "Fat‑loss enhancers"
+    – Clenbuterol: β2‑agonist → ↑cAMP → ↑lipolysis; can cause tachycardia (High heart rate) though.
+    – A-Yohimbine: α2‑antagonist blocking anti‑lipolytic signalling; works best fasted (insulin blunts its effect) but can cause anxiety and blood pressure spikes.
+    – Ephedrine + caffeine: increases catecholamine release / β‑receptor activation → ↑thermogenesis and lipolysis; significant CNS and cardiovascular load.
+    – L‑Carnitine: Facilitates fatty acid transport into mitochondria. Best injected (oral absorption is kinda poor). [14]
+    – Berberine / Metformin: Activates AMPK → ↑fat oxidation. Also improves insulin sensitivity. [15]
+    – T3 (Cytomel): ramps metabolism and fat burning but can accelerate muscle loss, strain the heart, and suppress normal thyroid function if misused.
+    – Exogenous ketones / ketone esters: Forces body into ketosis → ↑fat oxidation. Useful for non-keto dieters. ( doesn't really matter when on PSMF)
+    – GW501516 (Cardarine): PPARδ agonist → ↑fat oxidation + endurance. called cancerine by some (although the evidence is mixed). Depletes carnitine—relies on sufficient carnitine for beta oxidation effects.
+    – Growth Hormone (GH): stimulates hormone‑sensitive lipase and increases FFA release;. [10]
+
+    4.3 – Metabolic aids & cortisol modulation
+    – MOTS‑c: mitochondrial‑derived peptide that mimics exercise‑/fasting‑like signals → ↑AMPK activity, insulin sensitivity, and fat oxidation; may help preserve muscle.
+
+    – Metyrapone: cortisol‑synthesis inhibitor (blocks 11‑β‑hydroxylase) → lowers cortisol; used clinically in adrenal‑excess / Cushing‑related workups and mild autonomous cortisol secretion to improve metabolic markers.​
+
+    Bottom line: if you aren't already sticking to your diet, ancillaries are not the bottleneck.
+    ​
+
+    5 – Exercise (Lifting, Cardio & Steps)
+    6d2ijo.png
+    5.0 – Lifting to keep muscle
+    On a PSMF, high protein plus resistance training is what tells your body "keep this muscle" while you're in a big deficit. [16]
+
+    – Train each muscle group 1–2× per week.
+    – Keep your main compounds in (bench, squat, deadlift, OHP, rows, pull‑ups), but don't chase PRs while aggressively dieting.
+    – Focus on maintaining strength and performance, not progressing; 2–4 hard sets per exercise is usually enough stimulus without murdering recovery.
+
+    5.1 – Cardio & steps
+    – Baseline: aim for around 10k steps per day to keep NEAT high.
+    – Avoid excessive added cardio at the start of a PSMF – it ramps hunger and fatigue and can speed up metabolic adaptation on very low calories.
+    – In the final days before a deadline, you can add more Zone 2 cardio (incline treadmill, cycling, etc.) ​
+    ​
+
+    6 – How to Prevent Failure (Mindset & Social Tactics)
+    ​
+    – Don't say "I'm on a diet" to no. Just say you're not hungry or you already ate bro
+    – Learn to enjoy social events without eating; sip sugar‑free soda, water, tea, or black coffee and chill.
+    – No cheat meals, no "just one slice", no "I'll make up for it tomorrow".
+    – Remember that in normal day‑to‑day life, almost no situation actually forces you to eat junk – either stay fat or be shredded, make your choice.
+
+    Run this properly and, depending on your starting body fat, you can get noticeably lean in ~4–8 weeks,
+    which lines up with what clinical PSMF programs see under supervision. [17]​
+    ​
+
+    7 – TL;DR & More material​
+
+    TL;DR:
+    Track calories, Fats and Carbs < 20gr, Eat mainly protein, Supplement electrolytes, Eat Less than 1000calories, Train each muscle group 1-2 times a week, Keep your step count and daily activity high (<10.000 steps)
+
+    Trust the process.
+
+    Optionally:
+    Use GLP‑1 / multi‑agonists like Reta, Tirz or Cagr for apetite suppresion, Use Stimulants for energy and apetite suppresion, Use the "Fat Loss Enhancers" to maximise lipolysis and beta oxidation, Use Mots-c for metabolic markers, Use Metyrapone to inhibit cortisol, Introduce Zone 2 cardio after a while​
+
+
+
+    8 – Scientific Backup/ Sources:
+
+
+    How WE are gonna look like this summer:
+    View attachment 5105610​
+
+
+
+
+    - A glycogen depleted Menas
+    Click to expand...
+
+
+Mirin botb
+ 
+
+    +1 
+
+Reactions: alexias
+Menas
+Menas
+Mercenary
+Contributor
+
+Joined
+    May 16, 2024
+
+Posts
+    2,588
+
+Reputation
+    21,327
+
+    Saturday at 12:31 PM 
+
+    OP
+    #42
+
+    Nodal said:
+    got in botb so fucking fast
+
+Unexpected fr
+ 
+
+    +1 
+
+Reactions: alexias and Nodal
+Nodal
+Diamond
+
+Joined
+    Jan 24, 2026
+
+Posts
+    1,399
+
+Reputation
+    3,868
+
+    Saturday at 12:31 PM 
+
+    #43
+
+    Menas said:
+    Unexpected fr
+
+do you even have a botb before this?
+ 
+
+    +1 
+
+Reactions: alexias and Menas
+Menas
+Menas
+Mercenary
+Contributor
+
+Joined
+    May 16, 2024
+
+Posts
+    2,588
+
+Reputation
+    21,327
+
+    Saturday at 12:32 PM 
+
+    OP
+    #44
+
+    Nodal said:
+    do you even have a botb before this?
+
+I had 2, got them removed
+ 
+
+    +1 
+
+Reactions: alexias and Nodal
+Nodal
+Diamond
+
+Joined
+    Jan 24, 2026
+
+Posts
+    1,399
+
+Reputation
+    3,868
+
+    Saturday at 12:32 PM 
+
+    #45
+
+    Menas said:
+    I had 2, got them removed
+
+why?
+ 
+
+    +1 
+
+Reactions: alexias
+Menas
+Menas
+Mercenary
+Contributor
+
+Joined
+    May 16, 2024
+
+Posts
+    2,588
+
+Reputation
+    21,327
+
+    Saturday at 12:33 PM 
+
+    OP
+    #46
+
+    Nodal said:
+    why?
+
+Shitty threads, had misinformation
+
+My opinions changed basically
+ 
+
+    +1 
+
+Reactions: alexias and Nodal
+Quncho
+Quncho
+Professional Thugmaxxer
+Contributor
+
+Joined
+    Jul 21, 2024
+
+Posts
+    4,468
+
+Reputation
+    10,594
+
+    Saturday at 12:33 PM 
+
+    #47
+
+    Menas said:
+    THE COMPLETE SHREDDING GUIDE FOR SUMMER
+    (Get shredded in a fucking month)
+    q50sla.png
+    Table of contents:
+    0 – Introduction / Disclaimer
+    1 – Prerequisites (BF%, LBM & Protein Target)
+    2 – Diet (PSMF Setup & Food Choices)
+    3 – Maximizing Fat Loss Mechanisms
+    3.0 – Overview: Lipolysis & Beta‑Oxidation
+    3.1 – Maximizing Lipolysis (Fat Breakdown)
+    3.2 – Maximizing Beta‑Oxidation (Fat Burning)
+    4 – Ancillaries (Appetite, "Fat Burners", Peptides)
+    5 – Exercise (Lifting, Cardio & Steps)
+    6 – How to Prevent Failure (Mindset & Social Tactics)
+    7 – TL;DR
+    8 - Scientific Backup/ Sources:​
+
+    Thread Music:
+
+
+
+    0 – Introduction / Disclaimer
+    949w48.png
+
+    By no means is this medical advice. Even though the risks are relatively low, everyone is different and some people may respond to this differently than others (although as I said, the majority should be fine).​
+
+
+    This thread is mainly focused on PSMF, most of the other stuff isn't mandatory but still better to include. PSMF stands for protein sparing modified fast, It's a diet where you mainly eat protein, it allows cutting efficiently without losing almost any muscle mass during cutting.
+    ​
+    My 3 Month PSMF transformation:
+    fyxzn2.png
+
+    ​
+
+
+    1 – Prerequisites (BF%, LBM & Protein Target)
+    ​
+    1.0 – Estimate your body fat %
+    You can estimate body fat by eyeballing (Which is probably the most accurate tbh) or using calipers, DEXA, or a decent impedance scale.
+    Once you have a body fat estimate, calculate your lean body mass (LBM): ​
+
+    Lean Body Mass = Bodyweight × (1 − Body Fat %)
+
+    Example: 180 lbs at 15% body fat → 180 × 0.85 = 153 lbs LBM.
+    rkfdco.png
+    1.1 – Set your daily protein target
+    Aim for roughly 1 g of protein per lb of lean bodyweight (about 2.2–2.5 g/kg LBM). Higher protein intakes during a deficit preserve more lean mass and strength vs lower protein diets. [1]
+
+    So at 180 lbs with 15% body fat (153 lbs LBM), target around 150–160 g of protein per day.
+    ​
+
+    1.2 – Start tracking your caloric intake
+    Download MyFitnessPal (or any decent tracker), weigh food on a kitchen scale, and log everything that goes into your mouth.
+    Specify raw vs cooked and pick accurate entries, you can't run a precise PSMF if you're eyeballing calories.​
+    ​
+
+
+    2 – Diet (PSMF Setup & Food Choices)
+    ss4wcj.png
+    2.0 – Core diet rules
+    This is a PSMF, so:
+
+    – Protein: set by LBM (usually 120–200 g/day for most).
+    – Carbs: ~20 g/day or less (mostly from low‑cal veggies).
+    – Fats: ~20 g/day or less (just what rides along with lean meats).
+    – Total calories: generally 600–900 kcal/day in a classic PSMF setup
+
+    You're gonna be living on lean protein with trace fats/carbs. Everything else is flavor and damage control.
+
+    2.1 – Food choices​
+    ​
+    Food​
+    	
+    Protein per 100g​
+    	
+    Fat​
+    	
+    Carbs​
+    Chicken breast (raw)​
+    	
+    ~23g​
+    	
+    ~1g​
+    	
+    0g​
+    Turkey breast (raw)​
+    	
+    ~22g​
+    	
+    ~1g​
+    	
+    0g​
+    Cod/white fish​
+    	
+    ~18g​
+    	
+    ~0.5g​
+    	
+    0g​
+    Egg whites​
+    	
+    ~11g​
+    	
+    0g​
+    	
+    ~0.7g​
+    Low-fat cottage cheese​
+    	
+    ~11g​
+    	
+    ~1g​
+    	
+    ~3g​
+    Whey isolate​
+    	
+    ~90g​
+    	
+    ~1g​
+    	
+    ~1g​
+    ​
+    A simple baseline day:
+    – 500 g chicken or turkey breast across the day.
+    – 1–2 scoops whey isolate to fill any protein gaps. ​
+    ​
+    Solid meat is usually superior to shakes for satiety, but as long as you hit your protein target and keep fats/carbs low, you're doing it right.​
+    ​
+    Use:
+
+    – Zero‑cal seasonings, herbs, spices.
+    – Sugar‑free drinks, black coffee, tea.
+    – Low‑cal veggies (lettuce, cucumber, zucchini, broccoli) in moderation
+
+    Because the calories are so low, official PSMF programs usually add a multivitamin and extra electrolytes (sodium, potassium, magnesium) to prevent deficiencies. [2] Target ranges (e.g., ~3–5 g sodium, ~2–3 g potassium, 300–400 mg magnesium per day).​
+    ​
+
+    3 – Maximizing Fat Loss Mechanisms
+    2xvu2d.png
+    j9j8og.png
+
+    3.0 – Overview: Lipolysis & Beta‑Oxidation
+    Fat loss happens in two major biochemical steps:
+
+    – Lipolysis: breakdown of stored triglycerides in fat cells into free fatty acids (FFAs) and glycerol.
+    – Beta‑oxidation: transport of FFAs into mitochondria and burning them for ATP.
+    https://www.ncbi.nlm.nih.gov/books/NBK560564/​
+    ​
+    You still need a calorie deficit, but how much of that deficit is filled by fat vs glycogen/glucose and muscle depends on how well you're mobilizing and oxidizing fat.
+
+    Keep in mind, we care about body composition and not just fat loss. [5]
+
+    ​
+
+    3.1 – Maximizing Lipolysis (Fat Breakdown)
+    2xvu2d.png
+
+    Lipolysis is controlled mainly by hormone‑sensitive lipase and related enzymes in adipose tissue.
+    https://en.wikipedia.org/wiki/Lipolysis
+    https://journals.physiology.org/doi/full/10.1152/ajpgi.00554.2006
+    ​
+    Key drivers:
+
+    – Catecholamines (adrenaline & noradrenaline):
+    Bind β‑adrenergic receptors (β1/β2/β3) on fat cells → ↑cAMP → activate hormone‑sensitive lipase → more FFAs released into the blood.
+
+    – Glucagon:
+    Works alongside catecholamines in the fasted state, especially when liver glycogen is low, to support fat breakdown. [7]
+
+    – Low insulin:
+    Insulin directly suppresses lipolysis, lowering insulin via fasting, low‑carb/ketogenic diets, or deep calorie restriction removes that, hence why PSMF mogs.
+
+    Lifestyle factors that boost lipolysis:
+
+    – Hard lifting / HIIT → big catecholamine spikes and acute increases in lipolysis. [8]
+
+    – Fasted cardio → with low insulin, catecholamine signalling on fat cells is more effective (though daily fat loss still depends on the total deficit).
+    – Cold exposure → cold showers / ice baths activate the sympathetic nervous system and brown fat, giving a modest increase in lipolysis and energy expenditure aswell though the effects are negligible. [7]
+
+    Common lipolysis‑oriented drugs:
+
+    – Clenbuterol: β2‑agonist → ↑cAMP → ↑lipolysis; can cause tachycardia (High heart rate) though.
+    – Yohimbine: α2‑antagonist blocking anti‑lipolytic signalling; works best fasted (insulin blunts its effect) but can cause anxiety and blood pressure spikes.
+    – Ephedrine + caffeine: increases catecholamine release / β‑receptor activation → ↑thermogenesis and lipolysis; significant CNS and cardiovascular load.
+    – GLP‑1 agonists (e.g. Semaglutide): mainly reduce appetite and improve glycemic control; by lowering energy intake and postprandial insulin they indirectly support fat loss. [9]
+
+    – Growth Hormone (GH): stimulates hormone‑sensitive lipase and increases FFA release [10]​
+    wkacpt.png
+
+    Also I must mention that on PSMF, you already have low insulin and frequent catecholamine spikes (training + big deficit), so you're naturally in a high‑lipolysis environment even without these.​
+    ​
+
+
+    3.2 – Maximizing Beta‑Oxidation (Fat Burning)
+    j9j8og.png
+
+    Once FFAs are in the bloodstream, they must get into mitochondria to be burned. Long‑chain fatty acids depend on the carnitine shuttle for entry into the mitochondrial matrix. [11]
+    ​
+    Key drivers:
+
+    – Carnitine & mitochondria:
+    Carnitine transports long‑chain fatty acids across the inner mitochondrial membrane; deficiencies or transport defects impair fat oxidation and shift fuel use toward carbs. [12]
+
+    Endurance / Zone 2 training increases mitochondrial density and the ability of muscle to use fat as a primary fuel. [13]
+
+    Keto / fasting / PSMF upregulate enzymes involved in fat oxidation and ketone production.
+
+    – Metabolic rate & AMPK:
+    Thyroid hormone (T3) increases metabolic rate and upregulates many genes involved in energy expenditure and fat oxidation. [9]
+    AMPK activation (via exercise, deficit, metformin/berberine) signals a low‑energy state and promotes fat oxidation while improving insulin sensitivity. [8]
+
+    Common beta‑oxidation‑oriented agents:
+
+    – L‑Carnitine: Facilitates fatty acid transport into mitochondria. Best injected (oral absorption is kinda poor). [14]
+    – Berberine / Metformin: Activates AMPK → ↑fat oxidation. Also improves insulin sensitivity. [15]
+    – T3 (Cytomel): ramps metabolism and fat burning but can accelerate muscle loss, strain the heart, and suppress normal thyroid function if misused.
+    – Exogenous ketones / ketone esters: Forces body into ketosis → ↑fat oxidation. Useful for non-keto dieters. ( doesn't really matter when on PSMF)
+    – GW501516 (Cardarine): PPARδ agonist → ↑fat oxidation + endurance. called cancerine by some (although the evidence is mixed). Depletes carnitine—relies on sufficient carnitine for beta oxidation effects.
+    ​
+
+
+    4 – Ancillaries (Appetite, "Fat Burners", Peptides)
+    57qjwk.png
+
+    ​
+    4.0 – Appetite control & GLP‑1s
+    Retatrutide, Semaglutide, Cagrilintide, Tirzepatide (Mounjaro), etc. are GLP‑1 / multi‑agonist drugs that strongly reduce appetite and improve glycemic control, making it easier to adhere to a long‑term calorie deficit. [9]
+
+    Makes PSMF 10 times easier to follow up.
+
+    4.1 – Stimulants
+    Caffeine, ephedrine, and prescription stimulants (Methylphenidate, Dextro, Vyvanse etc.) suppress appetite and increase catecholamines, which can raise energy expenditure but also heart rate, blood pressure.
+
+    I must say they are very mogger for energy on cut to keep up with daily life, I'm probably going to post a thread about stims soon aswell.
+
+    4.2 – "Fat‑loss enhancers"
+    – Clenbuterol: β2‑agonist → ↑cAMP → ↑lipolysis; can cause tachycardia (High heart rate) though.
+    – A-Yohimbine: α2‑antagonist blocking anti‑lipolytic signalling; works best fasted (insulin blunts its effect) but can cause anxiety and blood pressure spikes.
+    – Ephedrine + caffeine: increases catecholamine release / β‑receptor activation → ↑thermogenesis and lipolysis; significant CNS and cardiovascular load.
+    – L‑Carnitine: Facilitates fatty acid transport into mitochondria. Best injected (oral absorption is kinda poor). [14]
+    – Berberine / Metformin: Activates AMPK → ↑fat oxidation. Also improves insulin sensitivity. [15]
+    – T3 (Cytomel): ramps metabolism and fat burning but can accelerate muscle loss, strain the heart, and suppress normal thyroid function if misused.
+    – Exogenous ketones / ketone esters: Forces body into ketosis → ↑fat oxidation. Useful for non-keto dieters. ( doesn't really matter when on PSMF)
+    – GW501516 (Cardarine): PPARδ agonist → ↑fat oxidation + endurance. called cancerine by some (although the evidence is mixed). Depletes carnitine—relies on sufficient carnitine for beta oxidation effects.
+    – Growth Hormone (GH): stimulates hormone‑sensitive lipase and increases FFA release;. [10]
+
+    4.3 – Metabolic aids & cortisol modulation
+    – MOTS‑c: mitochondrial‑derived peptide that mimics exercise‑/fasting‑like signals → ↑AMPK activity, insulin sensitivity, and fat oxidation; may help preserve muscle.
+
+    – Metyrapone: cortisol‑synthesis inhibitor (blocks 11‑β‑hydroxylase) → lowers cortisol; used clinically in adrenal‑excess / Cushing‑related workups and mild autonomous cortisol secretion to improve metabolic markers.​
+
+    Bottom line: if you aren't already sticking to your diet, ancillaries are not the bottleneck.
+    ​
+
+    5 – Exercise (Lifting, Cardio & Steps)
+    6d2ijo.png
+    5.0 – Lifting to keep muscle
+    On a PSMF, high protein plus resistance training is what tells your body "keep this muscle" while you're in a big deficit. [16]
+
+    – Train each muscle group 1–2× per week.
+    – Keep your main compounds in (bench, squat, deadlift, OHP, rows, pull‑ups), but don't chase PRs while aggressively dieting.
+    – Focus on maintaining strength and performance, not progressing; 2–4 hard sets per exercise is usually enough stimulus without murdering recovery.
+
+    5.1 – Cardio & steps
+    – Baseline: aim for around 10k steps per day to keep NEAT high.
+    – Avoid excessive added cardio at the start of a PSMF – it ramps hunger and fatigue and can speed up metabolic adaptation on very low calories.
+    – In the final days before a deadline, you can add more Zone 2 cardio (incline treadmill, cycling, etc.) ​
+    ​
+
+    6 – How to Prevent Failure (Mindset & Social Tactics)
+    ​
+    – Don't say "I'm on a diet" to no. Just say you're not hungry or you already ate bro
+    – Learn to enjoy social events without eating; sip sugar‑free soda, water, tea, or black coffee and chill.
+    – No cheat meals, no "just one slice", no "I'll make up for it tomorrow".
+    – Remember that in normal day‑to‑day life, almost no situation actually forces you to eat junk – either stay fat or be shredded, make your choice.
+
+    Run this properly and, depending on your starting body fat, you can get noticeably lean in ~4–8 weeks,
+    which lines up with what clinical PSMF programs see under supervision. [17]​
+    ​
+
+    7 – TL;DR & More material​
+
+    TL;DR:
+    Track calories, Fats and Carbs < 20gr, Eat mainly protein, Supplement electrolytes, Eat Less than 1000calories, Train each muscle group 1-2 times a week, Keep your step count and daily activity high (<10.000 steps)
+
+    Trust the process.
+
+    Optionally:
+    Use GLP‑1 / multi‑agonists like Reta, Tirz or Cagr for apetite suppresion, Use Stimulants for energy and apetite suppresion, Use the "Fat Loss Enhancers" to maximise lipolysis and beta oxidation, Use Mots-c for metabolic markers, Use Metyrapone to inhibit cortisol, Introduce Zone 2 cardio after a while​
+
+
+
+    8 – Scientific Backup/ Sources:
+
+
+    How WE are gonna look like this summer:
+    View attachment 5105610​
+
+
+
+
+    - A glycogen depleted Menas
+    Click to expand...
+
+
+Shia la beouf clap
+ 
+
+    +1Love it 
+
+Reactions: alexias, Orka and Menas
+ICL
+ICL
+for lerism
+
+Joined
+    Nov 9, 2025
+
+Posts
+    11,631
+
+Reputation
+    15,540
+
+    Saturday at 12:35 PM 
+
+    #48
+
+    Menas said:
+    THE COMPLETE SHREDDING GUIDE FOR SUMMER
+    (Get shredded in a fucking month)
+    q50sla.png
+    Table of contents:
+    0 – Introduction / Disclaimer
+    1 – Prerequisites (BF%, LBM & Protein Target)
+    2 – Diet (PSMF Setup & Food Choices)
+    3 – Maximizing Fat Loss Mechanisms
+    3.0 – Overview: Lipolysis & Beta‑Oxidation
+    3.1 – Maximizing Lipolysis (Fat Breakdown)
+    3.2 – Maximizing Beta‑Oxidation (Fat Burning)
+    4 – Ancillaries (Appetite, "Fat Burners", Peptides)
+    5 – Exercise (Lifting, Cardio & Steps)
+    6 – How to Prevent Failure (Mindset & Social Tactics)
+    7 – TL;DR
+    8 - Scientific Backup/ Sources:​
+
+    Thread Music:
+
+
+
+    0 – Introduction / Disclaimer
+    949w48.png
+
+    By no means is this medical advice. Even though the risks are relatively low, everyone is different and some people may respond to this differently than others (although as I said, the majority should be fine).​
+
+
+    This thread is mainly focused on PSMF, most of the other stuff isn't mandatory but still better to include. PSMF stands for protein sparing modified fast, It's a diet where you mainly eat protein, it allows cutting efficiently without losing almost any muscle mass during cutting.
+    ​
+    My 3 Month PSMF transformation:
+    fyxzn2.png
+
+    ​
+
+
+    1 – Prerequisites (BF%, LBM & Protein Target)
+    ​
+    1.0 – Estimate your body fat %
+    You can estimate body fat by eyeballing (Which is probably the most accurate tbh) or using calipers, DEXA, or a decent impedance scale.
+    Once you have a body fat estimate, calculate your lean body mass (LBM): ​
+
+    Lean Body Mass = Bodyweight × (1 − Body Fat %)
+
+    Example: 180 lbs at 15% body fat → 180 × 0.85 = 153 lbs LBM.
+    rkfdco.png
+    1.1 – Set your daily protein target
+    Aim for roughly 1 g of protein per lb of lean bodyweight (about 2.2–2.5 g/kg LBM). Higher protein intakes during a deficit preserve more lean mass and strength vs lower protein diets. [1]
+
+    So at 180 lbs with 15% body fat (153 lbs LBM), target around 150–160 g of protein per day.
+    ​
+
+    1.2 – Start tracking your caloric intake
+    Download MyFitnessPal (or any decent tracker), weigh food on a kitchen scale, and log everything that goes into your mouth.
+    Specify raw vs cooked and pick accurate entries, you can't run a precise PSMF if you're eyeballing calories.​
+    ​
+
+
+    2 – Diet (PSMF Setup & Food Choices)
+    ss4wcj.png
+    2.0 – Core diet rules
+    This is a PSMF, so:
+
+    – Protein: set by LBM (usually 120–200 g/day for most).
+    – Carbs: ~20 g/day or less (mostly from low‑cal veggies).
+    – Fats: ~20 g/day or less (just what rides along with lean meats).
+    – Total calories: generally 600–900 kcal/day in a classic PSMF setup
+
+    You're gonna be living on lean protein with trace fats/carbs. Everything else is flavor and damage control.
+
+    2.1 – Food choices​
+    ​
+    Food​
+    	
+    Protein per 100g​
+    	
+    Fat​
+    	
+    Carbs​
+    Chicken breast (raw)​
+    	
+    ~23g​
+    	
+    ~1g​
+    	
+    0g​
+    Turkey breast (raw)​
+    	
+    ~22g​
+    	
+    ~1g​
+    	
+    0g​
+    Cod/white fish​
+    	
+    ~18g​
+    	
+    ~0.5g​
+    	
+    0g​
+    Egg whites​
+    	
+    ~11g​
+    	
+    0g​
+    	
+    ~0.7g​
+    Low-fat cottage cheese​
+    	
+    ~11g​
+    	
+    ~1g​
+    	
+    ~3g​
+    Whey isolate​
+    	
+    ~90g​
+    	
+    ~1g​
+    	
+    ~1g​
+    ​
+    A simple baseline day:
+    – 500 g chicken or turkey breast across the day.
+    – 1–2 scoops whey isolate to fill any protein gaps. ​
+    ​
+    Solid meat is usually superior to shakes for satiety, but as long as you hit your protein target and keep fats/carbs low, you're doing it right.​
+    ​
+    Use:
+
+    – Zero‑cal seasonings, herbs, spices.
+    – Sugar‑free drinks, black coffee, tea.
+    – Low‑cal veggies (lettuce, cucumber, zucchini, broccoli) in moderation
+
+    Because the calories are so low, official PSMF programs usually add a multivitamin and extra electrolytes (sodium, potassium, magnesium) to prevent deficiencies. [2] Target ranges (e.g., ~3–5 g sodium, ~2–3 g potassium, 300–400 mg magnesium per day).​
+    ​
+
+    3 – Maximizing Fat Loss Mechanisms
+    2xvu2d.png
+    j9j8og.png
+
+    3.0 – Overview: Lipolysis & Beta‑Oxidation
+    Fat loss happens in two major biochemical steps:
+
+    – Lipolysis: breakdown of stored triglycerides in fat cells into free fatty acids (FFAs) and glycerol.
+    – Beta‑oxidation: transport of FFAs into mitochondria and burning them for ATP.
+    https://www.ncbi.nlm.nih.gov/books/NBK560564/​
+    ​
+    You still need a calorie deficit, but how much of that deficit is filled by fat vs glycogen/glucose and muscle depends on how well you're mobilizing and oxidizing fat.
+
+    Keep in mind, we care about body composition and not just fat loss. [5]
+
+    ​
+
+    3.1 – Maximizing Lipolysis (Fat Breakdown)
+    2xvu2d.png
+
+    Lipolysis is controlled mainly by hormone‑sensitive lipase and related enzymes in adipose tissue.
+    https://en.wikipedia.org/wiki/Lipolysis
+    https://journals.physiology.org/doi/full/10.1152/ajpgi.00554.2006
+    ​
+    Key drivers:
+
+    – Catecholamines (adrenaline & noradrenaline):
+    Bind β‑adrenergic receptors (β1/β2/β3) on fat cells → ↑cAMP → activate hormone‑sensitive lipase → more FFAs released into the blood.
+
+    – Glucagon:
+    Works alongside catecholamines in the fasted state, especially when liver glycogen is low, to support fat breakdown. [7]
+
+    – Low insulin:
+    Insulin directly suppresses lipolysis, lowering insulin via fasting, low‑carb/ketogenic diets, or deep calorie restriction removes that, hence why PSMF mogs.
+
+    Lifestyle factors that boost lipolysis:
+
+    – Hard lifting / HIIT → big catecholamine spikes and acute increases in lipolysis. [8]
+
+    – Fasted cardio → with low insulin, catecholamine signalling on fat cells is more effective (though daily fat loss still depends on the total deficit).
+    – Cold exposure → cold showers / ice baths activate the sympathetic nervous system and brown fat, giving a modest increase in lipolysis and energy expenditure aswell though the effects are negligible. [7]
+
+    Common lipolysis‑oriented drugs:
+
+    – Clenbuterol: β2‑agonist → ↑cAMP → ↑lipolysis; can cause tachycardia (High heart rate) though.
+    – Yohimbine: α2‑antagonist blocking anti‑lipolytic signalling; works best fasted (insulin blunts its effect) but can cause anxiety and blood pressure spikes.
+    – Ephedrine + caffeine: increases catecholamine release / β‑receptor activation → ↑thermogenesis and lipolysis; significant CNS and cardiovascular load.
+    – GLP‑1 agonists (e.g. Semaglutide): mainly reduce appetite and improve glycemic control; by lowering energy intake and postprandial insulin they indirectly support fat loss. [9]
+
+    – Growth Hormone (GH): stimulates hormone‑sensitive lipase and increases FFA release [10]​
+    wkacpt.png
+
+    Also I must mention that on PSMF, you already have low insulin and frequent catecholamine spikes (training + big deficit), so you're naturally in a high‑lipolysis environment even without these.​
+    ​
+
+
+    3.2 – Maximizing Beta‑Oxidation (Fat Burning)
+    j9j8og.png
+
+    Once FFAs are in the bloodstream, they must get into mitochondria to be burned. Long‑chain fatty acids depend on the carnitine shuttle for entry into the mitochondrial matrix. [11]
+    ​
+    Key drivers:
+
+    – Carnitine & mitochondria:
+    Carnitine transports long‑chain fatty acids across the inner mitochondrial membrane; deficiencies or transport defects impair fat oxidation and shift fuel use toward carbs. [12]
+
+    Endurance / Zone 2 training increases mitochondrial density and the ability of muscle to use fat as a primary fuel. [13]
+
+    Keto / fasting / PSMF upregulate enzymes involved in fat oxidation and ketone production.
+
+    – Metabolic rate & AMPK:
+    Thyroid hormone (T3) increases metabolic rate and upregulates many genes involved in energy expenditure and fat oxidation. [9]
+    AMPK activation (via exercise, deficit, metformin/berberine) signals a low‑energy state and promotes fat oxidation while improving insulin sensitivity. [8]
+
+    Common beta‑oxidation‑oriented agents:
+
+    – L‑Carnitine: Facilitates fatty acid transport into mitochondria. Best injected (oral absorption is kinda poor). [14]
+    – Berberine / Metformin: Activates AMPK → ↑fat oxidation. Also improves insulin sensitivity. [15]
+    – T3 (Cytomel): ramps metabolism and fat burning but can accelerate muscle loss, strain the heart, and suppress normal thyroid function if misused.
+    – Exogenous ketones / ketone esters: Forces body into ketosis → ↑fat oxidation. Useful for non-keto dieters. ( doesn't really matter when on PSMF)
+    – GW501516 (Cardarine): PPARδ agonist → ↑fat oxidation + endurance. called cancerine by some (although the evidence is mixed). Depletes carnitine—relies on sufficient carnitine for beta oxidation effects.
+    ​
+
+
+    4 – Ancillaries (Appetite, "Fat Burners", Peptides)
+    57qjwk.png
+
+    ​
+    4.0 – Appetite control & GLP‑1s
+    Retatrutide, Semaglutide, Cagrilintide, Tirzepatide (Mounjaro), etc. are GLP‑1 / multi‑agonist drugs that strongly reduce appetite and improve glycemic control, making it easier to adhere to a long‑term calorie deficit. [9]
+
+    Makes PSMF 10 times easier to follow up.
+
+    4.1 – Stimulants
+    Caffeine, ephedrine, and prescription stimulants (Methylphenidate, Dextro, Vyvanse etc.) suppress appetite and increase catecholamines, which can raise energy expenditure but also heart rate, blood pressure.
+
+    I must say they are very mogger for energy on cut to keep up with daily life, I'm probably going to post a thread about stims soon aswell.
+
+    4.2 – "Fat‑loss enhancers"
+    – Clenbuterol: β2‑agonist → ↑cAMP → ↑lipolysis; can cause tachycardia (High heart rate) though.
+    – A-Yohimbine: α2‑antagonist blocking anti‑lipolytic signalling; works best fasted (insulin blunts its effect) but can cause anxiety and blood pressure spikes.
+    – Ephedrine + caffeine: increases catecholamine release / β‑receptor activation → ↑thermogenesis and lipolysis; significant CNS and cardiovascular load.
+    – L‑Carnitine: Facilitates fatty acid transport into mitochondria. Best injected (oral absorption is kinda poor). [14]
+    – Berberine / Metformin: Activates AMPK → ↑fat oxidation. Also improves insulin sensitivity. [15]
+    – T3 (Cytomel): ramps metabolism and fat burning but can accelerate muscle loss, strain the heart, and suppress normal thyroid function if misused.
+    – Exogenous ketones / ketone esters: Forces body into ketosis → ↑fat oxidation. Useful for non-keto dieters. ( doesn't really matter when on PSMF)
+    – GW501516 (Cardarine): PPARδ agonist → ↑fat oxidation + endurance. called cancerine by some (although the evidence is mixed). Depletes carnitine—relies on sufficient carnitine for beta oxidation effects.
+    – Growth Hormone (GH): stimulates hormone‑sensitive lipase and increases FFA release;. [10]
+
+    4.3 – Metabolic aids & cortisol modulation
+    – MOTS‑c: mitochondrial‑derived peptide that mimics exercise‑/fasting‑like signals → ↑AMPK activity, insulin sensitivity, and fat oxidation; may help preserve muscle.
+
+    – Metyrapone: cortisol‑synthesis inhibitor (blocks 11‑β‑hydroxylase) → lowers cortisol; used clinically in adrenal‑excess / Cushing‑related workups and mild autonomous cortisol secretion to improve metabolic markers.​
+
+    Bottom line: if you aren't already sticking to your diet, ancillaries are not the bottleneck.
+    ​
+
+    5 – Exercise (Lifting, Cardio & Steps)
+    6d2ijo.png
+    5.0 – Lifting to keep muscle
+    On a PSMF, high protein plus resistance training is what tells your body "keep this muscle" while you're in a big deficit. [16]
+
+    – Train each muscle group 1–2× per week.
+    – Keep your main compounds in (bench, squat, deadlift, OHP, rows, pull‑ups), but don't chase PRs while aggressively dieting.
+    – Focus on maintaining strength and performance, not progressing; 2–4 hard sets per exercise is usually enough stimulus without murdering recovery.
+
+    5.1 – Cardio & steps
+    – Baseline: aim for around 10k steps per day to keep NEAT high.
+    – Avoid excessive added cardio at the start of a PSMF – it ramps hunger and fatigue and can speed up metabolic adaptation on very low calories.
+    – In the final days before a deadline, you can add more Zone 2 cardio (incline treadmill, cycling, etc.) ​
+    ​
+
+    6 – How to Prevent Failure (Mindset & Social Tactics)
+    ​
+    – Don't say "I'm on a diet" to no. Just say you're not hungry or you already ate bro
+    – Learn to enjoy social events without eating; sip sugar‑free soda, water, tea, or black coffee and chill.
+    – No cheat meals, no "just one slice", no "I'll make up for it tomorrow".
+    – Remember that in normal day‑to‑day life, almost no situation actually forces you to eat junk – either stay fat or be shredded, make your choice.
+
+    Run this properly and, depending on your starting body fat, you can get noticeably lean in ~4–8 weeks,
+    which lines up with what clinical PSMF programs see under supervision. [17]​
+    ​
+
+    7 – TL;DR & More material​
+
+    TL;DR:
+    Track calories, Fats and Carbs < 20gr, Eat mainly protein, Supplement electrolytes, Eat Less than 1000calories, Train each muscle group 1-2 times a week, Keep your step count and daily activity high (<10.000 steps)
+
+    Trust the process.
+
+    Optionally:
+    Use GLP‑1 / multi‑agonists like Reta, Tirz or Cagr for apetite suppresion, Use Stimulants for energy and apetite suppresion, Use the "Fat Loss Enhancers" to maximise lipolysis and beta oxidation, Use Mots-c for metabolic markers, Use Metyrapone to inhibit cortisol, Introduce Zone 2 cardio after a while​
+
+
+
+    8 – Scientific Backup/ Sources:
+
+
+    How WE are gonna look like this summer:
+    View attachment 5105610​
+
+
+
+
+    - A glycogen depleted Menas
+    Click to expand...
+
+
+Amazing thread
+Looks like an article
+
+    Mast said:
+    Will read later bump @ICL
+
+Bookmarked and tag me when you do read it so I remember
+ 
+
+    +1Love it 
+
+Reactions: alexias, Mast and Menas
+Nodal
+Diamond
+
+Joined
+    Jan 24, 2026
+
+Posts
+    1,399
+
+Reputation
+    3,868
+
+    Saturday at 12:37 PM 
+
+    #49
+
+    Menas said:
+    Shitty threads, had misinformation
+
+    My opinions changed basically
+
+good for you brodie you got your deserved botb
+ 
+
+    +1Love it 
+
+Reactions: alexias, Navity and Menas
+Mast
+Quit. Check bio.
+
+Joined
+    Feb 14, 2026
+
+Posts
+    1,633
+
+Reputation
+    14,948
+
+    Saturday at 12:39 PM 
+
+    #50
+
+    ICL said:
+    Amazing thread
+    Looks like an article
+
+    Bookmarked and tag me when you do read it so I remember
+
+It's peak ngl, will try this after i end my bulk
+ 
+
+    Love it+1 
+
+Reactions: alexias and Menas
+
+    1
+    2
+    3
+
+Next
+You must log in or register to reply here.
+Similar threads
+FRAUDMAXXING: The Best Fraud Maxxing Guide [MEGA THREAD]
+
+    Nodal Mar 28, 2026 Best of the Best 
+
+3 4 5 6 7
+
+Replies
+    319
+
+Views
+    50K
+
+Today at 11:16 AM
+akldojsojaas
+akldojsojaas
+Socialmaxxing[extremely high effort]
+
+    Nodal Apr 5, 2026 Best of the Best 
+
+3 4 5 6 7
+
+Replies
+    305
+
+Views
+    42K
+
+Thursday at 11:31 PM
+Nodal
+SlayerJonas
+Looksmaxxing Roidmaxxing 101™ - How to get a physique halo
+
+    SlayerJonas Apr 3, 2026 Best of the Best 
+
+2 3 4 5 6
+
+Replies
+    278
+
+Views
+    29K
+
+Today at 7:38 AM
+rqzuoo
+Org3cel
+Looksmaxxing Sclera-Maxxing: The Complete Evidence-Based Guide to Whitening and Brightening the Whites of Your Eyes
+
+    Org3cel Nov 15, 2025 Best of the Best 
+
+2
+
+Replies
+    52
+
+Views
+    11K
+
+Apr 23, 2026
+looksiseverything
+looksiseverything
+Asoka
+
+    Article
+
+Looksmaxxing Makeup for Males - Easy, cheap but an effective way to mog (Makeupmaxxing)
+
+    Asoka Dec 27, 2025 Best of the Best 
+
+2 3 4 5
+
+Replies
+    222
+
+Views
+    31K
+
+Saturday at 4:38 AM
+killuacel
+killuacel
+Users who are viewing this thread
+
+    duzak 
+
+... and 2 more.
+Total: 12 (Looksmaxers: 3, Bluepillers: 9)
+Share:
+Facebook
+X (Twitter)
+Reddit
+Pinterest
+Tumblr
+Email
+Link
+
+    Forums
+    Looksmax
+    Best of the Best
+    The Complete Shredding Guide For Summer
+
+    Style chooser
+    Light/Dark
+
+    Contact us
+    About
+    Partnerships
+    Collabs
+    Terms and rules
+    Privacy policy
+    Help
+    Home
+    RSS
+

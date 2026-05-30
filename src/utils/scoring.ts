@@ -18,44 +18,76 @@ export interface MetricNorm {
  */
 const POPULATION_NORMS: Record<string, Record<'male' | 'female', MetricNorm>> = {
     canthalTilt: {
-        male: { mean: 4.0, stdDev: 2.5, weight: 1.5, idealDirection: 1 },
-        female: { mean: 6.5, stdDev: 3.0, weight: 1.5, idealDirection: 1 }
+        male: { mean: 5.0, stdDev: 1.0, weight: 1.5, idealDirection: 1 },
+        female: { mean: 7.0, stdDev: 1.2, weight: 1.5, idealDirection: 1 }
     },
     fWHR: {
-        male: { mean: 1.85, stdDev: 0.15, weight: 1.8, idealDirection: 1 },
-        female: { mean: 1.70, stdDev: 0.15, weight: 1.2, idealDirection: 1 }
+        male: { mean: 1.80, stdDev: 0.10, weight: 1.8, idealDirection: 1 },
+        female: { mean: 1.70, stdDev: 0.12, weight: 1.2, idealDirection: 1 }
     },
     esr: {
-        male: { mean: 0.45, stdDev: 0.02, weight: 1.0, idealDirection: 0 },
-        female: { mean: 0.46, stdDev: 0.02, weight: 1.0, idealDirection: 0 }
+        male: { mean: 0.46, stdDev: 0.01, weight: 1.0, idealDirection: 0 },
+        female: { mean: 0.46, stdDev: 0.01, weight: 1.0, idealDirection: 0 }
     },
     uee: {
-        male: { mean: 0.35, stdDev: 0.10, weight: 1.4, idealDirection: -1 },
-        female: { mean: 0.30, stdDev: 0.10, weight: 1.4, idealDirection: -1 }
+        male: { mean: 0.22, stdDev: 0.06, weight: 1.4, idealDirection: -1 },
+        female: { mean: 0.28, stdDev: 0.08, weight: 1.4, idealDirection: -1 }
     },
     gonialAngle: {
-        male: { mean: 122, stdDev: 8, weight: 1.3, idealDirection: 0 }, // Ideal 110-130
-        female: { mean: 125, stdDev: 10, weight: 1.1, idealDirection: 0 }
+        male: { mean: 122, stdDev: 5, weight: 1.3, idealDirection: 0 }, // Ideal 115-130
+        female: { mean: 122, stdDev: 6, weight: 1.1, idealDirection: 0 }
     },
     symmetry: {
-        male: { mean: 90, stdDev: 5, weight: 2.0, idealDirection: 1 },
-        female: { mean: 92, stdDev: 5, weight: 2.0, idealDirection: 1 }
+        male: { mean: 92, stdDev: 4, weight: 2.0, idealDirection: 1 },
+        female: { mean: 92, stdDev: 4, weight: 2.0, idealDirection: 1 }
     },
     midfaceRatio: {
-        male: { mean: 0.30, stdDev: 0.02, weight: 1.3, idealDirection: 0 },
-        female: { mean: 0.29, stdDev: 0.02, weight: 1.3, idealDirection: 0 }
+        male: { mean: 1.05, stdDev: 0.05, weight: 1.3, idealDirection: 0 },
+        female: { mean: 1.00, stdDev: 0.06, weight: 1.3, idealDirection: 0 }
     },
     noseWidthRatio: {
-        male: { mean: 0.25, stdDev: 0.02, weight: 1.0, idealDirection: 0 },
-        female: { mean: 0.23, stdDev: 0.02, weight: 1.0, idealDirection: 0 }
+        male: { mean: 0.20, stdDev: 0.02, weight: 1.0, idealDirection: 0 },
+        female: { mean: 0.22, stdDev: 0.02, weight: 1.0, idealDirection: 0 }
     },
     bigonialRatio: {
-        male: { mean: 0.78, stdDev: 0.04, weight: 1.2, idealDirection: 0 },
-        female: { mean: 0.75, stdDev: 0.04, weight: 1.2, idealDirection: 0 }
+        male: { mean: 0.74, stdDev: 0.03, weight: 1.2, idealDirection: 0 },
+        female: { mean: 0.76, stdDev: 0.03, weight: 1.2, idealDirection: 0 }
     },
     philtrumLength: {
-        male: { mean: 14.0, stdDev: 1.5, weight: 0.8, idealDirection: 0 },
-        female: { mean: 12.0, stdDev: 1.2, weight: 0.8, idealDirection: 0 }
+        male: { mean: 13.0, stdDev: 1.0, weight: 0.8, idealDirection: 0 },
+        female: { mean: 12.0, stdDev: 1.0, weight: 0.8, idealDirection: 0 }
+    },
+    mouthToNoseWidthRatio: {
+        male: { mean: 1.56, stdDev: 0.06, weight: 0.9, idealDirection: 0 },
+        female: { mean: 1.52, stdDev: 0.06, weight: 0.9, idealDirection: 0 }
+    },
+    chinProjection: {
+        male: { mean: 0.01, stdDev: 0.01, weight: 1.0, idealDirection: 1 },
+        female: { mean: 0.008, stdDev: 0.01, weight: 1.0, idealDirection: 1 }
+    },
+    maxillaryProtrusion: {
+        male: { mean: 0.015, stdDev: 0.01, weight: 1.0, idealDirection: 1 },
+        female: { mean: 0.012, stdDev: 0.01, weight: 1.0, idealDirection: 1 }
+    },
+    orbitalRimProtrusion: {
+        male: { mean: 0.005, stdDev: 0.01, weight: 0.8, idealDirection: 1 },
+        female: { mean: 0.004, stdDev: 0.01, weight: 0.8, idealDirection: 1 }
+    },
+    browRidgeProtrusion: {
+        male: { mean: 0.008, stdDev: 0.006, weight: 0.7, idealDirection: 1 },
+        female: { mean: 0.005, stdDev: 0.006, weight: 0.7, idealDirection: 1 }
+    },
+    infraorbitalRimPosition: {
+        male: { mean: 0.005, stdDev: 0.008, weight: 0.7, idealDirection: 1 },
+        female: { mean: 0.004, stdDev: 0.008, weight: 0.7, idealDirection: 1 }
+    },
+    foreheadHeightRatio: {
+        male: { mean: 0.325, stdDev: 0.02, weight: 0.6, idealDirection: 0 },
+        female: { mean: 0.33, stdDev: 0.02, weight: 0.6, idealDirection: 0 }
+    },
+    doubleChinRisk: {
+        male: { mean: 0.005, stdDev: 0.01, weight: 0.9, idealDirection: -1 },
+        female: { mean: 0.006, stdDev: 0.01, weight: 0.9, idealDirection: -1 }
     }
 };
 
@@ -117,11 +149,21 @@ export function calculatePSLScore(
     processMetric('midfaceRatio', metrics.midface.midfaceRatio);
     processMetric('noseWidthRatio', metrics.midface.noseWidthRatio);
     processMetric('philtrumLength', metrics.midface.philtrumLength);
-    
+    processMetric('mouthToNoseWidthRatio', metrics.midface.mouthToNoseWidthRatio);
+    processMetric('maxillaryProtrusion', metrics.midface.maxillaryProtrusion);
+    processMetric('foreheadHeightRatio', metrics.midface.foreheadHeightRatio);
+
     // Jawline
     processMetric('gonialAngle', metrics.jawline.gonialAngle.average);
     processMetric('bigonialRatio', metrics.jawline.bigonialRatio);
-    
+    processMetric('chinProjection', metrics.jawline.chinProjection);
+    processMetric('doubleChinRisk', metrics.jawline.doubleChinRisk);
+
+    // Structural support
+    processMetric('orbitalRimProtrusion', metrics.periorbital.orbitalRimProtrusion.average);
+    processMetric('browRidgeProtrusion', metrics.periorbital.browRidgeProtrusion);
+    processMetric('infraorbitalRimPosition', metrics.periorbital.infraorbitalRimPosition);
+
     // Symmetry
     processMetric('symmetry', metrics.symmetry.overallSymmetry);
 
@@ -183,4 +225,3 @@ export function calculateAggregatedMetrics(scans: any[]): MetricReport | null {
     // For now, we'll just take the latest or average if applicable
     return base;
 }
-

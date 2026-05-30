@@ -1,0 +1,77 @@
+[
+  {
+    "fileName": "PSL 3 Example.jpg",
+    "label": "PSL 3 Example",
+    "expectedPsl": 3
+  },
+  {
+    "fileName": "PSL 4 Example.jpeg",
+    "label": "PSL 4 Example",
+    "expectedPsl": 4
+  },
+  {
+    "fileName": "PSL 4.5 Example.jpeg",
+    "label": "PSL 4.5 Example",
+    "expectedPsl": 4.5
+  },
+  {
+    "fileName": "PSL 5 Example.jpeg",
+    "label": "PSL 5 Example",
+    "expectedPsl": 5
+  },
+  {
+    "fileName": "PSL 5.5 Example.png",
+    "label": "PSL 5.5 Example",
+    "expectedPsl": 5.5
+  },
+  {
+    "fileName": "PSL 6 Example.jpg",
+    "label": "PSL 6 Example",
+    "expectedPsl": 6
+  },
+  {
+    "fileName": "PSL 6.5 Example 1.jpeg",
+    "label": "PSL 6.5 Example 1",
+    "expectedPsl": 6.5
+  },
+  {
+    "fileName": "PSL 6.5 Example 2.jpeg",
+    "label": "PSL 6.5 Example 2",
+    "expectedPsl": 6.5
+  },
+  {
+    "fileName": "PSL 6.5 Example 3.jpeg",
+    "label": "PSL 6.5 Example 3",
+    "expectedPsl": 6.5
+  },
+  {
+    "fileName": "PSL 7 Example 1.jpeg",
+    "label": "PSL 7 Example 1",
+    "expectedPsl": 7
+  },
+  {
+    "fileName": "PSL 7 Example 2.jpeg",
+    "label": "PSL 7 Example 2",
+    "expectedPsl": 7
+  },
+  {
+    "fileName": "PSL 7 Example 3.jpeg",
+    "label": "PSL 7 Example 3",
+    "expectedPsl": 7
+  },
+  {
+    "fileName": "PSL 7.5 Example 1.jpeg",
+    "label": "PSL 7.5 Example 1",
+    "expectedPsl": 7.5
+  },
+  {
+    "fileName": "PSL 7.5 Example 2.png",
+    "label": "PSL 7.5 Example 2",
+    "expectedPsl": 7.5
+  },
+  {
+    "fileName": "PSL 7.5 Example 3.jpeg",
+    "label": "PSL 7.5 Example 3",
+    "expectedPsl": 7.5
+  }
+]

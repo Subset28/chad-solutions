@@ -93,7 +93,7 @@ export default function ScoreReveal({ score, tier, metrics, onComplete }: ScoreR
                         exit={{ opacity: 0, scale: 1.2 }}
                         className="text-center"
                     >
-                        <p className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.4em] mb-4">Neural Calibration</p>
+                        <p className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.4em] mb-4">PSL Calibration</p>
                         <h2 className="text-9xl font-black tracking-tighter text-white tabular-nums">
                             {count.toFixed(1)}
                         </h2>

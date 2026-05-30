@@ -1,0 +1,822 @@
+
+◈ ARMAANOCHROME
+Archive
+Downloads
+Library
+Unreleased
+Restoration
+Settings
+SECURE â€¢ 169.150.197.59
+DOWNLOAD PROGRESS
+
+Monitor your active archiving jobs, view real-time speeds, ETA, and track what failed or succeeded.
+Completed ✓
+146
+Remaining ⋯
+0
+Speed ↓
+MAX
+ETA ⏱
+Calculating...
+Success Rate %
+0%
+Failed ✕
+3
+Skipped —
+21
+LAST RUN SUMMARY
+Live run summary
+0%
+Processed
+192
+Archived
+0
+Failed
+3
+Skipped
+21
+Other
+168
+Active job: 0 archived, 3 failed, 21 skipped, 168 other
+Run math: 0 archived + 3 failed + 21 skipped + 168 other = 192 processed
+Archived: No archived tracks
+Failed: 21 Savage;d4vd - Call Me Revenge - Call of Duty: Modern Warfare 3 [Call Me Revenge (Call of Duty: Modern Warfare 3)] - Track could not be found anywhere Lil Tecca - Yves [TEC] - Track could not be found anywhere Lil Tecca - TEC - Track could not be found anywhere
+Skipped: Make No Sense Half The Plot Malibu’s Most Wanted (+18 more)
+Live counters reset when the job ends. The summary below preserves the last completed run and shows which tracks were archived, failed, skipped, or left in the other bucket.
+LIVE TELEMETRY
+Current source, mirror, queue depth, and the active job class in one place.
+Complete
+Job
+Single Track
+Source
+Monochrome/TIDAL
+Mirror
+https://monochrome-api.samidy.com
+Queue depth
+146
+Last event
+7:34:57 PM
+Activity
+Finished
+OVERALL PROGRESS
+100%
+CURRENTLY DOWNLOADING
+Flo Milli
+Hottie (feat. BabyFace Ray)
+Source
+Monochrome/TIDAL
+Mirror
+https://monochrome-api.samidy.com
+Job kind
+Single Track
+Release
+Public
+Updated
+7:34:57 PM
+UPCOMING ITEMS (1)
+Page 1 / 1
+Waiting for the next item...
+ACTIVE CONFIGURATION
+Audio FormatFLAC
+Bandwidth LimitMAX
+Parallel Workers1
+Lidarr MatchOn
+Lyrics PolicyExplicit
+JOB QUEUE
+Active Spotify Playlist Running
+TRACK MATCH AUDIT
+Live audit for the active run • 192 queued tracks audited
+Page 1 / 18
+Queued
+143
+Matched
+0
+Mismatched
+0
+Unresolved
+168
+?
+Unknown track Awaiting result
+Unknown artist • Unknown album
+Unknown
+Queued song —
+Queued artist —
+Queued album —
+Got song —
+Got artist —
+Got album —
+?
+Unknown track Awaiting result
+Unknown artist • Unknown album
+Unknown
+Queued song —
+Queued artist —
+Queued album —
+Got song —
+Got artist —
+Got album —
+?
+Unknown track Awaiting result
+Unknown artist • Unknown album
+Unknown
+Queued song —
+Queued artist —
+Queued album —
+Got song —
+Got artist —
+Got album —
+?
+Unknown track Awaiting result
+Unknown artist • Unknown album
+Unknown
+Queued song —
+Queued artist —
+Queued album —
+Got song —
+Got artist —
+Got album —
+?
+Unknown track Awaiting result
+Unknown artist • Unknown album
+Unknown
+Queued song —
+Queued artist —
+Queued album —
+Got song —
+Got artist —
+Got album —
+?
+Unknown track Awaiting result
+Unknown artist • Unknown album
+Unknown
+Queued song —
+Queued artist —
+Queued album —
+Got song —
+Got artist —
+Got album —
+?
+Unknown track Awaiting result
+Unknown artist • Unknown album
+Unknown
+Queued song —
+Queued artist —
+Queued album —
+Got song —
+Got artist —
+Got album —
+?
+Unknown track Awaiting result
+Unknown artist • Unknown album
+Unknown
+Queued song —
+Queued artist —
+Queued album —
+Got song —
+Got artist —
+Got album —
+?
+Unknown track Awaiting result
+Unknown artist • Unknown album
+Unknown
+Queued song —
+Queued artist —
+Queued album —
+Got song —
+Got artist —
+Got album —
+?
+Unknown track Awaiting result
+Unknown artist • Unknown album
+Unknown
+Queued song —
+Queued artist —
+Queued album —
+Got song —
+Got artist —
+Got album —
+ARCHIVE MANIFEST
+Singles List • 0 archived, 3 failed, 21 skipped, 9 mismatched • 5/29/2026, 7:16:59 PM
+Processed
+192
+Archived
+0
+Failed
+3
+Skipped
+21
+Mismatched
+9
+•
+Unknown track Match
+Unknown queue item
+Queued
+Queued song—
+Queued artist—
+Queued album—
+Got song—
+Got artist—
+Got album—
+•
+Unknown track Match
+Unknown queue item
+Queued
+Queued song—
+Queued artist—
+Queued album—
+Got song—
+Got artist—
+Got album—
+•
+Unknown track Match
+Unknown queue item
+Queued
+Queued song—
+Queued artist—
+Queued album—
+Got song—
+Got artist—
+Got album—
+•
+Unknown track Match
+Unknown queue item
+Queued
+Queued song—
+Queued artist—
+Queued album—
+Got song—
+Got artist—
+Got album—
+•
+Unknown track Match
+Unknown queue item
+Queued
+Queued song—
+Queued artist—
+Queued album—
+Got song—
+Got artist—
+Got album—
+•
+Unknown track Match
+Unknown queue item
+Queued
+Queued song—
+Queued artist—
+Queued album—
+Got song—
+Got artist—
+Got album—
+•
+Unknown track Match
+Unknown queue item
+Queued
+Queued song—
+Queued artist—
+Queued album—
+Got song—
+Got artist—
+Got album—
+•
+Unknown track Match
+Unknown queue item
+Queued
+Queued song—
+Queued artist—
+Queued album—
+Got song—
+Got artist—
+Got album—
+•
+Unknown track Match
+Unknown queue item
+Queued
+Queued song—
+Queued artist—
+Queued album—
+Got song—
+Got artist—
+Got album—
+•
+Unknown track Match
+Unknown queue item
+Queued
+Queued song—
+Queued artist—
+Queued album—
+Got song—
+Got artist—
+Got album—
+•
+Unknown track Match
+Unknown queue item
+Queued
+Queued song—
+Queued artist—
+Queued album—
+Got song—
+Got artist—
+Got album—
+•
+Unknown track Match
+Unknown queue item
+Queued
+Queued song—
+Queued artist—
+Queued album—
+Got song—
+Got artist—
+Got album—
+•
+Unknown track Match
+Unknown queue item
+Queued
+Queued song—
+Queued artist—
+Queued album—
+Got song—
+Got artist—
+Got album—
+•
+Unknown track Match
+Unknown queue item
+Queued
+Queued song—
+Queued artist—
+Queued album—
+Got song—
+Got artist—
+Got album—
+•
+Unknown track Match
+Unknown queue item
+Queued
+Queued song—
+Queued artist—
+Queued album—
+Got song—
+Got artist—
+Got album—
+•
+Unknown track Match
+Unknown queue item
+Queued
+Queued song—
+Queued artist—
+Queued album—
+Got song—
+Got artist—
+Got album—
+•
+Unknown track Match
+Unknown queue item
+Queued
+Queued song—
+Queued artist—
+Queued album—
+Got song—
+Got artist—
+Got album—
+•
+Unknown track Match
+Unknown queue item
+Queued
+Queued song—
+Queued artist—
+Queued album—
+Got song—
+Got artist—
+Got album—
+•
+Unknown track Match
+Unknown queue item
+Queued
+Queued song—
+Queued artist—
+Queued album—
+Got song—
+Got artist—
+Got album—
+•
+Unknown track Match
+Unknown queue item
+Queued
+Queued song—
+Queued artist—
+Queued album—
+Got song—
+Got artist—
+Got album—
+•
+Unknown track Match
+Unknown queue item
+Queued
+Queued song—
+Queued artist—
+Queued album—
+Got song—
+Got artist—
+Got album—
+•
+Unknown track Match
+Unknown queue item
+Queued
+Queued song—
+Queued artist—
+Queued album—
+Got song—
+Got artist—
+Got album—
+•
+Unknown track Match
+Unknown queue item
+Queued
+Queued song—
+Queued artist—
+Queued album—
+Got song—
+Got artist—
+Got album—
+•
+Unknown track Match
+Unknown queue item
+Queued
+Queued song—
+Queued artist—
+Queued album—
+Got song—
+Got artist—
+Got album—
+•
+Hottie (feat. BabyFace Ray) Mismatch
+Flo Milli • You Still Here, Ho ?
+Downloading
+Queued songHottie (feat. BabyFace Ray)
+Queued artistFlo Milli
+Queued albumYou Still Here, Ho ?
+Got songHottie (feat. BabyFace Ray)
+Got artistFlo Milli, BabyFace Ray
+Got albumYou Still Here, Ho ?
+•
+Malibu’s Most Wanted Match
+Lil Tecca • DOPAMINE
+Skipped
+Queued songMalibu’s Most Wanted
+Queued artistLil Tecca
+Queued albumDOPAMINE
+Got songMalibu’s Most Wanted
+Got artistLil Tecca
+Got albumDOPAMINE
+•
+Half The Plot Match
+Lil Tecca • DOPAMINE
+Skipped
+Queued songHalf The Plot
+Queued artistLil Tecca
+Queued albumDOPAMINE
+Got songHalf The Plot
+Got artistLil Tecca
+Got albumDOPAMINE
+•
+Make No Sense Match
+YoungBoy Never Broke Again • AI YoungBoy 2
+Skipped
+Queued songMake No Sense
+Queued artistYoungBoy Never Broke Again
+Queued albumAI YoungBoy 2
+Got songMake No Sense
+Got artistYoungBoy Never Broke Again
+Got albumAI YoungBoy 2
+•
+OWA OWA Match
+Lil Tecca • OWA OWA
+Skipped
+Queued songOWA OWA
+Queued artistLil Tecca
+Queued albumOWA OWA
+Got songOWA OWA
+Got artistLil Tecca
+Got albumOWA OWA
+•
+Bad Bad Bad (feat. Lil Baby) Mismatch
+Young Thug • So Much Fun
+Skipped
+Queued songBad Bad Bad (feat. Lil Baby)
+Queued artistYoung Thug
+Queued albumSo Much Fun
+Got songBad Bad Bad (feat. Lil Baby)
+Got artistYoung Thug, Lil Baby
+Got albumSo Much Fun
+•
+All The Parties Mismatch
+Drake • For All The Dogs
+Skipped
+Queued songAll The Parties
+Queued artistDrake
+Queued albumFor All The Dogs
+Got songAll The Parties
+Got artistDrake, Chief Keef
+Got albumFor All The Dogs
+•
+500lbs Match
+Lil Tecca • 500lbs
+Skipped
+Queued song500lbs
+Queued artistLil Tecca
+Queued album500lbs
+Got song500lbs
+Got artistLil Tecca
+Got album500lbs
+•
+Homebody Match
+Rob49 • 4GOD II (Deluxe)
+Skipped
+Queued songHomebody
+Queued artistRob49
+Queued album4GOD II (Deluxe)
+Got songHomebody
+Got artistRob49
+Got album4GOD II (Deluxe)
+•
+Memories in My Head Match
+icyslug • Memories in My Head
+Skipped
+Queued songMemories in My Head
+Queued artisticyslug
+Queued albumMemories in My Head
+Got songMemories in My Head
+Got artisticyslug
+Got albumMemories in My Head
+•
+NEMZZ ESCAPE Match
+RAEZTREEE • NEMZZ ESCAPE
+Skipped
+Queued songNEMZZ ESCAPE
+Queued artistRAEZTREEE
+Queued albumNEMZZ ESCAPE
+Got songNEMZZ ESCAPE
+Got artistRAEZTREEE
+Got albumNEMZZ ESCAPE
+•
+TOP FLOOR (feat. Travis Scott) Mismatch
+Gunna • WUNNA
+Skipped
+Queued songTOP FLOOR (feat. Travis Scott)
+Queued artistGunna
+Queued albumWUNNA
+Got songTOP FLOOR (feat. Travis Scott)
+Got artistGunna, Travis Scott
+Got albumWUNNA
+•
+Out Of Love Mismatch
+Lil Tecca • Virgo World
+Skipped
+Queued songOut Of Love
+Queued artistLil Tecca
+Queued albumVirgo World
+Got songOut Of Love
+Got artistLil Tecca, Internet Money
+Got albumVirgo World
+•
+Location Match
+Khalid • American Teen
+Skipped
+Queued songLocation
+Queued artistKhalid
+Queued albumAmerican Teen
+Got songLocation
+Got artistKhalid
+Got albumAmerican Teen
+•
+You (feat. Travis Scott) Mismatch
+Don Toliver • Life of a DON
+Skipped
+Queued songYou (feat. Travis Scott)
+Queued artistDon Toliver
+Queued albumLife of a DON
+Got songYou (feat. Travis Scott)
+Got artistDon Toliver, Travis Scott
+Got albumLife of a DON
+•
+Pain 1993 Mismatch
+Drake • Dark Lane Demo Tapes
+Skipped
+Queued songPain 1993
+Queued artistDrake
+Queued albumDark Lane Demo Tapes
+Got songPain 1993
+Got artistDrake, Playboi Carti
+Got albumDark Lane Demo Tapes
+•
+NEVER LAST Match
+Lil Tecca • PLAN A
+Skipped
+Queued songNEVER LAST
+Queued artistLil Tecca
+Queued albumPLAN A
+Got songNEVER LAST
+Got artistLil Tecca
+Got albumPLAN A
+•
+HVN ON EARTH Mismatch
+Lil Tecca • HVN ON EARTH
+Skipped
+Queued songHVN ON EARTH
+Queued artistLil Tecca
+Queued albumHVN ON EARTH
+Got songHVN ON EARTH
+Got artistLil Tecca, Kodak Black
+Got albumHVN ON EARTH
+•
+U Don't Know Tec Match
+Lil Tecca • TEC
+Skipped
+Queued songU Don't Know Tec
+Queued artistLil Tecca
+Queued albumTEC
+Got songU Don't Know Tec
+Got artistLil Tecca
+Got albumTEC
+•
+BAD TIME Match
+Lil Tecca • PLAN A
+Skipped
+Queued songBAD TIME
+Queued artistLil Tecca
+Queued albumPLAN A
+Got songBAD TIME
+Got artistLil Tecca
+Got albumPLAN A
+•
+Magnolia Match
+Playboi Carti • Playboi Carti
+Skipped
+Queued songMagnolia
+Queued artistPlayboi Carti
+Queued albumPlayboi Carti
+Got songMagnolia
+Got artistPlayboi Carti
+Got albumPlayboi Carti
+•
+Taste Mismatch
+Tyga • Taste (feat. Offset)
+Skipped
+Queued songTaste
+Queued artistTyga
+Queued albumTaste (feat. Offset)
+Got songTaste
+Got artistTyga, OFFSET
+Got albumTaste (feat. Offset)
+•
+Lil Uzi Vert - Myron [Eternal Atake (Deluxe) - LUV vs. The World 2] Match
+Lil Uzi Vert • Eternal Atake (Deluxe) - LUV vs. The World 2
+Queued
+Queued songLil Uzi Vert - Myron [Eternal Atake (Deluxe) - LUV vs. The World 2]
+Queued artistLil Uzi Vert
+Queued albumEternal Atake (Deluxe) - LUV vs. The World 2
+Got songLil Uzi Vert - Myron [Eternal Atake (Deluxe) - LUV vs. The World 2]
+Got artistLil Uzi Vert
+Got albumEternal Atake (Deluxe) - LUV vs. The World 2
+•
+Lil Tecca - TEC Match
+Lil Tecca • TEC
+Failed
+Queued songLil Tecca - TEC
+Queued artistLil Tecca
+Queued albumTEC
+Got songLil Tecca - TEC
+Got artistLil Tecca
+Got albumTEC
+•
+Playboi Carti - FlatBed Freestyle [Die Lit] Match
+Playboi Carti • Die Lit
+Queued
+Queued songPlayboi Carti - FlatBed Freestyle [Die Lit]
+Queued artistPlayboi Carti
+Queued albumDie Lit
+Got songPlayboi Carti - FlatBed Freestyle [Die Lit]
+Got artistPlayboi Carti
+Got albumDie Lit
+•
+Lil Tjay - F.N [True 2 Myself] Match
+Lil Tjay • True 2 Myself
+Queued
+Queued songLil Tjay - F.N [True 2 Myself]
+Queued artistLil Tjay
+Queued albumTrue 2 Myself
+Got songLil Tjay - F.N [True 2 Myself]
+Got artistLil Tjay
+Got albumTrue 2 Myself
+•
+Lil Tjay;6LACK - Calling My Phone Match
+Lil Tjay;6LACK • Calling My Phone
+Queued
+Queued songLil Tjay;6LACK - Calling My Phone
+Queued artistLil Tjay;6LACK
+Queued albumCalling My Phone
+Got songLil Tjay;6LACK - Calling My Phone
+Got artistLil Tjay;6LACK
+Got albumCalling My Phone
+•
+BRAVESOUL - Swept Away Match
+BRAVESOUL • Swept Away
+Queued
+Queued songBRAVESOUL - Swept Away
+Queued artistBRAVESOUL
+Queued albumSwept Away
+Got songBRAVESOUL - Swept Away
+Got artistBRAVESOUL
+Got albumSwept Away
+•
+Yeat - On tha linë [2 Alivë] Match
+Yeat • 2 Alivë
+Queued
+Queued songYeat - On tha linë [2 Alivë]
+Queued artistYeat
+Queued album2 Alivë
+Got songYeat - On tha linë [2 Alivë]
+Got artistYeat
+Got album2 Alivë
+•
+Kid Cudi;Pharrell Williams;Travis Scott - AT THE PARTY (feat. Pharrell Williams & Travis Scott) Match
+Kid Cudi;Pharrell Williams;Travis Scott • AT THE PARTY
+Queued
+Queued songKid Cudi;Pharrell Williams;Travis Scott - AT THE PARTY (feat. Pharrell Williams & Travis Scott)
+Queued artistKid Cudi;Pharrell Williams;Travis Scott
+Queued albumAT THE PARTY
+Got songKid Cudi;Pharrell Williams;Travis Scott - AT THE PARTY (feat. Pharrell Williams & Travis Scott)
+Got artistKid Cudi;Pharrell Williams;Travis Scott
+Got albumAT THE PARTY
+•
+Xavier Weeks - Team [We All Gon Win] Match
+Xavier Weeks • We All Gon Win
+Queued
+Queued songXavier Weeks - Team [We All Gon Win]
+Queued artistXavier Weeks
+Queued albumWe All Gon Win
+Got songXavier Weeks - Team [We All Gon Win]
+Got artistXavier Weeks
+Got albumWe All Gon Win
+•
+XXXTENTACION;PnB Rock;Trippie Redd - bad vibes forever Match
+XXXTENTACION;PnB Rock;Trippie Redd • bad vibes forever
+Queued
+Queued songXXXTENTACION;PnB Rock;Trippie Redd - bad vibes forever
+Queued artistXXXTENTACION;PnB Rock;Trippie Redd
+Queued albumbad vibes forever
+Got songXXXTENTACION;PnB Rock;Trippie Redd - bad vibes forever
+Got artistXXXTENTACION;PnB Rock;Trippie Redd
+Got albumbad vibes forever
+•
+Travis Scott;Kacy Hill - 90210 (feat. Kacy Hill) [Rodeo] Match
+Travis Scott;Kacy Hill • Rodeo
+Queued
+Queued songTravis Scott;Kacy Hill - 90210 (feat. Kacy Hill) [Rodeo]
+Queued artistTravis Scott;Kacy Hill
+Queued albumRodeo
+Got songTravis Scott;Kacy Hill - 90210 (feat. Kacy Hill) [Rodeo]
+Got artistTravis Scott;Kacy Hill
+Got albumRodeo
+•
+Don Toliver - No Idea [Heaven Or Hell] Match
+Don Toliver • Heaven Or Hell
+Queued
+Queued songDon Toliver - No Idea [Heaven Or Hell]
+Queued artistDon Toliver
+Queued albumHeaven Or Hell
+Got songDon Toliver - No Idea [Heaven Or Hell]
+Got artistDon Toliver
+Got albumHeaven Or Hell
+•
+Don Toliver - TORE UP [HARDSTONE PSYCHO] Match
+Don Toliver • HARDSTONE PSYCHO
+Queued
+Queued songDon Toliver - TORE UP [HARDSTONE PSYCHO]
+Queued artistDon Toliver
+Queued albumHARDSTONE PSYCHO
+Got songDon Toliver - TORE UP [HARDSTONE PSYCHO]
+Got artistDon Toliver
+Got albumHARDSTONE PSYCHO
+•
+Don Toliver - NEW DROP [HARDSTONE PSYCHO] Match
+Don Toliver • HARDSTONE PSYCHO
+Queued
+Queued songDon Toliver - NEW DROP [HARDSTONE PSYCHO]
+Queued artistDon Toliver
+Queued albumHARDSTONE PSYCHO
+Got songDon Toliver - NEW DROP [HARDSTONE PSYCHO]
+Got artistDon Toliver
+Got albumHARDSTONE PSYCHO
+SYSTEM DIAGNOSTICS
+â„¹
+> System initialized. Ready.
+â„¹
+> Connected to ArmaanOChrome Server...
+â„¹
+Connected to Monochrome Server...
+TRACK SESSION LOG
+192 processed • 0 passed • 3 failed • 21 skipped
+No tracks processed yet
+v2fb8a53
+Press Enter to search
+HI-RES LOSSLESS

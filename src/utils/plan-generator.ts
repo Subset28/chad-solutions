@@ -25,13 +25,13 @@ export interface LooksmaxPlan {
 }
 
 export function getTierName(score: number): string {
-    if (score >= 9.0) return "Looksmaxxed God / Genetic Lottery";
-    if (score >= 8.0) return "Gigachad (Elite)";
-    if (score >= 7.0) return "Chad";
-    if (score >= 6.0) return "Chadlite";
-    if (score >= 5.0) return "Normie";
-    if (score >= 4.0) return "Betabuxx / Below Average";
-    if (score >= 3.0) return "Low-tier";
+    if (score >= 9.0) return "Exceptional";
+    if (score >= 8.0) return "Very Strong";
+    if (score >= 7.0) return "Strong";
+    if (score >= 6.0) return "Above Average";
+    if (score >= 5.0) return "Average";
+    if (score >= 4.0) return "Below Average";
+    if (score >= 3.0) return "Needs Work";
     return "Developing";
 }
 
@@ -59,6 +59,20 @@ const PSL_IMPACT_WEIGHTS: Record<string, number> = {
     eyeAperture: 0.2
 };
 
+function getNeutralRecommendation(category: 'lifestyle' | 'nonSurgical' | 'surgical', metricKey: string): string {
+    const metricLabel = metricKey.replace(/([A-Z])/g, ' $1').trim().toLowerCase();
+
+    if (category === 'lifestyle') {
+        return `Start with reversible changes for ${metricLabel}: sleep, hydration, skin care, grooming, and body composition where relevant.`;
+    }
+
+    if (category === 'nonSurgical') {
+        return `If you want more change than lifestyle can provide for ${metricLabel}, a non-surgical consultation can help you compare temporary or lower-risk options.`;
+    }
+
+    return `If ${metricLabel} remains a major concern, a qualified specialist can explain the structural options, risks, and expected limits.`;
+}
+
 export function generateLooksmaxPlan(
     metrics: MetricReport,
     currentPSL: number,
@@ -69,9 +83,9 @@ export function generateLooksmaxPlan(
     const flatMetrics = flattenMetrics(metrics);
     
     const phases: LooksmaxPhase[] = [
-        { title: 'Phase 1: Softmaxxing (Lifestyle)', description: 'Immediate, low-cost foundations focusing on skin, grooming, and posture.', items: [] },
-        { title: 'Phase 2: Surgerymaxxing Lite (Non-Surgical)', description: 'Injectables and orthodontic refinements to bridge the gap.', items: [] },
-        { title: 'Phase 3: Hardmaxxing (Surgical)', description: 'Bone-level interventions for permanent skeletal ascension.', items: [] }
+        { title: 'Phase 1: Lifestyle', description: 'Immediate, low-cost foundations focusing on skin, grooming, and posture.', items: [] },
+        { title: 'Phase 2: Non-Surgical', description: 'Injectables and orthodontic refinements that can bridge the gap.', items: [] },
+        { title: 'Phase 3: Surgical', description: 'Structural interventions for the largest permanent changes.', items: [] }
     ];
 
     let accruedBoost = 0;
@@ -86,7 +100,7 @@ export function generateLooksmaxPlan(
         const isIdeal = rating.color.includes('green');
 
         if (!isIdeal) {
-            const recs = (metricRecommendations as any)[key];
+            const recs = metricRecommendations[key];
             if (!recs) continue;
 
             const label = key.replace(/([A-Z])/g, ' $1').trim();
@@ -95,7 +109,7 @@ export function generateLooksmaxPlan(
                 phases[0].items.push({
                     metric: key,
                     label,
-                    recommendation: recs.lifestyle[0],
+                    recommendation: getNeutralRecommendation('lifestyle', key),
                     impact: weight * 0.2,
                     category: 'lifestyle'
                 });
@@ -106,7 +120,7 @@ export function generateLooksmaxPlan(
                 phases[1].items.push({
                     metric: key,
                     label,
-                    recommendation: recs.nonSurgical[0],
+                    recommendation: getNeutralRecommendation('nonSurgical', key),
                     impact: weight * 0.4,
                     category: 'nonSurgical'
                 });
@@ -117,7 +131,7 @@ export function generateLooksmaxPlan(
                 phases[2].items.push({
                     metric: key,
                     label,
-                    recommendation: recs.surgical[0],
+                    recommendation: getNeutralRecommendation('surgical', key),
                     impact: weight * 0.4,
                     category: 'surgical'
                 });

@@ -1,0 +1,3598 @@
+
+◈ ARMAANOCHROME
+Archive
+Downloads
+Library
+Unreleased
+Restoration
+Settings
+SECURE â€¢ 156.146.62.52
+DOWNLOAD PROGRESS
+
+Monitor your active archiving jobs, view real-time speeds, ETA, and track what failed or succeeded.
+Completed ✓
+24
+Remaining ⋯
+122
+Speed ↓
+MAX
+ETA ⏱
+Calculating...
+Success Rate %
+0%
+Failed ✕
+3
+Skipped —
+23
+LAST RUN SUMMARY
+Live run summary
+0%
+Processed
+170
+Archived
+0
+Failed
+3
+Skipped
+23
+Other
+144
+Active job: 0 archived, 3 failed, 23 skipped, 144 other
+Run math: 0 archived + 3 failed + 23 skipped + 144 other = 170 processed
+Archived: No archived tracks
+Failed: 21 Savage;d4vd - Call Me Revenge - Call of Duty: Modern Warfare 3 [Call Me Revenge (Call of Duty: Modern Warfare 3)] - Track could not be found anywhere Lil Tecca - Yves [TEC] - Track could not be found anywhere Lil Tecca - TEC - Track could not be found anywhere
+Skipped: Make No Sense Half The Plot Malibu’s Most Wanted (+20 more)
+Live counters reset when the job ends. The summary below preserves the last completed run and shows which tracks were archived, failed, skipped, or left in the other bucket.
+LIVE TELEMETRY
+Current source, mirror, queue depth, and the active job class in one place.
+Running
+Job
+Single Track
+Source
+Monochrome/TIDAL
+Mirror
+https://monochrome-api.samidy.com
+Queue depth
+146
+Last event
+6:18:44 PM
+Activity
+0 passing · 3 failing
+OVERALL PROGRESS
+16%
+CURRENTLY DOWNLOADING
+Flo Milli
+Hottie (feat. BabyFace Ray)
+Source
+Monochrome/TIDAL
+Mirror
+https://monochrome-api.samidy.com
+Job kind
+Single Track
+Release
+Public
+Updated
+6:18:44 PM
+UPCOMING ITEMS (146)
+Page 1 / 10
+#1
+Lil Tecca - TASTE [PLAN A]
+Lil Tecca PLAN A 2:50 spotify_csv
+#2
+Playboi Carti - Magnolia
+Playboi Carti Playboi Carti 3:02 spotify_csv
+#3
+Lil Tecca - BAD TIME [PLAN A]
+Lil Tecca PLAN A 3:31 spotify_csv
+#4
+Lil Tecca - U Don't Know Tec [TEC (Bonus)]
+Lil Tecca TEC (Bonus) 1:50 spotify_csv
+#5
+Lil Tecca;Kodak Black - HVN ON EARTH (with Kodak Black) [TEC]
+Lil Tecca;Kodak Black TEC 3:09 spotify_csv
+#6
+Lil Tecca - NEVER LAST [PLAN A]
+Lil Tecca PLAN A 2:22 spotify_csv
+#7
+Drake;Playboi Carti - Pain 1993 (with Playboi Carti) [Dark Lane Demo Tapes]
+Drake;Playboi Carti Dark Lane Demo Tapes 2:29 spotify_csv
+#8
+Don Toliver;Travis Scott - You (feat. Travis Scott) [Life of a DON]
+Don Toliver;Travis Scott Life of a DON 3:34 spotify_csv
+#9
+Playboi Carti - Location
+Playboi Carti Playboi Carti 2:49 spotify_csv
+#10
+Lil Tecca;Internet Money - Out Of Love (feat. Internet Money) [Virgo World]
+Lil Tecca;Internet Money Virgo World 2:34 spotify_csv
+#11
+Gunna;Travis Scott - TOP FLOOR (feat. Travis Scott) [WUNNA]
+Gunna;Travis Scott WUNNA 2:50 spotify_csv
+#12
+Nemzzz - Escape
+Nemzzz Escape 2:08 spotify_csv
+#13
+icyslug;LouGotCash;Lil Tecca - Memories in My Head
+icyslug;LouGotCash;Lil Tecca Memories in My Head 3:12 spotify_csv
+#14
+Lil Tecca - HOMEBODY [PLAN A]
+Lil Tecca PLAN A 2:00 spotify_csv
+#15
+Lil Tecca - 500lbs [TEC]
+Lil Tecca TEC 2:24 spotify_csv
+ACTIVE CONFIGURATION
+Audio FormatFLAC
+Bandwidth LimitMAX
+Parallel Workers1
+Lidarr MatchOn
+Lyrics PolicyExplicit
+JOB QUEUE
+Active Spotify Playlist Running
+TRACK MATCH AUDIT
+Live audit for the active run • 170 queued tracks audited
+Queued
+143
+Matched
+0
+Mismatched
+0
+Unresolved
+144
+?
+Hottie (feat. BabyFace Ray) Awaiting result
+Flo Milli • You Still Here, Ho ?
+Downloading
+Queued song Hottie (feat. BabyFace Ray)
+Queued artist Flo Milli
+Queued album You Still Here, Ho ?
+Got song Hottie (feat. BabyFace Ray)
+Got artist Flo Milli, BabyFace Ray
+Got album You Still Here, Ho ?
+?
+Malibu’s Most Wanted Awaiting result
+Lil Tecca • DOPAMINE
+Skipped
+Queued song Malibu’s Most Wanted
+Queued artist Lil Tecca
+Queued album DOPAMINE
+Got song Malibu’s Most Wanted
+Got artist Lil Tecca
+Got album DOPAMINE
+?
+Half The Plot Awaiting result
+Lil Tecca • DOPAMINE
+Skipped
+Queued song Half The Plot
+Queued artist Lil Tecca
+Queued album DOPAMINE
+Got song Half The Plot
+Got artist Lil Tecca
+Got album DOPAMINE
+?
+Make No Sense Awaiting result
+YoungBoy Never Broke Again • AI YoungBoy 2
+Skipped
+Queued song Make No Sense
+Queued artist YoungBoy Never Broke Again
+Queued album AI YoungBoy 2
+Got song Make No Sense
+Got artist YoungBoy Never Broke Again
+Got album AI YoungBoy 2
+?
+OWA OWA Awaiting result
+Lil Tecca • OWA OWA
+Skipped
+Queued song OWA OWA
+Queued artist Lil Tecca
+Queued album OWA OWA
+Got song OWA OWA
+Got artist Lil Tecca
+Got album OWA OWA
+?
+Bad Bad Bad (feat. Lil Baby) Awaiting result
+Young Thug • So Much Fun
+Skipped
+Queued song Bad Bad Bad (feat. Lil Baby)
+Queued artist Young Thug
+Queued album So Much Fun
+Got song Bad Bad Bad (feat. Lil Baby)
+Got artist Young Thug, Lil Baby
+Got album So Much Fun
+?
+All The Parties Awaiting result
+Drake • For All The Dogs
+Skipped
+Queued song All The Parties
+Queued artist Drake
+Queued album For All The Dogs
+Got song All The Parties
+Got artist Drake, Chief Keef
+Got album For All The Dogs
+?
+500lbs Awaiting result
+Lil Tecca • 500lbs
+Skipped
+Queued song 500lbs
+Queued artist Lil Tecca
+Queued album 500lbs
+Got song 500lbs
+Got artist Lil Tecca
+Got album 500lbs
+?
+Homebody Awaiting result
+Rob49 • 4GOD II (Deluxe)
+Skipped
+Queued song Homebody
+Queued artist Rob49
+Queued album 4GOD II (Deluxe)
+Got song Homebody
+Got artist Rob49
+Got album 4GOD II (Deluxe)
+?
+Memories in My Head Awaiting result
+icyslug • Memories in My Head
+Skipped
+Queued song Memories in My Head
+Queued artist icyslug
+Queued album Memories in My Head
+Got song Memories in My Head
+Got artist icyslug
+Got album Memories in My Head
+?
+NEMZZ ESCAPE Awaiting result
+RAEZTREEE • NEMZZ ESCAPE
+Skipped
+Queued song NEMZZ ESCAPE
+Queued artist RAEZTREEE
+Queued album NEMZZ ESCAPE
+Got song NEMZZ ESCAPE
+Got artist RAEZTREEE
+Got album NEMZZ ESCAPE
+?
+TOP FLOOR (feat. Travis Scott) Awaiting result
+Gunna • WUNNA
+Skipped
+Queued song TOP FLOOR (feat. Travis Scott)
+Queued artist Gunna
+Queued album WUNNA
+Got song TOP FLOOR (feat. Travis Scott)
+Got artist Gunna, Travis Scott
+Got album WUNNA
+?
+Out Of Love Awaiting result
+Lil Tecca • Virgo World
+Skipped
+Queued song Out Of Love
+Queued artist Lil Tecca
+Queued album Virgo World
+Got song Out Of Love
+Got artist Lil Tecca, Internet Money
+Got album Virgo World
+?
+Location Awaiting result
+Khalid • American Teen
+Skipped
+Queued song Location
+Queued artist Khalid
+Queued album American Teen
+Got song Location
+Got artist Khalid
+Got album American Teen
+?
+You (feat. Travis Scott) Awaiting result
+Don Toliver • Life of a DON
+Skipped
+Queued song You (feat. Travis Scott)
+Queued artist Don Toliver
+Queued album Life of a DON
+Got song You (feat. Travis Scott)
+Got artist Don Toliver, Travis Scott
+Got album Life of a DON
+?
+Pain 1993 Awaiting result
+Drake • Dark Lane Demo Tapes
+Skipped
+Queued song Pain 1993
+Queued artist Drake
+Queued album Dark Lane Demo Tapes
+Got song Pain 1993
+Got artist Drake, Playboi Carti
+Got album Dark Lane Demo Tapes
+?
+NEVER LAST Awaiting result
+Lil Tecca • PLAN A
+Skipped
+Queued song NEVER LAST
+Queued artist Lil Tecca
+Queued album PLAN A
+Got song NEVER LAST
+Got artist Lil Tecca
+Got album PLAN A
+?
+HVN ON EARTH Awaiting result
+Lil Tecca • HVN ON EARTH
+Skipped
+Queued song HVN ON EARTH
+Queued artist Lil Tecca
+Queued album HVN ON EARTH
+Got song HVN ON EARTH
+Got artist Lil Tecca, Kodak Black
+Got album HVN ON EARTH
+?
+U Don't Know Tec Awaiting result
+Lil Tecca • TEC
+Skipped
+Queued song U Don't Know Tec
+Queued artist Lil Tecca
+Queued album TEC
+Got song U Don't Know Tec
+Got artist Lil Tecca
+Got album TEC
+?
+BAD TIME Awaiting result
+Lil Tecca • PLAN A
+Skipped
+Queued song BAD TIME
+Queued artist Lil Tecca
+Queued album PLAN A
+Got song BAD TIME
+Got artist Lil Tecca
+Got album PLAN A
+?
+Magnolia Awaiting result
+Playboi Carti • Playboi Carti
+Skipped
+Queued song Magnolia
+Queued artist Playboi Carti
+Queued album Playboi Carti
+Got song Magnolia
+Got artist Playboi Carti
+Got album Playboi Carti
+?
+Taste Awaiting result
+Tyga • Taste (feat. Offset)
+Skipped
+Queued song Taste
+Queued artist Tyga
+Queued album Taste (feat. Offset)
+Got song Taste
+Got artist Tyga, OFFSET
+Got album Taste (feat. Offset)
+?
+Lil Uzi Vert - Myron [Eternal Atake (Deluxe) - LUV vs. The World 2] Queued
+Lil Uzi Vert • Eternal Atake (Deluxe) - LUV vs. The World 2
+Queued
+Queued song Lil Uzi Vert - Myron [Eternal Atake (Deluxe) - LUV vs. The World 2]
+Queued artist Lil Uzi Vert
+Queued album Eternal Atake (Deluxe) - LUV vs. The World 2
+Got song Lil Uzi Vert - Myron [Eternal Atake (Deluxe) - LUV vs. The World 2]
+Got artist Lil Uzi Vert
+Got album Eternal Atake (Deluxe) - LUV vs. The World 2
+?
+Lil Tecca - TEC Awaiting result
+Lil Tecca • TEC
+Failed
+Queued song Lil Tecca - TEC
+Queued artist Lil Tecca
+Queued album TEC
+Got song Lil Tecca - TEC
+Got artist Lil Tecca
+Got album TEC
+?
+Playboi Carti - FlatBed Freestyle [Die Lit] Queued
+Playboi Carti • Die Lit
+Queued
+Queued song Playboi Carti - FlatBed Freestyle [Die Lit]
+Queued artist Playboi Carti
+Queued album Die Lit
+Got song Playboi Carti - FlatBed Freestyle [Die Lit]
+Got artist Playboi Carti
+Got album Die Lit
+?
+Lil Tjay - F.N [True 2 Myself] Queued
+Lil Tjay • True 2 Myself
+Queued
+Queued song Lil Tjay - F.N [True 2 Myself]
+Queued artist Lil Tjay
+Queued album True 2 Myself
+Got song Lil Tjay - F.N [True 2 Myself]
+Got artist Lil Tjay
+Got album True 2 Myself
+?
+Lil Tjay;6LACK - Calling My Phone Queued
+Lil Tjay;6LACK • Calling My Phone
+Queued
+Queued song Lil Tjay;6LACK - Calling My Phone
+Queued artist Lil Tjay;6LACK
+Queued album Calling My Phone
+Got song Lil Tjay;6LACK - Calling My Phone
+Got artist Lil Tjay;6LACK
+Got album Calling My Phone
+?
+BRAVESOUL - Swept Away Queued
+BRAVESOUL • Swept Away
+Queued
+Queued song BRAVESOUL - Swept Away
+Queued artist BRAVESOUL
+Queued album Swept Away
+Got song BRAVESOUL - Swept Away
+Got artist BRAVESOUL
+Got album Swept Away
+?
+Yeat - On tha linë [2 Alivë] Queued
+Yeat • 2 Alivë
+Queued
+Queued song Yeat - On tha linë [2 Alivë]
+Queued artist Yeat
+Queued album 2 Alivë
+Got song Yeat - On tha linë [2 Alivë]
+Got artist Yeat
+Got album 2 Alivë
+?
+Kid Cudi;Pharrell Williams;Travis Scott - AT THE PARTY (feat. Pharrell Williams & Travis Scott) Queued
+Kid Cudi;Pharrell Williams;Travis Scott • AT THE PARTY
+Queued
+Queued song Kid Cudi;Pharrell Williams;Travis Scott - AT THE PARTY (feat. Pharrell Williams & Travis Scott)
+Queued artist Kid Cudi;Pharrell Williams;Travis Scott
+Queued album AT THE PARTY
+Got song Kid Cudi;Pharrell Williams;Travis Scott - AT THE PARTY (feat. Pharrell Williams & Travis Scott)
+Got artist Kid Cudi;Pharrell Williams;Travis Scott
+Got album AT THE PARTY
+?
+Xavier Weeks - Team [We All Gon Win] Queued
+Xavier Weeks • We All Gon Win
+Queued
+Queued song Xavier Weeks - Team [We All Gon Win]
+Queued artist Xavier Weeks
+Queued album We All Gon Win
+Got song Xavier Weeks - Team [We All Gon Win]
+Got artist Xavier Weeks
+Got album We All Gon Win
+?
+XXXTENTACION;PnB Rock;Trippie Redd - bad vibes forever Queued
+XXXTENTACION;PnB Rock;Trippie Redd • bad vibes forever
+Queued
+Queued song XXXTENTACION;PnB Rock;Trippie Redd - bad vibes forever
+Queued artist XXXTENTACION;PnB Rock;Trippie Redd
+Queued album bad vibes forever
+Got song XXXTENTACION;PnB Rock;Trippie Redd - bad vibes forever
+Got artist XXXTENTACION;PnB Rock;Trippie Redd
+Got album bad vibes forever
+?
+Travis Scott;Kacy Hill - 90210 (feat. Kacy Hill) [Rodeo] Queued
+Travis Scott;Kacy Hill • Rodeo
+Queued
+Queued song Travis Scott;Kacy Hill - 90210 (feat. Kacy Hill) [Rodeo]
+Queued artist Travis Scott;Kacy Hill
+Queued album Rodeo
+Got song Travis Scott;Kacy Hill - 90210 (feat. Kacy Hill) [Rodeo]
+Got artist Travis Scott;Kacy Hill
+Got album Rodeo
+?
+Don Toliver - No Idea [Heaven Or Hell] Queued
+Don Toliver • Heaven Or Hell
+Queued
+Queued song Don Toliver - No Idea [Heaven Or Hell]
+Queued artist Don Toliver
+Queued album Heaven Or Hell
+Got song Don Toliver - No Idea [Heaven Or Hell]
+Got artist Don Toliver
+Got album Heaven Or Hell
+?
+Don Toliver - TORE UP [HARDSTONE PSYCHO] Queued
+Don Toliver • HARDSTONE PSYCHO
+Queued
+Queued song Don Toliver - TORE UP [HARDSTONE PSYCHO]
+Queued artist Don Toliver
+Queued album HARDSTONE PSYCHO
+Got song Don Toliver - TORE UP [HARDSTONE PSYCHO]
+Got artist Don Toliver
+Got album HARDSTONE PSYCHO
+?
+Don Toliver - NEW DROP [HARDSTONE PSYCHO] Queued
+Don Toliver • HARDSTONE PSYCHO
+Queued
+Queued song Don Toliver - NEW DROP [HARDSTONE PSYCHO]
+Queued artist Don Toliver
+Queued album HARDSTONE PSYCHO
+Got song Don Toliver - NEW DROP [HARDSTONE PSYCHO]
+Got artist Don Toliver
+Got album HARDSTONE PSYCHO
+?
+Don Toliver - No Pole [Love Sick (Deluxe)] Queued
+Don Toliver • Love Sick (Deluxe)
+Queued
+Queued song Don Toliver - No Pole [Love Sick (Deluxe)]
+Queued artist Don Toliver
+Queued album Love Sick (Deluxe)
+Got song Don Toliver - No Pole [Love Sick (Deluxe)]
+Got artist Don Toliver
+Got album Love Sick (Deluxe)
+?
+Lil Tecca - Our Time [Virgo World] Queued
+Lil Tecca • Virgo World
+Queued
+Queued song Lil Tecca - Our Time [Virgo World]
+Queued artist Lil Tecca
+Queued album Virgo World
+Got song Lil Tecca - Our Time [Virgo World]
+Got artist Lil Tecca
+Got album Virgo World
+?
+Lil Yachty - Coffin [Lil Boat 3.5] Queued
+Lil Yachty • Lil Boat 3.5
+Queued
+Queued song Lil Yachty - Coffin [Lil Boat 3.5]
+Queued artist Lil Yachty
+Queued album Lil Boat 3.5
+Got song Lil Yachty - Coffin [Lil Boat 3.5]
+Got artist Lil Yachty
+Got album Lil Boat 3.5
+?
+Don Toliver - BANDIT [Bandit] Queued
+Don Toliver • Bandit
+Queued
+Queued song Don Toliver - BANDIT [Bandit]
+Queued artist Don Toliver
+Queued album Bandit
+Got song Don Toliver - BANDIT [Bandit]
+Got artist Don Toliver
+Got album Bandit
+?
+hako - listen! [listen! (sped up)] Queued
+hako • listen! (sped up)
+Queued
+Queued song hako - listen! [listen! (sped up)]
+Queued artist hako
+Queued album listen! (sped up)
+Got song hako - listen! [listen! (sped up)]
+Got artist hako
+Got album listen! (sped up)
+?
+Yeat - Already Rich Queued
+Yeat • Already Rich
+Queued
+Queued song Yeat - Already Rich
+Queued artist Yeat
+Queued album Already Rich
+Got song Yeat - Already Rich
+Got artist Yeat
+Got album Already Rich
+?
+A Boogie Wit da Hoodie - My Shit [Artist] Queued
+A Boogie Wit da Hoodie • Artist
+Queued
+Queued song A Boogie Wit da Hoodie - My Shit [Artist]
+Queued artist A Boogie Wit da Hoodie
+Queued album Artist
+Got song A Boogie Wit da Hoodie - My Shit [Artist]
+Got artist A Boogie Wit da Hoodie
+Got album Artist
+?
+Juice WRLD - Empty [Death Race For Love (Bonus Track Version)] Queued
+Juice WRLD • Death Race For Love (Bonus Track Version)
+Queued
+Queued song Juice WRLD - Empty [Death Race For Love (Bonus Track Version)]
+Queued artist Juice WRLD
+Queued album Death Race For Love (Bonus Track Version)
+Got song Juice WRLD - Empty [Death Race For Love (Bonus Track Version)]
+Got artist Juice WRLD
+Got album Death Race For Love (Bonus Track Version)
+?
+Lil Tecca - Dark Thoughts Queued
+Lil Tecca • Dark Thoughts
+Queued
+Queued song Lil Tecca - Dark Thoughts
+Queued artist Lil Tecca
+Queued album Dark Thoughts
+Got song Lil Tecca - Dark Thoughts
+Got artist Lil Tecca
+Got album Dark Thoughts
+?
+Polo G - Deep Wounds [Die A Legend] Queued
+Polo G • Die A Legend
+Queued
+Queued song Polo G - Deep Wounds [Die A Legend]
+Queued artist Polo G
+Queued album Die A Legend
+Got song Polo G - Deep Wounds [Die A Legend]
+Got artist Polo G
+Got album Die A Legend
+?
+Lil Tecca - INVESTIGATION [We Love You Tecca 2 (Deluxe)] Queued
+Lil Tecca • We Love You Tecca 2 (Deluxe)
+Queued
+Queued song Lil Tecca - INVESTIGATION [We Love You Tecca 2 (Deluxe)]
+Queued artist Lil Tecca
+Queued album We Love You Tecca 2 (Deluxe)
+Got song Lil Tecca - INVESTIGATION [We Love You Tecca 2 (Deluxe)]
+Got artist Lil Tecca
+Got album We Love You Tecca 2 (Deluxe)
+?
+Lil Tecca - Yves [TEC] Awaiting result
+Lil Tecca • TEC
+Failed
+Queued song Lil Tecca - Yves [TEC]
+Queued artist Lil Tecca
+Queued album TEC
+Got song Lil Tecca - Yves [TEC]
+Got artist Lil Tecca
+Got album TEC
+?
+Lil Tecca;Don Toliver - I CAN’T LET GO [PLAN A] Queued
+Lil Tecca;Don Toliver • PLAN A
+Queued
+Queued song Lil Tecca;Don Toliver - I CAN’T LET GO [PLAN A]
+Queued artist Lil Tecca;Don Toliver
+Queued album PLAN A
+Got song Lil Tecca;Don Toliver - I CAN’T LET GO [PLAN A]
+Got artist Lil Tecca;Don Toliver
+Got album PLAN A
+?
+Lil Tecca - LOT OF ME [We Love You Tecca 2 (Deluxe)] Queued
+Lil Tecca • We Love You Tecca 2 (Deluxe)
+Queued
+Queued song Lil Tecca - LOT OF ME [We Love You Tecca 2 (Deluxe)]
+Queued artist Lil Tecca
+Queued album We Love You Tecca 2 (Deluxe)
+Got song Lil Tecca - LOT OF ME [We Love You Tecca 2 (Deluxe)]
+Got artist Lil Tecca
+Got album We Love You Tecca 2 (Deluxe)
+?
+Lil Uzi Vert;WanMor - Prices [Eternal Atake] Queued
+Lil Uzi Vert;WanMor • Eternal Atake
+Queued
+Queued song Lil Uzi Vert;WanMor - Prices [Eternal Atake]
+Queued artist Lil Uzi Vert;WanMor
+Queued album Eternal Atake
+Got song Lil Uzi Vert;WanMor - Prices [Eternal Atake]
+Got artist Lil Uzi Vert;WanMor
+Got album Eternal Atake
+?
+Lil Uzi Vert - Sanguine Paradise Queued
+Lil Uzi Vert • Sanguine Paradise
+Queued
+Queued song Lil Uzi Vert - Sanguine Paradise
+Queued artist Lil Uzi Vert
+Queued album Sanguine Paradise
+Got song Lil Uzi Vert - Sanguine Paradise
+Got artist Lil Uzi Vert
+Got album Sanguine Paradise
+?
+Yeat - Off Tha Lot [4L] Queued
+Yeat • 4L
+Queued
+Queued song Yeat - Off Tha Lot [4L]
+Queued artist Yeat
+Queued album 4L
+Got song Yeat - Off Tha Lot [4L]
+Got artist Yeat
+Got album 4L
+?
+Yeat - Out thë way [Lyfë] Queued
+Yeat • Lyfë
+Queued
+Queued song Yeat - Out thë way [Lyfë]
+Queued artist Yeat
+Queued album Lyfë
+Got song Yeat - Out thë way [Lyfë]
+Got artist Yeat
+Got album Lyfë
+?
+HXG - Uzi Work [Snot or Not] Queued
+HXG • Snot or Not
+Queued
+Queued song HXG - Uzi Work [Snot or Not]
+Queued artist HXG
+Queued album Snot or Not
+Got song HXG - Uzi Work [Snot or Not]
+Got artist HXG
+Got album Snot or Not
+?
+sosocamo - say dat [big country] Queued
+sosocamo • big country
+Queued
+Queued song sosocamo - say dat [big country]
+Queued artist sosocamo
+Queued album big country
+Got song sosocamo - say dat [big country]
+Got artist sosocamo
+Got album big country
+?
+Don Toliver;Rema - Secondhand (feat. Rema) [OCTANE] Queued
+Don Toliver;Rema • OCTANE
+Queued
+Queued song Don Toliver;Rema - Secondhand (feat. Rema) [OCTANE]
+Queued artist Don Toliver;Rema
+Queued album OCTANE
+Got song Don Toliver;Rema - Secondhand (feat. Rema) [OCTANE]
+Got artist Don Toliver;Rema
+Got album OCTANE
+?
+Don Toliver - Body [OCTANE] Queued
+Don Toliver • OCTANE
+Queued
+Queued song Don Toliver - Body [OCTANE]
+Queued artist Don Toliver
+Queued album OCTANE
+Got song Don Toliver - Body [OCTANE]
+Got artist Don Toliver
+Got album OCTANE
+?
+sosocamo - soulless [no service] Queued
+sosocamo • no service
+Queued
+Queued song sosocamo - soulless [no service]
+Queued artist sosocamo
+Queued album no service
+Got song sosocamo - soulless [no service]
+Got artist sosocamo
+Got album no service
+?
+Don Toliver - ATM [OCTANE] Queued
+Don Toliver • OCTANE
+Queued
+Queued song Don Toliver - ATM [OCTANE]
+Queued artist Don Toliver
+Queued album OCTANE
+Got song Don Toliver - ATM [OCTANE]
+Got artist Don Toliver
+Got album OCTANE
+?
+Lil Tecca - VOGUE [PLAN A] Queued
+Lil Tecca • PLAN A
+Queued
+Queued song Lil Tecca - VOGUE [PLAN A]
+Queued artist Lil Tecca
+Queued album PLAN A
+Got song Lil Tecca - VOGUE [PLAN A]
+Got artist Lil Tecca
+Got album PLAN A
+?
+Playboi Carti - dothatshit! Queued
+Playboi Carti • Playboi Carti
+Queued
+Queued song Playboi Carti - dothatshit!
+Queued artist Playboi Carti
+Queued album Playboi Carti
+Got song Playboi Carti - dothatshit!
+Got artist Playboi Carti
+Got album Playboi Carti
+?
+Lil Uzi Vert;Chief Keef - Bean (Kobe) [feat. Chief Keef] [Eternal Atake (Deluxe) - LUV vs. The World 2] Queued
+Lil Uzi Vert;Chief Keef • Eternal Atake (Deluxe) - LUV vs. The World 2
+Queued
+Queued song Lil Uzi Vert;Chief Keef - Bean (Kobe) [feat. Chief Keef] [Eternal Atake (Deluxe) - LUV vs. The World 2]
+Queued artist Lil Uzi Vert;Chief Keef
+Queued album Eternal Atake (Deluxe) - LUV vs. The World 2
+Got song Lil Uzi Vert;Chief Keef - Bean (Kobe) [feat. Chief Keef] [Eternal Atake (Deluxe) - LUV vs. The World 2]
+Got artist Lil Uzi Vert;Chief Keef
+Got album Eternal Atake (Deluxe) - LUV vs. The World 2
+?
+CHASETHEMONEY;LUCKI - Interlude [Freewave 3] Queued
+CHASETHEMONEY;LUCKI • Freewave 3
+Queued
+Queued song CHASETHEMONEY;LUCKI - Interlude [Freewave 3]
+Queued artist CHASETHEMONEY;LUCKI
+Queued album Freewave 3
+Got song CHASETHEMONEY;LUCKI - Interlude [Freewave 3]
+Got artist CHASETHEMONEY;LUCKI
+Got album Freewave 3
+?
+Internet Money;Lil Tecca - JLO (feat. Lil Tecca) [B4 The Storm (Expanded Edition)] Queued
+Internet Money;Lil Tecca • B4 The Storm (Expanded Edition)
+Queued
+Queued song Internet Money;Lil Tecca - JLO (feat. Lil Tecca) [B4 The Storm (Expanded Edition)]
+Queued artist Internet Money;Lil Tecca
+Queued album B4 The Storm (Expanded Edition)
+Got song Internet Money;Lil Tecca - JLO (feat. Lil Tecca) [B4 The Storm (Expanded Edition)]
+Got artist Internet Money;Lil Tecca
+Got album B4 The Storm (Expanded Edition)
+?
+novaly - Rental Queued
+novaly • Rental
+Queued
+Queued song novaly - Rental
+Queued artist novaly
+Queued album Rental
+Got song novaly - Rental
+Got artist novaly
+Got album Rental
+?
+Autumn! - Not 3 Not 2! [Golden Child, Chapter 1] Queued
+Autumn! • Golden Child, Chapter 1
+Queued
+Queued song Autumn! - Not 3 Not 2! [Golden Child, Chapter 1]
+Queued artist Autumn!
+Queued album Golden Child, Chapter 1
+Got song Autumn! - Not 3 Not 2! [Golden Child, Chapter 1]
+Got artist Autumn!
+Got album Golden Child, Chapter 1
+?
+Internet Money;Trippie Redd;Diplo;Juice WRLD - Blastoff (feat. Juice WRLD) [B4 The Storm (Expanded Edition)] Queued
+Internet Money;Trippie Redd;Diplo;Juice WRLD • B4 The Storm (Expanded Edition)
+Queued
+Queued song Internet Money;Trippie Redd;Diplo;Juice WRLD - Blastoff (feat. Juice WRLD) [B4 The Storm (Expanded Edition)]
+Queued artist Internet Money;Trippie Redd;Diplo;Juice WRLD
+Queued album B4 The Storm (Expanded Edition)
+Got song Internet Money;Trippie Redd;Diplo;Juice WRLD - Blastoff (feat. Juice WRLD) [B4 The Storm (Expanded Edition)]
+Got artist Internet Money;Trippie Redd;Diplo;Juice WRLD
+Got album B4 The Storm (Expanded Edition)
+?
+jahhde - Let's Go Shoppin [Lost Files 4] Queued
+jahhde • Lost Files 4
+Queued
+Queued song jahhde - Let's Go Shoppin [Lost Files 4]
+Queued artist jahhde
+Queued album Lost Files 4
+Got song jahhde - Let's Go Shoppin [Lost Files 4]
+Got artist jahhde
+Got album Lost Files 4
+?
+sosocamo;Shiloh Dynasty - slow down [no service] Queued
+sosocamo;Shiloh Dynasty • no service
+Queued
+Queued song sosocamo;Shiloh Dynasty - slow down [no service]
+Queued artist sosocamo;Shiloh Dynasty
+Queued album no service
+Got song sosocamo;Shiloh Dynasty - slow down [no service]
+Got artist sosocamo;Shiloh Dynasty
+Got album no service
+?
+Lil Tecca - Chemistry [Virgo World] Queued
+Lil Tecca • Virgo World
+Queued
+Queued song Lil Tecca - Chemistry [Virgo World]
+Queued artist Lil Tecca
+Queued album Virgo World
+Got song Lil Tecca - Chemistry [Virgo World]
+Got artist Lil Tecca
+Got album Virgo World
+?
+Ken Carson - Rock N Roll [Project X] Queued
+Ken Carson • Project X
+Queued
+Queued song Ken Carson - Rock N Roll [Project X]
+Queued artist Ken Carson
+Queued album Project X
+Got song Ken Carson - Rock N Roll [Project X]
+Got artist Ken Carson
+Got album Project X
+?
+Playboi Carti - NO. 9 Queued
+Playboi Carti • Playboi Carti
+Queued
+Queued song Playboi Carti - NO. 9
+Queued artist Playboi Carti
+Queued album Playboi Carti
+Got song Playboi Carti - NO. 9
+Got artist Playboi Carti
+Got album Playboi Carti
+?
+LUCKI - 4 The Betta [Days B4 III] Queued
+LUCKI • Days B4 III
+Queued
+Queued song LUCKI - 4 The Betta [Days B4 III]
+Queued artist LUCKI
+Queued album Days B4 III
+Got song LUCKI - 4 The Betta [Days B4 III]
+Got artist LUCKI
+Got album Days B4 III
+?
+Lil Skies - Lust [Life of a Dark Rose] Queued
+Lil Skies • Life of a Dark Rose
+Queued
+Queued song Lil Skies - Lust [Life of a Dark Rose]
+Queued artist Lil Skies
+Queued album Life of a Dark Rose
+Got song Lil Skies - Lust [Life of a Dark Rose]
+Got artist Lil Skies
+Got album Life of a Dark Rose
+?
+LUCKI - Me Myself & I [Days B4 III] Queued
+LUCKI • Days B4 III
+Queued
+Queued song LUCKI - Me Myself & I [Days B4 III]
+Queued artist LUCKI
+Queued album Days B4 III
+Got song LUCKI - Me Myself & I [Days B4 III]
+Got artist LUCKI
+Got album Days B4 III
+?
+Lil Tecca - Amigo [We Love You Tecca] Queued
+Lil Tecca • We Love You Tecca
+Queued
+Queued song Lil Tecca - Amigo [We Love You Tecca]
+Queued artist Lil Tecca
+Queued album We Love You Tecca
+Got song Lil Tecca - Amigo [We Love You Tecca]
+Got artist Lil Tecca
+Got album We Love You Tecca
+?
+Playboi Carti - Yah Mean Queued
+Playboi Carti • Playboi Carti
+Queued
+Queued song Playboi Carti - Yah Mean
+Queued artist Playboi Carti
+Queued album Playboi Carti
+Got song Playboi Carti - Yah Mean
+Got artist Playboi Carti
+Got album Playboi Carti
+?
+LUCKI - 13 [FLAWLESS LIKE ME] Queued
+LUCKI • FLAWLESS LIKE ME
+Queued
+Queued song LUCKI - 13 [FLAWLESS LIKE ME]
+Queued artist LUCKI
+Queued album FLAWLESS LIKE ME
+Got song LUCKI - 13 [FLAWLESS LIKE ME]
+Got artist LUCKI
+Got album FLAWLESS LIKE ME
+?
+Cyloli - Red Dead Redemption Queued
+Cyloli • Red Dead Redemption
+Queued
+Queued song Cyloli - Red Dead Redemption
+Queued artist Cyloli
+Queued album Red Dead Redemption
+Got song Cyloli - Red Dead Redemption
+Got artist Cyloli
+Got album Red Dead Redemption
+?
+Internet Money;Lil Tecca - Falsetto [We All We Got] Queued
+Internet Money;Lil Tecca • We All We Got
+Queued
+Queued song Internet Money;Lil Tecca - Falsetto [We All We Got]
+Queued artist Internet Money;Lil Tecca
+Queued album We All We Got
+Got song Internet Money;Lil Tecca - Falsetto [We All We Got]
+Got artist Internet Money;Lil Tecca
+Got album We All We Got
+?
+Don Toliver - E85 [OCTANE] Queued
+Don Toliver • OCTANE
+Queued
+Queued song Don Toliver - E85 [OCTANE]
+Queued artist Don Toliver
+Queued album OCTANE
+Got song Don Toliver - E85 [OCTANE]
+Got artist Don Toliver
+Got album OCTANE
+?
+Lil Tecca - ALL THE TIME [PLAN A] Queued
+Lil Tecca • PLAN A
+Queued
+Queued song Lil Tecca - ALL THE TIME [PLAN A]
+Queued artist Lil Tecca
+Queued album PLAN A
+Got song Lil Tecca - ALL THE TIME [PLAN A]
+Got artist Lil Tecca
+Got album PLAN A
+?
+Autumn! - One Way! [Antagonist!] Queued
+Autumn! • Antagonist!
+Queued
+Queued song Autumn! - One Way! [Antagonist!]
+Queued artist Autumn!
+Queued album Antagonist!
+Got song Autumn! - One Way! [Antagonist!]
+Got artist Autumn!
+Got album Antagonist!
+?
+LUCKI - 2021 Vibes [s*x m*ney dr*gs] Queued
+LUCKI • s*x m*ney dr*gs
+Queued
+Queued song LUCKI - 2021 Vibes [s*x m*ney dr*gs]
+Queued artist LUCKI
+Queued album s*x m*ney dr*gs
+Got song LUCKI - 2021 Vibes [s*x m*ney dr*gs]
+Got artist LUCKI
+Got album s*x m*ney dr*gs
+?
+Miami XO - Bazooka Queued
+Miami XO • Bazooka
+Queued
+Queued song Miami XO - Bazooka
+Queued artist Miami XO
+Queued album Bazooka
+Got song Miami XO - Bazooka
+Got artist Miami XO
+Got album Bazooka
+?
+LUCKI - New Drank Queued
+LUCKI • New Drank
+Queued
+Queued song LUCKI - New Drank
+Queued artist LUCKI
+Queued album New Drank
+Got song LUCKI - New Drank
+Got artist LUCKI
+Got album New Drank
+?
+sosocamo - keep steady [no service] Queued
+sosocamo • no service
+Queued
+Queued song sosocamo - keep steady [no service]
+Queued artist sosocamo
+Queued album no service
+Got song sosocamo - keep steady [no service]
+Got artist sosocamo
+Got album no service
+?
+Trippie Redd - UKA UKA [LIFE'S A TRIP] Queued
+Trippie Redd • LIFE'S A TRIP
+Queued
+Queued song Trippie Redd - UKA UKA [LIFE'S A TRIP]
+Queued artist Trippie Redd
+Queued album LIFE'S A TRIP
+Got song Trippie Redd - UKA UKA [LIFE'S A TRIP]
+Got artist Trippie Redd
+Got album LIFE'S A TRIP
+?
+Trippie Redd;Reese LAFLARE;Young Thug - Forever Ever (feat. Young Thug & Reese LAFLARE) [LIFE'S A TRIP] Queued
+Trippie Redd;Reese LAFLARE;Young Thug • LIFE'S A TRIP
+Queued
+Queued song Trippie Redd;Reese LAFLARE;Young Thug - Forever Ever (feat. Young Thug & Reese LAFLARE) [LIFE'S A TRIP]
+Queued artist Trippie Redd;Reese LAFLARE;Young Thug
+Queued album LIFE'S A TRIP
+Got song Trippie Redd;Reese LAFLARE;Young Thug - Forever Ever (feat. Young Thug & Reese LAFLARE) [LIFE'S A TRIP]
+Got artist Trippie Redd;Reese LAFLARE;Young Thug
+Got album LIFE'S A TRIP
+?
+Trippie Redd - Shake It Up [LIFE'S A TRIP] Queued
+Trippie Redd • LIFE'S A TRIP
+Queued
+Queued song Trippie Redd - Shake It Up [LIFE'S A TRIP]
+Queued artist Trippie Redd
+Queued album LIFE'S A TRIP
+Got song Trippie Redd - Shake It Up [LIFE'S A TRIP]
+Got artist Trippie Redd
+Got album LIFE'S A TRIP
+?
+Primz;Bunty - High School Crush Queued
+Primz;Bunty • High School Crush
+Queued
+Queued song Primz;Bunty - High School Crush
+Queued artist Primz;Bunty
+Queued album High School Crush
+Got song Primz;Bunty - High School Crush
+Got artist Primz;Bunty
+Got album High School Crush
+?
+21 Savage;d4vd - Call Me Revenge - Call of Duty: Modern Warfare 3 [Call Me Revenge (Call of Duty: Modern Warfare 3)] Awaiting result
+21 Savage;d4vd • Call Me Revenge (Call of Duty: Modern Warfare 3)
+Failed
+Queued song 21 Savage;d4vd - Call Me Revenge - Call of Duty: Modern Warfare 3 [Call Me Revenge (Call of Duty: Modern Warfare 3)]
+Queued artist 21 Savage;d4vd
+Queued album Call Me Revenge (Call of Duty: Modern Warfare 3)
+Got song 21 Savage;d4vd - Call Me Revenge - Call of Duty: Modern Warfare 3 [Call Me Revenge (Call of Duty: Modern Warfare 3)]
+Got artist 21 Savage;d4vd
+Got album Call Me Revenge (Call of Duty: Modern Warfare 3)
+?
+VVunna - More Room to Grow Queued
+VVunna • More Room to Grow
+Queued
+Queued song VVunna - More Room to Grow
+Queued artist VVunna
+Queued album More Room to Grow
+Got song VVunna - More Room to Grow
+Got artist VVunna
+Got album More Room to Grow
+?
+Young Thug;Gunna - Hot (feat. Gunna) [So Much Fun] Queued
+Young Thug;Gunna • So Much Fun
+Queued
+Queued song Young Thug;Gunna - Hot (feat. Gunna) [So Much Fun]
+Queued artist Young Thug;Gunna
+Queued album So Much Fun
+Got song Young Thug;Gunna - Hot (feat. Gunna) [So Much Fun]
+Got artist Young Thug;Gunna
+Got album So Much Fun
+?
+Zillionaire Doe - How It's Going Queued
+Zillionaire Doe • How It's Going
+Queued
+Queued song Zillionaire Doe - How It's Going
+Queued artist Zillionaire Doe
+Queued album How It's Going
+Got song Zillionaire Doe - How It's Going
+Got artist Zillionaire Doe
+Got album How It's Going
+?
+Kanye West;Dwele - Flashing Lights [Graduation] Queued
+Kanye West;Dwele • Graduation
+Queued
+Queued song Kanye West;Dwele - Flashing Lights [Graduation]
+Queued artist Kanye West;Dwele
+Queued album Graduation
+Got song Kanye West;Dwele - Flashing Lights [Graduation]
+Got artist Kanye West;Dwele
+Got album Graduation
+?
+Future;Juice WRLD - Fine China [Future & Juice WRLD Present... WRLD ON DRUGS] Queued
+Future;Juice WRLD • Future & Juice WRLD Present... WRLD ON DRUGS
+Queued
+Queued song Future;Juice WRLD - Fine China [Future & Juice WRLD Present... WRLD ON DRUGS]
+Queued artist Future;Juice WRLD
+Queued album Future & Juice WRLD Present... WRLD ON DRUGS
+Got song Future;Juice WRLD - Fine China [Future & Juice WRLD Present... WRLD ON DRUGS]
+Got artist Future;Juice WRLD
+Got album Future & Juice WRLD Present... WRLD ON DRUGS
+?
+Juice WRLD - All Girls Are The Same [Goodbye & Good Riddance] Queued
+Juice WRLD • Goodbye & Good Riddance
+Queued
+Queued song Juice WRLD - All Girls Are The Same [Goodbye & Good Riddance]
+Queued artist Juice WRLD
+Queued album Goodbye & Good Riddance
+Got song Juice WRLD - All Girls Are The Same [Goodbye & Good Riddance]
+Got artist Juice WRLD
+Got album Goodbye & Good Riddance
+?
+Playboi Carti;Chief Keef - Mileage (feat. Chief Keef) [Die Lit] Queued
+Playboi Carti;Chief Keef • Die Lit
+Queued
+Queued song Playboi Carti;Chief Keef - Mileage (feat. Chief Keef) [Die Lit]
+Queued artist Playboi Carti;Chief Keef
+Queued album Die Lit
+Got song Playboi Carti;Chief Keef - Mileage (feat. Chief Keef) [Die Lit]
+Got artist Playboi Carti;Chief Keef
+Got album Die Lit
+?
+1600 Vault - Slide Queued
+1600 Vault • Slide
+Queued
+Queued song 1600 Vault - Slide
+Queued artist 1600 Vault
+Queued album Slide
+Got song 1600 Vault - Slide
+Got artist 1600 Vault
+Got album Slide
+?
+Lil Uzi Vert - XO Tour Llif3 [Luv Is Rage 2] Queued
+Lil Uzi Vert • Luv Is Rage 2
+Queued
+Queued song Lil Uzi Vert - XO Tour Llif3 [Luv Is Rage 2]
+Queued artist Lil Uzi Vert
+Queued album Luv Is Rage 2
+Got song Lil Uzi Vert - XO Tour Llif3 [Luv Is Rage 2]
+Got artist Lil Uzi Vert
+Got album Luv Is Rage 2
+?
+Zillionaire Doe - Get To It Queued
+Zillionaire Doe • Get To It
+Queued
+Queued song Zillionaire Doe - Get To It
+Queued artist Zillionaire Doe
+Queued album Get To It
+Got song Zillionaire Doe - Get To It
+Got artist Zillionaire Doe
+Got album Get To It
+?
+Juice WRLD - Lean Wit Me [Goodbye & Good Riddance] Queued
+Juice WRLD • Goodbye & Good Riddance
+Queued
+Queued song Juice WRLD - Lean Wit Me [Goodbye & Good Riddance]
+Queued artist Juice WRLD
+Queued album Goodbye & Good Riddance
+Got song Juice WRLD - Lean Wit Me [Goodbye & Good Riddance]
+Got artist Juice WRLD
+Got album Goodbye & Good Riddance
+?
+Autumn! - Still the Same [Golden Child, Chapter 3] Queued
+Autumn! • Golden Child, Chapter 3
+Queued
+Queued song Autumn! - Still the Same [Golden Child, Chapter 3]
+Queued artist Autumn!
+Queued album Golden Child, Chapter 3
+Got song Autumn! - Still the Same [Golden Child, Chapter 3]
+Got artist Autumn!
+Got album Golden Child, Chapter 3
+?
+Diplo;Trippie Redd - Wish (feat. Trippie Redd) - Trippie Mix [LIFE'S A TRIP] Queued
+Diplo;Trippie Redd • LIFE'S A TRIP
+Queued
+Queued song Diplo;Trippie Redd - Wish (feat. Trippie Redd) - Trippie Mix [LIFE'S A TRIP]
+Queued artist Diplo;Trippie Redd
+Queued album LIFE'S A TRIP
+Got song Diplo;Trippie Redd - Wish (feat. Trippie Redd) - Trippie Mix [LIFE'S A TRIP]
+Got artist Diplo;Trippie Redd
+Got album LIFE'S A TRIP
+?
+BigXthaPlug - The Largest Queued
+BigXthaPlug • The Largest
+Queued
+Queued song BigXthaPlug - The Largest
+Queued artist BigXthaPlug
+Queued album The Largest
+Got song BigXthaPlug - The Largest
+Got artist BigXthaPlug
+Got album The Largest
+?
+sosocamo - role model Queued
+sosocamo • role model
+Queued
+Queued song sosocamo - role model
+Queued artist sosocamo
+Queued album role model
+Got song sosocamo - role model
+Got artist sosocamo
+Got album role model
+?
+Playboi Carti;The Weeknd - RATHER LIE (with The Weeknd) [MUSIC] Queued
+Playboi Carti;The Weeknd • MUSIC
+Queued
+Queued song Playboi Carti;The Weeknd - RATHER LIE (with The Weeknd) [MUSIC]
+Queued artist Playboi Carti;The Weeknd
+Queued album MUSIC
+Got song Playboi Carti;The Weeknd - RATHER LIE (with The Weeknd) [MUSIC]
+Got artist Playboi Carti;The Weeknd
+Got album MUSIC
+?
+Lil Uzi Vert - Silly Watch [Eternal Atake] Queued
+Lil Uzi Vert • Eternal Atake
+Queued
+Queued song Lil Uzi Vert - Silly Watch [Eternal Atake]
+Queued artist Lil Uzi Vert
+Queued album Eternal Atake
+Got song Lil Uzi Vert - Silly Watch [Eternal Atake]
+Got artist Lil Uzi Vert
+Got album Eternal Atake
+?
+Playboi Carti - Over [Whole Lotta Red] Queued
+Playboi Carti • Whole Lotta Red
+Queued
+Queued song Playboi Carti - Over [Whole Lotta Red]
+Queued artist Playboi Carti
+Queued album Whole Lotta Red
+Got song Playboi Carti - Over [Whole Lotta Red]
+Got artist Playboi Carti
+Got album Whole Lotta Red
+?
+Playboi Carti - Foreign [Die Lit] Queued
+Playboi Carti • Die Lit
+Queued
+Queued song Playboi Carti - Foreign [Die Lit]
+Queued artist Playboi Carti
+Queued album Die Lit
+Got song Playboi Carti - Foreign [Die Lit]
+Got artist Playboi Carti
+Got album Die Lit
+?
+Playboi Carti - R.I.P. [Die Lit] Queued
+Playboi Carti • Die Lit
+Queued
+Queued song Playboi Carti - R.I.P. [Die Lit]
+Queued artist Playboi Carti
+Queued album Die Lit
+Got song Playboi Carti - R.I.P. [Die Lit]
+Got artist Playboi Carti
+Got album Die Lit
+?
+Quin Nfn;Lil 2z - Sewed Up, Pt. 2 (Back Again) [2's & 4's] Queued
+Quin Nfn;Lil 2z • 2's & 4's
+Queued
+Queued song Quin Nfn;Lil 2z - Sewed Up, Pt. 2 (Back Again) [2's & 4's]
+Queued artist Quin Nfn;Lil 2z
+Queued album 2's & 4's
+Got song Quin Nfn;Lil 2z - Sewed Up, Pt. 2 (Back Again) [2's & 4's]
+Got artist Quin Nfn;Lil 2z
+Got album 2's & 4's
+?
+LUCKI - COINCIDENCE [FLAWLESS LIKE ME] Queued
+LUCKI • FLAWLESS LIKE ME
+Queued
+Queued song LUCKI - COINCIDENCE [FLAWLESS LIKE ME]
+Queued artist LUCKI
+Queued album FLAWLESS LIKE ME
+Got song LUCKI - COINCIDENCE [FLAWLESS LIKE ME]
+Got artist LUCKI
+Got album FLAWLESS LIKE ME
+?
+sosocamo - there he go [no service] Queued
+sosocamo • no service
+Queued
+Queued song sosocamo - there he go [no service]
+Queued artist sosocamo
+Queued album no service
+Got song sosocamo - there he go [no service]
+Got artist sosocamo
+Got album no service
+?
+LUCKI;F1LTHY - U.G.K [WAKE UP LUCKI] Queued
+LUCKI;F1LTHY • WAKE UP LUCKI
+Queued
+Queued song LUCKI;F1LTHY - U.G.K [WAKE UP LUCKI]
+Queued artist LUCKI;F1LTHY
+Queued album WAKE UP LUCKI
+Got song LUCKI;F1LTHY - U.G.K [WAKE UP LUCKI]
+Got artist LUCKI;F1LTHY
+Got album WAKE UP LUCKI
+?
+LUCKI;F1LTHY - 2019 [WAKE UP LUCKI] Queued
+LUCKI;F1LTHY • WAKE UP LUCKI
+Queued
+Queued song LUCKI;F1LTHY - 2019 [WAKE UP LUCKI]
+Queued artist LUCKI;F1LTHY
+Queued album WAKE UP LUCKI
+Got song LUCKI;F1LTHY - 2019 [WAKE UP LUCKI]
+Got artist LUCKI;F1LTHY
+Got album WAKE UP LUCKI
+?
+Lil Tecca - Down With Me [TEC (Bonus)] Queued
+Lil Tecca • TEC (Bonus)
+Queued
+Queued song Lil Tecca - Down With Me [TEC (Bonus)]
+Queued artist Lil Tecca
+Queued album TEC (Bonus)
+Got song Lil Tecca - Down With Me [TEC (Bonus)]
+Got artist Lil Tecca
+Got album TEC (Bonus)
+?
+Lil Yachty;ian - Hate Me Queued
+Lil Yachty;ian • Hate Me
+Queued
+Queued song Lil Yachty;ian - Hate Me
+Queued artist Lil Yachty;ian
+Queued album Hate Me
+Got song Lil Yachty;ian - Hate Me
+Got artist Lil Yachty;ian
+Got album Hate Me
+?
+Lil Tecca - Monday to Sunday [TEC] Queued
+Lil Tecca • TEC
+Queued
+Queued song Lil Tecca - Monday to Sunday [TEC]
+Queued artist Lil Tecca
+Queued album TEC
+Got song Lil Tecca - Monday to Sunday [TEC]
+Got artist Lil Tecca
+Got album TEC
+?
+Lil Yachty - Split/Whole Time [Lil Boat 3] Queued
+Lil Yachty • Lil Boat 3
+Queued
+Queued song Lil Yachty - Split/Whole Time [Lil Boat 3]
+Queued artist Lil Yachty
+Queued album Lil Boat 3
+Got song Lil Yachty - Split/Whole Time [Lil Boat 3]
+Got artist Lil Yachty
+Got album Lil Boat 3
+?
+Trippie Redd - Taking A Walk [LIFE'S A TRIP] Queued
+Trippie Redd • LIFE'S A TRIP
+Queued
+Queued song Trippie Redd - Taking A Walk [LIFE'S A TRIP]
+Queued artist Trippie Redd
+Queued album LIFE'S A TRIP
+Got song Trippie Redd - Taking A Walk [LIFE'S A TRIP]
+Got artist Trippie Redd
+Got album LIFE'S A TRIP
+?
+Playboi Carti - Long Time - Intro [Die Lit] Queued
+Playboi Carti • Die Lit
+Queued
+Queued song Playboi Carti - Long Time - Intro [Die Lit]
+Queued artist Playboi Carti
+Queued album Die Lit
+Got song Playboi Carti - Long Time - Intro [Die Lit]
+Got artist Playboi Carti
+Got album Die Lit
+?
+Ceezy - A Mans World X BigXThaPlug Queued
+Ceezy • A Mans World X BigXThaPlug
+Queued
+Queued song Ceezy - A Mans World X BigXThaPlug
+Queued artist Ceezy
+Queued album A Mans World X BigXThaPlug
+Got song Ceezy - A Mans World X BigXThaPlug
+Got artist Ceezy
+Got album A Mans World X BigXThaPlug
+?
+LUCKI - RIP [GEMINI!] Queued
+LUCKI • GEMINI!
+Queued
+Queued song LUCKI - RIP [GEMINI!]
+Queued artist LUCKI
+Queued album GEMINI!
+Got song LUCKI - RIP [GEMINI!]
+Got artist LUCKI
+Got album GEMINI!
+?
+Juice WRLD - KTM Drip [The Party Never Ends 2.0] Queued
+Juice WRLD • The Party Never Ends 2.0
+Queued
+Queued song Juice WRLD - KTM Drip [The Party Never Ends 2.0]
+Queued artist Juice WRLD
+Queued album The Party Never Ends 2.0
+Got song Juice WRLD - KTM Drip [The Party Never Ends 2.0]
+Got artist Juice WRLD
+Got album The Party Never Ends 2.0
+?
+LUCKI - DNA [FLAWLESS LIKE ME] Queued
+LUCKI • FLAWLESS LIKE ME
+Queued
+Queued song LUCKI - DNA [FLAWLESS LIKE ME]
+Queued artist LUCKI
+Queued album FLAWLESS LIKE ME
+Got song LUCKI - DNA [FLAWLESS LIKE ME]
+Got artist LUCKI
+Got album FLAWLESS LIKE ME
+?
+LUCKI - Out My Way [Freewave 3] Queued
+LUCKI • Freewave 3
+Queued
+Queued song LUCKI - Out My Way [Freewave 3]
+Queued artist LUCKI
+Queued album Freewave 3
+Got song LUCKI - Out My Way [Freewave 3]
+Got artist LUCKI
+Got album Freewave 3
+?
+Lil Uzi Vert - FOR FUN [RED & WHITE] Queued
+Lil Uzi Vert • RED & WHITE
+Queued
+Queued song Lil Uzi Vert - FOR FUN [RED & WHITE]
+Queued artist Lil Uzi Vert
+Queued album RED & WHITE
+Got song Lil Uzi Vert - FOR FUN [RED & WHITE]
+Got artist Lil Uzi Vert
+Got album RED & WHITE
+?
+Migos;YoungBoy Never Broke Again - Need It (feat. YoungBoy Never Broke Again) [Culture III] Queued
+Migos;YoungBoy Never Broke Again • Culture III
+Queued
+Queued song Migos;YoungBoy Never Broke Again - Need It (feat. YoungBoy Never Broke Again) [Culture III]
+Queued artist Migos;YoungBoy Never Broke Again
+Queued album Culture III
+Got song Migos;YoungBoy Never Broke Again - Need It (feat. YoungBoy Never Broke Again) [Culture III]
+Got artist Migos;YoungBoy Never Broke Again
+Got album Culture III
+?
+Juice WRLD - Up Up And Away [Legends Never Die] Queued
+Juice WRLD • Legends Never Die
+Queued
+Queued song Juice WRLD - Up Up And Away [Legends Never Die]
+Queued artist Juice WRLD
+Queued album Legends Never Die
+Got song Juice WRLD - Up Up And Away [Legends Never Die]
+Got artist Juice WRLD
+Got album Legends Never Die
+?
+Trippie Redd;Coi Leray - Everything BoZ (feat. Coi Leray) [!] Queued
+Trippie Redd;Coi Leray • !
+Queued
+Queued song Trippie Redd;Coi Leray - Everything BoZ (feat. Coi Leray) [!]
+Queued artist Trippie Redd;Coi Leray
+Queued album !
+Got song Trippie Redd;Coi Leray - Everything BoZ (feat. Coi Leray) [!]
+Got artist Trippie Redd;Coi Leray
+Got album !
+?
+Lil Tecca - Dead or Alive [TEC] Queued
+Lil Tecca • TEC
+Queued
+Queued song Lil Tecca - Dead or Alive [TEC]
+Queued artist Lil Tecca
+Queued album TEC
+Got song Lil Tecca - Dead or Alive [TEC]
+Got artist Lil Tecca
+Got album TEC
+?
+Juice WRLD - Flaws And Sins [Death Race For Love (Bonus Track Version)] Queued
+Juice WRLD • Death Race For Love (Bonus Track Version)
+Queued
+Queued song Juice WRLD - Flaws And Sins [Death Race For Love (Bonus Track Version)]
+Queued artist Juice WRLD
+Queued album Death Race For Love (Bonus Track Version)
+Got song Juice WRLD - Flaws And Sins [Death Race For Love (Bonus Track Version)]
+Got artist Juice WRLD
+Got album Death Race For Love (Bonus Track Version)
+?
+Trippie Redd;Juice WRLD - 1400 / 999 Freestyle (feat. Juice WRLD) [A Love Letter To You 3] Queued
+Trippie Redd;Juice WRLD • A Love Letter To You 3
+Queued
+Queued song Trippie Redd;Juice WRLD - 1400 / 999 Freestyle (feat. Juice WRLD) [A Love Letter To You 3]
+Queued artist Trippie Redd;Juice WRLD
+Queued album A Love Letter To You 3
+Got song Trippie Redd;Juice WRLD - 1400 / 999 Freestyle (feat. Juice WRLD) [A Love Letter To You 3]
+Got artist Trippie Redd;Juice WRLD
+Got album A Love Letter To You 3
+?
+Playboi Carti;Red Coldhearted - Middle Of The Summer (feat. Red Coldhearted) [Die Lit] Queued
+Playboi Carti;Red Coldhearted • Die Lit
+Queued
+Queued song Playboi Carti;Red Coldhearted - Middle Of The Summer (feat. Red Coldhearted) [Die Lit]
+Queued artist Playboi Carti;Red Coldhearted
+Queued album Die Lit
+Got song Playboi Carti;Red Coldhearted - Middle Of The Summer (feat. Red Coldhearted) [Die Lit]
+Got artist Playboi Carti;Red Coldhearted
+Got album Die Lit
+?
+Playboi Carti - ILoveUIHateU [Whole Lotta Red] Queued
+Playboi Carti • Whole Lotta Red
+Queued
+Queued song Playboi Carti - ILoveUIHateU [Whole Lotta Red]
+Queued artist Playboi Carti
+Queued album Whole Lotta Red
+Got song Playboi Carti - ILoveUIHateU [Whole Lotta Red]
+Got artist Playboi Carti
+Got album Whole Lotta Red
+?
+Pompi - Purple Moncler [The Underwrld] Queued
+Pompi • The Underwrld
+Queued
+Queued song Pompi - Purple Moncler [The Underwrld]
+Queued artist Pompi
+Queued album The Underwrld
+Got song Pompi - Purple Moncler [The Underwrld]
+Got artist Pompi
+Got album The Underwrld
+?
+Playboi Carti;A$AP Rocky - New Choppa Queued
+Playboi Carti;A$AP Rocky • Playboi Carti
+Queued
+Queued song Playboi Carti;A$AP Rocky - New Choppa
+Queued artist Playboi Carti;A$AP Rocky
+Queued album Playboi Carti
+Got song Playboi Carti;A$AP Rocky - New Choppa
+Got artist Playboi Carti;A$AP Rocky
+Got album Playboi Carti
+?
+Playboi Carti - Let It Go Queued
+Playboi Carti • Playboi Carti
+Queued
+Queued song Playboi Carti - Let It Go
+Queued artist Playboi Carti
+Queued album Playboi Carti
+Got song Playboi Carti - Let It Go
+Got artist Playboi Carti
+Got album Playboi Carti
+?
+LUCKI - Almost Back Queued
+LUCKI • Almost Back
+Queued
+Queued song LUCKI - Almost Back
+Queued artist LUCKI
+Queued album Almost Back
+Got song LUCKI - Almost Back
+Got artist LUCKI
+Got album Almost Back
+?
+Playboi Carti;Leven Kali - Flex Queued
+Playboi Carti;Leven Kali • Playboi Carti
+Queued
+Queued song Playboi Carti;Leven Kali - Flex
+Queued artist Playboi Carti;Leven Kali
+Queued album Playboi Carti
+Got song Playboi Carti;Leven Kali - Flex
+Got artist Playboi Carti;Leven Kali
+Got album Playboi Carti
+?
+Kendrick Lamar - Swimming Pools (Drank) - Extended Version [good kid, m.A.A.d city (Deluxe)] Queued
+Kendrick Lamar • good kid, m.A.A.d city (Deluxe)
+Queued
+Queued song Kendrick Lamar - Swimming Pools (Drank) - Extended Version [good kid, m.A.A.d city (Deluxe)]
+Queued artist Kendrick Lamar
+Queued album good kid, m.A.A.d city (Deluxe)
+Got song Kendrick Lamar - Swimming Pools (Drank) - Extended Version [good kid, m.A.A.d city (Deluxe)]
+Got artist Kendrick Lamar
+Got album good kid, m.A.A.d city (Deluxe)
+?
+Drake;Rick Ross - Money In The Grave (Drake ft. Rick Ross) [The Best In The World Pack] Queued
+Drake;Rick Ross • The Best In The World Pack
+Queued
+Queued song Drake;Rick Ross - Money In The Grave (Drake ft. Rick Ross) [The Best In The World Pack]
+Queued artist Drake;Rick Ross
+Queued album The Best In The World Pack
+Got song Drake;Rick Ross - Money In The Grave (Drake ft. Rick Ross) [The Best In The World Pack]
+Got artist Drake;Rick Ross
+Got album The Best In The World Pack
+?
+Don Toliver;Mustard - FWU Queued
+Don Toliver;Mustard • FWU
+Queued
+Queued song Don Toliver;Mustard - FWU
+Queued artist Don Toliver;Mustard
+Queued album FWU
+Got song Don Toliver;Mustard - FWU
+Got artist Don Toliver;Mustard
+Got album FWU
+?
+LUCKI;Babyface Ray - WHITE HOUSE (feat. Babyface Ray) [FLAWLESS LIKE ME] Queued
+LUCKI;Babyface Ray • FLAWLESS LIKE ME
+Queued
+Queued song LUCKI;Babyface Ray - WHITE HOUSE (feat. Babyface Ray) [FLAWLESS LIKE ME]
+Queued artist LUCKI;Babyface Ray
+Queued album FLAWLESS LIKE ME
+Got song LUCKI;Babyface Ray - WHITE HOUSE (feat. Babyface Ray) [FLAWLESS LIKE ME]
+Got artist LUCKI;Babyface Ray
+Got album FLAWLESS LIKE ME
+?
+Lil Tecca - Malibu’s Most Wanted [DOPAMINE] Queued
+Lil Tecca • DOPAMINE
+Queued
+Queued song Lil Tecca - Malibu’s Most Wanted [DOPAMINE]
+Queued artist Lil Tecca
+Queued album DOPAMINE
+Got song Lil Tecca - Malibu’s Most Wanted [DOPAMINE]
+Got artist Lil Tecca
+Got album DOPAMINE
+?
+Lil Tecca - Half The Plot [DOPAMINE] Queued
+Lil Tecca • DOPAMINE
+Queued
+Queued song Lil Tecca - Half The Plot [DOPAMINE]
+Queued artist Lil Tecca
+Queued album DOPAMINE
+Got song Lil Tecca - Half The Plot [DOPAMINE]
+Got artist Lil Tecca
+Got album DOPAMINE
+?
+YoungBoy Never Broke Again - Make No Sense [AI YoungBoy 2] Queued
+YoungBoy Never Broke Again • AI YoungBoy 2
+Queued
+Queued song YoungBoy Never Broke Again - Make No Sense [AI YoungBoy 2]
+Queued artist YoungBoy Never Broke Again
+Queued album AI YoungBoy 2
+Got song YoungBoy Never Broke Again - Make No Sense [AI YoungBoy 2]
+Got artist YoungBoy Never Broke Again
+Got album AI YoungBoy 2
+?
+Lil Tecca - OWA OWA Queued
+Lil Tecca • OWA OWA
+Queued
+Queued song Lil Tecca - OWA OWA
+Queued artist Lil Tecca
+Queued album OWA OWA
+Got song Lil Tecca - OWA OWA
+Got artist Lil Tecca
+Got album OWA OWA
+?
+Young Thug;Lil Baby - Bad Bad Bad (feat. Lil Baby) [So Much Fun] Queued
+Young Thug;Lil Baby • So Much Fun
+Queued
+Queued song Young Thug;Lil Baby - Bad Bad Bad (feat. Lil Baby) [So Much Fun]
+Queued artist Young Thug;Lil Baby
+Queued album So Much Fun
+Got song Young Thug;Lil Baby - Bad Bad Bad (feat. Lil Baby) [So Much Fun]
+Got artist Young Thug;Lil Baby
+Got album So Much Fun
+?
+Drake;Chief Keef - All The Parties (feat. Chief Keef) [For All The Dogs] Queued
+Drake;Chief Keef • For All The Dogs
+Queued
+Queued song Drake;Chief Keef - All The Parties (feat. Chief Keef) [For All The Dogs]
+Queued artist Drake;Chief Keef
+Queued album For All The Dogs
+Got song Drake;Chief Keef - All The Parties (feat. Chief Keef) [For All The Dogs]
+Got artist Drake;Chief Keef
+Got album For All The Dogs
+?
+Lil Tecca - 500lbs [TEC] Queued
+Lil Tecca • TEC
+Queued
+Queued song Lil Tecca - 500lbs [TEC]
+Queued artist Lil Tecca
+Queued album TEC
+Got song Lil Tecca - 500lbs [TEC]
+Got artist Lil Tecca
+Got album TEC
+?
+Lil Tecca - HOMEBODY [PLAN A] Queued
+Lil Tecca • PLAN A
+Queued
+Queued song Lil Tecca - HOMEBODY [PLAN A]
+Queued artist Lil Tecca
+Queued album PLAN A
+Got song Lil Tecca - HOMEBODY [PLAN A]
+Got artist Lil Tecca
+Got album PLAN A
+?
+icyslug;LouGotCash;Lil Tecca - Memories in My Head Queued
+icyslug;LouGotCash;Lil Tecca • Memories in My Head
+Queued
+Queued song icyslug;LouGotCash;Lil Tecca - Memories in My Head
+Queued artist icyslug;LouGotCash;Lil Tecca
+Queued album Memories in My Head
+Got song icyslug;LouGotCash;Lil Tecca - Memories in My Head
+Got artist icyslug;LouGotCash;Lil Tecca
+Got album Memories in My Head
+?
+Nemzzz - Escape Queued
+Nemzzz • Escape
+Queued
+Queued song Nemzzz - Escape
+Queued artist Nemzzz
+Queued album Escape
+Got song Nemzzz - Escape
+Got artist Nemzzz
+Got album Escape
+?
+Gunna;Travis Scott - TOP FLOOR (feat. Travis Scott) [WUNNA] Queued
+Gunna;Travis Scott • WUNNA
+Queued
+Queued song Gunna;Travis Scott - TOP FLOOR (feat. Travis Scott) [WUNNA]
+Queued artist Gunna;Travis Scott
+Queued album WUNNA
+Got song Gunna;Travis Scott - TOP FLOOR (feat. Travis Scott) [WUNNA]
+Got artist Gunna;Travis Scott
+Got album WUNNA
+?
+Lil Tecca;Internet Money - Out Of Love (feat. Internet Money) [Virgo World] Queued
+Lil Tecca;Internet Money • Virgo World
+Queued
+Queued song Lil Tecca;Internet Money - Out Of Love (feat. Internet Money) [Virgo World]
+Queued artist Lil Tecca;Internet Money
+Queued album Virgo World
+Got song Lil Tecca;Internet Money - Out Of Love (feat. Internet Money) [Virgo World]
+Got artist Lil Tecca;Internet Money
+Got album Virgo World
+?
+Playboi Carti - Location Queued
+Playboi Carti • Playboi Carti
+Queued
+Queued song Playboi Carti - Location
+Queued artist Playboi Carti
+Queued album Playboi Carti
+Got song Playboi Carti - Location
+Got artist Playboi Carti
+Got album Playboi Carti
+?
+Don Toliver;Travis Scott - You (feat. Travis Scott) [Life of a DON] Queued
+Don Toliver;Travis Scott • Life of a DON
+Queued
+Queued song Don Toliver;Travis Scott - You (feat. Travis Scott) [Life of a DON]
+Queued artist Don Toliver;Travis Scott
+Queued album Life of a DON
+Got song Don Toliver;Travis Scott - You (feat. Travis Scott) [Life of a DON]
+Got artist Don Toliver;Travis Scott
+Got album Life of a DON
+?
+Drake;Playboi Carti - Pain 1993 (with Playboi Carti) [Dark Lane Demo Tapes] Queued
+Drake;Playboi Carti • Dark Lane Demo Tapes
+Queued
+Queued song Drake;Playboi Carti - Pain 1993 (with Playboi Carti) [Dark Lane Demo Tapes]
+Queued artist Drake;Playboi Carti
+Queued album Dark Lane Demo Tapes
+Got song Drake;Playboi Carti - Pain 1993 (with Playboi Carti) [Dark Lane Demo Tapes]
+Got artist Drake;Playboi Carti
+Got album Dark Lane Demo Tapes
+?
+Lil Tecca - NEVER LAST [PLAN A] Queued
+Lil Tecca • PLAN A
+Queued
+Queued song Lil Tecca - NEVER LAST [PLAN A]
+Queued artist Lil Tecca
+Queued album PLAN A
+Got song Lil Tecca - NEVER LAST [PLAN A]
+Got artist Lil Tecca
+Got album PLAN A
+?
+Lil Tecca;Kodak Black - HVN ON EARTH (with Kodak Black) [TEC] Queued
+Lil Tecca;Kodak Black • TEC
+Queued
+Queued song Lil Tecca;Kodak Black - HVN ON EARTH (with Kodak Black) [TEC]
+Queued artist Lil Tecca;Kodak Black
+Queued album TEC
+Got song Lil Tecca;Kodak Black - HVN ON EARTH (with Kodak Black) [TEC]
+Got artist Lil Tecca;Kodak Black
+Got album TEC
+?
+Lil Tecca - U Don't Know Tec [TEC (Bonus)] Queued
+Lil Tecca • TEC (Bonus)
+Queued
+Queued song Lil Tecca - U Don't Know Tec [TEC (Bonus)]
+Queued artist Lil Tecca
+Queued album TEC (Bonus)
+Got song Lil Tecca - U Don't Know Tec [TEC (Bonus)]
+Got artist Lil Tecca
+Got album TEC (Bonus)
+?
+Lil Tecca - BAD TIME [PLAN A] Queued
+Lil Tecca • PLAN A
+Queued
+Queued song Lil Tecca - BAD TIME [PLAN A]
+Queued artist Lil Tecca
+Queued album PLAN A
+Got song Lil Tecca - BAD TIME [PLAN A]
+Got artist Lil Tecca
+Got album PLAN A
+?
+Playboi Carti - Magnolia Queued
+Playboi Carti • Playboi Carti
+Queued
+Queued song Playboi Carti - Magnolia
+Queued artist Playboi Carti
+Queued album Playboi Carti
+Got song Playboi Carti - Magnolia
+Got artist Playboi Carti
+Got album Playboi Carti
+?
+Lil Tecca - TASTE [PLAN A] Queued
+Lil Tecca • PLAN A
+Queued
+Queued song Lil Tecca - TASTE [PLAN A]
+Queued artist Lil Tecca
+Queued album PLAN A
+Got song Lil Tecca - TASTE [PLAN A]
+Got artist Lil Tecca
+Got album PLAN A
+?
+moon flow -lil uzi Awaiting result
+Unknown artist • CSV Parsing
+Skipped
+Queued song moon flow -lil uzi
+Queued artist —
+Queued album CSV Parsing
+Got song moon flow -lil uzi
+Got artist —
+Got album CSV Parsing
+?
+undefined Awaiting result
+Unknown artist • CSV Parsing
+Skipped
+Queued song undefined
+Queued artist —
+Queued album CSV Parsing
+Got song undefined
+Got artist —
+Got album CSV Parsing
+ARCHIVE MANIFEST
+Singles List • 0 archived, 3 failed, 21 skipped, 9 mismatched • 5/29/2026, 6:05:28 PM
+Processed
+168
+Archived
+0
+Failed
+3
+Skipped
+21
+Mismatched
+9
+•
+Hottie (feat. BabyFace Ray) Mismatch
+Flo Milli • You Still Here, Ho ?
+Downloading
+Queued songHottie (feat. BabyFace Ray)
+Queued artistFlo Milli
+Queued albumYou Still Here, Ho ?
+Got songHottie (feat. BabyFace Ray)
+Got artistFlo Milli, BabyFace Ray
+Got albumYou Still Here, Ho ?
+•
+Malibu’s Most Wanted Match
+Lil Tecca • DOPAMINE
+Skipped
+Queued songMalibu’s Most Wanted
+Queued artistLil Tecca
+Queued albumDOPAMINE
+Got songMalibu’s Most Wanted
+Got artistLil Tecca
+Got albumDOPAMINE
+•
+Half The Plot Match
+Lil Tecca • DOPAMINE
+Skipped
+Queued songHalf The Plot
+Queued artistLil Tecca
+Queued albumDOPAMINE
+Got songHalf The Plot
+Got artistLil Tecca
+Got albumDOPAMINE
+•
+Make No Sense Match
+YoungBoy Never Broke Again • AI YoungBoy 2
+Skipped
+Queued songMake No Sense
+Queued artistYoungBoy Never Broke Again
+Queued albumAI YoungBoy 2
+Got songMake No Sense
+Got artistYoungBoy Never Broke Again
+Got albumAI YoungBoy 2
+•
+OWA OWA Match
+Lil Tecca • OWA OWA
+Skipped
+Queued songOWA OWA
+Queued artistLil Tecca
+Queued albumOWA OWA
+Got songOWA OWA
+Got artistLil Tecca
+Got albumOWA OWA
+•
+Bad Bad Bad (feat. Lil Baby) Mismatch
+Young Thug • So Much Fun
+Skipped
+Queued songBad Bad Bad (feat. Lil Baby)
+Queued artistYoung Thug
+Queued albumSo Much Fun
+Got songBad Bad Bad (feat. Lil Baby)
+Got artistYoung Thug, Lil Baby
+Got albumSo Much Fun
+•
+All The Parties Mismatch
+Drake • For All The Dogs
+Skipped
+Queued songAll The Parties
+Queued artistDrake
+Queued albumFor All The Dogs
+Got songAll The Parties
+Got artistDrake, Chief Keef
+Got albumFor All The Dogs
+•
+500lbs Match
+Lil Tecca • 500lbs
+Skipped
+Queued song500lbs
+Queued artistLil Tecca
+Queued album500lbs
+Got song500lbs
+Got artistLil Tecca
+Got album500lbs
+•
+Homebody Match
+Rob49 • 4GOD II (Deluxe)
+Skipped
+Queued songHomebody
+Queued artistRob49
+Queued album4GOD II (Deluxe)
+Got songHomebody
+Got artistRob49
+Got album4GOD II (Deluxe)
+•
+Memories in My Head Match
+icyslug • Memories in My Head
+Skipped
+Queued songMemories in My Head
+Queued artisticyslug
+Queued albumMemories in My Head
+Got songMemories in My Head
+Got artisticyslug
+Got albumMemories in My Head
+•
+NEMZZ ESCAPE Match
+RAEZTREEE • NEMZZ ESCAPE
+Skipped
+Queued songNEMZZ ESCAPE
+Queued artistRAEZTREEE
+Queued albumNEMZZ ESCAPE
+Got songNEMZZ ESCAPE
+Got artistRAEZTREEE
+Got albumNEMZZ ESCAPE
+•
+TOP FLOOR (feat. Travis Scott) Mismatch
+Gunna • WUNNA
+Skipped
+Queued songTOP FLOOR (feat. Travis Scott)
+Queued artistGunna
+Queued albumWUNNA
+Got songTOP FLOOR (feat. Travis Scott)
+Got artistGunna, Travis Scott
+Got albumWUNNA
+•
+Out Of Love Mismatch
+Lil Tecca • Virgo World
+Skipped
+Queued songOut Of Love
+Queued artistLil Tecca
+Queued albumVirgo World
+Got songOut Of Love
+Got artistLil Tecca, Internet Money
+Got albumVirgo World
+•
+Location Match
+Khalid • American Teen
+Skipped
+Queued songLocation
+Queued artistKhalid
+Queued albumAmerican Teen
+Got songLocation
+Got artistKhalid
+Got albumAmerican Teen
+•
+You (feat. Travis Scott) Mismatch
+Don Toliver • Life of a DON
+Skipped
+Queued songYou (feat. Travis Scott)
+Queued artistDon Toliver
+Queued albumLife of a DON
+Got songYou (feat. Travis Scott)
+Got artistDon Toliver, Travis Scott
+Got albumLife of a DON
+•
+Pain 1993 Mismatch
+Drake • Dark Lane Demo Tapes
+Skipped
+Queued songPain 1993
+Queued artistDrake
+Queued albumDark Lane Demo Tapes
+Got songPain 1993
+Got artistDrake, Playboi Carti
+Got albumDark Lane Demo Tapes
+•
+NEVER LAST Match
+Lil Tecca • PLAN A
+Skipped
+Queued songNEVER LAST
+Queued artistLil Tecca
+Queued albumPLAN A
+Got songNEVER LAST
+Got artistLil Tecca
+Got albumPLAN A
+•
+HVN ON EARTH Mismatch
+Lil Tecca • HVN ON EARTH
+Skipped
+Queued songHVN ON EARTH
+Queued artistLil Tecca
+Queued albumHVN ON EARTH
+Got songHVN ON EARTH
+Got artistLil Tecca, Kodak Black
+Got albumHVN ON EARTH
+•
+U Don't Know Tec Match
+Lil Tecca • TEC
+Skipped
+Queued songU Don't Know Tec
+Queued artistLil Tecca
+Queued albumTEC
+Got songU Don't Know Tec
+Got artistLil Tecca
+Got albumTEC
+•
+BAD TIME Match
+Lil Tecca • PLAN A
+Skipped
+Queued songBAD TIME
+Queued artistLil Tecca
+Queued albumPLAN A
+Got songBAD TIME
+Got artistLil Tecca
+Got albumPLAN A
+•
+Magnolia Match
+Playboi Carti • Playboi Carti
+Skipped
+Queued songMagnolia
+Queued artistPlayboi Carti
+Queued albumPlayboi Carti
+Got songMagnolia
+Got artistPlayboi Carti
+Got albumPlayboi Carti
+•
+Taste Mismatch
+Tyga • Taste (feat. Offset)
+Skipped
+Queued songTaste
+Queued artistTyga
+Queued albumTaste (feat. Offset)
+Got songTaste
+Got artistTyga, OFFSET
+Got albumTaste (feat. Offset)
+•
+Lil Uzi Vert - Myron [Eternal Atake (Deluxe) - LUV vs. The World 2] Match
+Lil Uzi Vert • Eternal Atake (Deluxe) - LUV vs. The World 2
+Queued
+Queued songLil Uzi Vert - Myron [Eternal Atake (Deluxe) - LUV vs. The World 2]
+Queued artistLil Uzi Vert
+Queued albumEternal Atake (Deluxe) - LUV vs. The World 2
+Got songLil Uzi Vert - Myron [Eternal Atake (Deluxe) - LUV vs. The World 2]
+Got artistLil Uzi Vert
+Got albumEternal Atake (Deluxe) - LUV vs. The World 2
+•
+Lil Tecca - TEC Match
+Lil Tecca • TEC
+Failed
+Queued songLil Tecca - TEC
+Queued artistLil Tecca
+Queued albumTEC
+Got songLil Tecca - TEC
+Got artistLil Tecca
+Got albumTEC
+•
+Playboi Carti - FlatBed Freestyle [Die Lit] Match
+Playboi Carti • Die Lit
+Queued
+Queued songPlayboi Carti - FlatBed Freestyle [Die Lit]
+Queued artistPlayboi Carti
+Queued albumDie Lit
+Got songPlayboi Carti - FlatBed Freestyle [Die Lit]
+Got artistPlayboi Carti
+Got albumDie Lit
+•
+Lil Tjay - F.N [True 2 Myself] Match
+Lil Tjay • True 2 Myself
+Queued
+Queued songLil Tjay - F.N [True 2 Myself]
+Queued artistLil Tjay
+Queued albumTrue 2 Myself
+Got songLil Tjay - F.N [True 2 Myself]
+Got artistLil Tjay
+Got albumTrue 2 Myself
+•
+Lil Tjay;6LACK - Calling My Phone Match
+Lil Tjay;6LACK • Calling My Phone
+Queued
+Queued songLil Tjay;6LACK - Calling My Phone
+Queued artistLil Tjay;6LACK
+Queued albumCalling My Phone
+Got songLil Tjay;6LACK - Calling My Phone
+Got artistLil Tjay;6LACK
+Got albumCalling My Phone
+•
+BRAVESOUL - Swept Away Match
+BRAVESOUL • Swept Away
+Queued
+Queued songBRAVESOUL - Swept Away
+Queued artistBRAVESOUL
+Queued albumSwept Away
+Got songBRAVESOUL - Swept Away
+Got artistBRAVESOUL
+Got albumSwept Away
+•
+Yeat - On tha linë [2 Alivë] Match
+Yeat • 2 Alivë
+Queued
+Queued songYeat - On tha linë [2 Alivë]
+Queued artistYeat
+Queued album2 Alivë
+Got songYeat - On tha linë [2 Alivë]
+Got artistYeat
+Got album2 Alivë
+•
+Kid Cudi;Pharrell Williams;Travis Scott - AT THE PARTY (feat. Pharrell Williams & Travis Scott) Match
+Kid Cudi;Pharrell Williams;Travis Scott • AT THE PARTY
+Queued
+Queued songKid Cudi;Pharrell Williams;Travis Scott - AT THE PARTY (feat. Pharrell Williams & Travis Scott)
+Queued artistKid Cudi;Pharrell Williams;Travis Scott
+Queued albumAT THE PARTY
+Got songKid Cudi;Pharrell Williams;Travis Scott - AT THE PARTY (feat. Pharrell Williams & Travis Scott)
+Got artistKid Cudi;Pharrell Williams;Travis Scott
+Got albumAT THE PARTY
+•
+Xavier Weeks - Team [We All Gon Win] Match
+Xavier Weeks • We All Gon Win
+Queued
+Queued songXavier Weeks - Team [We All Gon Win]
+Queued artistXavier Weeks
+Queued albumWe All Gon Win
+Got songXavier Weeks - Team [We All Gon Win]
+Got artistXavier Weeks
+Got albumWe All Gon Win
+•
+XXXTENTACION;PnB Rock;Trippie Redd - bad vibes forever Match
+XXXTENTACION;PnB Rock;Trippie Redd • bad vibes forever
+Queued
+Queued songXXXTENTACION;PnB Rock;Trippie Redd - bad vibes forever
+Queued artistXXXTENTACION;PnB Rock;Trippie Redd
+Queued albumbad vibes forever
+Got songXXXTENTACION;PnB Rock;Trippie Redd - bad vibes forever
+Got artistXXXTENTACION;PnB Rock;Trippie Redd
+Got albumbad vibes forever
+•
+Travis Scott;Kacy Hill - 90210 (feat. Kacy Hill) [Rodeo] Match
+Travis Scott;Kacy Hill • Rodeo
+Queued
+Queued songTravis Scott;Kacy Hill - 90210 (feat. Kacy Hill) [Rodeo]
+Queued artistTravis Scott;Kacy Hill
+Queued albumRodeo
+Got songTravis Scott;Kacy Hill - 90210 (feat. Kacy Hill) [Rodeo]
+Got artistTravis Scott;Kacy Hill
+Got albumRodeo
+•
+Don Toliver - No Idea [Heaven Or Hell] Match
+Don Toliver • Heaven Or Hell
+Queued
+Queued songDon Toliver - No Idea [Heaven Or Hell]
+Queued artistDon Toliver
+Queued albumHeaven Or Hell
+Got songDon Toliver - No Idea [Heaven Or Hell]
+Got artistDon Toliver
+Got albumHeaven Or Hell
+•
+Don Toliver - TORE UP [HARDSTONE PSYCHO] Match
+Don Toliver • HARDSTONE PSYCHO
+Queued
+Queued songDon Toliver - TORE UP [HARDSTONE PSYCHO]
+Queued artistDon Toliver
+Queued albumHARDSTONE PSYCHO
+Got songDon Toliver - TORE UP [HARDSTONE PSYCHO]
+Got artistDon Toliver
+Got albumHARDSTONE PSYCHO
+•
+Don Toliver - NEW DROP [HARDSTONE PSYCHO] Match
+Don Toliver • HARDSTONE PSYCHO
+Queued
+Queued songDon Toliver - NEW DROP [HARDSTONE PSYCHO]
+Queued artistDon Toliver
+Queued albumHARDSTONE PSYCHO
+Got songDon Toliver - NEW DROP [HARDSTONE PSYCHO]
+Got artistDon Toliver
+Got albumHARDSTONE PSYCHO
+•
+Don Toliver - No Pole [Love Sick (Deluxe)] Match
+Don Toliver • Love Sick (Deluxe)
+Queued
+Queued songDon Toliver - No Pole [Love Sick (Deluxe)]
+Queued artistDon Toliver
+Queued albumLove Sick (Deluxe)
+Got songDon Toliver - No Pole [Love Sick (Deluxe)]
+Got artistDon Toliver
+Got albumLove Sick (Deluxe)
+•
+Lil Tecca - Our Time [Virgo World] Match
+Lil Tecca • Virgo World
+Queued
+Queued songLil Tecca - Our Time [Virgo World]
+Queued artistLil Tecca
+Queued albumVirgo World
+Got songLil Tecca - Our Time [Virgo World]
+Got artistLil Tecca
+Got albumVirgo World
+•
+Lil Yachty - Coffin [Lil Boat 3.5] Match
+Lil Yachty • Lil Boat 3.5
+Queued
+Queued songLil Yachty - Coffin [Lil Boat 3.5]
+Queued artistLil Yachty
+Queued albumLil Boat 3.5
+Got songLil Yachty - Coffin [Lil Boat 3.5]
+Got artistLil Yachty
+Got albumLil Boat 3.5
+•
+Don Toliver - BANDIT [Bandit] Match
+Don Toliver • Bandit
+Queued
+Queued songDon Toliver - BANDIT [Bandit]
+Queued artistDon Toliver
+Queued albumBandit
+Got songDon Toliver - BANDIT [Bandit]
+Got artistDon Toliver
+Got albumBandit
+•
+hako - listen! [listen! (sped up)] Match
+hako • listen! (sped up)
+Queued
+Queued songhako - listen! [listen! (sped up)]
+Queued artisthako
+Queued albumlisten! (sped up)
+Got songhako - listen! [listen! (sped up)]
+Got artisthako
+Got albumlisten! (sped up)
+•
+Yeat - Already Rich Match
+Yeat • Already Rich
+Queued
+Queued songYeat - Already Rich
+Queued artistYeat
+Queued albumAlready Rich
+Got songYeat - Already Rich
+Got artistYeat
+Got albumAlready Rich
+•
+A Boogie Wit da Hoodie - My Shit [Artist] Match
+A Boogie Wit da Hoodie • Artist
+Queued
+Queued songA Boogie Wit da Hoodie - My Shit [Artist]
+Queued artistA Boogie Wit da Hoodie
+Queued albumArtist
+Got songA Boogie Wit da Hoodie - My Shit [Artist]
+Got artistA Boogie Wit da Hoodie
+Got albumArtist
+•
+Juice WRLD - Empty [Death Race For Love (Bonus Track Version)] Match
+Juice WRLD • Death Race For Love (Bonus Track Version)
+Queued
+Queued songJuice WRLD - Empty [Death Race For Love (Bonus Track Version)]
+Queued artistJuice WRLD
+Queued albumDeath Race For Love (Bonus Track Version)
+Got songJuice WRLD - Empty [Death Race For Love (Bonus Track Version)]
+Got artistJuice WRLD
+Got albumDeath Race For Love (Bonus Track Version)
+•
+Lil Tecca - Dark Thoughts Match
+Lil Tecca • Dark Thoughts
+Queued
+Queued songLil Tecca - Dark Thoughts
+Queued artistLil Tecca
+Queued albumDark Thoughts
+Got songLil Tecca - Dark Thoughts
+Got artistLil Tecca
+Got albumDark Thoughts
+•
+Polo G - Deep Wounds [Die A Legend] Match
+Polo G • Die A Legend
+Queued
+Queued songPolo G - Deep Wounds [Die A Legend]
+Queued artistPolo G
+Queued albumDie A Legend
+Got songPolo G - Deep Wounds [Die A Legend]
+Got artistPolo G
+Got albumDie A Legend
+•
+Lil Tecca - INVESTIGATION [We Love You Tecca 2 (Deluxe)] Match
+Lil Tecca • We Love You Tecca 2 (Deluxe)
+Queued
+Queued songLil Tecca - INVESTIGATION [We Love You Tecca 2 (Deluxe)]
+Queued artistLil Tecca
+Queued albumWe Love You Tecca 2 (Deluxe)
+Got songLil Tecca - INVESTIGATION [We Love You Tecca 2 (Deluxe)]
+Got artistLil Tecca
+Got albumWe Love You Tecca 2 (Deluxe)
+•
+Lil Tecca - Yves [TEC] Match
+Lil Tecca • TEC
+Failed
+Queued songLil Tecca - Yves [TEC]
+Queued artistLil Tecca
+Queued albumTEC
+Got songLil Tecca - Yves [TEC]
+Got artistLil Tecca
+Got albumTEC
+•
+Lil Tecca;Don Toliver - I CAN’T LET GO [PLAN A] Match
+Lil Tecca;Don Toliver • PLAN A
+Queued
+Queued songLil Tecca;Don Toliver - I CAN’T LET GO [PLAN A]
+Queued artistLil Tecca;Don Toliver
+Queued albumPLAN A
+Got songLil Tecca;Don Toliver - I CAN’T LET GO [PLAN A]
+Got artistLil Tecca;Don Toliver
+Got albumPLAN A
+•
+Lil Tecca - LOT OF ME [We Love You Tecca 2 (Deluxe)] Match
+Lil Tecca • We Love You Tecca 2 (Deluxe)
+Queued
+Queued songLil Tecca - LOT OF ME [We Love You Tecca 2 (Deluxe)]
+Queued artistLil Tecca
+Queued albumWe Love You Tecca 2 (Deluxe)
+Got songLil Tecca - LOT OF ME [We Love You Tecca 2 (Deluxe)]
+Got artistLil Tecca
+Got albumWe Love You Tecca 2 (Deluxe)
+•
+Lil Uzi Vert;WanMor - Prices [Eternal Atake] Match
+Lil Uzi Vert;WanMor • Eternal Atake
+Queued
+Queued songLil Uzi Vert;WanMor - Prices [Eternal Atake]
+Queued artistLil Uzi Vert;WanMor
+Queued albumEternal Atake
+Got songLil Uzi Vert;WanMor - Prices [Eternal Atake]
+Got artistLil Uzi Vert;WanMor
+Got albumEternal Atake
+•
+Lil Uzi Vert - Sanguine Paradise Match
+Lil Uzi Vert • Sanguine Paradise
+Queued
+Queued songLil Uzi Vert - Sanguine Paradise
+Queued artistLil Uzi Vert
+Queued albumSanguine Paradise
+Got songLil Uzi Vert - Sanguine Paradise
+Got artistLil Uzi Vert
+Got albumSanguine Paradise
+•
+Yeat - Off Tha Lot [4L] Match
+Yeat • 4L
+Queued
+Queued songYeat - Off Tha Lot [4L]
+Queued artistYeat
+Queued album4L
+Got songYeat - Off Tha Lot [4L]
+Got artistYeat
+Got album4L
+•
+Yeat - Out thë way [Lyfë] Match
+Yeat • Lyfë
+Queued
+Queued songYeat - Out thë way [Lyfë]
+Queued artistYeat
+Queued albumLyfë
+Got songYeat - Out thë way [Lyfë]
+Got artistYeat
+Got albumLyfë
+•
+HXG - Uzi Work [Snot or Not] Match
+HXG • Snot or Not
+Queued
+Queued songHXG - Uzi Work [Snot or Not]
+Queued artistHXG
+Queued albumSnot or Not
+Got songHXG - Uzi Work [Snot or Not]
+Got artistHXG
+Got albumSnot or Not
+•
+sosocamo - say dat [big country] Match
+sosocamo • big country
+Queued
+Queued songsosocamo - say dat [big country]
+Queued artistsosocamo
+Queued albumbig country
+Got songsosocamo - say dat [big country]
+Got artistsosocamo
+Got albumbig country
+•
+Don Toliver;Rema - Secondhand (feat. Rema) [OCTANE] Match
+Don Toliver;Rema • OCTANE
+Queued
+Queued songDon Toliver;Rema - Secondhand (feat. Rema) [OCTANE]
+Queued artistDon Toliver;Rema
+Queued albumOCTANE
+Got songDon Toliver;Rema - Secondhand (feat. Rema) [OCTANE]
+Got artistDon Toliver;Rema
+Got albumOCTANE
+•
+Don Toliver - Body [OCTANE] Match
+Don Toliver • OCTANE
+Queued
+Queued songDon Toliver - Body [OCTANE]
+Queued artistDon Toliver
+Queued albumOCTANE
+Got songDon Toliver - Body [OCTANE]
+Got artistDon Toliver
+Got albumOCTANE
+•
+sosocamo - soulless [no service] Match
+sosocamo • no service
+Queued
+Queued songsosocamo - soulless [no service]
+Queued artistsosocamo
+Queued albumno service
+Got songsosocamo - soulless [no service]
+Got artistsosocamo
+Got albumno service
+•
+Don Toliver - ATM [OCTANE] Match
+Don Toliver • OCTANE
+Queued
+Queued songDon Toliver - ATM [OCTANE]
+Queued artistDon Toliver
+Queued albumOCTANE
+Got songDon Toliver - ATM [OCTANE]
+Got artistDon Toliver
+Got albumOCTANE
+SYSTEM DIAGNOSTICS
+â„¹
+> System initialized. Ready.
+â„¹
+> Connected to ArmaanOChrome Server...
+â„¹
+Connected to Monochrome Server...
+â„¹
+> Bandwidth limit updated to 100%
+â„¹
+> Imported Fein_Demure_Gyat.csv successfully.
+â„¹
+> Submitting archive request: Manual Playlist...
+â„¹
+> Starting archive for: Spotify Playlist
+â„¹
+> Automated fetch failed. Parsing manual paste data...
+—
+undefined
+CSV Parsing • N/A
+Source: Monochrome/TIDAL + ArtistGridMirror: https://monochrome-api.samidy.comJob: Spotify Playlist
+—
+moon flow -lil uzi
+CSV Parsing • N/A
+Source: Monochrome/TIDAL + ArtistGridMirror: https://monochrome-api.samidy.comJob: Spotify Playlist
+—
+undefined
+CSV Parsing • N/A
+Source: Monochrome/TIDAL + ArtistGridMirror: https://monochrome-api.samidy.comJob: Spotify Playlist
+â„¹
+> [FALLBACK] SUCCESS: User confirmed '⭐ Purple Moncler' by Juice WRLD
+â„¹
+> [FALLBACK] Track 'bigxthaplug - A Mans World X BigXThaPlug' not found in any cached sheets.
+â„¹
+[2026-05-29 18:08:14] [WARN] Unreleased catalog failed for 'bigxthaplug - A Mans World X BigXThaPlug |DUR| 114107'. Falling back to Tidal for 'Ceezy - A Mans World X BigXThaPlug |DUR| 114107'...
+â„¹
+> [FALLBACK] Top match score 4 was too low for 'lil uzi vert - Slide'. Skipping.
+â„¹
+[2026-05-29 18:11:34] [WARN] Unreleased catalog failed for 'lil uzi vert - Slide |DUR| 231333'. Falling back to Tidal for '1600 Vault - Slide |DUR| 231333'...
+â„¹
+> [FALLBACK] SUCCESS: Found '⭐ MORE ROOM TO GROW' by Gunna in 'WUNNA' (Score: 4)
+â„¹
+[2026-05-29 18:12:04] [ERR] Completely failed to find track: 21 Savage;d4vd - Call Me Revenge - Call of Duty: Modern Warfare 3 [Call Me Revenge (Call of Duty: Modern Warfare 3)]
+?
+21 Savage;d4vd - Call Me Revenge - Call of Duty: Modern Warfare 3 [Call Me Revenge (Call of Duty: Modern Warfare 3)]
+Call Me Revenge (Call of Duty: Modern Warfare 3) • N/A
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+â„¹
+> [FALLBACK] Top match score 4 was too low for 'juice wrld - Red Dead Redemption'. Skipping.
+â„¹
+[2026-05-29 18:14:40] [WARN] Unreleased catalog failed for 'juice wrld - Red Dead Redemption |DUR| 227944'. Falling back to Tidal for 'Cyloli - Red Dead Redemption |DUR| 227944'...
+â„¹
+> [FALLBACK] SUCCESS: User confirmed '⭐ Rental [V5]' by Juice WRLD
+â„¹
+[2026-05-29 18:16:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:55] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:55] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:55] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:55] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:55] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:55] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:55] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:55] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:55] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:55] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:55] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:55] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:55] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:55] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:55] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:55] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:55] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:55] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:55] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:55] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:16:55] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:17:07] [ERR] Completely failed to find track: Lil Tecca - Yves [TEC]
+?
+Lil Tecca - Yves [TEC]
+TEC • N/A
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+â„¹
+> [FALLBACK] Track 'juice wrld - Swept Away' not found in any cached sheets.
+â„¹
+[2026-05-29 18:18:06] [WARN] Unreleased catalog failed for 'juice wrld - Swept Away |DUR| 149699'. Falling back to Tidal for 'BRAVESOUL - Swept Away |DUR| 149699'...
+â„¹
+[2026-05-29 18:18:18] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:18] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:18] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:18] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:18] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:18] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:18] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:18] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:18] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:18] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:18] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:18] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:18] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:18] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:18] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:18] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:18] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:18] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:18] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:18] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:18] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:21] [SKIP] Filtering out commentary release: Virgo World (With Commentary)
+â„¹
+[2026-05-29 18:18:23] [ERR] Completely failed to find track: Lil Tecca - TEC
+?
+Lil Tecca - TEC
+TEC • N/A
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+Taste
+PLAN A • FLAC
+—
+Taste
+Taste (feat. Offset) • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+Magnolia
+Playboi Carti • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+Magnolia
+Playboi Carti • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+BAD TIME
+PLAN A • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+BAD TIME
+PLAN A • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+U Don't Know Tec
+TEC (Bonus) • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+U Don't Know Tec
+TEC • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+HVN ON EARTH
+TEC • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+HVN ON EARTH
+HVN ON EARTH • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+NEVER LAST
+PLAN A • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+NEVER LAST
+PLAN A • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+Pain 1993
+Dark Lane Demo Tapes • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+Pain 1993
+Dark Lane Demo Tapes • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+You (feat. Travis Scott)
+Life of a DON • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+You (feat. Travis Scott)
+Life of a DON • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+Location
+Playboi Carti • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+Location
+American Teen • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+Out Of Love
+Virgo World • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+Out Of Love
+Virgo World • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+TOP FLOOR (feat. Travis Scott)
+WUNNA • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+TOP FLOOR (feat. Travis Scott)
+WUNNA • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+NEMZZ ESCAPE
+Escape • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+NEMZZ ESCAPE
+NEMZZ ESCAPE • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+Memories in My Head
+Memories in My Head • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+Memories in My Head
+Memories in My Head • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+Homebody
+PLAN A • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+Homebody
+4GOD II (Deluxe) • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+500lbs
+TEC • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+500lbs
+500lbs • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+All The Parties
+For All The Dogs • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+All The Parties
+For All The Dogs • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+Bad Bad Bad (feat. Lil Baby)
+So Much Fun • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+Bad Bad Bad (feat. Lil Baby)
+So Much Fun • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+OWA OWA
+OWA OWA • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+OWA OWA
+OWA OWA • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+Make No Sense
+AI YoungBoy 2 • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+Make No Sense
+AI YoungBoy 2 • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+Half The Plot
+DOPAMINE • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+Half The Plot
+DOPAMINE • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+Malibu’s Most Wanted
+DOPAMINE • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+Malibu’s Most Wanted
+DOPAMINE • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+Hottie (feat. BabyFace Ray)
+FLAWLESS LIKE ME • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+Hottie (feat. BabyFace Ray)
+You Still Here, Ho ? • FLAC
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+TRACK SESSION LOG
+170 processed • 0 passed • 3 failed • 23 skipped
+Hottie (feat. BabyFace Ray)
+You Still Here, Ho ? • FLAC
+Downloading
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+Malibu’s Most Wanted
+DOPAMINE • FLAC
+Skipped
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+Half The Plot
+DOPAMINE • FLAC
+Skipped
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+Make No Sense
+AI YoungBoy 2 • FLAC
+Skipped
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+OWA OWA
+OWA OWA • FLAC
+Skipped
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+Bad Bad Bad (feat. Lil Baby)
+So Much Fun • FLAC
+Skipped
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+All The Parties
+For All The Dogs • FLAC
+Skipped
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+500lbs
+500lbs • FLAC
+Skipped
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+Homebody
+4GOD II (Deluxe) • FLAC
+Skipped
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+Memories in My Head
+Memories in My Head • FLAC
+Skipped
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+NEMZZ ESCAPE
+NEMZZ ESCAPE • FLAC
+Skipped
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+TOP FLOOR (feat. Travis Scott)
+WUNNA • FLAC
+Skipped
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+Out Of Love
+Virgo World • FLAC
+Skipped
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+Location
+American Teen • FLAC
+Skipped
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+You (feat. Travis Scott)
+Life of a DON • FLAC
+Skipped
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+Pain 1993
+Dark Lane Demo Tapes • FLAC
+Skipped
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+NEVER LAST
+PLAN A • FLAC
+Skipped
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+HVN ON EARTH
+HVN ON EARTH • FLAC
+Skipped
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+U Don't Know Tec
+TEC • FLAC
+Skipped
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+BAD TIME
+PLAN A • FLAC
+Skipped
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+Magnolia
+Playboi Carti • FLAC
+Skipped
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+—
+Taste
+Taste (feat. Offset) • FLAC
+Skipped
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Single Track
+?
+Lil Uzi Vert - Myron [Eternal Atake (Deluxe) - LUV vs. The World 2]
+Eternal Atake (Deluxe) - LUV vs. The World 2 • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Lil Tecca - TEC
+TEC • N/A
+Failed
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+Track could not be found anywhere
+?
+Playboi Carti - FlatBed Freestyle [Die Lit]
+Die Lit • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Lil Tjay - F.N [True 2 Myself]
+True 2 Myself • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Lil Tjay;6LACK - Calling My Phone
+Calling My Phone • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+BRAVESOUL - Swept Away
+Swept Away • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Yeat - On tha linë [2 Alivë]
+2 Alivë • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Kid Cudi;Pharrell Williams;Travis Scott - AT THE PARTY (feat. Pharrell Williams & Travis Scott)
+AT THE PARTY • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Xavier Weeks - Team [We All Gon Win]
+We All Gon Win • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+XXXTENTACION;PnB Rock;Trippie Redd - bad vibes forever
+bad vibes forever • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Travis Scott;Kacy Hill - 90210 (feat. Kacy Hill) [Rodeo]
+Rodeo • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Don Toliver - No Idea [Heaven Or Hell]
+Heaven Or Hell • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Don Toliver - TORE UP [HARDSTONE PSYCHO]
+HARDSTONE PSYCHO • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Don Toliver - NEW DROP [HARDSTONE PSYCHO]
+HARDSTONE PSYCHO • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Don Toliver - No Pole [Love Sick (Deluxe)]
+Love Sick (Deluxe) • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Lil Tecca - Our Time [Virgo World]
+Virgo World • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Lil Yachty - Coffin [Lil Boat 3.5]
+Lil Boat 3.5 • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Don Toliver - BANDIT [Bandit]
+Bandit • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+hako - listen! [listen! (sped up)]
+listen! (sped up) • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Yeat - Already Rich
+Already Rich • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+A Boogie Wit da Hoodie - My Shit [Artist]
+Artist • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Juice WRLD - Empty [Death Race For Love (Bonus Track Version)]
+Death Race For Love (Bonus Track Version) • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Lil Tecca - Dark Thoughts
+Dark Thoughts • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Polo G - Deep Wounds [Die A Legend]
+Die A Legend • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Lil Tecca - INVESTIGATION [We Love You Tecca 2 (Deluxe)]
+We Love You Tecca 2 (Deluxe) • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Lil Tecca - Yves [TEC]
+TEC • N/A
+Failed
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+Track could not be found anywhere
+?
+Lil Tecca;Don Toliver - I CAN’T LET GO [PLAN A]
+PLAN A • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Lil Tecca - LOT OF ME [We Love You Tecca 2 (Deluxe)]
+We Love You Tecca 2 (Deluxe) • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Lil Uzi Vert;WanMor - Prices [Eternal Atake]
+Eternal Atake • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Lil Uzi Vert - Sanguine Paradise
+Sanguine Paradise • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Yeat - Off Tha Lot [4L]
+4L • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Yeat - Out thë way [Lyfë]
+Lyfë • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+HXG - Uzi Work [Snot or Not]
+Snot or Not • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+sosocamo - say dat [big country]
+big country • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Don Toliver;Rema - Secondhand (feat. Rema) [OCTANE]
+OCTANE • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Don Toliver - Body [OCTANE]
+OCTANE • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+sosocamo - soulless [no service]
+no service • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Don Toliver - ATM [OCTANE]
+OCTANE • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Lil Tecca - VOGUE [PLAN A]
+PLAN A • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Playboi Carti - dothatshit!
+Playboi Carti • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Lil Uzi Vert;Chief Keef - Bean (Kobe) [feat. Chief Keef] [Eternal Atake (Deluxe) - LUV vs. The World 2]
+Eternal Atake (Deluxe) - LUV vs. The World 2 • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+CHASETHEMONEY;LUCKI - Interlude [Freewave 3]
+Freewave 3 • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Internet Money;Lil Tecca - JLO (feat. Lil Tecca) [B4 The Storm (Expanded Edition)]
+B4 The Storm (Expanded Edition) • N/A
+Queued
+Source: ArtistGridMirror: ArtistGridJob: Singles List
+?
+novaly - Rental
+Rental • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Autumn! - Not 3 Not 2! [Golden Child, Chapter 1]
+Golden Child, Chapter 1 • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Internet Money;Trippie Redd;Diplo;Juice WRLD - Blastoff (feat. Juice WRLD) [B4 The Storm (Expanded Edition)]
+B4 The Storm (Expanded Edition) • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+jahhde - Let's Go Shoppin [Lost Files 4]
+Lost Files 4 • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+sosocamo;Shiloh Dynasty - slow down [no service]
+no service • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Lil Tecca - Chemistry [Virgo World]
+Virgo World • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Ken Carson - Rock N Roll [Project X]
+Project X • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Playboi Carti - NO. 9
+Playboi Carti • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+LUCKI - 4 The Betta [Days B4 III]
+Days B4 III • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Lil Skies - Lust [Life of a Dark Rose]
+Life of a Dark Rose • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+LUCKI - Me Myself & I [Days B4 III]
+Days B4 III • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Lil Tecca - Amigo [We Love You Tecca]
+We Love You Tecca • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Playboi Carti - Yah Mean
+Playboi Carti • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+LUCKI - 13 [FLAWLESS LIKE ME]
+FLAWLESS LIKE ME • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Cyloli - Red Dead Redemption
+Red Dead Redemption • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Internet Money;Lil Tecca - Falsetto [We All We Got]
+We All We Got • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Don Toliver - E85 [OCTANE]
+OCTANE • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Lil Tecca - ALL THE TIME [PLAN A]
+PLAN A • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Autumn! - One Way! [Antagonist!]
+Antagonist! • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+LUCKI - 2021 Vibes [s*x m*ney dr*gs]
+s*x m*ney dr*gs • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Miami XO - Bazooka
+Bazooka • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+LUCKI - New Drank
+New Drank • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+sosocamo - keep steady [no service]
+no service • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Trippie Redd - UKA UKA [LIFE'S A TRIP]
+LIFE'S A TRIP • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Trippie Redd;Reese LAFLARE;Young Thug - Forever Ever (feat. Young Thug & Reese LAFLARE) [LIFE'S A TRIP]
+LIFE'S A TRIP • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Trippie Redd - Shake It Up [LIFE'S A TRIP]
+LIFE'S A TRIP • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Primz;Bunty - High School Crush
+High School Crush • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+21 Savage;d4vd - Call Me Revenge - Call of Duty: Modern Warfare 3 [Call Me Revenge (Call of Duty: Modern Warfare 3)]
+Call Me Revenge (Call of Duty: Modern Warfare 3) • N/A
+Failed
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+Track could not be found anywhere
+?
+VVunna - More Room to Grow
+More Room to Grow • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Young Thug;Gunna - Hot (feat. Gunna) [So Much Fun]
+So Much Fun • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Zillionaire Doe - How It's Going
+How It's Going • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Kanye West;Dwele - Flashing Lights [Graduation]
+Graduation • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Future;Juice WRLD - Fine China [Future & Juice WRLD Present... WRLD ON DRUGS]
+Future & Juice WRLD Present... WRLD ON DRUGS • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Juice WRLD - All Girls Are The Same [Goodbye & Good Riddance]
+Goodbye & Good Riddance • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Playboi Carti;Chief Keef - Mileage (feat. Chief Keef) [Die Lit]
+Die Lit • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+1600 Vault - Slide
+Slide • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Lil Uzi Vert - XO Tour Llif3 [Luv Is Rage 2]
+Luv Is Rage 2 • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Zillionaire Doe - Get To It
+Get To It • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Juice WRLD - Lean Wit Me [Goodbye & Good Riddance]
+Goodbye & Good Riddance • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Autumn! - Still the Same [Golden Child, Chapter 3]
+Golden Child, Chapter 3 • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Diplo;Trippie Redd - Wish (feat. Trippie Redd) - Trippie Mix [LIFE'S A TRIP]
+LIFE'S A TRIP • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+BigXthaPlug - The Largest
+The Largest • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+sosocamo - role model
+role model • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Playboi Carti;The Weeknd - RATHER LIE (with The Weeknd) [MUSIC]
+MUSIC • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Lil Uzi Vert - Silly Watch [Eternal Atake]
+Eternal Atake • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Playboi Carti - Over [Whole Lotta Red]
+Whole Lotta Red • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Playboi Carti - Foreign [Die Lit]
+Die Lit • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Playboi Carti - R.I.P. [Die Lit]
+Die Lit • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Quin Nfn;Lil 2z - Sewed Up, Pt. 2 (Back Again) [2's & 4's]
+2's & 4's • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+LUCKI - COINCIDENCE [FLAWLESS LIKE ME]
+FLAWLESS LIKE ME • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+sosocamo - there he go [no service]
+no service • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+LUCKI;F1LTHY - U.G.K [WAKE UP LUCKI]
+WAKE UP LUCKI • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+LUCKI;F1LTHY - 2019 [WAKE UP LUCKI]
+WAKE UP LUCKI • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Lil Tecca - Down With Me [TEC (Bonus)]
+TEC (Bonus) • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Lil Yachty;ian - Hate Me
+Hate Me • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Lil Tecca - Monday to Sunday [TEC]
+TEC • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Lil Yachty - Split/Whole Time [Lil Boat 3]
+Lil Boat 3 • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Trippie Redd - Taking A Walk [LIFE'S A TRIP]
+LIFE'S A TRIP • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Playboi Carti - Long Time - Intro [Die Lit]
+Die Lit • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Ceezy - A Mans World X BigXThaPlug
+A Mans World X BigXThaPlug • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+LUCKI - RIP [GEMINI!]
+GEMINI! • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Juice WRLD - KTM Drip [The Party Never Ends 2.0]
+The Party Never Ends 2.0 • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+LUCKI - DNA [FLAWLESS LIKE ME]
+FLAWLESS LIKE ME • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+LUCKI - Out My Way [Freewave 3]
+Freewave 3 • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Lil Uzi Vert - FOR FUN [RED & WHITE]
+RED & WHITE • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Migos;YoungBoy Never Broke Again - Need It (feat. YoungBoy Never Broke Again) [Culture III]
+Culture III • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Juice WRLD - Up Up And Away [Legends Never Die]
+Legends Never Die • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Trippie Redd;Coi Leray - Everything BoZ (feat. Coi Leray) [!]
+! • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Lil Tecca - Dead or Alive [TEC]
+TEC • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Juice WRLD - Flaws And Sins [Death Race For Love (Bonus Track Version)]
+Death Race For Love (Bonus Track Version) • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Trippie Redd;Juice WRLD - 1400 / 999 Freestyle (feat. Juice WRLD) [A Love Letter To You 3]
+A Love Letter To You 3 • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Playboi Carti;Red Coldhearted - Middle Of The Summer (feat. Red Coldhearted) [Die Lit]
+Die Lit • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Playboi Carti - ILoveUIHateU [Whole Lotta Red]
+Whole Lotta Red • N/A
+Queued
+Source: ArtistGridMirror: ArtistGridJob: Singles List
+?
+Pompi - Purple Moncler [The Underwrld]
+The Underwrld • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Playboi Carti;A$AP Rocky - New Choppa
+Playboi Carti • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Playboi Carti - Let It Go
+Playboi Carti • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+LUCKI - Almost Back
+Almost Back • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Playboi Carti;Leven Kali - Flex
+Playboi Carti • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Kendrick Lamar - Swimming Pools (Drank) - Extended Version [good kid, m.A.A.d city (Deluxe)]
+good kid, m.A.A.d city (Deluxe) • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Drake;Rick Ross - Money In The Grave (Drake ft. Rick Ross) [The Best In The World Pack]
+The Best In The World Pack • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Don Toliver;Mustard - FWU
+FWU • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+LUCKI;Babyface Ray - WHITE HOUSE (feat. Babyface Ray) [FLAWLESS LIKE ME]
+FLAWLESS LIKE ME • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Lil Tecca - Malibu’s Most Wanted [DOPAMINE]
+DOPAMINE • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+Lil Tecca - Half The Plot [DOPAMINE]
+DOPAMINE • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+?
+YoungBoy Never Broke Again - Make No Sense [AI YoungBoy 2]
+AI YoungBoy 2 • N/A
+Queued
+Source: Monochrome/TIDALMirror: https://monochrome-api.samidy.comJob: Singles List
+vefed443
+Press Enter to search
+HI-RES LOSSLESS

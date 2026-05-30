@@ -1,7 +1,7 @@
 /**
- * Elite Model Statistical Database
- * 
- * Provides percentile rankings based on a database of elite models (PSL 6.5+).
+ * Community PSL statistical helpers.
+ *
+ * Provides percentile-style community rankings based on the PSL scale used by the app.
  */
 
 export interface PercentileData {

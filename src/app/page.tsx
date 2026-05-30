@@ -1,11 +1,11 @@
 'use client';
 
-import MainScanner from "@/components/MainScanner";
+import FaceAnalyzer from "@/components/FaceAnalyzer";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-black">
-      <MainScanner />
+      <FaceAnalyzer />
     </main>
   );
 }

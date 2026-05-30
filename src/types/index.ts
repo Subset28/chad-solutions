@@ -17,5 +17,5 @@ export interface ScanResult {
 }
 
 export type Gender = 'male' | 'female';
-export type AppTab = 'analysis' | 'looksmax' | 'vitality' | 'haircut' | 'history';
+export type AppTab = 'analysis' | 'roadmap' | 'vitality' | 'haircut' | 'history' | 'sources' | 'bench';
 export type InputMode = 'webcam' | 'upload';

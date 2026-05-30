@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import AnalyticsProvider from "@/components/AnalyticsProvider";
 import "./globals.css";
+
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH?.trim() || "";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://chadsolutions.app";
+const withBasePath = (path: string) => `${basePath}${path}`;
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,26 +18,27 @@ const geistMono = Geist_Mono({
 });
 
 export const viewport = {
-  themeColor: "#000000",
+  themeColor: "#050505",
 };
 
 export const metadata: Metadata = {
-  title: "Chad Solutions — Facial Biometric Analysis",
-  description: "Scan your face. Get your PSL. Find your looksmax ceiling.",
-  manifest: "/manifest.json",
+  title: "Chad Solutions - Objective Facial Analysis",
+  description: "Take a photo, review objective facial metrics, and get practical glow-up guidance.",
+  metadataBase: new URL(siteUrl),
+  manifest: withBasePath("/manifest.json"),
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
     title: "Chad Solutions",
   },
   openGraph: {
-    title: "Chad Solutions — Facial Biometric Analysis",
-    description: "Scan your face. Get your PSL. Find your looksmax ceiling.",
-    url: "https://chadsolutions.app",
+    title: "Chad Solutions - Objective Facial Analysis",
+    description: "Take a photo, review objective facial metrics, and get practical glow-up guidance.",
+    url: siteUrl,
     siteName: "Chad Solutions",
     images: [
       {
-        url: "/og-image.png",
+        url: withBasePath("/og-image.png"),
         width: 1200,
         height: 630,
       },
@@ -42,13 +48,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Chad Solutions — Facial Biometric Analysis",
-    description: "Scan your face. Get your PSL. Find your looksmax ceiling.",
-    images: ["/og-image.png"],
+    title: "Chad Solutions - Objective Facial Analysis",
+    description: "Take a photo, review objective facial metrics, and get practical glow-up guidance.",
+    images: [withBasePath("/og-image.png")],
   },
 };
-
-import AnalyticsProvider from "@/components/AnalyticsProvider";
 
 export default function RootLayout({
   children,
@@ -58,11 +62,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} bg-black text-white antialiased`}
       >
-        <AnalyticsProvider>
-          {children}
-        </AnalyticsProvider>
+        <AnalyticsProvider>{children}</AnalyticsProvider>
       </body>
     </html>
   );

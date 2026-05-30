@@ -1,43 +1,43 @@
-export const blackpillVerdicts: Record<string, Record<string, string>> = {
+export const metricVerdicts: Record<string, Record<string, string>> = {
     canthalTilt: {
-        elite: "Positive hunter eye. This is mogging most males on the street.",
-        good: "Slight positive tilt. Above average. Competent.",
-        average: "Neutral tilt. Neither hunter nor prey. Mid.",
-        bad: "Negative tilt. Prey eyes. This is dragging your PSL.",
-        terrible: "Strong negative tilt. The cope is mewing won't fix this."
+        elite: "This is in an excellent range and gives the upper face a lifted look.",
+        good: "This is a strong result with only minor room for refinement.",
+        average: "This sits in a typical range.",
+        bad: "This measurement is below the ideal range and is worth improving indirectly.",
+        terrible: "This is well below the target range and will strongly affect perceived eye shape."
     },
     fWHR: {
-        elite: "Wide frame. High testosterone signal. Frame is mogging.",
-        good: "Solid fWHR. Above the normie threshold.",
-        average: "Average frame. Nothing to write home about.",
-        bad: "Narrow face. Soy frame. This reads as low T.",
-        terrible: "Extremely narrow. Peanut frame. This needs to be addressed."
+        elite: "This width-to-height ratio reads as broad and balanced.",
+        good: "This is slightly above average and generally reads well.",
+        average: "This is a normal ratio for most faces.",
+        bad: "This ratio is a bit narrow for the target aesthetic.",
+        terrible: "This ratio is very narrow and noticeably reduces facial width."
     },
     midfaceRatio: {
-        elite: "Compact midface. Ideal proportionality. High-tier model trait.",
-        good: "Short midface. Masculine and robust.",
-        average: "Standard proportions. No falio here.",
-        bad: "Long midface. Horseface phenotype. Ageing will be harsh.",
-        terrible: "Severe midface elongation. Massive falio. Central to low PSL."
+        elite: "This midface length is compact and visually efficient.",
+        good: "This is a good midface proportion with some room to tighten further.",
+        average: "This sits in a normal range.",
+        bad: "This midface reads a little long compared with the ideal target.",
+        terrible: "This midface is significantly long and will dominate the profile."
     },
     gonialAngle: {
-        elite: "Sharp, masculine jawline. Warrior skull. Elite dimorphism.",
-        good: "Solid definition. Strong ramus height.",
-        average: "Visible jawline. Average development.",
-        bad: "Soft jaw. Recessed appearance. Submental fat will pool here.",
-        terrible: "No jaw definition. Pencil neck transition. Major falio."
+        elite: "This jaw angle is sharp and gives the lower face strong definition.",
+        good: "This is a solid jaw result with good definition.",
+        average: "This jaw angle is within a common range.",
+        bad: "This jaw angle is on the softer side.",
+        terrible: "This jaw angle is far from the target and will make the lower face look weak."
     },
     overallSymmetry: {
-        elite: "Perfect bilateral balance. Genetic lottery winner.",
-        good: "High symmetry. Minimal developmental stress.",
-        average: "Minor asymmetries. Normal for most humans.",
-        bad: "Noticeable deviation. Developmental instability detected.",
-        terrible: "Severe asymmetry. Major facial disharmony. Subhuman trait."
+        elite: "This is an excellent symmetry score and reads as very balanced.",
+        good: "This is a strong symmetry result.",
+        average: "This is a normal amount of asymmetry for a human face.",
+        bad: "This is enough asymmetry to be noticeable in photos.",
+        terrible: "This level of asymmetry is visually obvious and will affect harmony."
     }
 };
 
 export function getVerdict(metric: string, rating: string): string {
-    const category = blackpillVerdicts[metric];
-    if (!category) return "Metric analysis complete.";
-    return category[rating.toLowerCase()] || "Rating verified.";
+    const category = metricVerdicts[metric];
+    if (!category) return "Measurement captured.";
+    return category[rating.toLowerCase()] || "Result recorded.";
 }

@@ -1,0 +1,2016 @@
+
+Looksmax.org - Men's Self-Improvement & Aesthetics
+Twitter
+Discord
+Instagram
+Pinterest
+Contact us
+
+    Forums
+    Rules
+
+Log in
+Register
+Search
+
+    Forums
+    Looksmax
+    Best of the Best
+    Acne - causes and solutions
+
+Acne - causes and solutions
+
+    OP jfbjfb Start date Apr 16, 2023 
+
+    1
+    2
+    3
+
+Next
+jfbjfb
+jfbjfb
+Iron
+
+Joined
+    Aug 9, 2022
+
+Posts
+    171
+
+Reputation
+    370
+
+    Apr 16, 2023 
+
+    #1
+
+TABLE OF CONTENTS
+1. Introduction
+
+2. Definition
+
+3. Causes
+3.1 Hormones
+3.2 Dairy
+3.3 Carbohydrates
+3.4 Omegas 3/6
+3.5 Vitamins
+3.6 Minerals
+3.7 Microbiome
+
+4. Solutions
+4.1 The conventional approach
+4.2 Combating hormones
+4.3 Diet
+4.4 Probiotics
+
+5. Results
+
+6. References
+
+1. INTRODUCTION
+Acne is arguably one of the most notable looksmins out there. It is linked to a 3x increase in male suicide ideation, difficulty in forming meaningful personal connections, and depression [1]. Having acne is akin to living life in hard mode, and I know it from first-hand experience. Last summer I remember flaneuring along the breathtaking Occitan streets and counting the amount of people that had worse acne that me. I passed by thousands of people and my skin could not literally compete with anyone. If someone is blackpilled about acne it has to be me. In this post we are going to unveil the scientific underlying causes of acne and the non-copium curative solutions. Optimizing the skin is crucial to ascend, and while there are top-tier guides in this forum on how to improve the skin, I have yet failed to come across a deep-dive on acne. This is the post I would have desired to encounter months ago.​
+
+2. DEFINITION
+In scientific spheres, acne vulgaris is a recurring inflammatory condition due to the increased sebum production that derives on the colonization of follicles by Cutibacterium acnes (previously known as Propionibacterium acnes) [2]. What does it mean in layman terms? That what we call acne is no less than a visible disease expressed through the inflammation of the skin due to an excess of a bacteria. Now, Cutibacterium acnes (C acnes) itself is not the problem. The issue is the imbalance of the cutaneous microbiome. The skin surface is inhabited by three main types of bacteria: Corynebacteria, Cutibacterium and Staphylococci [3]. An imbalance between them is the main reason behind what we call acnne. This explains why antibiotics are trash when trying to fight acne; they will kill bacteria indiscriminately which means improper ratios will be maintained. C acnes supposes less than 2% of the total skin bacteria, yet it is key to preserve skin's optimal pH around 5 and acts as a commensal to maintain healthy skin microbiota [4]. We need to find what throws C acnes off-balance, but first, the nature of the sebaceous gland has to be addressed.
+
+The sebaceous gland, or also denoted as oil gland, is a gland (i.e. a group of cells) present in the skin of mammals. It is especially found in the face and the scalp [5]. As shown in the image below, the sebaceous gland is connected to the hair follicle. An oily substance called sebum is produced by the gland. Sebum is composed of triglycerides, wax esters, squalene, free fatty acids, some cholesterol, and di-glycerides. It helps lubricating the skin, keeping it flexible and since oil and water are immiscible, it acts as a barrier that mitigates water loss. As a sidenote, when sebum is heated for instance when showering at +37 Celsius degrees, sebum starts melting. Because of this you tend to feel the skin dry afterwards. Lukewarm water is thus recommended [6], you do not want to cause an extraneous imbalance.​
+1681678909839
+
+Elevated sebum excretion is the factor behind your pimples. If the hair follicle is plugged, no sebum can be transferred to the surface, hence it accumulates in the sebaceous duct, below the epidermis. People with acne tend to have 50% total sebum content than healthy individuals [7].​
+
+3. CAUSES
+We have seen how acne is tied to sebum production, but we have to go one level deeper to know what is excessively increasing sebum. What are the factors behind an abnormal sebum segregation? Some say it is only hormonal, some that diet plays a role, some that it boils down to genetics, etc. Let´s find the truth in that.​
+
+3.1 Hormones
+Acne-prone individuals are characterized by enlarged sebaceous glands due to hormonal changes [8]. To know this to be the truth you only have to look at the extreme of the spectrum constituted by castrated men, as they have been shown to experience no acne [9]. Androgens are the key player in acne, and this is what we have to keep under control. This explains the temporality of acne. During childhood, sebum levels remain low, but once we enter puberty, gonads start producing androgens like mad, reaching a peak around 18 years old [10]. Then androgen levels remain pretty much the same during our 20s and 30s [11]. Acne is therefore an endocryne condition. The connection between acne and androgens is further confirmed when exploring the opposite sex. Women who suffer from polycystic ovary syndrome (PCOS) are characterized by atypically high androgens levels and as a consequence they suffer from acne and androgenic alopecia [12]. If you are into hair loss solutions you can already see where I am going.
+
+In greater detail, androgens are a group of sex hormones formed by testosterone, androstenedione, dehydroepiandrosterone (DHEA), DHEA sulfate, and dihydrotestosterone (DHT). Amongst these five categories, DHT is the most potent hormone and also a pure androgen because it cannot be converted to estrogen [13]. DHT is especially found in the peripherial tissues of the body, that is, the gut, the lungs, and of course the skin. Androstenedione, DHEA and DHEA sulfate are eventually converted to testosterone due to the 3 beta-HSD and 17 beta-HSD enzymes [14]. Testosterone is then transformed to DHT by the enzyme 5 alpha-reductase in these tissues by breaking the double bond you see in red in the image below. The conversion between testosterone and DHT is problematic because DHT has double binding affinity with androgen receptors and five times slower dissociation rate [15]. If you want to keep in check your DHT levels, the first recommendation would be to stop taking creatine since it has been shown to increase DHT by 50% [16]. In my blood tests, only creatinine was out of the normal range yet dermatologists were still uncapable of making the conenction jfl.​
+1681678997288
+
+While androgens are the main reason behind acne, they are not the only factor to keep in check. Sebaceous glands are triggered by insulin, a lack of vitamins (especially A, C, D, E and B5), low levels of zinc and a poor ratio of omega3/6. These are all dietary factors that deserve a particular description. Even if acne was known even in the times of the Egyptians and Greeks [17], it is on the rise and it can be partially attributed to our modern inflammatory diets [18]. We are going to distill some truths on what foods influence acne.​
+
+3.2 Dairy
+Dairy is said to affect acne by increasing insulin-like growth factor (IGF-1) levels [19]. Milk also contains the aforementioned testosterone precursors androstenedione, DHEA and DHEA sulfate. Additionally, taking milk provides you with extra 5 alpha-reduced steroids [20]. However, we have to pause here a second and differentiate between the types of milk. A study in American high schools indicated that only skim milk was correlated with acne [21]. Skim milk is said to be comedogenic and contains less estrogens, (estrogens are said to help at reducing acne). Full-fat milk contains proteins, fatty acids, and more cholesterol, which all together can decrease insulin resistance [22]. This goes in line with @Prettyboy 's theory (https://looksmax.org/threads/my-diet.421718/page-3#post-11047497).​
+
+3.3 Carbohydrates
+Modern diets are plagued with high levels of carbohydrates, which are thought to be one of the main reasons behind acne. Just take a look at non-Westernized tribes such as the Kitavian Islanders from Papua New Guinea or the Aché hunters from Paraguay to realize they suffered no acne [23], probably due to their low glycemic load foods. Foods high in the glycemic index are broken down into sugar (glucose), and once an increase in blood sugar is detected, the pancreas releases insulin. If you experience insulin resistance, then the cells in your body cannot take advantage of the glucose for energy purposes. The pancreas generates more insulin to compensate for it and you end up stuck in this cycle. Insulin resistance in turn is connected to elevated levels of androgen [24]. No wonder why around 70% of acne patients have insulin resistance [25]. Lactose is a carbohydrate found in dairy that also exhibits a connection with acne. Lactose intolerant people are better off with yoghurt, cheese or fermented milk in the way of kefir as the lactose content is greatly reduced [26]. So it is not like you cannot take dairy products, you just have to select the right ones.​
+
+3.4 Omegas 3/6
+Taking the wrong ratio between omega 3 and omega 6 is a modulator of inflammation [27]. Remember the Kitavan and Aché tribes? Although they do eat a low glycemic load diet, it also hypotesized that the high content of omega 3 fatty acids also positively contributes towards not having acne [28]. Modern diets have a 20:1 omega 6/3 ratio whereas hunter-gatherer diets are around the ideal 1:1. Curiously enough, grass-fed beef has a 2:1 ratio at most whereas grain-fed beef has a ratio closer to 6:1 [29]. This just tells you how far from the optimal our diets are because of industrialization. Omega 3 suppresses inflammation by reducing the production of cytokine, a small inflammatory protein that triggers the sebaceous units [30]. Additionally, omega 3 inhibits the production of leukotriene B4, a pro-inflammatory mediator that has been shown to promote insulin resistance [31], and it also decreases the IGF-1 levels [32]. Eskimos were known for their high omega 3 consumption, between 3 to 4 grams a day [33]. This makes you think why eskimos in Canada developed acne once they moved into towns [34].​
+
+3.5 Vitamins
+Studies have shown that patients with acne have way lower blood levels of vitamin A and E [35]. These vitamins are antioxidants, that is, they prevent free radicals from damaging cells. Retinols (oral vitamin A) are commonly recommended to combat acne as a first treatment. Low concentrations of 50k to 100k UI are seen as ineffective as you need more than 300k UI to have a visible effect [36], which is more similar to the levels you would get from a synthetic vitamin A solution such as accutane. You run the risk of hypervitaminosis A by taking large doses of this synthetic form. Vitamin A in the form of accutane prevents the formation of comedones and can reduce the sebum production by 90% [37]. This is in my opinion an overkill because people who suffer from acne do not have 1000% more sebum, maybe just 50% more. Your skin will feel extremely dry and you may have to moisturize the skin to fix it somehow. Plus relying on vitamin E to combat the side-effects of isotretinoin has been shown to be ineffective [38]. Vitamin E is preferably administrated to deal with acne scars since being a fat-soluble (it can mix with sebum) antioxidant it has anti inflammatory properties. The formation of comedones is reduced and thus C acnes has it harder to find a solid culture medium [39]. Nonetheless, do not except vitamin E to be a great remedy because it has no effect whatsoever over the sebaceous gland. Vitamin C (absorbic acid) is a water-soluble antioxidant that plays a role in protecting and regenerating the skin, most notably in the synthesis of collagen. I am not going to go deep on that because it has already been covered in the forum. In any case, vitamin C combats retention hyperkeratosis [40], a condition in which the skin cells become cohesive and do not shed normally [41]. Again, vitamin C does not play a role in the overproduction of sebum. Vitamin D deficiencies have been observed in patients with acne as they had about 30% less of it [42]. On the other side, excesses of vitamin D are correlated with high testosterone levels [43], which could further exacerbate acne, so you want to keep them in balance. Excess vitamin B12 can lead to acne eruptions [44]. This is not a problem you will face in a trashy vegan diet but keep an eye on it when following an animal-based diet.​
+
+3.6 Minerals
+The most important mineral to take into consideration to fight acne is zinc. There is evidence suggesting a reduction of acne when supplementing zinc [45]. Zinc is bacteriostatic, which means the cellular activity of bacteria is stalled despite not killing them. High doses of zinc can provoke hyperzincemia, a phenomenon in which zinc excess leads to a reduction in copper absorption because both copper and zinc compete for the same absorption sizes in the gut [46]. You do not want low levels of copper as deficiencies in it promote the conversion of testosterone to DHT, hence more sebum, more acne, and induced alopecia [47]. There has been no noticeable influence of magnesium on acne severity. Iron on the other hand has to be kept in check as patients that report suffering from acne typically have a low iron concentration in serum. Curiously enough, taking isotretinoin allowed recovering iron serum levels back to normal [48].​
+
+3.7 Microbiome
+The connection between the microbiome and skin cannot be neglected. While the gut-brain axis is relatively well-known, it has to be extended into the gut-brain-skin axis. The intestinal flora can interact with the mechanistic target of rapamycin complex 1 (mTORC1) [49]. In practice, over-activated mTORC1 forces an increase in androgen production and stimulates sebaceous gland hyperplasia [50]. Also, deficiencies in stomach acid, known as hypochlorhydria, are connected to acne. Low acid concentrations force the bacteria to move towards the external part of the small intestine. Imbalances of microbiota (gut dysbiosis) occur, where the healthy bacteria is outnumbered by pathogens. The intestinal permeability increases, which then leads to inflammation [51]. Acne patients are known to have poor microbiota diversity and a decrease in two critical subtypes (Lactobacillus and Bifidobacterium), which are probiotic species that strengthen the intestinal barrier we have mentioned (less permeability, thus mitigated loss of healthy bacteria) [52].​
+
+4. SOLUTIONS
+4.1 The conventional approach
+From the theory review above it is clear that acne comes from the inside. It would be absurd to fall for cream scams knowing it. All these benzoyl peroxide, salicylic acid, azaleic acid, oil-free cleansers and moisturizers, gels, serums, and whatever topical solution your dermathologist may recommend are suboptimal solutions. They are just palliative options that will cover the problem without attacking the root cause. Topical tretinoin is useful at speeding up the replacement of dead skin cells as well as reducing the size of the follicles, which all together helps at preventing the accumulation of excess sebum. However, the abnormal production of excess sebum is maintained. Accutane is a potent drug actually does something by reducing the size and activity of the sebaceous glands. However, I can tell you from first-hand experience that it comes with side-effects, and that the glandular activity can be partially recovered after some weeks. None of these artificial fixes existed a century ago. It makes more sense to solve the health issue from the inside before applying these remedies.
+
+By this I do not mean that these solutions should be disregarded right off the bat. They can definitely help when you have a pimple here and there. I am the first one to use epiduo (formed by benzyl peroxide) to fix some small pimple that may appear during days of eating a non-ideal diet due to social celebrations, etc. Just keep in mind that these alternatives are to be seen as the cherry on top. We first need to establish the fundamentals.
+
+4.2 Combating hormones
+We have previously explained what was triggering acne, and that DHT was the main culprit behind this. There are various ways to inhibit the production of DHT, most of them coming from anti alopecia measures. The anti hair loss in the botb section makes an excellent job at covering them (https://looksmax.org/threads/ultimate-indepth-anti-hair-loss-guide.220874/). I will just summarize the main ones:
+
+- Creatine: it goes without saying that creatine should be avoided, and this should be the first thing to do. I personally fell victim of that after hearing that it is the most well-studied supplement across the globe with “minimal” sides.
+- Finasteride: inhibits 5 alpha-reductase and drops DHT by 60%. You can use it as a microemulsion gel (which has been shown to reduce acne by around 75%) [53], or take it orally, which is also seen to work [54].
+- Dutasteride: a more potent drug that reduced DHT by 90% [55] and also inhibits 5 alpha-reductase. I would only go for dutasteride in extreme cases where you also want to combat hair loss. Otherwise the sides may be too much.
+- Spironolactone: a steroidal androgen receptor-blocker that competes with testosterone and DHT for androgen receptors. Hence, it can significantly reduce sebocyte proliferation [56]. If it has any influence on 5 alpha-reductase is yet to be seen.
+- Flutamide: a non-steroidal androgen receptor-blocker that has a lower effect on acne compared to spironolactone, hence greater doses are needed.
+
+4.3 Diet
+Jump into a low glycemic load. This nutrition guide should be a very solid good starting point (https://looksmax.org/threads/my-diet.421718/). A low glycemic load diet will reduce the acne severity by improving insulin sensitivity, reducing the free androgen index, and reduce the BMI additionally. Eating a low carb diet may be hard if you are just starting, and I would not aim at consuming zero carbs. Taking 1 liter of milk will provide you between 40 and 50 g of carbs, which may be enough. If you really need to eat more carbs you can go for brown rice if you can tolerate since it has a somewhat acceptable glycemic index of 55. Beware of eating too much leucine in it stimulates the mTORC1 signaling, hence more sebum will be produced. In my experience you can surpass the recommended daily intake of 2.8 g if you eat grass-fed beef and fatty dairy without much problem, but it is better to avoid leucine supplements. This is what I more or less eat in a day:
+1681679221146
+
+Although I am currently in a caloric surplus you get the idea. I eat a high fat diet with minimum carbs and a significant amount of protein. The mackerel gives me enough omega 3 to rock an omega 6/3 ratio between 1:1 and 2:1. I eat cheese and kefir (more on that later) for the carbs, vitamin A and calcium. The ground beef and the eggs are cheap sources of protein and calories. I avoid cooking with fried seed oils as the foods are naturally greasy enough. Finally, I take two multivitamin capsules, one in the morning and one in the evening together with the meals to cover the vitamin deficiencies that go along this diet. I also may take some collagen, vitamin C pills and beta carotene. All together the nutrients look like this:
+1681679257405
+
+Could it be improved? For sure, but I noticed a big improvement from eating this diet compared to numbly consuming everything there was in the plate.
+
+4.4 Probiotics
+While eating a healthy carnivore diet with the right supplements made a big change for me, it was not until I incorporated probiotics that started getting a glimpse of what it was like to live without having to worry about pimples. Every day I eat 1 liter of kefir, which I make at home. It is way cheaper than buying it from the store as you only have to pay for the milk and have acquired the kefir grains (they should cost no more than 20 euros). The only downside associated with self-made kefir is the amount of alcohol because it can have a 0.5%. It is best to not let it over-ferment and work with a small enough amount of grains.
+
+1681679298052
+
+Other probiotics you may try are sauerkaut (made from cabbage), kimchi (also coming from vegetables), and even yogurt. Self-made kefir has at least 3 times more probiotics than yogurt, and it will also be cheaper, so I would recommend sticking to kefir. If you are lactose intolerant kefir should not be an issue because most lactose is consumed during the fermentation process. Kombucha is another probiotic you could try, even though it takes longer to prepare than milk kefir and is way less caloric. Overall milk kefir mogs everything else.
+
+5. RESULTS
+How it was during months:​
+1681679330171
+
+
+How it is going:​
+1681679340761
+
+I still have some hyperpigmentation due to the acne scarring, but man, it feels good not having to worry about this.
+​
+6. REFERENCES
+[1] Halvorsen, Jon A., et al. "Suicidal ideation, mental health problems, and social impairment are increased in adolescents with acne: a population-based study." Journal of Investigative Dermatology 131.2 (2011): 363-370.
+[2] Williams, Hywel C., Robert P. Dellavalle, and Sarah Garner. "Acne vulgaris." The Lancet 379.9813 (2012): 361-372.
+[3] Dréno, Brigitte, et al. "Cutibacterium acnes (Propionibacterium acnes) and acne vulgaris: a brief look at the latest updates." Journal of the European Academy of Dermatology and Venereology 32 (2018): 5-14.
+[4] Christensen, Gitte Julie Møller, and Holger Brüggemann. "Bacterial skin commensals and their role as host guardians." Beneficial microbes 5.2 (2014): 201-215.
+[5] Britannica, The Editors of Encyclopaedia. "sebaceous gland". Encyclopedia Britannica, 12 Feb. 2023, https://www.britannica.com/science/sebaceous-gland. Accessed 15 April 2023.
+[6] Herrero-Fernandez, Manuel, et al. "Impact of Water Exposure and Temperature Changes on Skin Barrier Function." Journal of Clinical Medicine 11.2 (2022): 298.
+[7] Pappas, Apostolos, et al. "Sebum analysis of individuals with and without acne." Dermato-endocrinology 1.3 (2009): 157-161.
+[8] Elsaie, Mohamed L. "Hormonal treatment of acne vulgaris: an update." Clinical, cosmetic and investigational dermatology (2016): 241-248.
+[9] Pochi, Peter E. "Acne: Androgens and microbiology." Drug Development Research 13.2‐3 (1988): 157-168.
+[10] Pochi, Peter E., John S. Strauss, and Donald T. Downing. "Age-related changes in sebaceous gland activity." Journal of Investigative Dermatology 73.1 (1979): 108-111.
+[11] Pochi, Peter E., and John S. Strauss. "Endocrinologic control to the development and activity of the human sebaceous gland." Journal of Investigative Dermatology 62.3 (1974): 191-201.
+[12] Chuan, Sandy S., and R. Jeffrey Chang. "Polycystic ovary syndrome and acne." Skin therapy letter 15.10 (2010): 1-4.
+[13] Kinter, Kevin J., and Aabha A. Anekar. "Biochemistry, dihydrotestosterone." StatPearls [Internet]. StatPearls Publishing, 2022.
+[14] Allolio, Bruno, Wiebke Arlt, and Stefanie Hahner. "Dehydroepiandrosterone and androstenedione." Testosterone: Action, Deficiency, Substitution (2012): 437-458.
+[15] Marchetti, Paula M., and Julian H. Barth. "Clinical biochemistry of dihydrotestosterone." Annals of Clinical Biochemistry 50.2 (2013): 95-107.
+[16] Van der Merwe, Johann, Naomi E. Brooks, and Kathryn H. Myburgh. "Three weeks of creatine monohydrate supplementation affects dihydrotestosterone to testosterone ratio in college-aged rugby players." Clinical Journal of Sport Medicine 19.5 (2009): 399-404.
+[17] Mahmood, N. F., and A. R. Shipman. "The age-old problem of acne." International journal of women's dermatology 3.2 (2017): 71-76.
+[18] Campbell, Christine E., and Beverly I. Strassmann. "The blemishes of modern society? Acne prevalence in the Dogon of Mali." Evolution, medicine, and public health 2016.1 (2016): 325-337.
+[19] Romo Ventura, Eugenia, et al. "Association of dietary intake of milk and dairy products with blood concentrations of insulin-like growth factor 1 (IGF-1) in Bavarian adults." European journal of nutrition 59 (2020): 1413-1420.
+[20] Darling, J. A. B., A. H. Laing, and R. A. Harkness. "A SURVEY OF THE STEROIDS IN COWS'MILK." Journal of endocrinology 62.2 (1974): 291-297.
+[21] Adebamowo, Clement A., et al. "High school dietary dairy intake and teenage acne." Journal of the American Academy of Dermatology 52.2 (2005): 207-214.
+[22] LaRosa, Caroline L., et al. "Consumption of dairy in teenagers with and without acne." Journal of the American Academy of Dermatology 75.2 (2016): 318-322.
+[23] Cordain, Loren, et al. "Acne vulgaris: a disease of Western civilization." Archives of dermatology 138.12 (2002): 1584-1590.
+[24] Xu, Yalan, and Jie Qiao. "Association of insulin resistance and elevated androgen levels with Polycystic Ovarian Syndrome (PCOS): a review of literature." Journal of healthcare engineering 2022 (2022).
+[25] Hasrat, Nazik H., and Asaad Q. Al-Yassen. "The Relationship Between Acne Vulgaris and Insulin Resistance." Cureus 15.1 (2023).
+[26] Aghasi, Mohadeseh, et al. "Dairy intake and acne development: a meta-analysis of observational studies." Clinical Nutrition 38.3 (2019): 1067-1075.
+[27] Simopoulos, Artemis P. "Omega-3 fatty acids in inflammation and autoimmune diseases." Journal of the American College of nutrition 21.6 (2002): 495-505.
+[28] Logan, Alan C. "Omega-3 fatty acids and acne." Archives of dermatology 139.7 (2003): 941-942.
+[29] Daley, C. A., et al. "A literature review of the value-added nutrients found in grass-fed beef products." California State University, Chico (College of Agriculture) (2004).
+[30] Cordain, Loren. "Implications for the role of diet in acne." Seminars in cutaneous medicine and surgery. Vol. 24. No. 2. WB Saunders, 2005.
+[31] Gong, Minmin, et al. "Berberine Alleviates Insulin Resistance and Inflammation via Inhibiting the LTB4–BLT1 Axis." Frontiers in Pharmacology 12 (2021): 722360.
+[32] Bhathena, Sam J., et al. "Effects of ω 3 fatty acids and vitamin E on hormones involved in carbohydrate and lipid metabolism in men." The American journal of clinical nutrition 54.4 (1991): 684-688.
+[33] Ebbesson, Sven OE, et al. "Eskimos have CHD despite high consumption of omega-3 fatty acids: the Alaska Siberia project." International journal of circumpolar health 64.4 (2005): 387-395.
+[34] Schaefer, Otto. "When the Eskimo comes to town." Nutrition Today 6.6 (1971): 8-16.
+[35] El‐Akawi, Z., N. Abdel‐Latif, and K. Abdul‐Razzak. "Does the plasma level of vitamins A and E affect acne condition?." Clinical and experimental dermatology 31.3 (2006): 430-434.
+[36] Kligman, Albert M., et al. "Oral vitamin A in acne vulgaris Preliminary report." International Journal of Dermatology 20.4 (1981): 278-285.
+[37] Kotori, Merita Grajqevci. "Low-dose vitamin “A” tablets–treatment of acne vulgaris." Medical Archives 69.1 (2015): 28.
+[38] Kus, Sadiye, et al. "Vitamin E does not reduce the side‐effects of isotretinoin in the treatment of acne vulgaris." International journal of dermatology 44.3 (2005): 248-251.
+[39] Keen, Mohammad Abid, and Iffat Hassan. "Vitamin E in dermatology." Indian dermatology online journal 7.4 (2016): 311.
+[40] Morris, George E. "Use of vitamin C in acne vulgaris." AMA Archives of Dermatology and Syphilology 70.3 (1954): 363-364.
+[41] Lambrechts, Isa Anina, Marco Nuno de Canha, and Namrita Lall. "Exploiting medicinal plants as possible treatments for acne vulgaris." Medicinal Plants for Holistic Health and Well-Being. Academic Press, 2018. 117-143.
+[42] Alhetheli, Ghadah, et al. "Vitamin D levels in patients with and without acne and its relation to acne severity: a case-control study." Clinical, Cosmetic and Investigational Dermatology (2020): 759-765.
+[43] Pilz, S., et al. "Effect of vitamin D supplementation on testosterone levels in men." Hormone and Metabolic Research 43.03 (2011): 223-225.
+[44] Kang, Dezhi, et al. "Vitamin B12 modulates the transcriptome of the skin microbiota in acne pathogenesis." Science translational medicine 7.293 (2015): 293ra103-293ra103.
+[45] Michaëlsson, G. E. R. D., L. Juhlin, and K. E. R. S. T. I. N. Ljunghall. "A double-blind study of the effect of zinc and oxytetracycline in acne vulgaris." The British Journal of Dermatology 97.5 (1977): 561-566.
+[46] Wahab, Ahsan, et al. "Zinc‐induced copper deficiency, sideroblastic anemia, and neutropenia: A perplexing facet of zinc excess." Clinical Case Reports 8.9 (2020): 1666-1671.
+[47] Skalnaya, Margarita G. "Copper deficiency a new reason of androgenetic alopecia." Pharmacology and nutritional intervention in the treatment of disease (2014): 337-348.
+[48] Leyden, James J. "Low Serum Iron Levels and Moderate Anemia in Severe Nodulocystic Acne: Reversal With Isotretinoin Therapy." Archives of dermatology 121.2 (1985): 214-215.
+[49] Lee, Young Bok, Eun Jung Byun, and Hei Sung Kim. "Potential role of the microbiome in acne: a comprehensive review." Journal of clinical medicine 8.7 (2019): 987.
+[50] Melnik, Bodo. "Dietary intervention in acne: Attenuation of increased mTORC1 signaling promoted by Western diet." Dermato-endocrinology 4.1 (2012): 20-32.
+[51] Clark, Ashley K., Kelly N. Haas, and Raja K. Sivamani. "Edible plants and their influence on the gut microbiome and acne." International journal of molecular sciences 18.5 (2017): 1070.
+[52] Madsen, Karen, et al. "Probiotic bacteria enhance murine and human intestinal epithelial barrier function." Gastroenterology 121.3 (2001): 580-591.
+[53] Khodayani, Efat, et al. "Study the effect of finasteride microemulsion gel on the treatment of men with mild to moderate acne." Studies in Medical Sciences 29.8 (2018): 585-592.
+[54] Rokni, Ghasem Rahmatpour, et al. "Efficacy, tolerability, and safety of montelukast versus finasteride for the treatment of moderate acne in women: A prospective, randomized, single‐blinded, active‐controlled trial." Journal of cosmetic dermatology 20.11 (2021): 3580-3585.
+[55] Clark, Richard V., et al. "Marked suppression of dihydrotestosterone in men with benign prostatic hyperplasia by dutasteride, a dual 5α-reductase inhibitor." The journal of clinical endocrinology & metabolism 89.5 (2004): 2179-2184.
+[56] Shaw, James C. "Acne: effect of hormones on pathogenesis and management." American journal of clinical dermatology 3 (2002): 571-578.
+ 
+
+    +1Love itJFL 
+
+Reactions: Minuskul, jliftsbrah, restinsolitude and 82 others
+looksmidder
+looksmidder
+Zephir
+
+Joined
+    Dec 22, 2022
+
+Posts
+    1,968
+
+Reputation
+    1,767
+
+    Apr 16, 2023 
+
+    #2
+
+mirin iq, a lot of words and looks nice so you’re probably smart
+ 
+
+    +1JFLHmm... 
+
+Reactions: psl nigga, theübermenschboy, FarRightChud and 31 others
+ItsOverCel
+ItsOverCel
+18 yo 180 cm 90 kg. Rotting autist
+
+Joined
+    Mar 6, 2022
+
+Posts
+    2,838
+
+Reputation
+    3,778
+
+    Apr 16, 2023 
+
+    #3
+
+Dnrd your bullshit
+
+Just blast accutane bro
+ 
+
+    +1JFLHmm... 
+
+Reactions: Lemur, MrPinToWin, FoidCucker and 31 others
+Deleted member 26633
+Silver
+
+Joined
+    Feb 18, 2023
+
+Posts
+    602
+
+Reputation
+    863
+
+    Apr 16, 2023 
+
+    #4
+
+cookie cutter thread, its all genetics take retinoids or die with shit skin
+ 
+
+    +1Hmm...WTF 
+
+Reactions: nathan V, gandyssmellyfeet, johncel27 and 11 others
+dakchuh
+dakchuh
+Master
+
+Joined
+    Sep 26, 2021
+
+Posts
+    1,695
+
+Reputation
+    3,027
+
+    Apr 16, 2023 
+
+    #5
+
+if ur a subhuman with garbage skin genetics like me you'll have to nuke your DHT with dut
+ 
+
+    +1 
+
+Reactions: Deleted member 58982, econescence, Nick.Harte and 10 others
+Deleted member 26642
+Half caged
+
+Joined
+    Feb 18, 2023
+
+Posts
+    8,408
+
+Reputation
+    12,453
+
+    Apr 16, 2023 
+
+    #6
+
+Great information. I've also been learning about acne as it's plagued my life for the last few years
+ 
+
+    +1 
+
+Reactions: Deleted member 58982, Running!, jfbjfb and 1 other person
+Sub0
+Sub0
+Mistral
+
+Joined
+    Oct 21, 2022
+
+Posts
+    2,124
+
+Reputation
+    2,110
+
+    Apr 16, 2023 
+
+    #7
+
+Dnrd but probably BOTB tier thread
+ 
+
+    JFL+1 
+
+Reactions: Bars, entrytrash and LooksThinker
+Deleted member 27464
+Iron
+
+Joined
+    Mar 15, 2023
+
+Posts
+    114
+
+Reputation
+    95
+
+    Apr 16, 2023 
+
+    #8
+
+Interesting to read the science behind solutions often considered hearsay such as ‘cut dairy, fix diet’. Good thread.
+ 
+
+    +1 
+
+Reactions: Spookybah
+Acne Victim
+Acne Victim
+jimaxed
+
+Joined
+    Feb 7, 2023
+
+Posts
+    4,820
+
+Reputation
+    6,820
+
+    Apr 16, 2023 
+
+    #9
+
+Plenty of derms are retarded and just prescribe topical creams, then accutane without actually fixing the root cause of the problem which most of the times is a fucked up diet and lifestyle.
+
+Derms, orthos, all fucking doctors shouldn't be completely trusted and that's why I trust myself more than professionals at this point jfl.
+
+Good thread, high effort and repped.
+ 
+
+    +1 
+
+Reactions: restinsolitude, gandyssmellyfeet, Ltn.San and 13 others
+Acne Victim
+Acne Victim
+jimaxed
+
+Joined
+    Feb 7, 2023
+
+Posts
+    4,820
+
+Reputation
+    6,820
+
+    Apr 16, 2023 
+
+    #10
+
+    QQ442244 said:
+    cookie cutter thread, its all genetics take retinoids or die with shit skin
+
+good dalit mindset you got
+
+always the "all or nothing" retards that don't understand most things are grey areas. acne is both genetic and environmental.
+ 
+
+    +1 
+
+Reactions: aldritch, FoidCucker, antx and 6 others
+autistic_tendencies
+autistic_tendencies
+Charisma Charm and Personality
+
+Joined
+    Jul 13, 2019
+
+Posts
+    36,726
+
+Reputation
+    54,514
+
+    Apr 16, 2023 
+
+    #11
+
+Give up seed oils and certain sugars
+ 
+
+    +1 
+
+Reactions: Deleted member 125888, Abdullahm06, Deleted member 66693 and 1 other person
+jfbjfb
+jfbjfb
+Iron
+
+Joined
+    Aug 9, 2022
+
+Posts
+    171
+
+Reputation
+    370
+
+    Apr 17, 2023 
+
+    OP
+    #12
+
+    ItsOverCel said:
+    Dnrd your bullshit
+
+    Just blast accutane bro
+
+I blasted 20 mg of accutane for 3 months and it had no effect other than drying my skin excessively and having dry lips all day long, which I still experience up to this day. Reducing the sebum production is just half the equation, you still need to diminish the signaling. This is why I had to look for other solutions.
+ 
+
+    +1JFL 
+
+Reactions: FoidCucker, Glohws, Norwegian LTN and 3 others
+redmaxx
+redmaxx
+Zephir
+
+Joined
+    Apr 8, 2023
+
+Posts
+    1,888
+
+Reputation
+    2,844
+
+    Apr 17, 2023 
+
+    #13
+
+Very good post. Addressing the root causes and fixing them, particularly diet wise, is extremely important. Having acne gives you a different perspective on food and its effects on the body and sets in motion certain habits that in the long term will improve your diet for the better, having a visible effect not only on skin but across the board.
+ 
+
+    +1 
+
+Reactions: Abdullahm06, aleksander and jfbjfb
+Deleted member 25413
+bluepill supremacist
+
+Joined
+    Jan 8, 2023
+
+Posts
+    746
+
+Reputation
+    1,305
+
+    Apr 17, 2023 
+
+    #14
+
+Mfs saying high iq post when he’s very clearly copy and pasted it LMAO
+ 
+
+    +1 
+
+Reactions: FoidCucker
+jfbjfb
+jfbjfb
+Iron
+
+Joined
+    Aug 9, 2022
+
+Posts
+    171
+
+Reputation
+    370
+
+    Apr 17, 2023 
+
+    OP
+    #15
+
+    baldgeeza said:
+    Mfs saying high iq post when he’s very clearly copy and pasted it LMAO
+
+No, I wrote it myself. I have a long-time obsession with acne and sensed my research could be valuable here
+ 
+
+    +1 
+
+Reactions: FoidCucker, johncel27, blackpiller006 and 5 others
+ItsOverCel
+ItsOverCel
+18 yo 180 cm 90 kg. Rotting autist
+
+Joined
+    Mar 6, 2022
+
+Posts
+    2,838
+
+Reputation
+    3,778
+
+    Apr 17, 2023 
+
+    #16
+
+    jfbjfb said:
+    I blasted 20 mg of accutane for 3 months and it had no effect other than drying my skin excessively and having dry lips all day long, which I still experience up to this day. Reducing the sebum production is just half the equation, you still need to diminish the signaling. This is why I had to look for other solutions.
+
+Dude did yiu know you have to run accutane for longer periods of time
+ 
+
+    +1 
+
+Reactions: Deleted member 153834 and Tiger Exuberante
+Unsh
+Unsh
+full time npc maxx
+
+Joined
+    Dec 26, 2021
+
+Posts
+    276
+
+Reputation
+    100
+
+    Apr 17, 2023 
+
+    #17
+
+Bookmarked
+ 
+
+    +1 
+
+Reactions: entrytrash
+Lucid
+Lucid
+Either grow or Either die, never settle!!
+
+Joined
+    Jan 20, 2020
+
+Posts
+    1,790
+
+Reputation
+    1,284
+
+    Apr 17, 2023 
+
+    #18
+
+    jfbjfb said:
+    TABLE OF CONTENTS
+    1. Introduction
+
+    2. Definition
+
+    3. Causes
+    3.1 Hormones
+    3.2 Dairy
+    3.3 Carbohydrates
+    3.4 Omegas 3/6
+    3.5 Vitamins
+    3.6 Minerals
+    3.7 Microbiome
+
+    4. Solutions
+    4.1 The conventional approach
+    4.2 Combating hormones
+    4.3 Diet
+    4.4 Probiotics
+
+    5. Results
+
+    6. References
+
+    1. INTRODUCTION
+    Acne is arguably one of the most notable looksmins out there. It is linked to a 3x increase in male suicide ideation, difficulty in forming meaningful personal connections, and depression [1]. Having acne is akin to living life in hard mode, and I know it from first-hand experience. Last summer I remember flaneuring along the breathtaking Occitan streets and counting the amount of people that had worse acne that me. I passed by thousands of people and my skin could not literally compete with anyone. If someone is blackpilled about acne it has to be me. In this post we are going to unveil the scientific underlying causes of acne and the non-copium curative solutions. Optimizing the skin is crucial to ascend, and while there are top-tier guides in this forum on how to improve the skin, I have yet failed to come across a deep-dive on acne. This is the post I would have desired to encounter months ago.​
+
+    2. DEFINITION
+    In scientific spheres, acne vulgaris is a recurring inflammatory condition due to the increased sebum production that derives on the colonization of follicles by Cutibacterium acnes (previously known as Propionibacterium acnes) [2]. What does it mean in layman terms? That what we call acne is no less than a visible disease expressed through the inflammation of the skin due to an excess of a bacteria. Now, Cutibacterium acnes (C acnes) itself is not the problem. The issue is the imbalance of the cutaneous microbiome. The skin surface is inhabited by three main types of bacteria: Corynebacteria, Cutibacterium and Staphylococci [3]. An imbalance between them is the main reason behind what we call acnne. This explains why antibiotics are trash when trying to fight acne; they will kill bacteria indiscriminately which means improper ratios will be maintained. C acnes supposes less than 2% of the total skin bacteria, yet it is key to preserve skin's optimal pH around 5 and acts as a commensal to maintain healthy skin microbiota [4]. We need to find what throws C acnes off-balance, but first, the nature of the sebaceous gland has to be addressed.
+
+    The sebaceous gland, or also denoted as oil gland, is a gland (i.e. a group of cells) present in the skin of mammals. It is especially found in the face and the scalp [5]. As shown in the image below, the sebaceous gland is connected to the hair follicle. An oily substance called sebum is produced by the gland. Sebum is composed of triglycerides, wax esters, squalene, free fatty acids, some cholesterol, and di-glycerides. It helps lubricating the skin, keeping it flexible and since oil and water are immiscible, it acts as a barrier that mitigates water loss. As a sidenote, when sebum is heated for instance when showering at +37 Celsius degrees, sebum starts melting. Because of this you tend to feel the skin dry afterwards. Lukewarm water is thus recommended [6], you do not want to cause an extraneous imbalance.​
+    View attachment 2155081
+    Elevated sebum excretion is the factor behind your pimples. If the hair follicle is plugged, no sebum can be transferred to the surface, hence it accumulates in the sebaceous duct, below the epidermis. People with acne tend to have 50% total sebum content than healthy individuals [7].​
+
+    3. CAUSES
+    We have seen how acne is tied to sebum production, but we have to go one level deeper to know what is excessively increasing sebum. What are the factors behind an abnormal sebum segregation? Some say it is only hormonal, some that diet plays a role, some that it boils down to genetics, etc. Let´s find the truth in that.​
+
+    3.1 Hormones
+    Acne-prone individuals are characterized by enlarged sebaceous glands due to hormonal changes [8]. To know this to be the truth you only have to look at the extreme of the spectrum constituted by castrated men, as they have been shown to experience no acne [9]. Androgens are the key player in acne, and this is what we have to keep under control. This explains the temporality of acne. During childhood, sebum levels remain low, but once we enter puberty, gonads start producing androgens like mad, reaching a peak around 18 years old [10]. Then androgen levels remain pretty much the same during our 20s and 30s [11]. Acne is therefore an endocryne condition. The connection between acne and androgens is further confirmed when exploring the opposite sex. Women who suffer from polycystic ovary syndrome (PCOS) are characterized by atypically high androgens levels and as a consequence they suffer from acne and androgenic alopecia [12]. If you are into hair loss solutions you can already see where I am going.
+
+    In greater detail, androgens are a group of sex hormones formed by testosterone, androstenedione, dehydroepiandrosterone (DHEA), DHEA sulfate, and dihydrotestosterone (DHT). Amongst these five categories, DHT is the most potent hormone and also a pure androgen because it cannot be converted to estrogen [13]. DHT is especially found in the peripherial tissues of the body, that is, the gut, the lungs, and of course the skin. Androstenedione, DHEA and DHEA sulfate are eventually converted to testosterone due to the 3 beta-HSD and 17 beta-HSD enzymes [14]. Testosterone is then transformed to DHT by the enzyme 5 alpha-reductase in these tissues by breaking the double bond you see in red in the image below. The conversion between testosterone and DHT is problematic because DHT has double binding affinity with androgen receptors and five times slower dissociation rate [15]. If you want to keep in check your DHT levels, the first recommendation would be to stop taking creatine since it has been shown to increase DHT by 50% [16]. In my blood tests, only creatinine was out of the normal range yet dermatologists were still uncapable of making the conenction jfl.​
+    View attachment 2155082
+    While androgens are the main reason behind acne, they are not the only factor to keep in check. Sebaceous glands are triggered by insulin, a lack of vitamins (especially A, C, D, E and B5), low levels of zinc and a poor ratio of omega3/6. These are all dietary factors that deserve a particular description. Even if acne was known even in the times of the Egyptians and Greeks [17], it is on the rise and it can be partially attributed to our modern inflammatory diets [18]. We are going to distill some truths on what foods influence acne.​
+
+    3.2 Dairy
+    Dairy is said to affect acne by increasing insulin-like growth factor (IGF-1) levels [19]. Milk also contains the aforementioned testosterone precursors androstenedione, DHEA and DHEA sulfate. Additionally, taking milk provides you with extra 5 alpha-reduced steroids [20]. However, we have to pause here a second and differentiate between the types of milk. A study in American high schools indicated that only skim milk was correlated with acne [21]. Skim milk is said to be comedogenic and contains less estrogens, (estrogens are said to help at reducing acne). Full-fat milk contains proteins, fatty acids, and more cholesterol, which all together can decrease insulin resistance [22]. This goes in line with @Prettyboy 's theory (https://looksmax.org/threads/my-diet.421718/page-3#post-11047497).​
+
+    3.3 Carbohydrates
+    Modern diets are plagued with high levels of carbohydrates, which are thought to be one of the main reasons behind acne. Just take a look at non-Westernized tribes such as the Kitavian Islanders from Papua New Guinea or the Aché hunters from Paraguay to realize they suffered no acne [23], probably due to their low glycemic load foods. Foods high in the glycemic index are broken down into sugar (glucose), and once an increase in blood sugar is detected, the pancreas releases insulin. If you experience insulin resistance, then the cells in your body cannot take advantage of the glucose for energy purposes. The pancreas generates more insulin to compensate for it and you end up stuck in this cycle. Insulin resistance in turn is connected to elevated levels of androgen [24]. No wonder why around 70% of acne patients have insulin resistance [25]. Lactose is a carbohydrate found in dairy that also exhibits a connection with acne. Lactose intolerant people are better off with yoghurt, cheese or fermented milk in the way of kefir as the lactose content is greatly reduced [26]. So it is not like you cannot take dairy products, you just have to select the right ones.​
+
+    3.4 Omegas 3/6
+    Taking the wrong ratio between omega 3 and omega 6 is a modulator of inflammation [27]. Remember the Kitavan and Aché tribes? Although they do eat a low glycemic load diet, it also hypotesized that the high content of omega 3 fatty acids also positively contributes towards not having acne [28]. Modern diets have a 20:1 omega 6/3 ratio whereas hunter-gatherer diets are around the ideal 1:1. Curiously enough, grass-fed beef has a 2:1 ratio at most whereas grain-fed beef has a ratio closer to 6:1 [29]. This just tells you how far from the optimal our diets are because of industrialization. Omega 3 suppresses inflammation by reducing the production of cytokine, a small inflammatory protein that triggers the sebaceous units [30]. Additionally, omega 3 inhibits the production of leukotriene B4, a pro-inflammatory mediator that has been shown to promote insulin resistance [31], and it also decreases the IGF-1 levels [32]. Eskimos were known for their high omega 3 consumption, between 3 to 4 grams a day [33]. This makes you think why eskimos in Canada developed acne once they moved into towns [34].​
+
+    3.5 Vitamins
+    Studies have shown that patients with acne have way lower blood levels of vitamin A and E [35]. These vitamins are antioxidants, that is, they prevent free radicals from damaging cells. Retinols (oral vitamin A) are commonly recommended to combat acne as a first treatment. Low concentrations of 50k to 100k UI are seen as ineffective as you need more than 300k UI to have a visible effect [36], which is more similar to the levels you would get from a synthetic vitamin A solution such as accutane. You run the risk of hypervitaminosis A by taking large doses of this synthetic form. Vitamin A in the form of accutane prevents the formation of comedones and can reduce the sebum production by 90% [37]. This is in my opinion an overkill because people who suffer from acne do not have 1000% more sebum, maybe just 50% more. Your skin will feel extremely dry and you may have to moisturize the skin to fix it somehow. Plus relying on vitamin E to combat the side-effects of isotretinoin has been shown to be ineffective [38]. Vitamin E is preferably administrated to deal with acne scars since being a fat-soluble (it can mix with sebum) antioxidant it has anti inflammatory properties. The formation of comedones is reduced and thus C acnes has it harder to find a solid culture medium [39]. Nonetheless, do not except vitamin E to be a great remedy because it has no effect whatsoever over the sebaceous gland. Vitamin C (absorbic acid) is a water-soluble antioxidant that plays a role in protecting and regenerating the skin, most notably in the synthesis of collagen. I am not going to go deep on that because it has already been covered in the forum. In any case, vitamin C combats retention hyperkeratosis [40], a condition in which the skin cells become cohesive and do not shed normally [41]. Again, vitamin C does not play a role in the overproduction of sebum. Vitamin D deficiencies have been observed in patients with acne as they had about 30% less of it [42]. On the other side, excesses of vitamin D are correlated with high testosterone levels [43], which could further exacerbate acne, so you want to keep them in balance. Excess vitamin B12 can lead to acne eruptions [44]. This is not a problem you will face in a trashy vegan diet but keep an eye on it when following an animal-based diet.​
+
+    3.6 Minerals
+    The most important mineral to take into consideration to fight acne is zinc. There is evidence suggesting a reduction of acne when supplementing zinc [45]. Zinc is bacteriostatic, which means the cellular activity of bacteria is stalled despite not killing them. High doses of zinc can provoke hyperzincemia, a phenomenon in which zinc excess leads to a reduction in copper absorption because both copper and zinc compete for the same absorption sizes in the gut [46]. You do not want low levels of copper as deficiencies in it promote the conversion of testosterone to DHT, hence more sebum, more acne, and induced alopecia [47]. There has been no noticeable influence of magnesium on acne severity. Iron on the other hand has to be kept in check as patients that report suffering from acne typically have a low iron concentration in serum. Curiously enough, taking isotretinoin allowed recovering iron serum levels back to normal [48].​
+
+    3.7 Microbiome
+    The connection between the microbiome and skin cannot be neglected. While the gut-brain axis is relatively well-known, it has to be extended into the gut-brain-skin axis. The intestinal flora can interact with the mechanistic target of rapamycin complex 1 (mTORC1) [49]. In practice, over-activated mTORC1 forces an increase in androgen production and stimulates sebaceous gland hyperplasia [50]. Also, deficiencies in stomach acid, known as hypochlorhydria, are connected to acne. Low acid concentrations force the bacteria to move towards the external part of the small intestine. Imbalances of microbiota (gut dysbiosis) occur, where the healthy bacteria is outnumbered by pathogens. The intestinal permeability increases, which then leads to inflammation [51]. Acne patients are known to have poor microbiota diversity and a decrease in two critical subtypes (Lactobacillus and Bifidobacterium), which are probiotic species that strengthen the intestinal barrier we have mentioned (less permeability, thus mitigated loss of healthy bacteria) [52].​
+
+    4. SOLUTIONS
+    4.1 The conventional approach
+    From the theory review above it is clear that acne comes from the inside. It would be absurd to fall for cream scams knowing it. All these benzoyl peroxide, salicylic acid, azaleic acid, oil-free cleansers and moisturizers, gels, serums, and whatever topical solution your dermathologist may recommend are suboptimal solutions. They are just palliative options that will cover the problem without attacking the root cause. Topical tretinoin is useful at speeding up the replacement of dead skin cells as well as reducing the size of the follicles, which all together helps at preventing the accumulation of excess sebum. However, the abnormal production of excess sebum is maintained. Accutane is a potent drug actually does something by reducing the size and activity of the sebaceous glands. However, I can tell you from first-hand experience that it comes with side-effects, and that the glandular activity can be partially recovered after some weeks. None of these artificial fixes existed a century ago. It makes more sense to solve the health issue from the inside before applying these remedies.
+
+    By this I do not mean that these solutions should be disregarded right off the bat. They can definitely help when you have a pimple here and there. I am the first one to use epiduo (formed by benzyl peroxide) to fix some small pimple that may appear during days of eating a non-ideal diet due to social celebrations, etc. Just keep in mind that these alternatives are to be seen as the cherry on top. We first need to establish the fundamentals.
+
+    4.2 Combating hormones
+    We have previously explained what was triggering acne, and that DHT was the main culprit behind this. There are various ways to inhibit the production of DHT, most of them coming from anti alopecia measures. The anti hair loss in the botb section makes an excellent job at covering them (https://looksmax.org/threads/ultimate-indepth-anti-hair-loss-guide.220874/). I will just summarize the main ones:
+
+    - Creatine: it goes without saying that creatine should be avoided, and this should be the first thing to do. I personally fell victim of that after hearing that it is the most well-studied supplement across the globe with “minimal” sides.
+    - Finasteride: inhibits 5 alpha-reductase and drops DHT by 60%. You can use it as a microemulsion gel (which has been shown to reduce acne by around 75%) [53], or take it orally, which is also seen to work [54].
+    - Dutasteride: a more potent drug that reduced DHT by 90% [55] and also inhibits 5 alpha-reductase. I would only go for dutasteride in extreme cases where you also want to combat hair loss. Otherwise the sides may be too much.
+    - Spironolactone: a steroidal androgen receptor-blocker that competes with testosterone and DHT for androgen receptors. Hence, it can significantly reduce sebocyte proliferation [56]. If it has any influence on 5 alpha-reductase is yet to be seen.
+    - Flutamide: a non-steroidal androgen receptor-blocker that has a lower effect on acne compared to spironolactone, hence greater doses are needed.
+
+    4.3 Diet
+    Jump into a low glycemic load. This nutrition guide should be a very solid good starting point (https://looksmax.org/threads/my-diet.421718/). A low glycemic load diet will reduce the acne severity by improving insulin sensitivity, reducing the free androgen index, and reduce the BMI additionally. Eating a low carb diet may be hard if you are just starting, and I would not aim at consuming zero carbs. Taking 1 liter of milk will provide you between 40 and 50 g of carbs, which may be enough. If you really need to eat more carbs you can go for brown rice if you can tolerate since it has a somewhat acceptable glycemic index of 55. Beware of eating too much leucine in it stimulates the mTORC1 signaling, hence more sebum will be produced. In my experience you can surpass the recommended daily intake of 2.8 g if you eat grass-fed beef and fatty dairy without much problem, but it is better to avoid leucine supplements. This is what I more or less eat in a day:
+    View attachment 2155087
+    Although I am currently in a caloric surplus you get the idea. I eat a high fat diet with minimum carbs and a significant amount of protein. The mackerel gives me enough omega 3 to rock an omega 6/3 ratio between 1:1 and 2:1. I eat cheese and kefir (more on that later) for the carbs, vitamin A and calcium. The ground beef and the eggs are cheap sources of protein and calories. I avoid cooking with fried seed oils as the foods are naturally greasy enough. Finally, I take two multivitamin capsules, one in the morning and one in the evening together with the meals to cover the vitamin deficiencies that go along this diet. I also may take some collagen, vitamin C pills and beta carotene. All together the nutrients look like this:
+    View attachment 2155088
+    Could it be improved? For sure, but I noticed a big improvement from eating this diet compared to numbly consuming everything there was in the plate.
+
+    4.4 Probiotics
+    While eating a healthy carnivore diet with the right supplements made a big change for me, it was not until I incorporated probiotics that started getting a glimpse of what it was like to live without having to worry about pimples. Every day I eat 1 liter of kefir, which I make at home. It is way cheaper than buying it from the store as you only have to pay for the milk and have acquired the kefir grains (they should cost no more than 20 euros). The only downside associated with self-made kefir is the amount of alcohol because it can have a 0.5%. It is best to not let it over-ferment and work with a small enough amount of grains.
+
+    View attachment 2155089
+    Other probiotics you may try are sauerkaut (made from cabbage), kimchi (also coming from vegetables), and even yogurt. Self-made kefir has at least 3 times more probiotics than yogurt, and it will also be cheaper, so I would recommend sticking to kefir. If you are lactose intolerant kefir should not be an issue because most lactose is consumed during the fermentation process. Kombucha is another probiotic you could try, even though it takes longer to prepare than milk kefir and is way less caloric. Overall milk kefir mogs everything else.
+
+    5. RESULTS
+    How it was during months:​
+    View attachment 2155090
+
+    How it is going:​
+    View attachment 2155092
+    I still have some hyperpigmentation due to the acne scarring, but man, it feels good not having to worry about this.
+    ​
+    6. REFERENCES
+    [1] Halvorsen, Jon A., et al. "Suicidal ideation, mental health problems, and social impairment are increased in adolescents with acne: a population-based study." Journal of Investigative Dermatology 131.2 (2011): 363-370.
+    [2] Williams, Hywel C., Robert P. Dellavalle, and Sarah Garner. "Acne vulgaris." The Lancet 379.9813 (2012): 361-372.
+    [3] Dréno, Brigitte, et al. "Cutibacterium acnes (Propionibacterium acnes) and acne vulgaris: a brief look at the latest updates." Journal of the European Academy of Dermatology and Venereology 32 (2018): 5-14.
+    [4] Christensen, Gitte Julie Møller, and Holger Brüggemann. "Bacterial skin commensals and their role as host guardians." Beneficial microbes 5.2 (2014): 201-215.
+    [5] Britannica, The Editors of Encyclopaedia. "sebaceous gland". Encyclopedia Britannica, 12 Feb. 2023, https://www.britannica.com/science/sebaceous-gland. Accessed 15 April 2023.
+    [6] Herrero-Fernandez, Manuel, et al. "Impact of Water Exposure and Temperature Changes on Skin Barrier Function." Journal of Clinical Medicine 11.2 (2022): 298.
+    [7] Pappas, Apostolos, et al. "Sebum analysis of individuals with and without acne." Dermato-endocrinology 1.3 (2009): 157-161.
+    [8] Elsaie, Mohamed L. "Hormonal treatment of acne vulgaris: an update." Clinical, cosmetic and investigational dermatology (2016): 241-248.
+    [9] Pochi, Peter E. "Acne: Androgens and microbiology." Drug Development Research 13.2‐3 (1988): 157-168.
+    [10] Pochi, Peter E., John S. Strauss, and Donald T. Downing. "Age-related changes in sebaceous gland activity." Journal of Investigative Dermatology 73.1 (1979): 108-111.
+    [11] Pochi, Peter E., and John S. Strauss. "Endocrinologic control to the development and activity of the human sebaceous gland." Journal of Investigative Dermatology 62.3 (1974): 191-201.
+    [12] Chuan, Sandy S., and R. Jeffrey Chang. "Polycystic ovary syndrome and acne." Skin therapy letter 15.10 (2010): 1-4.
+    [13] Kinter, Kevin J., and Aabha A. Anekar. "Biochemistry, dihydrotestosterone." StatPearls [Internet]. StatPearls Publishing, 2022.
+    [14] Allolio, Bruno, Wiebke Arlt, and Stefanie Hahner. "Dehydroepiandrosterone and androstenedione." Testosterone: Action, Deficiency, Substitution (2012): 437-458.
+    [15] Marchetti, Paula M., and Julian H. Barth. "Clinical biochemistry of dihydrotestosterone." Annals of Clinical Biochemistry 50.2 (2013): 95-107.
+    [16] Van der Merwe, Johann, Naomi E. Brooks, and Kathryn H. Myburgh. "Three weeks of creatine monohydrate supplementation affects dihydrotestosterone to testosterone ratio in college-aged rugby players." Clinical Journal of Sport Medicine 19.5 (2009): 399-404.
+    [17] Mahmood, N. F., and A. R. Shipman. "The age-old problem of acne." International journal of women's dermatology 3.2 (2017): 71-76.
+    [18] Campbell, Christine E., and Beverly I. Strassmann. "The blemishes of modern society? Acne prevalence in the Dogon of Mali." Evolution, medicine, and public health 2016.1 (2016): 325-337.
+    [19] Romo Ventura, Eugenia, et al. "Association of dietary intake of milk and dairy products with blood concentrations of insulin-like growth factor 1 (IGF-1) in Bavarian adults." European journal of nutrition 59 (2020): 1413-1420.
+    [20] Darling, J. A. B., A. H. Laing, and R. A. Harkness. "A SURVEY OF THE STEROIDS IN COWS'MILK." Journal of endocrinology 62.2 (1974): 291-297.
+    [21] Adebamowo, Clement A., et al. "High school dietary dairy intake and teenage acne." Journal of the American Academy of Dermatology 52.2 (2005): 207-214.
+    [22] LaRosa, Caroline L., et al. "Consumption of dairy in teenagers with and without acne." Journal of the American Academy of Dermatology 75.2 (2016): 318-322.
+    [23] Cordain, Loren, et al. "Acne vulgaris: a disease of Western civilization." Archives of dermatology 138.12 (2002): 1584-1590.
+    [24] Xu, Yalan, and Jie Qiao. "Association of insulin resistance and elevated androgen levels with Polycystic Ovarian Syndrome (PCOS): a review of literature." Journal of healthcare engineering 2022 (2022).
+    [25] Hasrat, Nazik H., and Asaad Q. Al-Yassen. "The Relationship Between Acne Vulgaris and Insulin Resistance." Cureus 15.1 (2023).
+    [26] Aghasi, Mohadeseh, et al. "Dairy intake and acne development: a meta-analysis of observational studies." Clinical Nutrition 38.3 (2019): 1067-1075.
+    [27] Simopoulos, Artemis P. "Omega-3 fatty acids in inflammation and autoimmune diseases." Journal of the American College of nutrition 21.6 (2002): 495-505.
+    [28] Logan, Alan C. "Omega-3 fatty acids and acne." Archives of dermatology 139.7 (2003): 941-942.
+    [29] Daley, C. A., et al. "A literature review of the value-added nutrients found in grass-fed beef products." California State University, Chico (College of Agriculture) (2004).
+    [30] Cordain, Loren. "Implications for the role of diet in acne." Seminars in cutaneous medicine and surgery. Vol. 24. No. 2. WB Saunders, 2005.
+    [31] Gong, Minmin, et al. "Berberine Alleviates Insulin Resistance and Inflammation via Inhibiting the LTB4–BLT1 Axis." Frontiers in Pharmacology 12 (2021): 722360.
+    [32] Bhathena, Sam J., et al. "Effects of ω 3 fatty acids and vitamin E on hormones involved in carbohydrate and lipid metabolism in men." The American journal of clinical nutrition 54.4 (1991): 684-688.
+    [33] Ebbesson, Sven OE, et al. "Eskimos have CHD despite high consumption of omega-3 fatty acids: the Alaska Siberia project." International journal of circumpolar health 64.4 (2005): 387-395.
+    [34] Schaefer, Otto. "When the Eskimo comes to town." Nutrition Today 6.6 (1971): 8-16.
+    [35] El‐Akawi, Z., N. Abdel‐Latif, and K. Abdul‐Razzak. "Does the plasma level of vitamins A and E affect acne condition?." Clinical and experimental dermatology 31.3 (2006): 430-434.
+    [36] Kligman, Albert M., et al. "Oral vitamin A in acne vulgaris Preliminary report." International Journal of Dermatology 20.4 (1981): 278-285.
+    [37] Kotori, Merita Grajqevci. "Low-dose vitamin “A” tablets–treatment of acne vulgaris." Medical Archives 69.1 (2015): 28.
+    [38] Kus, Sadiye, et al. "Vitamin E does not reduce the side‐effects of isotretinoin in the treatment of acne vulgaris." International journal of dermatology 44.3 (2005): 248-251.
+    [39] Keen, Mohammad Abid, and Iffat Hassan. "Vitamin E in dermatology." Indian dermatology online journal 7.4 (2016): 311.
+    [40] Morris, George E. "Use of vitamin C in acne vulgaris." AMA Archives of Dermatology and Syphilology 70.3 (1954): 363-364.
+    [41] Lambrechts, Isa Anina, Marco Nuno de Canha, and Namrita Lall. "Exploiting medicinal plants as possible treatments for acne vulgaris." Medicinal Plants for Holistic Health and Well-Being. Academic Press, 2018. 117-143.
+    [42] Alhetheli, Ghadah, et al. "Vitamin D levels in patients with and without acne and its relation to acne severity: a case-control study." Clinical, Cosmetic and Investigational Dermatology (2020): 759-765.
+    [43] Pilz, S., et al. "Effect of vitamin D supplementation on testosterone levels in men." Hormone and Metabolic Research 43.03 (2011): 223-225.
+    [44] Kang, Dezhi, et al. "Vitamin B12 modulates the transcriptome of the skin microbiota in acne pathogenesis." Science translational medicine 7.293 (2015): 293ra103-293ra103.
+    [45] Michaëlsson, G. E. R. D., L. Juhlin, and K. E. R. S. T. I. N. Ljunghall. "A double-blind study of the effect of zinc and oxytetracycline in acne vulgaris." The British Journal of Dermatology 97.5 (1977): 561-566.
+    [46] Wahab, Ahsan, et al. "Zinc‐induced copper deficiency, sideroblastic anemia, and neutropenia: A perplexing facet of zinc excess." Clinical Case Reports 8.9 (2020): 1666-1671.
+    [47] Skalnaya, Margarita G. "Copper deficiency a new reason of androgenetic alopecia." Pharmacology and nutritional intervention in the treatment of disease (2014): 337-348.
+    [48] Leyden, James J. "Low Serum Iron Levels and Moderate Anemia in Severe Nodulocystic Acne: Reversal With Isotretinoin Therapy." Archives of dermatology 121.2 (1985): 214-215.
+    [49] Lee, Young Bok, Eun Jung Byun, and Hei Sung Kim. "Potential role of the microbiome in acne: a comprehensive review." Journal of clinical medicine 8.7 (2019): 987.
+    [50] Melnik, Bodo. "Dietary intervention in acne: Attenuation of increased mTORC1 signaling promoted by Western diet." Dermato-endocrinology 4.1 (2012): 20-32.
+    [51] Clark, Ashley K., Kelly N. Haas, and Raja K. Sivamani. "Edible plants and their influence on the gut microbiome and acne." International journal of molecular sciences 18.5 (2017): 1070.
+    [52] Madsen, Karen, et al. "Probiotic bacteria enhance murine and human intestinal epithelial barrier function." Gastroenterology 121.3 (2001): 580-591.
+    [53] Khodayani, Efat, et al. "Study the effect of finasteride microemulsion gel on the treatment of men with mild to moderate acne." Studies in Medical Sciences 29.8 (2018): 585-592.
+    [54] Rokni, Ghasem Rahmatpour, et al. "Efficacy, tolerability, and safety of montelukast versus finasteride for the treatment of moderate acne in women: A prospective, randomized, single‐blinded, active‐controlled trial." Journal of cosmetic dermatology 20.11 (2021): 3580-3585.
+    [55] Clark, Richard V., et al. "Marked suppression of dihydrotestosterone in men with benign prostatic hyperplasia by dutasteride, a dual 5α-reductase inhibitor." The journal of clinical endocrinology & metabolism 89.5 (2004): 2179-2184.
+    [56] Shaw, James C. "Acne: effect of hormones on pathogenesis and management." American journal of clinical dermatology 3 (2002): 571-578.
+    Click to expand...
+
+good effort skim read but whatever's stated is true.
+
+I'm doing that diet rn and I don't have any outbreaks.
+ 
+
+    +1 
+
+Reactions: jfbjfb
+jfbjfb
+jfbjfb
+Iron
+
+Joined
+    Aug 9, 2022
+
+Posts
+    171
+
+Reputation
+    370
+
+    Apr 18, 2023 
+
+    OP
+    #19
+
+    ItsOverCel said:
+    Dude did yiu know you have to run accutane for longer periods of time
+
+It is typically taken for 4 to 5 months, but with what aim in mind? My skin became dry the second day, and so I was just 3 months with peeling skin, chapped lips, yet no change in the outbreaks. Gland hyperplasia is just one of the problems. Plus I would not advise taking a drug that will modify your sebaceous glands for life when there are more natural/better solutions that not only improve your acne but skin as a whole
+ 
+
+    +1JFL 
+
+Reactions: Ltn.San, beingmoreattractive and ItsOverCel
+ItsOverCel
+ItsOverCel
+18 yo 180 cm 90 kg. Rotting autist
+
+Joined
+    Mar 6, 2022
+
+Posts
+    2,838
+
+Reputation
+    3,778
+
+    Apr 18, 2023 
+
+    #20
+
+Did you know you're supposed to moisturize your skin and lips while on accutane?
+
+    jfbjfb said:
+    It is typically taken for 4 to 5 months, but with what aim in mind? My skin became dry the second day, and so I was just 3 months with peeling skin, chapped lips, yet no change in the outbreaks. Gland hyperplasia is just one of the problems. Plus I would not advise taking a drug that will modify your sebaceous glands for life when there are more natural/better solutions that not only improve your acne but skin as a whole
+
+ 
+Deleted member 20631
+Deleting soon, goodbye forever
+
+Joined
+    Jul 10, 2022
+
+Posts
+    4,652
+
+Reputation
+    4,856
+
+    Apr 18, 2023 
+
+    #21
+
+Probiotics and diet are very good.
+
+But In certain cases of bacterial colonization using Benozyl Peroxide is necessary.
+
+You’ll need to use it everyday for a few weeks until the bacteria is killed then just once a week to maintain.
+ 
+fares
+Iron
+
+Joined
+    Feb 23, 2023
+
+Posts
+    91
+
+Reputation
+    40
+
+    Apr 18, 2023 
+
+    #22
+
+personnaly fappping is the number one thing that give me acné if i stop or regulate it my skin gets normal
+ 
+
+    JFL 
+
+Reactions: Ltn.San, STUPIDREFEREES, aleksander and 1 other person
+jfbjfb
+jfbjfb
+Iron
+
+Joined
+    Aug 9, 2022
+
+Posts
+    171
+
+Reputation
+    370
+
+    Apr 18, 2023 
+
+    OP
+    #23
+
+    ItsOverCel said:
+    Did you know you're supposed to moisturize your skin and lips while on accutane?
+
+Yes, I know, what I mean is that when I failed to do thay my skin would become naturally dry so the sebaceous glands were indeed shrinked. Yet, acne was prevalent.
+ 
+
+    +1 
+
+Reactions: beingmoreattractive
+beingmoreattractive
+beingmoreattractive
+Iron
+
+Joined
+    Mar 8, 2023
+
+Posts
+    34
+
+Reputation
+    29
+
+    Jun 12, 2023 
+
+    #24
+
+High quality thread. Bookmarked, followed and watched.
+ 
+
+    +1 
+
+Reactions: Ltn.San and jfbjfb
+Deleted member 26824
+There was this girl
+
+Joined
+    Feb 24, 2023
+
+Posts
+    9,945
+
+Reputation
+    9,650
+
+    Jun 12, 2023 
+
+    #25
+
+W greycels, you carrying this forum
+ 
+
+    +1 
+
+Reactions: redmaxx
+Deleted member 26824
+There was this girl
+
+Joined
+    Feb 24, 2023
+
+Posts
+    9,945
+
+Reputation
+    9,650
+
+    Jun 12, 2023 
+
+    #26
+
+Nice thread it took me 25min to read but it was worth it, high iq and effort. Only question: how to make kefir at home with milk? can you explain this any further?
+
+this is botb worthy
+ 
+
+    +1JFL 
+
+Reactions: STUPIDREFEREES, Deleted member 25743 and jfbjfb
+Deleted member 28774
+Diamond
+
+Joined
+    Apr 18, 2023
+
+Posts
+    1,398
+
+Reputation
+    1,063
+
+    Jun 12, 2023 
+
+    #27
+
+Just dont touch ur face lmao
+ 
+jfbjfb
+jfbjfb
+Iron
+
+Joined
+    Aug 9, 2022
+
+Posts
+    171
+
+Reputation
+    370
+
+    Jun 13, 2023 
+
+    OP
+    #28
+
+    depressionmaxxing said:
+    Nice thread it took me 25min to read but it was worth it, high iq and effort. Only question: how to make kefir at home with milk? can you explain this any further?
+
+    this is botb worthy
+
+Sure, here we go.
+
+To make milk kefir you need two ingredients: the kefir grains and the milk itself.
+
+Kefir grains: I would recommend buying them from the Internet, unless you personally know someone how is already making kefir at home that could ship them to you. Ideally these kefir grains should have undergone testing procedures to ensure they are free of pathogens (coliform, salmonella, listeria, etc.). This is why it is preferable to get them from a trusted source and not a shady neighbor. So assuming you buy them, they will come in this little plastic bag. They are commonly sold in amounts of 20 to 40 g, which is more than enough. Keep in mind the grains are a living colony and thus they will grow and multiply over time. If you preserve them in nice conditions, they can even live to the end of times.
+
+1686688731526
+
+(The kefir grains I bought)
+
+Milk: the fattier and the purer the milk is, the better. In an ideal scenario you would contact your local farmer and buy raw milk, without any pasteurization process. Pasteurization kills some bacteria, enzymes and proteins; not all of them, but a noticeable amount. There are some local farms in my zone that pasteurize the milk, as otherwise there is no way they are going to sell it in regulated markets, but do so at 70 to 80 Celsius degrees. Again, not a panacea but still acceptable. If you are a city rat that cannot get its hands to high quality milk, then the last resort is to rely on whole milk acquired from the supermarket. You should be aiming at one with +2.5% fat.
+
+1686689633353
+
+(Mogger milk from my area with +3.5% fat, notice the yellowish color)
+
+Once you have the two ingredients, you have to pick a glass jar, fill it with the grains, and about 1 liter of milk. It is important to keep the proportion between grains and milk to avoid overfermenting and underfermenting it. In the latter case you will have less probiotics, while in the first case it will have more alcohol and taste more acidic. It is about finding the right balance, around 40 g of grains for 1 liter should do it. Once you have mixed the two, you let the jar rest for 1 day. This fermentation time largely depends on the room temperature. Hot temperatures will make it ferment faster, and on the contrary, keeping the mix in the fridge will heavily slow down the process. Make sure to cover the jar with a rag or some thin paper during fermentation. You want it to breathe but also cover it from insects and similar. This is what the jar looks like after 1 day of fermentation:
+1686689990153
+
+Then, you have to separate the grains from the milk. To do so I would advise getting a strainer for only this purpose to not experience any contamination issues. The same applies to the jar, you should always use one only for the kefir. Separating the fermented milk from the kefir grains is pretty easy, just pour the milk and filter all the milk. You can technically eat the grains but you do not want to lose too many of them.
+
+1686690344634
+
+The last step is of course drinking the filtered milk. Notice in the pic I have quite a lot of grains. With this amount I am obtaining kefir that becomes a bit acidic. If you want to have something a bit more tasty, similar to a cream in texture, you can put the jar 24 hours in the fridge. I tend to do it on the weekends to not overferment it, and it always tastes marvelously afterwards.
+ 
+
+    +1 
+
+Reactions: bluezeenx, Gs., Deleted member 65576 and 1 other person
+iam good boy
+iam good boy
+SS Totenkopfverbände
+
+Joined
+    May 30, 2023
+
+Posts
+    9,164
+
+Reputation
+    6,687
+
+    Sep 7, 2023 
+
+    #29
+
+    jfbjfb said:
+    TABLE OF CONTENTS
+    1. Introduction
+
+    2. Definition
+
+    3. Causes
+    3.1 Hormones
+    3.2 Dairy
+    3.3 Carbohydrates
+    3.4 Omegas 3/6
+    3.5 Vitamins
+    3.6 Minerals
+    3.7 Microbiome
+
+    4. Solutions
+    4.1 The conventional approach
+    4.2 Combating hormones
+    4.3 Diet
+    4.4 Probiotics
+
+    5. Results
+
+    6. References
+
+    1. INTRODUCTION
+    Acne is arguably one of the most notable looksmins out there. It is linked to a 3x increase in male suicide ideation, difficulty in forming meaningful personal connections, and depression [1]. Having acne is akin to living life in hard mode, and I know it from first-hand experience. Last summer I remember flaneuring along the breathtaking Occitan streets and counting the amount of people that had worse acne that me. I passed by thousands of people and my skin could not literally compete with anyone. If someone is blackpilled about acne it has to be me. In this post we are going to unveil the scientific underlying causes of acne and the non-copium curative solutions. Optimizing the skin is crucial to ascend, and while there are top-tier guides in this forum on how to improve the skin, I have yet failed to come across a deep-dive on acne. This is the post I would have desired to encounter months ago.​
+
+    2. DEFINITION
+    In scientific spheres, acne vulgaris is a recurring inflammatory condition due to the increased sebum production that derives on the colonization of follicles by Cutibacterium acnes (previously known as Propionibacterium acnes) [2]. What does it mean in layman terms? That what we call acne is no less than a visible disease expressed through the inflammation of the skin due to an excess of a bacteria. Now, Cutibacterium acnes (C acnes) itself is not the problem. The issue is the imbalance of the cutaneous microbiome. The skin surface is inhabited by three main types of bacteria: Corynebacteria, Cutibacterium and Staphylococci [3]. An imbalance between them is the main reason behind what we call acnne. This explains why antibiotics are trash when trying to fight acne; they will kill bacteria indiscriminately which means improper ratios will be maintained. C acnes supposes less than 2% of the total skin bacteria, yet it is key to preserve skin's optimal pH around 5 and acts as a commensal to maintain healthy skin microbiota [4]. We need to find what throws C acnes off-balance, but first, the nature of the sebaceous gland has to be addressed.
+
+    The sebaceous gland, or also denoted as oil gland, is a gland (i.e. a group of cells) present in the skin of mammals. It is especially found in the face and the scalp [5]. As shown in the image below, the sebaceous gland is connected to the hair follicle. An oily substance called sebum is produced by the gland. Sebum is composed of triglycerides, wax esters, squalene, free fatty acids, some cholesterol, and di-glycerides. It helps lubricating the skin, keeping it flexible and since oil and water are immiscible, it acts as a barrier that mitigates water loss. As a sidenote, when sebum is heated for instance when showering at +37 Celsius degrees, sebum starts melting. Because of this you tend to feel the skin dry afterwards. Lukewarm water is thus recommended [6], you do not want to cause an extraneous imbalance.​
+    View attachment 2155081
+    Elevated sebum excretion is the factor behind your pimples. If the hair follicle is plugged, no sebum can be transferred to the surface, hence it accumulates in the sebaceous duct, below the epidermis. People with acne tend to have 50% total sebum content than healthy individuals [7].​
+
+    3. CAUSES
+    We have seen how acne is tied to sebum production, but we have to go one level deeper to know what is excessively increasing sebum. What are the factors behind an abnormal sebum segregation? Some say it is only hormonal, some that diet plays a role, some that it boils down to genetics, etc. Let´s find the truth in that.​
+
+    3.1 Hormones
+    Acne-prone individuals are characterized by enlarged sebaceous glands due to hormonal changes [8]. To know this to be the truth you only have to look at the extreme of the spectrum constituted by castrated men, as they have been shown to experience no acne [9]. Androgens are the key player in acne, and this is what we have to keep under control. This explains the temporality of acne. During childhood, sebum levels remain low, but once we enter puberty, gonads start producing androgens like mad, reaching a peak around 18 years old [10]. Then androgen levels remain pretty much the same during our 20s and 30s [11]. Acne is therefore an endocryne condition. The connection between acne and androgens is further confirmed when exploring the opposite sex. Women who suffer from polycystic ovary syndrome (PCOS) are characterized by atypically high androgens levels and as a consequence they suffer from acne and androgenic alopecia [12]. If you are into hair loss solutions you can already see where I am going.
+
+    In greater detail, androgens are a group of sex hormones formed by testosterone, androstenedione, dehydroepiandrosterone (DHEA), DHEA sulfate, and dihydrotestosterone (DHT). Amongst these five categories, DHT is the most potent hormone and also a pure androgen because it cannot be converted to estrogen [13]. DHT is especially found in the peripherial tissues of the body, that is, the gut, the lungs, and of course the skin. Androstenedione, DHEA and DHEA sulfate are eventually converted to testosterone due to the 3 beta-HSD and 17 beta-HSD enzymes [14]. Testosterone is then transformed to DHT by the enzyme 5 alpha-reductase in these tissues by breaking the double bond you see in red in the image below. The conversion between testosterone and DHT is problematic because DHT has double binding affinity with androgen receptors and five times slower dissociation rate [15]. If you want to keep in check your DHT levels, the first recommendation would be to stop taking creatine since it has been shown to increase DHT by 50% [16]. In my blood tests, only creatinine was out of the normal range yet dermatologists were still uncapable of making the conenction jfl.​
+    View attachment 2155082
+    While androgens are the main reason behind acne, they are not the only factor to keep in check. Sebaceous glands are triggered by insulin, a lack of vitamins (especially A, C, D, E and B5), low levels of zinc and a poor ratio of omega3/6. These are all dietary factors that deserve a particular description. Even if acne was known even in the times of the Egyptians and Greeks [17], it is on the rise and it can be partially attributed to our modern inflammatory diets [18]. We are going to distill some truths on what foods influence acne.​
+
+    3.2 Dairy
+    Dairy is said to affect acne by increasing insulin-like growth factor (IGF-1) levels [19]. Milk also contains the aforementioned testosterone precursors androstenedione, DHEA and DHEA sulfate. Additionally, taking milk provides you with extra 5 alpha-reduced steroids [20]. However, we have to pause here a second and differentiate between the types of milk. A study in American high schools indicated that only skim milk was correlated with acne [21]. Skim milk is said to be comedogenic and contains less estrogens, (estrogens are said to help at reducing acne). Full-fat milk contains proteins, fatty acids, and more cholesterol, which all together can decrease insulin resistance [22]. This goes in line with @Prettyboy 's theory (https://looksmax.org/threads/my-diet.421718/page-3#post-11047497).​
+
+    3.3 Carbohydrates
+    Modern diets are plagued with high levels of carbohydrates, which are thought to be one of the main reasons behind acne. Just take a look at non-Westernized tribes such as the Kitavian Islanders from Papua New Guinea or the Aché hunters from Paraguay to realize they suffered no acne [23], probably due to their low glycemic load foods. Foods high in the glycemic index are broken down into sugar (glucose), and once an increase in blood sugar is detected, the pancreas releases insulin. If you experience insulin resistance, then the cells in your body cannot take advantage of the glucose for energy purposes. The pancreas generates more insulin to compensate for it and you end up stuck in this cycle. Insulin resistance in turn is connected to elevated levels of androgen [24]. No wonder why around 70% of acne patients have insulin resistance [25]. Lactose is a carbohydrate found in dairy that also exhibits a connection with acne. Lactose intolerant people are better off with yoghurt, cheese or fermented milk in the way of kefir as the lactose content is greatly reduced [26]. So it is not like you cannot take dairy products, you just have to select the right ones.​
+
+    3.4 Omegas 3/6
+    Taking the wrong ratio between omega 3 and omega 6 is a modulator of inflammation [27]. Remember the Kitavan and Aché tribes? Although they do eat a low glycemic load diet, it also hypotesized that the high content of omega 3 fatty acids also positively contributes towards not having acne [28]. Modern diets have a 20:1 omega 6/3 ratio whereas hunter-gatherer diets are around the ideal 1:1. Curiously enough, grass-fed beef has a 2:1 ratio at most whereas grain-fed beef has a ratio closer to 6:1 [29]. This just tells you how far from the optimal our diets are because of industrialization. Omega 3 suppresses inflammation by reducing the production of cytokine, a small inflammatory protein that triggers the sebaceous units [30]. Additionally, omega 3 inhibits the production of leukotriene B4, a pro-inflammatory mediator that has been shown to promote insulin resistance [31], and it also decreases the IGF-1 levels [32]. Eskimos were known for their high omega 3 consumption, between 3 to 4 grams a day [33]. This makes you think why eskimos in Canada developed acne once they moved into towns [34].​
+
+    3.5 Vitamins
+    Studies have shown that patients with acne have way lower blood levels of vitamin A and E [35]. These vitamins are antioxidants, that is, they prevent free radicals from damaging cells. Retinols (oral vitamin A) are commonly recommended to combat acne as a first treatment. Low concentrations of 50k to 100k UI are seen as ineffective as you need more than 300k UI to have a visible effect [36], which is more similar to the levels you would get from a synthetic vitamin A solution such as accutane. You run the risk of hypervitaminosis A by taking large doses of this synthetic form. Vitamin A in the form of accutane prevents the formation of comedones and can reduce the sebum production by 90% [37]. This is in my opinion an overkill because people who suffer from acne do not have 1000% more sebum, maybe just 50% more. Your skin will feel extremely dry and you may have to moisturize the skin to fix it somehow. Plus relying on vitamin E to combat the side-effects of isotretinoin has been shown to be ineffective [38]. Vitamin E is preferably administrated to deal with acne scars since being a fat-soluble (it can mix with sebum) antioxidant it has anti inflammatory properties. The formation of comedones is reduced and thus C acnes has it harder to find a solid culture medium [39]. Nonetheless, do not except vitamin E to be a great remedy because it has no effect whatsoever over the sebaceous gland. Vitamin C (absorbic acid) is a water-soluble antioxidant that plays a role in protecting and regenerating the skin, most notably in the synthesis of collagen. I am not going to go deep on that because it has already been covered in the forum. In any case, vitamin C combats retention hyperkeratosis [40], a condition in which the skin cells become cohesive and do not shed normally [41]. Again, vitamin C does not play a role in the overproduction of sebum. Vitamin D deficiencies have been observed in patients with acne as they had about 30% less of it [42]. On the other side, excesses of vitamin D are correlated with high testosterone levels [43], which could further exacerbate acne, so you want to keep them in balance. Excess vitamin B12 can lead to acne eruptions [44]. This is not a problem you will face in a trashy vegan diet but keep an eye on it when following an animal-based diet.​
+
+    3.6 Minerals
+    The most important mineral to take into consideration to fight acne is zinc. There is evidence suggesting a reduction of acne when supplementing zinc [45]. Zinc is bacteriostatic, which means the cellular activity of bacteria is stalled despite not killing them. High doses of zinc can provoke hyperzincemia, a phenomenon in which zinc excess leads to a reduction in copper absorption because both copper and zinc compete for the same absorption sizes in the gut [46]. You do not want low levels of copper as deficiencies in it promote the conversion of testosterone to DHT, hence more sebum, more acne, and induced alopecia [47]. There has been no noticeable influence of magnesium on acne severity. Iron on the other hand has to be kept in check as patients that report suffering from acne typically have a low iron concentration in serum. Curiously enough, taking isotretinoin allowed recovering iron serum levels back to normal [48].​
+
+    3.7 Microbiome
+    The connection between the microbiome and skin cannot be neglected. While the gut-brain axis is relatively well-known, it has to be extended into the gut-brain-skin axis. The intestinal flora can interact with the mechanistic target of rapamycin complex 1 (mTORC1) [49]. In practice, over-activated mTORC1 forces an increase in androgen production and stimulates sebaceous gland hyperplasia [50]. Also, deficiencies in stomach acid, known as hypochlorhydria, are connected to acne. Low acid concentrations force the bacteria to move towards the external part of the small intestine. Imbalances of microbiota (gut dysbiosis) occur, where the healthy bacteria is outnumbered by pathogens. The intestinal permeability increases, which then leads to inflammation [51]. Acne patients are known to have poor microbiota diversity and a decrease in two critical subtypes (Lactobacillus and Bifidobacterium), which are probiotic species that strengthen the intestinal barrier we have mentioned (less permeability, thus mitigated loss of healthy bacteria) [52].​
+
+    4. SOLUTIONS
+    4.1 The conventional approach
+    From the theory review above it is clear that acne comes from the inside. It would be absurd to fall for cream scams knowing it. All these benzoyl peroxide, salicylic acid, azaleic acid, oil-free cleansers and moisturizers, gels, serums, and whatever topical solution your dermathologist may recommend are suboptimal solutions. They are just palliative options that will cover the problem without attacking the root cause. Topical tretinoin is useful at speeding up the replacement of dead skin cells as well as reducing the size of the follicles, which all together helps at preventing the accumulation of excess sebum. However, the abnormal production of excess sebum is maintained. Accutane is a potent drug actually does something by reducing the size and activity of the sebaceous glands. However, I can tell you from first-hand experience that it comes with side-effects, and that the glandular activity can be partially recovered after some weeks. None of these artificial fixes existed a century ago. It makes more sense to solve the health issue from the inside before applying these remedies.
+
+    By this I do not mean that these solutions should be disregarded right off the bat. They can definitely help when you have a pimple here and there. I am the first one to use epiduo (formed by benzyl peroxide) to fix some small pimple that may appear during days of eating a non-ideal diet due to social celebrations, etc. Just keep in mind that these alternatives are to be seen as the cherry on top. We first need to establish the fundamentals.
+
+    4.2 Combating hormones
+    We have previously explained what was triggering acne, and that DHT was the main culprit behind this. There are various ways to inhibit the production of DHT, most of them coming from anti alopecia measures. The anti hair loss in the botb section makes an excellent job at covering them (https://looksmax.org/threads/ultimate-indepth-anti-hair-loss-guide.220874/). I will just summarize the main ones:
+
+    - Creatine: it goes without saying that creatine should be avoided, and this should be the first thing to do. I personally fell victim of that after hearing that it is the most well-studied supplement across the globe with “minimal” sides.
+    - Finasteride: inhibits 5 alpha-reductase and drops DHT by 60%. You can use it as a microemulsion gel (which has been shown to reduce acne by around 75%) [53], or take it orally, which is also seen to work [54].
+    - Dutasteride: a more potent drug that reduced DHT by 90% [55] and also inhibits 5 alpha-reductase. I would only go for dutasteride in extreme cases where you also want to combat hair loss. Otherwise the sides may be too much.
+    - Spironolactone: a steroidal androgen receptor-blocker that competes with testosterone and DHT for androgen receptors. Hence, it can significantly reduce sebocyte proliferation [56]. If it has any influence on 5 alpha-reductase is yet to be seen.
+    - Flutamide: a non-steroidal androgen receptor-blocker that has a lower effect on acne compared to spironolactone, hence greater doses are needed.
+
+    4.3 Diet
+    Jump into a low glycemic load. This nutrition guide should be a very solid good starting point (https://looksmax.org/threads/my-diet.421718/). A low glycemic load diet will reduce the acne severity by improving insulin sensitivity, reducing the free androgen index, and reduce the BMI additionally. Eating a low carb diet may be hard if you are just starting, and I would not aim at consuming zero carbs. Taking 1 liter of milk will provide you between 40 and 50 g of carbs, which may be enough. If you really need to eat more carbs you can go for brown rice if you can tolerate since it has a somewhat acceptable glycemic index of 55. Beware of eating too much leucine in it stimulates the mTORC1 signaling, hence more sebum will be produced. In my experience you can surpass the recommended daily intake of 2.8 g if you eat grass-fed beef and fatty dairy without much problem, but it is better to avoid leucine supplements. This is what I more or less eat in a day:
+    View attachment 2155087
+    Although I am currently in a caloric surplus you get the idea. I eat a high fat diet with minimum carbs and a significant amount of protein. The mackerel gives me enough omega 3 to rock an omega 6/3 ratio between 1:1 and 2:1. I eat cheese and kefir (more on that later) for the carbs, vitamin A and calcium. The ground beef and the eggs are cheap sources of protein and calories. I avoid cooking with fried seed oils as the foods are naturally greasy enough. Finally, I take two multivitamin capsules, one in the morning and one in the evening together with the meals to cover the vitamin deficiencies that go along this diet. I also may take some collagen, vitamin C pills and beta carotene. All together the nutrients look like this:
+    View attachment 2155088
+    Could it be improved? For sure, but I noticed a big improvement from eating this diet compared to numbly consuming everything there was in the plate.
+
+    4.4 Probiotics
+    While eating a healthy carnivore diet with the right supplements made a big change for me, it was not until I incorporated probiotics that started getting a glimpse of what it was like to live without having to worry about pimples. Every day I eat 1 liter of kefir, which I make at home. It is way cheaper than buying it from the store as you only have to pay for the milk and have acquired the kefir grains (they should cost no more than 20 euros). The only downside associated with self-made kefir is the amount of alcohol because it can have a 0.5%. It is best to not let it over-ferment and work with a small enough amount of grains.
+
+    View attachment 2155089
+    Other probiotics you may try are sauerkaut (made from cabbage), kimchi (also coming from vegetables), and even yogurt. Self-made kefir has at least 3 times more probiotics than yogurt, and it will also be cheaper, so I would recommend sticking to kefir. If you are lactose intolerant kefir should not be an issue because most lactose is consumed during the fermentation process. Kombucha is another probiotic you could try, even though it takes longer to prepare than milk kefir and is way less caloric. Overall milk kefir mogs everything else.
+
+    5. RESULTS
+    How it was during months:​
+    View attachment 2155090
+
+    How it is going:​
+    View attachment 2155092
+    I still have some hyperpigmentation due to the acne scarring, but man, it feels good not having to worry about this.
+    ​
+    6. REFERENCES
+    [1] Halvorsen, Jon A., et al. "Suicidal ideation, mental health problems, and social impairment are increased in adolescents with acne: a population-based study." Journal of Investigative Dermatology 131.2 (2011): 363-370.
+    [2] Williams, Hywel C., Robert P. Dellavalle, and Sarah Garner. "Acne vulgaris." The Lancet 379.9813 (2012): 361-372.
+    [3] Dréno, Brigitte, et al. "Cutibacterium acnes (Propionibacterium acnes) and acne vulgaris: a brief look at the latest updates." Journal of the European Academy of Dermatology and Venereology 32 (2018): 5-14.
+    [4] Christensen, Gitte Julie Møller, and Holger Brüggemann. "Bacterial skin commensals and their role as host guardians." Beneficial microbes 5.2 (2014): 201-215.
+    [5] Britannica, The Editors of Encyclopaedia. "sebaceous gland". Encyclopedia Britannica, 12 Feb. 2023, https://www.britannica.com/science/sebaceous-gland. Accessed 15 April 2023.
+    [6] Herrero-Fernandez, Manuel, et al. "Impact of Water Exposure and Temperature Changes on Skin Barrier Function." Journal of Clinical Medicine 11.2 (2022): 298.
+    [7] Pappas, Apostolos, et al. "Sebum analysis of individuals with and without acne." Dermato-endocrinology 1.3 (2009): 157-161.
+    [8] Elsaie, Mohamed L. "Hormonal treatment of acne vulgaris: an update." Clinical, cosmetic and investigational dermatology (2016): 241-248.
+    [9] Pochi, Peter E. "Acne: Androgens and microbiology." Drug Development Research 13.2‐3 (1988): 157-168.
+    [10] Pochi, Peter E., John S. Strauss, and Donald T. Downing. "Age-related changes in sebaceous gland activity." Journal of Investigative Dermatology 73.1 (1979): 108-111.
+    [11] Pochi, Peter E., and John S. Strauss. "Endocrinologic control to the development and activity of the human sebaceous gland." Journal of Investigative Dermatology 62.3 (1974): 191-201.
+    [12] Chuan, Sandy S., and R. Jeffrey Chang. "Polycystic ovary syndrome and acne." Skin therapy letter 15.10 (2010): 1-4.
+    [13] Kinter, Kevin J., and Aabha A. Anekar. "Biochemistry, dihydrotestosterone." StatPearls [Internet]. StatPearls Publishing, 2022.
+    [14] Allolio, Bruno, Wiebke Arlt, and Stefanie Hahner. "Dehydroepiandrosterone and androstenedione." Testosterone: Action, Deficiency, Substitution (2012): 437-458.
+    [15] Marchetti, Paula M., and Julian H. Barth. "Clinical biochemistry of dihydrotestosterone." Annals of Clinical Biochemistry 50.2 (2013): 95-107.
+    [16] Van der Merwe, Johann, Naomi E. Brooks, and Kathryn H. Myburgh. "Three weeks of creatine monohydrate supplementation affects dihydrotestosterone to testosterone ratio in college-aged rugby players." Clinical Journal of Sport Medicine 19.5 (2009): 399-404.
+    [17] Mahmood, N. F., and A. R. Shipman. "The age-old problem of acne." International journal of women's dermatology 3.2 (2017): 71-76.
+    [18] Campbell, Christine E., and Beverly I. Strassmann. "The blemishes of modern society? Acne prevalence in the Dogon of Mali." Evolution, medicine, and public health 2016.1 (2016): 325-337.
+    [19] Romo Ventura, Eugenia, et al. "Association of dietary intake of milk and dairy products with blood concentrations of insulin-like growth factor 1 (IGF-1) in Bavarian adults." European journal of nutrition 59 (2020): 1413-1420.
+    [20] Darling, J. A. B., A. H. Laing, and R. A. Harkness. "A SURVEY OF THE STEROIDS IN COWS'MILK." Journal of endocrinology 62.2 (1974): 291-297.
+    [21] Adebamowo, Clement A., et al. "High school dietary dairy intake and teenage acne." Journal of the American Academy of Dermatology 52.2 (2005): 207-214.
+    [22] LaRosa, Caroline L., et al. "Consumption of dairy in teenagers with and without acne." Journal of the American Academy of Dermatology 75.2 (2016): 318-322.
+    [23] Cordain, Loren, et al. "Acne vulgaris: a disease of Western civilization." Archives of dermatology 138.12 (2002): 1584-1590.
+    [24] Xu, Yalan, and Jie Qiao. "Association of insulin resistance and elevated androgen levels with Polycystic Ovarian Syndrome (PCOS): a review of literature." Journal of healthcare engineering 2022 (2022).
+    [25] Hasrat, Nazik H., and Asaad Q. Al-Yassen. "The Relationship Between Acne Vulgaris and Insulin Resistance." Cureus 15.1 (2023).
+    [26] Aghasi, Mohadeseh, et al. "Dairy intake and acne development: a meta-analysis of observational studies." Clinical Nutrition 38.3 (2019): 1067-1075.
+    [27] Simopoulos, Artemis P. "Omega-3 fatty acids in inflammation and autoimmune diseases." Journal of the American College of nutrition 21.6 (2002): 495-505.
+    [28] Logan, Alan C. "Omega-3 fatty acids and acne." Archives of dermatology 139.7 (2003): 941-942.
+    [29] Daley, C. A., et al. "A literature review of the value-added nutrients found in grass-fed beef products." California State University, Chico (College of Agriculture) (2004).
+    [30] Cordain, Loren. "Implications for the role of diet in acne." Seminars in cutaneous medicine and surgery. Vol. 24. No. 2. WB Saunders, 2005.
+    [31] Gong, Minmin, et al. "Berberine Alleviates Insulin Resistance and Inflammation via Inhibiting the LTB4–BLT1 Axis." Frontiers in Pharmacology 12 (2021): 722360.
+    [32] Bhathena, Sam J., et al. "Effects of ω 3 fatty acids and vitamin E on hormones involved in carbohydrate and lipid metabolism in men." The American journal of clinical nutrition 54.4 (1991): 684-688.
+    [33] Ebbesson, Sven OE, et al. "Eskimos have CHD despite high consumption of omega-3 fatty acids: the Alaska Siberia project." International journal of circumpolar health 64.4 (2005): 387-395.
+    [34] Schaefer, Otto. "When the Eskimo comes to town." Nutrition Today 6.6 (1971): 8-16.
+    [35] El‐Akawi, Z., N. Abdel‐Latif, and K. Abdul‐Razzak. "Does the plasma level of vitamins A and E affect acne condition?." Clinical and experimental dermatology 31.3 (2006): 430-434.
+    [36] Kligman, Albert M., et al. "Oral vitamin A in acne vulgaris Preliminary report." International Journal of Dermatology 20.4 (1981): 278-285.
+    [37] Kotori, Merita Grajqevci. "Low-dose vitamin “A” tablets–treatment of acne vulgaris." Medical Archives 69.1 (2015): 28.
+    [38] Kus, Sadiye, et al. "Vitamin E does not reduce the side‐effects of isotretinoin in the treatment of acne vulgaris." International journal of dermatology 44.3 (2005): 248-251.
+    [39] Keen, Mohammad Abid, and Iffat Hassan. "Vitamin E in dermatology." Indian dermatology online journal 7.4 (2016): 311.
+    [40] Morris, George E. "Use of vitamin C in acne vulgaris." AMA Archives of Dermatology and Syphilology 70.3 (1954): 363-364.
+    [41] Lambrechts, Isa Anina, Marco Nuno de Canha, and Namrita Lall. "Exploiting medicinal plants as possible treatments for acne vulgaris." Medicinal Plants for Holistic Health and Well-Being. Academic Press, 2018. 117-143.
+    [42] Alhetheli, Ghadah, et al. "Vitamin D levels in patients with and without acne and its relation to acne severity: a case-control study." Clinical, Cosmetic and Investigational Dermatology (2020): 759-765.
+    [43] Pilz, S., et al. "Effect of vitamin D supplementation on testosterone levels in men." Hormone and Metabolic Research 43.03 (2011): 223-225.
+    [44] Kang, Dezhi, et al. "Vitamin B12 modulates the transcriptome of the skin microbiota in acne pathogenesis." Science translational medicine 7.293 (2015): 293ra103-293ra103.
+    [45] Michaëlsson, G. E. R. D., L. Juhlin, and K. E. R. S. T. I. N. Ljunghall. "A double-blind study of the effect of zinc and oxytetracycline in acne vulgaris." The British Journal of Dermatology 97.5 (1977): 561-566.
+    [46] Wahab, Ahsan, et al. "Zinc‐induced copper deficiency, sideroblastic anemia, and neutropenia: A perplexing facet of zinc excess." Clinical Case Reports 8.9 (2020): 1666-1671.
+    [47] Skalnaya, Margarita G. "Copper deficiency a new reason of androgenetic alopecia." Pharmacology and nutritional intervention in the treatment of disease (2014): 337-348.
+    [48] Leyden, James J. "Low Serum Iron Levels and Moderate Anemia in Severe Nodulocystic Acne: Reversal With Isotretinoin Therapy." Archives of dermatology 121.2 (1985): 214-215.
+    [49] Lee, Young Bok, Eun Jung Byun, and Hei Sung Kim. "Potential role of the microbiome in acne: a comprehensive review." Journal of clinical medicine 8.7 (2019): 987.
+    [50] Melnik, Bodo. "Dietary intervention in acne: Attenuation of increased mTORC1 signaling promoted by Western diet." Dermato-endocrinology 4.1 (2012): 20-32.
+    [51] Clark, Ashley K., Kelly N. Haas, and Raja K. Sivamani. "Edible plants and their influence on the gut microbiome and acne." International journal of molecular sciences 18.5 (2017): 1070.
+    [52] Madsen, Karen, et al. "Probiotic bacteria enhance murine and human intestinal epithelial barrier function." Gastroenterology 121.3 (2001): 580-591.
+    [53] Khodayani, Efat, et al. "Study the effect of finasteride microemulsion gel on the treatment of men with mild to moderate acne." Studies in Medical Sciences 29.8 (2018): 585-592.
+    [54] Rokni, Ghasem Rahmatpour, et al. "Efficacy, tolerability, and safety of montelukast versus finasteride for the treatment of moderate acne in women: A prospective, randomized, single‐blinded, active‐controlled trial." Journal of cosmetic dermatology 20.11 (2021): 3580-3585.
+    [55] Clark, Richard V., et al. "Marked suppression of dihydrotestosterone in men with benign prostatic hyperplasia by dutasteride, a dual 5α-reductase inhibitor." The journal of clinical endocrinology & metabolism 89.5 (2004): 2179-2184.
+    [56] Shaw, James C. "Acne: effect of hormones on pathogenesis and management." American journal of clinical dermatology 3 (2002): 571-578.
+    Click to expand...
+
+Noy a single atom nigger
+ 
+
+    JFL 
+
+Reactions: aleksander and SurgeryEnjoyer
+the_nextDavidLaid
+the_nextDavidLaid
+I will rearrange Gio Scotti's guts.
+
+Joined
+    Jan 31, 2023
+
+Posts
+    2,637
+
+Reputation
+    1,802
+
+    Nov 9, 2023 
+
+    #30
+
+    jfbjfb said:
+    Sure, here we go.
+
+    To make milk kefir you need two ingredients: the kefir grains and the milk itself.
+
+    Kefir grains: I would recommend buying them from the Internet, unless you personally know someone how is already making kefir at home that could ship them to you. Ideally these kefir grains should have undergone testing procedures to ensure they are free of pathogens (coliform, salmonella, listeria, etc.). This is why it is preferable to get them from a trusted source and not a shady neighbor. So assuming you buy them, they will come in this little plastic bag. They are commonly sold in amounts of 20 to 40 g, which is more than enough. Keep in mind the grains are a living colony and thus they will grow and multiply over time. If you preserve them in nice conditions, they can even live to the end of times.
+
+    View attachment 2259315
+    (The kefir grains I bought)
+
+    Milk: the fattier and the purer the milk is, the better. In an ideal scenario you would contact your local farmer and buy raw milk, without any pasteurization process. Pasteurization kills some bacteria, enzymes and proteins; not all of them, but a noticeable amount. There are some local farms in my zone that pasteurize the milk, as otherwise there is no way they are going to sell it in regulated markets, but do so at 70 to 80 Celsius degrees. Again, not a panacea but still acceptable. If you are a city rat that cannot get its hands to high quality milk, then the last resort is to rely on whole milk acquired from the supermarket. You should be aiming at one with +2.5% fat.
+
+    View attachment 2259338
+    (Mogger milk from my area with +3.5% fat, notice the yellowish color)
+
+    Once you have the two ingredients, you have to pick a glass jar, fill it with the grains, and about 1 liter of milk. It is important to keep the proportion between grains and milk to avoid overfermenting and underfermenting it. In the latter case you will have less probiotics, while in the first case it will have more alcohol and taste more acidic. It is about finding the right balance, around 40 g of grains for 1 liter should do it. Once you have mixed the two, you let the jar rest for 1 day. This fermentation time largely depends on the room temperature. Hot temperatures will make it ferment faster, and on the contrary, keeping the mix in the fridge will heavily slow down the process. Make sure to cover the jar with a rag or some thin paper during fermentation. You want it to breathe but also cover it from insects and similar. This is what the jar looks like after 1 day of fermentation:
+    View attachment 2259350
+    Then, you have to separate the grains from the milk. To do so I would advise getting a strainer for only this purpose to not experience any contamination issues. The same applies to the jar, you should always use one only for the kefir. Separating the fermented milk from the kefir grains is pretty easy, just pour the milk and filter all the milk. You can technically eat the grains but you do not want to lose too many of them.
+
+    View attachment 2259359
+    The last step is of course drinking the filtered milk. Notice in the pic I have quite a lot of grains. With this amount I am obtaining kefir that becomes a bit acidic. If you want to have something a bit more tasty, similar to a cream in texture, you can put the jar 24 hours in the fridge. I tend to do it on the weekends to not overferment it, and it always tastes marvelously afterwards.
+    Click to expand...
+
+Make a thread going over your raw primal animal based mostly diet please. This could save a ton of us the trouble. I would defo read it and most importantly save it. Great thread. Did not completely read though but from what I saw it’s great to warrant a BotB
+ 
+
+    +1 
+
+Reactions: hygy and normie tiktoker
+PseudoMaxxer
+PseudoMaxxer
+Bludy boyo.
+
+Joined
+    Sep 14, 2023
+
+Posts
+    26,162
+
+Reputation
+    40,162
+
+    Nov 15, 2023 
+
+    #31
+
+so will take fin also help with acne? i wanna start for my hair
+ 
+
+    +1 
+
+Reactions: aleksander
+Detective
+Detective
+Solstice
+
+Joined
+    Feb 14, 2023
+
+Posts
+    2,273
+
+Reputation
+    1,594
+
+    Nov 18, 2023 
+
+    #32
+
+Dairy is worst
+ 
+bradpittshairline
+bradpittshairline
+im a ass and titty lover
+
+Joined
+    Feb 28, 2023
+
+Posts
+    7,078
+
+Reputation
+    5,823
+
+    Nov 18, 2023 
+
+    #33
+
+    Detective said:
+    Dairy is worst
+
+Dairy won’t cause acne unless you drink 1 litre. Whey on the other hand is proven to cause or agggrevate acne
+ 
+
+    +1 
+
+Reactions: STUPIDREFEREES and aleksander
+bradpittshairline
+bradpittshairline
+im a ass and titty lover
+
+Joined
+    Feb 28, 2023
+
+Posts
+    7,078
+
+Reputation
+    5,823
+
+    Nov 18, 2023 
+
+    #34
+
+    PseudoMaxxer said:
+    so will take fin also help with acne? i wanna start for my hair
+
+Search “finesteride acne Reddit” it does work. Same way Spiro works for women with PCOS by stopping both acne and hair loss
+ 
+
+    +1 
+
+Reactions: PseudoMaxxer
+PseudoMaxxer
+PseudoMaxxer
+Bludy boyo.
+
+Joined
+    Sep 14, 2023
+
+Posts
+    26,162
+
+Reputation
+    40,162
+
+    Nov 18, 2023 
+
+    #35
+
+    bradpittshairline said:
+    Search “finesteride acne Reddit” it does work. Same way Spiro works for women with PCOS by stopping both acne and hair loss
+
+Damn life fuel, i just took my first Fin tablet too
+ 
+Detective
+Detective
+Solstice
+
+Joined
+    Feb 14, 2023
+
+Posts
+    2,273
+
+Reputation
+    1,594
+
+    Nov 18, 2023 
+
+    #36
+
+    bradpittshairline said:
+    Dairy won’t cause acne unless you drink 1 litre. Whey on the other hand is proven to cause or agggrevate acne
+
+cope
+ 
+bradpittshairline
+bradpittshairline
+im a ass and titty lover
+
+Joined
+    Feb 28, 2023
+
+Posts
+    7,078
+
+Reputation
+    5,823
+
+    Nov 18, 2023 
+
+    #37
+
+    Detective said:
+    cope
+
+Science believers when presented by scientific facts they don’t agree with
+ 
+
+    +1 
+
+Reactions: aleksander
+bradpittshairline
+bradpittshairline
+im a ass and titty lover
+
+Joined
+    Feb 28, 2023
+
+Posts
+    7,078
+
+Reputation
+    5,823
+
+    Nov 18, 2023 
+
+    #38
+
+    PseudoMaxxer said:
+    Damn life fuel, i just took my first Fin tablet too
+
+Give it a few weeks you probably won’t get acne again and your scalp won’t be as oily either
+ 
+
+    Love it 
+
+Reactions: PseudoMaxxer
+Detective
+Detective
+Solstice
+
+Joined
+    Feb 14, 2023
+
+Posts
+    2,273
+
+Reputation
+    1,594
+
+    Nov 18, 2023 
+
+    #39
+
+    bradpittshairline said:
+    Science believers when presented by scientific facts they don’t agree with
+
+it gives me acne and its scientific retard
+ 
+bradpittshairline
+bradpittshairline
+im a ass and titty lover
+
+Joined
+    Feb 28, 2023
+
+Posts
+    7,078
+
+Reputation
+    5,823
+
+    Nov 18, 2023 
+
+    #40
+
+    Detective said:
+    it gives me acne and its scientific retard
+
+Jfl subhuman gut
+ 
+
+    JFL 
+
+Reactions: entrytrash, aleksander and Detective
+enchanted_elixir
+enchanted_elixir
+𝕸𝖊𝖗𝖈𝖊𝖓𝖆𝖗𝖞 𝕮𝖔𝖗𝖕 • 𝟐𝟎𝟐𝟐🥉• Inactive
+Contributor
+
+Joined
+    Apr 15, 2022
+
+Posts
+    23,732
+
+Reputation
+    41,951
+
+    Dec 3, 2023 
+
+    #41
+
+    jfbjfb said:
+    TABLE OF CONTENTS
+    1. Introduction
+
+    2. Definition
+
+    3. Causes
+    3.1 Hormones
+    3.2 Dairy
+    3.3 Carbohydrates
+    3.4 Omegas 3/6
+    3.5 Vitamins
+    3.6 Minerals
+    3.7 Microbiome
+
+    4. Solutions
+    4.1 The conventional approach
+    4.2 Combating hormones
+    4.3 Diet
+    4.4 Probiotics
+
+    5. Results
+
+    6. References
+
+    1. INTRODUCTION
+    Acne is arguably one of the most notable looksmins out there. It is linked to a 3x increase in male suicide ideation, difficulty in forming meaningful personal connections, and depression [1]. Having acne is akin to living life in hard mode, and I know it from first-hand experience. Last summer I remember flaneuring along the breathtaking Occitan streets and counting the amount of people that had worse acne that me. I passed by thousands of people and my skin could not literally compete with anyone. If someone is blackpilled about acne it has to be me. In this post we are going to unveil the scientific underlying causes of acne and the non-copium curative solutions. Optimizing the skin is crucial to ascend, and while there are top-tier guides in this forum on how to improve the skin, I have yet failed to come across a deep-dive on acne. This is the post I would have desired to encounter months ago.​
+
+    2. DEFINITION
+    In scientific spheres, acne vulgaris is a recurring inflammatory condition due to the increased sebum production that derives on the colonization of follicles by Cutibacterium acnes (previously known as Propionibacterium acnes) [2]. What does it mean in layman terms? That what we call acne is no less than a visible disease expressed through the inflammation of the skin due to an excess of a bacteria. Now, Cutibacterium acnes (C acnes) itself is not the problem. The issue is the imbalance of the cutaneous microbiome. The skin surface is inhabited by three main types of bacteria: Corynebacteria, Cutibacterium and Staphylococci [3]. An imbalance between them is the main reason behind what we call acnne. This explains why antibiotics are trash when trying to fight acne; they will kill bacteria indiscriminately which means improper ratios will be maintained. C acnes supposes less than 2% of the total skin bacteria, yet it is key to preserve skin's optimal pH around 5 and acts as a commensal to maintain healthy skin microbiota [4]. We need to find what throws C acnes off-balance, but first, the nature of the sebaceous gland has to be addressed.
+
+    The sebaceous gland, or also denoted as oil gland, is a gland (i.e. a group of cells) present in the skin of mammals. It is especially found in the face and the scalp [5]. As shown in the image below, the sebaceous gland is connected to the hair follicle. An oily substance called sebum is produced by the gland. Sebum is composed of triglycerides, wax esters, squalene, free fatty acids, some cholesterol, and di-glycerides. It helps lubricating the skin, keeping it flexible and since oil and water are immiscible, it acts as a barrier that mitigates water loss. As a sidenote, when sebum is heated for instance when showering at +37 Celsius degrees, sebum starts melting. Because of this you tend to feel the skin dry afterwards. Lukewarm water is thus recommended [6], you do not want to cause an extraneous imbalance.​
+    View attachment 2155081
+    Elevated sebum excretion is the factor behind your pimples. If the hair follicle is plugged, no sebum can be transferred to the surface, hence it accumulates in the sebaceous duct, below the epidermis. People with acne tend to have 50% total sebum content than healthy individuals [7].​
+
+    3. CAUSES
+    We have seen how acne is tied to sebum production, but we have to go one level deeper to know what is excessively increasing sebum. What are the factors behind an abnormal sebum segregation? Some say it is only hormonal, some that diet plays a role, some that it boils down to genetics, etc. Let´s find the truth in that.​
+
+    3.1 Hormones
+    Acne-prone individuals are characterized by enlarged sebaceous glands due to hormonal changes [8]. To know this to be the truth you only have to look at the extreme of the spectrum constituted by castrated men, as they have been shown to experience no acne [9]. Androgens are the key player in acne, and this is what we have to keep under control. This explains the temporality of acne. During childhood, sebum levels remain low, but once we enter puberty, gonads start producing androgens like mad, reaching a peak around 18 years old [10]. Then androgen levels remain pretty much the same during our 20s and 30s [11]. Acne is therefore an endocryne condition. The connection between acne and androgens is further confirmed when exploring the opposite sex. Women who suffer from polycystic ovary syndrome (PCOS) are characterized by atypically high androgens levels and as a consequence they suffer from acne and androgenic alopecia [12]. If you are into hair loss solutions you can already see where I am going.
+
+    In greater detail, androgens are a group of sex hormones formed by testosterone, androstenedione, dehydroepiandrosterone (DHEA), DHEA sulfate, and dihydrotestosterone (DHT). Amongst these five categories, DHT is the most potent hormone and also a pure androgen because it cannot be converted to estrogen [13]. DHT is especially found in the peripherial tissues of the body, that is, the gut, the lungs, and of course the skin. Androstenedione, DHEA and DHEA sulfate are eventually converted to testosterone due to the 3 beta-HSD and 17 beta-HSD enzymes [14]. Testosterone is then transformed to DHT by the enzyme 5 alpha-reductase in these tissues by breaking the double bond you see in red in the image below. The conversion between testosterone and DHT is problematic because DHT has double binding affinity with androgen receptors and five times slower dissociation rate [15]. If you want to keep in check your DHT levels, the first recommendation would be to stop taking creatine since it has been shown to increase DHT by 50% [16]. In my blood tests, only creatinine was out of the normal range yet dermatologists were still uncapable of making the conenction jfl.​
+    View attachment 2155082
+    While androgens are the main reason behind acne, they are not the only factor to keep in check. Sebaceous glands are triggered by insulin, a lack of vitamins (especially A, C, D, E and B5), low levels of zinc and a poor ratio of omega3/6. These are all dietary factors that deserve a particular description. Even if acne was known even in the times of the Egyptians and Greeks [17], it is on the rise and it can be partially attributed to our modern inflammatory diets [18]. We are going to distill some truths on what foods influence acne.​
+
+    3.2 Dairy
+    Dairy is said to affect acne by increasing insulin-like growth factor (IGF-1) levels [19]. Milk also contains the aforementioned testosterone precursors androstenedione, DHEA and DHEA sulfate. Additionally, taking milk provides you with extra 5 alpha-reduced steroids [20]. However, we have to pause here a second and differentiate between the types of milk. A study in American high schools indicated that only skim milk was correlated with acne [21]. Skim milk is said to be comedogenic and contains less estrogens, (estrogens are said to help at reducing acne). Full-fat milk contains proteins, fatty acids, and more cholesterol, which all together can decrease insulin resistance [22]. This goes in line with @Prettyboy 's theory (https://looksmax.org/threads/my-diet.421718/page-3#post-11047497).​
+
+    3.3 Carbohydrates
+    Modern diets are plagued with high levels of carbohydrates, which are thought to be one of the main reasons behind acne. Just take a look at non-Westernized tribes such as the Kitavian Islanders from Papua New Guinea or the Aché hunters from Paraguay to realize they suffered no acne [23], probably due to their low glycemic load foods. Foods high in the glycemic index are broken down into sugar (glucose), and once an increase in blood sugar is detected, the pancreas releases insulin. If you experience insulin resistance, then the cells in your body cannot take advantage of the glucose for energy purposes. The pancreas generates more insulin to compensate for it and you end up stuck in this cycle. Insulin resistance in turn is connected to elevated levels of androgen [24]. No wonder why around 70% of acne patients have insulin resistance [25]. Lactose is a carbohydrate found in dairy that also exhibits a connection with acne. Lactose intolerant people are better off with yoghurt, cheese or fermented milk in the way of kefir as the lactose content is greatly reduced [26]. So it is not like you cannot take dairy products, you just have to select the right ones.​
+
+    3.4 Omegas 3/6
+    Taking the wrong ratio between omega 3 and omega 6 is a modulator of inflammation [27]. Remember the Kitavan and Aché tribes? Although they do eat a low glycemic load diet, it also hypotesized that the high content of omega 3 fatty acids also positively contributes towards not having acne [28]. Modern diets have a 20:1 omega 6/3 ratio whereas hunter-gatherer diets are around the ideal 1:1. Curiously enough, grass-fed beef has a 2:1 ratio at most whereas grain-fed beef has a ratio closer to 6:1 [29]. This just tells you how far from the optimal our diets are because of industrialization. Omega 3 suppresses inflammation by reducing the production of cytokine, a small inflammatory protein that triggers the sebaceous units [30]. Additionally, omega 3 inhibits the production of leukotriene B4, a pro-inflammatory mediator that has been shown to promote insulin resistance [31], and it also decreases the IGF-1 levels [32]. Eskimos were known for their high omega 3 consumption, between 3 to 4 grams a day [33]. This makes you think why eskimos in Canada developed acne once they moved into towns [34].​
+
+    3.5 Vitamins
+    Studies have shown that patients with acne have way lower blood levels of vitamin A and E [35]. These vitamins are antioxidants, that is, they prevent free radicals from damaging cells. Retinols (oral vitamin A) are commonly recommended to combat acne as a first treatment. Low concentrations of 50k to 100k UI are seen as ineffective as you need more than 300k UI to have a visible effect [36], which is more similar to the levels you would get from a synthetic vitamin A solution such as accutane. You run the risk of hypervitaminosis A by taking large doses of this synthetic form. Vitamin A in the form of accutane prevents the formation of comedones and can reduce the sebum production by 90% [37]. This is in my opinion an overkill because people who suffer from acne do not have 1000% more sebum, maybe just 50% more. Your skin will feel extremely dry and you may have to moisturize the skin to fix it somehow. Plus relying on vitamin E to combat the side-effects of isotretinoin has been shown to be ineffective [38]. Vitamin E is preferably administrated to deal with acne scars since being a fat-soluble (it can mix with sebum) antioxidant it has anti inflammatory properties. The formation of comedones is reduced and thus C acnes has it harder to find a solid culture medium [39]. Nonetheless, do not except vitamin E to be a great remedy because it has no effect whatsoever over the sebaceous gland. Vitamin C (absorbic acid) is a water-soluble antioxidant that plays a role in protecting and regenerating the skin, most notably in the synthesis of collagen. I am not going to go deep on that because it has already been covered in the forum. In any case, vitamin C combats retention hyperkeratosis [40], a condition in which the skin cells become cohesive and do not shed normally [41]. Again, vitamin C does not play a role in the overproduction of sebum. Vitamin D deficiencies have been observed in patients with acne as they had about 30% less of it [42]. On the other side, excesses of vitamin D are correlated with high testosterone levels [43], which could further exacerbate acne, so you want to keep them in balance. Excess vitamin B12 can lead to acne eruptions [44]. This is not a problem you will face in a trashy vegan diet but keep an eye on it when following an animal-based diet.​
+
+    3.6 Minerals
+    The most important mineral to take into consideration to fight acne is zinc. There is evidence suggesting a reduction of acne when supplementing zinc [45]. Zinc is bacteriostatic, which means the cellular activity of bacteria is stalled despite not killing them. High doses of zinc can provoke hyperzincemia, a phenomenon in which zinc excess leads to a reduction in copper absorption because both copper and zinc compete for the same absorption sizes in the gut [46]. You do not want low levels of copper as deficiencies in it promote the conversion of testosterone to DHT, hence more sebum, more acne, and induced alopecia [47]. There has been no noticeable influence of magnesium on acne severity. Iron on the other hand has to be kept in check as patients that report suffering from acne typically have a low iron concentration in serum. Curiously enough, taking isotretinoin allowed recovering iron serum levels back to normal [48].​
+
+    3.7 Microbiome
+    The connection between the microbiome and skin cannot be neglected. While the gut-brain axis is relatively well-known, it has to be extended into the gut-brain-skin axis. The intestinal flora can interact with the mechanistic target of rapamycin complex 1 (mTORC1) [49]. In practice, over-activated mTORC1 forces an increase in androgen production and stimulates sebaceous gland hyperplasia [50]. Also, deficiencies in stomach acid, known as hypochlorhydria, are connected to acne. Low acid concentrations force the bacteria to move towards the external part of the small intestine. Imbalances of microbiota (gut dysbiosis) occur, where the healthy bacteria is outnumbered by pathogens. The intestinal permeability increases, which then leads to inflammation [51]. Acne patients are known to have poor microbiota diversity and a decrease in two critical subtypes (Lactobacillus and Bifidobacterium), which are probiotic species that strengthen the intestinal barrier we have mentioned (less permeability, thus mitigated loss of healthy bacteria) [52].​
+
+    4. SOLUTIONS
+    4.1 The conventional approach
+    From the theory review above it is clear that acne comes from the inside. It would be absurd to fall for cream scams knowing it. All these benzoyl peroxide, salicylic acid, azaleic acid, oil-free cleansers and moisturizers, gels, serums, and whatever topical solution your dermathologist may recommend are suboptimal solutions. They are just palliative options that will cover the problem without attacking the root cause. Topical tretinoin is useful at speeding up the replacement of dead skin cells as well as reducing the size of the follicles, which all together helps at preventing the accumulation of excess sebum. However, the abnormal production of excess sebum is maintained. Accutane is a potent drug actually does something by reducing the size and activity of the sebaceous glands. However, I can tell you from first-hand experience that it comes with side-effects, and that the glandular activity can be partially recovered after some weeks. None of these artificial fixes existed a century ago. It makes more sense to solve the health issue from the inside before applying these remedies.
+
+    By this I do not mean that these solutions should be disregarded right off the bat. They can definitely help when you have a pimple here and there. I am the first one to use epiduo (formed by benzyl peroxide) to fix some small pimple that may appear during days of eating a non-ideal diet due to social celebrations, etc. Just keep in mind that these alternatives are to be seen as the cherry on top. We first need to establish the fundamentals.
+
+    4.2 Combating hormones
+    We have previously explained what was triggering acne, and that DHT was the main culprit behind this. There are various ways to inhibit the production of DHT, most of them coming from anti alopecia measures. The anti hair loss in the botb section makes an excellent job at covering them (https://looksmax.org/threads/ultimate-indepth-anti-hair-loss-guide.220874/). I will just summarize the main ones:
+
+    - Creatine: it goes without saying that creatine should be avoided, and this should be the first thing to do. I personally fell victim of that after hearing that it is the most well-studied supplement across the globe with “minimal” sides.
+    - Finasteride: inhibits 5 alpha-reductase and drops DHT by 60%. You can use it as a microemulsion gel (which has been shown to reduce acne by around 75%) [53], or take it orally, which is also seen to work [54].
+    - Dutasteride: a more potent drug that reduced DHT by 90% [55] and also inhibits 5 alpha-reductase. I would only go for dutasteride in extreme cases where you also want to combat hair loss. Otherwise the sides may be too much.
+    - Spironolactone: a steroidal androgen receptor-blocker that competes with testosterone and DHT for androgen receptors. Hence, it can significantly reduce sebocyte proliferation [56]. If it has any influence on 5 alpha-reductase is yet to be seen.
+    - Flutamide: a non-steroidal androgen receptor-blocker that has a lower effect on acne compared to spironolactone, hence greater doses are needed.
+
+    4.3 Diet
+    Jump into a low glycemic load. This nutrition guide should be a very solid good starting point (https://looksmax.org/threads/my-diet.421718/). A low glycemic load diet will reduce the acne severity by improving insulin sensitivity, reducing the free androgen index, and reduce the BMI additionally. Eating a low carb diet may be hard if you are just starting, and I would not aim at consuming zero carbs. Taking 1 liter of milk will provide you between 40 and 50 g of carbs, which may be enough. If you really need to eat more carbs you can go for brown rice if you can tolerate since it has a somewhat acceptable glycemic index of 55. Beware of eating too much leucine in it stimulates the mTORC1 signaling, hence more sebum will be produced. In my experience you can surpass the recommended daily intake of 2.8 g if you eat grass-fed beef and fatty dairy without much problem, but it is better to avoid leucine supplements. This is what I more or less eat in a day:
+    View attachment 2155087
+    Although I am currently in a caloric surplus you get the idea. I eat a high fat diet with minimum carbs and a significant amount of protein. The mackerel gives me enough omega 3 to rock an omega 6/3 ratio between 1:1 and 2:1. I eat cheese and kefir (more on that later) for the carbs, vitamin A and calcium. The ground beef and the eggs are cheap sources of protein and calories. I avoid cooking with fried seed oils as the foods are naturally greasy enough. Finally, I take two multivitamin capsules, one in the morning and one in the evening together with the meals to cover the vitamin deficiencies that go along this diet. I also may take some collagen, vitamin C pills and beta carotene. All together the nutrients look like this:
+    View attachment 2155088
+    Could it be improved? For sure, but I noticed a big improvement from eating this diet compared to numbly consuming everything there was in the plate.
+
+    4.4 Probiotics
+    While eating a healthy carnivore diet with the right supplements made a big change for me, it was not until I incorporated probiotics that started getting a glimpse of what it was like to live without having to worry about pimples. Every day I eat 1 liter of kefir, which I make at home. It is way cheaper than buying it from the store as you only have to pay for the milk and have acquired the kefir grains (they should cost no more than 20 euros). The only downside associated with self-made kefir is the amount of alcohol because it can have a 0.5%. It is best to not let it over-ferment and work with a small enough amount of grains.
+
+    View attachment 2155089
+    Other probiotics you may try are sauerkaut (made from cabbage), kimchi (also coming from vegetables), and even yogurt. Self-made kefir has at least 3 times more probiotics than yogurt, and it will also be cheaper, so I would recommend sticking to kefir. If you are lactose intolerant kefir should not be an issue because most lactose is consumed during the fermentation process. Kombucha is another probiotic you could try, even though it takes longer to prepare than milk kefir and is way less caloric. Overall milk kefir mogs everything else.
+
+    5. RESULTS
+    How it was during months:​
+    View attachment 2155090
+
+    How it is going:​
+    View attachment 2155092
+    I still have some hyperpigmentation due to the acne scarring, but man, it feels good not having to worry about this.
+    ​
+    6. REFERENCES
+    [1] Halvorsen, Jon A., et al. "Suicidal ideation, mental health problems, and social impairment are increased in adolescents with acne: a population-based study." Journal of Investigative Dermatology 131.2 (2011): 363-370.
+    [2] Williams, Hywel C., Robert P. Dellavalle, and Sarah Garner. "Acne vulgaris." The Lancet 379.9813 (2012): 361-372.
+    [3] Dréno, Brigitte, et al. "Cutibacterium acnes (Propionibacterium acnes) and acne vulgaris: a brief look at the latest updates." Journal of the European Academy of Dermatology and Venereology 32 (2018): 5-14.
+    [4] Christensen, Gitte Julie Møller, and Holger Brüggemann. "Bacterial skin commensals and their role as host guardians." Beneficial microbes 5.2 (2014): 201-215.
+    [5] Britannica, The Editors of Encyclopaedia. "sebaceous gland". Encyclopedia Britannica, 12 Feb. 2023, https://www.britannica.com/science/sebaceous-gland. Accessed 15 April 2023.
+    [6] Herrero-Fernandez, Manuel, et al. "Impact of Water Exposure and Temperature Changes on Skin Barrier Function." Journal of Clinical Medicine 11.2 (2022): 298.
+    [7] Pappas, Apostolos, et al. "Sebum analysis of individuals with and without acne." Dermato-endocrinology 1.3 (2009): 157-161.
+    [8] Elsaie, Mohamed L. "Hormonal treatment of acne vulgaris: an update." Clinical, cosmetic and investigational dermatology (2016): 241-248.
+    [9] Pochi, Peter E. "Acne: Androgens and microbiology." Drug Development Research 13.2‐3 (1988): 157-168.
+    [10] Pochi, Peter E., John S. Strauss, and Donald T. Downing. "Age-related changes in sebaceous gland activity." Journal of Investigative Dermatology 73.1 (1979): 108-111.
+    [11] Pochi, Peter E., and John S. Strauss. "Endocrinologic control to the development and activity of the human sebaceous gland." Journal of Investigative Dermatology 62.3 (1974): 191-201.
+    [12] Chuan, Sandy S., and R. Jeffrey Chang. "Polycystic ovary syndrome and acne." Skin therapy letter 15.10 (2010): 1-4.
+    [13] Kinter, Kevin J., and Aabha A. Anekar. "Biochemistry, dihydrotestosterone." StatPearls [Internet]. StatPearls Publishing, 2022.
+    [14] Allolio, Bruno, Wiebke Arlt, and Stefanie Hahner. "Dehydroepiandrosterone and androstenedione." Testosterone: Action, Deficiency, Substitution (2012): 437-458.
+    [15] Marchetti, Paula M., and Julian H. Barth. "Clinical biochemistry of dihydrotestosterone." Annals of Clinical Biochemistry 50.2 (2013): 95-107.
+    [16] Van der Merwe, Johann, Naomi E. Brooks, and Kathryn H. Myburgh. "Three weeks of creatine monohydrate supplementation affects dihydrotestosterone to testosterone ratio in college-aged rugby players." Clinical Journal of Sport Medicine 19.5 (2009): 399-404.
+    [17] Mahmood, N. F., and A. R. Shipman. "The age-old problem of acne." International journal of women's dermatology 3.2 (2017): 71-76.
+    [18] Campbell, Christine E., and Beverly I. Strassmann. "The blemishes of modern society? Acne prevalence in the Dogon of Mali." Evolution, medicine, and public health 2016.1 (2016): 325-337.
+    [19] Romo Ventura, Eugenia, et al. "Association of dietary intake of milk and dairy products with blood concentrations of insulin-like growth factor 1 (IGF-1) in Bavarian adults." European journal of nutrition 59 (2020): 1413-1420.
+    [20] Darling, J. A. B., A. H. Laing, and R. A. Harkness. "A SURVEY OF THE STEROIDS IN COWS'MILK." Journal of endocrinology 62.2 (1974): 291-297.
+    [21] Adebamowo, Clement A., et al. "High school dietary dairy intake and teenage acne." Journal of the American Academy of Dermatology 52.2 (2005): 207-214.
+    [22] LaRosa, Caroline L., et al. "Consumption of dairy in teenagers with and without acne." Journal of the American Academy of Dermatology 75.2 (2016): 318-322.
+    [23] Cordain, Loren, et al. "Acne vulgaris: a disease of Western civilization." Archives of dermatology 138.12 (2002): 1584-1590.
+    [24] Xu, Yalan, and Jie Qiao. "Association of insulin resistance and elevated androgen levels with Polycystic Ovarian Syndrome (PCOS): a review of literature." Journal of healthcare engineering 2022 (2022).
+    [25] Hasrat, Nazik H., and Asaad Q. Al-Yassen. "The Relationship Between Acne Vulgaris and Insulin Resistance." Cureus 15.1 (2023).
+    [26] Aghasi, Mohadeseh, et al. "Dairy intake and acne development: a meta-analysis of observational studies." Clinical Nutrition 38.3 (2019): 1067-1075.
+    [27] Simopoulos, Artemis P. "Omega-3 fatty acids in inflammation and autoimmune diseases." Journal of the American College of nutrition 21.6 (2002): 495-505.
+    [28] Logan, Alan C. "Omega-3 fatty acids and acne." Archives of dermatology 139.7 (2003): 941-942.
+    [29] Daley, C. A., et al. "A literature review of the value-added nutrients found in grass-fed beef products." California State University, Chico (College of Agriculture) (2004).
+    [30] Cordain, Loren. "Implications for the role of diet in acne." Seminars in cutaneous medicine and surgery. Vol. 24. No. 2. WB Saunders, 2005.
+    [31] Gong, Minmin, et al. "Berberine Alleviates Insulin Resistance and Inflammation via Inhibiting the LTB4–BLT1 Axis." Frontiers in Pharmacology 12 (2021): 722360.
+    [32] Bhathena, Sam J., et al. "Effects of ω 3 fatty acids and vitamin E on hormones involved in carbohydrate and lipid metabolism in men." The American journal of clinical nutrition 54.4 (1991): 684-688.
+    [33] Ebbesson, Sven OE, et al. "Eskimos have CHD despite high consumption of omega-3 fatty acids: the Alaska Siberia project." International journal of circumpolar health 64.4 (2005): 387-395.
+    [34] Schaefer, Otto. "When the Eskimo comes to town." Nutrition Today 6.6 (1971): 8-16.
+    [35] El‐Akawi, Z., N. Abdel‐Latif, and K. Abdul‐Razzak. "Does the plasma level of vitamins A and E affect acne condition?." Clinical and experimental dermatology 31.3 (2006): 430-434.
+    [36] Kligman, Albert M., et al. "Oral vitamin A in acne vulgaris Preliminary report." International Journal of Dermatology 20.4 (1981): 278-285.
+    [37] Kotori, Merita Grajqevci. "Low-dose vitamin “A” tablets–treatment of acne vulgaris." Medical Archives 69.1 (2015): 28.
+    [38] Kus, Sadiye, et al. "Vitamin E does not reduce the side‐effects of isotretinoin in the treatment of acne vulgaris." International journal of dermatology 44.3 (2005): 248-251.
+    [39] Keen, Mohammad Abid, and Iffat Hassan. "Vitamin E in dermatology." Indian dermatology online journal 7.4 (2016): 311.
+    [40] Morris, George E. "Use of vitamin C in acne vulgaris." AMA Archives of Dermatology and Syphilology 70.3 (1954): 363-364.
+    [41] Lambrechts, Isa Anina, Marco Nuno de Canha, and Namrita Lall. "Exploiting medicinal plants as possible treatments for acne vulgaris." Medicinal Plants for Holistic Health and Well-Being. Academic Press, 2018. 117-143.
+    [42] Alhetheli, Ghadah, et al. "Vitamin D levels in patients with and without acne and its relation to acne severity: a case-control study." Clinical, Cosmetic and Investigational Dermatology (2020): 759-765.
+    [43] Pilz, S., et al. "Effect of vitamin D supplementation on testosterone levels in men." Hormone and Metabolic Research 43.03 (2011): 223-225.
+    [44] Kang, Dezhi, et al. "Vitamin B12 modulates the transcriptome of the skin microbiota in acne pathogenesis." Science translational medicine 7.293 (2015): 293ra103-293ra103.
+    [45] Michaëlsson, G. E. R. D., L. Juhlin, and K. E. R. S. T. I. N. Ljunghall. "A double-blind study of the effect of zinc and oxytetracycline in acne vulgaris." The British Journal of Dermatology 97.5 (1977): 561-566.
+    [46] Wahab, Ahsan, et al. "Zinc‐induced copper deficiency, sideroblastic anemia, and neutropenia: A perplexing facet of zinc excess." Clinical Case Reports 8.9 (2020): 1666-1671.
+    [47] Skalnaya, Margarita G. "Copper deficiency a new reason of androgenetic alopecia." Pharmacology and nutritional intervention in the treatment of disease (2014): 337-348.
+    [48] Leyden, James J. "Low Serum Iron Levels and Moderate Anemia in Severe Nodulocystic Acne: Reversal With Isotretinoin Therapy." Archives of dermatology 121.2 (1985): 214-215.
+    [49] Lee, Young Bok, Eun Jung Byun, and Hei Sung Kim. "Potential role of the microbiome in acne: a comprehensive review." Journal of clinical medicine 8.7 (2019): 987.
+    [50] Melnik, Bodo. "Dietary intervention in acne: Attenuation of increased mTORC1 signaling promoted by Western diet." Dermato-endocrinology 4.1 (2012): 20-32.
+    [51] Clark, Ashley K., Kelly N. Haas, and Raja K. Sivamani. "Edible plants and their influence on the gut microbiome and acne." International journal of molecular sciences 18.5 (2017): 1070.
+    [52] Madsen, Karen, et al. "Probiotic bacteria enhance murine and human intestinal epithelial barrier function." Gastroenterology 121.3 (2001): 580-591.
+    [53] Khodayani, Efat, et al. "Study the effect of finasteride microemulsion gel on the treatment of men with mild to moderate acne." Studies in Medical Sciences 29.8 (2018): 585-592.
+    [54] Rokni, Ghasem Rahmatpour, et al. "Efficacy, tolerability, and safety of montelukast versus finasteride for the treatment of moderate acne in women: A prospective, randomized, single‐blinded, active‐controlled trial." Journal of cosmetic dermatology 20.11 (2021): 3580-3585.
+    [55] Clark, Richard V., et al. "Marked suppression of dihydrotestosterone in men with benign prostatic hyperplasia by dutasteride, a dual 5α-reductase inhibitor." The journal of clinical endocrinology & metabolism 89.5 (2004): 2179-2184.
+    [56] Shaw, James C. "Acne: effect of hormones on pathogenesis and management." American journal of clinical dermatology 3 (2002): 571-578.
+    Click to expand...
+
+WOW! BOTB worthy!
+Great thread OP!
+ 
+
+    +1 
+
+Reactions: Father47 and jfbjfb
+Chadpreet_
+Chadpreet_
+Silver
+
+Joined
+    Nov 7, 2023
+
+Posts
+    558
+
+Reputation
+    382
+
+    Dec 3, 2023 
+
+    #42
+
+Congrats on botb
+ 
+
+    +1 
+
+Reactions: enchanted_elixir
+Chadpreet_
+Chadpreet_
+Silver
+
+Joined
+    Nov 7, 2023
+
+Posts
+    558
+
+Reputation
+    382
+
+    Dec 3, 2023 
+
+    #43
+
+bump
+ 
+Oxygen
+Oxygen
+Ascending!!!
+
+Joined
+    Jan 29, 2023
+
+Posts
+    2,117
+
+Reputation
+    2,994
+
+    Dec 4, 2023 
+
+    #44
+
+Not botb worthy tbh. Just tell me what chemicals i need to put on my face to achieve korean tier skin nigga
+ 
+
+    +1JFL 
+
+Reactions: entrytrash, aleksander, Pope Urban ll and 1 other person
+Deleted member 30959
+Luminary
+
+Joined
+    Jun 16, 2023
+
+Posts
+    8,717
+
+Reputation
+    14,488
+
+    Dec 4, 2023 
+
+    #45
+
+Causes: Being subhuman
+Solution: Roping
+ 
+
+    JFL 
+
+Reactions: entrytrash
+Pay
+Pay
+Banned
+
+Joined
+    Sep 14, 2023
+
+Posts
+    10,213
+
+Reputation
+    13,438
+
+    Dec 4, 2023 
+
+    #46
+
+    looksmidder said:
+    mirin iq, a lot of words and looks nice so you’re probably smart
+
+nigga most definetely copypasted, dude has 56 sources :ROFLMAO: :ROFLMAO: :ROFLMAO: :ROFLMAO: :ROFLMAO: :ROFLMAO:
+ 
+
+    JFL 
+
+Reactions: enchanted_elixir
+Pay
+Pay
+Banned
+
+Joined
+    Sep 14, 2023
+
+Posts
+    10,213
+
+Reputation
+    13,438
+
+    Dec 4, 2023 
+
+    #47
+
+if this thread had good format it would be botb worthy
+ 
+Deleted member 25743
+Gavid Dandy
+
+Joined
+    Jan 20, 2023
+
+Posts
+    6,908
+
+Reputation
+    6,390
+
+    Dec 4, 2023 
+
+    #48
+
+    Newday said:
+    Just dont touch ur dick lmao
+
+ 
+Weter
+Weter
+Platinum
+
+Joined
+    Nov 13, 2023
+
+Posts
+    1,135
+
+Reputation
+    588
+
+    Dec 4, 2023 
+
+    #49
+
+How tf does musturbation affect acne?
+ 
+
+    +1 
+
+Reactions: aleksander and Hellcat
+enchanted_elixir
+enchanted_elixir
+𝕸𝖊𝖗𝖈𝖊𝖓𝖆𝖗𝖞 𝕮𝖔𝖗𝖕 • 𝟐𝟎𝟐𝟐🥉• Inactive
+Contributor
+
+Joined
+    Apr 15, 2022
+
+Posts
+    23,732
+
+Reputation
+    41,951
+
+    Dec 4, 2023 
+
+    #50
+
+    Shkreliii said:
+    if this thread had good format it would be botb worthy
+
+Well it's readable. It doesn't have to have beautiful formatting. It just has to be sufficiently legible.
+ 
+
+    +1 
+
+Reactions: Father47
+
+    1
+    2
+    3
+
+Next
+You must log in or register to reply here.
+Similar threads
+Menas
+
+    Article
+
+The Complete Shredding Guide For Summer
+
+    Menas Saturday at 8:57 AM Best of the Best 
+
+2 3
+
+Replies
+    124
+
+Views
+    7K
+
+Yesterday at 10:29 AM
+Zagro
+Zagro
+SlayerJonas
+Looksmaxxing Roidmaxxing 101™ - How to get a physique halo
+
+    SlayerJonas Apr 3, 2026 Best of the Best 
+
+2 3 4 5 6
+
+Replies
+    278
+
+Views
+    29K
+
+Today at 7:38 AM
+rqzuoo
+Socialmaxxing[extremely high effort]
+
+    Nodal Apr 5, 2026 Best of the Best 
+
+3 4 5 6 7
+
+Replies
+    305
+
+Views
+    42K
+
+Thursday at 11:31 PM
+Nodal
+emeraldglass
+How Social Interaction Actually Works
+
+    emeraldglass Dec 29, 2025 Best of the Best 
+
+2 3 4 5
+
+Replies
+    245
+
+Views
+    21K
+
+Wednesday at 7:33 PM
+CorinthianLOX
+CorinthianLOX
+Asoka
+
+    Article
+
+Looksmaxxing Makeup for Males - Easy, cheap but an effective way to mog (Makeupmaxxing)
+
+    Asoka Dec 27, 2025 Best of the Best 
+
+2 3 4 5
+
+Replies
+    222
+
+Views
+    31K
+
+Saturday at 4:38 AM
+killuacel
+killuacel
+Users who are viewing this thread
+
+Total: 2 (Looksmaxers: 0, Bluepillers: 2)
+Share:
+Facebook
+X (Twitter)
+Reddit
+Pinterest
+Tumblr
+Email
+Link
+
+    Forums
+    Looksmax
+    Best of the Best
+    Acne - causes and solutions
+
+    Style chooser
+    Light/Dark
+
+    Contact us
+    About
+    Partnerships
+    Collabs
+    Terms and rules
+    Privacy policy
+    Help
+    Home
+    RSS
+
