@@ -148,7 +148,7 @@ export const metricExplanations: Record<string, MetricExplanation> = {
         title: "Nose Width Ratio",
         whatItIs: "The width of the nose relative to the overall bizygomatic face width.",
         idealRange: "25% - 30%",
-        scientificContext: "According to the rule of fifths, the nose should perfectly span the medial fifth of the face. An excessively wide nose dominates the midface negatively.",
+        scientificContext: "According to the rule of fifths, the nose should roughly span the medial fifth of the face. Close selfies can inflate this measurement, so compare scans at a consistent 3+ foot distance.",
         blackpillNote: "A wide 'bulbous' nose is a common falio. Narrow, straight noses are required for the 'refined' Chadlite aesthetic.",
         modifiability: 'hardmax'
     },

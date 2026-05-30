@@ -142,7 +142,7 @@ export default function FaceAnalyzer() {
                 console.warn(`Quality gate relaxed for ${sourceName || 'scan'}: ${audit.reason}`);
                 setScanNotice({
                     kind: 'warning',
-                    message: `Scan quality warning: ${audit.reason} Proceeding because this scan is in relaxed mode.`,
+                    message: `Scan quality warning: ${audit.reason} Proceeding because this scan is in relaxed mode. For best calibration, use a 3+ foot camera distance.`,
                 });
             } else if (audit.reason) {
                 setScanNotice({
@@ -152,7 +152,15 @@ export default function FaceAnalyzer() {
                         : `Scan quality rejection: ${audit.reason}`,
                 });
             } else {
-                setScanNotice(null);
+                setScanNotice(
+                    relaxedScan && (isWebcamCapture || isFrontFacing)
+                        ? {
+                              kind: 'info',
+                              message:
+                                  'Selfie capture detected. The source model expects a 3+ foot distance, so nose width and facial fifths are interpreted with extra caution.',
+                          }
+                        : null
+                );
             }
 
             const normalizedLandmarks = matrix ? inversePoseNormalization(landmarks, matrix) : landmarks;
@@ -340,7 +348,7 @@ export default function FaceAnalyzer() {
 
             <div className="w-full bg-blue-500/10 border border-blue-500/20 rounded-2xl p-4 text-center">
                 <p className="text-[10px] font-black text-blue-400 uppercase tracking-[0.2em]">
-                    PSL is a forum-derived 0-8 lookism scale. Scores are calibrated for photos taken at 3+ feet distance; selfies can inflate nose width.
+                    PSL is a forum-derived 0-8 lookism scale. Scores are calibrated for photos taken at 3+ feet distance; close selfies can inflate nose width and facial fifths.
                 </p>
             </div>
             {qaMode && (
