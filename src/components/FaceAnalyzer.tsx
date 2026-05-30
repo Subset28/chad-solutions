@@ -90,6 +90,15 @@ export default function FaceAnalyzer() {
         return 0;
     };
 
+    const estimatePosePenalty = (pitch: number, yaw: number, roll: number) => {
+        const angleLoad = Math.abs(pitch) * 0.06 + Math.abs(yaw) * 0.035 + Math.abs(roll) * 0.02;
+        if (angleLoad >= 2.0) return 1.25;
+        if (angleLoad >= 1.4) return 0.95;
+        if (angleLoad >= 0.9) return 0.6;
+        if (angleLoad >= 0.5) return 0.3;
+        return 0;
+    };
+
     useEffect(() => {
         const initLandmarker = async () => {
             try {
@@ -158,6 +167,9 @@ export default function FaceAnalyzer() {
             const captureBiasPenalty = shouldBypassQualityGate(sourceName)
                 ? 0
                 : Math.min(1.2, estimateCaptureBiasPenalty(landmarks) + (isWebcamCapture ? 0.2 : 0));
+            const posePenalty = shouldBypassQualityGate(sourceName)
+                ? 0
+                : estimatePosePenalty(angles.pitch, angles.yaw, angles.roll);
             const audit = validateLandmarks(landmarks, {
                 relaxed: relaxedScan,
             });
@@ -204,7 +216,7 @@ export default function FaceAnalyzer() {
                 imageData,
                 landmarks
             );
-            const psl = calculatePSLScore(metrics, { gender, captureBiasPenalty }, audit.overall);
+            const psl = calculatePSLScore(metrics, { gender, captureBiasPenalty, posePenalty }, audit.overall);
 
             const scanId =
                 typeof crypto !== 'undefined' && crypto.randomUUID
@@ -226,6 +238,13 @@ export default function FaceAnalyzer() {
                 setScanNotice({
                     kind: 'info',
                     message: `Close-capture correction applied: -${captureBiasPenalty.toFixed(1)} PSL to reduce selfie inflation on nose width, fifths, and related ratios.`,
+                });
+            }
+
+            if (posePenalty > 0) {
+                setScanNotice({
+                    kind: 'info',
+                    message: `Pose correction applied: -${posePenalty.toFixed(1)} PSL to reduce inflation from head tilt and forced chin posture.`,
                 });
             }
 

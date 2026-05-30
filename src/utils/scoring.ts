@@ -5,6 +5,7 @@ export interface ScoreContext {
     gender: 'male' | 'female';
     ageRange?: string;
     captureBiasPenalty?: number;
+    posePenalty?: number;
 }
 
 export interface MetricNorm {
@@ -186,7 +187,8 @@ export function calculatePSLScore(
     const calibrated = predictBenchmarkPsl(metrics);
     const dampedScore = 4 + (calibrated.score - 4) * 0.97;
     const captureBiasPenalty = clamp(context.captureBiasPenalty ?? 0, 0, 1.5);
-    const adjustedScore = clamp(dampedScore - captureBiasPenalty, 0, 8);
+    const posePenalty = clamp(context.posePenalty ?? 0, 0, 1.5);
+    const adjustedScore = clamp(dampedScore - captureBiasPenalty - posePenalty, 0, 8);
     const finalScore = Math.round(adjustedScore * 10) / 10;
     const percentile = scoreToPercentile(finalScore);
     const breakdown = Object.entries(calibrated.breakdown).map(
@@ -194,6 +196,9 @@ export function calculatePSLScore(
     );
     if (captureBiasPenalty > 0) {
         breakdown.unshift(`Capture distance correction (-${captureBiasPenalty.toFixed(2)})`);
+    }
+    if (posePenalty > 0) {
+        breakdown.unshift(`Pose correction (-${posePenalty.toFixed(2)})`);
     }
 
     return {
