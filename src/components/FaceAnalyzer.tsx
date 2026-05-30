@@ -130,8 +130,7 @@ export default function FaceAnalyzer() {
                 correctedLandmarks,
                 result.faceBlendshapes?.[0]?.categories || [],
                 imageData,
-                landmarks,
-                profileType
+                landmarks
             );
             const psl = calculatePSLScore(metrics, { gender }, audit.overall);
 
