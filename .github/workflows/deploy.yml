@@ -35,9 +35,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock', '**/pnpm-lock.yaml') }}-
       - name: Install dependencies
-        run: npm install
-      - name: Run Linting
-        run: npm run lint
+        run: npm ci
       - name: Run Unit Tests
         run: npm run test
       - name: Build with Next.js
